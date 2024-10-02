@@ -8,5 +8,5 @@
 @import 'prismjs/plugins/line-highlight/prism-line-highlight.css';
 
 * {
-  font-family: "Plus Jakarta Sans", sans-serif;
+  @apply text-white font-sans;
 }

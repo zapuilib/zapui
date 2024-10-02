@@ -1,8 +1,12 @@
 section {
-  @apply px-12 py-12 transition-all;
+  @apply px-60 py-12 w-[60%] transition-all;
 
   ngx-zen-button {
     @apply col-span-4 p-32 flex justify-center items-center bg-zinc-50 rounded-md;
+  }
+
+  h1 {
+    @apply text-2xl font-semibold mb-5;
   }
 
   &.light {
@@ -15,5 +19,9 @@ section {
     ngx-zen-button {
       @apply bg-[#282828] text-white;
     }
+  }
+
+  h2 {
+    @apply text-base mb-3;
   }
 }

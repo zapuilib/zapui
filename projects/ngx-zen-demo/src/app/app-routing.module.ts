@@ -1,7 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+
 import { InternalLayoutComponent } from './layout/internal-layout/internal-layout.component';
-import { ButtonComponent } from './components';
+import { ButtonComponent, GettingStartedComponent } from './components';
+
 
 const routes: Routes = [
   {
@@ -9,16 +11,26 @@ const routes: Routes = [
     component: InternalLayoutComponent,
     children: [
       {
+        path: '',
+        redirectTo: 'getting-started',
+        pathMatch: 'full',
+      },
+      {
+        path: 'getting-started',
+        component: GettingStartedComponent,
+        pathMatch: 'full',
+      },
+      {
         path: 'button',
         component: ButtonComponent,
-        pathMatch: 'full'
-      }
-    ]
-  }
+        pathMatch: 'full',
+      },
+    ],
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

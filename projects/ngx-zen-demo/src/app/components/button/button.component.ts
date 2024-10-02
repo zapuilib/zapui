@@ -7,64 +7,85 @@ import { ActivatedRoute } from '@angular/router';
   styleUrl: './button.component.scss',
 })
 export class ButtonComponent {
-  markdown = [
-    `\`\`\`html
+  markdowns = [
+    {
+      markdown: `\`\`\`html
 <ngx-zen-button text="Submit"></ngx-zen-button>
-\`\`\``,
-
-    `\`\`\`html
-<ngx-zen-button text="Submit" theme="light" shape="curve"></ngx-zen-button>
-\`\`\``,
-    `\`\`\`html
-<ngx-zen-button text="Submit" theme="light" shape="pill"></ngx-zen-button>
-\`\`\``,
-
-    `\`\`\`html
-<ngx-zen-button text="Submit" theme="light" size="compact"></ngx-zen-button>
-\`\`\``,
-
-`\`\`\`html
-<ngx-zen-button text="Submit" theme="light" size="tight"></ngx-zen-button>
-\`\`\``,
-
-    `\`\`\`html
-<ngx-zen-button text="Submit" theme="light" size="wide"></ngx-zen-button>
-\`\`\``,
-
-    `\`\`\`html
-<ngx-zen-button text="Submit" theme="light" variant="outlined"></ngx-zen-button>
-\`\`\``,
-
-    `\`\`\`html
+  \`\`\``,
+      title: 'Basic button',
+    },
+    {
+      markdown: `\`\`\`html
+<ngx-zen-button text="Submit" shape="curve"></ngx-zen-button>
+  \`\`\``,
+      title: 'Curve button',
+    },
+    {
+      markdown: `\`\`\`html
+<ngx-zen-button text="Submit" shape="pill"></ngx-zen-button>
+  \`\`\``,
+      title: 'Pill button',
+    },
+    {
+      markdown: `\`\`\`html
+<ngx-zen-button text="Submit" size="compact"></ngx-zen-button>
+  \`\`\``,
+      title: 'Compact button',
+    },
+    {
+      markdown: `\`\`\`html
+<ngx-zen-button text="Submit" size="tight"></ngx-zen-button>
+  \`\`\``,
+      title: 'Tight button',
+    },
+    {
+      markdown: `\`\`\`html
+<ngx-zen-button text="Submit" size="wide"></ngx-zen-button>
+  \`\`\``,
+      title: 'Wide Button',
+    },
+    {
+      markdown: `\`\`\`html
+<ngx-zen-button text="Submit" variant="outlined"></ngx-zen-button>
+  \`\`\``,
+      title: 'Outlined button',
+    },
+    {
+      markdown: `\`\`\`html
 <ngx-zen-button
   text="Submit"
-  theme="light"
   icon="fa-arrow-up"
   shape="curve"
 ></ngx-zen-button>
-\`\`\``,
-
-    `\`\`\`html
-<ngx-zen-button text="Submit" theme="light" variant="link"></ngx-zen-button>
-\`\`\``,
-
-    `\`\`\`html
+  \`\`\``,
+      title: 'Curve button with icon',
+    },
+    {
+      markdown: `\`\`\`html
+<ngx-zen-button text="Submit" variant="link"></ngx-zen-button>
+  \`\`\``,
+      title: 'Link button',
+    },
+    {
+      markdown: `\`\`\`html
 <ngx-zen-button
   text="Submit"
-  theme="light"
   type="icononly"
   icon="fa-search"
   shape="pill"
 ></ngx-zen-button>
 \`\`\``,
-
-    `\`\`\`html
+      title: 'Icon only pill Button',
+    },
+    {
+      markdown: `\`\`\`html
 <ngx-zen-button
   text="Submit"
-  theme="light"
   [disabled]="true"
 ></ngx-zen-button>
 \`\`\``,
+      title: 'Disabled Button',
+    },
   ];
 
   constructor(private route: ActivatedRoute) {}

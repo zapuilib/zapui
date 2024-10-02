@@ -4,7 +4,11 @@ const plugin = require("../../dist/ngx-zen/plugins/base.js");
 module.exports = {
   content: ["./src/**/*.{html,ts}"],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        sans: ["Plus Jakarta Sans", "sans-serif"],
+      }
+    },
   },
   plugins: [plugin],
 };

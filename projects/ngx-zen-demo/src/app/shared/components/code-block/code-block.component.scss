@@ -1,8 +1,9 @@
 .code-group {
-  @apply flex flex-col w-[40%] gap-5 py-2;
+  @apply flex flex-col w-[40%] gap-5 justify-between py-2;
 
   h2,
-  p {
+  p,
+  div {
     @apply text-white;
   }
 
@@ -10,7 +11,14 @@
     @apply text-xl font-medium;
   }
 
-  p {
-    @apply text-base text-zinc-400;
+  p,
+  div {
+    @apply text-base text-zinc-400 py-1;
+  }
+}
+
+::ng-deep {
+  pre {
+    @apply bg-[#212121] #{!important};
   }
 }

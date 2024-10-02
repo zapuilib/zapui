@@ -1,26 +1,23 @@
 <nav class="side-menu">
   <ul>
+    @for(item of items; track item;) {
     <li>
-      <a routerLink="/button">Components</a>
+      <a routerLink="/button">{{ item.title }}</a>
+      @if(item.subItems){
       <div class="sub-menu">
         <ul>
-          <li routerLink="/alert" routerLinkActive="router-link-active">
-            <a>Alert</a>
+          @for(subitem of item.subItems; track subitem;) {
+          <li
+            routerLink="{{ subitem.routerLink }}"
+            routerLinkActive="router-link-active"
+          >
+            <a>{{ subitem.title }}</a>
           </li>
-          <li routerLink="/button" routerLinkActive="router-link-active">
-            <a>Button</a>
-          </li>
-          <li routerLink="/dialog" routerLinkActive="router-link-active">
-            <a>Dialog</a>
-          </li>
-          <li routerLink="/input" routerLinkActive="router-link-active">
-            <a>Input</a>
-          </li>
-          <li routerLink="/snackbar" routerLinkActive="router-link-active">
-            <a>Snackbar</a>
-          </li>
+          }
         </ul>
       </div>
+      }
     </li>
+    }
   </ul>
 </nav>

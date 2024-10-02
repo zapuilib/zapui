@@ -7,5 +7,47 @@ import { ActivatedRoute } from '@angular/router';
   styleUrl: './side-menu.component.scss',
 })
 export class SideMenuComponent {
+  items: any[] = [
+    {
+      title: 'Introduction',
+      routerLink: '/getting-started',
+      subItems: [
+        {
+          title: 'Getting Started',
+          routerLink: '/getting-started',
+        },
+        {
+          title: 'Usages',
+          routerLink: '/usages',
+        },
+      ],
+    },
+    {
+      title: 'Components',
+      routerLink: '/button',
+      subItems: [
+        {
+          title: 'Alert',
+          routerLink: '/alert',
+        },
+        {
+          title: 'Button',
+          routerLink: '/button',
+        },
+        {
+          title: 'Dialog',
+          routerLink: '/dialog',
+        },
+        {
+          title: 'Input',
+          routerLink: '/input',
+        },
+        {
+          title: 'Snackbar',
+          routerLink: '/snackbar',
+        },
+      ],
+    },
+  ];
   constructor(private route: ActivatedRoute) {}
 }

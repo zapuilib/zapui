@@ -8,8 +8,6 @@ import { Component } from '@angular/core';
 })
 export class CodeBlockComponent {
   @Input() markdownData: string = '';
-  @Input() title: string = '';
-  @Input() description: string = '';
 
   onCopyToClipboard() {}
 }

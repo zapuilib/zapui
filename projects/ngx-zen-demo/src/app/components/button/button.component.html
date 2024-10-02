@@ -1,150 +1,89 @@
 <section class="min-h-screen">
-  <app-code-block
-    title="Basic button"
-    description="Import a basic button in your component, additional params and their usage is explained below"
-    [markdownData]="markdown[0]"
+  <h1>Buttons</h1>
+  @for(item of markdowns; track item; let i = $index) {
+  <ng-container
+    *ngTemplateOutlet="
+      card;
+      context: { $implicit: markdowns[i].markdown, title: markdowns[i].title, index: i }
+    "
   >
-    <ngx-zen-button text="Submit" zenClass="bg-red-500"></ngx-zen-button>
-  </app-code-block>
-
-  <app-code-block
-    title="Curve button"
-    description=""
-    [markdownData]="markdown[1]"
-  >
-    <ngx-zen-button text="Submit" theme="light" shape="curve"></ngx-zen-button>
-  </app-code-block>
-
-  <app-code-block
-    title="Pill button"
-    description=""
-    [markdownData]="markdown[2]"
-  >
-    <ngx-zen-button text="Submit" theme="light" shape="pill"></ngx-zen-button>
-  </app-code-block>
-
-  <app-code-block
-    title="Compact button"
-    description=""
-    [markdownData]="markdown[3]"
-  >
-    <ngx-zen-button text="Submit" theme="light" size="compact"></ngx-zen-button>
-  </app-code-block>
-
-  <app-code-block
-    title="Tight button"
-    description=""
-    [markdownData]="markdown[4]"
-  >
-    <ngx-zen-button text="Submit" theme="light" size="tight"></ngx-zen-button>
-  </app-code-block>
-
-  <app-code-block
-    title="Wide button"
-    description=""
-    [markdownData]="markdown[5]"
-  >
-    <ngx-zen-button text="Submit" theme="light" size="wide"></ngx-zen-button>
-  </app-code-block>
-
-  <app-code-block
-    title="Outlined button"
-    description=""
-    [markdownData]="markdown[6]"
-  >
-    <ngx-zen-button
-      text="Submit"
-      theme="light"
-      variant="outlined"
-    ></ngx-zen-button>
-  </app-code-block>
-
-  <app-code-block
-    title="Icon button"
-    description=""
-    [markdownData]="markdown[7]"
-  >
-    <ngx-zen-button
-      text="Submit"
-      theme="light"
-      icon="fa-arrow-up"
-      shape="curve"
-    ></ngx-zen-button>
-  </app-code-block>
-
-  <app-code-block
-    title="Link button"
-    description=""
-    [markdownData]="markdown[8]"
-  >
-    <ngx-zen-button text="Submit" theme="light" variant="link"></ngx-zen-button>
-  </app-code-block>
-
-  <app-code-block
-    title="Icononly button"
-    description=""
-    [markdownData]="markdown[9]"
-  >
-    <ngx-zen-button
-      text="Submit"
-      theme="light"
-      type="icononly"
-      icon="fa-search"
-      shape="pill"
-    ></ngx-zen-button>
-  </app-code-block>
-
-  <app-code-block
-    title="Disabled button"
-    description=""
-    [markdownData]="markdown[10]"
-  >
-    <ngx-zen-button
-      text="Submit"
-      theme="light"
-      [disabled]="true"
-    ></ngx-zen-button>
-  </app-code-block>
+  </ng-container>
+  }
 </section>
-<!-- <div class="h-screen grid grid-cols-12">
-    <div class="bg-[#181818] col-span-6 p-20 h-screen">
-      <form [formGroup]="form" class="flex flex-col gap-y-4">
-        <ngx-zen-input
-          #username
-          label="Username"
-          inputId="username"
-          type="text"
-          formControlName="username"
-          zenClass=""
-          theme="dark"
-          shape="default"
-          size="default"
-          placeholder="Enter your username"
-          [customErrorMessages]="customErrorMessages"
-        ></ngx-zen-input>
-      </form>
+
+<ng-template let-markdown let-title="title" let-index="index" #card>
+  <div class="my-4">
+    <div class="header">
+      <h2>{{ title }}</h2>
     </div>
-  
-    <div class="col-span-6 p-20 h-screen">
-      <form [formGroup]="form" class="flex flex-col gap-y-4">
-        <ngx-zen-input
-          label="Email"
-          inputId="email"
-          type="email"
-          formControlName="email"
-          zenClass=""
-          theme="light"
-          icon="fa-search"
-          iconPosition="right"
-          placeholder="Enter your email"
-          [customErrorMessages]="customErrorMessages"
-        ></ngx-zen-input>
-  
-        <ngx-zen-button text="Submit" theme="light" zenClass=""></ngx-zen-button>
-      </form>
-      <ngx-zen-alert type="success" shape="curve" positionY="top" variant="classic" icon="fa-circle-check">
-          <p class="mb-0">Copied to clipboard</p>
-      </ngx-zen-alert>
+    <div class="content">
+      @switch(index) { @case(0) {
+      <ngx-zen-button text="Submit" zenClass="bg-red-500"></ngx-zen-button>
+      } @case(1) {
+      <ngx-zen-button
+        text="Submit"
+        zenClass="bg-red-500"
+        shape="curve"
+      ></ngx-zen-button>
+      } @case(2) {
+      <ngx-zen-button
+        text="Submit"
+        zenClass="bg-red-500"
+        shape="pill"
+      ></ngx-zen-button>
+      } @case(3) {
+      <ngx-zen-button
+        text="Submit"
+        zenClass="bg-red-500"
+        size="compact"
+      ></ngx-zen-button>
+      } @case(4) {
+      <ngx-zen-button
+        text="Submit"
+        zenClass="bg-red-500"
+        size="tight"
+      ></ngx-zen-button>
+      } @case(5) {
+      <ngx-zen-button
+        text="Submit"
+        zenClass="bg-red-500"
+        size="wide"
+      ></ngx-zen-button>
+      } @case(6) {
+      <ngx-zen-button
+        text="Submit"
+        zenClass="bg-red-500"
+        variant="outlined"
+      ></ngx-zen-button>
+      } @case(7) {
+      <ngx-zen-button
+        text="Submit"
+        zenClass="bg-red-500"
+        icon="fa-arrow-up"
+        shape="curve"
+      ></ngx-zen-button>
+      } @case(8) {
+      <ngx-zen-button
+        text="Submit"
+        zenClass="bg-red-500"
+        variant="link"
+      ></ngx-zen-button>
+      } @case(9) {
+      <ngx-zen-button
+        text="Submit"
+        zenClass="bg-red-500"
+        type="icononly"
+        icon="fa-search"
+        shape="pill"
+      ></ngx-zen-button>
+      } @case(10) {
+      <ngx-zen-button
+        text="Submit"
+        zenClass="bg-red-500"
+        [disabled]="true"
+      ></ngx-zen-button>
+      } }
+      <app-code-block [markdownData]="markdown"></app-code-block>
     </div>
   </div>
-   -->
+</ng-template>

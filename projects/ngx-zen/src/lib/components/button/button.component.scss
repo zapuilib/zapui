@@ -34,7 +34,7 @@ button {
   &.outlined {
     @apply border border-black;
     @apply dark:border-white;
-    @apply bg-transparent;
+    @apply bg-transparent #{!important};
     @apply text-black;
     @apply dark:text-white;
   }
@@ -57,10 +57,9 @@ button {
     }
   }
 
-  &.text,
   &.link {
     @apply border-0 px-0 py-0;
-    @apply bg-transparent;
+    @apply bg-transparent #{!important};
     @apply text-black;
     @apply dark:text-white;
     @apply dark:hover:text-blue-600;

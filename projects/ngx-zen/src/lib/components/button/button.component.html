@@ -1,6 +1,7 @@
 <button
-  [ngClass]="[zenClass, theme, type, size, shape, variant]"
+  [ngClass]="[theme, type, size, shape, variant, zenClass]"
   [disabled]="disabled"
+  [ngStyle]="getStyle()"
 >
   @if(icon && iconPosition) {
   <i class="fa-solid" [ngClass]="[icon, iconPosition]"></i>

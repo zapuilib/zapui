@@ -4,7 +4,7 @@
     description="Import a basic button in your component, additional params and their usage is explained below"
     [markdownData]="markdown[0]"
   >
-    <ngx-zen-button text="Submit"></ngx-zen-button>
+    <ngx-zen-button text="Submit" zenClass="bg-red-500"></ngx-zen-button>
   </app-code-block>
 
   <app-code-block
@@ -32,9 +32,17 @@
   </app-code-block>
 
   <app-code-block
-    title="Wide button"
+    title="Tight button"
     description=""
     [markdownData]="markdown[4]"
+  >
+    <ngx-zen-button text="Submit" theme="light" size="tight"></ngx-zen-button>
+  </app-code-block>
+
+  <app-code-block
+    title="Wide button"
+    description=""
+    [markdownData]="markdown[5]"
   >
     <ngx-zen-button text="Submit" theme="light" size="wide"></ngx-zen-button>
   </app-code-block>
@@ -42,7 +50,7 @@
   <app-code-block
     title="Outlined button"
     description=""
-    [markdownData]="markdown[5]"
+    [markdownData]="markdown[6]"
   >
     <ngx-zen-button
       text="Submit"
@@ -54,7 +62,7 @@
   <app-code-block
     title="Icon button"
     description=""
-    [markdownData]="markdown[6]"
+    [markdownData]="markdown[7]"
   >
     <ngx-zen-button
       text="Submit"
@@ -65,17 +73,9 @@
   </app-code-block>
 
   <app-code-block
-    title="Text button"
-    description=""
-    [markdownData]="markdown[7]"
-  >
-    <ngx-zen-button text="Submit" theme="light" variant="text"></ngx-zen-button>
-  </app-code-block>
-
-  <app-code-block
     title="Link button"
     description=""
-    [markdownData]="markdown[7]"
+    [markdownData]="markdown[8]"
   >
     <ngx-zen-button text="Submit" theme="light" variant="link"></ngx-zen-button>
   </app-code-block>
@@ -83,7 +83,7 @@
   <app-code-block
     title="Icononly button"
     description=""
-    [markdownData]="markdown[8]"
+    [markdownData]="markdown[9]"
   >
     <ngx-zen-button
       text="Submit"
@@ -97,7 +97,7 @@
   <app-code-block
     title="Disabled button"
     description=""
-    [markdownData]="markdown[9]"
+    [markdownData]="markdown[10]"
   >
     <ngx-zen-button
       text="Submit"

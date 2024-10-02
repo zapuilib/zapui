@@ -23,6 +23,10 @@ export class ButtonComponent {
 <ngx-zen-button text="Submit" theme="light" size="compact"></ngx-zen-button>
 \`\`\``,
 
+`\`\`\`html
+<ngx-zen-button text="Submit" theme="light" size="tight"></ngx-zen-button>
+\`\`\``,
+
     `\`\`\`html
 <ngx-zen-button text="Submit" theme="light" size="wide"></ngx-zen-button>
 \`\`\``,
@@ -38,10 +42,6 @@ export class ButtonComponent {
   icon="fa-arrow-up"
   shape="curve"
 ></ngx-zen-button>
-\`\`\``,
-
-    `\`\`\`html
-<ngx-zen-button text="Submit" theme="light" variant="text"></ngx-zen-button>
 \`\`\``,
 
     `\`\`\`html

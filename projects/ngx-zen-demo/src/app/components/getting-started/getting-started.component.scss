@@ -13,10 +13,10 @@ section {
     @apply grid grid-cols-12 items-start py-5;
 
     .content {
-      @apply col-span-3;
+      @apply col-span-4;
       
       p {
-        @apply text-zinc-300;
+        @apply text-zinc-300 w-[80%];
       }
     }
 

@@ -5,8 +5,7 @@
 >
   @if(icon && iconPosition) {
   <i class="fa-solid" [ngClass]="[icon, iconPosition]"></i>
-  }
-  @if(type !== 'icononly') {
-    <span>{{ text }}</span>
+  } @if(type !== 'icononly') {
+  {{ text }}
   }
 </button>

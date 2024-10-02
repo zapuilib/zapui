@@ -1,5 +1,5 @@
 section {
-  @apply px-60 py-12 w-[60%] transition-all;
+  @apply px-60 py-12 transition-all;
 
   ngx-zen-button {
     @apply col-span-4 p-32 flex justify-center items-center bg-zinc-50 rounded-md;
@@ -19,6 +19,14 @@ section {
     ngx-zen-button {
       @apply bg-[#282828] text-white;
     }
+  }
+
+  .card {
+    @apply py-5 w-[50%];
+  }
+
+  table {
+    @apply w-[85%];
   }
 
   h2 {

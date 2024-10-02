@@ -52,7 +52,7 @@ const ngxZenConfig: NgxZenConfig = {
     AppRoutingModule,
     CommonModule,
     ReactiveFormsModule,
-    NgxZenModule.forRoot( ngxZenConfig ),
+    NgxZenModule.forRoot( ),
     MarkdownModule.forRoot({
       clipboardOptions: {
         provide: CLIPBOARD_OPTIONS,

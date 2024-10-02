@@ -4,15 +4,104 @@
   <ng-container
     *ngTemplateOutlet="
       card;
-      context: { $implicit: markdowns[i].markdown, title: markdowns[i].title, index: i }
+      context: {
+        $implicit: markdowns[i].markdown,
+        title: markdowns[i].title,
+        index: i
+      }
     "
   >
   </ng-container>
-  }
+
+  @if(i === 0) {
+  <table>
+    <thead>
+      <tr>
+        <th class="w-[20%]">Parmeter</th>
+        <th class="w-[30%]">Accepted values</th>
+        <th class="w-[50%]">Usage</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>theme</code></td>
+        <td><code>dark</code>|<code>light</code></td>
+        <td>
+          <p>
+            All the components have preset style that can be used in your app,
+            the component have two theme by default, dark and light
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td><code>shape</code></td>
+        <td><code>pill</code>|<code>curve</code>|<code>default</code></td>
+        <td>
+          <p>
+            Pill is fully rounded button, curve is basic rounded button and
+            default is classic not rounded button
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td><code>size</code></td>
+        <td>
+          <code>compact</code>|<code>wide</code>|<code>tight</code>|<code
+            >default</code
+          >
+        </td>
+        <td>
+          <p>
+            Compact button has less passing, tight have even less padding and
+            smaller fonts (best for tabbing buttons), wide has full length of
+            the parent, default is our default theme
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td><code>type</code></td>
+        <td><code>icononly</code>|<code>default</code></td>
+        <td>
+          <p>
+            If you want an icon only button then you'll have to pass this
+            parameter, it only works with the parameter <code>icon</code>
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td><code>icon</code></td>
+        <td><code>string</code></td>
+        <td>
+          <p>Only accepts font awesome classes</p>
+        </td>
+      </tr>
+      <tr>
+        <td><code>iconPosition</code></td>
+        <td><code>left</code>|<code>right</code></td>
+        <td>
+          <p>
+            By default icon will be set to left of the button text, you don't
+            have to pass this parameter if its the icon only button
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td><code>variant</code></td>
+        <td><code>outlined</code>|<code>default</code>|<code>link</code></td>
+        <td>
+          <p>
+            Outlined is bordered button, text is the text only button, link is
+            underlined link only button, you don't have to pass the default
+          </p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  } }
 </section>
 
 <ng-template let-markdown let-title="title" let-index="index" #card>
-  <div class="my-4">
+  <div class="card">
     <div class="header">
       <h2>{{ title }}</h2>
     </div>
@@ -20,68 +109,34 @@
       @switch(index) { @case(0) {
       <ngx-zen-button text="Submit" zenClass="bg-red-500"></ngx-zen-button>
       } @case(1) {
-      <ngx-zen-button
-        text="Submit"
-        zenClass="bg-red-500"
-        shape="curve"
-      ></ngx-zen-button>
+      <ngx-zen-button text="Submit" shape="curve"></ngx-zen-button>
       } @case(2) {
-      <ngx-zen-button
-        text="Submit"
-        zenClass="bg-red-500"
-        shape="pill"
-      ></ngx-zen-button>
+      <ngx-zen-button text="Submit" shape="pill"></ngx-zen-button>
       } @case(3) {
-      <ngx-zen-button
-        text="Submit"
-        zenClass="bg-red-500"
-        size="compact"
-      ></ngx-zen-button>
+      <ngx-zen-button text="Submit" size="compact"></ngx-zen-button>
       } @case(4) {
-      <ngx-zen-button
-        text="Submit"
-        zenClass="bg-red-500"
-        size="tight"
-      ></ngx-zen-button>
+      <ngx-zen-button text="Submit" size="tight"></ngx-zen-button>
       } @case(5) {
-      <ngx-zen-button
-        text="Submit"
-        zenClass="bg-red-500"
-        size="wide"
-      ></ngx-zen-button>
+      <ngx-zen-button text="Submit" size="wide"></ngx-zen-button>
       } @case(6) {
-      <ngx-zen-button
-        text="Submit"
-        zenClass="bg-red-500"
-        variant="outlined"
-      ></ngx-zen-button>
+      <ngx-zen-button text="Submit" variant="outlined"></ngx-zen-button>
       } @case(7) {
       <ngx-zen-button
         text="Submit"
-        zenClass="bg-red-500"
         icon="fa-arrow-up"
         shape="curve"
       ></ngx-zen-button>
       } @case(8) {
-      <ngx-zen-button
-        text="Submit"
-        zenClass="bg-red-500"
-        variant="link"
-      ></ngx-zen-button>
+      <ngx-zen-button text="Submit" variant="link"></ngx-zen-button>
       } @case(9) {
       <ngx-zen-button
         text="Submit"
-        zenClass="bg-red-500"
         type="icononly"
         icon="fa-search"
         shape="pill"
       ></ngx-zen-button>
       } @case(10) {
-      <ngx-zen-button
-        text="Submit"
-        zenClass="bg-red-500"
-        [disabled]="true"
-      ></ngx-zen-button>
+      <ngx-zen-button text="Submit" [disabled]="true"></ngx-zen-button>
       } }
       <app-code-block [markdownData]="markdown"></app-code-block>
     </div>

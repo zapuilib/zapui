@@ -1,52 +1,110 @@
-<section class="h-screen" [ngClass]="[theme]">
-  @if(theme === 'light') {
-  <div class="light grid grid-cols-12 gap-10">
+<section class="min-h-screen">
+  <app-code-block
+    title="Basic button"
+    description="Import a basic button in your component, additional params and their usage is explained below"
+    [markdownData]="markdown[0]"
+  >
     <ngx-zen-button text="Submit"></ngx-zen-button>
+  </app-code-block>
 
+  <app-code-block
+    title="Curve button"
+    description=""
+    [markdownData]="markdown[1]"
+  >
     <ngx-zen-button text="Submit" theme="light" shape="curve"></ngx-zen-button>
+  </app-code-block>
 
+  <app-code-block
+    title="Pill button"
+    description=""
+    [markdownData]="markdown[2]"
+  >
     <ngx-zen-button text="Submit" theme="light" shape="pill"></ngx-zen-button>
+  </app-code-block>
 
+  <app-code-block
+    title="Compact button"
+    description=""
+    [markdownData]="markdown[3]"
+  >
     <ngx-zen-button text="Submit" theme="light" size="compact"></ngx-zen-button>
-    <ngx-zen-button text="Submit" theme="light" size="wide"></ngx-zen-button>
+  </app-code-block>
 
+  <app-code-block
+    title="Wide button"
+    description=""
+    [markdownData]="markdown[4]"
+  >
+    <ngx-zen-button text="Submit" theme="light" size="wide"></ngx-zen-button>
+  </app-code-block>
+
+  <app-code-block
+    title="Outlined button"
+    description=""
+    [markdownData]="markdown[5]"
+  >
     <ngx-zen-button
       text="Submit"
       theme="light"
       variant="outlined"
     ></ngx-zen-button>
+  </app-code-block>
 
-    <ngx-zen-button text="Submit" theme="light" icon="fa-upload" shape="curve"></ngx-zen-button>
-
-    <ngx-zen-button text="Submit" theme="light" variant="text"></ngx-zen-button>
-    <ngx-zen-button text="Submit" theme="light" variant="link"></ngx-zen-button>
-
-    <ngx-zen-button text="Submit" theme="light" type="icononly" icon="fa-search" shape="pill"></ngx-zen-button>
-
+  <app-code-block
+    title="Icon button"
+    description=""
+    [markdownData]="markdown[6]"
+  >
     <ngx-zen-button
       text="Submit"
       theme="light"
-      type="default"
-      variant="default"
-      size="default"
-      shape="default"
-      [disabled]="true"
+      icon="fa-arrow-up"
+      shape="curve"
     ></ngx-zen-button>
+  </app-code-block>
 
-  </div>
-  } @else {
-  <div class="dark">
+  <app-code-block
+    title="Text button"
+    description=""
+    [markdownData]="markdown[7]"
+  >
+    <ngx-zen-button text="Submit" theme="light" variant="text"></ngx-zen-button>
+  </app-code-block>
+
+  <app-code-block
+    title="Link button"
+    description=""
+    [markdownData]="markdown[7]"
+  >
+    <ngx-zen-button text="Submit" theme="light" variant="link"></ngx-zen-button>
+  </app-code-block>
+
+  <app-code-block
+    title="Icononly button"
+    description=""
+    [markdownData]="markdown[8]"
+  >
     <ngx-zen-button
       text="Submit"
-      theme="dark"
-      type="default"
-      variant="default"
-      size="default"
-      shape="default"
-      [disabled]="false"
+      theme="light"
+      type="icononly"
+      icon="fa-search"
+      shape="pill"
     ></ngx-zen-button>
-  </div>
-  }
+  </app-code-block>
+
+  <app-code-block
+    title="Disabled button"
+    description=""
+    [markdownData]="markdown[9]"
+  >
+    <ngx-zen-button
+      text="Submit"
+      theme="light"
+      [disabled]="true"
+    ></ngx-zen-button>
+  </app-code-block>
 </section>
 <!-- <div class="h-screen grid grid-cols-12">
     <div class="bg-[#181818] col-span-6 p-20 h-screen">

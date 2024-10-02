@@ -7,13 +7,65 @@ import { ActivatedRoute } from '@angular/router';
   styleUrl: './button.component.scss',
 })
 export class ButtonComponent {
-  theme: string = 'light'; 
+  markdown = [
+    `\`\`\`html
+<ngx-zen-button text="Submit"></ngx-zen-button>
+\`\`\``,
+
+    `\`\`\`html
+<ngx-zen-button text="Submit" theme="light" shape="curve"></ngx-zen-button>
+\`\`\``,
+    `\`\`\`html
+<ngx-zen-button text="Submit" theme="light" shape="pill"></ngx-zen-button>
+\`\`\``,
+
+    `\`\`\`html
+<ngx-zen-button text="Submit" theme="light" size="compact"></ngx-zen-button>
+\`\`\``,
+
+    `\`\`\`html
+<ngx-zen-button text="Submit" theme="light" size="wide"></ngx-zen-button>
+\`\`\``,
+
+    `\`\`\`html
+<ngx-zen-button text="Submit" theme="light" variant="outlined"></ngx-zen-button>
+\`\`\``,
+
+    `\`\`\`html
+<ngx-zen-button
+  text="Submit"
+  theme="light"
+  icon="fa-arrow-up"
+  shape="curve"
+></ngx-zen-button>
+\`\`\``,
+
+    `\`\`\`html
+<ngx-zen-button text="Submit" theme="light" variant="text"></ngx-zen-button>
+\`\`\``,
+
+    `\`\`\`html
+<ngx-zen-button text="Submit" theme="light" variant="link"></ngx-zen-button>
+\`\`\``,
+
+    `\`\`\`html
+<ngx-zen-button
+  text="Submit"
+  theme="light"
+  type="icononly"
+  icon="fa-search"
+  shape="pill"
+></ngx-zen-button>
+\`\`\``,
+
+    `\`\`\`html
+<ngx-zen-button
+  text="Submit"
+  theme="light"
+  [disabled]="true"
+></ngx-zen-button>
+\`\`\``,
+  ];
 
   constructor(private route: ActivatedRoute) {}
-
-  ngOnInit(): void {
-    this.route.queryParams.subscribe((params) => {
-      this.theme = params['theme'] || 'light';
-    });
-  }
 }

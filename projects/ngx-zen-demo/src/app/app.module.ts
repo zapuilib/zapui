@@ -1,11 +1,17 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { NgxZenModule } from 'ngx-zen';
+import { ReactiveFormsModule } from '@angular/forms';
+import { CLIPBOARD_OPTIONS, ClipboardButtonComponent, MarkdownModule } from 'ngx-markdown';
+import { CommonModule } from '@angular/common';
+
+import 'prismjs';
+import 'prismjs/components/prism-typescript.min.js';
+import 'prismjs/plugins/line-numbers/prism-line-numbers.js';
+import 'prismjs/plugins/line-highlight/prism-line-highlight.js';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { NgxZenModule } from 'ngx-zen';
-import { ReactiveFormsModule } from '@angular/forms';
-import { CommonModule } from '@angular/common';
 import { MAIN_COMPONENTS } from './components';
 import { SHARED_COMPONENTS } from './shared/components';
 import { InternalLayoutComponent } from './layout/internal-layout/internal-layout.component';
@@ -13,9 +19,9 @@ import { InternalLayoutComponent } from './layout/internal-layout/internal-layou
 @NgModule({
   declarations: [
     AppComponent,
-   ... MAIN_COMPONENTS,
+    InternalLayoutComponent,
+    ...MAIN_COMPONENTS,
     ...SHARED_COMPONENTS,
-    InternalLayoutComponent
   ],
   imports: [
     BrowserModule,
@@ -23,8 +29,16 @@ import { InternalLayoutComponent } from './layout/internal-layout/internal-layou
     CommonModule,
     ReactiveFormsModule,
     NgxZenModule,
+    MarkdownModule.forRoot({
+      clipboardOptions: {
+        provide: CLIPBOARD_OPTIONS,
+        useValue: {
+          buttonComponent: ClipboardButtonComponent,
+        },
+      },
+    })
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

@@ -1,0 +1,26 @@
+<div class="code-group">
+  <div class="explanation">
+    <h2>{{ title }}</h2>
+    <p>{{ description }}</p>
+  </div>
+  <div class="ui">
+    <ng-content></ng-content>
+  </div>
+  <div class="code hidden">
+    <ng-template #buttonTemplate>
+      <button>
+        <i
+          class="fa-regular fa-clipboard-list text-white"
+          (click)="onCopyToClipboard()"
+        ></i>
+      </button>
+    </ng-template>
+
+    <markdown
+      clipboard
+      [data]="markdownData"
+      [clipboardButtonTemplate]="buttonTemplate"
+    >
+    </markdown>
+  </div>
+</div>

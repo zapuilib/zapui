@@ -1,0 +1,16 @@
+.code-group {
+  @apply flex flex-col w-[40%] gap-5 py-2;
+
+  h2,
+  p {
+    @apply text-white;
+  }
+
+  h2 {
+    @apply text-xl font-medium;
+  }
+
+  p {
+    @apply text-base text-zinc-400;
+  }
+}

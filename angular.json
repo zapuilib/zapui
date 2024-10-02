@@ -65,7 +65,9 @@
             "styles": [
               "projects/ngx-zen-demo/src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/clipboard/dist/clipboard.min.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -128,7 +130,9 @@
             "styles": [
               "projects/ngx-zen-demo/src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/clipboard/dist/clipboard.min.js"
+            ]
           }
         }
       }

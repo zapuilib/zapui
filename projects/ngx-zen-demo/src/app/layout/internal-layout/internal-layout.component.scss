@@ -1,27 +1,24 @@
 article {
-  @apply grid grid-cols-12 bg-[#181818] relative;
+  @apply grid grid-cols-12 bg-[#181818] relative h-screen overflow-hidden;
+
 
   aside {
-    @apply col-span-2 h-screen text-white px-12 py-12 transition-all sticky top-0 bottom-0 left-0;
+    @apply col-span-2 bg-[#181818] h-screen text-white px-12 py-12 transition-all sticky top-0 overflow-y-scroll;
 
-    &.dark {
-      @apply bg-white text-[#181818];
+    &::-webkit-scrollbar {
+      @apply w-2;
+    }
+
+    &::-webkit-scrollbar-track {
+      @apply bg-[#282828];
+    }
+
+    &::-webkit-scrollbar-thumb {
+      @apply bg-[#404040];
     }
   }
 
   section {
-    @apply col-span-10;
-  }
-
-  .theme-switcher {
-    @apply absolute right-5 top-0;
-
-    .card {
-      @apply bg-[#181818] py-2 px-5 rounded-b-xl text-sm text-white cursor-pointer transition-all;
-
-      &.dark {
-        @apply bg-white text-[#181818];
-      }
-    }
+    @apply col-span-10 h-screen overflow-y-auto ;
   }
 }

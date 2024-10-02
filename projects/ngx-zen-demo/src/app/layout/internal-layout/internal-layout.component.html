@@ -1,17 +1,8 @@
 <article>
-  <aside [ngClass]="[theme]">
+  <aside>
     <app-side-menu></app-side-menu>
   </aside>
   <section>
     <router-outlet></router-outlet>
   </section>
-  <div class="theme-switcher">
-    <div class="card" [ngClass]="[theme]" (click)="toggleTheme()">
-      @if(theme === 'light') {
-      <p><i class="fa-light fa-lightbulb pr-2"></i> Light</p>
-      } @else {
-      <p><i class="fa-regular fa-moon pr-2"></i> Dark</p>
-      }
-    </div>
-  </div>
 </article>

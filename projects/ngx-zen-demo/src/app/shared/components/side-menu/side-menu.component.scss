@@ -1,0 +1,47 @@
+nav {
+  & > ul {
+    @apply flex flex-col gap-y-2;
+
+    li {
+      @apply mb-3 text-sm;
+
+      .sub-menu {
+        @apply mt-2;
+
+        ul {
+          @apply flex flex-col;
+
+          li {
+            @apply text-gray-500 py-1 hover:font-bold border-l border-[#404040] hover:border-white pl-6 mb-0 cursor-pointer transition-all text-sm;
+
+            &.router-link-active {
+              @apply border-white text-white font-semibold;
+            }
+
+            a {
+              @apply w-full block;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  &.dark {
+    & > ul {
+      li {
+        .sub-menu {
+          ul {
+            li {
+              @apply border-gray-200 text-[#404040];
+
+              &.router-link-active {
+                @apply border-[#404040];
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

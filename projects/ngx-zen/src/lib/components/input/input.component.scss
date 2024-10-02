@@ -1,0 +1,56 @@
+.__zen__form__control {
+  @apply flex flex-col gap-y-2;
+  @apply input:w-full input:px-3 input:py-2 input:border input:border-gray-900 input:text-gray-900;
+  @apply input:focus-within:outline-blue-600;
+  @apply label:text-gray-900;
+  @apply error:text-rose-900;
+  @apply input:placeholder:text-gray-500;
+
+  &.dark {
+    @apply input:bg-transparent input:text-gray-100 input:border-gray-100;
+    @apply input:focus-within:outline-blue-600;
+    @apply label:text-gray-100;
+    @apply error:text-rose-900;
+  }
+
+  fieldset {
+    @apply relative border-0 outline-none;
+
+    i {
+      @apply absolute;
+      @apply top-1/2;
+      @apply -translate-y-1/2;
+      @apply text-gray-500;
+      @apply left-3;
+
+      &.right {
+        @apply left-auto;
+        @apply right-3;
+      }
+    }
+  }
+
+  &.left {
+    @apply input:pl-10;
+  }
+
+  &.pill {
+    @apply input:rounded-full;
+  }
+
+  &.compact {
+    @apply input:text-sm input:px-2 input:py-1.5 input:pl-8;
+
+    i {
+      @apply text-xs;
+    }
+  }
+
+  &.curve {
+    @apply input:rounded;
+  }
+
+  input:disabled {
+    @apply opacity-50;
+  }
+}

@@ -1,0 +1,19 @@
+section {
+  @apply px-12 py-12 transition-all;
+
+  ngx-zen-button {
+    @apply col-span-4 p-32 flex justify-center items-center bg-zinc-50 rounded-xl;
+  }
+
+  &.light {
+    @apply bg-white;
+  }
+
+  &.dark {
+    @apply bg-[#181818] text-white;
+
+    ngx-zen-button {
+      @apply bg-[#282828] text-white;
+    }
+  }
+}

@@ -1,0 +1,32 @@
+@if(control){
+<div
+  class="__zen__form__control"
+  [ngClass]="[zenClass, theme, size, shape, icon ? iconPosition : '']"
+>
+  @if(label){
+  <label [for]="inputId" class="__zen__form__control__label">{{ label }}</label>
+  }
+  <fieldset>
+    <legend class="sr-only">{{ label }}</legend>
+    @if(icon && iconPosition) {
+    <i class="fa-solid" [ngClass]="[icon, iconPosition]"></i>
+    }
+    <input
+      [type]="type"
+      [placeholder]="placeholder"
+      [id]="inputId"
+      class="__zen__form__control__input"
+      [autocomplete]="autoComplete"
+      [formControl]="control"
+    />
+  </fieldset>
+  @if(control.invalid && control.touched) {
+  <validation-error
+    [errors]="control.errors"
+    [zenClass]="zenClass"
+    [theme]="theme"
+    [customErrorMessages]="customErrorMessages"
+  ></validation-error>
+  }
+</div>
+}

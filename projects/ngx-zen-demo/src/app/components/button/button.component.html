@@ -1,0 +1,92 @@
+<section class="h-screen" [ngClass]="[theme]">
+  @if(theme === 'light') {
+  <div class="light grid grid-cols-12 gap-10">
+    <ngx-zen-button text="Submit"></ngx-zen-button>
+
+    <ngx-zen-button text="Submit" theme="light" shape="curve"></ngx-zen-button>
+
+    <ngx-zen-button text="Submit" theme="light" shape="pill"></ngx-zen-button>
+
+    <ngx-zen-button text="Submit" theme="light" size="compact"></ngx-zen-button>
+    <ngx-zen-button text="Submit" theme="light" size="wide"></ngx-zen-button>
+
+    <ngx-zen-button
+      text="Submit"
+      theme="light"
+      variant="outlined"
+    ></ngx-zen-button>
+
+    <ngx-zen-button text="Submit" theme="light" icon="fa-upload" shape="curve"></ngx-zen-button>
+
+    <ngx-zen-button text="Submit" theme="light" variant="text"></ngx-zen-button>
+    <ngx-zen-button text="Submit" theme="light" variant="link"></ngx-zen-button>
+
+    <ngx-zen-button text="Submit" theme="light" type="icononly" icon="fa-search" shape="pill"></ngx-zen-button>
+
+    <ngx-zen-button
+      text="Submit"
+      theme="light"
+      type="default"
+      variant="default"
+      size="default"
+      shape="default"
+      [disabled]="true"
+    ></ngx-zen-button>
+
+  </div>
+  } @else {
+  <div class="dark">
+    <ngx-zen-button
+      text="Submit"
+      theme="dark"
+      type="default"
+      variant="default"
+      size="default"
+      shape="default"
+      [disabled]="false"
+    ></ngx-zen-button>
+  </div>
+  }
+</section>
+<!-- <div class="h-screen grid grid-cols-12">
+    <div class="bg-[#181818] col-span-6 p-20 h-screen">
+      <form [formGroup]="form" class="flex flex-col gap-y-4">
+        <ngx-zen-input
+          #username
+          label="Username"
+          inputId="username"
+          type="text"
+          formControlName="username"
+          zenClass=""
+          theme="dark"
+          shape="default"
+          size="default"
+          placeholder="Enter your username"
+          [customErrorMessages]="customErrorMessages"
+        ></ngx-zen-input>
+      </form>
+    </div>
+  
+    <div class="col-span-6 p-20 h-screen">
+      <form [formGroup]="form" class="flex flex-col gap-y-4">
+        <ngx-zen-input
+          label="Email"
+          inputId="email"
+          type="email"
+          formControlName="email"
+          zenClass=""
+          theme="light"
+          icon="fa-search"
+          iconPosition="right"
+          placeholder="Enter your email"
+          [customErrorMessages]="customErrorMessages"
+        ></ngx-zen-input>
+  
+        <ngx-zen-button text="Submit" theme="light" zenClass=""></ngx-zen-button>
+      </form>
+      <ngx-zen-alert type="success" shape="curve" positionY="top" variant="classic" icon="fa-circle-check">
+          <p class="mb-0">Copied to clipboard</p>
+      </ngx-zen-alert>
+    </div>
+  </div>
+   -->

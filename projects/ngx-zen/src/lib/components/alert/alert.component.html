@@ -1,0 +1,20 @@
+<div
+  class="__ngx__zen__alert__wrapper"
+  [ngClass]="[type, shape, positionX, positionY, variant]"
+>
+  <div class="alert__inner" [ngClass]="[variant === 'classic' ? type : 'default']">
+    <div class="content__wrapper">
+      @if(type !== 'default') {
+      <div class="type__wrapper">
+        <i class="fa-solid" [ngClass]="[icon]"></i>
+      </div>
+      }
+      <ng-content></ng-content>
+    </div>
+    @if(dismissible){
+    <div class="handler__wrapper" (click)="dismiss.emit()">
+      <i class="fa-solid fa-xmark"></i>
+    </div>
+    }
+  </div>
+</div>

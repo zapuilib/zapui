@@ -1,0 +1,27 @@
+article {
+  @apply grid grid-cols-12 bg-[#181818] relative;
+
+  aside {
+    @apply col-span-2 h-screen text-white px-12 py-12 transition-all sticky top-0 bottom-0 left-0;
+
+    &.dark {
+      @apply bg-white text-[#181818];
+    }
+  }
+
+  section {
+    @apply col-span-10;
+  }
+
+  .theme-switcher {
+    @apply absolute right-5 top-0;
+
+    .card {
+      @apply bg-[#181818] py-2 px-5 rounded-b-xl text-sm text-white cursor-pointer transition-all;
+
+      &.dark {
+        @apply bg-white text-[#181818];
+      }
+    }
+  }
+}

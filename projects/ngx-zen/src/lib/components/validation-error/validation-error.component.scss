@@ -1,0 +1,7 @@
+.__zen__form__control__error__wrapper {
+  @apply error:text-rose-600;
+
+  &.dark {
+    @apply error:text-rose-500;
+  }
+}

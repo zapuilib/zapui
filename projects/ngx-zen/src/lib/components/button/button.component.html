@@ -1,0 +1,11 @@
+<button
+  [ngClass]="[zenClass, theme, type, size, shape, variant]"
+  [disabled]="disabled"
+>
+  @if(icon && iconPosition) {
+  <i class="fa-solid" [ngClass]="[icon, iconPosition]"></i>
+  }
+  @if(type !== 'icononly') {
+    <span>{{ text }}</span>
+  }
+</button>

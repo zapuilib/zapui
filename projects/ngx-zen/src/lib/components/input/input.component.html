@@ -1,10 +1,10 @@
 @if(control){
 <div
   class="__zen__form__control"
-  [ngClass]="[zenClass, theme, size, shape, icon ? iconPosition : '']"
+  [ngClass]="[zenClass, size, shape, icon ? iconPosition : '']"
 >
   @if(label){
-  <label [for]="inputId" class="__zen__form__control__label">{{ label }}</label>
+  <label [for]="id" class="__zen__form__control__label">{{ label }}</label>
   }
   <fieldset>
     <legend class="sr-only">{{ label }}</legend>
@@ -14,7 +14,7 @@
     <input
       [type]="type"
       [placeholder]="placeholder"
-      [id]="inputId"
+      [id]="id"
       class="__zen__form__control__input"
       [autocomplete]="autoComplete"
       [formControl]="control"
@@ -24,7 +24,6 @@
   <validation-error
     [errors]="control.errors"
     [zenClass]="zenClass"
-    [theme]="theme"
     [customErrorMessages]="customErrorMessages"
   ></validation-error>
   }

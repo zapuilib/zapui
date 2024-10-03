@@ -1,0 +1,46 @@
+<section class="min-h-screen">
+  <h1>Buttons</h1>
+  @for(item of markdowns; track item; let i = $index) {
+  <ng-container
+    *ngTemplateOutlet="
+      card;
+      context: {
+        $implicit: markdowns[i].markdown,
+        title: markdowns[i].title,
+        index: i
+      }
+    "
+  >
+  </ng-container>
+  }
+</section>
+
+<ng-template let-markdown let-title="title" let-index="index" #card>
+  <div class="card">
+    <div class="header">
+      <h2>{{ title }}</h2>
+    </div>
+    <div class="content">
+      <div class="ui">
+        @switch(index) { @case(0) {
+        <form [formGroup]="form" class="flex flex-col gap-y-4">
+          <ngx-zen-input
+            #username
+            label="Username"
+            id="username"
+            type="text"
+            formControlName="username"
+            placeholder="Enter your username"
+            [customErrorMessages]="customErrorMessages"
+          ></ngx-zen-input>
+        </form>
+        } @case(1) {
+        <ngx-zen-button text="Submit" shape="curve"></ngx-zen-button>
+        }}
+      </div>
+      <div class="code-wrapper">
+        <app-code-block [markdownData]="markdown"></app-code-block>
+      </div>
+    </div>
+  </div>
+</ng-template>

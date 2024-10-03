@@ -1,17 +1,10 @@
 .__zen__form__control {
-  @apply flex flex-col gap-y-2;
+  @apply flex flex-col gap-y-2 w-full;
   @apply input:w-full input:px-3 input:py-2 input:border input:border-gray-900 input:text-gray-900;
   @apply input:focus-within:outline-blue-600;
-  @apply label:text-gray-900;
   @apply error:text-rose-900;
-  @apply input:placeholder:text-gray-500;
-
-  &.dark {
-    @apply input:bg-transparent input:text-gray-100 input:border-gray-100;
-    @apply input:focus-within:outline-blue-600;
-    @apply label:text-gray-100;
-    @apply error:text-rose-900;
-  }
+  @apply input:placeholder:text-gray-500 input:bg-transparent;
+  @apply label:text-gray-900;
 
   fieldset {
     @apply relative border-0 outline-none;

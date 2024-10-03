@@ -9,6 +9,7 @@ import {
 
 import { NGX_ZEN_CONFIG } from '../../tokens/ngx-zen.tokens';
 import { NgxZenConfig } from '../../interfaces/config.interface';
+import { ColorUtility } from '../../utilities/color.utility';
 
 @Component({
   selector: 'ngx-zen-alert',
@@ -26,7 +27,10 @@ export class AlertComponent implements OnInit {
   @Input() icon: string = '';
   @Input() zenClass: string = '';
 
-  constructor(@Inject(NGX_ZEN_CONFIG) private config: NgxZenConfig) {}
+  constructor(
+    @Inject(NGX_ZEN_CONFIG) private config: NgxZenConfig,
+    private colorUtility: ColorUtility
+  ) {}
 
   ngOnInit(): void {
     this.assignIcon();
@@ -58,21 +62,12 @@ export class AlertComponent implements OnInit {
 
     const opacity = this.variant === 'classic' ? 0.9 : 1;
 
-    const rgbaColor = this.hexToRgba(color, opacity);
+    const rgbaColor = this.colorUtility.hexToRgba(color, opacity);
 
     return {
       'background-color': this.variant === 'classic' ? rgbaColor : color,
       'border-color': this.variant === 'classic' ? color : 'transparent',
       'font-size': this.config.fontSize.md,
     };
-  }
-
-  private hexToRgba(hex: string, alpha: number): string {
-    const bigint = parseInt(hex?.replace('#', ''), 16);
-    const r = (bigint >> 16) & 255;
-    const g = (bigint >> 8) & 255;
-    const b = bigint & 255;
-
-    return `rgba(${r}, ${g}, ${b}, ${alpha})`;
   }
 }

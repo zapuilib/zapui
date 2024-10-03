@@ -13,7 +13,6 @@ export class AlertComponent implements OnInit {
   @Input() positionX: 'left' | 'right' = 'right';
   @Input() positionY: 'top' | 'bottom' = 'top';
   @Input() icon: string = '';
-  @Input() dismissible: boolean = true;
   @Input() zenClass: string = '';
 
   constructor() {}

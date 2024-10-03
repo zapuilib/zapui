@@ -1,9 +1,15 @@
+type HexCode = `#${string}`;
+
 export interface NgxZenConfig {
   colors: {
-    primary: string;
-    secondary: string;
-    tertiary: string;
-    quaternary: string;
+    primary: HexCode;
+    secondary: HexCode;
+    tertiary: HexCode;
+    quaternary: HexCode;
+    success: HexCode;
+    error: HexCode;
+    warning: HexCode;
+    info: HexCode;
   };
   fontSize: {
     '7xl': string;

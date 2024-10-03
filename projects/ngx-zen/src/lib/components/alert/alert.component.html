@@ -4,7 +4,8 @@
 >
   <div
     class="alert__inner"
-    [ngClass]="[variant === 'classic' ? type : 'default']"
+    [ngClass]="[variant === 'classic' ? type : 'default', zenClass]"
+    [ngStyle]="getStyle()"
   >
     <div class="content__wrapper">
       @if(type !== 'default') {

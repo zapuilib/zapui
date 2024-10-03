@@ -1,13 +1,16 @@
+import { AlertComponent } from './alert/alert.component';
 import { ButtonComponent } from './button/button.component';
-import { TooltipComponent } from './tooltip/tooltip.component';
 import { GettingStartedComponent } from './getting-started/getting-started.component';
+import { TooltipComponent } from './tooltip/tooltip.component';
 
+export * from './alert/alert.component';
 export * from './button/button.component';
-export * from './tooltip/tooltip.component';
 export * from './getting-started/getting-started.component';
+export * from './tooltip/tooltip.component';
 
 export const MAIN_COMPONENTS = [
+  AlertComponent,
   ButtonComponent,
-  TooltipComponent,
   GettingStartedComponent,
+  TooltipComponent,
 ];

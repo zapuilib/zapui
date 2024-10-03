@@ -1,4 +1,15 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Inject,
+  Input,
+  OnInit,
+  Output,
+} from '@angular/core';
+
+import { NGX_ZEN_CONFIG } from '../../tokens/ngx-zen.tokens';
+import { NgxZenConfig } from '../../interfaces/config.interface';
+import { ColorUtility } from '../../utilities/color.utility';
 
 @Component({
   selector: 'ngx-zen-alert',
@@ -7,23 +18,26 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 })
 export class AlertComponent implements OnInit {
   @Output() dismiss: EventEmitter<void> = new EventEmitter<void>();
-  @Input() type: 'success' | 'warning' | 'error' | 'info' | 'default' = 'default';
+  @Input() type: 'success' | 'warning' | 'error' | 'info' | 'default' =
+    'default';
   @Input() variant: 'classic' | 'default' = 'default';
   @Input() shape: 'curve' | 'default' = 'default';
   @Input() positionX: 'left' | 'right' = 'right';
   @Input() positionY: 'top' | 'bottom' = 'top';
   @Input() icon: string = '';
-  @Input() dismissible: boolean = true;
   @Input() zenClass: string = '';
 
-  constructor() {}
+  constructor(
+    @Inject(NGX_ZEN_CONFIG) private config: NgxZenConfig,
+    private colorUtility: ColorUtility
+  ) {}
 
   ngOnInit(): void {
     this.assignIcon();
   }
 
   private assignIcon(): void {
-    if(this.icon) return;
+    if (this.icon) return;
     switch (this.type) {
       case 'success':
         this.icon = 'fa-circle-check';
@@ -40,5 +54,20 @@ export class AlertComponent implements OnInit {
       default:
         break;
     }
+  }
+  getStyle() {
+    const color =
+      this.config.colors[this.type as keyof typeof this.config.colors] ||
+      this.config.colors.quaternary;
+
+    const opacity = this.variant === 'classic' ? 0.9 : 1;
+
+    const rgbaColor = this.colorUtility.hexToRgba(color, opacity);
+
+    return {
+      'background-color': this.variant === 'classic' ? rgbaColor : color,
+      'border-color': this.variant === 'classic' ? color : 'transparent',
+      'font-size': this.config.fontSize.md,
+    };
   }
 }

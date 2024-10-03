@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { InternalLayoutComponent } from './layout/internal-layout/internal-layout.component';
 import {
+  AlertComponent,
   ButtonComponent,
   TooltipComponent,
   GettingStartedComponent,
@@ -24,6 +25,11 @@ const routes: Routes = [
         pathMatch: 'full',
       },
       {
+        path: 'alert',
+        component: AlertComponent,
+        pathMatch: 'full',
+      },
+      {
         path: 'button',
         component: ButtonComponent,
         pathMatch: 'full',
@@ -31,6 +37,11 @@ const routes: Routes = [
       {
         path: 'tooltip',
         component: TooltipComponent,
+        pathMatch: 'full',
+      },
+      {
+        path: '**',
+        redirectTo: 'getting-started',
         pathMatch: 'full',
       },
     ],

@@ -9,7 +9,6 @@ import { NgxZenConfig } from '../../interfaces/config.interface';
 })
 export class ButtonComponent {
   @Input() text = 'Submit';
-  @Input() theme: 'light' | 'dark' = 'light';
   @Input() zenClass: string = '';
   @Input() shape: 'pill' | 'curve' | 'default' = 'default';
   @Input() size: 'compact' | 'wide' | 'tight' | 'default' = 'default';

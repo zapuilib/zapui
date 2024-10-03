@@ -1,0 +1,182 @@
+<section class="min-h-screen">
+  <h1>Alerts</h1>
+  @for(item of markdowns; track item; let i = $index) {
+  <ng-container
+    *ngTemplateOutlet="
+      card;
+      context: {
+        $implicit: markdowns[i].markdown,
+        title: markdowns[i].title,
+        index: i
+      }
+    "
+  >
+  </ng-container>
+  }
+  <h2>Properties</h2>
+  <table>
+    <thead>
+      <tr>
+        <th class="w-[10%]">Parameter</th>
+        <th class="w-[10%]">Required</th>
+        <th class="w-[30%]">Accepted values</th>
+        <th class="w-[50%]">Usage</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>type</code></td>
+        <td><p>Optional</p></td>
+        <td>
+          <code>success</code>|<code>error</code>|<code>info</code>|<code
+            >warning</code
+          >
+        </td>
+        <td>
+          <p>
+            Specifies the type of alert to be displayed. It affects the color
+            scheme and icon based on the value (e.g., green for success, red for
+            error).
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td><code>variant</code></td>
+        <td><p>Optional</p></td>
+        <td><code>classic</code>|<code>default</code></td>
+        <td>
+          <p>
+            Defines the visual style of the alert. "classic" gives a traditional
+            look, while "default" is a modern design.
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td><code>shape</code></td>
+        <td><p>Optional</p></td>
+        <td><code>curve</code>|<code>default</code></td>
+        <td>
+          <p>
+            Controls the shape of the alert. "curve" applies rounded corners,
+            while "default" uses standard corners.
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td><code>positionX</code></td>
+        <td><p>Optional</p></td>
+        <td><code>left</code>|<code>right</code></td>
+        <td>
+          <p>
+            Determines the horizontal position of the alert on the screen.
+            "left" aligns it to the left, "right" to the right.
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td><code>positionY</code></td>
+        <td><p>Optional</p></td>
+        <td><code>top</code>|<code>bottom</code></td>
+        <td>
+          <p>
+            Determines the vertical position of the alert. "top" places it at
+            the top of the screen, and "bottom" places it at the bottom.
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td><code>icon</code></td>
+        <td><p>Optional</p></td>
+        <td><code>string</code></td>
+        <td>
+          <p>
+            Specifies a Font Awesome class to use for the icon inside the alert
+            (e.g., <code>fa-check</code>, <code>fa-exclamation</code>).
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td><code>zenClass</code></td>
+        <td><p>Optional</p></td>
+        <td><code>string</code></td>
+        <td>
+          <p>
+            Allows overriding default styles by passing Tailwind CSS classes.
+            Utilize the <code>ngx-zen/tailwind</code> plugin to target specific
+            elements within the alert component. PS: Only accepts padding
+            styling for the alert component
+          </p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <h2 class="mt-10">Events</h2>
+  <table>
+    <thead>
+      <tr>
+        <th class="w-[10%]">Event</th>
+        <th class="w-[50%]">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>dismiss</code></td>
+        <td>
+          <p>
+            Triggered when the alert is closed or dismissed by the user. You can
+            handle this event to perform actions like removing the alert from
+            the UI or logging the dismissal.
+          </p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<ng-template let-markdown let-title="title" let-index="index" #card>
+  <div class="card">
+    <div class="header">
+      <h2>{{ title }}</h2>
+    </div>
+    <div class="content">
+      <div class="ui">
+        @switch(index) { @case(0) {
+        <ngx-zen-alert>You have a new alert</ngx-zen-alert>
+        } @case(1) {
+        <ngx-zen-alert type="info">A new version is available</ngx-zen-alert>
+        } @case(2) {
+        <ngx-zen-alert type="success">Sucessfully exported</ngx-zen-alert>
+        } @case(3) {
+        <ngx-zen-alert type="warning">
+          You have 5 days left until deadline
+        </ngx-zen-alert>
+        } @case(4) {
+        <ngx-zen-alert type="error">Something went wrong</ngx-zen-alert>
+        } @case(5) {
+        <ngx-zen-alert type="success" variant="classic">
+          Sucessfully exported
+        </ngx-zen-alert>
+        } @case(6) {
+        <ngx-zen-alert type="success" shape="curve">
+          Sucessfully exported
+        </ngx-zen-alert>
+        } @case(7) {
+        <ngx-zen-alert type="info" positionX="left" positionY="top">
+          A new version is available
+        </ngx-zen-alert>
+        } @case(8) {
+        <ngx-zen-alert type="info" positionX="right" positionY="bottom">
+          A new version is available
+        </ngx-zen-alert>
+        } @case(9) {
+        <ngx-zen-alert type="info" icon="fa-triangle-exclamation">
+          A new version is available
+        </ngx-zen-alert>
+        }}
+      </div>
+      <div class="code-wrapper">
+        <app-code-block [markdownData]="markdown"></app-code-block>
+      </div>
+    </div>
+  </div>
+</ng-template>

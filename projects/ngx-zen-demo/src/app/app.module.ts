@@ -21,7 +21,11 @@ const ngxZenConfig: NgxZenConfig = {
     primary: '#FFFFFF',
     secondary: '#000000',
     tertiary: '#FF101F',
-    quaternary: '#38c172',
+    quaternary: '#374151',
+    success: '#38c172',
+    error: '#b91c1c',
+    warning: '#ffed4a',
+    info: '#3490dc',
   },
   fontSize: {
     '7xl': '5rem',
@@ -52,7 +56,7 @@ const ngxZenConfig: NgxZenConfig = {
     AppRoutingModule,
     CommonModule,
     ReactiveFormsModule,
-    NgxZenModule.forRoot( ),
+    NgxZenModule.forRoot(),
     MarkdownModule.forRoot({
       clipboardOptions: {
         provide: CLIPBOARD_OPTIONS,

@@ -46,6 +46,10 @@ export class SideMenuComponent {
           title: 'Snackbar',
           routerLink: '/snackbar',
         },
+        {
+          title: 'Tooltip',
+          routerLink: '/tooltip',
+        },
       ],
     },
   ];

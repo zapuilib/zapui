@@ -1,0 +1,37 @@
+.__ngx__zen__tooltip__wrapper {
+  @apply relative;
+
+  .icon__wrapper {
+    @apply flex justify-center items-center;
+    @apply w-4 h-4 rounded-full;
+    @apply bg-blue-700 text-white;
+    @apply hover:bg-blue-600;
+
+    i {
+      @apply text-[10px] text-white;
+    }
+  }
+
+  .content__wrapper {
+    @apply absolute w-40;
+    @apply px-3 py-2 rounded;
+    @apply text-sm;
+    @apply bg-blue-700 text-white;
+
+    &.right {
+      @apply left-0;
+    }
+
+    &.left {
+      @apply right-0;
+    }
+
+    &.top {
+      @apply bottom-[calc(100%+8px)];
+    }
+
+    &.bottom {
+      @apply top-[calc(100%+8px)];
+    }
+  }
+}

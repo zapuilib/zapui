@@ -2,8 +2,11 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { InternalLayoutComponent } from './layout/internal-layout/internal-layout.component';
-import { ButtonComponent, GettingStartedComponent } from './components';
-
+import {
+  ButtonComponent,
+  TooltipComponent,
+  GettingStartedComponent,
+} from './components';
 
 const routes: Routes = [
   {
@@ -23,6 +26,11 @@ const routes: Routes = [
       {
         path: 'button',
         component: ButtonComponent,
+        pathMatch: 'full',
+      },
+      {
+        path: 'tooltip',
+        component: TooltipComponent,
         pathMatch: 'full',
       },
     ],

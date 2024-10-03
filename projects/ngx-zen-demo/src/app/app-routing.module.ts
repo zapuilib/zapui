@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { InternalLayoutComponent } from './layout/internal-layout/internal-layout.component';
-import { ButtonComponent, GettingStartedComponent } from './components';
+import { AlertComponent, ButtonComponent, GettingStartedComponent } from './components';
 
 
 const routes: Routes = [
@@ -21,8 +21,18 @@ const routes: Routes = [
         pathMatch: 'full',
       },
       {
+        path: 'alert',
+        component: AlertComponent,
+        pathMatch: 'full',
+      },
+      {
         path: 'button',
         component: ButtonComponent,
+        pathMatch: 'full',
+      },
+      {
+        path: '**',
+        redirectTo: 'getting-started',
         pathMatch: 'full',
       },
     ],

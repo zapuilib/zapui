@@ -5,7 +5,11 @@ export const defaultConfig: NgxZenConfig = {
       primary: '#FFFFFF',   // A shade of blue
       secondary: '#000000', // A shade of yellow
       tertiary: '#2563eb',   // A shade of red
-      quaternary: '#2563eb', // A shade of green
+      quaternary: '#374151', // A shade of green
+      success: '#15803d',   // A shade of green
+      error: '#b91c1c',     // A shade of red
+      warning: '#f59e0b',   // A shade of yellow
+      info: '#3b82f6',      // A shade of blue
     },
     fontSize: {
       '7xl': '5rem', // 80px

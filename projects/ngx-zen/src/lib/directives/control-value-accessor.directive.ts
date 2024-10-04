@@ -10,6 +10,9 @@ import {
 } from '@angular/forms';
 import { distinctUntilChanged, startWith, Subject, takeUntil, tap } from 'rxjs';
 
+import { NGX_ZEN_CONFIG } from '../tokens/ngx-zen.tokens';
+import { NgxZenConfig } from '../interfaces/config.interface';
+
 @Directive({
   selector: '[libControlValueAccessor]',
 })
@@ -26,11 +29,23 @@ export class ControlValueAccessorDirective<T>
 
   constructor(
     @Inject(Injector) private injector: Injector,
+    @Inject(NGX_ZEN_CONFIG) public config: NgxZenConfig
   ) {}
 
   ngOnInit(): void {
     this.setFormControl();
     this.isRequired = this.control?.hasValidator(Validators.required) ?? false;
+    this.setStyle();
+  }
+
+  setStyle() {
+    const placeholderColor = this.config.colors.quaternary;
+    const focusColor = this.config.colors.tertiary;
+    document.documentElement.style.setProperty(
+      '--placeholder-color',
+      placeholderColor
+    );
+    document.documentElement.style.setProperty('--focus-color', focusColor);
   }
 
   setFormControl() {

@@ -20,7 +20,7 @@ const ngxZenConfig: NgxZenConfig = {
   colors: {
     primary: '#FFFFFF',
     secondary: '#000000',
-    tertiary: '#FF101F',
+    tertiary: '#2563eb',
     quaternary: '#374151',
     success: '#38c172',
     error: '#b91c1c',
@@ -56,7 +56,7 @@ const ngxZenConfig: NgxZenConfig = {
     AppRoutingModule,
     CommonModule,
     ReactiveFormsModule,
-    NgxZenModule.forRoot(),
+    NgxZenModule.forRoot(ngxZenConfig),
     MarkdownModule.forRoot({
       clipboardOptions: {
         provide: CLIPBOARD_OPTIONS,

@@ -1,10 +1,7 @@
 .__zen__form__control {
-  @apply flex flex-col gap-y-2 w-full;
-  @apply input:w-full input:px-3 input:py-2 input:border input:border-gray-900 input:text-gray-900;
-  @apply input:focus-within:outline-blue-600;
-  @apply error:text-rose-900;
-  @apply input:placeholder:text-gray-500 input:bg-transparent;
-  @apply label:text-gray-900;
+  @apply flex flex-col gap-y-2 w-full rounded-none;
+  @apply input:w-full input:px-3 input:py-2 input:border;
+  @apply input:focus-within:outline-0 input:focus-within:ring-2 input:focus-within:ring-inset input:focus-within:ring-offset-1;
 
   fieldset {
     @apply relative border-0 outline-none;
@@ -13,7 +10,6 @@
       @apply absolute;
       @apply top-1/2;
       @apply -translate-y-1/2;
-      @apply text-gray-500;
       @apply left-3;
 
       &.right {
@@ -32,7 +28,7 @@
   }
 
   &.compact {
-    @apply input:text-sm input:px-2 input:py-1.5 input:pl-8;
+    @apply input:text-sm input:px-2 input:py-1.5;
 
     i {
       @apply text-xs;
@@ -45,5 +41,13 @@
 
   input:disabled {
     @apply opacity-50;
+  }
+
+  input::placeholder {
+    @apply text-[var(--placeholder-color)];
+  }
+
+  input:focus {
+    @apply ring-[var(--focus-color)];
   }
 }

@@ -1,5 +1,35 @@
 <section class="min-h-screen">
-  <h1>Buttons</h1>
+  <h1>Input</h1>
+  <div class="form-control-description">
+    <h2 class="!text-xl">Usage</h2>
+    <div class="card-special">
+      <div class="content">
+        <h2>Form control setup</h2>
+        <p>
+          All form components in the library are fully compatible with reactive
+          forms. You can easily pass custom validators to the form controls, and
+          even customize the validation messages to suit your needs.
+        </p>
+      </div>
+      <div class="code">
+        <app-code-block [markdownData]="usages[0]"> </app-code-block>
+      </div>
+    </div>
+    <div class="card-special">
+      <div class="content">
+        <h2>Passing custom error messages</h2>
+        <p>
+          Error messages can be passed to the form control using the
+          <code>customErrorMessages</code> with a type of
+          <code>Record&lt;string, string&gt;</code>. See the example on the
+          right.
+        </p>
+      </div>
+      <div class="code">
+        <app-code-block [markdownData]="usages[1]"> </app-code-block>
+      </div>
+    </div>
+  </div>
   @for(item of markdowns; track item; let i = $index) {
   <ng-container
     *ngTemplateOutlet="
@@ -13,6 +43,133 @@
   >
   </ng-container>
   }
+  <h2>Properties</h2>
+  <table>
+    <thead>
+      <tr>
+        <th class="w-[10%]">Parameter</th>
+        <th class="w-[10%]">Required</th>
+        <th class="w-[30%]">Accepted values</th>
+        <th class="w-[50%]">Usage</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>id</code></td>
+        <td><p>Required</p></td>
+        <td><code>string</code></td>
+        <td>
+          <p>Accepts a unique identifier for the form control.</p>
+        </td>
+      </tr>
+      <tr>
+        <td><code>formControlName</code></td>
+        <td><p>Required</p></td>
+        <td><code>string</code></td>
+        <td>
+          <p>
+            Accepts a form control name from either your form group or your
+            single control
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td><code>label</code></td>
+        <td><p>Optional</p></td>
+        <td><code>string</code></td>
+        <td>
+          <p>Accepts a label for the form control.</p>
+        </td>
+      </tr>
+      <tr>
+        <td><code>placeholder</code></td>
+        <td><p>Optional</p></td>
+        <td><code>string</code></td>
+        <td>
+          <p>Accepts a placeholder for the form control.</p>
+        </td>
+      </tr>
+      <tr>
+        <td><code>size</code></td>
+        <td><p>Optional</p></td>
+        <td><code>compact</code>|<code>default</code></td>
+        <td>
+          <p>
+            Controls input sizing. "Compact" has less padding, "default" follows
+            the standard theme.
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td><code>shape</code></td>
+        <td><p>Optional</p></td>
+        <td><code>pill</code>|<code>curve</code>|<code>default</code></td>
+        <td>
+          <p>
+            Defines the input shape. "Pill" is a fully rounded input, "curve"
+            has rounded corners, and "default" is a classic square-cornered
+            input.
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td><code>icon</code></td>
+        <td><p>Optional</p></td>
+        <td><code>string</code></td>
+        <td>
+          <p>
+            Specifies a Font Awesome class for the input's icon (e.g.,
+            <code>fa-plus</code>).
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td><code>iconPosition</code></td>
+        <td><p>Optional</p></td>
+        <td><code>left</code>|<code>right</code></td>
+        <td>
+          <p>
+            Sets the icon's position relative to the input text. Defaults to
+            "left".
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td><code>autoComplete</code></td>
+        <td><p>Optional</p></td>
+        <td><code>string</code></td>
+        <td>
+          <p>
+            Accepts an autocomplete attribute for the form control. Defaults to
+            <code>off</code>.
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td><code>zenClass</code></td>
+        <td><p>Optional</p></td>
+        <td><code>string</code></td>
+        <td>
+          <p>
+            Allows overriding default styles by passing Tailwind CSS classes.
+            Utilize the <code>ngx-zen/tailwind</code> plugin to target specific
+            elements within the alert component.
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td><code>customErrorMessages</code></td>
+        <td><p>Optional</p></td>
+        <td><code>Record&lt;string, string&gt;</code></td>
+        <td>
+          <p>
+            Accepts custom error messages for the form control. Defaults to
+            automatically generated error messages.
+          </p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </section>
 
 <ng-template let-markdown let-title="title" let-index="index" #card>
@@ -22,8 +179,8 @@
     </div>
     <div class="content">
       <div class="ui">
-        @switch(index) { @case(0) {
         <form [formGroup]="form" class="flex flex-col gap-y-4">
+          @switch(index) { @case(0) {
           <ngx-zen-input
             #username
             label="Username"
@@ -31,12 +188,95 @@
             type="text"
             formControlName="username"
             placeholder="Enter your username"
-            [customErrorMessages]="customErrorMessages"
           ></ngx-zen-input>
+          } @case(1) {
+          <ngx-zen-input
+            #username2
+            id="username2"
+            type="text"
+            formControlName="username2"
+            placeholder="Enter your username"
+          ></ngx-zen-input>
+          } @case(2) {
+          <ngx-zen-input
+            #username3
+            id="username3"
+            type="text"
+            icon="fa-user"
+            formControlName="username3"
+            placeholder="Enter your username"
+          ></ngx-zen-input>
+          } @case(3) {
+          <ngx-zen-input
+            #search
+            id="search"
+            type="text"
+            icon="fa-search"
+            iconPosition="right"
+            formControlName="search"
+            placeholder="Search"
+          ></ngx-zen-input>
+          } @case(4) {
+          <ngx-zen-input
+            #search2
+            id="search2"
+            type="text"
+            size="compact"
+            formControlName="search2"
+            placeholder="Search"
+          ></ngx-zen-input>
+          } @case(5) {
+          <ngx-zen-input
+            #search3
+            id="search3"
+            type="text"
+            shape="pill"
+            formControlName="search3"
+            placeholder="Search"
+          ></ngx-zen-input>
+          } @case(6) {
+          <ngx-zen-input
+            #search4
+            id="search4"
+            type="text"
+            shape="curve"
+            formControlName="search4"
+            placeholder="Search"
+          ></ngx-zen-input>
+          } @case(7) {
+          <ngx-zen-input
+            #email
+            id="email"
+            type="email"
+            formControlName="email"
+            placeholder="Enter your email"
+          ></ngx-zen-input>
+          } @case(8) {
+          <ngx-zen-input
+            #password
+            id="password"
+            type="password"
+            formControlName="password"
+            placeholder="Enter your password"
+          ></ngx-zen-input>
+          } @case(9) {
+          <ngx-zen-input
+            #age
+            id="age"
+            type="number"
+            formControlName="age"
+            placeholder="Enter your age"
+          ></ngx-zen-input>
+          } @case(10) {
+          <ngx-zen-input
+            #phone
+            id="phone"
+            type="tel"
+            formControlName="phone"
+            placeholder="Enter your phone"
+          ></ngx-zen-input>
+          }}
         </form>
-        } @case(1) {
-        <ngx-zen-button text="Submit" shape="curve"></ngx-zen-button>
-        }}
       </div>
       <div class="code-wrapper">
         <app-code-block [markdownData]="markdown"></app-code-block>

@@ -19,9 +19,9 @@ module.exports = plugin(function ({ addVariant, e }) {
     });
   });
 
-  addVariant("i", ({ modifySelectors, separator }) => {
+  addVariant("icon", ({ modifySelectors, separator }) => {
     modifySelectors(({ className }) => {
-      return `.${e(`i${separator}${className}`)} i`;
+      return `.${e(`icon${separator}${className}`)} .icon`;
     });
   });
 });

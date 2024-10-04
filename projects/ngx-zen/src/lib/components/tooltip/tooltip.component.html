@@ -1,13 +1,9 @@
 <div class="__ngx__zen__tooltip__wrapper" [ngClass]="[zenClass]">
-  @if(triggerType === "hover"){
   <div class="icon" (mouseenter)="toggle()" (mouseleave)="toggle()">
     <i [ngClass]="[icon ? icon : 'fa-regular fa-question']"></i>
   </div>
-  } @else {
-  <div class="icon" (click)="toggle()">
-    <i [ngClass]="[icon ? icon : 'fa-regular fa-question']"></i>
-  </div>
-  } @if (isActive) {
+
+  @if (isActive) {
   <div class="content" [ngClass]="[positionX, positionY]">
     @if(text) {
     <p>{{ text }}</p>

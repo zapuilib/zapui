@@ -3,7 +3,7 @@
 
   .icon {
     @apply flex justify-center items-center;
-    @apply w-4 h-4 rounded-full;
+    @apply w-4 h-4 rounded-full cursor-pointer;
     @apply bg-black text-white;
     @apply hover:bg-black/90;
 

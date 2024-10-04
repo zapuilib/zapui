@@ -18,7 +18,7 @@ export class TooltipComponent implements OnInit {
 
   @HostListener('document:click', ['$event'])
   onClick(event: Event) {
-    if (this.triggerType === 'click' && this.isActive) {
+    if (this.isActive) {
       const target = event.target as HTMLElement;
       if (
         !target.closest('.content__wrapper') &&

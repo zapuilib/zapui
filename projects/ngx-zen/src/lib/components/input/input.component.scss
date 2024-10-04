@@ -50,4 +50,13 @@
   input:focus {
     @apply ring-[var(--focus-color)];
   }
+
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    @apply m-0;
+  }
+
+  input[type="number"] {
+    -moz-appearance: textfield;
+  }
 }

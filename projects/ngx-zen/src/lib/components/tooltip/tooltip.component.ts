@@ -10,12 +10,28 @@ import { NgxZenConfig } from '../../interfaces/config.interface';
 export class TooltipComponent {
   @Input() icon: string = '';
   @Input() text: string = '';
+  @Input() variant: 'classic' | 'default' = 'default';
   @Input() positionX: 'left' | 'x-center' | 'right' = 'right';
   @Input() positionY: 'top' | 'y-center' | 'bottom' = 'bottom';
   @Input() zenClass: string = '';
   isActive: boolean = false;
 
   constructor(@Inject(NGX_ZEN_CONFIG) private config: NgxZenConfig) {}
+
+  getStyle(): any {
+    return {
+      'background-color': this.config.colors.secondary,
+      'border-color': this.config.colors.secondary,
+      'font-size': this.config.fontSize.sm,
+    };
+  }
+
+  getIconStyle(): any {
+    return {
+      'background-color': this.config.colors.tertiary,
+      'border-color': this.config.colors.tertiary,
+    };
+  }
 
   toggle(): void {
     this.isActive = !this.isActive;

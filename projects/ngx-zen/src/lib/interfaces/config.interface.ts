@@ -6,6 +6,7 @@ export interface NgxZenConfig {
     secondary: HexCode;
     tertiary: HexCode;
     quaternary: HexCode;
+    transparent: HexCode;
     success: HexCode;
     error: HexCode;
     warning: HexCode;

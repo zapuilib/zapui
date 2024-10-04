@@ -18,4 +18,10 @@ module.exports = plugin(function ({ addVariant, e }) {
       return `.${e(`error${separator}${className}`)} .error`;
     });
   });
+
+  addVariant("i", ({ modifySelectors, separator }) => {
+    modifySelectors(({ className }) => {
+      return `.${e(`i${separator}${className}`)} i`;
+    });
+  });
 });

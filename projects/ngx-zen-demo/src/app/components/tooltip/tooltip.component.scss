@@ -16,13 +16,19 @@ section {
   &.dark {
     @apply bg-[#181818] text-white;
 
-    ngx-zen-button {
+    ngx-zen-tooltip {
       @apply bg-[#282828] text-white;
     }
   }
 
   .card {
     @apply py-5 w-[50%];
+
+    .content {
+      .ui {
+        @apply min-h-[295px] rounded bg-white relative;
+      }
+    }
   }
 
   table {

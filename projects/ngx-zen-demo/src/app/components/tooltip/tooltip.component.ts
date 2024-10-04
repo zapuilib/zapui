@@ -22,15 +22,21 @@ export class TooltipComponent {
     },
     {
       markdown: `\`\`\`html
+<ngx-zen-tooltip text="This is a tooltip" positionX="x-center"></ngx-zen-tooltip>
+  \`\`\``,
+      title: 'Position x-center',
+    },
+    {
+      markdown: `\`\`\`html
 <ngx-zen-tooltip text="This is a tooltip" positionY="top"></ngx-zen-tooltip>
   \`\`\``,
       title: 'Position top',
     },
     {
       markdown: `\`\`\`html
-<ngx-zen-tooltip text="This is a tooltip" triggerType="click"></ngx-zen-tooltip>
+<ngx-zen-tooltip text="This is a tooltip" positionY="y-center"></ngx-zen-tooltip>
   \`\`\``,
-      title: 'Trigger on click',
+      title: 'Position y-center',
     },
     {
       markdown: `\`\`\`html

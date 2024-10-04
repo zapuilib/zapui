@@ -80,13 +80,7 @@
     </div>
     <div class="content">
       @switch(index) { @case(0) {
-      <ngx-zen-tooltip
-        text="This is a tooltip"
-        positionX="x-center"
-        positionY="top"
-        zenClass="i:!bg-red-500"
-      >
-      </ngx-zen-tooltip>
+      <ngx-zen-tooltip text="This is a tooltip"> </ngx-zen-tooltip>
       } @case(1){
       <ngx-zen-tooltip text="This is a tooltip" positionX="left">
       </ngx-zen-tooltip>
@@ -101,7 +95,7 @@
       </ngx-zen-tooltip>
       } @case(5){
       <ngx-zen-tooltip>
-        <div style="width: 500px; background-color: red">
+        <div>
           <h2>Title</h2>
           <p>Lorem ipsum dolor sit amet consectetur elit.</p>
         </div>

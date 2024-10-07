@@ -18,4 +18,10 @@ module.exports = plugin(function ({ addVariant, e }) {
       return `.${e(`error${separator}${className}`)} .error`;
     });
   });
+
+  addVariant("textarea", ({ modifySelectors, separator }) => {
+    modifySelectors(({ className }) => {
+      return `.${e(`textarea${separator}${className}`)} textarea`;
+    });
+  });
 });

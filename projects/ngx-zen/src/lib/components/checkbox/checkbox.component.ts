@@ -22,6 +22,7 @@ export class CheckboxComponent<T> extends ControlValueAccessorDirective<T> {
   @Input() zenClass: string = '';
   @Input() id: string = '';
   @Input() shape: 'pill' | 'curve' | 'default' = 'default';
+  @Input() size: 'compact' | 'default' = 'default';
   @Input() labelPosition: 'left' | 'right' = 'right';
 
   getCheckboxStyle(): any {

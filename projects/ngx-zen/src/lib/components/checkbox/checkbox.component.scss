@@ -31,6 +31,12 @@
     @apply ring-[var(--focus-color)];
   }
 
+  &.compact {
+    input {
+      @apply h-4 w-4;
+    }
+  }
+
   &.curve {
     input {
       @apply rounded;

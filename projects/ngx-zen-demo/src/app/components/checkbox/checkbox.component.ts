@@ -56,7 +56,7 @@ export class CheckboxComponent {
 
   constructor(private fb: FormBuilder) {
     this.form = this.fb.group({
-      terms: [{value: '', disabled: true}, [Validators.required]],
+      terms: ['', [Validators.required]],
       terms2: ['', [Validators.required]],
       terms3: ['', [Validators.required]],
       terms4: ['', [Validators.required]],

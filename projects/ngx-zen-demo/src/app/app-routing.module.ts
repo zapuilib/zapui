@@ -7,6 +7,7 @@ import {
   ButtonComponent,
   GettingStartedComponent,
   InputComponent,
+  TextareaComponent,
 } from './components';
 
 const routes: Routes = [
@@ -37,6 +38,11 @@ const routes: Routes = [
       {
         path: 'input',
         component: InputComponent,
+        pathMatch: 'full',
+      },
+      {
+        path: 'textarea',
+        component: TextareaComponent,
         pathMatch: 'full',
       },
       {

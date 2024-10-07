@@ -29,22 +29,4 @@ export class InputComponent<T> extends ControlValueAccessorDirective<T> {
   @Input() icon!: string;
   @Input() iconPosition: 'left' | 'right' = 'left';
   @Input() autoComplete: string = 'off';
-
-  getInputStyle() {
-    return {
-      color: this.config.colors.secondary,
-      'border-color': this.config.colors.secondary,
-      'font-size': this.config.fontSize.md,
-    };
-  }
-
-  getStyle() {
-    return {
-      color: this.config.colors.secondary,
-    };
-  }
-
-  getErrorColor() {
-    return this.config.colors.error;
-  }
 }

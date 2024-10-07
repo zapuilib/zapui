@@ -18,7 +18,6 @@ export class TextareaComponent {
   rows="5"
   placeholder="Add a description"
   >
-You have a new alert
 </ngx-zen-textarea>
   \`\`\``,
       title: 'Basic textarea',
@@ -32,7 +31,6 @@ You have a new alert
   shape="curve"
   placeholder="Add a description"
   >
-You have a new alert
 </ngx-zen-textarea>
   \`\`\``,
       title: 'Curved textarea without label',
@@ -47,7 +45,6 @@ You have a new alert
   placeholder="Add a description"
   resize="vertical"
   >
-You have a new alert
 </ngx-zen-textarea>
   \`\`\``,
       title: 'Textarea with resize',
@@ -62,7 +59,6 @@ You have a new alert
   placeholder="Add a description"
   resize="auto"
   >
-You have a new alert
 </ngx-zen-textarea>
   \`\`\``,
       title: 'Textarea with auto resize',

@@ -1,7 +1,7 @@
 .__ngx__textarea__wrapper {
   @apply w-full flex flex-col gap-y-2;
 
-  &.curve{
+  &.curve {
     @apply textarea:rounded;
   }
 }
@@ -16,6 +16,9 @@ textarea {
   }
 }
 
+textarea:disabled {
+  @apply opacity-50;
+}
 
 textarea::placeholder {
   @apply text-[var(--placeholder-color)];

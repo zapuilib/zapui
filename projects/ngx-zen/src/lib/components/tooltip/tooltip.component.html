@@ -1,17 +1,26 @@
 <div class="__ngx__zen__tooltip__wrapper" [ngClass]="[zenClass]">
-  <div class="icon" (mouseenter)="toggle()" (mouseleave)="toggle()">
+  <div
+    class="icon"
+    [ngStyle]="getIconStyle()"
+    (mouseenter)="toggle()"
+    (mouseleave)="toggle()"
+  >
     <i [ngClass]="[icon ? icon : 'fa-regular fa-question']"></i>
   </div>
 
   @if (isActive) {
-  <div class="content" [ngClass]="[positionX, positionY]">
+  <div
+    class="content"
+    [ngClass]="[positionX, positionY]"
+    [ngStyle]="getContentStyle()"
+  >
     @if(text) {
     <p>{{ text }}</p>
     }
 
     <ng-content></ng-content>
 
-    <span class="pointer"></span>
+    <span class="pointer" [ngStyle]="getPointerStyle()"></span>
   </div>
   }
 </div>

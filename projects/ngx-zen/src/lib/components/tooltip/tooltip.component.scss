@@ -4,20 +4,14 @@
   .icon {
     @apply flex justify-center items-center;
     @apply w-4 h-4 rounded-full cursor-pointer;
-    @apply border border-black;
-    @apply bg-black text-white;
-    @apply hover:bg-black/90;
-
-    i {
-      @apply text-[10px] text-white;
-    }
+    @apply border;
+    @apply hover:bg-opacity-85;
   }
 
   .content {
     @apply absolute min-w-44;
     @apply px-3 py-2 rounded;
-    @apply text-sm;
-    @apply bg-black text-white;
+    @apply border;
 
     &.left {
       @apply -right-3;
@@ -83,6 +77,5 @@
   .pointer {
     @apply absolute rotate-45;
     @apply w-3 h-3 rounded-sm;
-    @apply bg-black;
   }
 }

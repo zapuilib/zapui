@@ -5,6 +5,7 @@ import { InternalLayoutComponent } from './layout/internal-layout/internal-layou
 import {
   AlertComponent,
   ButtonComponent,
+  InputComponent,
   TooltipComponent,
   GettingStartedComponent,
 } from './components';
@@ -32,6 +33,11 @@ const routes: Routes = [
       {
         path: 'button',
         component: ButtonComponent,
+        pathMatch: 'full',
+      },
+      {
+        path: 'input',
+        component: InputComponent,
         pathMatch: 'full',
       },
       {

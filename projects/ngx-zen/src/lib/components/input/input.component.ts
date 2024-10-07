@@ -20,14 +20,31 @@ type InputType = 'password' | 'text' | 'number' | 'email' | 'tel';
 export class InputComponent<T> extends ControlValueAccessorDirective<T> {
   @Input() type: InputType = 'text';
   @Input() label: string = '';
-  @Input() inputId: string = '';
+  @Input() id: string = '';
   @Input() placeholder: string = '';
   @Input() customErrorMessages: Record<string, string> = {};
   @Input() zenClass: string = '';
-  @Input() theme: 'light' | 'dark' = 'light';
   @Input() size: 'compact' | 'default' = 'default';
   @Input() shape: 'pill' | 'curve' | 'default' = 'default';
   @Input() icon!: string;
   @Input() iconPosition: 'left' | 'right' = 'left';
   @Input() autoComplete: string = 'off';
+
+  getInputStyle() {
+    return {
+      color: this.config.colors.secondary,
+      'border-color': this.config.colors.secondary,
+      'font-size': this.config.fontSize.md,
+    };
+  }
+
+  getStyle() {
+    return {
+      color: this.config.colors.secondary,
+    };
+  }
+
+  getErrorColor() {
+    return this.config.colors.error;
+  }
 }

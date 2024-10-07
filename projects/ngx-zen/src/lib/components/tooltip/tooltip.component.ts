@@ -18,18 +18,27 @@ export class TooltipComponent {
 
   constructor(@Inject(NGX_ZEN_CONFIG) private config: NgxZenConfig) {}
 
-  getStyle(): any {
+  getIconStyle(): any {
+    return {
+      'background-color': this.config.colors.secondary,
+      'border-color': this.config.colors.secondary,
+      'font-size': this.config.fontSize.xxs,
+      color: this.config.colors.primary,
+    };
+  }
+
+  getContentStyle(): any {
     return {
       'background-color': this.config.colors.secondary,
       'border-color': this.config.colors.secondary,
       'font-size': this.config.fontSize.sm,
+      color: this.config.colors.primary,
     };
   }
 
-  getIconStyle(): any {
+  getPointerStyle(): any {
     return {
-      'background-color': this.config.colors.tertiary,
-      'border-color': this.config.colors.tertiary,
+      'background-color': this.config.colors.secondary,
     };
   }
 

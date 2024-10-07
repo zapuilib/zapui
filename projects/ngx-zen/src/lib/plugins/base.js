@@ -24,4 +24,10 @@ module.exports = plugin(function ({ addVariant, e }) {
       return `.${e(`textarea${separator}${className}`)} textarea`;
     });
   });
+
+  addVariant("fieldset", ({ modifySelectors, separator }) => {
+    modifySelectors(({ className }) => {
+      return `.${e(`fieldset${separator}${className}`)} fieldset`;
+    });
+  });
 });

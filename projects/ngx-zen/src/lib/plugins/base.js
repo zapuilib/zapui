@@ -42,4 +42,11 @@ module.exports = plugin(function ({ addVariant, e }) {
       return `.${e(`wrapper${separator}${className}`)} .wrapper`;
     });
   });
+
+
+  addVariant("fieldset", ({ modifySelectors, separator }) => {
+    modifySelectors(({ className }) => {
+      return `.${e(`fieldset${separator}${className}`)} fieldset`;
+    });
+  });
 });

@@ -35,6 +35,10 @@ export class SideMenuComponent {
           routerLink: '/button',
         },
         {
+          title: 'Checkbox',
+          routerLink: '/checkbox',
+        },
+        {
           title: 'Dialog',
           routerLink: '/dialog',
         },

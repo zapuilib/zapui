@@ -1,5 +1,5 @@
 <section class="min-h-screen">
-  <h1>Textarea</h1>
+  <h1>Checkboxes</h1>
   @for(item of markdowns; track item; let i = $index) {
   <ng-container
     *ngTemplateOutlet="
@@ -52,45 +52,24 @@
         </td>
       </tr>
       <tr>
-        <td><code>placeholder</code></td>
+        <td><code>size</code></td>
         <td><p>Optional</p></td>
-        <td><code>string</code></td>
+        <td><code>compact</code>|<code>default</code></td>
         <td>
-          <p>Accepts a placeholder for the form control.</p>
+          <p>
+            Defines the input size. "Compact" is a smaller input, and "default"
+            is a standard input.
+          </p>
         </td>
       </tr>
       <tr>
         <td><code>shape</code></td>
         <td><p>Optional</p></td>
-        <td><code>curve</code>|<code>default</code></td>
+        <td><code>pill</code>|<code>curve</code>|<code>default</code></td>
         <td>
           <p>
-            Defines the input shape. "Curve" has rounded corners, and "default"
-            is a classic square-cornered input.
-          </p>
-        </td>
-      </tr>
-      <tr>
-        <td><code>rows</code></td>
-        <td><p>Optional</p></td>
-        <td><code>string</code></td>
-        <td>
-          <p>
-            Specifies the number of visible rows for the form control, provided
-            as a string. The default value is "10".
-          </p>
-        </td>
-      </tr>
-      <tr>
-        <td><code>resize</code></td>
-        <td><p>Optional</p></td>
-        <td><code>none</code> | <code>vertical</code> | <code>auto</code></td>
-        <td>
-          <p>
-            Controls how the textarea can be resized.
-            <code>auto</code>: Automatically resizes as the user types.
-            <code>none</code>: Disables manual resizing. <code>vertical</code>:
-            Allows manual vertical resizing.
+            Defines the input shape."Pill" is a fully rounded input, "curve" has
+            rounded corners, and "default" is a classic square-cornered input.
           </p>
         </td>
       </tr>
@@ -129,13 +108,13 @@
     </thead>
     <tbody>
       <tr>
-        <td><code>textarea</code></td>
+        <td><code>input</code></td>
         <td>
           <p>
-            Accepts Tailwind CSS classes for the textarea, e.g.,
-            <code>textarea:bg-red-500</code>. Some classes may need to be forced
+            Accepts Tailwind CSS classes for the input, e.g.,
+            <code>input:bg-red-500</code>. Some classes may need to be forced
             with an exclamation mark <code>!</code>, e.g.,
-            <code>textarea:!ring-red-500</code>.
+            <code>input:!ring-red-500</code>.
           </p>
         </td>
       </tr>
@@ -174,43 +153,22 @@
       <div class="ui">
         <form action="" [formGroup]="form">
           @switch(index) { @case(0) {
-          <ngx-zen-textarea
-            label="Description"
-            id="description"
-            formControlName="description"
-            rows="5"
-            placeholder="Add a description"
+          <ngx-zen-checkbox
+            id="terms"
+            label="I accept the terms and conditions"
+            formControlName="terms"
+            zenClass=""
           >
-          </ngx-zen-textarea>
+          </ngx-zen-checkbox>
           } @case(1) {
-          <ngx-zen-textarea
-            id="description2"
-            formControlName="description2"
-            rows="3"
-            shape="curve"
-            placeholder="Add a description"
-          >
-          </ngx-zen-textarea>
+          <ngx-zen-checkbox id="terms2" formControlName="terms2" zenClass="">
+          </ngx-zen-checkbox>
           } @case(2) {
-          <ngx-zen-textarea
-            id="description2"
-            formControlName="description2"
-            rows="1"
-            shape="curve"
-            placeholder="Add a description"
-            resize="vertical"
-          >
-          </ngx-zen-textarea>
+          <ngx-zen-checkbox id="terms3" formControlName="terms3" shape="curve">
+          </ngx-zen-checkbox>
           } @case(3) {
-          <ngx-zen-textarea
-            id="description2"
-            formControlName="description2"
-            rows="1"
-            shape="curve"
-            placeholder="Add a description"
-            resize="auto"
-          >
-          </ngx-zen-textarea>
+          <ngx-zen-checkbox id="terms4" formControlName="terms4" shape="pill">
+          </ngx-zen-checkbox>
           } }
         </form>
       </div>

@@ -9,3 +9,4 @@ export * from './lib/interfaces/config.interface';
 export * from './lib/components/button/button.component';
 export * from './lib/components/input/input.component';
 export * from './lib/components/alert/alert.component';
+export * from './lib/components/chips/chip.component';

@@ -1,0 +1,10 @@
+<div [ngClass]="classes" [ngStyle]="getStyle()">
+  <img *ngIf="avatar" [src]="avatar" alt="Avatar" class="ngx-zen-chip-avatar">
+  <i *ngIf="icon && iconPosition === 'left'" class="fa-solid" [ngClass]="icon"></i>
+  <span class="ngx-zen-chip-text">{{ text }}</span>
+  <i *ngIf="icon && iconPosition === 'right'" class="fa-solid" [ngClass]="icon"></i>
+  <span *ngIf="status" class="ngx-zen-chip-status"></span>
+  <button *ngIf="removable" class="ngx-zen-chip-remove" (click)="onRemove($event)" [disabled]="disabled">
+    <i class="fa-solid fa-times"></i>
+  </button>
+</div>

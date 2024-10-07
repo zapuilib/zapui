@@ -1,0 +1,179 @@
+<section class="min-h-screen">
+    <h1>Chips</h1>
+    @for(item of markdowns; track item; let i = $index) {
+      <ng-container
+        *ngTemplateOutlet="
+          card;
+          context: {
+            $implicit: markdowns[i].markdown,
+            title: markdowns[i].title,
+            index: i
+          }
+        "
+      >
+      </ng-container>
+    }
+    <h2>Properties</h2>
+    <table>
+      <thead>
+        <tr>
+          <th class="w-[10%]">Parameter</th>
+          <th class="w-[10%]">Required</th>
+          <th class="w-[30%]">Accepted values</th>
+          <th class="w-[50%]">Usage</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>type</code></td>
+          <td><p>Optional</p></td>
+          <td><code>primary</code>|<code>secondary</code>|<code>success</code>|<code>error</code>|<code>warning</code>|<code>info</code>|<code>filled</code>|<code>gradient</code>|<code>ghost</code></td>
+          <td>
+            <p>
+              Defines the chip's color theme. Defaults to "primary" if not specified.
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td><code>variant</code></td>
+          <td><p>Optional</p></td>
+          <td><code>outlined</code>|<code>default</code></td>
+          <td>
+            <p>
+              Defines the chip style. "Outlined" is a bordered chip, and "default" is the standard chip.
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td><code>size</code></td>
+          <td><p>Optional</p></td>
+          <td><code>small</code>|<code>medium</code>|<code>large</code></td>
+          <td>
+            <p>
+              Defines the size of the chip. Defaults to "medium" if not specified.
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td><code>icon</code></td>
+          <td><p>Optional</p></td>
+          <td><code>string</code></td>
+          <td>
+            <p>
+              Specifies the icon class to be used (e.g., "fa-user" for Font Awesome icons).
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td><code>iconPosition</code></td>
+          <td><p>Optional</p></td>
+          <td><code>left</code>|<code>right</code></td>
+          <td>
+            <p>
+              Specifies the position of the icon. Defaults to "left" if not specified.
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td><code>avatar</code></td>
+          <td><p>Optional</p></td>
+          <td><code>string</code></td>
+          <td>
+            <p>
+              Specifies the URL of the avatar image to be displayed in the chip.
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td><code>status</code></td>
+          <td><p>Optional</p></td>
+          <td><code>online</code>|<code>offline</code></td>
+          <td>
+            <p>
+              Adds a status indicator to the chip.
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td><code>removable</code></td>
+          <td><p>Optional</p></td>
+          <td><code>boolean</code></td>
+        <td>
+          <p>
+            If set to true, adds a remove button to the chip.
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td><code>disabled</code></td>
+        <td><p>Optional</p></td>
+        <td><code>boolean</code></td>
+        <td>
+          <p>
+            If set to true, disables the chip and prevents user interaction.
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td><code>zenClass</code></td>
+        <td><p>Optional</p></td>
+        <td><code>string</code></td>
+        <td>
+          <p>
+            Allows overriding default styles by passing Tailwind CSS classes.
+            Utilize the <code>ngx-zen/tailwind</code> plugin to target specific
+            elements within the chip component.
+          </p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<ng-template let-markdown let-title="title" let-index="index" #card>
+  <div class="card">
+    <div class="header">
+      <h2>{{ title }}</h2>
+    </div>
+    <div class="content">
+      <div class="ui">
+        @switch(index) {
+          @case(0) { <ngx-zen-chip text="Basic Chip"></ngx-zen-chip> }
+          @case(1) { <ngx-zen-chip text="Outlined Chip" variant="outlined"></ngx-zen-chip> }
+          @case(2) { <ngx-zen-chip text="Primary Chip" type="primary"></ngx-zen-chip> }
+          @case(3) { <ngx-zen-chip text="Secondary Chip" type="secondary"></ngx-zen-chip> }
+          @case(4) { <ngx-zen-chip text="Success Chip" type="success"></ngx-zen-chip> }
+          @case(5) { <ngx-zen-chip text="Error Chip" type="error"></ngx-zen-chip> }
+          @case(6) { <ngx-zen-chip text="Warning Chip" type="warning"></ngx-zen-chip> }
+          @case(7) { <ngx-zen-chip text="Info Chip" type="info"></ngx-zen-chip> }
+          @case(8) { <ngx-zen-chip text="Removable Chip" [removable]="true"></ngx-zen-chip> }
+          @case(9) { <ngx-zen-chip text="Disabled Chip" [disabled]="true"></ngx-zen-chip> }
+          @case(10) {
+            <ngx-zen-chip text="Small Chip" size="small"></ngx-zen-chip>
+            <ngx-zen-chip text="Medium Chip" size="medium"></ngx-zen-chip>
+            <ngx-zen-chip text="Large Chip" size="large"></ngx-zen-chip>
+          }
+          @case(11) {
+            <ngx-zen-chip text="Filled Chip" type="filled"></ngx-zen-chip>
+            <ngx-zen-chip text="Gradient Chip" type="gradient"></ngx-zen-chip>
+            <ngx-zen-chip text="Ghost Chip" type="ghost"></ngx-zen-chip>
+          }
+          @case(12) {
+            <ngx-zen-chip text="Leading Icon" icon="fa-user"></ngx-zen-chip>
+            <ngx-zen-chip text="Trailing Icon" icon="fa-cog" iconPosition="right"></ngx-zen-chip>
+          }
+          @case(13) {
+            <ngx-zen-chip text="Tania Andrew" avatar="path/to/avatar.jpg"></ngx-zen-chip>
+          }
+          @case(14) {
+            <ngx-zen-chip text="Online" status="online"></ngx-zen-chip>
+            <ngx-zen-chip text="Offline" status="offline"></ngx-zen-chip>
+          }
+        }
+      </div>
+      <div class="code-wrapper">
+        <app-code-block [markdownData]="markdown"></app-code-block>
+      </div>
+    </div>
+  </div>
+</ng-template>

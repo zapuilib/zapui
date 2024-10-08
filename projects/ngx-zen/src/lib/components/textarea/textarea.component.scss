@@ -1,0 +1,29 @@
+.__ngx__textarea__wrapper {
+  @apply w-full flex flex-col gap-y-2;
+
+  &.curve {
+    @apply textarea:rounded;
+  }
+}
+
+textarea {
+  @apply w-full bg-transparent border;
+  @apply focus-within:outline-0 focus-within:ring-2 focus-within:ring-inset focus-within:ring-offset-0;
+  @apply px-3 py-2 resize-none;
+
+  &.resize {
+    @apply resize-y;
+  }
+}
+
+textarea:disabled {
+  @apply opacity-50;
+}
+
+textarea::placeholder {
+  @apply text-[var(--placeholder-color)];
+}
+
+textarea:focus {
+  @apply ring-[var(--focus-color)];
+}

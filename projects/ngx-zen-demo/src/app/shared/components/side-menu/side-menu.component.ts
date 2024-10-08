@@ -35,6 +35,10 @@ export class SideMenuComponent {
           routerLink: '/button',
         },
         {
+          title: 'Checkbox',
+          routerLink: '/checkbox',
+        },
+        {
           title: 'Dialog',
           routerLink: '/dialog',
         },
@@ -43,8 +47,16 @@ export class SideMenuComponent {
           routerLink: '/input',
         },
         {
+          title: 'Modal',
+          routerLink: '/modal',
+        },
+        {
           title: 'Snackbar',
           routerLink: '/snackbar',
+        },
+        {
+          title: 'Textarea',
+          routerLink: '/textarea',
         },
         {
           title: 'Tooltip',

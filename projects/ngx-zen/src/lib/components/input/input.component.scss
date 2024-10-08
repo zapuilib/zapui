@@ -1,7 +1,7 @@
 .__zen__form__control {
   @apply flex flex-col gap-y-2 w-full rounded-none;
   @apply input:w-full input:px-3 input:py-2 input:border;
-  @apply input:focus-within:outline-0 input:focus-within:ring-2 input:focus-within:ring-inset input:focus-within:ring-offset-1;
+  @apply input:focus-within:outline-0 input:focus-within:ring-2 input:focus-within:ring-inset input:focus-within:ring-offset-0;
 
   fieldset {
     @apply relative border-0 outline-none;

@@ -8,6 +8,9 @@ import {
   InputComponent,
   TooltipComponent,
   GettingStartedComponent,
+  CheckboxComponent,
+  ModalComponent,
+  TextareaComponent,
 } from './components';
 
 const routes: Routes = [
@@ -43,6 +46,21 @@ const routes: Routes = [
       {
         path: 'tooltip',
         component: TooltipComponent,
+        pathMatch: 'full',
+      },
+      {
+        path: 'modal',
+        component: ModalComponent,
+        pathMatch: 'full',
+      },
+      {
+        path: 'textarea',
+        component: TextareaComponent,
+        pathMatch: 'full',
+      },
+      {
+        path: 'checkbox',
+        component: CheckboxComponent,
         pathMatch: 'full',
       },
       {

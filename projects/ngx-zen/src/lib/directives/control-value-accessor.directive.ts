@@ -19,7 +19,7 @@ import { NgxZenConfig } from '../interfaces/config.interface';
 export class ControlValueAccessorDirective<T>
   implements OnInit, ControlValueAccessor
 {
-  control: FormControl | undefined;
+  control!: FormControl;
   isRequired: boolean = false;
   colors: any = [];
 
@@ -46,6 +46,24 @@ export class ControlValueAccessorDirective<T>
       placeholderColor
     );
     document.documentElement.style.setProperty('--focus-color', focusColor);
+  }
+
+  getFieldStyle() {
+    return {
+      color: this.config.colors.secondary,
+      'border-color': this.config.colors.secondary,
+      'font-size': this.config.fontSize.md,
+    };
+  }
+
+  getStyle() {
+    return {
+      color: this.config.colors.secondary,
+    };
+  }
+
+  getErrorColor() {
+    return this.config.colors.error;
   }
 
   setFormControl() {

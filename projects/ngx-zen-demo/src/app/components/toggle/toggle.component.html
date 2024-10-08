@@ -1,0 +1,96 @@
+<section class="min-h-screen">
+  <h1>Toggles</h1>
+  @for(item of markdowns; track item; let i = $index) {
+  <ng-container
+    *ngTemplateOutlet="
+      card;
+      context: {
+        $implicit: markdowns[i].markdown,
+        title: markdowns[i].title,
+        index: i
+      }
+    "
+  >
+  </ng-container>
+  }
+  <h2>Properties</h2>
+  <table>
+    <thead>
+      <tr>
+        <th class="w-[10%]">Parameter</th>
+        <th class="w-[10%]">Required</th>
+        <th class="w-[30%]">Accepted values</th>
+        <th class="w-[50%]">Usage</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>icon</code></td>
+        <td><p>Optional</p></td>
+        <td><code>string</code></td>
+        <td>
+          <p>Only accepts font awesome classes</p>
+        </td>
+      </tr>
+      <tr>
+        <td><code>text</code></td>
+        <td><p>Optional</p></td>
+        <td><code>string</code></td>
+        <td>
+          <p>The text that will be displayed in the tooltip</p>
+        </td>
+      </tr>
+      <tr>
+        <td><code>positionX</code></td>
+        <td><p>Optional</p></td>
+        <td><code>left</code>|<code>x-center</code>|<code>right</code></td>
+        <td>
+          <p>
+            By default tooltip will be set to right of the icon. Options
+            <code>x-center</code> and <code>y-center</code> can't be used at the
+            same time
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td><code>positionY</code></td>
+        <td><p>Optional</p></td>
+        <td><code>top</code>|<code>y-center</code>|<code>bottom</code></td>
+        <td>
+          <p>
+            By default tooltip will be set to bottom of the icon. Options
+            <code>x-center</code> and <code>y-center</code> can't be used at the
+            same time
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td><code>zenClass</code></td>
+        <td><p>Optional</p></td>
+        <td><code>string</code></td>
+        <td>
+          <p>
+            Allows overriding default styles by passing Tailwind CSS classes.
+            Utilize the <code>ngx-zen/tailwind</code> plugin to target specific
+            elements within the alert component. PS: Only accepts padding
+            styling for the alert component
+          </p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<ng-template let-markdown let-title="title" let-index="index" #card>
+  <div class="card">
+    <div class="header">
+      <h2>{{ title }}</h2>
+    </div>
+    <div class="content">
+      @switch(index) { @case(0) {
+      <ngx-zen-toggle label="Label" text="Helper text"></ngx-zen-toggle>
+      }}
+      <app-code-block [markdownData]="markdown"></app-code-block>
+    </div>
+  </div>
+</ng-template>

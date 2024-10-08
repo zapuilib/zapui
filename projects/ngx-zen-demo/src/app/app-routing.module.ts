@@ -11,6 +11,7 @@ import {
   CheckboxComponent,
   ModalComponent,
   TextareaComponent,
+  ToggleComponent,
 } from './components';
 
 const routes: Routes = [
@@ -61,6 +62,11 @@ const routes: Routes = [
       {
         path: 'checkbox',
         component: CheckboxComponent,
+        pathMatch: 'full',
+      },
+      {
+        path: 'toggle',
+        component: ToggleComponent,
         pathMatch: 'full',
       },
       {

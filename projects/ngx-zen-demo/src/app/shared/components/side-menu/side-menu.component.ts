@@ -59,6 +59,10 @@ export class SideMenuComponent {
           routerLink: '/textarea',
         },
         {
+          title: 'Toggle',
+          routerLink: '/toggle',
+        },
+        {
           title: 'Tooltip',
           routerLink: '/tooltip',
         },

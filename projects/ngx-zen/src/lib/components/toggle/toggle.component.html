@@ -1,0 +1,21 @@
+<div class="__ngx__toggle__wrapper" [ngClass]="[zenClass]">
+  <div class="content-wrapper">
+    <div class="lable-wrapper">
+      @if(label) {
+      <label [for]="id" class="label" [ngStyle]="getLabelStyle()">
+        {{ label }}
+      </label>
+      } @if(text) {
+      <p class="text" [ngStyle]="getTextStyle()">{{ text }}</p>
+      }
+    </div>
+  </div>
+
+  <button [id]="id" [ngStyle]="getToggleStyle()" (click)="handleToggle()">
+    <span
+      class="roller"
+      [ngClass]="[isToggleOn ? 'on' : 'off']"
+      [ngStyle]="getRollerStyle()"
+    ></span>
+  </button>
+</div>

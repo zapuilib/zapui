@@ -19,6 +19,12 @@ module.exports = plugin(function ({ addVariant, e }) {
     });
   });
 
+  addVariant("icon", ({ modifySelectors, separator }) => {
+    modifySelectors(({ className }) => {
+      return `.${e(`icon${separator}${className}`)} .icon`;
+    });
+  });
+
   addVariant("textarea", ({ modifySelectors, separator }) => {
     modifySelectors(({ className }) => {
       return `.${e(`textarea${separator}${className}`)} textarea`;
@@ -42,7 +48,6 @@ module.exports = plugin(function ({ addVariant, e }) {
       return `.${e(`wrapper${separator}${className}`)} .wrapper`;
     });
   });
-
 
   addVariant("fieldset", ({ modifySelectors, separator }) => {
     modifySelectors(({ className }) => {

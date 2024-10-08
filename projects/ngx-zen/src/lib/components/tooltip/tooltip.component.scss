@@ -1,0 +1,91 @@
+.__ngx__zen__tooltip__wrapper {
+  @apply relative;
+
+  .icon {
+    @apply flex justify-center items-center;
+    @apply w-4 h-4 rounded-full cursor-pointer;
+    @apply border;
+    @apply hover:bg-opacity-85;
+  }
+
+  .content {
+    @apply absolute min-w-44;
+    @apply px-3 py-2 rounded;
+    @apply border;
+
+    &.left {
+      @apply -right-3;
+
+      & .pointer {
+        @apply right-3.5 left-auto;
+      }
+    }
+
+    &.x-center:not(.y-center) {
+      @apply left-1/2 -translate-x-1/2;
+
+      & .pointer {
+        @apply left-1/2 -translate-x-1/2;
+      }
+    }
+
+    &.right {
+      @apply -left-3;
+
+      & .pointer {
+        @apply left-3.5 right-auto;
+      }
+    }
+
+    &.top {
+      @apply bottom-[calc(100%+16px)];
+
+      & .pointer {
+        @apply bottom-0 translate-y-[40%];
+      }
+    }
+
+    &.y-center:not(.x-center) {
+      @apply top-1/2 -translate-y-1/2;
+
+      &.left {
+        @apply right-[calc(100%+16px)];
+
+        & .pointer {
+          @apply right-0 translate-x-[40%] top-1/2 -translate-y-1/2;
+        }
+      }
+
+      &.right {
+        @apply left-[calc(100%+16px)];
+
+        & .pointer {
+          @apply left-0 -translate-x-[40%] top-1/2 -translate-y-1/2;
+        }
+      }
+    }
+
+    &.bottom {
+      @apply top-[calc(100%+16px)];
+
+      & .pointer {
+        @apply top-0 -translate-y-[40%];
+      }
+    }
+
+    &.x-center.y-center {
+      @apply top-[calc(100%+16px)];
+      @apply left-1/2 -translate-x-1/2;
+
+      & .pointer {
+        @apply left-1/2 -translate-x-1/2;
+        @apply top-0 -translate-y-[40%];
+      }
+    }
+  }
+
+  .pointer {
+    @apply absolute rotate-45;
+    @apply w-3 h-3 rounded-sm;
+  }
+}

@@ -5,9 +5,10 @@ import { InternalLayoutComponent } from './layout/internal-layout/internal-layou
 import {
   AlertComponent,
   ButtonComponent,
-  CheckboxComponent,
-  GettingStartedComponent,
   InputComponent,
+  TooltipComponent,
+  GettingStartedComponent,
+  CheckboxComponent,
   ModalComponent,
   TextareaComponent,
 } from './components';
@@ -40,6 +41,11 @@ const routes: Routes = [
       {
         path: 'input',
         component: InputComponent,
+        pathMatch: 'full',
+      },
+      {
+        path: 'tooltip',
+        component: TooltipComponent,
         pathMatch: 'full',
       },
       {

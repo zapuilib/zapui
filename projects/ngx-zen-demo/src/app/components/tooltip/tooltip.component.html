@@ -45,7 +45,11 @@
         <td><p>Optional</p></td>
         <td><code>left</code>|<code>x-center</code>|<code>right</code></td>
         <td>
-          <p>By default tooltip will be set to right of the icon</p>
+          <p>
+            By default tooltip will be set to right of the icon. Options
+            <code>x-center</code> and <code>y-center</code> can't be used at the
+            same time
+          </p>
         </td>
       </tr>
       <tr>
@@ -53,7 +57,11 @@
         <td><p>Optional</p></td>
         <td><code>top</code>|<code>y-center</code>|<code>bottom</code></td>
         <td>
-          <p>By default tooltip will be set to bottom of the icon</p>
+          <p>
+            By default tooltip will be set to bottom of the icon. Options
+            <code>x-center</code> and <code>y-center</code> can't be used at the
+            same time
+          </p>
         </td>
       </tr>
       <tr>
@@ -80,7 +88,7 @@
     </div>
     <div class="content">
       @switch(index) { @case(0) {
-      <ngx-zen-tooltip text="This is a tooltip"> </ngx-zen-tooltip>
+      <ngx-zen-tooltip text="This is a tooltip"></ngx-zen-tooltip>
       } @case(1){
       <ngx-zen-tooltip text="This is a tooltip" positionX="left">
       </ngx-zen-tooltip>

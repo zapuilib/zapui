@@ -21,7 +21,7 @@
       }
     }
 
-    &.x-center {
+    &.x-center:not(.y-center) {
       @apply left-1/2 -translate-x-1/2;
 
       & .pointer {
@@ -45,7 +45,7 @@
       }
     }
 
-    &.y-center {
+    &.y-center:not(.x-center) {
       @apply top-1/2 -translate-y-1/2;
 
       &.left {
@@ -69,6 +69,16 @@
       @apply top-[calc(100%+16px)];
 
       & .pointer {
+        @apply top-0 -translate-y-[40%];
+      }
+    }
+
+    &.x-center.y-center {
+      @apply top-[calc(100%+16px)];
+      @apply left-1/2 -translate-x-1/2;
+
+      & .pointer {
+        @apply left-1/2 -translate-x-1/2;
         @apply top-0 -translate-y-[40%];
       }
     }

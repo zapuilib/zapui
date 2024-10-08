@@ -4,6 +4,7 @@ import { ButtonComponent } from './button/button.component';
 import { CheckboxComponent } from './checkbox/checkbox.component';
 import { InputComponent } from './input/input.component';
 import { ModalComponent } from './modal/modal.component';
+import { SelectComponent } from './select/select.component';
 import { TextareaComponent } from './textarea/textarea.component';
 
 export const COMPONENTS = [
@@ -12,5 +13,6 @@ export const COMPONENTS = [
   AlertComponent,
   TextareaComponent,
   ModalComponent,
-  CheckboxComponent
+  CheckboxComponent,
+  SelectComponent
 ];

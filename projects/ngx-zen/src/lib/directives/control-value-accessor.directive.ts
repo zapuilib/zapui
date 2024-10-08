@@ -12,6 +12,7 @@ import { distinctUntilChanged, startWith, Subject, takeUntil, tap } from 'rxjs';
 
 import { NGX_ZEN_CONFIG } from '../tokens/ngx-zen.tokens';
 import { NgxZenConfig } from '../interfaces/config.interface';
+import { ColorUtility } from '../utilities/color.utility';
 
 @Directive({
   selector: '[libControlValueAccessor]',
@@ -29,7 +30,8 @@ export class ControlValueAccessorDirective<T>
 
   constructor(
     @Inject(Injector) private injector: Injector,
-    @Inject(NGX_ZEN_CONFIG) public config: NgxZenConfig
+    @Inject(NGX_ZEN_CONFIG) public config: NgxZenConfig,
+    public colorUtility: ColorUtility
   ) {}
 
   ngOnInit(): void {
@@ -86,9 +88,13 @@ export class ControlValueAccessorDirective<T>
   }
 
   writeValue(value: any): void {
-    this.control
-      ? this.control.setValue(value)
-      : (this.control = new FormControl(value));
+    if (this.control) {
+      if (this.control.value !== value) {
+        this.control.setValue(value, { emitEvent: false });
+      }
+    } else {
+      this.control = new FormControl(value);
+    }
   }
 
   registerOnChange(fn: (val: T | null) => T): void {

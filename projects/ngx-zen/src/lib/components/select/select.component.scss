@@ -1,7 +1,8 @@
 .__zen__form__control {
-  @apply flex flex-col gap-y-2 w-full rounded-none;
+  @apply flex flex-col gap-y-2 w-full;
   @apply input:w-full input:px-3 input:py-2 input:border input:bg-transparent;
   @apply input:focus-within:outline-0 input:focus-within:ring-2 input:focus-within:ring-inset input:focus-within:ring-offset-0;
+  @apply input:cursor-pointer relative;
 
   fieldset {
     @apply relative border-0 outline-none;
@@ -14,7 +15,7 @@
 
       &.right {
         @apply left-auto;
-        @apply right-3;
+        @apply right-8;
       }
     }
   }
@@ -51,12 +52,21 @@
     @apply ring-[var(--focus-color)];
   }
 
-  input::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    @apply m-0;
+  .handler {
+    i {
+      @apply right-3 left-auto;
+    }
   }
 
-  input[type="number"] {
-    -moz-appearance: textfield;
+  .field__wrapper {
+    @apply relative;
+  }
+
+  .options {
+    @apply w-full border absolute top-auto mt-1 z-10;
+
+    .option {
+      @apply w-full py-2 px-3 cursor-pointer;
+    }
   }
 }

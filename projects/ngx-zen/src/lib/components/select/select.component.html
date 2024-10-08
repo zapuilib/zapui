@@ -1,0 +1,87 @@
+<div
+  class="__zen__form__control"
+  [ngClass]="[zenClass, size, shape, icon ? iconPosition : '']"
+>
+  @if(label){
+  <label
+    [for]="id"
+    class="__zen__form__control__label"
+    [ngStyle]="getStyle()"
+    >{{ label }}</label
+  >
+  }
+  <div class="field__wrapper">
+    <fieldset>
+      <legend class="sr-only">{{ label }}</legend>
+      @if(icon && iconPosition) {
+      <i
+        class="fa-solid"
+        [ngClass]="[icon, iconPosition]"
+        [ngStyle]="getStyle()"
+      ></i>
+      }
+      <input
+        #inputSelectValueHolder
+        type="text"
+        class="__zen__form__control__input"
+        [id]="id"
+        [placeholder]="placeholder"
+        [formControl]="control"
+        [ngStyle]="getFieldStyle()"
+        [readonly]="!searchable"
+        (click)="toggleOptionsList()"
+        (input)="filterOptions()"
+      />
+      <div class="handler">
+        <i
+          class="fa-solid"
+          [ngClass]="{
+            'fa-angle-down': !isOptionListOpen,
+            'fa-angle-up': isOptionListOpen
+          }"
+          [ngStyle]="getStyle()"
+        ></i>
+      </div>
+    </fieldset>
+    @if(isOptionListOpen) {
+    <div
+      #optionList
+      class="options"
+      role="list"
+      [ngStyle]="getOptionListStyle()"
+    >
+      @if(filteredOptions.length) { @for(option of filteredOptions; track option; let i =
+      $index) {
+      <div
+        class="option"
+        role="listitem"
+        (mouseenter)="hoveredOption = option.value"
+        (mouseleave)="hoveredOption = ''"
+        [ngStyle]="getOptionStyle(option.value)"
+        (click)="selectOption(option)"
+      >
+        {{ option.label }}
+      </div>
+      } } @else {
+      <div
+        class="option"
+        role="listitem"
+        [ngStyle]="getStyle()"
+      >
+        {{ notFound }}
+      </div>
+      }
+    </div>
+    }
+  </div>
+  @if(control.invalid && control.touched) {
+  <div class="mt-30">
+    <validation-error
+      [errors]="control.errors"
+      [zenClass]="zenClass"
+      [customErrorMessages]="customErrorMessages"
+      [color]="getErrorColor()"
+    ></validation-error>
+  </div>
+  }
+</div>

@@ -43,10 +43,21 @@ module.exports = plugin(function ({ addVariant, e }) {
     });
   });
 
-
   addVariant("fieldset", ({ modifySelectors, separator }) => {
     modifySelectors(({ className }) => {
       return `.${e(`fieldset${separator}${className}`)} fieldset`;
+    });
+  });
+
+  addVariant("options", ({ modifySelectors, separator }) => {
+    modifySelectors(({ className }) => {
+      return `.${e(`options${separator}${className}`)} .options`;
+    });
+  });
+
+  addVariant("option", ({ modifySelectors, separator }) => {
+    modifySelectors(({ className }) => {
+      return `.${e(`option${separator}${className}`)} .option`;
     });
   });
 });

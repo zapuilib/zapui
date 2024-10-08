@@ -5,7 +5,7 @@
     (mouseenter)="toggle()"
     (mouseleave)="toggle()"
   >
-    <i [ngClass]="[icon ? icon : 'fa-regular fa-question']"></i>
+    <i class="fa-regular" [ngClass]="[icon ? icon : 'fa-question']"></i>
   </div>
 
   @if (isActive) {

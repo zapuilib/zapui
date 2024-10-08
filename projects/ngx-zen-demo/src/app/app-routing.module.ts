@@ -8,6 +8,7 @@ import {
   CheckboxComponent,
   GettingStartedComponent,
   InputComponent,
+  ModalComponent,
   TextareaComponent,
 } from './components';
 
@@ -39,6 +40,11 @@ const routes: Routes = [
       {
         path: 'input',
         component: InputComponent,
+        pathMatch: 'full',
+      },
+      {
+        path: 'modal',
+        component: ModalComponent,
         pathMatch: 'full',
       },
       {

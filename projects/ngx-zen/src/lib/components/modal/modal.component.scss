@@ -1,0 +1,46 @@
+.__ngx__modal__wrapper {
+  @apply w-full h-full fixed top-0 left-0 z-50;
+  @apply flex items-center justify-center;
+
+  &.classic {
+    @apply backdrop-blur-sm;
+  }
+
+  .__ngx__modal__inner {
+    @apply w-full max-w-xl;
+
+    .__ngx__modal {
+      @apply w-full p-5 relative;
+
+      .handler {
+        @apply absolute top-3 right-3 cursor-pointer;
+      }
+    }
+  }
+
+  &.curve {
+    .__ngx__modal {
+      @apply rounded-md;
+    }
+  }
+
+  &.small {
+    .__ngx__modal__inner {
+      @apply max-w-3xl;
+    }
+  }
+
+  &.wide {
+    .__ngx__modal__inner {
+      @apply max-w-5xl;
+    }
+  }
+
+  &.wider {
+    @apply px-5;
+
+    .__ngx__modal__inner {
+      @apply max-w-7xl;
+    }
+  }
+}

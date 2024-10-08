@@ -25,6 +25,25 @@ module.exports = plugin(function ({ addVariant, e }) {
     });
   });
 
+  addVariant("handler", ({ modifySelectors, separator }) => {
+    modifySelectors(({ className }) => {
+      return `.${e(`handler${separator}${className}`)} .handler`;
+    });
+  });
+
+  addVariant("modal", ({ modifySelectors, separator }) => {
+    modifySelectors(({ className }) => {
+      return `.${e(`modal${separator}${className}`)} .modal`;
+    });
+  });
+
+  addVariant("wrapper", ({ modifySelectors, separator }) => {
+    modifySelectors(({ className }) => {
+      return `.${e(`wrapper${separator}${className}`)} .wrapper`;
+    });
+  });
+
+
   addVariant("fieldset", ({ modifySelectors, separator }) => {
     modifySelectors(({ className }) => {
       return `.${e(`fieldset${separator}${className}`)} fieldset`;

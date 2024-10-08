@@ -12,45 +12,18 @@
 
   &.outlined {
     @apply border border-black;
-    @apply bg-transparent #{!important};
-    @apply text-black;
-  }
-
-  &.ghost {
     @apply bg-transparent;
-  }
-
-  &.gradient {
-    background-image: linear-gradient(to right, var(--gradient-from, #3b82f6), var(--gradient-to, #8b5cf6));
-    @apply text-white;
+    @apply text-black;
   }
 
   &.disabled {
     @apply opacity-50 cursor-not-allowed;
   }
 
-  .ngx-zen-chip-avatar {
-    @apply w-6 h-6 rounded-full mr-2;
-  }
-
   .fa-solid {
-    @apply mr-2;
-
-    &.right {
-      @apply mr-0 ml-2;
-    }
-  }
-
-  .ngx-zen-chip-status {
-    @apply w-2 h-2 rounded-full ml-2;
-
-    &.online {
-      background-color: var(--ngx-zen-success-color, #10b981);
-    }
-
-    &.offline {  
-      background-color: var(--ngx-zen-error-color, #ef4444);
-    }
+    @apply ml-2 mr-2 flex-shrink-0;
+    display: flex;
+    align-items: center;
   }
 
   .ngx-zen-chip-remove {
@@ -63,5 +36,11 @@
     &:disabled {
       @apply cursor-not-allowed;
     }
+  }
+
+  .ngx-zen-chip-text {
+    @apply flex-grow;
+    display: flex;
+    align-items: center;
   }
 }

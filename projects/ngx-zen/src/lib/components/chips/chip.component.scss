@@ -1,61 +1,48 @@
-.ngx-zen-chip {
-  display: inline-flex;
-  align-items: center;
-  padding: 0.25rem 0.75rem;
-  border-radius: 9999px;
-  font-weight: 500;
-  transition: all 0.2s ease-in-out;
+.__ngx__zen__chip__wrapper {
+  @apply inline-flex items-center px-3 py-1 font-medium transition-all;
+  @apply rounded-full;
 
   &.small {
-    padding: 0.125rem 0.5rem;
-    font-size: 0.75rem;
+    @apply text-sm;
   }
 
   &.large {
-    padding: 0.375rem 1rem;
-    font-size: 1rem;
+    @apply text-lg;
   }
 
   &.outlined {
-    background-color: transparent;
-    border: 1px solid;
+    @apply border border-black;
+    @apply bg-transparent #{!important};
+    @apply text-black;
   }
 
   &.ghost {
-    background-color: transparent;
+    @apply bg-transparent;
   }
 
   &.gradient {
     background-image: linear-gradient(to right, var(--gradient-from, #3b82f6), var(--gradient-to, #8b5cf6));
-    color: white;
+    @apply text-white;
   }
 
   &.disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
+    @apply opacity-50 cursor-not-allowed;
   }
 
   .ngx-zen-chip-avatar {
-    width: 1.5rem;
-    height: 1.5rem;
-    border-radius: 50%;
-    margin-right: 0.5rem;
+    @apply w-6 h-6 rounded-full mr-2;
   }
 
   .fa-solid {
-    margin-right: 0.5rem;
+    @apply mr-2;
 
     &.right {
-      margin-right: 0;
-      margin-left: 0.5rem;
+      @apply mr-0 ml-2;
     }
   }
 
   .ngx-zen-chip-status {
-    width: 0.5rem;
-    height: 0.5rem;
-    border-radius: 50%;
-    margin-left: 0.5rem;
+    @apply w-2 h-2 rounded-full ml-2;
 
     &.online {
       background-color: var(--ngx-zen-success-color, #10b981);
@@ -67,22 +54,14 @@
   }
 
   .ngx-zen-chip-remove {
-    background: none;
-    border: none;
-    color: inherit;
-    cursor: pointer;
-    margin-left: 0.5rem;
-    padding: 0;
-    font-size: 0.75rem;
-    opacity: 0.7;
-    transition: opacity 0.2s;
+    @apply bg-none border-none text-inherit cursor-pointer ml-2 p-0 text-sm opacity-70 transition-opacity;
 
     &:hover {
-      opacity: 1;
+      @apply opacity-100;
     }
 
     &:disabled {
-      cursor: not-allowed;
+      @apply cursor-not-allowed;
     }
   }
 }

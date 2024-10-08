@@ -32,7 +32,7 @@ button {
   &.outlined {
     @apply border border-black;
     @apply bg-transparent #{!important};
-    @apply text-black;
+    @apply text-black #{!important} ;
   }
 
   i {

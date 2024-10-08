@@ -79,31 +79,10 @@ export class ChipsDemoComponent {
     },
     {
       markdown: `\`\`\`html
-<ngx-zen-chip text="Filled Chip" type="filled"></ngx-zen-chip>
-<ngx-zen-chip text="Gradient Chip" type="gradient"></ngx-zen-chip>
-<ngx-zen-chip text="Ghost Chip" type="ghost"></ngx-zen-chip>
-  \`\`\``,
-      title: 'Additional Chip Types',
-    },
-    {
-      markdown: `\`\`\`html
 <ngx-zen-chip text="Leading Icon" icon="fa-user"></ngx-zen-chip>
 <ngx-zen-chip text="Trailing Icon" icon="fa-cog" iconPosition="right"></ngx-zen-chip>
   \`\`\``,
       title: 'Chips with Icons',
-    },
-    {
-      markdown: `\`\`\`html
-<ngx-zen-chip text="Tania Andrew" avatar="path/to/avatar.jpg"></ngx-zen-chip>
-  \`\`\``,
-      title: 'Chip with Avatar',
-    },
-    {
-      markdown: `\`\`\`html
-<ngx-zen-chip text="Online" status="online"></ngx-zen-chip>
-<ngx-zen-chip text="Offline" status="offline"></ngx-zen-chip>
-  \`\`\``,
-      title: 'Chips with Status',
     },
   ];
 

@@ -3,7 +3,7 @@
 }
 
 .accordion__header {
-  @apply flex justify-between items-center p-4 cursor-pointer bg-gray-100;
+  @apply flex justify-between items-center p-4 cursor-pointer;
 }
 
 .accordion__icon {
@@ -11,5 +11,5 @@
 }
 
 .accordion__content {
-  @apply px-4 py-2 bg-white;
+  @apply px-4 py-2;
 }

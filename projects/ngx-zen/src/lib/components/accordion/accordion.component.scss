@@ -1,15 +1,115 @@
-.accordion {
-  @apply border-b border-gray-300;
-}
+/* accordion.component.scss */
+.__zen__accordion__wrapper {
+  @apply w-full flex flex-col;
 
-.accordion__header {
-  @apply flex justify-between items-center p-4 cursor-pointer;
-}
+  /* Shape Variants */
+  &.curve {
+    .__zen__accordion__header,
+    .__zen__accordion__content {
+      @apply rounded-lg;
+    }
+  }
 
-.accordion__icon {
-  @apply text-xl font-bold;
-}
+  /* Size Variants */
+  &.compact {
+    .__zen__accordion__header,
+    .__zen__accordion__content {
+      @apply p-2 text-sm;
+    }
+    .accordion__icon {
+      @apply text-base;
+    }
+  }
 
-.accordion__content {
-  @apply px-4 py-2;
+  &.large {
+    .__zen__accordion__header,
+    .__zen__accordion__content {
+      @apply p-6 text-lg;
+    }
+    .accordion__icon {
+      @apply text-2xl;
+    }
+  }
+
+  /* Transition Variants */
+  &.smooth {
+    .__zen__accordion__content {
+      @apply transition-all duration-500 ease-in-out;
+    }
+  }
+
+  &.snappy {
+    .__zen__accordion__content {
+      @apply transition-all duration-150 ease-out;
+    }
+  }
+
+  &.none {
+    .__zen__accordion__content {
+      @apply transition-none;
+    }
+  }
+
+  &.icon-left {
+    .__zen__accordion__header {
+      @apply flex-row-reverse; /* Swap to 'flex-row-reverse' */
+    }
+    .accordion__icon {
+      @apply mr-2; /* Margin-right for spacing */
+    }
+  }
+
+  &.icon-right {
+    .__zen__accordion__header {
+      @apply flex-row; /* Use default 'flex-row' */
+    }
+    .accordion__icon {
+      @apply ml-2; /* Margin-left for spacing */
+    }
+    .accordion__title {
+      @apply text-left;
+    }
+  }
+
+  /* Base Styles for Header */
+  .__zen__accordion__header {
+    @apply flex items-center justify-between cursor-pointer border;
+    @apply p-4;
+
+    &:hover {
+      @apply bg-gray-100;
+    }
+
+    .accordion__title {
+      @apply flex-1 text-left;
+    }
+
+    .accordion__icon {
+      @apply text-lg;
+    }
+  }
+
+  /* Icon Spacing */
+  .accordion__icon {
+    &.icon-left {
+      @apply mr-2; /* Margin-right when icon is on the left */
+    }
+    &.icon-right {
+      @apply ml-2; /* Margin-left when icon is on the right */
+    }
+  }
+
+  /* Base Styles for Content */
+  .__zen__accordion__content {
+    @apply p-4 border-t;
+    @apply transition-all duration-300 ease-in-out;
+  }
+
+  .__zen__accordion__content ul {
+    @apply list-disc list-inside;
+  }
+
+  .accordion-content\:list-style {
+    @apply list-disc list-inside;
+  }
 }

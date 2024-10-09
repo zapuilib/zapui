@@ -4,8 +4,7 @@ module.exports = {
   darkMode: "selector",
   theme: {
     extend: {
-      colors: {
-      },
+      colors: {},
       fontFamily: {
         icon: ['"Font Awesome 6 Pro"'],
       },

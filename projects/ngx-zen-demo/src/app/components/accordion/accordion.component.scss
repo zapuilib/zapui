@@ -1,9 +1,6 @@
+/* accordion.component.scss */
 section {
   @apply px-60 py-12 transition-all;
-
-  ngx-zen-alert {
-    @apply col-span-4 p-32 flex justify-center items-center bg-zinc-50 rounded-md;
-  }
 
   h1 {
     @apply text-2xl font-semibold mb-5;
@@ -14,7 +11,7 @@ section {
 
     .content {
       .ui {
-        @apply min-h-[295px] rounded bg-white relative;
+        @apply min-h-[295px] rounded bg-white relative p-4;
       }
     }
   }

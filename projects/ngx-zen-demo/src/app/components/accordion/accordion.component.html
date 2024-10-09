@@ -1,18 +1,19 @@
-<!-- <section class="min-h-screen">
-  <h1>Alerts</h1>
-  @for(item of markdowns; track item; let i = $index) {
-  <ng-container
-    *ngTemplateOutlet="
-      card;
-      context: {
-        $implicit: markdowns[i].markdown,
-        title: markdowns[i].title,
-        index: i
-      }
-    "
-  >
-  </ng-container>
+<section class="min-h-screen">
+  <h1>Accordions</h1>
+  @for (item of markdowns; track item; let i = $index) {
+    <ng-container
+      *ngTemplateOutlet="
+        card;
+        context: {
+          $implicit: item.markdown,
+          title: item.title,
+          index: i
+        }
+      "
+    >
+    </ng-container>
   }
+
   <h2>Properties</h2>
   <table>
     <thead>
@@ -25,91 +26,65 @@
     </thead>
     <tbody>
       <tr>
-        <td><code>type</code></td>
+        <td><code>title</code></td>
+        <td><p>Required</p></td>
+        <td><code>string</code></td>
+        <td><p>Sets the title of the accordion section.</p></td>
+      </tr>
+      <tr>
+        <td><code>isOpen</code></td>
         <td><p>Optional</p></td>
-        <td>
-          <code>success</code>|<code>error</code>|<code>info</code>|<code
-            >warning</code
-          >
-        </td>
+        <td><code>boolean</code></td>
         <td>
           <p>
-            Specifies the type of alert to be displayed. It affects the color
-            scheme and icon based on the value (e.g., green for success, red for
-            error).
+            Controls the initial open state of the accordion. Defaults to
+            <code>false</code>.
           </p>
         </td>
       </tr>
       <tr>
-        <td><code>variant</code></td>
+        <td><code>size</code></td>
         <td><p>Optional</p></td>
-        <td><code>classic</code>|<code>default</code></td>
+        <td><code>compact</code>|<code>default</code>|<code>large</code></td>
         <td>
           <p>
-            Defines the visual style of the alert. "classic" gives a traditional
-            look, while "default" is a modern design.
+            Sets the padding and font size for the accordion.
           </p>
         </td>
       </tr>
       <tr>
         <td><code>shape</code></td>
         <td><p>Optional</p></td>
-        <td><code>curve</code>|<code>default</code></td>
+        <td><code>square</code>|<code>rounded</code></td>
         <td>
           <p>
-            Controls the shape of the alert. "curve" applies rounded corners,
-            while "default" uses standard corners.
+            Defines the shape of the accordion edges.
           </p>
         </td>
       </tr>
       <tr>
-        <td><code>positionX</code></td>
+        <td><code>transition</code></td>
+        <td><p>Optional</p></td>
+        <td><code>smooth</code>|<code>snappy</code>|<code>none</code></td>
+        <td>
+          <p>
+            Sets the transition effect for opening and closing the accordion.
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td><code>iconPosition</code></td>
         <td><p>Optional</p></td>
         <td><code>left</code>|<code>right</code></td>
         <td>
           <p>
-            Determines the horizontal position of the alert on the screen.
-            "left" aligns it to the left, "right" to the right.
-          </p>
-        </td>
-      </tr>
-      <tr>
-        <td><code>positionY</code></td>
-        <td><p>Optional</p></td>
-        <td><code>top</code>|<code>bottom</code></td>
-        <td>
-          <p>
-            Determines the vertical position of the alert. "top" places it at
-            the top of the screen, and "bottom" places it at the bottom.
-          </p>
-        </td>
-      </tr>
-      <tr>
-        <td><code>icon</code></td>
-        <td><p>Optional</p></td>
-        <td><code>string</code></td>
-        <td>
-          <p>
-            Specifies a Font Awesome class to use for the icon inside the alert
-            (e.g., <code>fa-check</code>, <code>fa-exclamation</code>).
-          </p>
-        </td>
-      </tr>
-      <tr>
-        <td><code>zenClass</code></td>
-        <td><p>Optional</p></td>
-        <td><code>string</code></td>
-        <td>
-          <p>
-            Allows overriding default styles by passing Tailwind CSS classes.
-            Utilize the <code>ngx-zen/tailwind</code> plugin to target specific
-            elements within the alert component. PS: Only accepts padding
-            styling for the alert component
+            Specifies the position of the accordion icon.
           </p>
         </td>
       </tr>
     </tbody>
   </table>
+
   <h2 class="mt-10">Events</h2>
   <table>
     <thead>
@@ -120,75 +95,101 @@
     </thead>
     <tbody>
       <tr>
-        <td><code>dismiss</code></td>
+        <td><code>toggle</code></td>
         <td>
           <p>
-            Triggered when the alert is closed or dismissed by the user. You can
-            handle this event to perform actions like removing the alert from
-            the UI or logging the dismissal.
+            Triggered each time the accordion is opened or closed. You can
+            handle this event to perform actions such as logging the accordion
+            state or loading dynamic content.
           </p>
         </td>
       </tr>
     </tbody>
   </table>
-</section> -->
+</section>
 
-<!-- <ng-template let-markdown let-title="title" let-index="index" #card>
+<ng-template let-markdown let-title="title" let-index="index" #card>
   <div class="card">
     <div class="header">
       <h2>{{ title }}</h2>
     </div>
     <div class="content">
       <div class="ui">
-        @switch(index) { @case(0) {
-        <ngx-zen-alert>You have a new alert</ngx-zen-alert>
-        } @case(1) {
-        <ngx-zen-alert type="info">A new version is available</ngx-zen-alert>
-        } @case(2) {
-        <ngx-zen-alert type="success">Sucessfully exported</ngx-zen-alert>
-        } @case(3) {
-        <ngx-zen-alert type="warning">
-          You have 5 days left until deadline
-        </ngx-zen-alert>
-        } @case(4) {
-        <ngx-zen-alert type="error">Something went wrong</ngx-zen-alert>
-        } @case(5) {
-        <ngx-zen-alert type="success" variant="classic">
-          Sucessfully exported
-        </ngx-zen-alert>
-        } @case(6) {
-        <ngx-zen-alert type="success" shape="curve">
-          Sucessfully exported
-        </ngx-zen-alert>
-        } @case(7) {
-        <ngx-zen-alert type="info" positionX="left" positionY="top">
-          A new version is available
-        </ngx-zen-alert>
-        } @case(8) {
-        <ngx-zen-alert type="info" positionX="right" positionY="bottom">
-          A new version is available
-        </ngx-zen-alert>
-        } @case(9) {
-        <ngx-zen-alert type="info" icon="fa-triangle-exclamation">
-          A new version is available
-        </ngx-zen-alert>
-        }}
+        @switch(index) {
+          @case(0) {
+            <ngx-zen-accordion title="Accordion Section {{ index + 1 }}">
+              Basic content of section 1
+            </ngx-zen-accordion>
+          }
+          @case(1) {
+            <ngx-zen-accordion
+              title="Accordion Section {{ index + 1 }}"
+              [isOpen]="true"
+            >
+              Default open content of section 2
+            </ngx-zen-accordion>
+          }
+          @case(2) {
+            <ngx-zen-accordion
+              title="Accordion Section {{ index + 1 }}"
+              zenClass="bg-gray-200 text-blue-700 shadow-md"
+            >
+              Custom background content of section 3
+            </ngx-zen-accordion>
+          }
+          @case(3) {
+            <ngx-zen-accordion title="Accordion Section {{ index + 1 }}">
+              <ul>
+                <li>Item 1</li>
+                <li>Item 2</li>
+              </ul>
+            </ngx-zen-accordion>
+          }
+          @case(4) {
+            <ngx-zen-accordion
+              title="Accordion Section {{ index + 1 }}"
+              size="compact"
+            >
+              Compact size content of section 5
+            </ngx-zen-accordion>
+          }
+          @case(5) {
+            <ngx-zen-accordion
+              title="Accordion Section {{ index + 1 }}"
+              size="large"
+            >
+              Large size content of section 6
+            </ngx-zen-accordion>
+          }
+          @case(6) {
+            <ngx-zen-accordion
+              title="Accordion Section {{ index + 1 }}"
+              shape="curve"
+            >
+              Rounded shape content of section 7
+            </ngx-zen-accordion>
+          }
+          @case(7) {
+            <ngx-zen-accordion
+              title="Accordion Section {{ index + 1 }}"
+              transition="snappy"
+            >
+              Snappy transition content of section 8
+            </ngx-zen-accordion>
+          }
+          @case(8) {
+            <ngx-zen-accordion
+              title="Accordion Section {{ index + 1 }}"
+              iconPosition="left"
+            >
+              Icon on left content of section 9
+            </ngx-zen-accordion>
+          }
+        }
       </div>
       <div class="code-wrapper">
         <app-code-block [markdownData]="markdown"></app-code-block>
       </div>
     </div>
   </div>
-</ng-template> -->
-
-<ngx-zen-accordion>
-  <div accordion-header>Accordion Header</div>
-  <div accordion-content>
-    <p >This is the content inside the accordion.</p>
-    <ul>
-      <li>Item 1</li>
-      <li>Item 2</li>
-      <li>Item 3</li>
-    </ul>
-  </div>
-</ngx-zen-accordion>
+</ng-template>

@@ -54,6 +54,10 @@ export class SideMenuComponent {
           title: 'Textarea',
           routerLink: '/textarea',
         },
+        {
+          title: 'Accordion',
+          routerLink: '/accordion',
+        },
       ],
     },
   ];

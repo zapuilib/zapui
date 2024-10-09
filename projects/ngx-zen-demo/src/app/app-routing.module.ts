@@ -9,6 +9,7 @@ import {
   GettingStartedComponent,
   InputComponent,
   TextareaComponent,
+  AccordionComponent,
 } from './components';
 
 const routes: Routes = [
@@ -49,6 +50,11 @@ const routes: Routes = [
       {
         path: 'checkbox',
         component: CheckboxComponent,
+        pathMatch: 'full',
+      },
+      {
+        path: 'accordion',
+        component: AccordionComponent,
         pathMatch: 'full',
       },
       {

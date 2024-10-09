@@ -11,3 +11,4 @@ export * from './lib/components/input/input.component';
 export * from './lib/components/alert/alert.component';
 export * from './lib/components/textarea/textarea.component';
 export * from './lib/components/checkbox/checkbox.component';
+export * from './lib/components/accordion/accordion.component';

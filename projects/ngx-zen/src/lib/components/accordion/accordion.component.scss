@@ -1,0 +1,15 @@
+.accordion {
+  @apply border-b border-gray-300;
+}
+
+.accordion__header {
+  @apply flex justify-between items-center p-4 cursor-pointer bg-gray-100;
+}
+
+.accordion__icon {
+  @apply text-xl font-bold;
+}
+
+.accordion__content {
+  @apply px-4 py-2 bg-white;
+}

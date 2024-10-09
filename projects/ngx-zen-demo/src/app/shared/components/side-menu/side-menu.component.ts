@@ -51,6 +51,10 @@ export class SideMenuComponent {
           routerLink: '/modal',
         },
         {
+          title: 'Radio',
+          routerLink: '/radio',
+        },
+        {
           title: 'Snackbar',
           routerLink: '/snackbar',
         },

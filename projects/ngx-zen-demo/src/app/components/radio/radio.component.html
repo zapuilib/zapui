@@ -1,0 +1,202 @@
+<section class="min-h-screen">
+  <h1>Radios</h1>
+  @for(item of markdowns; track item; let i = $index) {
+  <ng-container
+    *ngTemplateOutlet="
+      card;
+      context: {
+        $implicit: markdowns[i].markdown,
+        title: markdowns[i].title,
+        index: i
+      }
+    "
+  >
+  </ng-container>
+  }
+  <h2>Properties</h2>
+  <table>
+    <thead>
+      <tr>
+        <th class="w-[10%]">Parameter</th>
+        <th class="w-[10%]">Required</th>
+        <th class="w-[30%]">Accepted values</th>
+        <th class="w-[50%]">Usage</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>id</code></td>
+        <td><p>Required</p></td>
+        <td><code>string</code></td>
+        <td>
+          <p>Accepts a unique identifier for the form control.</p>
+        </td>
+      </tr>
+      <tr>
+        <td><code>formControlName</code></td>
+        <td><p>Required</p></td>
+        <td><code>string</code></td>
+        <td>
+          <p>
+            Accepts a form control name from either your form group or your
+            single control
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td><code>label</code></td>
+        <td><p>Optional</p></td>
+        <td><code>string</code></td>
+        <td>
+          <p>Accepts a label for the form control.</p>
+        </td>
+      </tr>
+      <tr>
+        <td><code>size</code></td>
+        <td><p>Optional</p></td>
+        <td><code>compact</code>|<code>default</code></td>
+        <td>
+          <p>
+            Defines the input size. "Compact" is a smaller input, and "default"
+            is a standard input.
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td><code>shape</code></td>
+        <td><p>Optional</p></td>
+        <td><code>pill</code>|<code>curve</code>|<code>default</code></td>
+        <td>
+          <p>
+            Defines the input shape."Pill" is a fully rounded input, "curve" has
+            rounded corners, and "default" is a classic square-cornered input.
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td><code>zenClass</code></td>
+        <td><p>Optional</p></td>
+        <td><code>string</code></td>
+        <td>
+          <p>
+            Allows overriding default styles by passing Tailwind CSS classes.
+            Utilize the <code>ngx-zen/tailwind</code> plugin to target specific
+            elements within the alert component.
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td><code>customErrorMessages</code></td>
+        <td><p>Optional</p></td>
+        <td><code>Record&lt;string, string&gt;</code></td>
+        <td>
+          <p>
+            Accepts custom error messages for the form control. Defaults to
+            automatically generated error messages.
+          </p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <h2 class="mt-5">Zen Classes</h2>
+  <table>
+    <thead>
+      <tr>
+        <th class="w-[10%]">Prefixes</th>
+        <th class="w-[50%]">Usage</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>input</code></td>
+        <td>
+          <p>
+            Accepts Tailwind CSS classes for the input, e.g.,
+            <code>input:bg-red-500</code>. Some classes may need to be forced
+            with an exclamation mark <code>!</code>, e.g.,
+            <code>input:!ring-red-500</code>.
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td><code>label</code></td>
+        <td>
+          <p>
+            Accepts Tailwind CSS classes for the label, e.g.,
+            <code>label:bg-red-500</code>. Some classes may need to be forced
+            with an exclamation mark <code>!</code>, e.g.,
+            <code>label:!ring-red-500</code>.
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td><code>error</code></td>
+        <td>
+          <p>
+            Accepts Tailwind CSS classes for the error, e.g.,
+            <code>error:bg-red-500</code>. Some classes may need to be forced
+            with an exclamation mark <code>!</code>, e.g.,
+            <code>error:!ring-red-500</code>.
+          </p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<ng-template let-markdown let-title="title" let-index="index" #card>
+  <div class="card">
+    <div class="header">
+      <h2>{{ title }}</h2>
+    </div>
+    <div class="content">
+      <div class="ui">
+        <form action="" [formGroup]="form">
+          @switch(index) { @case(0) {
+          <fieldset>
+            <ngx-zen-radio
+              id="terms1"
+              name="name"
+              value="value1"
+              label="I accept the terms and conditions 1"
+              formControlName="terms"
+              zenClass=""
+            >
+            </ngx-zen-radio>
+            <ngx-zen-radio
+              id="terms2"
+              name="name"
+              value="value2"
+              label="I accept the terms and conditions 2"
+              formControlName="terms"
+              zenClass=""
+            >
+            </ngx-zen-radio>
+            <ngx-zen-radio
+              id="terms3"
+              name="name"
+              value="value3"
+              label="I accept the terms and conditions 3"
+              formControlName="terms"
+              zenClass=""
+            >
+            </ngx-zen-radio>
+          </fieldset>
+          } @case(1) {
+          <ngx-zen-checkbox id="terms2" formControlName="terms2" zenClass="">
+          </ngx-zen-checkbox>
+          } @case(2) {
+          <ngx-zen-checkbox id="terms3" formControlName="terms3" shape="curve">
+          </ngx-zen-checkbox>
+          } @case(3) {
+          <ngx-zen-checkbox id="terms4" formControlName="terms4" shape="pill">
+          </ngx-zen-checkbox>
+          } }
+        </form>
+      </div>
+      <div class="code-wrapper">
+        <app-code-block [markdownData]="markdown"></app-code-block>
+      </div>
+    </div>
+  </div>
+</ng-template>

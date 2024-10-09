@@ -11,6 +11,7 @@ import {
   CheckboxComponent,
   ModalComponent,
   TextareaComponent,
+  RadioComponent,
 } from './components';
 
 const routes: Routes = [
@@ -51,6 +52,11 @@ const routes: Routes = [
       {
         path: 'modal',
         component: ModalComponent,
+        pathMatch: 'full',
+      },
+      {
+        path: 'radio',
+        component: RadioComponent,
         pathMatch: 'full',
       },
       {

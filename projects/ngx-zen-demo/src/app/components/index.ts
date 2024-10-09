@@ -6,6 +6,7 @@ import { TooltipComponent } from './tooltip/tooltip.component';
 import { InputComponent } from './input/input.component';
 import { ModalComponent } from './modal/modal.component';
 import { TextareaComponent } from './textarea/textarea.component';
+import { RadioComponent } from './radio/radio.component';
 
 export * from './alert/alert.component';
 export * from './button/button.component';
@@ -16,6 +17,7 @@ export * from './input/input.component';
 export * from './textarea/textarea.component';
 export * from './modal/modal.component';
 export * from './checkbox/checkbox.component';
+export * from './radio/radio.component';
 
 export const MAIN_COMPONENTS = [
   AlertComponent,
@@ -27,4 +29,5 @@ export const MAIN_COMPONENTS = [
   TextareaComponent,
   ModalComponent,
   CheckboxComponent,
+  RadioComponent,
 ];

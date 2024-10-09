@@ -25,11 +25,11 @@
     </thead>
     <tbody>
       <tr>
-        <td><code>icon</code></td>
+        <td><code>label</code></td>
         <td><p>Optional</p></td>
         <td><code>string</code></td>
         <td>
-          <p>Only accepts font awesome classes</p>
+          <p>Accepts a label for toggle.</p>
         </td>
       </tr>
       <tr>
@@ -37,31 +37,7 @@
         <td><p>Optional</p></td>
         <td><code>string</code></td>
         <td>
-          <p>The text that will be displayed in the tooltip</p>
-        </td>
-      </tr>
-      <tr>
-        <td><code>positionX</code></td>
-        <td><p>Optional</p></td>
-        <td><code>left</code>|<code>x-center</code>|<code>right</code></td>
-        <td>
-          <p>
-            By default tooltip will be set to right of the icon. Options
-            <code>x-center</code> and <code>y-center</code> can't be used at the
-            same time
-          </p>
-        </td>
-      </tr>
-      <tr>
-        <td><code>positionY</code></td>
-        <td><p>Optional</p></td>
-        <td><code>top</code>|<code>y-center</code>|<code>bottom</code></td>
-        <td>
-          <p>
-            By default tooltip will be set to bottom of the icon. Options
-            <code>x-center</code> and <code>y-center</code> can't be used at the
-            same time
-          </p>
+          <p>Accepts a text for toggle.</p>
         </td>
       </tr>
       <tr>
@@ -72,8 +48,48 @@
           <p>
             Allows overriding default styles by passing Tailwind CSS classes.
             Utilize the <code>ngx-zen/tailwind</code> plugin to target specific
-            elements within the alert component. PS: Only accepts padding
-            styling for the alert component
+            elements within the alert component.
+          </p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <h2 class="mt-10">Events</h2>
+  <table>
+    <thead>
+      <tr>
+        <th class="w-[10%]">Event</th>
+        <th class="w-[50%]">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>toggle</code></td>
+        <td>
+          <p>
+            Triggered every time the toggle button is clicked. Returns boolean.
+          </p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <h2 class="mt-10">Zen Classes</h2>
+  <table>
+    <thead>
+      <tr>
+        <th class="w-[10%]">Prefixes</th>
+        <th class="w-[50%]">Usage</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>label</code></td>
+        <td>
+          <p>
+            Accepts Tailwind CSS classes for the label, e.g.,
+            <code>label:bg-red-500</code>. Some classes may need to be forced
+            with an exclamation mark <code>!</code>, e.g.,
+            <code>label:!ring-red-500</code>.
           </p>
         </td>
       </tr>
@@ -88,7 +104,11 @@
     </div>
     <div class="content">
       @switch(index) { @case(0) {
-      <ngx-zen-toggle label="Label" text="Helper text"></ngx-zen-toggle>
+      <ngx-zen-toggle></ngx-zen-toggle>
+      } @case (1) {
+      <ngx-zen-toggle label="Label"></ngx-zen-toggle>
+      } @case(2) {
+      <ngx-zen-toggle label="Label" text="Help text"></ngx-zen-toggle>
       }}
       <app-code-block [markdownData]="markdown"></app-code-block>
     </div>

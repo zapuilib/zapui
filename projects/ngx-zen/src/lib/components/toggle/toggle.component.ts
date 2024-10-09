@@ -1,7 +1,9 @@
 import { Component, EventEmitter, Inject, Input, Output } from '@angular/core';
 
 import { NGX_ZEN_CONFIG } from '../../tokens/ngx-zen.tokens';
-import { NgxZenConfig } from '../../interfaces/config.interface';
+
+import type { NgxZenConfig } from '../../interfaces/config.interface';
+import type { Styles } from '../../interfaces/style.interface';
 
 @Component({
   selector: 'ngx-zen-toggle',
@@ -9,56 +11,47 @@ import { NgxZenConfig } from '../../interfaces/config.interface';
   styleUrls: ['./toggle.component.scss'],
 })
 export class ToggleComponent {
-  @Output() onToggle: EventEmitter<boolean> = new EventEmitter<boolean>();
+  @Output() toggle: EventEmitter<boolean> = new EventEmitter<boolean>();
   @Input() label: string = '';
   @Input() text: string = '';
-  @Input() customErrorMessages: Record<string, string> = {};
   @Input() zenClass: string = '';
-  @Input() id: string = '';
   isToggleOn: boolean = false;
 
   constructor(@Inject(NGX_ZEN_CONFIG) private config: NgxZenConfig) {}
 
-  getLabelStyle(): any {
+  getLabelStyle(): Styles {
     return {
-      'font-size': this.config.fontSize.md,
+      fontSize: this.config.fontSize.md,
       color: this.config.colors.secondary,
     };
   }
 
-  getTitleStyle(): any {
+  getTextStyle(): Styles {
     return {
-      'font-size': this.config.fontSize.md,
+      fontSize: this.config.fontSize.sm,
       color: this.config.colors.secondary,
     };
   }
 
-  getTextStyle(): any {
+  getToggleStyle(): Styles {
     return {
-      'font-size': this.config.fontSize.sm,
-      color: this.config.colors.secondary,
-    };
-  }
-
-  getToggleStyle(): any {
-    return {
-      'background-color': this.isToggleOn
+      backgroundColor: this.isToggleOn
         ? this.config.colors.tertiary
         : this.config.colors.quaternary,
-      'border-color': this.config.colors.tertiary,
-      'font-size': this.config.fontSize.md,
+      borderColor: this.config.colors.tertiary,
+      fontSize: this.config.fontSize.md,
       color: this.config.colors.primary,
     };
   }
 
-  getRollerStyle(): any {
+  getRollerStyle(): Styles {
     return {
-      'background-color': this.config.colors.primary,
+      backgroundColor: this.config.colors.primary,
     };
   }
 
   handleToggle(): void {
     this.isToggleOn = !this.isToggleOn;
-    this.onToggle.emit(this.isToggleOn);
+    this.toggle.emit(this.isToggleOn);
   }
 }

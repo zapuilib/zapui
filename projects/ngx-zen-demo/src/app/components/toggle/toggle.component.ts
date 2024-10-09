@@ -16,38 +16,15 @@ export class ToggleComponent {
     },
     {
       markdown: `\`\`\`html
-<ngx-zen-tooltip text="This is a tooltip" positionX="left"></ngx-zen-tooltip>
+<ngx-zen-toggle label="Label"></ngx-zen-toggle>
   \`\`\``,
-      title: 'Position left',
+      title: 'With label',
     },
     {
       markdown: `\`\`\`html
-<ngx-zen-tooltip text="This is a tooltip" positionX="x-center"></ngx-zen-tooltip>
+<ngx-zen-toggle label="Label" text="Help text"></ngx-zen-toggle>
   \`\`\``,
-      title: 'Position x-center',
-    },
-    {
-      markdown: `\`\`\`html
-<ngx-zen-tooltip text="This is a tooltip" positionY="top"></ngx-zen-tooltip>
-  \`\`\``,
-      title: 'Position top',
-    },
-    {
-      markdown: `\`\`\`html
-<ngx-zen-tooltip text="This is a tooltip" positionY="y-center"></ngx-zen-tooltip>
-  \`\`\``,
-      title: 'Position y-center',
-    },
-    {
-      markdown: `\`\`\`html
-<ngx-zen-tooltip>
-  <div>
-    <h2>Title</h2>
-    <p>Lorem ipsum dolor sit amet consectetur elit.</p>
-  </div>
-</ngx-zen-tooltip>
-  \`\`\``,
-      title: 'Custom body content',
+      title: 'With label and help text',
     },
   ];
 

@@ -1,0 +1,28 @@
+<div class="__ngx__zen__dialog__wrapper" [ngClass]="[shape]">
+  <div class="wrapper" [ngStyle]="getWrapperStyle()">
+    <div class="header">
+      <h3 [ngStyle]="getTitleStyle()">{{ title }}</h3>
+    </div>
+
+    <div class="content">
+      @if(text) {
+      <p class="text" [ngStyle]="getTextStyle()">{{ text }}</p>
+      }
+
+      <ng-content></ng-content>
+    </div>
+
+    <div class="footer">
+      <ngx-zen-button
+        text="Cancel"
+        shape="pill"
+        variant="outlined"
+      ></ngx-zen-button>
+      <ngx-zen-button
+        text="Confirm"
+        shape="pill"
+        [zenClass]="getCancelButtonStyle()"
+      ></ngx-zen-button>
+    </div>
+  </div>
+</div>

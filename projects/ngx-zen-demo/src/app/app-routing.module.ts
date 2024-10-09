@@ -11,6 +11,7 @@ import {
   CheckboxComponent,
   ModalComponent,
   TextareaComponent,
+  DialogComponent,
 } from './components';
 
 const routes: Routes = [
@@ -36,6 +37,11 @@ const routes: Routes = [
       {
         path: 'button',
         component: ButtonComponent,
+        pathMatch: 'full',
+      },
+      {
+        path: 'dialog',
+        component: DialogComponent,
         pathMatch: 'full',
       },
       {

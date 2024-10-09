@@ -1,0 +1,85 @@
+.__ngx__zen__dialog__wrapper {
+  @apply absolute top-0 left-0 z-[999];
+  @apply w-full h-full;
+  @apply bg-black/70;
+
+  .wrapper {
+    @apply absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2;
+    @apply w-96 min-h-64 px-10 py-8;
+
+    .header {
+      @apply border-b-[3px] pb-3 mb-5;
+
+      h3 {
+        @apply font-bold;
+      }
+    }
+
+    .content {
+      @apply h-24;
+
+      .text {
+      }
+    }
+
+    .footer {
+      @apply flex justify-end items-center gap-x-4;
+    }
+  }
+
+  .alert__inner {
+    @apply min-w-[25rem] max-w-[40rem] p-4 rounded-none bg-gray-700 text-white flex justify-between items-start;
+
+    .content__wrapper {
+      @apply flex gap-x-3 w-full;
+    }
+  }
+
+  &.curve {
+    .wrapper {
+      @apply rounded-md;
+    }
+  }
+
+  &.left {
+    @apply right-auto left-10;
+  }
+
+  &.right {
+    @apply right-10 left-auto;
+  }
+
+  &.top {
+    @apply top-10 bottom-auto;
+  }
+
+  &.bottom {
+    @apply bottom-10 top-auto;
+  }
+
+  .handler__wrapper {
+    @apply cursor-pointer;
+  }
+
+  &.classic {
+    .alert__inner {
+      @apply border-t-4 border-gray-600 rounded-none bg-gray-500 text-white shadow-lg;
+
+      &.error {
+        @apply border-t-4 border-[#BB0102] bg-red-500;
+      }
+
+      &.warning {
+        @apply border-t-4 border-yellow-600 bg-yellow-500;
+      }
+
+      &.info {
+        @apply border-t-4 border-[#0569E3] bg-blue-500;
+      }
+
+      &.success {
+        @apply border-t-4 border-green-700 bg-green-600;
+      }
+    }
+  }
+}

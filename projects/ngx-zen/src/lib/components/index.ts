@@ -5,6 +5,7 @@ import { InputComponent } from './input/input.component';
 import { TooltipComponent } from './tooltip/tooltip.component';
 import { ModalComponent } from './modal/modal.component';
 import { TextareaComponent } from './textarea/textarea.component';
+import { DialogComponent } from './dialog/dialog.component';
 
 export const COMPONENTS = [
   AlertComponent,
@@ -15,4 +16,5 @@ export const COMPONENTS = [
   TextareaComponent,
   ModalComponent,
   CheckboxComponent,
+  DialogComponent,
 ];

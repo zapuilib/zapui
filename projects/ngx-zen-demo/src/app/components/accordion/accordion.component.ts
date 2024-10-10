@@ -28,7 +28,9 @@ export class AccordionComponent {
       markdown: `\`\`\`html
 <ngx-zen-accordion
   title="Accordion Section 3"
-  zenClass="bg-gray-200 text-blue-700 shadow-md"
+  zenWrapperClass="shadow-md"
+  zenHeaderClass="text-red-700 bg-gray-100"
+  zenContentClass="bg-blue-700 text-gray-100"
 >
   Custom background content of section 3
 </ngx-zen-accordion>
@@ -85,6 +87,19 @@ export class AccordionComponent {
 </ngx-zen-accordion>
 \`\`\``,
       title: 'Accordion with Icon on Left',
+    },
+    {
+      markdown: `\`\`\`html
+<ngx-zen-accordion
+  title="Accordion Section 10"
+  iconPosition="left"
+  openIcon="fa-chevron-up"
+  closeIcon="fa-chevron-down"
+>
+  Accordion with different open and close icons.
+</ngx-zen-accordion>
+\`\`\``,
+      title: 'Accordion with Custom Icons for Open and Close',
     },
   ];
 }

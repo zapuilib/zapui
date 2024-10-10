@@ -35,6 +35,36 @@ export class SelectComponent {
   \`\`\``,
       title: 'Searchable select',
     },
+    {
+      markdown: `\`\`\`html
+<ngx-zen-select
+  label="Select"
+  id="select"
+  formControlName="assignee"
+  placeholder="Select assignee"
+  [searchable]="true"
+  searchPlaceholder="Search by name"
+  [multiselect]="true"
+  [options]="options"
+></ngx-zen-select>
+  \`\`\``,
+      title: 'Multiselect searchable select',
+    },
+    {
+      markdown: `\`\`\`html
+<ngx-zen-select
+  label="Select"
+  id="select"
+  formControlName="assignee"
+  placeholder="Select assignee"
+  [searchable]="true"
+  searchPlaceholder="Search by name"
+  [multiselect]="true"
+  [options]="options"
+></ngx-zen-select>
+  \`\`\``,
+      title: 'Custom select',
+    },
   ];
   options: any[] = [
     { label: 'Option 1', value: 'randomid' },

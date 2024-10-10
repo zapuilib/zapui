@@ -32,13 +32,36 @@
             [options]="options"
           ></ngx-zen-select>
           } @case(1) {
-            <ngx-zen-select
+          <ngx-zen-select
             label="Select"
             id="assignee2"
             formControlName="assignee2"
             placeholder="Select assignee"
             [searchable]="true"
             [options]="options"
+          ></ngx-zen-select>
+          } @case(2) {
+          <ngx-zen-select
+            label="Select"
+            id="assignee2"
+            formControlName="assignee2"
+            placeholder="Select assignee"
+            [searchable]="true"
+            [multiselect]="true"
+            searchPlaceholder="Search by name"
+            [options]="options"
+          ></ngx-zen-select>
+          } @case(3) {
+          <ngx-zen-select
+            label="Select"
+            id="assignee2"
+            formControlName="assignee2"
+            placeholder="Select assignee"
+            [searchable]="true"
+            [multiselect]="true"
+            searchPlaceholder="Search by name"
+            [options]="options"
+            shape="curve"
           ></ngx-zen-select>
           }}
         </form>

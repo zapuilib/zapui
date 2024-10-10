@@ -1,8 +1,8 @@
 .__zen__form__control {
   @apply flex flex-col gap-y-2 w-full;
-  @apply input:w-full input:px-3 input:py-2 input:border input:bg-transparent;
-  @apply input:focus-within:outline-0 input:focus-within:ring-2 input:focus-within:ring-inset input:focus-within:ring-offset-0;
-  @apply input:cursor-pointer relative;
+  @apply select:w-full select:px-3 select:py-2 select:border select:bg-transparent;
+  @apply select:focus-within:outline-0 select:focus-within:ring-2 select:focus-within:ring-inset select:focus-within:ring-offset-0;
+  @apply select:cursor-pointer relative;
   @apply search:w-full search:px-3 search:py-2 search:pl-10 search:border-b search:bg-transparent;
   @apply search:focus-within:outline-0;
 
@@ -23,34 +23,50 @@
   }
 
   &.left {
-    @apply input:pl-10;
+    @apply select:pl-10;
   }
 
   &.pill {
-    @apply input:rounded-full;
+    @apply select:rounded-full options:rounded-xl option:last-of-type:rounded-b-xl;
+
+    .checkbox {
+      @apply rounded-full;
+    }
   }
 
   &.compact {
-    @apply input:text-sm input:px-2 input:py-1.5;
+    @apply select:text-sm select:px-2 select:py-1.5 search:text-sm  search:py-1.5;
 
     i {
       @apply text-xs;
     }
+
+    .checkbox {
+      @apply h-3 w-3;
+    }
+
+    .__zen__form__control__option {
+      @apply text-sm px-2 py-1.5;
+    }
   }
 
   &.curve {
-    @apply input:rounded;
+    @apply select:rounded options:rounded;
+
+    .checkbox {
+      @apply rounded;
+    }
   }
 
-  input:disabled {
+  select:disabled {
     @apply opacity-50;
   }
 
-  input::placeholder {
+  select::placeholder {
     @apply text-[var(--placeholder-color)];
   }
 
-  input:focus {
+  select:focus {
     @apply ring-[var(--focus-color)];
   }
 
@@ -62,7 +78,6 @@
     @apply ring-[var(--focus-color)];
   }
 
-
   .handler {
     i {
       @apply right-3 left-auto;
@@ -73,11 +88,37 @@
     @apply relative;
   }
 
-  .options {
-    @apply w-full border absolute top-auto mt-1 z-10;
+  .__zen__form__control__options {
+    @apply w-full border absolute top-auto mt-1 z-10 max-h-[250px] overflow-y-auto;
 
-    .option {
-      @apply w-full py-2 px-3 cursor-pointer;
+    .__zen__form__control__option {
+      @apply w-full py-2 px-3 cursor-pointer flex gap-x-3 items-center;
+    }
+  }
+
+  .checkbox {
+    @apply h-4 w-4 border relative cursor-pointer;
+
+    &::after {
+      @apply content-['\f00c'] font-icon absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 hidden;
+    }
+
+    &.checked {
+      &::after {
+        @apply block;
+      }
+    }
+  }
+
+  .chips {
+    @apply flex flex-wrap gap-2;
+  }
+
+  .chip {
+    @apply rounded-full  px-3 pr-7 py-1.5 relative cursor-default;
+
+    &::after {
+      @apply content-['\f00d'] font-icon absolute left-auto top-1/2 right-3 -translate-y-1/2 cursor-pointer;
     }
   }
 }

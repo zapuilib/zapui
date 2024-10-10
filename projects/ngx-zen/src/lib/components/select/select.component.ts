@@ -39,9 +39,10 @@ export class SelectComponent<T> extends ControlValueAccessorDirective<T> {
   @Input() searchable: boolean = false;
   @Input() searchPlaceholder: string = 'Search';
   @Input() notFound: string = 'No options found';
+  @Input() multiselect: boolean = false;
   isOptionListOpen: boolean = false;
   hoveredOption: string = '';
-  selectedOptionValue: any = '';
+  selectedOptionValue: string[] = [];
   filteredOptions: any[] = [];
 
   @HostListener('document:click', ['$event'])
@@ -89,23 +90,47 @@ export class SelectComponent<T> extends ControlValueAccessorDirective<T> {
   }
 
   selectOption(option: { label: string; value: any }): void {
-    this.control.setValue(option.value);
-    this.inputSelectValueHolder.nativeElement.value = option.label;
-    this.selectedOptionValue = option.value;
-    this.toggleOptionsList();
+    if (this.multiselect) {
+      if (this.selectedOptionValue.includes(option.value)) {
+        this.selectedOptionValue = this.selectedOptionValue.filter(
+          (value) => value !== option.value
+        );
+      } else {
+        this.selectedOptionValue = [...this.selectedOptionValue, option.value];
+      }
+      this.control.setValue(this.selectedOptionValue);
+    } else {
+      this.control.setValue(option.value);
+      this.selectedOptionValue = [option.value];
+      this.toggleOptionsList();
+    }
+  }
+
+  cancelOption(event: any,value: string): void {
+    event.stopPropagation();
+    if (this.multiselect) {
+      this.selectedOptionValue = this.selectedOptionValue.filter(
+        (option) => option !== value
+      );
+      this.control.setValue(this.selectedOptionValue);
+    }
   }
 
   getOptionStyle(value: string): any {
+    const isSelected = this.selectedOptionValue.includes(value);
+    const isHovered = this.hoveredOption === value;
+    const isMultiselect = this.multiselect;
+
     return {
       color:
-        this.selectedOptionValue === value && this.hoveredOption !== value
+        isSelected && !isMultiselect
           ? this.config.colors.tertiary
           : this.config.colors.secondary,
       'font-size': this.config.fontSize.md,
       'background-color':
-        this.hoveredOption === value
+        isHovered && !isMultiselect
           ? this.colorUtility.hexToRgba(this.config.colors.quaternary, 0.1)
-          : this.selectedOptionValue === value
+          : isSelected && !isMultiselect
           ? this.colorUtility.hexToRgba(this.config.colors.tertiary, 0.1)
           : this.config.colors.primary,
     };
@@ -115,6 +140,38 @@ export class SelectComponent<T> extends ControlValueAccessorDirective<T> {
     return {
       color: this.config.colors.secondary,
       'border-color': this.config.colors.secondary,
+      'font-size': this.config.fontSize.md,
+    };
+  }
+
+  getChipStyle(): any {
+    return {
+      color: this.config.colors.primary,
+      'background-color': this.config.colors.tertiary,
+      'font-size': this.config.fontSize.md,
+    };
+  }
+
+  getCheckboxStyle(value: string): any {
+    return {
+      'background-color': this.selectedOptionValue.includes(value)
+        ? this.config.colors.tertiary
+        : 'transparent',
+      'border-color': this.selectedOptionValue.includes(value)
+        ? this.config.colors.tertiary
+        : this.config.colors.secondary,
+      'font-size': this.config.fontSize.md,
+      color: this.config.colors.primary,
+    };
+  }
+
+  getSelected(value: string): string {
+    return this.options.find((option) => option.value === value)?.label || '';
+  }
+
+  getPlaceholderStyle(): any {
+    return {
+      color: this.colorUtility.hexToRgba(this.config.colors.quaternary, 0.5),
       'font-size': this.config.fontSize.md,
     };
   }

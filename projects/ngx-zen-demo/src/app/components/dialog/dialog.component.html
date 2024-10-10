@@ -112,12 +112,16 @@
         <ngx-zen-dialog
           title="Confirm action"
           text="Are you sure you want to proceed? This action cannot be undone"
+          [primaryBtnTemplate]="customPrimaryButton1"
+          [secondaryBtnTemplate]="customSecondaryButton1"
         ></ngx-zen-dialog>
         } @case(1) {
         <ngx-zen-dialog
           title="Confirm action"
           shape="curve"
           text="Are you sure you want to proceed? This action cannot be undone"
+          [primaryBtnTemplate]="customPrimaryButton2"
+          [secondaryBtnTemplate]="customSecondaryButton2"
         ></ngx-zen-dialog>
         } @case(2) {
         <ngx-zen-dialog title="Confirm action">
@@ -133,4 +137,28 @@
       </div>
     </div>
   </div>
+</ng-template>
+
+<ng-template #customPrimaryButton1>
+  <ngx-zen-button text="Confirm" shape="default"></ngx-zen-button>
+</ng-template>
+
+<ng-template #customSecondaryButton1>
+  <ngx-zen-button
+    text="Cancel"
+    shape="default"
+    variant="outlined"
+  ></ngx-zen-button>
+</ng-template>
+
+<ng-template #customPrimaryButton2>
+  <ngx-zen-button text="Confirm" shape="curve"></ngx-zen-button>
+</ng-template>
+
+<ng-template #customSecondaryButton2>
+  <ngx-zen-button
+    text="Cancel"
+    shape="curve"
+    variant="outlined"
+  ></ngx-zen-button>
 </ng-template>

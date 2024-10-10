@@ -1,7 +1,14 @@
-import { Component, EventEmitter, Inject, Input, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Inject,
+  Input,
+  Output,
+  TemplateRef,
+} from '@angular/core';
 import { NGX_ZEN_CONFIG } from '../../tokens/ngx-zen.tokens';
-import { NgxZenConfig } from '../../interfaces/config.interface';
 
+import type { NgxZenConfig } from '../../interfaces/config.interface';
 import type { Styles } from '../../interfaces/style.interface';
 
 @Component({
@@ -16,6 +23,8 @@ export class DialogComponent {
   @Input() text: string = '';
   @Input() zenClass: string = '';
   @Input() shape: 'curve' | 'pill' | 'default' = 'default';
+  @Input() primaryBtnTemplate: TemplateRef<any> | null = null;
+  @Input() secondaryBtnTemplate: TemplateRef<any> | null = null;
 
   constructor(@Inject(NGX_ZEN_CONFIG) private config: NgxZenConfig) {}
 

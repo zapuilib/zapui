@@ -78,6 +78,8 @@ export class SelectComponent<T> extends ControlValueAccessorDirective<T> {
       setTimeout(() => {
         this.search.nativeElement.focus();
       });
+    } else {
+      this.control.markAsTouched();
     }
     this.hoveredOption = '';
     this.filteredOptions = this.options;
@@ -106,7 +108,7 @@ export class SelectComponent<T> extends ControlValueAccessorDirective<T> {
     }
   }
 
-  cancelOption(event: any,value: string): void {
+  cancelOption(event: any, value: string): void {
     event.stopPropagation();
     if (this.multiselect) {
       this.selectedOptionValue = this.selectedOptionValue.filter(

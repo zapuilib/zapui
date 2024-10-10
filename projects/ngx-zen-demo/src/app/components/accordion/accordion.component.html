@@ -44,7 +44,7 @@
         <td><p>Optional</p></td>
         <td><code>compact</code> | <code>default</code> | <code>large</code></td>
         <td>
-          <p>Sets the padding and font size for the accordion.</p>
+          <p>Sets the padding and font size for the accordion content. <code>compact</code> reduces padding, while <code>large</code> increases it.</p>
         </td>
       </tr>
       <tr>
@@ -52,7 +52,7 @@
         <td><p>Optional</p></td>
         <td><code>default</code> | <code>curve</code></td>
         <td>
-          <p>Defines the shape of the accordion edges. <code>curve</code> adds rounded corners.</p>
+          <p>Defines the shape of the accordion edges. The <code>curve</code> option applies rounded corners to the accordion.</p>
         </td>
       </tr>
       <tr>
@@ -60,7 +60,7 @@
         <td><p>Optional</p></td>
         <td><code>smooth</code> | <code>snappy</code> | <code>none</code></td>
         <td>
-          <p>Sets the transition effect for opening and closing the accordion.</p>
+          <p>Sets the transition effect for expanding and collapsing the accordion content. <code>smooth</code> offers a gradual transition, <code>snappy</code> is quicker, and <code>none</code> removes the transition effect.</p>
         </td>
       </tr>
       <tr>
@@ -68,7 +68,7 @@
         <td><p>Optional</p></td>
         <td><code>left</code> | <code>right</code></td>
         <td>
-          <p>Specifies the position of the accordion icon.</p>
+          <p>Specifies the position of the accordion icon relative to the title. Defaults to <code>right</code>.</p>
         </td>
       </tr>
       <tr>
@@ -76,7 +76,7 @@
         <td><p>Optional</p></td>
         <td><code>string</code> (icon class)</td>
         <td>
-          <p>Specifies the icon to display when the accordion is open. Default is <code>fa-minus</code>.</p>
+          <p>Sets the icon displayed when the accordion is open. Default is <code>fa-minus</code>. Accepts any valid Font Awesome or custom icon class.</p>
         </td>
       </tr>
       <tr>
@@ -84,7 +84,7 @@
         <td><p>Optional</p></td>
         <td><code>string</code> (icon class)</td>
         <td>
-          <p>Specifies the icon to display when the accordion is closed. Default is <code>fa-plus</code>.</p>
+          <p>Sets the icon displayed when the accordion is closed. Default is <code>fa-plus</code>. Accepts any valid Font Awesome or custom icon class.</p>
         </td>
       </tr>
       <tr>
@@ -92,23 +92,7 @@
         <td><p>Optional</p></td>
         <td><code>string</code> (CSS classes)</td>
         <td>
-          <p>Applies custom styles to the outer wrapper of the accordion.</p>
-        </td>
-      </tr>
-      <tr>
-        <td><code>zenHeaderClass</code></td>
-        <td><p>Optional</p></td>
-        <td><code>string</code> (CSS classes)</td>
-        <td>
-          <p>Applies custom styles to the header section of the accordion.</p>
-        </td>
-      </tr>
-      <tr>
-        <td><code>zenContentClass</code></td>
-        <td><p>Optional</p></td>
-        <td><code>string</code> (CSS classes)</td>
-        <td>
-          <p>Applies custom styles to the content section of the accordion.</p>
+          <p>Applies custom styles to the outer wrapper of the accordion. Allows custom control over styling such as colors and padding.</p>
         </td>
       </tr>
     </tbody>
@@ -147,8 +131,14 @@
         @switch(index) {
           @case(0) {
             <!-- Basic Accordion -->
-            <ngx-zen-accordion title="Accordion Section {{ index + 1 }}">
-              Basic content of section 1
+            <ngx-zen-accordion
+              title="Accordion Section {{ index + 1 }}"
+              zenClass="text-black bg-gray-200"
+            >
+              <div class="bg-gray-100 py-3 px-2">
+                <p class="text-black">Basic content of section 1</p>
+              </div>
+
             </ngx-zen-accordion>
           }
           @case(1) {
@@ -156,82 +146,98 @@
             <ngx-zen-accordion
               title="Accordion Section {{ index + 1 }}"
               [isOpen]="true"
+              zenClass="text-black bg-gray-200"
             >
-              Default open content of section 2
+            <div class="py-3 px-2 bg-gray-100 border border-color-gray-100">
+              <p class="text-black">Default open content of section 2</p>
+            </div>
+
             </ngx-zen-accordion>
           }
           @case(2) {
-            <!-- Accordion with Custom Colors -->
-            <ngx-zen-accordion
-              title="Accordion Section {{ index + 1 }}"
-              zenClass="shadow-lg"
-              zenHeaderClass="text-red-700 bg-gray-100"
-              zenContentClass="bg-blue-700 text-gray-100"
-            >
-            Custom background content of section 3
+            <!-- Accordion with List Content -->
+            <ngx-zen-accordion title="Accordion Section {{ index + 1 }}" zenClass="text-black bg-gray-200">
+              <ul class="list-disc list-inside px-2 py-2">
+                <li class="text-black">Item 1</li>
+                <li class="text-black">Item 2</li>
+              </ul>
+              <ol class="list-decimal list-inside px-2 py-2">
+                <li class="text-black">Item 1</li>
+                <li class="text-black">Item 2</li>
+              </ol>
             </ngx-zen-accordion>
           }
           @case(3) {
-            <!-- Accordion with List Content -->
-            <ngx-zen-accordion title="Accordion Section {{ index + 1 }}">
-              <ul class="list-disc list-inside">
-                <li>Item 1</li>
-                <li>Item 2</li>
-              </ul>
-            </ngx-zen-accordion>
-          }
-          @case(4) {
             <!-- Compact Accordion -->
             <ngx-zen-accordion
               title="Accordion Section {{ index + 1 }}"
               size="compact"
+              zenClass="text-black bg-gray-200"
             >
-              Compact size content of section 5
+            <div class="bg-gray-100 p-2 text-sm">
+              <p class="text-black">Compact size content of section 5</p>
+            </div>
             </ngx-zen-accordion>
           }
-          @case(5) {
+          @case(4) {
             <!-- Large Accordion -->
             <ngx-zen-accordion
               title="Accordion Section {{ index + 1 }}"
               size="large"
+              zenClass="text-black bg-gray-200"
             >
-              Large size content of section 6
+            <div class="bg-gray-100 p-6 text-lg">
+              <p class="text-black">Large size content of section 6</p>
+            </div>
             </ngx-zen-accordion>
           }
-          @case(6) {
+          @case(5) {
             <!-- Accordion with Rounded Edges -->
             <ngx-zen-accordion
               title="Accordion Section {{ index + 1 }}"
               shape="curve"
+              zenClass="text-black bg-gray-200"
             >
-              Rounded shape content of section 7
+            <div class="bg-gray-100 py-3 px-2 rounded-lg">
+              <p class="text-black">Rounded shape content of section 7</p>
+            </div>
             </ngx-zen-accordion>
           }
-          @case(7) {
+          @case(6) {
             <!-- Accordion with Snappy Transition -->
             <ngx-zen-accordion
               title="Accordion Section {{ index + 1 }}"
               transition="snappy"
+              zenClass="text-black bg-gray-200"
             >
-              Snappy transition content of section 8
+            <div class="bg-gray-100 py-3 px-2">
+              <p class="text-black">Snappy transition content of section 8</p>
+            </div>
             </ngx-zen-accordion>
           }
-          @case(8) {
+          @case(7) {
             <!-- Accordion with Left-aligned Icon -->
             <ngx-zen-accordion
               title="Accordion Section {{ index + 1 }}"
               iconPosition="left"
+              zenClass="text-black bg-gray-200"
             >
-              Icon on left content of section 9
+            <div class="bg-gray-100 py-3 px-2">
+              <p class="text-black">Icon on left content of section 9</p>
+            </div>
             </ngx-zen-accordion>
           }
-          @case(9) {
+          @case(8) {
             <ngx-zen-accordion
               title="Accordion Section 10"
               openIcon="fa-chevron-up"
               closeIcon="fa-chevron-down"
+              zenClass="text-black bg-gray-200"
             >
-            Accordion with different open and close icons
+            <div class="bg-gray-100 py-3 px-2">
+              <p class="text-black">Accordion with different open and close icons</p>
+            </div>
+
             </ngx-zen-accordion>
           }
         }

@@ -1,16 +1,15 @@
 .__zen__accordion__wrapper {
   @apply w-full flex flex-col;
 
-  /* Apply rounded corners directly to wrapper and header/content */
   &.curve {
-    @apply rounded-lg; // Apply rounded corners to wrapper
+    @apply rounded-lg;
 
     .__zen__accordion__header {
-      @apply rounded-t-lg; // Rounded corners only at the top
+      @apply rounded-t-lg;
     }
 
     .__zen__accordion__content {
-      @apply rounded-b-lg; // Rounded corners only at the bottom
+      @apply rounded-b-lg;
     }
   }
 

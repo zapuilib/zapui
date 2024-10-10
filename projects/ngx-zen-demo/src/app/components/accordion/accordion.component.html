@@ -36,50 +36,79 @@
         <td><p>Optional</p></td>
         <td><code>boolean</code></td>
         <td>
-          <p>
-            Controls the initial open state of the accordion. Defaults to
-            <code>false</code>.
-          </p>
+          <p>Controls the initial open state of the accordion. Defaults to <code>false</code>.</p>
         </td>
       </tr>
       <tr>
         <td><code>size</code></td>
         <td><p>Optional</p></td>
-        <td><code>compact</code>|<code>default</code>|<code>large</code></td>
+        <td><code>compact</code> | <code>default</code> | <code>large</code></td>
         <td>
-          <p>
-            Sets the padding and font size for the accordion.
-          </p>
+          <p>Sets the padding and font size for the accordion.</p>
         </td>
       </tr>
       <tr>
         <td><code>shape</code></td>
         <td><p>Optional</p></td>
-        <td><code>square</code>|<code>rounded</code></td>
+        <td><code>default</code> | <code>curve</code></td>
         <td>
-          <p>
-            Defines the shape of the accordion edges.
-          </p>
+          <p>Defines the shape of the accordion edges. <code>curve</code> adds rounded corners.</p>
         </td>
       </tr>
       <tr>
         <td><code>transition</code></td>
         <td><p>Optional</p></td>
-        <td><code>smooth</code>|<code>snappy</code>|<code>none</code></td>
+        <td><code>smooth</code> | <code>snappy</code> | <code>none</code></td>
         <td>
-          <p>
-            Sets the transition effect for opening and closing the accordion.
-          </p>
+          <p>Sets the transition effect for opening and closing the accordion.</p>
         </td>
       </tr>
       <tr>
         <td><code>iconPosition</code></td>
         <td><p>Optional</p></td>
-        <td><code>left</code>|<code>right</code></td>
+        <td><code>left</code> | <code>right</code></td>
         <td>
-          <p>
-            Specifies the position of the accordion icon.
-          </p>
+          <p>Specifies the position of the accordion icon.</p>
+        </td>
+      </tr>
+      <tr>
+        <td><code>openIcon</code></td>
+        <td><p>Optional</p></td>
+        <td><code>string</code> (icon class)</td>
+        <td>
+          <p>Specifies the icon to display when the accordion is open. Default is <code>fa-minus</code>.</p>
+        </td>
+      </tr>
+      <tr>
+        <td><code>closeIcon</code></td>
+        <td><p>Optional</p></td>
+        <td><code>string</code> (icon class)</td>
+        <td>
+          <p>Specifies the icon to display when the accordion is closed. Default is <code>fa-plus</code>.</p>
+        </td>
+      </tr>
+      <tr>
+        <td><code>zenClass</code></td>
+        <td><p>Optional</p></td>
+        <td><code>string</code> (CSS classes)</td>
+        <td>
+          <p>Applies custom styles to the outer wrapper of the accordion.</p>
+        </td>
+      </tr>
+      <tr>
+        <td><code>zenHeaderClass</code></td>
+        <td><p>Optional</p></td>
+        <td><code>string</code> (CSS classes)</td>
+        <td>
+          <p>Applies custom styles to the header section of the accordion.</p>
+        </td>
+      </tr>
+      <tr>
+        <td><code>zenContentClass</code></td>
+        <td><p>Optional</p></td>
+        <td><code>string</code> (CSS classes)</td>
+        <td>
+          <p>Applies custom styles to the content section of the accordion.</p>
         </td>
       </tr>
     </tbody>

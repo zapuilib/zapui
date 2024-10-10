@@ -38,34 +38,25 @@ export class AccordionComponent {
   }
 
   getHeaderStyle() {
-    if (this.zenHeaderClass) {
-      return '';
-    }
-    const bgColor = this.config.colors.primary ?? '#e2e8f0';
-    const textColor = this.config.colors.secondary ?? '#1a202c';
-    return `background-color: ${bgColor} !important; color: ${textColor} !important;`;
+    if (this.zenHeaderClass) return '';
+    const bgColor = this.config.colors.primary;
+    const textColor = this.config.colors.secondary;
+    return bgColor || textColor
+      ? `background-color: ${bgColor} !important; color: ${textColor} !important;`
+      : '';
   }
 
   getContentStyle() {
-    console.log('content: ', this.zenContentClass);
-    if (this.zenContentClass) {
-      return '';
-    }
-    const bgColor = this.isOpen
-      ? this.config.colors.quaternary ?? '#ffffff'
+    if (this.zenContentClass) return '';
+    const bgColor = this.isOpen ? this.config.colors.quaternary : '';
+    const textColor = this.config.colors.secondary;
+    return bgColor || textColor
+      ? `background-color: ${bgColor} !important; color: ${textColor} !important;`
       : '';
-    const textColor = this.config.colors.secondary ?? '#1a202c';
-    let styles = '';
-    if (bgColor) {
-      styles += `background-color: ${bgColor} !important;`;
-    }
-    styles += ` color: ${textColor} !important;`;
-    console.log(styles);
-    return styles;
   }
 
   getIconStyle() {
-    const color = this.config.colors.tertiary ?? '#4a5568';
+    const color = this.config.colors.tertiary;
     return `color: ${color} !important;`;
   }
 }

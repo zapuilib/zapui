@@ -28,7 +28,7 @@ export class AccordionComponent {
       markdown: `\`\`\`html
 <ngx-zen-accordion
   title="Accordion Section 3"
-  zenWrapperClass="shadow-md"
+  zenClass="shadow-md"
   zenHeaderClass="text-red-700 bg-gray-100"
   zenContentClass="bg-blue-700 text-gray-100"
 >

@@ -9,7 +9,13 @@ module.exports = plugin(function ({ addVariant, e }) {
 
   addVariant("input", ({ modifySelectors, separator }) => {
     modifySelectors(({ className }) => {
-      return `.${e(`input${separator}${className}`)} input`;
+      return `.${e(`input${separator}${className}`)} input.__zen__form__control__input`;
+    });
+  });
+
+  addVariant("search", ({ modifySelectors, separator }) => {
+    modifySelectors(({ className }) => {
+      return `.${e(`search${separator}${className}`)} input.__zen__form__control__search`;
     });
   });
 

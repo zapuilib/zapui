@@ -41,7 +41,10 @@ export class ControlValueAccessorDirective<T>
   }
 
   setStyle() {
-    const placeholderColor = this.config.colors.quaternary;
+    const placeholderColor = this.colorUtility.hexToRgba(
+      this.config.colors.quaternary,
+      0.5
+    );
     const focusColor = this.config.colors.tertiary;
     document.documentElement.style.setProperty(
       '--placeholder-color',

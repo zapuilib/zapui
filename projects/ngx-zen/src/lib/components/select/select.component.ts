@@ -25,6 +25,7 @@ import { ControlValueAccessorDirective } from '../../directives/control-value-ac
 export class SelectComponent<T> extends ControlValueAccessorDirective<T> {
   @ViewChild('inputSelectValueHolder') inputSelectValueHolder!: ElementRef;
   @ViewChild('optionList') optionList!: ElementRef;
+  @ViewChild('search') search!: ElementRef;
   @Input() label: string = '';
   @Input() id: string = '';
   @Input() placeholder: string = '';
@@ -36,6 +37,7 @@ export class SelectComponent<T> extends ControlValueAccessorDirective<T> {
   @Input() iconPosition: 'left' | 'right' = 'left';
   @Input() options: { label: string; value: any }[] = [];
   @Input() searchable: boolean = false;
+  @Input() searchPlaceholder: string = 'Search';
   @Input() notFound: string = 'No options found';
   isOptionListOpen: boolean = false;
   hoveredOption: string = '';
@@ -52,17 +54,11 @@ export class SelectComponent<T> extends ControlValueAccessorDirective<T> {
       !inputElement.contains(clickedElement)
     ) {
       this.toggleOptionsList();
-      this.onInputBlur();
-    } else if (
-      this.control.touched &&
-      !inputElement.contains(clickedElement) &&
-      !this.isOptionListOpen
-    ) {
-      this.onInputBlur();
     }
   }
 
   override ngOnInit(): void {
+    super.ngOnInit();
     this.filteredOptions = this.options;
   }
 
@@ -77,25 +73,19 @@ export class SelectComponent<T> extends ControlValueAccessorDirective<T> {
 
   toggleOptionsList(): void {
     this.isOptionListOpen = !this.isOptionListOpen;
+    if (this.isOptionListOpen) {
+      setTimeout(() => {
+        this.search.nativeElement.focus();
+      });
+    }
     this.hoveredOption = '';
     this.filteredOptions = this.options;
   }
 
-  onInputBlur(): void {
-    this.control.setValue(this.selectedOptionValue || null);
-    this.inputSelectValueHolder.nativeElement.value =
-      this.options.find((option) => option.value === this.selectedOptionValue)
-        ?.label || '';
-    this.control.markAsTouched();
-  }
-
-  filterOptions(): void {
-    const inputLabel = this.inputSelectValueHolder.nativeElement.value;
-    if (inputLabel !== '') {
-      this.filteredOptions = this.options.filter((option) =>
-        option.label.toLowerCase().includes(inputLabel.toLowerCase())
-      );
-    }
+  filterOptions(event: any): void {
+    this.filteredOptions = this.options.filter((option) =>
+      option.label.toLowerCase().includes(event.target.value.toLowerCase())
+    );
   }
 
   selectOption(option: { label: string; value: any }): void {
@@ -108,8 +98,7 @@ export class SelectComponent<T> extends ControlValueAccessorDirective<T> {
   getOptionStyle(value: string): any {
     return {
       color:
-        this.selectedOptionValue === value &&
-        this.hoveredOption !== value
+        this.selectedOptionValue === value && this.hoveredOption !== value
           ? this.config.colors.tertiary
           : this.config.colors.secondary,
       'font-size': this.config.fontSize.md,
@@ -119,6 +108,14 @@ export class SelectComponent<T> extends ControlValueAccessorDirective<T> {
           : this.selectedOptionValue === value
           ? this.colorUtility.hexToRgba(this.config.colors.tertiary, 0.1)
           : this.config.colors.primary,
+    };
+  }
+
+  getSearchFieldStyle(): any {
+    return {
+      color: this.config.colors.secondary,
+      'border-color': this.config.colors.secondary,
+      'font-size': this.config.fontSize.md,
     };
   }
 }

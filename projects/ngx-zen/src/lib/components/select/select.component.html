@@ -28,9 +28,8 @@
         [placeholder]="placeholder"
         [formControl]="control"
         [ngStyle]="getFieldStyle()"
-        [readonly]="!searchable"
+        [readonly]="true"
         (click)="toggleOptionsList()"
-        (input)="filterOptions()"
       />
       <div class="handler">
         <i
@@ -50,8 +49,21 @@
       role="list"
       [ngStyle]="getOptionListStyle()"
     >
-      @if(filteredOptions.length) { @for(option of filteredOptions; track option; let i =
-      $index) {
+      @if(searchable) {
+      <fieldset>
+        <i class="fa-solid fa-search" [ngStyle]="getStyle()"></i>
+        <input
+          #search
+          type="text"
+          id="search"
+          class="__zen__form__control__search"
+          [placeholder]="searchPlaceholder"
+          (input)="filterOptions($event)"
+          [ngStyle]="getSearchFieldStyle()"
+        />
+      </fieldset>
+      } @if(filteredOptions.length) { @for(option of filteredOptions; track
+      option; let i = $index) {
       <div
         class="option"
         role="listitem"
@@ -63,11 +75,7 @@
         {{ option.label }}
       </div>
       } } @else {
-      <div
-        class="option"
-        role="listitem"
-        [ngStyle]="getStyle()"
-      >
+      <div class="option" role="listitem" [ngStyle]="getStyle()">
         {{ notFound }}
       </div>
       }

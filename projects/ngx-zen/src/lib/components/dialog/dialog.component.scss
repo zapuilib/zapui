@@ -16,10 +16,7 @@
     }
 
     .content {
-      @apply h-24;
-
-      .text {
-      }
+      @apply min-h-16 mb-8;
     }
 
     .footer {

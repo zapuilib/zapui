@@ -15,7 +15,7 @@ export class DialogComponent {
   @Input() title: string = '';
   @Input() text: string = '';
   @Input() zenClass: string = '';
-  @Input() shape: 'curve' | 'default' = 'default';
+  @Input() shape: 'curve' | 'pill' | 'default' = 'default';
 
   constructor(@Inject(NGX_ZEN_CONFIG) private config: NgxZenConfig) {}
 

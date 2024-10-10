@@ -1,0 +1,47 @@
+<section [ngClass]="route.snapshot.data['theme']">
+    <h1>Notifications</h1>
+  
+    <ng-container *ngFor="let item of markdowns; let i = index">
+      <div class="card">
+        <h2>{{ item.title }}</h2>
+        <div class="ui">
+          <ng-container [ngSwitch]="i">
+            <ngx-zen-notification *ngSwitchCase="0" variant="empty"></ngx-zen-notification>
+            <ngx-zen-notification *ngSwitchCase="1" variant="content" [count]="1"></ngx-zen-notification>
+            <ngx-zen-notification *ngSwitchCase="2" variant="border" [count]="99"></ngx-zen-notification>
+          </ng-container>
+        </div>
+        <div class="code-wrapper">
+          <markdown [data]="item.markdown"></markdown>
+        </div>
+      </div>
+    </ng-container>
+  
+    <h2>Properties</h2>
+    <table>
+      <tr>
+        <th>Parameter</th>
+        <th>Required</th>
+        <th>Accepted values</th>
+        <th>Usage</th>
+      </tr>
+      <tr>
+        <td><code>variant</code></td>
+        <td>Optional</td>
+        <td><code>empty</code> | <code>content</code> | <code>border</code></td>
+        <td>Defines the style of the notification. Defaults to <code>empty</code>.</td>
+      </tr>
+      <tr>
+        <td><code>count</code></td>
+        <td>Optional</td>
+        <td><code>number</code></td>
+        <td>The number to display in the notification badge. Only applies to <code>content</code> and <code>border</code> variants.</td>
+      </tr>
+      <tr>
+        <td><code>zenClass</code></td>
+        <td>Optional</td>
+        <td><code>string</code></td>
+        <td>Additional CSS classes to be applied to the notification.</td>
+      </tr>
+    </table>
+  </section>

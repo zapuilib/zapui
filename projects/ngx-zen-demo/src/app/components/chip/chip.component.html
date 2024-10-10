@@ -17,10 +17,10 @@
     <table>
       <thead>
         <tr>
-          <th>Parameter</th>
-          <th>Required</th>
-          <th>Accepted values</th>
-          <th>Usage</th>
+          <th class="w-[10%]">Parameter</th>
+          <th class="w-[10%]">Required</th>
+          <th class="w-[30%]">Accepted values</th>
+          <th class="w-[50%]">Usage</th>
         </tr>
       </thead>
       <tbody>
@@ -79,7 +79,7 @@
       <div class="ui">
         @switch(index) {
           @case(0) { <ngx-zen-chip text="Basic Chip"></ngx-zen-chip> }
-          @case(1) { <ngx-zen-chip text="Outlined Chip" variant="outlined"></ngx-zen-chip> }
+          @case(1) { <ngx-zen-chip text="Outlined Chip" zenClass="bg-red-500" variant="outlined"></ngx-zen-chip> }
           @case(2) { <ngx-zen-chip text="Removable Chip" [removable]="true"></ngx-zen-chip> }
           @case(3) { <ngx-zen-chip text="Disabled Chip" [disabled]="true"></ngx-zen-chip> }
           @case(4) {

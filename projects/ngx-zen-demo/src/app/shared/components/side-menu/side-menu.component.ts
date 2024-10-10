@@ -39,6 +39,10 @@ export class SideMenuComponent {
           routerLink: '/chips',
         },
         {
+          title: 'Notification',
+          routerLink: '/notification',
+        },
+        {
           title: 'Dialog',
           routerLink: '/dialog',
         },

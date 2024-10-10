@@ -2,7 +2,8 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { InternalLayoutComponent } from './layout/internal-layout/internal-layout.component';
-import { AlertComponent, ButtonComponent, ChipsDemoComponent, GettingStartedComponent } from './components';
+import { AlertComponent, ButtonComponent, ChipComponent, GettingStartedComponent } from './components';
+import { NotificationDemoComponent } from './components/notification-demo/notification-demo.component';
 
 
 const routes: Routes = [
@@ -32,7 +33,12 @@ const routes: Routes = [
       },
       {
         path: 'chips',
-        component: ChipsDemoComponent,
+        component: ChipComponent,
+        pathMatch: 'full',
+      },
+      {
+        path: 'notification',
+        component: NotificationDemoComponent,
         pathMatch: 'full',
       },
       {

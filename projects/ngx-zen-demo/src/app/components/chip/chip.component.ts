@@ -2,11 +2,11 @@ import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
-  selector: 'app-chips-demo',
-  templateUrl: './chips-demo.component.html',
-  styleUrl: './chips-demo.component.scss',
+  selector: 'app-chip',
+  templateUrl: './chip.component.html',
+  styleUrl: './chip.component.scss',
 })
-export class ChipsDemoComponent {
+export class ChipComponent {
   markdowns = [
     {
       markdown: `\`\`\`html

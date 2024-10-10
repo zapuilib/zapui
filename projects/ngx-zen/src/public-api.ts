@@ -10,3 +10,4 @@ export * from './lib/components/button/button.component';
 export * from './lib/components/input/input.component';
 export * from './lib/components/alert/alert.component';
 export * from './lib/components/chips/chip.component';
+export * from './lib/components/notification/notification.component';

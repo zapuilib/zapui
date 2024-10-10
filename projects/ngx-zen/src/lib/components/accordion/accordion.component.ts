@@ -10,8 +10,6 @@ import { NgxZenConfig } from '../../interfaces/config.interface';
 export class AccordionComponent {
   @Input() title: string = '';
   @Input() zenClass: string = '';
-  @Input() zenHeaderClass: string = '';
-  @Input() zenContentClass: string = '';
   @Input() isOpen: boolean = false;
   @Input() size: 'compact' | 'default' | 'large' = 'default';
   @Input() shape: 'curve' | 'default' = 'default';
@@ -29,30 +27,13 @@ export class AccordionComponent {
   toggleAccordion() {
     this.isOpen = !this.isOpen;
   }
+
   getStyle() {
     let styles = 'display: flex; flex-direction: column;';
     if (this.shape === 'curve') {
       styles += ' border-radius: 0.375rem;';
     }
     return styles;
-  }
-
-  getHeaderStyle() {
-    if (this.zenHeaderClass) return '';
-    const bgColor = this.config.colors.primary;
-    const textColor = this.config.colors.secondary;
-    return bgColor || textColor
-      ? `background-color: ${bgColor} !important; color: ${textColor} !important;`
-      : '';
-  }
-
-  getContentStyle() {
-    if (this.zenContentClass) return '';
-    const bgColor = this.isOpen ? this.config.colors.quaternary : '';
-    const textColor = this.config.colors.secondary;
-    return bgColor || textColor
-      ? `background-color: ${bgColor} !important; color: ${textColor} !important;`
-      : '';
   }
 
   getIconStyle() {

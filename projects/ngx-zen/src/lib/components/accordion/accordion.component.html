@@ -1,15 +1,9 @@
 <div
   class="__zen__accordion__wrapper"
   [ngClass]="[zenClass, size, shape, transition, 'icon-' + iconPosition]"
-  [attr.style]="getStyle()"
 >
-  <div
-    class="__zen__accordion__header"
-    (click)="toggleAccordion()"
-    [ngClass]="zenHeaderClass || 'text-gray-800 bg-gray-100'"
-    [attr.style]="getHeaderStyle()"
-  >
-    <span class="accordion__title">{{ title }}</span>
+  <div class="__zen__accordion__header" (click)="toggleAccordion()">
+    <span class="accordion__title" [ngClass]="zenClass">{{ title }}</span>
     <i
       class="accordion__icon fa"
       [ngClass]="[icon]"
@@ -17,12 +11,7 @@
       aria-hidden="true"
     ></i>
   </div>
-  <div
-    class="__zen__accordion__content"
-    *ngIf="isOpen"
-    [ngClass]="zenContentClass || 'bg-white text-black'"
-    [attr.style]="getContentStyle()"
-  >
-    <ng-content></ng-content>
-  </div>
+  @if (isOpen) {
+      <ng-content></ng-content>
+  }
 </div>

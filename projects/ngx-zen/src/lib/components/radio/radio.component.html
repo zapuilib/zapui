@@ -3,23 +3,14 @@
     @if(label){
     <legend class="sr-only">{{ label }}</legend>
     <label
-      #labelElement
       class="__zen__form__control__label"
       [for]="id"
       [ngStyle]="getStyle()"
-      (click)="radio.click()"
       >{{ label }}</label
     >
     }
 
-    <input
-      #radio
-      type="radio"
-      [id]="id"
-      [name]="name"
-      [value]="value"
-      [formControl]="control"
-    />
+    <input type="radio" [id]="id" [formControl]="control" />
   </fieldset>
   @if(control.invalid && control.touched) {
   <validation-error

@@ -26,8 +26,6 @@ import type { Styles } from '../../interfaces/style.interface';
 export class RadioComponent<T> extends ControlValueAccessorDirective<T> {
   @ViewChild('radio') radio!: ElementRef;
   @Input() id: string = '';
-  @Input() name: string = '';
-  @Input() value: string = '';
   @Input() label: string = '';
   @Input() customErrorMessages: Record<string, string> = {};
   @Input() zenClass: string = '';

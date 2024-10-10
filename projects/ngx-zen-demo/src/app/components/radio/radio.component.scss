@@ -1,8 +1,12 @@
 section {
   @apply px-60 py-12 transition-all;
 
+  fieldset {
+    @apply bg-zinc-50 p-8 rounded-md; /* The white board styling for the entire group */
+  }
+
   ngx-zen-radio {
-    @apply col-span-4 p-32 flex justify-center items-center bg-zinc-50 rounded-md;
+    @apply p-4 flex justify-start items-center; /* Styling for individual radio buttons */
   }
 
   h1 {

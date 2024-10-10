@@ -8,6 +8,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class RadioComponent {
   form: FormGroup;
+  customErrorMessages: Record<string, string> = {
+    required: 'This field is required.',
+  };
   markdowns = [
     {
       markdown: `\`\`\`html
@@ -20,46 +23,11 @@ export class RadioComponent {
   \`\`\``,
       title: 'Basic checkbox',
     },
-    {
-      markdown: `\`\`\`html
-<ngx-zen-checkbox
-  id="terms"
-  formControlName="terms"
->
-</ngx-zen-checkbox>
-  \`\`\``,
-      title: 'Checkbox without label',
-    },
-    {
-      markdown: `\`\`\`html
-<ngx-zen-checkbox
-  id="terms"
-  formControlName="terms"
-  shape="curve"
->
-</ngx-zen-checkbox>
-  \`\`\``,
-      title: 'Curved checkbox',
-    },
-    {
-      markdown: `\`\`\`html
-<ngx-zen-checkbox
-  id="terms"
-  formControlName="terms"
-  shape="pill"
->
-</ngx-zen-checkbox>
-  \`\`\``,
-      title: 'Pill checkbox',
-    },
   ];
 
   constructor(private fb: FormBuilder) {
     this.form = this.fb.group({
-      terms: ['', [Validators.required]],
-      terms2: ['', [Validators.required]],
-      terms3: ['', [Validators.required]],
-      terms4: ['', [Validators.required]],
+      terms: ['', Validators.required],
     });
   }
 }

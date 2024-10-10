@@ -22,7 +22,7 @@ export class NotificationComponent {
   getStyle() {
     return {
       'background-color': this.config.colors.tertiary,
-      color: this.variant === 'border' ? this.config.colors.tertiary : this.config.colors.primary,
+      color: this.variant === 'border' ? this.config.colors.primary: this.config.colors.primary,
       'font-size': this.config.fontSize.xs,
     };
   }

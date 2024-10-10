@@ -1,19 +1,14 @@
-.notification {
-  @apply relative inline-flex items-center justify-center w-6 h-6;
+.notification-wrapper {
+  @apply relative inline-flex items-center justify-center w-6 h-6 border-none;
 
   .notification-badge {
-    @apply absolute -top-1 -right-1 flex items-center justify-center font-bold rounded-full min-w-4 min-h-4 p-0.5;
-
+    @apply absolute -top-1 -right-1 flex items-center justify-center;
+    @apply rounded-full bg-blue-500 text-white font-bold text-xs;
+    @apply min-w-[1.5em] min-h-[1.5em]; // Use em for scalability
+    padding: 0.25em; // Padding in em for consistent scaling
+    
     &.empty {
       @apply w-2 h-2 min-w-0 min-h-0 p-0;
-    }
-  }
-
-  &.border {
-    .notification-badge {
-      @apply bg-white border-2;
-      border-color: var(--notification-color);
-      color: var(--notification-color);
     }
   }
 }

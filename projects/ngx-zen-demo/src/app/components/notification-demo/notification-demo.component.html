@@ -1,47 +1,71 @@
-<section [ngClass]="route.snapshot.data['theme']">
+<section class="min-h-screen">
     <h1>Notifications</h1>
-  
-    <ng-container *ngFor="let item of markdowns; let i = index">
-      <div class="card">
-        <h2>{{ item.title }}</h2>
-        <div class="ui">
-          <ng-container [ngSwitch]="i">
-            <ngx-zen-notification *ngSwitchCase="0" variant="empty"></ngx-zen-notification>
-            <ngx-zen-notification *ngSwitchCase="1" variant="content" [count]="1"></ngx-zen-notification>
-            <ngx-zen-notification *ngSwitchCase="2" variant="border" [count]="99"></ngx-zen-notification>
-          </ng-container>
-        </div>
-        <div class="code-wrapper">
-          <markdown [data]="item.markdown"></markdown>
-        </div>
-      </div>
-    </ng-container>
-  
+    @for(item of markdowns; track item) {
+        <ng-container
+            *ngTemplateOutlet="
+                card;
+                context: {
+                    $implicit: item.markdown,
+                    title: item.title,
+                    index: $index
+                }
+            "
+        >
+        </ng-container>
+    }
     <h2>Properties</h2>
     <table>
-      <tr>
-        <th>Parameter</th>
-        <th>Required</th>
-        <th>Accepted values</th>
-        <th>Usage</th>
-      </tr>
-      <tr>
-        <td><code>variant</code></td>
-        <td>Optional</td>
-        <td><code>empty</code> | <code>content</code> | <code>border</code></td>
-        <td>Defines the style of the notification. Defaults to <code>empty</code>.</td>
-      </tr>
-      <tr>
-        <td><code>count</code></td>
-        <td>Optional</td>
-        <td><code>number</code></td>
-        <td>The number to display in the notification badge. Only applies to <code>content</code> and <code>border</code> variants.</td>
-      </tr>
-      <tr>
-        <td><code>zenClass</code></td>
-        <td>Optional</td>
-        <td><code>string</code></td>
-        <td>Additional CSS classes to be applied to the notification.</td>
-      </tr>
+        <thead>
+            <tr>
+                <th class="w-[10%]">Parameter</th>
+                <th class="w-[10%]">Required</th>
+                <th class="w-[30%]">Accepted values</th>
+                <th class="w-[50%]">Usage</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><code>variant</code></td>
+                <td>Optional</td>
+                <td><code>empty</code> | <code>content</code> | <code>border</code></td>
+                <td>Defines the style of the notification. Defaults to <code>empty</code>.</td>
+            </tr>
+            <tr>
+                <td><code>count</code></td>
+                <td>Optional</td>
+                <td><code>number</code></td>
+                <td>The number to display in the notification badge. Only applies to <code>content</code> and <code>border</code> variants.</td>
+            </tr>
+            <tr>
+                <td><code>zenClass</code></td>
+                <td>Optional</td>
+                <td><code>string</code></td>
+                <td>Additional CSS classes to be applied to the notification.</td>
+            </tr>
+        </tbody>
     </table>
-  </section>
+</section>
+
+<ng-template #card let-markdown let-title="title" let-index="index">
+    <div class="card">
+        <h2>{{ title }}</h2>
+        <div class="ui">
+            @switch (index) {
+                @case (0) {
+                    <ngx-zen-notification variant="empty"></ngx-zen-notification>
+                }
+                @case (1) {
+                    <div class="notification-with-icon">
+                        <ngx-zen-notification variant="content" [count]="1"></ngx-zen-notification>
+                    </div>
+                }
+                @case (2) {
+                    <ngx-zen-notification variant="border" [count]="100"></ngx-zen-notification>
+                }
+            }
+        </div>
+        <div class="code-wrapper">
+            <markdown [data]="markdown"></markdown>
+        </div>
+    </div>
+</ng-template>

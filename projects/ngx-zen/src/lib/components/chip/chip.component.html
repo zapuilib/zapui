@@ -1,21 +1,19 @@
 <div 
     class="__ngx__zen__chip__wrapper flex items-center" 
-    [ngClass]="[variant, size, disabled ? 'disabled' : '']"
+    [ngClass]="[variant, size, disabled ? 'disabled' : '', zenClass]"
     [ngStyle]="getStyle()"
 >
     @if (icon && iconPosition === 'left') {
         <i class="fa-solid" [ngClass]="icon"></i>
     }
-    <span class="ngx-zen-chip-text">{{ text }}</span>
+    <span class="chip__text">{{ text }}</span>
     @if (icon && iconPosition === 'right') {
         <i class="fa-solid" [ngClass]="icon"></i>
     }
-    @if (status) {
-        <span class="ngx-zen-chip-status"></span>
-    }
+
     @if (removable) {
         <button 
-            class="ngx-zen-chip-remove"
+            class="chip__remove"
             (click)="onRemove($event)"
             [disabled]="disabled"
         >

@@ -15,8 +15,6 @@ export class ChipComponent {
   @Input() size: 'small' | 'wide' | 'wider' = 'wide';
   @Input() icon?: string;
   @Input() iconPosition: 'left' | 'right' = 'left';
-  @Input() avatar?: string;
-  @Input() status?: 'online' | 'offline';
   @Input() disabled = false;
   @Input() removable = false;
 
@@ -26,10 +24,7 @@ export class ChipComponent {
     const isOutlined = this.variant === 'outlined';
     return {
       'background-color': isOutlined ? 'transparent' : this.config.colors.tertiary,
-      color: isOutlined ? 'black' : this.config.colors.primary, 
-      'border-color': isOutlined ? this.config.colors.tertiary : 'transparent',
-      'border-width': isOutlined ? '1px' : '0',
-      'border-style': 'solid',
+       color: isOutlined ? this.config.colors.info : this.config.colors.primary, 
       'font-size': this.size === 'small' ? this.config.fontSize.xs : this.size === 'wide' ? this.config.fontSize.sm : this.config.fontSize.md,
     };
   }

@@ -1,6 +1,5 @@
 .__ngx__zen__chip__wrapper {
-  @apply inline-flex items-center px-3 py-1 font-medium transition-all;
-  @apply rounded-full;
+  @apply inline-flex items-center px-3 py-1 font-medium transition-all rounded-full;
 
   &.small {
     @apply text-sm;
@@ -11,9 +10,12 @@
   }
 
   &.outlined {
-    @apply border border-black;
-    @apply bg-transparent;
-    @apply text-black;
+    @apply border-2;
+
+    .chip__text{
+      @apply text-blue-500;
+    }
+
   }
 
   &.disabled {
@@ -21,12 +23,10 @@
   }
 
   .fa-solid {
-    @apply ml-2 mr-2 flex-shrink-0;
-    display: flex;
-    align-items: center;
+    @apply ml-2 mr-2 flex-shrink-0 flex items-center;
   }
 
-  .ngx-zen-chip-remove {
+  .chip__remove {
     @apply bg-none border-none text-inherit cursor-pointer ml-2 p-0 text-sm opacity-70 transition-opacity;
 
     &:hover {
@@ -38,9 +38,7 @@
     }
   }
 
-  .ngx-zen-chip-text {
-    @apply flex-grow;
-    display: flex;
-    align-items: center;
+  .chip__text {
+    @apply flex-grow flex items-center;
   }
 }

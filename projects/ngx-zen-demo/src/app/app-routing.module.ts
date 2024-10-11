@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { InternalLayoutComponent } from './layout/internal-layout/internal-layout.component';
-import { AlertComponent, ButtonComponent, ChipsDemoComponent, GettingStartedComponent } from './components';
+import { AlertComponent, ButtonComponent, ChipComponent, GettingStartedComponent } from './components';
 
 
 const routes: Routes = [
@@ -31,8 +31,8 @@ const routes: Routes = [
         pathMatch: 'full',
       },
       {
-        path: 'chips',
-        component: ChipsDemoComponent,
+        path: 'chip',
+        component: ChipComponent,
         pathMatch: 'full',
       },
       {

@@ -2,7 +2,11 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgxZenConfig, NgxZenModule } from 'ngx-zen';
 import { ReactiveFormsModule } from '@angular/forms';
-import { CLIPBOARD_OPTIONS, ClipboardButtonComponent, MarkdownModule } from 'ngx-markdown';
+import {
+  CLIPBOARD_OPTIONS,
+  ClipboardButtonComponent,
+  MarkdownModule,
+} from 'ngx-markdown';
 import { CommonModule } from '@angular/common';
 
 import 'prismjs';
@@ -20,7 +24,7 @@ const ngxZenConfig: NgxZenConfig = {
   colors: {
     primary: '#FFFFFF',
     secondary: '#000000',
-    tertiary: '#FF101F',
+    tertiary: '#2563eb',
     quaternary: '#374151',
     success: '#38c172',
     error: '#b91c1c',
@@ -43,7 +47,6 @@ const ngxZenConfig: NgxZenConfig = {
   },
 };
 
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -56,7 +59,7 @@ const ngxZenConfig: NgxZenConfig = {
     AppRoutingModule,
     CommonModule,
     ReactiveFormsModule,
-    NgxZenModule.forRoot(),
+    NgxZenModule.forRoot(ngxZenConfig),
     MarkdownModule.forRoot({
       clipboardOptions: {
         provide: CLIPBOARD_OPTIONS,
@@ -64,7 +67,7 @@ const ngxZenConfig: NgxZenConfig = {
           buttonComponent: ClipboardButtonComponent,
         },
       },
-    })
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent],

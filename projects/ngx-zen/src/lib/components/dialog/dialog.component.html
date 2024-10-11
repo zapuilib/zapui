@@ -1,0 +1,37 @@
+<div
+  class="__ngx__zen__dialog__wrapper"
+  [ngClass]="[position, shape, zenClass]"
+  [ngStyle]="getWrapperStyle()"
+>
+  <div class="inner" [ngStyle]="getInnerStyle()">
+    <div class="content">
+      <div class="header" [ngStyle]="getHeaderStyle()">
+        <h3 [ngStyle]="getTitleStyle()">{{ title }}</h3>
+
+        <div class="handler" (click)="cancel.emit()">
+          <i class="fa-solid fa-xmark" [ngStyle]="getIconStyle()"></i>
+        </div>
+      </div>
+
+      @if(text) {
+      <div class="helper">
+        <p class="text" [ngStyle]="getTextStyle()">{{ text }}</p>
+      </div>
+      }
+
+      <ng-content></ng-content>
+    </div>
+
+    <div class="footer">
+      @if (secondaryBtnTemplate) {
+      <ng-container [ngTemplateOutlet]="secondaryBtnTemplate"></ng-container>
+      } @else {
+      <button class="btn" [ngStyle]="getSecondaryBtnStyle()">Cancel</button>
+      } @if (primaryBtnTemplate) {
+      <ng-container [ngTemplateOutlet]="primaryBtnTemplate"></ng-container>
+      } @else {
+      <button class="btn" [ngStyle]="getPrimaryBtnStyle()">Confirm</button>
+      }
+    </div>
+  </div>
+</div>

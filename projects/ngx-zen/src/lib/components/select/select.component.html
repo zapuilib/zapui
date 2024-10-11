@@ -1,0 +1,136 @@
+<div
+  class="__zen__form__control"
+  [ngClass]="[zenClass, size, shape, icon ? iconPosition : '']"
+>
+  @if(label){
+  <label
+    [for]="id"
+    class="__zen__form__control__label"
+    [ngStyle]="getStyle()"
+    >{{ label }}</label
+  >
+  }
+  <div class="field__wrapper">
+    <fieldset
+      #inputSelectValueHolder
+      class="__zen__form__control__select"
+      [ngStyle]="getFieldStyle()"
+      (click)="toggleOptionsList()"
+      tabindex="0"
+    >
+      <legend class="sr-only">{{ label }}</legend>
+      @if(icon && iconPosition) {
+      <i
+        class="fa-solid __zen__form__control__icon"
+        [ngClass]="[icon, iconPosition]"
+        [ngStyle]="getStyle()"
+      ></i>
+      } @if(selectedOptionValue.length > 0 && !multiselect) {
+      <p [ngStyle]="getStyle()" class="__zen__form__control__selected">
+        {{ getSelected(selectedOptionValue[0]) }}
+      </p>
+      } @else if(selectedOptionValue.length > 0 && multiselect) {
+      <div class="chips">
+        @for(option of selectedOptionValue; track option;) {
+        <span
+          class="chip __zen__form__control__selected"
+          (click)="cancelOption($event, option)"
+          [ngStyle]="getChipStyle()"
+        >
+          {{ getSelected(option) }}
+        </span>
+        }
+      </div>
+      } @else {
+      <span
+        class="__zen__form__control__placeholder"
+        [ngStyle]="getPlaceholderStyle()"
+      >
+        {{ placeholder }}
+      </span>
+      }
+      <div class="handler">
+        <i
+          class="fa-solid __zen__form__control__dropdown"
+          [ngClass]="{
+            'fa-angle-down': !isOptionListOpen,
+            'fa-angle-up': isOptionListOpen
+          }"
+          [ngStyle]="getStyle()"
+        ></i>
+      </div>
+    </fieldset>
+    @if(isOptionListOpen) {
+    <div
+      #optionList
+      class="__zen__form__control__options"
+      role="list"
+      [ngStyle]="getOptionListStyle()"
+    >
+      @if(searchable) {
+      <fieldset>
+        <i
+          class="fa-solid fa-search __zen__form__control__search__icon"
+          [ngStyle]="getStyle()"
+        ></i>
+        <input
+          #search
+          type="text"
+          id="search"
+          class="__zen__form__control__search"
+          [placeholder]="searchPlaceholder"
+          (input)="filterOptions($event)"
+          [ngStyle]="getSearchFieldStyle()"
+        />
+      </fieldset>
+      } @if(filteredOptions.length) { @for(option of filteredOptions; track
+      option; let i = $index) {
+      <div
+        class="__zen__form__control__option"
+        role="listitem"
+        (mouseenter)="hoveredOption = option.value"
+        (mouseleave)="hoveredOption = ''"
+        [ngStyle]="getOptionStyle(option.value)"
+        (click)="selectOption(option)"
+        [ngClass]="{
+          __zen__form__control__selected: selectedOptionValue.includes(
+            option.value
+          ),
+          __zen__form__control__hovered: hoveredOption === option.value
+        }"
+      >
+        @if(multiselect) {
+        <div
+          class="checkbox __zen__form__control__checkbox"
+          [class.checked]="selectedOptionValue.includes(option.value)"
+          [ngStyle]="getCheckboxStyle(option.value)"
+          [class.__zen__form__control__checked]="
+            selectedOptionValue.includes(option.value)
+          "
+        ></div>
+        }
+        {{ option.label }}
+      </div>
+      } } @else {
+      <div
+        class="__zen__form__control__option"
+        role="listitem"
+        [ngStyle]="getStyle()"
+      >
+        {{ notFound }}
+      </div>
+      }
+    </div>
+    }
+  </div>
+  @if(control.invalid && control.touched) {
+  <div class="mt-30">
+    <validation-error
+      [errors]="control.errors"
+      [zenClass]="zenClass"
+      [customErrorMessages]="customErrorMessages"
+      [color]="getErrorColor()"
+    ></validation-error>
+  </div>
+  }
+</div>

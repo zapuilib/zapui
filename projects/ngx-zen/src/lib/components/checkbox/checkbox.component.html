@@ -1,0 +1,34 @@
+<div
+  class="__ngx__checkbox__wrapper"
+  [ngClass]="[shape, size, labelPosition, zenClass]"
+>
+  <fieldset>
+    @if(label){
+    <legend class="sr-only">{{ label }}</legend>
+    <label
+      #labelElement
+      [for]="id"
+      class="__zen__form__control__label"
+      [ngStyle]="getStyle()"
+      (click)="checkbox.click()"
+      >{{ label }}</label
+    >
+    }
+    <input
+      #checkbox
+      [id]="id"
+      type="checkbox"
+      class="__zen__form__control__input"
+      [formControl]="control"
+      [ngStyle]="getCheckboxStyle()"
+    />
+  </fieldset>
+  @if(control.invalid && control.touched) {
+  <validation-error
+    [errors]="control.errors"
+    [zenClass]="zenClass"
+    [customErrorMessages]="customErrorMessages"
+    [color]="getErrorColor()"
+  ></validation-error>
+  }
+</div>

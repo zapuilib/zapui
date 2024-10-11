@@ -5,8 +5,8 @@ import {
   AfterContentInit,
   Input,
   OnDestroy,
-  OnChanges,
   SimpleChanges,
+  OnChanges,
 } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { AccordionComponent } from '../accordion/accordion.component';
@@ -27,24 +27,25 @@ export class AccordionGroupComponent
   private sub: Subscription = new Subscription();
 
   ngAfterContentInit() {
-    this.setupAccordions();
-    this.updateActiveIndex();
+    this.initializeAccordions();
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    if (changes['activeIndex'] && !changes['activeIndex'].firstChange) {
-      this.updateActiveIndex();
+    if (
+      changes['activeIndex'] &&
+      changes['activeIndex'].currentValue !== null
+    ) {
+      this.updateActiveAccordion();
     }
   }
 
   ngOnDestroy() {
-    if (this.sub) {
-      this.sub.unsubscribe();
-    }
+    this.sub.unsubscribe();
   }
 
-  private setupAccordions() {
+  private initializeAccordions() {
     this.sub.unsubscribe();
+    this.sub = new Subscription();
 
     this.childAccordions.forEach((accordion, index) => {
       const subscription = accordion.toggle.subscribe(() => {
@@ -54,6 +55,8 @@ export class AccordionGroupComponent
       });
       this.sub.add(subscription);
     });
+
+    this.updateActiveAccordion();
   }
 
   private closeOthers(openAccordion: AccordionComponent) {
@@ -64,22 +67,21 @@ export class AccordionGroupComponent
     });
   }
 
-  private updateActiveIndex() {
-    if (
-      this.activeIndex === null ||
-      this.activeIndex >= this.childAccordions.length
-    )
+  private updateActiveAccordion() {
+    if (!this.childAccordions || !this.childAccordions.length) {
       return;
+    }
 
-    this.childAccordions.forEach((accordion, index) => {
-      accordion.isOpen = index === this.activeIndex;
-    });
-
-    if (!this.multiple) {
-      const activeAccordion = this.childAccordions.toArray()[this.activeIndex];
-      if (activeAccordion) {
-        this.closeOthers(activeAccordion);
+    if (
+      this.activeIndex !== null &&
+      this.activeIndex < this.childAccordions.length
+    ) {
+      const targetAccordion = this.childAccordions.toArray()[this.activeIndex];
+      targetAccordion.isOpen = true;
+      if (!this.multiple) {
+        this.closeOthers(targetAccordion);
       }
+      this.activeIndex = null;
     }
   }
 }

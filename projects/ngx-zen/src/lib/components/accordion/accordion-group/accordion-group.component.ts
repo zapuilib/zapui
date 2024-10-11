@@ -39,10 +39,6 @@ export class AccordionGroupComponent
     }
   }
 
-  ngOnDestroy() {
-    this.sub.unsubscribe();
-  }
-
   private initializeAccordions() {
     this.sub.unsubscribe();
     this.sub = new Subscription();
@@ -57,6 +53,12 @@ export class AccordionGroupComponent
     });
 
     this.updateActiveAccordion();
+  }
+
+  private onAccordionToggle(openAccordion: AccordionComponent) {
+    if (!this.multiple) {
+      this.closeOthers(openAccordion);
+    }
   }
 
   private closeOthers(openAccordion: AccordionComponent) {
@@ -83,5 +85,9 @@ export class AccordionGroupComponent
       }
       this.activeIndex = null;
     }
+  }
+
+  ngOnDestroy() {
+    this.sub.unsubscribe();
   }
 }

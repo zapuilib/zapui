@@ -56,7 +56,7 @@
 
   /* Base Styles for Header */
   .__zen__accordion__header {
-    @apply flex items-center justify-between cursor-pointer border p-4;
+    @apply flex items-center justify-between cursor-pointer border px-1 py-2;
 
     .accordion__icon {
       @apply text-lg;
@@ -70,22 +70,5 @@
   /* Base Styles for Content */
   .__zen__accordion__content {
     @apply p-4 border-t transition-all duration-300 ease-in-out;
-  }
-
-  .__zen__accordion__wrapper.disabled {
-    .__zen__accordion__header {
-      cursor: not-allowed !important;
-      opacity: 0.5 !important;
-
-      .accordion__title,
-      .accordion__icon {
-        color: gray !important;
-      }
-    }
-
-    .__zen__accordion__content {
-      opacity: 0.5 !important;
-      pointer-events: none !important;
-    }
   }
 }

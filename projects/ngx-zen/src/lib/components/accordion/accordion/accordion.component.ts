@@ -1,6 +1,7 @@
 import { Component, Input, Inject, Output, EventEmitter } from '@angular/core';
 import { NGX_ZEN_CONFIG } from '../../../tokens/ngx-zen.tokens';
 import { NgxZenConfig } from '../../../interfaces/config.interface';
+import { ColorUtility } from '../../../utilities/color.utility';
 
 @Component({
   selector: 'ngx-zen-accordion',
@@ -21,7 +22,10 @@ export class AccordionComponent {
 
   @Output() toggle: EventEmitter<void> = new EventEmitter<void>();
 
-  constructor(@Inject(NGX_ZEN_CONFIG) private config: NgxZenConfig) {}
+  constructor(
+    @Inject(NGX_ZEN_CONFIG) private config: NgxZenConfig,
+    private colorUtility: ColorUtility
+  ) {}
 
   get icon(): string {
     return this.isOpen ? this.openIcon : this.closeIcon;
@@ -56,9 +60,12 @@ export class AccordionComponent {
   }
 
   getTitleStyle() {
-    const color = this.disabled
-      ? '#A0AEC0' // Gray or other disabled color
-      : this.config.colors.secondary ?? '#000';
+    const disabledColor = this.colorUtility.hexToRgba(
+      this.config.colors.secondary,
+      0.5
+    );
+
+    const color = this.disabled ? disabledColor : this.config.colors.secondary;
 
     const fontSize =
       this.size === 'compact'

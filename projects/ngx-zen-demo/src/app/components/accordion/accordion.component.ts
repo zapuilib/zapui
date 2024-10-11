@@ -92,7 +92,7 @@ export class AccordionComponent {
     {
       markdown: `\`\`\`html
 <ngx-zen-accordion
-  title="Accordion Section {{ index + 1 }}"
+  title="Compact Accordion"
   size="compact"
 >
   <p class="text-black">Compact size content</p>
@@ -103,7 +103,7 @@ export class AccordionComponent {
     {
       markdown: `\`\`\`html
 <ngx-zen-accordion
-  title="Accordion Section {{ index + 1 }}"
+  title="Large Accordion"
   size="large"
 >
   <p class="text-black">Large size content</p>
@@ -114,7 +114,7 @@ export class AccordionComponent {
     {
       markdown: `\`\`\`html
 <ngx-zen-accordion
-  title="Accordion Section {{ index + 1 }}"
+  title="Rounded Shape Accordion"
   shape="curve"
 >
   <p class="text-black">Rounded shape content</p>
@@ -125,7 +125,7 @@ export class AccordionComponent {
     {
       markdown: `\`\`\`html
 <ngx-zen-accordion
-  title="Accordion Section {{ index + 1 }}"
+  title="Snappy Accordion"
   transition="snappy"
 >
   <p class="text-black">Snappy transition content</p>
@@ -136,7 +136,7 @@ export class AccordionComponent {
     {
       markdown: `\`\`\`html
 <ngx-zen-accordion
-  title="Accordion Section {{ index + 1 }}"
+  title="Icon on left Accordion"
   iconPosition="left"
 >
   <p class="text-black">Icon on left content</p>
@@ -147,11 +147,11 @@ export class AccordionComponent {
     {
       markdown: `\`\`\`html
 <ngx-zen-accordion
-  title="Accordion Section {{ index + 1 }}"
+  title="Custom icons Accordion"
   openIcon="fa-chevron-up"
   closeIcon="fa-chevron-down"
 >
-  <p class="text-black">Accordion with different open and close icons</p>
+  <p class="text-black">Accordion with custom icons</p>
 </ngx-zen-accordion>
   \`\`\``,
       title: 'Custom Icon Accordion',

@@ -70,7 +70,6 @@ export class AccordionComponent {
     return {
       color,
       'font-size': fontSize,
-      'font-weight': 'bold',
     };
   }
 }

@@ -104,8 +104,4 @@ export class DialogComponent {
       fontSize: this.config.fontSize.md,
     };
   }
-
-  getCancelButtonStyle(): any {
-    return `border-[${this.config.colors.tertiary}]`;
-  }
 }

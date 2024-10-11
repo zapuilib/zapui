@@ -25,7 +25,7 @@ export class ModalComponent {
     return {
       'background-color': this.colorUtility.hexToRgba(
         this.config.colors.quaternary,
-        0.8
+        0.5
       ),
       'font-size': this.config.fontSize.md,
     };

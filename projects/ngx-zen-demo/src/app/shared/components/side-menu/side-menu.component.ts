@@ -35,10 +35,6 @@ export class SideMenuComponent {
           routerLink: '/button',
         },
         {
-          title: 'Chips',
-          routerLink: '/chips',
-        },
-        {
           title: 'Notification',
           routerLink: '/notification',
         },

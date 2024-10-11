@@ -44,6 +44,22 @@
             </tr>
         </tbody>
     </table>
+
+    <h2>Preview</h2>
+    <div class="notification-examples">
+        <div class="notification">
+            <ngx-zen-notification variant="empty"></ngx-zen-notification>
+            <span class="badge">•</span>
+        </div>
+        <div class="notification">
+            <ngx-zen-notification variant="content" [count]="1"></ngx-zen-notification>
+            <span class="badge">1</span>
+        </div>
+        <div class="notification">
+            <ngx-zen-notification variant="border" [count]="99"></ngx-zen-notification>
+            <span class="badge">99+</span>
+        </div>
+    </div>
 </section>
 
 <ng-template #card let-markdown let-title="title" let-index="index">
@@ -66,6 +82,3 @@
         </div>
         <div class="code-wrapper">
             <markdown [data]="markdown"></markdown>
-        </div>
-    </div>
-</ng-template>

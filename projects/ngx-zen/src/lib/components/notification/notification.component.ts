@@ -1,6 +1,7 @@
 import { Component, Input, Inject } from '@angular/core';
 import { NGX_ZEN_CONFIG } from '../../tokens/ngx-zen.tokens';
 import { NgxZenConfig } from '../../interfaces/config.interface';
+import { Styles } from '../../interfaces/style.interface';
 
 @Component({
   selector: 'ngx-zen-notification',
@@ -18,11 +19,13 @@ export class NotificationComponent {
     if (this.variant === 'empty') return null;
     return this.count > 99 ? '99+' : this.count.toString();
   }
-  getStyle() {
+
+  getStyle(): Styles {
     return {
-      'background-color': this.config.colors.tertiary,
+      backgroundColor: this.config.colors.tertiary,
       color: this.variant === 'border' ? this.config.colors.primary : this.config.colors.primary,
-      'font-size': this.config.fontSize.xs,
+      fontSize: this.config.fontSize.xs,
     };
   }
+
 }

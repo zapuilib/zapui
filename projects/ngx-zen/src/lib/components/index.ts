@@ -2,7 +2,6 @@ import { AlertComponent } from './alert/alert.component';
 import { ButtonComponent } from './button/button.component';
 import { CheckboxComponent } from './checkbox/checkbox.component';
 import { InputComponent } from './input/input.component';
-import { ChipComponent } from './chips/chip.component';
 import { NotificationComponent } from './notification/notification.component';
 import { TooltipComponent } from './tooltip/tooltip.component';
 import { ModalComponent } from './modal/modal.component';
@@ -12,13 +11,16 @@ import { DialogComponent } from './dialog/dialog.component';
 import { ToggleComponent } from './toggle/toggle.component';
 
 export const COMPONENTS = [
-   AlertComponent,
+  AlertComponent,
   ButtonComponent,
   AlertComponent,
-  ChipComponent,
   NotificationComponent,
   InputComponent,
   CheckboxComponent,
   TooltipComponent,
   DialogComponent,
+  ToggleComponent,
+  TextareaComponent,
+  ModalComponent,
+  SelectComponent,
 ];

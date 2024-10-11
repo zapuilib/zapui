@@ -2,11 +2,11 @@ import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
-  selector: 'app-notification-demo',
-  templateUrl: './notification-demo.component.html',
-  styleUrls: ['./notification-demo.component.scss'],
+  selector: 'app-notification',
+  templateUrl: './notification.component.html',
+  styleUrls: ['./notification.component.scss'],
 })
-export class NotificationDemoComponent {
+export class NotificationComponent {
   markdowns = [
     {
       markdown: `\`\`\`html

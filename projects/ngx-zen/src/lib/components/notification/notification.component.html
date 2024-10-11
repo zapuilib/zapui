@@ -1,9 +1,9 @@
-<div class="notification-wrapper" [ngClass]="[variant, zenClass]">
+<div class="__ngx__zen__notification__wrapper" [ngClass]="[variant, zenClass]">
   @if (variant !== 'empty') {
-    <span class="notification-badge" [ngStyle]="getStyle()">
+    <span class="notification__badge" [ngStyle]="getStyle()">
       {{ getNotificationContent() }}
     </span>
   } @else {
-    <span class="notification-badge empty" [ngStyle]="getStyle()"></span>
+    <span class="notification__badge empty" [ngStyle]="getStyle()"></span>
   }
 </div>

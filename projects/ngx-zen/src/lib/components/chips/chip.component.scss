@@ -11,6 +11,11 @@
 
   &.outlined {
     @apply border-2;
+
+    .chip__text{
+      @apply text-blue-500;
+    }
+
   }
 
   &.disabled {
@@ -21,7 +26,7 @@
     @apply ml-2 mr-2 flex-shrink-0 flex items-center;
   }
 
-  .ngx-zen-chip-remove {
+  .chip__remove {
     @apply bg-none border-none text-inherit cursor-pointer ml-2 p-0 text-sm opacity-70 transition-opacity;
 
     &:hover {
@@ -33,7 +38,7 @@
     }
   }
 
-  .ngx-zen-chip-text {
+  .chip__text {
     @apply flex-grow flex items-center;
   }
 }

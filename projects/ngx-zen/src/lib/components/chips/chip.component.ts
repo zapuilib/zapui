@@ -24,7 +24,7 @@ export class ChipComponent {
     const isOutlined = this.variant === 'outlined';
     return {
       'background-color': isOutlined ? 'transparent' : this.config.colors.tertiary,
-       color: isOutlined ? this.config.colors.info : this.config.colors.primary, 
+       color: isOutlined ? this.config.colors.tertiary : this.config.colors.primary, 
       'font-size': this.size === 'small' ? this.config.fontSize.xs : this.size === 'wide' ? this.config.fontSize.sm : this.config.fontSize.md,
     };
   }

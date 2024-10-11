@@ -1,4 +1,4 @@
-import { Component, Inject, Input } from '@angular/core';
+import { Component, Input, Inject } from '@angular/core';
 import { NGX_ZEN_CONFIG } from '../../tokens/ngx-zen.tokens';
 import { NgxZenConfig } from '../../interfaces/config.interface';
 
@@ -18,11 +18,10 @@ export class NotificationComponent {
     if (this.variant === 'empty') return null;
     return this.count > 99 ? '99+' : this.count.toString();
   }
-
   getStyle() {
     return {
       'background-color': this.config.colors.tertiary,
-      color: this.variant === 'border' ? this.config.colors.primary: this.config.colors.primary,
+      color: this.variant === 'border' ? this.config.colors.primary : this.config.colors.primary,
       'font-size': this.config.fontSize.xs,
     };
   }

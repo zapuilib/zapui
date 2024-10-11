@@ -6,14 +6,14 @@
     @if (icon && iconPosition === 'left') {
         <i class="fa-solid" [ngClass]="icon"></i>
     }
-    <span class="ngx-zen-chip-text">{{ text }}</span>
+    <span class="chip__text">{{ text }}</span>
     @if (icon && iconPosition === 'right') {
         <i class="fa-solid" [ngClass]="icon"></i>
     }
 
     @if (removable) {
         <button 
-            class="ngx-zen-chip-remove"
+            class="chip__remove"
             (click)="onRemove($event)"
             [disabled]="disabled"
         >

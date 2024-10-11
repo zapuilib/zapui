@@ -1,5 +1,9 @@
 .__ngx__toggle__wrapper {
-  @apply w-full flex justify-between items-center gap-x-4;
+  @apply w-full flex flex-col gap-y-2;
+
+  .wrapper {
+    @apply w-full flex justify-between items-center gap-x-4;
+  }
 
   &.between {
     @apply justify-between;

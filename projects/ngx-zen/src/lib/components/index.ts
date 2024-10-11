@@ -3,7 +3,7 @@ import { ButtonComponent } from './button/button.component';
 import { CheckboxComponent } from './checkbox/checkbox.component';
 import { InputComponent } from './input/input.component';
 import { TextareaComponent } from './textarea/textarea.component';
-import { AccordionComponent } from './accordion/accordion.component';
+import { AccordionComponent, AccordionGroupComponent } from './accordion';
 
 export const COMPONENTS = [
   InputComponent,
@@ -12,4 +12,5 @@ export const COMPONENTS = [
   TextareaComponent,
   CheckboxComponent,
   AccordionComponent,
+  AccordionGroupComponent,
 ];

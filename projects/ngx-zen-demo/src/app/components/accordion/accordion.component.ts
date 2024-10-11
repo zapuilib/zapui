@@ -7,16 +7,28 @@ import { Component } from '@angular/core';
   styleUrls: ['./accordion.component.scss'],
 })
 export class AccordionComponent {
+  accordions = [
+    { title: 'Accordion 1', content: 'Content for Accordion 1' },
+    { title: 'Accordion 2', content: 'Content for Accordion 2' },
+    { title: 'Accordion 3', content: 'Content for Accordion 3' },
+  ];
+  currentActiveIndex: number | null = 0; // Set the first accordion to open by default
+
+  openAccordion(index: number) {
+    this.currentActiveIndex = index;
+  }
+
+  setActiveIndex(index: number) {
+    this.currentActiveIndex = index;
+  }
+
   markdowns = [
     {
       markdown: `\`\`\`html
 <ngx-zen-accordion
-    title="Accordion Section 1"
-    zenClass="text-black bg-gray-200"
+    title="Basic Accordion Title"
 >
-  <div class="bg-gray-100 py-3 px-2">
-    <p class="text-black">Basic content of section 1</p>
-  </div>
+  <p class="text-black">Content for Basic Accordion</p>
 </ngx-zen-accordion>
   \`\`\``,
       title: 'Basic Accordion',
@@ -24,45 +36,66 @@ export class AccordionComponent {
     {
       markdown: `\`\`\`html
 <ngx-zen-accordion
-    title="Accordion Section 2"
-    [isOpen]="true"
-    zenClass="text-black bg-gray-200"
+    title="Non-interactive Accordion"
+    [disabled]="true"
 >
-  <div class="bg-gray-100 py-3 px-2 border border-color-gray-100">
-    <p class="text-black">Default open content of section 2</p>
-  </div>
+  <p class="text-black">This content is not accessible when disabled.</p>
+
 </ngx-zen-accordion>
   \`\`\``,
-      title: 'Accordion with Default Open',
+      title: 'Non-interactive Accordion',
+    },
+    {
+      markdown: `\`\`\`html
+<ngx-zen-accordion-group [multiple]="false">
+  <ngx-zen-accordion title="Accordion 1">
+    <p class="text-black">Content for Accordion 1</p>
+  </ngx-zen-accordion>
+  <ngx-zen-accordion title="Accordion 2">
+    <p class="text-black">Content for Accordion 2</p>
+  </ngx-zen-accordion>
+  <ngx-zen-accordion title="Accordion 3">
+    <p class="text-black">Content for Accordion 3</p>
+  </ngx-zen-accordion>
+</ngx-zen-accordion-group>
+  \`\`\``,
+      title: 'Multiple',
+    },
+    {
+      markdown: `\`\`\`html
+<ngx-zen-accordion-group [multiple]="false">
+  @for (accordion of accordions; track accordion; let i = $index) {
+    <ngx-zen-accordion [title]="accordion.title">
+      <p class="text-black">{{ accordion.content }}</p>
+    </ngx-zen-accordion>
+  }
+</ngx-zen-accordion-group>
+  \`\`\``,
+      title: 'Dynamic',
+    },
+    {
+      markdown: `\`\`\`html
+<ngx-zen-accordion-group [multiple]="false" [activeIndex]="currentActiveIndex">
+  <ngx-zen-accordion title="Accordion 1">
+    <p class="text-black">Content for Accordion 1</p>
+  </ngx-zen-accordion>
+  <ngx-zen-accordion title="Accordion 2">
+    <p class="text-black">Content for Accordion 2</p>
+  </ngx-zen-accordion>
+  <ngx-zen-accordion title="Accordion 3">
+    <p class="text-black">Content for Accordion 3</p>
+  </ngx-zen-accordion>
+</ngx-zen-accordion-group>
+  \`\`\``,
+      title: 'Controlled',
     },
     {
       markdown: `\`\`\`html
 <ngx-zen-accordion
-    title="Accordion Section 3"
-    zenClass="text-black bg-gray-200"
+  title="Accordion Section {{ index + 1 }}"
+  size="compact"
 >
-  <ul class="list-disc list-inside px-2 py-2">
-    <li class="text-black">Item 1</li>
-    <li class="text-black">Item 2</li>
-  </ul>
-  <ol class="list-decimal list-inside px-2 py-2">
-    <li class="text-black">Item 1</li>
-    <li class="text-black">Item 2</li>
-  </ol>
-</ngx-zen-accordion>
-  \`\`\``,
-      title: 'Accordion with List Content',
-    },
-    {
-      markdown: `\`\`\`html
-<ngx-zen-accordion
-    title="Accordion Section 4"
-    size="compact"
-    zenClass="text-black bg-gray-200"
->
-  <div class="bg-gray-100 p-2 text-sm">
-    <p class="text-black">Compact size content of section 4</p>
-  </div>
+  <p class="text-black">Compact size content</p>
 </ngx-zen-accordion>
   \`\`\``,
       title: 'Compact Accordion',
@@ -70,13 +103,10 @@ export class AccordionComponent {
     {
       markdown: `\`\`\`html
 <ngx-zen-accordion
-    title="Accordion Section 5"
-    size="large"
-    zenClass="text-black bg-gray-200"
+  title="Accordion Section {{ index + 1 }}"
+  size="large"
 >
-  <div class="bg-gray-100 p-6 text-lg">
-    <p class="text-black">Large size content of section 5</p>
-  </div>
+  <p class="text-black">Large size content</p>
 </ngx-zen-accordion>
   \`\`\``,
       title: 'Large Accordion',
@@ -84,13 +114,10 @@ export class AccordionComponent {
     {
       markdown: `\`\`\`html
 <ngx-zen-accordion
-    title="Accordion Section 6"
-    shape="curve"
-    zenClass="text-black bg-gray-200"
+  title="Accordion Section {{ index + 1 }}"
+  shape="curve"
 >
-  <div class="bg-gray-100 py-3 px-2 rounded-lg">
-    <p class="text-black">Rounded shape content of section 6</p>
-  </div>
+  <p class="text-black">Rounded shape content</p>
 </ngx-zen-accordion>
   \`\`\``,
       title: 'Rounded Accordion',
@@ -98,46 +125,36 @@ export class AccordionComponent {
     {
       markdown: `\`\`\`html
 <ngx-zen-accordion
-    title="Accordion Section 7"
-    transition="snappy"
-    zenClass="text-black bg-gray-200"
+  title="Accordion Section {{ index + 1 }}"
+  transition="snappy"
 >
-  <div class="bg-gray-100 py-3 px-2">
-    <p class="text-black">Snappy transition content of section 7</p>
-  </div>
+  <p class="text-black">Snappy transition content</p>
 </ngx-zen-accordion>
   \`\`\``,
-      title: 'Accordion with Snappy Transition',
+      title: 'Snappy Accordion',
     },
     {
       markdown: `\`\`\`html
 <ngx-zen-accordion
-    title="Accordion Section 8"
-    iconPosition="left"
-    zenClass="text-black bg-gray-200"
+  title="Accordion Section {{ index + 1 }}"
+  iconPosition="left"
 >
-  <div class="bg-gray-100 py-3 px-2">
-    <p class="text-black">Icon on left content of section 8</p>
-  </div>
+  <p class="text-black">Icon on left content</p>
 </ngx-zen-accordion>
   \`\`\``,
-      title: 'Accordion with Icon on Left',
+      title: 'Icon on left Accordion',
     },
     {
       markdown: `\`\`\`html
 <ngx-zen-accordion
-    title="Accordion Section 9"
-    iconPosition="left"
-    openIcon="fa-chevron-up"
-    closeIcon="fa-chevron-down"
-    zenClass="text-black bg-gray-200"
+  title="Accordion Section {{ index + 1 }}"
+  openIcon="fa-chevron-up"
+  closeIcon="fa-chevron-down"
 >
-  <div class="bg-gray-100 py-3 px-2">
-    <p class="text-black">Accordion with different open and close icons</p>
-  </div>
+  <p class="text-black">Accordion with different open and close icons</p>
 </ngx-zen-accordion>
   \`\`\``,
-      title: 'Accordion with Custom Icons for Open and Close',
+      title: 'Custom Icon Accordion',
     },
   ];
 }

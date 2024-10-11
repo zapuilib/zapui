@@ -71,4 +71,21 @@
   .__zen__accordion__content {
     @apply p-4 border-t transition-all duration-300 ease-in-out;
   }
+
+  .__zen__accordion__wrapper.disabled {
+    .__zen__accordion__header {
+      cursor: not-allowed !important;
+      opacity: 0.5 !important;
+
+      .accordion__title,
+      .accordion__icon {
+        color: gray !important;
+      }
+    }
+
+    .__zen__accordion__content {
+      opacity: 0.5 !important;
+      pointer-events: none !important;
+    }
+  }
 }

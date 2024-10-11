@@ -130,114 +130,107 @@
       <div class="ui mb-4">
         @switch(index) {
           @case(0) {
-            <!-- Basic Accordion -->
-            <ngx-zen-accordion
-              title="Accordion Section {{ index + 1 }}"
-              zenClass="text-black bg-gray-200"
-            >
-              <div class="bg-gray-100 py-3 px-2">
-                <p class="text-black">Basic content of section 1</p>
-              </div>
-
+            <ngx-zen-accordion title="Basic Accordion Title">
+              <p class="text-black">Content for Basic Accordion</p>
             </ngx-zen-accordion>
           }
           @case(1) {
-            <!-- Accordion Open by Default -->
-            <ngx-zen-accordion
-              title="Accordion Section {{ index + 1 }}"
-              [isOpen]="true"
-              zenClass="text-black bg-gray-200"
-            >
-            <div class="py-3 px-2 bg-gray-100 border border-color-gray-100">
-              <p class="text-black">Default open content of section 2</p>
-            </div>
-
+            <ngx-zen-accordion title="Non-interactive Accordion" [disabled]="true">
+              <p class="text-black">This content is not accessible when disabled.</p>
             </ngx-zen-accordion>
           }
           @case(2) {
-            <!-- Accordion with List Content -->
-            <ngx-zen-accordion title="Accordion Section {{ index + 1 }}" zenClass="text-black bg-gray-200">
-              <ul class="list-disc list-inside px-2 py-2">
-                <li class="text-black">Item 1</li>
-                <li class="text-black">Item 2</li>
-              </ul>
-              <ol class="list-decimal list-inside px-2 py-2">
-                <li class="text-black">Item 1</li>
-                <li class="text-black">Item 2</li>
-              </ol>
-            </ngx-zen-accordion>
+            <ngx-zen-accordion-group [multiple]="false">
+              <ngx-zen-accordion title="Accordion 1">
+                <p class="text-black">Content for Accordion 1</p>
+              </ngx-zen-accordion>
+              <ngx-zen-accordion title="Accordion 2">
+                <p class="text-black">Content for Accordion 2</p>
+              </ngx-zen-accordion>
+              <ngx-zen-accordion title="Accordion 3">
+                <p class="text-black">Content for Accordion 3</p>
+              </ngx-zen-accordion>
+            </ngx-zen-accordion-group>
           }
           @case(3) {
-            <!-- Compact Accordion -->
+            <ngx-zen-accordion-group [multiple]="false">
+              @for (accordion of accordions; track accordion; let i = $index) {
+                <ngx-zen-accordion [title]="accordion.title">
+                  <p class="text-black">{{ accordion.content }}</p>
+                </ngx-zen-accordion>
+              }
+            </ngx-zen-accordion-group>
+          }
+          @case(4) {
+            <div>
+              <div class="mb-2">
+                <a (click)="setActiveIndex(0)" [ngClass]="{ 'text-blue-700 font-bold': currentActiveIndex === 0, 'text-blue-500 underline': currentActiveIndex !== 0 }" class="mr-2 cursor-pointer"
+>Open Accordion 1</a>
+                <a (click)="setActiveIndex(1)" [ngClass]="{ 'text-blue-700 font-bold': currentActiveIndex === 1, 'text-blue-500 underline': currentActiveIndex !== 1 }" class="mr-2 cursor-pointer"
+>Open Accordion 2</a>
+                <a (click)="setActiveIndex(2)" [ngClass]="{ 'text-blue-700 font-bold': currentActiveIndex === 2, 'text-blue-500 underline': currentActiveIndex !== 2 }" class="cursor-pointer">Open Accordion 3</a>
+              </div>
+
+              <ngx-zen-accordion-group [multiple]="false" [activeIndex]="currentActiveIndex">
+                <ngx-zen-accordion title="Accordion 1">
+                  <p class="text-black">Content for Accordion 1</p>
+                </ngx-zen-accordion>
+                <ngx-zen-accordion title="Accordion 2">
+                  <p class="text-black">Content for Accordion 2</p>
+                </ngx-zen-accordion>
+                <ngx-zen-accordion title="Accordion 3">
+                  <p class="text-black">Content for Accordion 3</p>
+                </ngx-zen-accordion>
+              </ngx-zen-accordion-group>
+            </div>
+          }
+          @case(5) {
             <ngx-zen-accordion
               title="Accordion Section {{ index + 1 }}"
               size="compact"
-              zenClass="text-black bg-gray-200"
             >
-            <div class="bg-gray-100 p-2 text-sm">
               <p class="text-black">Compact size content of section 5</p>
-            </div>
-            </ngx-zen-accordion>
-          }
-          @case(4) {
-            <!-- Large Accordion -->
-            <ngx-zen-accordion
-              title="Accordion Section {{ index + 1 }}"
-              size="large"
-              zenClass="text-black bg-gray-200"
-            >
-            <div class="bg-gray-100 p-6 text-lg">
-              <p class="text-black">Large size content of section 6</p>
-            </div>
-            </ngx-zen-accordion>
-          }
-          @case(5) {
-            <!-- Accordion with Rounded Edges -->
-            <ngx-zen-accordion
-              title="Accordion Section {{ index + 1 }}"
-              shape="curve"
-              zenClass="text-black bg-gray-200"
-            >
-            <div class="bg-gray-100 py-3 px-2 rounded-lg">
-              <p class="text-black">Rounded shape content of section 7</p>
-            </div>
             </ngx-zen-accordion>
           }
           @case(6) {
-            <!-- Accordion with Snappy Transition -->
             <ngx-zen-accordion
               title="Accordion Section {{ index + 1 }}"
-              transition="snappy"
-              zenClass="text-black bg-gray-200"
+              size="large"
             >
-            <div class="bg-gray-100 py-3 px-2">
-              <p class="text-black">Snappy transition content of section 8</p>
-            </div>
+              <p class="text-black">Large size content of section 6</p>
             </ngx-zen-accordion>
           }
           @case(7) {
-            <!-- Accordion with Left-aligned Icon -->
             <ngx-zen-accordion
               title="Accordion Section {{ index + 1 }}"
-              iconPosition="left"
-              zenClass="text-black bg-gray-200"
+              shape="curve"
             >
-            <div class="bg-gray-100 py-3 px-2">
-              <p class="text-black">Icon on left content of section 9</p>
-            </div>
+              <p class="text-black">Rounded shape content of section 7</p>
             </ngx-zen-accordion>
           }
           @case(8) {
             <ngx-zen-accordion
-              title="Accordion Section 10"
+              title="Accordion Section {{ index + 1 }}"
+              transition="snappy"
+            >
+              <p class="text-black">Snappy transition content of section 8</p>
+            </ngx-zen-accordion>
+          }
+          @case(9) {
+            <ngx-zen-accordion
+              title="Accordion Section {{ index + 1 }}"
+              iconPosition="left"
+            >
+              <p class="text-black">Icon on left content of section 9</p>
+            </ngx-zen-accordion>
+          }
+          @case(10) {
+            <ngx-zen-accordion
+              title="Accordion Section {{ index + 1 }}"
               openIcon="fa-chevron-up"
               closeIcon="fa-chevron-down"
-              zenClass="text-black bg-gray-200"
             >
-            <div class="bg-gray-100 py-3 px-2">
               <p class="text-black">Accordion with different open and close icons</p>
-            </div>
-
             </ngx-zen-accordion>
           }
         }

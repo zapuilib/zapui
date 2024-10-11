@@ -6,8 +6,19 @@ After that, on the `projects/ngx-zen` run `ng build ngx-zen --watch` to build th
 
 Once you're done building it, switch your directory to `projects/ngx-zen-demo/` and run `ng serve` to serve your demo application to browser.
 
-## Adding a new component
+Adding a new component
 
 - Be consistent with the naming
 - Be consistent with the format
-  npm i
+
+Creating components flow
+#NGX-zen
+
+1. Create your new component in ngx-zen src/lib/components
+2. Remember to export the new component in index.ts & public-api.ts
+
+#ngx-zen-demo
+
+1. Import the component in index.ts
+2. Add the component to routing
+3. Add component to sidemenu

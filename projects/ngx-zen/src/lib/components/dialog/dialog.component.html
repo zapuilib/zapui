@@ -1,12 +1,22 @@
-<div class="__ngx__zen__dialog__wrapper" [ngClass]="[shape, zenClass]">
-  <div class="wrapper" [ngStyle]="getWrapperStyle()">
-    <div class="header">
-      <h3 [ngStyle]="getTitleStyle()">{{ title }}</h3>
-    </div>
-
+<div
+  class="__ngx__zen__dialog__wrapper"
+  [ngClass]="[position, shape, zenClass]"
+  [ngStyle]="getWrapperStyle()"
+>
+  <div class="inner" [ngStyle]="getInnerStyle()">
     <div class="content">
+      <div class="header" [ngStyle]="getHeaderStyle()">
+        <h3 [ngStyle]="getTitleStyle()">{{ title }}</h3>
+
+        <div class="handler" (click)="cancel.emit()">
+          <i class="fa-solid fa-xmark" [ngStyle]="getIconStyle()"></i>
+        </div>
+      </div>
+
       @if(text) {
-      <p class="text" [ngStyle]="getTextStyle()">{{ text }}</p>
+      <div class="helper">
+        <p class="text" [ngStyle]="getTextStyle()">{{ text }}</p>
+      </div>
       }
 
       <ng-content></ng-content>

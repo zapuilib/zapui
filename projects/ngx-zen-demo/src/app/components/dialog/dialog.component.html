@@ -112,8 +112,7 @@
         <ngx-zen-dialog
           title="Confirm action"
           text="Are you sure you want to proceed? This action cannot be undone"
-          [primaryBtnTemplate]="customPrimaryButton1"
-          [secondaryBtnTemplate]="customSecondaryButton1"
+          position="top"
         ></ngx-zen-dialog>
         } @case(1) {
         <ngx-zen-dialog
@@ -122,9 +121,10 @@
           text="Are you sure you want to proceed? This action cannot be undone"
           [primaryBtnTemplate]="customPrimaryButton2"
           [secondaryBtnTemplate]="customSecondaryButton2"
+          zenClass="!absolute"
         ></ngx-zen-dialog>
         } @case(2) {
-        <ngx-zen-dialog title="Confirm action">
+        <ngx-zen-dialog title="Confirm action" zenClass="!absolute">
           <div>
             <h3 class="text-black">Title</h3>
             <p class="text-black">Here goes the custom content</p>

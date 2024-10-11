@@ -20,4 +20,10 @@ section {
   h2 {
     @apply text-base mb-3;
   }
+
+  .content{
+    p{
+      @apply text-black;
+    }
+  }
 }

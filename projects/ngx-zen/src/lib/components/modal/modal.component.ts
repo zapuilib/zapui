@@ -33,7 +33,14 @@ export class ModalComponent {
 
   getModalStyle() {
     return {
-      'background-color': this.config.colors.secondary,
+      'background-color': this.config.colors.primary,
+      'font-size': this.config.fontSize.md,
+    };
+  }
+
+  getHandlerStyle() {
+    return {
+      color: this.config.colors.secondary,
       'font-size': this.config.fontSize.md,
     };
   }

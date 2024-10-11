@@ -33,7 +33,7 @@ export class ToggleComponent<T> extends ControlValueAccessorDirective<T> {
   getTextStyle(): Styles {
     return {
       fontSize: this.config.fontSize.sm,
-      color: this.config.colors.secondary,
+      color: this.colorUtility.hexToRgba(this.config.colors.secondary, 0.5),
     };
   }
 
@@ -41,7 +41,7 @@ export class ToggleComponent<T> extends ControlValueAccessorDirective<T> {
     return {
       backgroundColor: this.isToggleOn
         ? this.config.colors.tertiary
-        : this.config.colors.quaternary,
+        : this.colorUtility.hexToRgba(this.config.colors.quaternary, 0.5),
       borderColor: this.config.colors.tertiary,
       fontSize: this.config.fontSize.md,
       color: this.config.colors.primary,

@@ -5,6 +5,7 @@ import { GettingStartedComponent } from './getting-started/getting-started.compo
 import { TooltipComponent } from './tooltip/tooltip.component';
 import { InputComponent } from './input/input.component';
 import { ModalComponent } from './modal/modal.component';
+import { SelectComponent } from './select/select.component';
 import { TextareaComponent } from './textarea/textarea.component';
 import { ToggleComponent } from './toggle/toggle.component';
 
@@ -18,6 +19,7 @@ export * from './textarea/textarea.component';
 export * from './modal/modal.component';
 export * from './checkbox/checkbox.component';
 export * from './toggle/toggle.component';
+export * from './select/select.component';
 
 export const MAIN_COMPONENTS = [
   AlertComponent,
@@ -30,4 +32,5 @@ export const MAIN_COMPONENTS = [
   ModalComponent,
   CheckboxComponent,
   ToggleComponent,
+  SelectComponent,
 ];

@@ -1,6 +1,14 @@
 .__ngx__toggle__wrapper {
   @apply w-full flex justify-between items-center gap-x-4;
 
+  &.between {
+    @apply justify-between;
+  }
+
+  &.start {
+    @apply justify-start;
+  }
+
   .content-wrapper {
     @apply flex flex-col items-start gap-y-4;
 
@@ -11,7 +19,7 @@
 
   button {
     @apply relative w-9 h-5 p-0.5 rounded-2xl;
-    @apply focus:ring-1 focus:ring-offset-1 focus:ring-[var(--focus-color)];
+    @apply focus-within:outline-none focus:ring-1 focus:ring-offset-1 focus:ring-[var(--focus-color)];
   }
 
   .roller {

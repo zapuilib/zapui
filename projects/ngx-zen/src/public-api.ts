@@ -14,3 +14,4 @@ export * from './lib/components/textarea/textarea.component';
 export * from './lib/components/modal/modal.component';
 export * from './lib/components/checkbox/checkbox.component';
 export * from './lib/components/toggle/toggle.component';
+export * from './lib/components/select/select.component';

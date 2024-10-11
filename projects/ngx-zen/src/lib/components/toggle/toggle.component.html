@@ -1,8 +1,8 @@
 <div
   class="__ngx__toggle__wrapper"
-  [ngClass]="[zenClass]"
-  [ngStyle]="{ width: label || text ? '100%' : 'fit-content' }"
+  [ngClass]="[zenClass, label || text ? 'between' : 'start']"
 >
+  @if(label || text) {
   <div class="content-wrapper">
     <div class="lable-wrapper">
       @if(label) {
@@ -14,8 +14,9 @@
       }
     </div>
   </div>
+  }
 
-  <button [ngStyle]="getToggleStyle()" (click)="handleToggle()">
+  <button tabindex="0" [ngStyle]="getToggleStyle()" (click)="handleToggle()">
     <span
       class="roller"
       [ngClass]="[isToggleOn ? 'on' : 'off']"

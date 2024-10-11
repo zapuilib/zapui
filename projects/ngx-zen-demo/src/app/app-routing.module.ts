@@ -10,6 +10,7 @@ import {
   GettingStartedComponent,
   CheckboxComponent,
   ModalComponent,
+  SelectComponent,
   TextareaComponent,
   ToggleComponent,
 } from './components';
@@ -52,6 +53,11 @@ const routes: Routes = [
       {
         path: 'modal',
         component: ModalComponent,
+        pathMatch: 'full',
+      },
+      {
+        path: 'select',
+        component: SelectComponent,
         pathMatch: 'full',
       },
       {

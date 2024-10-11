@@ -12,6 +12,7 @@ import {
   ModalComponent,
   SelectComponent,
   TextareaComponent,
+  DialogComponent,
   ToggleComponent,
 } from './components';
 
@@ -38,6 +39,11 @@ const routes: Routes = [
       {
         path: 'button',
         component: ButtonComponent,
+        pathMatch: 'full',
+      },
+      {
+        path: 'dialog',
+        component: DialogComponent,
         pathMatch: 'full',
       },
       {

@@ -1,23 +1,27 @@
-import { Component, EventEmitter, Inject, Input, Output } from '@angular/core';
+import { Component, Input, forwardRef } from '@angular/core';
+import { NG_VALUE_ACCESSOR } from '@angular/forms';
 
-import { NGX_ZEN_CONFIG } from '../../tokens/ngx-zen.tokens';
+import { ControlValueAccessorDirective } from '../../directives/control-value-accessor.directive';
 
-import type { NgxZenConfig } from '../../interfaces/config.interface';
 import type { Styles } from '../../interfaces/style.interface';
 
 @Component({
   selector: 'ngx-zen-toggle',
   templateUrl: './toggle.component.html',
   styleUrls: ['./toggle.component.scss'],
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => ToggleComponent),
+      multi: true,
+    },
+  ],
 })
-export class ToggleComponent {
-  @Output() toggle: EventEmitter<boolean> = new EventEmitter<boolean>();
+export class ToggleComponent<T> extends ControlValueAccessorDirective<T> {
   @Input() label: string = '';
   @Input() text: string = '';
   @Input() zenClass: string = '';
   isToggleOn: boolean = false;
-
-  constructor(@Inject(NGX_ZEN_CONFIG) private config: NgxZenConfig) {}
 
   getLabelStyle(): Styles {
     return {
@@ -52,6 +56,6 @@ export class ToggleComponent {
 
   handleToggle(): void {
     this.isToggleOn = !this.isToggleOn;
-    this.toggle.emit(this.isToggleOn);
+    this.control.setValue(this.isToggleOn);
   }
 }

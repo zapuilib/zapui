@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-toggle',
@@ -7,6 +7,7 @@ import { ActivatedRoute } from '@angular/router';
   styleUrl: './toggle.component.scss',
 })
 export class ToggleComponent {
+  form: FormGroup;
   markdowns = [
     {
       markdown: `\`\`\`html
@@ -28,5 +29,20 @@ export class ToggleComponent {
     },
   ];
 
-  constructor(private route: ActivatedRoute) {}
+  constructor(private fb: FormBuilder) {
+    this.form = this.fb.group({
+      terms: ['', [Validators.required]],
+      terms2: ['', [Validators.required]],
+      terms3: ['', [Validators.required]],
+      terms4: ['', [Validators.required]],
+    });
+
+    this.handleFormChanges();
+  }
+
+  handleFormChanges(): void {
+    this.form.valueChanges.subscribe((value) => {
+      console.log(value);
+    });
+  }
 }

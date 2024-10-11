@@ -1,0 +1,51 @@
+.__ngx__checkbox__wrapper {
+  @apply w-full flex flex-col gap-y-2;
+  @apply items-start;
+  @apply input:focus-within:outline-0 input:focus-within:ring-2 input:focus-within:ring-offset-0;
+
+  fieldset {
+    @apply flex items-center gap-x-2 max-xl:items-start;
+  }
+
+  &.right {
+    fieldset {
+      @apply flex-row-reverse max-xl:flex-col-reverse;
+    }
+  }
+
+  input {
+    @apply appearance-none h-5 w-5 border cursor-pointer relative;
+
+    &:checked {
+      &::after {
+        @apply content-['\f00c'] font-icon absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2;
+      }
+    }
+  }
+
+  input:disabled {
+    @apply opacity-50 cursor-not-allowed;
+  }
+
+  input:focus {
+    @apply ring-[var(--focus-color)];
+  }
+
+  &.compact {
+    input {
+      @apply h-4 w-4;
+    }
+  }
+
+  &.curve {
+    input {
+      @apply rounded;
+    }
+  }
+
+  &.pill {
+    input {
+      @apply rounded-full;
+    }
+  }
+}

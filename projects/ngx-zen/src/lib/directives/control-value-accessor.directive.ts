@@ -10,13 +10,17 @@ import {
 } from '@angular/forms';
 import { distinctUntilChanged, startWith, Subject, takeUntil, tap } from 'rxjs';
 
+import { NGX_ZEN_CONFIG } from '../tokens/ngx-zen.tokens';
+import { NgxZenConfig } from '../interfaces/config.interface';
+import { ColorUtility } from '../utilities/color.utility';
+
 @Directive({
   selector: '[libControlValueAccessor]',
 })
 export class ControlValueAccessorDirective<T>
   implements OnInit, ControlValueAccessor
 {
-  control: FormControl | undefined;
+  control!: FormControl;
   isRequired: boolean = false;
   colors: any = [];
 
@@ -26,11 +30,45 @@ export class ControlValueAccessorDirective<T>
 
   constructor(
     @Inject(Injector) private injector: Injector,
+    @Inject(NGX_ZEN_CONFIG) public config: NgxZenConfig,
+    public colorUtility: ColorUtility
   ) {}
 
   ngOnInit(): void {
     this.setFormControl();
     this.isRequired = this.control?.hasValidator(Validators.required) ?? false;
+    this.setStyle();
+  }
+
+  setStyle() {
+    const placeholderColor = this.colorUtility.hexToRgba(
+      this.config.colors.quaternary,
+      0.5
+    );
+    const focusColor = this.config.colors.tertiary;
+    document.documentElement.style.setProperty(
+      '--placeholder-color',
+      placeholderColor
+    );
+    document.documentElement.style.setProperty('--focus-color', focusColor);
+  }
+
+  getFieldStyle() {
+    return {
+      color: this.config.colors.secondary,
+      'border-color': this.config.colors.secondary,
+      'font-size': this.config.fontSize.md,
+    };
+  }
+
+  getStyle() {
+    return {
+      color: this.config.colors.secondary,
+    };
+  }
+
+  getErrorColor() {
+    return this.config.colors.error;
   }
 
   setFormControl() {
@@ -53,9 +91,13 @@ export class ControlValueAccessorDirective<T>
   }
 
   writeValue(value: any): void {
-    this.control
-      ? this.control.setValue(value)
-      : (this.control = new FormControl(value));
+    if (this.control) {
+      if (this.control.value !== value) {
+        this.control.setValue(value, { emitEvent: false });
+      }
+    } else {
+      this.control = new FormControl(value);
+    }
   }
 
   registerOnChange(fn: (val: T | null) => T): void {

@@ -9,18 +9,6 @@ section {
     @apply text-2xl font-semibold mb-5;
   }
 
-  &.light {
-    @apply bg-white;
-  }
-
-  &.dark {
-    @apply bg-[#181818] text-white;
-
-    ngx-zen-button {
-      @apply bg-[#282828] text-white;
-    }
-  }
-
   .card {
     @apply py-5 w-[50%];
   }

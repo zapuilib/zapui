@@ -1,7 +1,7 @@
 section {
   @apply px-60 py-12 transition-all;
 
-  ngx-zen-alert {
+  ngx-zen-toggle {
     @apply col-span-4 p-32 flex justify-center items-center bg-zinc-50 rounded-md;
   }
 
@@ -9,12 +9,24 @@ section {
     @apply text-2xl font-semibold mb-5;
   }
 
+  &.light {
+    @apply bg-white;
+  }
+
+  &.dark {
+    @apply bg-[#181818] text-white;
+
+    ngx-zen-toggle {
+      @apply bg-[#282828] text-white;
+    }
+  }
+
   .card {
     @apply py-5 w-[50%];
 
     .content {
       .ui {
-        @apply min-h-[295px] h-fit rounded bg-white relative;
+        @apply min-h-[295px] rounded bg-white relative;
       }
     }
   }

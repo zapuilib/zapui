@@ -84,6 +84,27 @@ export class DialogComponent {
     };
   }
 
+  getPrimaryBtnStyle(): Styles {
+    return {
+      borderColor: this.config.colors.error,
+      backgroundColor: this.config.colors.error,
+      color: this.config.colors.primary,
+      fontSize: this.config.fontSize.md,
+    };
+  }
+
+  getSecondaryBtnStyle(): Styles {
+    return {
+      borderColor: this.colorUtility.hexToRgba(
+        this.config.colors.quaternary,
+        0.5
+      ),
+      backgroundColor: 'transparent',
+      color: this.config.colors.secondary,
+      fontSize: this.config.fontSize.md,
+    };
+  }
+
   getCancelButtonStyle(): any {
     return `border-[${this.config.colors.tertiary}]`;
   }

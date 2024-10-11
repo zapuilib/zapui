@@ -57,6 +57,34 @@
         </td>
       </tr>
       <tr>
+        <td><code>position</code></td>
+        <td><p>Optional</p></td>
+        <td><code>top</code>|<code>default</code></td>
+        <td>
+          <p>
+            Controls the position of the dialog. "top" positions the dialog
+            above the content, while "default" positions it below the content.
+            Initialy set to "default".
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td><code>primaryBtnTemplate</code></td>
+        <td><p>Optional</p></td>
+        <td><code>ngx-zen-button</code></td>
+        <td>
+          <p>Allows to inject a custom template for the primary button.</p>
+        </td>
+      </tr>
+      <tr>
+        <td><code>secondaryBtnTemplate</code></td>
+        <td><p>Optional</p></td>
+        <td><code>ngx-zen-button</code></td>
+        <td>
+          <p>Allows to inject a custom template for the secondary button.</p>
+        </td>
+      </tr>
+      <tr>
         <td><code>zenClass</code></td>
         <td><p>Optional</p></td>
         <td><code>string</code></td>
@@ -112,24 +140,37 @@
         <ngx-zen-dialog
           title="Confirm action"
           text="Are you sure you want to proceed? This action cannot be undone"
-          position="top"
+          zenClass="!absolute"
         ></ngx-zen-dialog>
         } @case(1) {
         <ngx-zen-dialog
           title="Confirm action"
           shape="curve"
           text="Are you sure you want to proceed? This action cannot be undone"
-          [primaryBtnTemplate]="customPrimaryButton2"
-          [secondaryBtnTemplate]="customSecondaryButton2"
           zenClass="!absolute"
         ></ngx-zen-dialog>
         } @case(2) {
+        <ngx-zen-dialog
+          title="Confirm action"
+          shape="pill"
+          text="Are you sure you want to proceed? This action cannot be undone"
+          zenClass="!absolute"
+        ></ngx-zen-dialog>
+        } @case(3) {
         <ngx-zen-dialog title="Confirm action" zenClass="!absolute">
           <div>
             <h3 class="text-black">Title</h3>
             <p class="text-black">Here goes the custom content</p>
           </div>
         </ngx-zen-dialog>
+        } @case(4){
+        <ngx-zen-dialog
+          title="Confirm action"
+          text="Are you sure you want to proceed? This action cannot be undone"
+          zenClass="!absolute"
+          [primaryBtnTemplate]="customPrimaryButton"
+          [secondaryBtnTemplate]="customSecondaryButton"
+        ></ngx-zen-dialog>
         } }
       </div>
       <div class="code-wrapper">
@@ -139,26 +180,14 @@
   </div>
 </ng-template>
 
-<ng-template #customPrimaryButton1>
+<ng-template #customPrimaryButton>
   <ngx-zen-button text="Confirm" shape="default"></ngx-zen-button>
 </ng-template>
 
-<ng-template #customSecondaryButton1>
+<ng-template #customSecondaryButton>
   <ngx-zen-button
     text="Cancel"
     shape="default"
-    variant="outlined"
-  ></ngx-zen-button>
-</ng-template>
-
-<ng-template #customPrimaryButton2>
-  <ngx-zen-button text="Confirm" shape="curve"></ngx-zen-button>
-</ng-template>
-
-<ng-template #customSecondaryButton2>
-  <ngx-zen-button
-    text="Cancel"
-    shape="curve"
     variant="outlined"
   ></ngx-zen-button>
 </ng-template>

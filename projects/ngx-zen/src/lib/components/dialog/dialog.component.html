@@ -26,15 +26,11 @@
       @if (secondaryBtnTemplate) {
       <ng-container [ngTemplateOutlet]="secondaryBtnTemplate"></ng-container>
       } @else {
-      <ngx-zen-button
-        text="Cancel"
-        [shape]="shape"
-        variant="outlined"
-      ></ngx-zen-button>
+      <button class="btn" [ngStyle]="getSecondaryBtnStyle()">Cancel</button>
       } @if (primaryBtnTemplate) {
       <ng-container [ngTemplateOutlet]="primaryBtnTemplate"></ng-container>
       } @else {
-      <ngx-zen-button text="Confirm" [shape]="shape"></ngx-zen-button>
+      <button class="btn" [ngStyle]="getPrimaryBtnStyle()">Confirm</button>
       }
     </div>
   </div>

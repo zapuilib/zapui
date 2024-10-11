@@ -20,19 +20,39 @@
       }
 
       .handler {
-        @apply cursor-pointer;
+        @apply cursor-pointer p-1 -mr-1;
       }
     }
 
     .footer {
       @apply flex justify-end items-center gap-x-4;
       @apply mt-auto;
+
+      .btn {
+        @apply px-5 pt-2 pb-2;
+        @apply border;
+        @apply hover:opacity-80;
+      }
     }
   }
 
   &.curve {
-    .wrapper {
+    .inner {
       @apply rounded-md;
+    }
+
+    .btn {
+      @apply rounded-md;
+    }
+  }
+
+  &.pill {
+    .inner {
+      @apply rounded-xl;
+    }
+
+    .btn {
+      @apply rounded-full;
     }
   }
 }

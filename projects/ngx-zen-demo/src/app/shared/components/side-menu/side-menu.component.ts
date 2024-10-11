@@ -51,12 +51,20 @@ export class SideMenuComponent {
           routerLink: '/modal',
         },
         {
+          title: 'Select',
+          routerLink: '/select',
+        },
+        {
           title: 'Snackbar',
           routerLink: '/snackbar',
         },
         {
           title: 'Textarea',
           routerLink: '/textarea',
+        },
+        {
+          title: 'Toggle',
+          routerLink: '/toggle',
         },
         {
           title: 'Tooltip',

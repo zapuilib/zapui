@@ -1,20 +1,16 @@
-<div 
-    class="__ngx__zen__chip__wrapper flex items-center" 
-    [ngClass]="[variant, size, disabled ? 'disabled' : '', zenClass]"
-    [ngStyle]="getStyle()"
+<div
+  class="__ngx__zen__chip__wrapper"
+  [ngClass]="[variant, size, disabled ? 'disabled' : '', zenClass]"
+  [ngStyle]="getStyle()"
 >
-    @if (icon) {
-        <i class="fa-solid" [ngClass]="[icon, iconPosition]"></i>
-    }
-    <span class="chip__text">{{ text }}</span>
-    
-    @if (removable) {
-        <button 
-            class="chip__remove"
-            (click)="onRemove($event)"
-            [disabled]="disabled"
-        >
-            <i class="fa-solid fa-times"></i>
-        </button>
-    }
+  @if (icon) {
+  <i class="fa-solid" [ngClass]="[icon, iconPosition]"></i>
+  }
+  <span class="chip__text" [ngStyle]="getTextStyle()">{{ text }}</span>
+
+  @if (dismissible) {
+  <button class="chip__remove" (click)="onRemove($event)" [disabled]="disabled">
+    <i class="fa-solid fa-times"></i>
+  </button>
+  }
 </div>

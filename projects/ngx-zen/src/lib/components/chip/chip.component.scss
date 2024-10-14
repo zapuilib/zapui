@@ -11,11 +11,6 @@
 
   &.outlined {
     @apply border-2;
-
-    .chip__text{
-      @apply text-blue-500;
-    }
-
   }
 
   &.disabled {
@@ -48,7 +43,7 @@
     }
 
     &.left {
-     @apply pr-2;
+      @apply pr-2;
     }
   }
 }

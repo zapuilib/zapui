@@ -13,12 +13,9 @@ import { AccordionComponent } from '../accordion/accordion.component';
   selector: 'ngx-zen-accordion-group',
   template: `<ng-content></ng-content>`,
 })
-export class AccordionGroupComponent
-  implements AfterContentInit, OnChanges
-{
+export class AccordionGroupComponent implements AfterContentInit, OnChanges {
   @Input() multiple: boolean = true;
   @Input() activeIndex: number | null = null;
-  @Input() fullBordered: boolean = false;
 
   @ContentChildren(AccordionComponent)
   childAccordions!: QueryList<AccordionComponent>;
@@ -29,18 +26,21 @@ export class AccordionGroupComponent
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes['activeIndex'] && changes['activeIndex'].currentValue !== null) {
+    if (
+      changes['activeIndex'] &&
+      changes['activeIndex'].currentValue !== null
+    ) {
       this.updateActiveAccordion();
     }
   }
 
-  onAccordionToggle(openAccordion: AccordionComponent) {
+  onAccordionToggle(openAccordion: AccordionComponent): void {
     if (!this.multiple) {
       this.closeOthers(openAccordion);
     }
   }
 
-  closeOthers(openAccordion: AccordionComponent) {
+  closeOthers(openAccordion: AccordionComponent): void {
     this.childAccordions.forEach((accordion) => {
       if (accordion !== openAccordion) {
         accordion.isOpen = false;
@@ -48,12 +48,15 @@ export class AccordionGroupComponent
     });
   }
 
-  private updateActiveAccordion() {
+  private updateActiveAccordion(): void {
     if (!this.childAccordions || !this.childAccordions.length) {
       return;
     }
 
-    if (this.activeIndex !== null && this.activeIndex < this.childAccordions.length) {
+    if (
+      this.activeIndex !== null &&
+      this.activeIndex < this.childAccordions.length
+    ) {
       const targetAccordion = this.childAccordions.toArray()[this.activeIndex];
 
       targetAccordion.isOpen = true;
@@ -65,7 +68,7 @@ export class AccordionGroupComponent
     }
   }
 
-  private assignPositions() {
+  private assignPositions(): void {
     const accordionsArray = this.childAccordions.toArray();
     const totalAccordions = accordionsArray.length;
 

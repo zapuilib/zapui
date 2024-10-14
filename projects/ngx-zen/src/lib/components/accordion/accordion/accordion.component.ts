@@ -23,7 +23,7 @@ export class AccordionComponent {
   @Input() zenClass: string = '';
   @Input() isOpen: boolean = false;
   @Input() disabled: boolean = false;
-  @Input() size: 'compact' | 'default' | 'large' = 'default';
+  @Input() size: 'compact' | 'default' | 'large' = 'compact';
   @Input() shape: 'curve' | 'default' = 'default';
   @Input() transition: 'smooth' | 'snappy' | 'none' = 'smooth';
   @Input() iconPosition: 'left' | 'right' = 'right';
@@ -35,30 +35,39 @@ export class AccordionComponent {
   @Input() isSingle: boolean = false;
 
   disabledColor: string = '';
+  iconSize: string = '';
 
   @Output() toggle: EventEmitter<void> = new EventEmitter<void>();
 
   constructor(
+    @Optional() public group: AccordionGroupComponent,
     @Inject(NGX_ZEN_CONFIG) private config: NgxZenConfig,
-    private colorUtility: ColorUtility,
-    @Optional() public group: AccordionGroupComponent
+    private colorUtility: ColorUtility
   ) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.checkIfSingle();
+    this.getIconSize();
   }
 
-  checkIfSingle() {
+  checkIfSingle(): void {
     if (!this.group) {
       this.isSingle = true;
     }
+  }
+
+  getIconSize(): void {
+    this.iconSize =
+      this.size === 'compact'
+        ? this.config.fontSize.md
+        : this.config.fontSize.lg;
   }
 
   get icon(): string {
     return this.isOpen ? this.openIcon : this.closeIcon;
   }
 
-  toggleAccordion() {
+  toggleAccordion(): void {
     if (this.disabled) {
       return;
     }
@@ -70,36 +79,31 @@ export class AccordionComponent {
     }
   }
 
-  getDisabledColor() {
+  getDisabledColor(): string {
     return this.colorUtility.hexToRgba(this.config.colors.secondary, 0.5);
   }
 
-  getIconStyle() {
+  getIconStyle(): Record<string, string> {
     const color = this.disabled
       ? this.getDisabledColor()
       : this.config.colors.secondary;
 
-    const size =
-      this.size === 'compact'
-        ? this.config.fontSize.sm
-        : this.config.fontSize.md;
-
     return {
       color,
-      'font-size': size,
-      'margin-right': this.iconPosition === 'left' ? '0.5rem' : '0',
+      'font-size': this.iconSize,
+      'margin-right': this.iconPosition === 'left' ? '1rem' : '0',
       'margin-left': this.iconPosition === 'right' ? '0.5rem' : '0',
     };
   }
 
-  getTitleStyle() {
+  getTitleStyle(): Record<string, string> {
     const color = this.disabled
       ? this.getDisabledColor()
       : this.config.colors.secondary;
 
     const fontSize =
       this.size === 'compact'
-        ? this.config.fontSize.sm
+        ? this.config.fontSize.md
         : this.config.fontSize.lg;
 
     return {
@@ -108,7 +112,7 @@ export class AccordionComponent {
     };
   }
 
-  getBorderStyle() {
+  getBorderStyle(): Record<string, string> {
     const borderColor = this.colorUtility.hexToRgba(
       this.config.colors.quaternary,
       0.1
@@ -127,11 +131,11 @@ export class AccordionComponent {
     };
   }
 
-  getSubtitleStyle() {
+  getSubtitleStyle(): Record<string, string> {
     const fontSize =
       this.size === 'compact'
-        ? this.config.fontSize.xs
-        : this.config.fontSize.sm;
+        ? this.config.fontSize.md
+        : this.config.fontSize.lg;
 
     const mutedColor = this.colorUtility.hexToRgba(
       this.config.colors.quaternary,
@@ -145,15 +149,15 @@ export class AccordionComponent {
     };
   }
 
-  getContentStyle() {
-    const size =
-      this.size === 'compact'
-        ? this.config.fontSize.sm
-        : this.config.fontSize.md;
+  getContentStyle(): Record<string, string> {
+    const openPadding = this.isOpen ? '0.75rem' : '0';
 
     return {
       'margin-left':
-        this.iconPosition === 'left' ? `calc(${size} + 0.4rem)` : '0', // Offset content based on icon size
+        this.iconPosition === 'left'
+          ? `calc(${this.iconSize} + 0.875rem)`
+          : '0', // Offset content based on icon size
+      'padding-top': openPadding,
     };
   }
 }

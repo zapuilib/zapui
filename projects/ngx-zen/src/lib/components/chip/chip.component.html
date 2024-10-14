@@ -3,14 +3,11 @@
     [ngClass]="[variant, size, disabled ? 'disabled' : '', zenClass]"
     [ngStyle]="getStyle()"
 >
-    @if (icon && iconPosition === 'left') {
-        <i class="fa-solid" [ngClass]="icon"></i>
+    @if (icon) {
+        <i class="fa-solid" [ngClass]="[icon, iconPosition]"></i>
     }
     <span class="chip__text">{{ text }}</span>
-    @if (icon && iconPosition === 'right') {
-        <i class="fa-solid" [ngClass]="icon"></i>
-    }
-
+    
     @if (removable) {
         <button 
             class="chip__remove"

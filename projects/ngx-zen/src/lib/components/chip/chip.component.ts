@@ -1,6 +1,9 @@
 import { Component, Inject, Input, Output, EventEmitter } from '@angular/core';
 import { NGX_ZEN_CONFIG } from '../../tokens/ngx-zen.tokens';
 import { NgxZenConfig } from '../../interfaces/config.interface';
+import { Styles } from '../../interfaces/style.interface';
+
+
 
 @Component({
   selector: 'ngx-zen-chip',
@@ -20,12 +23,12 @@ export class ChipComponent {
 
   constructor(@Inject(NGX_ZEN_CONFIG) private config: NgxZenConfig) {}
 
-  getStyle() {
+  getStyle(): Styles {
     const isOutlined = this.variant === 'outlined';
     return {
-      'background-color': isOutlined ? 'transparent' : this.config.colors.tertiary,
+      backgroundColor: isOutlined ? 'transparent' : this.config.colors.tertiary,
        color: isOutlined ? this.config.colors.info : this.config.colors.primary, 
-      'font-size': this.size === 'small' ? this.config.fontSize.xs : this.size === 'wide' ? this.config.fontSize.sm : this.config.fontSize.md,
+      fontSize: this.size === 'small' ? this.config.fontSize.xs : this.size === 'wide' ? this.config.fontSize.sm : this.config.fontSize.md,
     };
   }
 

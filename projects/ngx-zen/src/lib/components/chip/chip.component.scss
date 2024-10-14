@@ -22,8 +22,8 @@
     @apply opacity-50 cursor-not-allowed;
   }
 
-  .fa-solid {
-    @apply ml-2 mr-2 flex-shrink-0 flex items-center;
+  i {
+    @apply flex-shrink-0 flex items-center;
   }
 
   .chip__remove {
@@ -40,5 +40,15 @@
 
   .chip__text {
     @apply flex-grow flex items-center;
+  }
+
+  i {
+    &.right {
+      @apply pl-2 order-last;
+    }
+
+    &.left {
+     @apply pr-2;
+    }
   }
 }

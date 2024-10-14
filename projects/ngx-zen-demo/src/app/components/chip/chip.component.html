@@ -1,0 +1,136 @@
+<section class="min-h-screen">
+  <h1>Chips</h1>
+  @for(item of markdowns; track item; let i = $index) {
+  <ng-container
+    *ngTemplateOutlet="
+      card;
+      context: {
+        $implicit: markdowns[i].markdown,
+        title: markdowns[i].title,
+        index: i
+      }
+    "
+  >
+  </ng-container>
+  }
+  <h2>Properties</h2>
+  <table>
+    <thead>
+      <tr>
+        <th class="w-[10%]">Parameter</th>
+        <th class="w-[10%]">Required</th>
+        <th class="w-[30%]">Accepted values</th>
+        <th class="w-[50%]">Usage</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>variant</code></td>
+        <td>Optional</td>
+        <td><code>outlined</code>|<code>default</code></td>
+        <td>
+          Defines the chip style. "Outlined" is a bordered chip, and "default"
+          is the standard chip.
+        </td>
+      </tr>
+      <tr>
+        <td><code>size</code></td>
+        <td>Optional</td>
+        <td><code>small</code>|<code>wide</code>|<code>wider</code></td>
+        <td>
+          Defines the size of the chip. Defaults to "medium" if not specified.
+        </td>
+      </tr>
+      <tr>
+        <td><code>icon</code></td>
+        <td>Optional</td>
+        <td><code>string</code></td>
+        <td>
+          Specifies the icon class to be used (e.g., "fa-user" for Font Awesome
+          icons).
+        </td>
+      </tr>
+      <tr>
+        <td><code>iconPosition</code></td>
+        <td>Optional</td>
+        <td><code>left</code>|<code>right</code></td>
+        <td>
+          Specifies the position of the icon. Defaults to "left" if not
+          specified.
+        </td>
+      </tr>
+      <tr>
+        <td><code>dismissible</code></td>
+        <td>Optional</td>
+        <td><code>boolean</code></td>
+        <td>If set to true, adds a remove button to the chip.</td>
+      </tr>
+      <tr>
+        <td><code>disabled</code></td>
+        <td>Optional</td>
+        <td><code>boolean</code></td>
+        <td>
+          If set to true, disables the chip and prevents user interaction.
+        </td>
+      </tr>
+      <tr>
+        <td><code>zenClass</code></td>
+        <td>Optional</td>
+        <td><code>string</code></td>
+        <td>
+          Allows overriding default styles by passing Tailwind CSS classes.
+          Utilize the <code>ngx-zen/tailwind</code> plugin to target specific
+          elements within the chip component.
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<ng-template let-markdown let-title="title" let-index="index" #card>
+  <div class="card">
+    <div class="header">
+      <h2>{{ title }}</h2>
+    </div>
+    <div class="content">
+      <div class="ui">
+        @switch(index) { @case(0) {
+        <ngx-zen-chip text="Basic Chip"></ngx-zen-chip> } @case(1) {
+        <ngx-zen-chip
+          text="Outlined Chip"
+          zenClass="bg-red-500"
+          variant="outlined"
+        ></ngx-zen-chip>
+        } @case(2) {
+        <ngx-zen-chip
+          text="dismissible Chip"
+          [dismissible]="true"
+        ></ngx-zen-chip>
+        } @case(3) {
+        <ngx-zen-chip text="Disabled Chip" [disabled]="true"></ngx-zen-chip> }
+        @case(4) {
+        <ngx-zen-chip text="Small Chip" size="small"></ngx-zen-chip>
+        } @case(5) {
+        <ngx-zen-chip text="Wide Chip" size="wide"></ngx-zen-chip>
+        } @case(6) {
+        <ngx-zen-chip text="Wider Chip" size="wider"></ngx-zen-chip>
+        } @case(7) {
+        <ngx-zen-chip
+          text="Leading Icon"
+          icon="fa-user"
+          iconPosition="left"
+        ></ngx-zen-chip>
+        } @case(8) {
+        <ngx-zen-chip
+          text="Trailing Icon"
+          icon="fa-cog"
+          iconPosition="right"
+        ></ngx-zen-chip>
+        }}
+      </div>
+      <div class="code-wrapper">
+        <app-code-block [markdownData]="markdown"></app-code-block>
+      </div>
+    </div>
+  </div>
+</ng-template>

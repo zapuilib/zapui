@@ -7,6 +7,7 @@ import {
   ButtonComponent,
   InputComponent,
   TooltipComponent,
+  ChipComponent, 
   GettingStartedComponent,
   CheckboxComponent,
   ModalComponent,
@@ -45,6 +46,11 @@ const routes: Routes = [
       {
         path: 'badge',
         component: BadgeComponent,
+        pathMatch: 'full',
+      },
+      {
+        path: 'chip',
+        component: ChipComponent,
         pathMatch: 'full',
       },
       {

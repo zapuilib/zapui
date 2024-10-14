@@ -56,7 +56,7 @@
 
   /* Base Styles for Header */
   .__zen__accordion__header {
-    @apply flex items-center justify-between cursor-pointer border px-1 py-2;
+    @apply flex items-center justify-between cursor-pointer border px-1.5 py-2;
 
     .accordion__icon {
       @apply text-lg;
@@ -69,6 +69,6 @@
 
   /* Base Styles for Content */
   .__zen__accordion__content {
-    @apply p-4 border-t transition-all duration-300 ease-in-out;
+    @apply px-1.5 py-2 border-t transition-all duration-300 ease-in-out;
   }
 }

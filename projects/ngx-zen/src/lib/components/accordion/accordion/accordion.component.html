@@ -1,4 +1,4 @@
-<div class="__zen__accordion__wrapper" [ngClass]="[zenClass, size, shape, transition, 'icon-' + iconPosition]">
+<div class="__zen__accordion__wrapper" [ngClass]="[zenClass, size, shape, transition, 'icon-' + iconPosition]" (click)="group.onAccordionToggle(this)" >
   <div class="__zen__accordion__header" (click)="toggleAccordion()" [ngClass]="{ 'disabled': disabled }">
     <span class="accordion__title" [ngStyle]="getTitleStyle()">{{ title }}</span>
     <i class="accordion__icon fa" [ngClass]="icon" [ngStyle]="getIconStyle()" aria-hidden="true"></i>

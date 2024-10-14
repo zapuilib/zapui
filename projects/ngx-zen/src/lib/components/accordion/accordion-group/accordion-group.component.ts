@@ -4,11 +4,9 @@ import {
   QueryList,
   AfterContentInit,
   Input,
-  OnDestroy,
   SimpleChanges,
   OnChanges,
 } from '@angular/core';
-import { Subscription } from 'rxjs';
 import { AccordionComponent } from '../accordion/accordion.component';
 
 @Component({
@@ -16,7 +14,7 @@ import { AccordionComponent } from '../accordion/accordion.component';
   template: `<ng-content></ng-content>`,
 })
 export class AccordionGroupComponent
-  implements AfterContentInit, OnDestroy, OnChanges
+  implements AfterContentInit, OnChanges
 {
   @Input() multiple: boolean = true;
   @Input() activeIndex: number | null = null;
@@ -24,44 +22,23 @@ export class AccordionGroupComponent
   @ContentChildren(AccordionComponent)
   childAccordions!: QueryList<AccordionComponent>;
 
-  private sub: Subscription = new Subscription();
-
-  ngAfterContentInit() {
-    this.initializeAccordions();
+  ngAfterContentInit(): void {
+    this.updateActiveAccordion();
   }
 
-  ngOnChanges(changes: SimpleChanges) {
-    if (
-      changes['activeIndex'] &&
-      changes['activeIndex'].currentValue !== null
-    ) {
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['activeIndex'] && changes['activeIndex'].currentValue !== null) {
       this.updateActiveAccordion();
     }
   }
 
-  private initializeAccordions() {
-    this.sub.unsubscribe();
-    this.sub = new Subscription();
-
-    this.childAccordions.forEach((accordion, index) => {
-      const subscription = accordion.toggle.subscribe(() => {
-        if (!this.multiple) {
-          this.closeOthers(accordion);
-        }
-      });
-      this.sub.add(subscription);
-    });
-
-    this.updateActiveAccordion();
-  }
-
-  private onAccordionToggle(openAccordion: AccordionComponent) {
+  onAccordionToggle(openAccordion: AccordionComponent) {
     if (!this.multiple) {
       this.closeOthers(openAccordion);
     }
   }
 
-  private closeOthers(openAccordion: AccordionComponent) {
+  closeOthers(openAccordion: AccordionComponent) {
     this.childAccordions.forEach((accordion) => {
       if (accordion !== openAccordion) {
         accordion.isOpen = false;
@@ -74,10 +51,7 @@ export class AccordionGroupComponent
       return;
     }
 
-    if (
-      this.activeIndex !== null &&
-      this.activeIndex < this.childAccordions.length
-    ) {
+    if (this.activeIndex !== null && this.activeIndex < this.childAccordions.length) {
       const targetAccordion = this.childAccordions.toArray()[this.activeIndex];
       targetAccordion.isOpen = true;
       if (!this.multiple) {
@@ -85,9 +59,5 @@ export class AccordionGroupComponent
       }
       this.activeIndex = null;
     }
-  }
-
-  ngOnDestroy() {
-    this.sub.unsubscribe();
   }
 }

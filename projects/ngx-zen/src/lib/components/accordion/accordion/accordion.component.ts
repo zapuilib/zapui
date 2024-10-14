@@ -1,7 +1,9 @@
-import { Component, Input, Inject, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Inject, Output, EventEmitter, Optional } from '@angular/core';
+
 import { NGX_ZEN_CONFIG } from '../../../tokens/ngx-zen.tokens';
 import { NgxZenConfig } from '../../../interfaces/config.interface';
 import { ColorUtility } from '../../../utilities/color.utility';
+import { AccordionGroupComponent } from '../accordion-group/accordion-group.component';
 
 @Component({
   selector: 'ngx-zen-accordion',
@@ -19,12 +21,14 @@ export class AccordionComponent {
   @Input() iconPosition: 'left' | 'right' = 'right';
   @Input() openIcon: string = 'fa-minus';
   @Input() closeIcon: string = 'fa-plus';
+  disabledColor: string = ''
 
   @Output() toggle: EventEmitter<void> = new EventEmitter<void>();
 
   constructor(
     @Inject(NGX_ZEN_CONFIG) private config: NgxZenConfig,
-    private colorUtility: ColorUtility
+    private colorUtility: ColorUtility,
+    @Optional() public group: AccordionGroupComponent
   ) {}
 
   get icon(): string {
@@ -37,12 +41,23 @@ export class AccordionComponent {
     }
     this.isOpen = !this.isOpen;
     this.toggle.emit();
+
+    if (this.group) {
+      this.group.onAccordionToggle(this);
+    }
+  }
+
+  getDisabledColor() {
+    return this.colorUtility.hexToRgba(
+      this.config.colors.secondary,
+      0.5
+    );
   }
 
   getIconStyle() {
     const color = this.disabled
-      ? '#A0AEC0' // Gray or other disabled color
-      : this.config.colors.tertiary ?? '#4a5568';
+      ? this.getDisabledColor()
+      : this.config.colors.tertiary
 
     const size =
       this.size === 'compact'
@@ -60,12 +75,7 @@ export class AccordionComponent {
   }
 
   getTitleStyle() {
-    const disabledColor = this.colorUtility.hexToRgba(
-      this.config.colors.secondary,
-      0.5
-    );
-
-    const color = this.disabled ? disabledColor : this.config.colors.secondary;
+    const color = this.disabled ? this.getDisabledColor() : this.config.colors.secondary;
 
     const fontSize =
       this.size === 'compact'

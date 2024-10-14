@@ -14,7 +14,7 @@ import {
   TextareaComponent,
   DialogComponent,
   ToggleComponent,
-  NotificationComponent,
+  BadgeComponent,
 } from './components';
 
 const routes: Routes = [
@@ -43,8 +43,8 @@ const routes: Routes = [
         pathMatch: 'full',
       },
       {
-        path: 'notification',
-        component: NotificationComponent,
+        path: 'badge',
+        component: BadgeComponent,
         pathMatch: 'full',
       },
       {

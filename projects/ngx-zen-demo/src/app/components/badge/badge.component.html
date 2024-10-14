@@ -1,0 +1,76 @@
+<section class="min-h-screen">
+    <h1>Badge</h1>
+    @for(item of markdowns; track item; let i = $index) {
+        <ng-container
+            *ngTemplateOutlet="
+                card;
+                context: {
+                    $implicit: markdowns[i].markdown,
+                    title: markdowns[i].title,
+                    index: i
+                }
+            "
+        >
+        </ng-container>
+    }
+    <h2>Properties</h2>
+    <table>
+        <thead>
+            <tr>
+                <th class="w-[10%]">Parameter</th>
+                <th class="w-[10%]">Required</th>
+                <th class="w-[30%]">Accepted values</th>
+                <th class="w-[50%]">Usage</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><code>variant</code></td>
+                <td>Optional</td>
+                <td><code>empty</code> | <code>content</code> | <code>border</code></td>
+                <td>Defines the style of the badge. Defaults to <code>empty</code>.</td>
+            </tr>
+            <tr>
+                <td><code>count</code></td>
+                <td>Optional</td>
+                <td><code>number</code></td>
+                <td>The number to display in the badge badge. Only applies to <code>content</code> and <code>border</code> variants.</td>
+            </tr>
+            <tr>
+                <td><code>zenClass</code></td>
+                <td>Optional</td>
+                <td><code>string</code></td>
+                <td>Additional CSS classes to be applied to the badge.</td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+<ng-template let-markdown let-title="title" let-index="index"  #card >
+    <div class="card">
+        <div class="header">
+            <h2>{{ title }}</h2>
+        </div>
+        <div class="content">
+        <div class="ui">
+            @switch (index) {
+                @case (0) {
+                    <ngx-zen-badge variant="empty"></ngx-zen-badge>
+                }
+                @case (1) {
+                    <div class="badge-with-icon">
+                        <ngx-zen-badge variant="content" [count]="1"></ngx-zen-badge>
+                    </div>
+                }
+                @case (2) {
+                    <ngx-zen-badge variant="border" [count]="100"></ngx-zen-badge>
+                }
+            }
+        </div>
+        <div class="code-wrapper">
+            <app-code-block [markdownData]="markdown"></app-code-block>
+        </div>
+    </div>
+    </div>
+</ng-template>
+    

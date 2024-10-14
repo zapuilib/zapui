@@ -35,8 +35,8 @@ export class SideMenuComponent {
           routerLink: '/button',
         },
         {
-          title: 'Notification',
-          routerLink: '/notification',
+          title: 'Badge',
+          routerLink: '/badge',
         },
         {
           title: 'Checkbox',

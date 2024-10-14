@@ -2,7 +2,7 @@ import { AlertComponent } from './alert/alert.component';
 import { ButtonComponent } from './button/button.component';
 import { CheckboxComponent } from './checkbox/checkbox.component';
 import { InputComponent } from './input/input.component';
-import { NotificationComponent } from './notification/notification.component';
+import { BadgeComponent } from './badge/badge.component';
 import { TooltipComponent } from './tooltip/tooltip.component';
 import { ModalComponent } from './modal/modal.component';
 import { SelectComponent } from './select/select.component';
@@ -14,7 +14,7 @@ export const COMPONENTS = [
   AlertComponent,
   ButtonComponent,
   AlertComponent,
-  NotificationComponent,
+  BadgeComponent,
   InputComponent,
   CheckboxComponent,
   TooltipComponent,

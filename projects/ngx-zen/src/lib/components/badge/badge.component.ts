@@ -4,14 +4,15 @@ import { NgxZenConfig } from '../../interfaces/config.interface';
 import { Styles } from '../../interfaces/style.interface';
 
 @Component({
-  selector: 'ngx-zen-notification',
-  templateUrl: './notification.component.html',
-  styleUrls: ['./notification.component.scss'],
+  selector: 'ngx-zen-badge',
+  templateUrl: './badge.component.html',
+  styleUrls: ['./badge.component.scss'],
 })
-export class NotificationComponent {
+export class BadgeComponent {
   @Input() variant: 'empty' | 'content' | 'border' = 'empty';
   @Input() count: number = 0;
   @Input() zenClass: string = '';
+  @Input() icon: string = '';
 
   constructor(@Inject(NGX_ZEN_CONFIG) private config: NgxZenConfig) {}
 

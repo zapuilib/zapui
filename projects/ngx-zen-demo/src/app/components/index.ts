@@ -2,7 +2,7 @@ import { AlertComponent } from './alert/alert.component';
 import { ButtonComponent } from './button/button.component';
 import { CheckboxComponent } from './checkbox/checkbox.component';
 import { GettingStartedComponent } from './getting-started/getting-started.component';
-import { NotificationComponent } from './notification/notification.component';
+import { BadgeComponent } from './badge/badge.component';
 import { TooltipComponent } from './tooltip/tooltip.component';
 import { InputComponent } from './input/input.component';
 import { ModalComponent } from './modal/modal.component';
@@ -13,7 +13,7 @@ import { ToggleComponent } from './toggle/toggle.component';
 
 export * from './alert/alert.component';
 export * from './button/button.component';
-export * from './notification/notification.component';
+export * from './badge/badge.component';
 export * from './getting-started/getting-started.component';
 export * from './tooltip/tooltip.component';
 export * from './alert/alert.component';
@@ -31,7 +31,7 @@ export const MAIN_COMPONENTS = [
   GettingStartedComponent,
   TooltipComponent,
   AlertComponent,
-  NotificationComponent,
+  BadgeComponent,
   InputComponent,
   TextareaComponent,
   ModalComponent,

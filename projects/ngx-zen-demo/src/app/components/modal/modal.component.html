@@ -1,0 +1,193 @@
+<section class="min-h-screen">
+  <h1>Modals</h1>
+  @for(item of markdowns; track item; let i = $index) {
+  <ng-container
+    *ngTemplateOutlet="
+      card;
+      context: {
+        $implicit: markdowns[i].markdown,
+        title: markdowns[i].title,
+        index: i
+      }
+    "
+  >
+  </ng-container>
+  }
+  <h2>Properties</h2>
+  <table>
+    <thead>
+      <tr>
+        <th class="w-[10%]">Parameter</th>
+        <th class="w-[10%]">Required</th>
+        <th class="w-[30%]">Accepted values</th>
+        <th class="w-[50%]">Usage</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>shape</code></td>
+        <td><p>Optional</p></td>
+        <td><code>curve</code>|<code>default</code></td>
+        <td>
+          <p>
+            Defines the button shape. "Curve" has rounded corners, and "default"
+            is a classic square-cornered button.
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td><code>size</code></td>
+        <td><p>Optional</p></td>
+        <td>
+          <code>small</code>|<code>wide</code>|<code>wider</code>|<code
+            >default</code
+          >
+        </td>
+        <td>
+          <p>
+            Controls button sizing. "Small" has slightly bigger width than
+            default, "wide" has more width than small and "wider" has more width
+            than wide.
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td><code>style</code></td>
+        <td><p>Optional</p></td>
+        <td><code>classic</code>|<code>noblur</code></td>
+        <td>
+          <p>Defines background blur. "Noblur" removes the background blur.</p>
+        </td>
+      </tr>
+      <tr>
+        <td><code>zenClass</code></td>
+        <td><p>Optional</p></td>
+        <td><code>string</code></td>
+        <td>
+          <p>
+            Allows overriding default styles by passing Tailwind CSS classes.
+            Utilize the <code>ngx-zen/tailwind</code> plugin to target specific
+            elements within the alert component.
+          </p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <h2 class="mt-10">Events</h2>
+  <table>
+    <thead>
+      <tr>
+        <th class="w-[10%]">Event</th>
+        <th class="w-[50%]">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>close</code></td>
+        <td>
+          <p>
+            Triggered when the modal is closed or dismissed by the user. You can
+            handle this event to perform actions like removing the component
+            from the UI or logging the dismissal.
+          </p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <h2 class="mt-10">Zen Classes</h2>
+  <table>
+    <thead>
+      <tr>
+        <th class="w-[10%]">Prefixes</th>
+        <th class="w-[50%]">Usage</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>handler</code></td>
+        <td>
+          <p>Accepts Tailwind CSS classes for the handler.</p>
+        </td>
+      </tr>
+      <tr>
+        <td><code>modal</code></td>
+        <td>
+          <p>
+            Accepts Tailwind CSS classes for the modal, can be used to style
+            custom width, colors and more.
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td><code>wrapper</code></td>
+        <td>
+          <p>
+            Accepts Tailwind CSS classes for the modal wrapper, can be used to
+            style the background and more.
+          </p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<ng-template let-markdown let-title="title" let-index="index" #card>
+  <div class="card">
+    <div class="header">
+      <h2>{{ title }}</h2>
+    </div>
+    <div class="content">
+      <div class="ui">
+        @switch(index) { @case(0) {
+        <ngx-zen-modal zenClass="!absolute">
+          <div class="content">
+            <p class="text-lg mb-3">Lorem ipsum dolor sit amet</p>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+              enim ad minim veniam, quis nostrud exercitation ullamco laboris
+              nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+              reprehenderit in voluptate velit esse cillum dolore eu fugiat
+              nulla pariatur. Excepteur sint occaecat cupidatat non proident,
+              sunt in culpa qui officia deserunt mollit anim id est laborum.
+            </p>
+          </div>
+        </ngx-zen-modal>
+        } @case(1) {
+        <ngx-zen-modal zenClass="!absolute" shape="curve">
+          <div class="content">
+            <p class="text-lg mb-3">Lorem ipsum dolor sit amet</p>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+              enim ad minim veniam, quis nostrud exercitation ullamco laboris
+              nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+              reprehenderit in voluptate velit esse cillum dolore eu fugiat
+              nulla pariatur. Excepteur sint occaecat cupidatat non proident,
+              sunt in culpa qui officia deserunt mollit anim id est laborum.
+            </p>
+          </div>
+        </ngx-zen-modal>
+        } @case(2) {
+        <ngx-zen-modal zenClass="!absolute" shape="curve" size="small">
+          <div class="content">
+            <p class="text-lg mb-3">Lorem ipsum dolor sit amet</p>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+              enim ad minim veniam, quis nostrud exercitation ullamco laboris
+              nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+              reprehenderit in voluptate velit esse cillum dolore eu fugiat
+              nulla pariatur. Excepteur sint occaecat cupidatat non proident,
+              sunt in culpa qui officia deserunt mollit anim id est laborum.
+            </p>
+          </div>
+        </ngx-zen-modal>
+        }}
+      </div>
+      <div class="code-wrapper">
+        <app-code-block [markdownData]="markdown"></app-code-block>
+      </div>
+    </div>
+  </div>
+</ng-template>

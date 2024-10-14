@@ -1,4 +1,7 @@
-<div class="__ngx__checkbox__wrapper" [ngClass]="[shape, size, labelPosition, zenClass]" >
+<div
+  class="__ngx__checkbox__wrapper"
+  [ngClass]="[shape, size, labelPosition, zenClass]"
+>
   <fieldset>
     @if(label){
     <legend class="sr-only">{{ label }}</legend>
@@ -11,7 +14,14 @@
       >{{ label }}</label
     >
     }
-    <input #checkbox [id]="id" type="checkbox" [formControl]="control" [ngStyle]="getCheckboxStyle()" />
+    <input
+      #checkbox
+      [id]="id"
+      type="checkbox"
+      class="__zen__form__control__input"
+      [formControl]="control"
+      [ngStyle]="getCheckboxStyle()"
+    />
   </fieldset>
   @if(control.invalid && control.touched) {
   <validation-error

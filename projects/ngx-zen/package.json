@@ -1,9 +1,9 @@
 {
-  "name": "ngx-zen",
-  "version": "0.0.1",
+  "name": "@tc_developers/ngx-zen",
+  "version": "0.0.2",
   "peerDependencies": {
-    "@angular/common": "^16.1.0",
-    "@angular/core": "^16.1.0",
+    "@angular/common": ">=16.1.0",
+    "@angular/core": ">=16.1.0",
     "@tailwindcss/forms": "^0.5.9"
   },
   "dependencies": {

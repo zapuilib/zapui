@@ -5,10 +5,16 @@ import { InternalLayoutComponent } from './layout/internal-layout/internal-layou
 import {
   AlertComponent,
   ButtonComponent,
-  CheckboxComponent,
-  GettingStartedComponent,
   InputComponent,
+  TooltipComponent,
+  ChipComponent,
+  GettingStartedComponent,
+  CheckboxComponent,
+  ModalComponent,
+  SelectComponent,
   TextareaComponent,
+  DialogComponent,
+  ToggleComponent,
   AccordionComponent,
 } from './components';
 
@@ -38,8 +44,28 @@ const routes: Routes = [
         pathMatch: 'full',
       },
       {
+        path: 'dialog',
+        component: DialogComponent,
+        pathMatch: 'full',
+      },
+      {
         path: 'input',
         component: InputComponent,
+        pathMatch: 'full',
+      },
+      {
+        path: 'tooltip',
+        component: TooltipComponent,
+        pathMatch: 'full',
+      },
+      {
+        path: 'modal',
+        component: ModalComponent,
+        pathMatch: 'full',
+      },
+      {
+        path: 'select',
+        component: SelectComponent,
         pathMatch: 'full',
       },
       {
@@ -55,6 +81,16 @@ const routes: Routes = [
       {
         path: 'accordion',
         component: AccordionComponent,
+        pathMatch: 'full',
+      },
+      {
+        path: 'toggle',
+        component: ToggleComponent,
+        pathMatch: 'full',
+      },
+      {
+        path: 'chip',
+        component: ChipComponent,
         pathMatch: 'full',
       },
       {

@@ -1,0 +1,42 @@
+<div
+  class="__ngx__toggle__wrapper"
+  [ngClass]="[zenClass, label || text ? 'between' : 'start']"
+>
+  <div class="wrapper">
+    @if(label || text) {
+    <div class="content-wrapper">
+      <div class="lable-wrapper">
+        @if(label) {
+        <label [ngStyle]="getLabelStyle()">
+          {{ label }}
+        </label>
+        } @if(text) {
+        <p [ngStyle]="getTextStyle()">{{ text }}</p>
+        }
+      </div>
+    </div>
+    }
+
+    <button
+      tabindex="0"
+      [ngStyle]="getToggleStyle()"
+      (click)="handleToggle()"
+      (blur)="handleFocus()"
+    >
+      <span
+        class="roller"
+        [ngClass]="[isToggleOn ? 'on' : 'off']"
+        [ngStyle]="getRollerStyle()"
+      ></span>
+    </button>
+  </div>
+
+  @if(control.invalid && control.touched) {
+  <validation-error
+    [errors]="control.errors"
+    [zenClass]="zenClass"
+    [customErrorMessages]="customErrorMessages"
+    [color]="getErrorColor()"
+  ></validation-error>
+  }
+</div>

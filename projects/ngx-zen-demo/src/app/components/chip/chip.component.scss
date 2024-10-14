@@ -20,7 +20,7 @@ section {
   &.dark {
     @apply bg-[#181818] text-white;
 
-    ngx-zen-badge {
+    ngx-zen-chip {
       @apply bg-[#282828] text-white;
     }
   }

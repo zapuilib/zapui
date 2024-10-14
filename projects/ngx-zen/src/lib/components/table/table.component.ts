@@ -1,4 +1,8 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter, Inject } from '@angular/core';
+import { NGX_ZEN_CONFIG } from '../../tokens/ngx-zen.tokens';
+import { NgxZenConfig } from '../../interfaces/config.interface';
+import { ColumnDef } from '../../interfaces/table.interface';
+
 
 @Component({
   selector: 'ngx-zen-table',
@@ -6,7 +10,43 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./table.component.scss']
 })
 export class TableComponent {
-  @Input() columns: Array<{ label: string, key: string, class?: string }> = [];
-  @Input() data: Array<any> = [];
+  @Input() columns: ColumnDef[] = [];
+  @Input() data: any[] = [];
+  @Input() sortable: boolean = false;
+  @Input() selectable: boolean = false;
+  @Input() pageSize: number = 0;
   @Input() zenClass: string = '';
+
+  @Output() rowClick = new EventEmitter<any>();
+  @Output() sortChange = new EventEmitter<{column: string, direction: 'asc' | 'desc'}>();
+  @Output() selectionChange = new EventEmitter<any[]>();
+  @Output() pageChange = new EventEmitter<number>();
+
+  constructor(@Inject(NGX_ZEN_CONFIG) private config: NgxZenConfig) {}
+
+  getStyle() {
+    return {
+      'background-color': this.config.colors.secondary,
+      color: this.config.colors.secondary,
+      'border-color': this.config.colors.tertiary,
+    };
+  }
+
+  onRowClick(row: any): void {
+    this.rowClick.emit(row);
+  }
+
+  onSort(column: string): void {
+    // Implement sorting logic here
+    this.sortChange.emit({ column, direction: 'asc' });
+  }
+
+  onSelectionChange(): void {
+    // Implement selection logic here
+    this.selectionChange.emit(this.data.filter(row => row.selected));
+  }
+
+  onPageChange(page: number): void {
+    this.pageChange.emit(page);
+  }
 }

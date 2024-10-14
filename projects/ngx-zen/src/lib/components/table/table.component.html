@@ -1,21 +1,37 @@
-<section class="__ngx__zen__table__wrapper min-h-screen">
-    <h1>Table Component</h1>
-    
-    <table class="table-auto w-full">
-      <thead>
-        <tr>
-          <ng-container *ngFor="let column of columns">
-            <th [ngClass]="column.class">{{ column.label }}</th>
-          </ng-container>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let row of data" [ngClass]="{ 'hover:bg-gray-100': true }">
-          <ng-container *ngFor="let column of columns">
-            <td [ngClass]="column.class">{{ row[column.key] }}</td>
-          </ng-container>
-        </tr>
-      </tbody>
-    </table>
-  </section>
-  
+<table [ngStyle]="getStyle()" [ngClass]="zenClass">
+  <thead>
+    <tr>
+      @if (selectable) {
+        <th><input type="checkbox" (change)="onSelectionChange()"></th>
+      }
+      @for (column of columns; track column) {
+        <th (click)="sortable ? onSort(column.key) : null">
+          {{ column.header }}
+          @if (sortable) {
+            <span class="sort-icon">▲▼</span>
+          }
+        </th>
+      }
+    </tr>
+  </thead>
+  <tbody>
+    <!-- @for (row of data; track row) {
+      <tr (click)="onRowClick(row)">
+        @if (selectable) {
+          <td><input type="checkbox" [(ngModel)]="row.selected" (change)="onSelectionChange()"></td>
+        }
+        @for (column of columns; track column) {
+          <td>{{ row[column.key] }}</td>
+        }
+      </tr>
+    } -->
+  </tbody>
+</table>
+@if (pageSize > 0) {
+  <div class="pagination">
+    <!-- Implement pagination controls here -->
+    <button (click)="onPageChange(1)">1</button>
+    <button (click)="onPageChange(2)">2</button>
+    <!-- Add more pagination buttons as needed -->
+  </div>
+}

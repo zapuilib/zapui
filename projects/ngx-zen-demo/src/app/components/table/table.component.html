@@ -1,22 +1,23 @@
 <section class="min-h-screen">
   <h1>Table Component</h1>
   @for(item of markdowns; track item; let i = $index) {
-  <ng-container
-    *ngTemplateOutlet="
-      card;
-      context: {
-        $implicit: markdowns[i].markdown,
-        title: markdowns[i].title,
-        index: i
-      }
-    "
-  ></ng-container>
+    <ng-container
+      *ngTemplateOutlet="
+        card;
+        context: {
+          $implicit: markdowns[i].markdown,
+          title: markdowns[i].title,
+          index: i
+        }
+      "
+    >
+    </ng-container>
   }
-  <h2 class="mt-5">Properties</h2>
-
+  <h2 id="properties" class="mt-5">Properties</h2>
   <table>
     <thead>
       <tr>
+        <th class="w-[5%]"><input type="checkbox" /></th>
         <th class="w-[10%]">Parameter</th>
         <th class="w-[10%]">Required</th>
         <th class="w-[30%]">Accepted values</th>
@@ -24,12 +25,45 @@
       </tr>
     </thead>
     <tbody>
-      <!-- Table rows go here -->
+      <tr>
+        <td><input type="checkbox" /></td>
+        <td>columns</td>
+        <td>Yes</td>
+        <td>Array of column definitions</td>
+        <td>Defines the structure and properties of table columns</td>
+      </tr>
+      <tr>
+        <td><input type="checkbox" /></td>
+        <td>data</td>
+        <td>Yes</td>
+        <td>Array of data objects</td>
+        <td>Provides the data to be displayed in the table</td>
+      </tr>
+      <tr>
+        <td><input type="checkbox" /></td>
+        <td>sortable</td>
+        <td>No</td>
+        <td>boolean</td>
+        <td>Enables sorting functionality for the table</td>
+      </tr>
+      <tr>
+        <td><input type="checkbox" /></td>
+        <td>selectable</td>
+        <td>No</td>
+        <td>boolean</td>
+        <td>Enables row selection functionality</td>
+      </tr>
+      <tr>
+        <td><input type="checkbox" /></td>
+        <td>pageSize</td>
+        <td>No</td>
+        <td>number</td>
+        <td>Sets the number of rows per page for pagination</td>
+      </tr>
     </tbody>
   </table>
 </section>
 
-<!-- ng-template structure -->
 <ng-template let-markdown let-title="title" let-index="index" #card>
   <div class="card">
     <div class="header">
@@ -37,17 +71,23 @@
     </div>
     <div class="content">
       <div class="ui">
-        <!-- Check if the form is properly opened and closed -->
-        <form [formGroup]="form">
-          @switch(index) { 
-            @case(0) {
-              <ngx-zen-table
-                [columns]="[ { label: 'Name', key: 'name' }, { label: 'Age', key: 'age' }, { label: 'Email', key: 'email' } ]"
-                [data]="[ { name: 'John', age: 25, email: 'john@example.com' } ]"
-              ></ngx-zen-table>
-            }
+        @switch(index) {
+          @case(0) {
+            <ngx-zen-table [columns]="basicColumns" [data]="basicData"></ngx-zen-table>
           }
-        </form>
+          @case(1) {
+            <ngx-zen-table [columns]="sortableColumns" [data]="sortableData" [sortable]="true"></ngx-zen-table>
+          }
+          @case(2) {
+            <ngx-zen-table [columns]="selectableColumns" [data]="selectableData" [selectable]="true"></ngx-zen-table>
+          }
+          @case(3) {
+            <ngx-zen-table [columns]="paginatedColumns" [data]="paginatedData" [pageSize]="5"></ngx-zen-table>
+          }
+          @case(4) {
+            <ngx-zen-table [columns]="customColumns" [data]="customData"></ngx-zen-table>
+          }
+        }
       </div>
       <div class="code-wrapper">
         <app-code-block [markdownData]="markdown"></app-code-block>

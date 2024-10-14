@@ -1,0 +1,20 @@
+/* SCSS */
+.__ngx__zen__table__wrapper {
+    @apply p-4 bg-white shadow-md rounded-md;
+    table {
+      @apply min-w-full table-auto;
+      th, td {
+        @apply p-2 text-left border-b border-gray-200;
+      }
+      th {
+        @apply font-semibold text-gray-700 uppercase;
+      }
+      td {
+        @apply text-gray-600;
+      }
+    }
+    tr:hover {
+      @apply bg-gray-50;
+    }
+  }
+  

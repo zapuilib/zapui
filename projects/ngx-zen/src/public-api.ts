@@ -17,3 +17,4 @@ export * from './lib/components/checkbox/checkbox.component';
 export * from './lib/components/dialog/dialog.component';
 export * from './lib/components/toggle/toggle.component';
 export * from './lib/components/select/select.component';
+export * from './lib/components/table/table.component';

@@ -9,6 +9,7 @@ import { TextareaComponent } from './textarea/textarea.component';
 import { DialogComponent } from './dialog/dialog.component';
 import { ToggleComponent } from './toggle/toggle.component';
 import { ChipComponent } from './chip/chip.component';
+import { TableComponent } from './table/table.component';
 
 export const COMPONENTS = [
   AlertComponent,
@@ -22,5 +23,6 @@ export const COMPONENTS = [
   DialogComponent,
   ToggleComponent,
   SelectComponent,
-  ChipComponent
+  ChipComponent,
+  TableComponent,
 ];

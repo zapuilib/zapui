@@ -1,0 +1,21 @@
+<section class="__ngx__zen__table__wrapper min-h-screen">
+    <h1>Table Component</h1>
+    
+    <table class="table-auto w-full">
+      <thead>
+        <tr>
+          <ng-container *ngFor="let column of columns">
+            <th [ngClass]="column.class">{{ column.label }}</th>
+          </ng-container>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let row of data" [ngClass]="{ 'hover:bg-gray-100': true }">
+          <ng-container *ngFor="let column of columns">
+            <td [ngClass]="column.class">{{ row[column.key] }}</td>
+          </ng-container>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+  

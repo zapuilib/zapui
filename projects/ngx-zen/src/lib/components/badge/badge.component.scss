@@ -1,11 +1,12 @@
-  .__ngx__zen__badge__wrapper {
-    @apply border-none;
+.__ngx__zen__badge__wrapper {
+  @apply border-none;
+}
+
+.badge__wrapper {
+  @apply flex items-center justify-center relative rounded-full;
+  @apply w-6 h-6 text-xs leading-none p-1 border-transparent;
+
+  &.empty {
+    @apply w-2 h-2;
   }
-  .notification__badge {
-    @apply flex items-center justify-center text-white bg-blue-500 relative rounded-full;
-    @apply w-6 h-6 text-xs leading-none p-1 border-transparent; 
-    
-    &.empty {
-      @apply w-2 h-2;
-  }
-  }
+}

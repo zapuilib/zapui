@@ -9,14 +9,13 @@ import { Styles } from '../../interfaces/style.interface';
   styleUrls: ['./badge.component.scss'],
 })
 export class BadgeComponent {
-  @Input() variant: 'empty' | 'content' | 'border' = 'empty';
+  @Input() variant: 'empty' | 'content' | 'border' = 'content';
   @Input() count: number = 0;
   @Input() zenClass: string = '';
-  @Input() icon: string = '';
 
   constructor(@Inject(NGX_ZEN_CONFIG) private config: NgxZenConfig) {}
 
-  getNotificationContent(): string | null {
+  getContent(): string | null {
     if (this.variant === 'empty') return null;
     return this.count > 99 ? '99+' : this.count.toString();
   }

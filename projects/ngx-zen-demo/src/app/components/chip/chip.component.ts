@@ -22,9 +22,9 @@ export class ChipComponent {
     },
     {
       markdown: `\`\`\`html
-<ngx-zen-chip text="Removable Chip" [removable]="true"></ngx-zen-chip>
+<ngx-zen-chip text="dismissible Chip" [dismissible]="true"></ngx-zen-chip>
   \`\`\``,
-      title: 'Removable chip',
+      title: 'dismissible chip',
     },
     {
       markdown: `\`\`\`html
@@ -35,17 +35,32 @@ export class ChipComponent {
     {
       markdown: `\`\`\`html
 <ngx-zen-chip text="Small Chip" size="small"></ngx-zen-chip>
+  \`\`\``,
+      title: 'Small Chip',
+    },
+    {
+      markdown: `\`\`\`html
 <ngx-zen-chip text="Wide Chip" size="wide"></ngx-zen-chip>
+  \`\`\``,
+      title: 'Wide Chip',
+    },
+    {
+      markdown: `\`\`\`html
 <ngx-zen-chip text="Wider Chip" size="wider"></ngx-zen-chip>
   \`\`\``,
-      title: 'Chip Sizes',
+      title: 'Wider Chip',
     },
     {
       markdown: `\`\`\`html
 <ngx-zen-chip text="Leading Icon" icon="fa-user"></ngx-zen-chip>
+  \`\`\``,
+      title: 'Chips with Leading Icons',
+    },
+    {
+      markdown: `\`\`\`html
 <ngx-zen-chip text="Trailing Icon" iconPosition="right" icon="fa-cog"></ngx-zen-chip>
   \`\`\``,
-      title: 'Chips with Icons',
+      title: 'Chips with Trailing Icons',
     },
   ];
 

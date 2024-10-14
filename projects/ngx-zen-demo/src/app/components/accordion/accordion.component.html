@@ -135,11 +135,16 @@
             </ngx-zen-accordion>
           }
           @case(1) {
+            <ngx-zen-accordion title="Accordion Title" subtitle="Optional subtitle text">
+              <p class="text-black">Content for Basic Accordion</p>
+            </ngx-zen-accordion>
+          }
+          @case(2) {
             <ngx-zen-accordion title="Non-interactive Accordion" [disabled]="true">
               <p class="text-black">This content is not accessible when disabled.</p>
             </ngx-zen-accordion>
           }
-          @case(2) {
+          @case(3) {
             <ngx-zen-accordion-group [multiple]="false">
               <ngx-zen-accordion title="Accordion 1">
                 <p class="text-black">Content for Accordion 1</p>
@@ -152,7 +157,7 @@
               </ngx-zen-accordion>
             </ngx-zen-accordion-group>
           }
-          @case(3) {
+          @case(4) {
             <ngx-zen-accordion-group [multiple]="false">
               @for (accordion of accordions; track accordion; let i = $index) {
                 <ngx-zen-accordion [title]="accordion.title">
@@ -161,7 +166,7 @@
               }
             </ngx-zen-accordion-group>
           }
-          @case(4) {
+          @case(5) {
             <div>
               <div class="mb-2">
                 <a (click)="setActiveIndex(0)" [ngClass]="{ 'text-blue-700 font-bold': currentActiveIndex === 0, 'text-blue-500 underline': currentActiveIndex !== 0 }" class="mr-2 cursor-pointer"
@@ -184,21 +189,28 @@
               </ngx-zen-accordion-group>
             </div>
           }
-          @case(5) {
-            <ngx-zen-accordion
+          @case(6) {
+            <ngx-zen-accordion-group [multiple]="false">
+              <ngx-zen-accordion
+                title="Compact Accordion"
+                size="compact"
+              >
+                <p class="text-black">Compact size content 1</p>
+              </ngx-zen-accordion>
+              <ngx-zen-accordion
               title="Compact Accordion"
               size="compact"
             >
-              <p class="text-black">Compact size content</p>
+              <p class="text-black">Compact size content 2</p>
             </ngx-zen-accordion>
-          }
-          @case(6) {
             <ngx-zen-accordion
-              title="Large Accordion"
-              size="large"
-            >
-              <p class="text-black">Large size content</p>
-            </ngx-zen-accordion>
+            title="Compact Accordion"
+            size="compact"
+          >
+            <p class="text-black">Compact size content 2</p>
+          </ngx-zen-accordion>
+
+            </ngx-zen-accordion-group>
           }
           @case(7) {
             <ngx-zen-accordion

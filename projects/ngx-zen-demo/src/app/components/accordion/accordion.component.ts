@@ -36,6 +36,17 @@ export class AccordionComponent {
     {
       markdown: `\`\`\`html
 <ngx-zen-accordion
+    title="Basic Accordion with subtitle"
+    subtitle="Optional subtitle text"
+>
+  <p class="text-black">Content for Basic Accordion</p>
+</ngx-zen-accordion>
+  \`\`\``,
+      title: 'Basic Accordion with subtitle',
+    },
+    {
+      markdown: `\`\`\`html
+<ngx-zen-accordion
     title="Non-interactive Accordion"
     [disabled]="true"
 >
@@ -99,17 +110,6 @@ export class AccordionComponent {
 </ngx-zen-accordion>
   \`\`\``,
       title: 'Compact Accordion',
-    },
-    {
-      markdown: `\`\`\`html
-<ngx-zen-accordion
-  title="Large Accordion"
-  size="large"
->
-  <p class="text-black">Large size content</p>
-</ngx-zen-accordion>
-  \`\`\``,
-      title: 'Large Accordion',
     },
     {
       markdown: `\`\`\`html

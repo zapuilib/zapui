@@ -1,8 +1,0 @@
-@for (accordion of childAccordions.toArray(); track accordion; let i = $index) {
-  <ngx-zen-accordion
-  [title]="accordion.title"
-  (toggle)="onAccordionToggle(i)"
->
-  <ng-content select="[accordion-content-{{ i }}]"></ng-content>
-</ngx-zen-accordion>
-}

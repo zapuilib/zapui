@@ -18,12 +18,14 @@ export class AccordionGroupComponent
 {
   @Input() multiple: boolean = true;
   @Input() activeIndex: number | null = null;
+  @Input() fullBordered: boolean = false;
 
   @ContentChildren(AccordionComponent)
   childAccordions!: QueryList<AccordionComponent>;
 
   ngAfterContentInit(): void {
     this.updateActiveAccordion();
+    this.assignPositions();
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -53,11 +55,24 @@ export class AccordionGroupComponent
 
     if (this.activeIndex !== null && this.activeIndex < this.childAccordions.length) {
       const targetAccordion = this.childAccordions.toArray()[this.activeIndex];
+
       targetAccordion.isOpen = true;
+
       if (!this.multiple) {
         this.closeOthers(targetAccordion);
       }
       this.activeIndex = null;
     }
+  }
+
+  private assignPositions() {
+    const accordionsArray = this.childAccordions.toArray();
+    const totalAccordions = accordionsArray.length;
+
+    accordionsArray.forEach((accordion, index) => {
+      accordion.isFirst = index === 0;
+      accordion.isLast = index === totalAccordions - 1;
+      accordion.index = index;
+    });
   }
 }

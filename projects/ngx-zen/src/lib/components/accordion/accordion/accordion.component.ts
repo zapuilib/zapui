@@ -1,4 +1,11 @@
-import { Component, Input, Inject, Output, EventEmitter, Optional } from '@angular/core';
+import {
+  Component,
+  Input,
+  Inject,
+  Output,
+  EventEmitter,
+  Optional,
+} from '@angular/core';
 
 import { NGX_ZEN_CONFIG } from '../../../tokens/ngx-zen.tokens';
 import { NgxZenConfig } from '../../../interfaces/config.interface';
@@ -12,6 +19,7 @@ import { AccordionGroupComponent } from '../accordion-group/accordion-group.comp
 })
 export class AccordionComponent {
   @Input() title: string = '';
+  @Input() subtitle: string = '';
   @Input() zenClass: string = '';
   @Input() isOpen: boolean = false;
   @Input() disabled: boolean = false;
@@ -21,7 +29,12 @@ export class AccordionComponent {
   @Input() iconPosition: 'left' | 'right' = 'right';
   @Input() openIcon: string = 'fa-minus';
   @Input() closeIcon: string = 'fa-plus';
-  disabledColor: string = ''
+  @Input() isFirst: boolean = false;
+  @Input() isLast: boolean = false;
+  @Input() index: number = 0;
+  @Input() isSingle: boolean = false;
+
+  disabledColor: string = '';
 
   @Output() toggle: EventEmitter<void> = new EventEmitter<void>();
 
@@ -30,6 +43,16 @@ export class AccordionComponent {
     private colorUtility: ColorUtility,
     @Optional() public group: AccordionGroupComponent
   ) {}
+
+  ngOnInit() {
+    this.checkIfSingle();
+  }
+
+  checkIfSingle() {
+    if (!this.group) {
+      this.isSingle = true;
+    }
+  }
 
   get icon(): string {
     return this.isOpen ? this.openIcon : this.closeIcon;
@@ -48,22 +71,17 @@ export class AccordionComponent {
   }
 
   getDisabledColor() {
-    return this.colorUtility.hexToRgba(
-      this.config.colors.secondary,
-      0.5
-    );
+    return this.colorUtility.hexToRgba(this.config.colors.secondary, 0.5);
   }
 
   getIconStyle() {
     const color = this.disabled
       ? this.getDisabledColor()
-      : this.config.colors.tertiary
+      : this.config.colors.secondary;
 
     const size =
       this.size === 'compact'
         ? this.config.fontSize.sm
-        : this.size === 'large'
-        ? this.config.fontSize.lg
         : this.config.fontSize.md;
 
     return {
@@ -75,18 +93,67 @@ export class AccordionComponent {
   }
 
   getTitleStyle() {
-    const color = this.disabled ? this.getDisabledColor() : this.config.colors.secondary;
+    const color = this.disabled
+      ? this.getDisabledColor()
+      : this.config.colors.secondary;
 
     const fontSize =
       this.size === 'compact'
         ? this.config.fontSize.sm
-        : this.size === 'large'
-        ? this.config.fontSize.lg
-        : this.config.fontSize.md;
+        : this.config.fontSize.lg;
 
     return {
       color,
       'font-size': fontSize,
+    };
+  }
+
+  getBorderStyle() {
+    const borderColor = this.colorUtility.hexToRgba(
+      this.config.colors.quaternary,
+      0.1
+    );
+
+    if (this.isSingle) {
+      return {
+        'border-top': 'none',
+        'border-bottom': `1px solid ${borderColor}`,
+      };
+    }
+
+    return {
+      'border-top': this.isFirst ? 'none' : `1px solid ${borderColor}`,
+      'border-bottom': this.isLast ? `1px solid ${borderColor}` : 'none',
+    };
+  }
+
+  getSubtitleStyle() {
+    const fontSize =
+      this.size === 'compact'
+        ? this.config.fontSize.xs
+        : this.config.fontSize.sm;
+
+    const mutedColor = this.colorUtility.hexToRgba(
+      this.config.colors.quaternary,
+      0.5
+    );
+
+    return {
+      'font-size': fontSize,
+      color: mutedColor,
+      'margin-top': '0.25rem',
+    };
+  }
+
+  getContentStyle() {
+    const size =
+      this.size === 'compact'
+        ? this.config.fontSize.sm
+        : this.config.fontSize.md;
+
+    return {
+      'margin-left':
+        this.iconPosition === 'left' ? `calc(${size} + 0.4rem)` : '0', // Offset content based on icon size
     };
   }
 }

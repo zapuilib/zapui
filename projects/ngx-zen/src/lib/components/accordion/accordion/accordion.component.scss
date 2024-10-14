@@ -19,11 +19,6 @@
     @apply p-2 text-sm;
   }
 
-  &.large .__zen__accordion__header,
-  &.large .__zen__accordion__content {
-    @apply p-6 text-lg;
-  }
-
   /* Transition Variants */
   &.smooth .__zen__accordion__content {
     @apply transition-all duration-500 ease-in-out;
@@ -42,24 +37,12 @@
     @apply flex-row-reverse;
   }
 
-  &.icon-left .accordion__icon {
-    @apply mr-2;
-  }
-
-  &.icon-right .__zen__accordion__header {
-    @apply flex-row;
-  }
-
-  &.icon-right .accordion__icon {
-    @apply ml-2;
-  }
-
   /* Base Styles for Header */
   .__zen__accordion__header {
-    @apply flex items-center justify-between cursor-pointer border px-1.5 py-2;
+    @apply flex items-center justify-between cursor-pointer px-1.5 py-2 pb-4;
 
-    .accordion__icon {
-      @apply text-lg;
+    .title-wrapper {
+      @apply flex-1 flex flex-col justify-start;
     }
 
     .accordion__title {
@@ -69,6 +52,6 @@
 
   /* Base Styles for Content */
   .__zen__accordion__content {
-    @apply px-1.5 py-2 border-t transition-all duration-300 ease-in-out;
+    @apply px-1.5 py-2  transition-all duration-300 ease-in-out;
   }
 }

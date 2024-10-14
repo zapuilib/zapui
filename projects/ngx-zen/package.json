@@ -1,5 +1,5 @@
 {
-  "name": "ngx-zen",
+  "name": "@togethercreative/ngx-zen",
   "version": "0.0.1",
   "peerDependencies": {
     "@angular/common": "^16.1.0",

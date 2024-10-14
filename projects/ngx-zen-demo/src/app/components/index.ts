@@ -41,6 +41,5 @@ export const MAIN_COMPONENTS = [
   DialogComponent,
   ToggleComponent,
   SelectComponent,
-  ,
   AccordionComponent,
 ];

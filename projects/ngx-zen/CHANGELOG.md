@@ -1,3 +1,7 @@
+## Beta version 0.0.3 Updates
+
+- Button component updated to support img and img postion
+
 ## Beta version 0.0.1 Updates
 
 1) Alert

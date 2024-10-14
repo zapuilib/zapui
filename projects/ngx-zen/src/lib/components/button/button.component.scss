@@ -59,4 +59,12 @@ button {
   &.link {
     @apply underline;
   }
+
+  img {
+    @apply w-6 h-6 mr-2;
+
+    &.right {
+      @apply mr-0 ml-2;
+    }
+  }
 }

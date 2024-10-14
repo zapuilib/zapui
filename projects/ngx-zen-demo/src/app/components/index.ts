@@ -10,6 +10,7 @@ import { SelectComponent } from './select/select.component';
 import { TextareaComponent } from './textarea/textarea.component';
 import { DialogComponent } from './dialog/dialog.component';
 import { ToggleComponent } from './toggle/toggle.component';
+import { TableComponent } from './table/table.component';
 
 export * from './alert/alert.component';
 export * from './button/button.component';
@@ -24,6 +25,8 @@ export * from './checkbox/checkbox.component';
 export * from './dialog/dialog.component';
 export * from './toggle/toggle.component';
 export * from './select/select.component';
+export * from './table/table.component';
+
 
 export const MAIN_COMPONENTS = [
   AlertComponent,
@@ -39,4 +42,5 @@ export const MAIN_COMPONENTS = [
   DialogComponent,
   ToggleComponent,
   SelectComponent,
+  TableComponent,
 ];

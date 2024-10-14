@@ -15,6 +15,7 @@ import {
   TextareaComponent,
   DialogComponent,
   ToggleComponent,
+  TableComponent,
 } from './components';
 
 const routes: Routes = [
@@ -85,6 +86,11 @@ const routes: Routes = [
       {
         path: 'chip',
         component: ChipComponent,
+        pathMatch: 'full',
+      },
+      {
+        path: 'table',
+        component: TableComponent,
         pathMatch: 'full',
       },
       {

@@ -1,0 +1,57 @@
+<section class="min-h-screen">
+  <h1>Table Component</h1>
+  @for(item of markdowns; track item; let i = $index) {
+  <ng-container
+    *ngTemplateOutlet="
+      card;
+      context: {
+        $implicit: markdowns[i].markdown,
+        title: markdowns[i].title,
+        index: i
+      }
+    "
+  ></ng-container>
+  }
+  <h2 class="mt-5">Properties</h2>
+
+  <table>
+    <thead>
+      <tr>
+        <th class="w-[10%]">Parameter</th>
+        <th class="w-[10%]">Required</th>
+        <th class="w-[30%]">Accepted values</th>
+        <th class="w-[50%]">Usage</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Table rows go here -->
+    </tbody>
+  </table>
+</section>
+
+<!-- ng-template structure -->
+<ng-template let-markdown let-title="title" let-index="index" #card>
+  <div class="card">
+    <div class="header">
+      <h2>{{ title }}</h2>
+    </div>
+    <div class="content">
+      <div class="ui">
+        <!-- Check if the form is properly opened and closed -->
+        <form [formGroup]="form">
+          @switch(index) { 
+            @case(0) {
+              <ngx-zen-table
+                [columns]="[ { label: 'Name', key: 'name' }, { label: 'Age', key: 'age' }, { label: 'Email', key: 'email' } ]"
+                [data]="[ { name: 'John', age: 25, email: 'john@example.com' } ]"
+              ></ngx-zen-table>
+            }
+          }
+        </form>
+      </div>
+      <div class="code-wrapper">
+        <app-code-block [markdownData]="markdown"></app-code-block>
+      </div>
+    </div>
+  </div>
+</ng-template>

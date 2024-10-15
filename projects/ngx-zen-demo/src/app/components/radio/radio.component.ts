@@ -27,7 +27,7 @@ export class RadioComponent {
 
   constructor(private fb: FormBuilder) {
     this.form = this.fb.group({
-      terms: ['', Validators.required],
+      contact: ['', Validators.required],
     });
   }
 }

@@ -27,6 +27,10 @@ export class SideMenuComponent {
       routerLink: '/button',
       subItems: [
         {
+          title: 'Accordion',
+          routerLink: '/accordion',
+        },
+        {
           title: 'Alert',
           routerLink: '/alert',
         },
@@ -81,10 +85,6 @@ export class SideMenuComponent {
         {
           title: 'Tooltip',
           routerLink: '/tooltip',
-        },
-        {
-          title: 'Accordion',
-          routerLink: '/accordion',
         },
       ],
     },

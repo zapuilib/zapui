@@ -1,2 +1,48 @@
 .__ngx__radio__wrapper {
+  .wrapper {
+    @apply flex gap-y-2 gap-x-4 w-full flex-nowrap;
+
+    fieldset {
+      @apply flex items-center gap-x-2 cursor-pointer;
+
+      input {
+        @apply appearance-none;
+        @apply relative h-4 w-4 border cursor-pointer;
+        @apply rounded-full;
+        @apply input:focus-within:outline-0 input:focus-within:ring-2 input:focus-within:ring-offset-0;
+
+        &:checked {
+          &::before {
+            @apply content-[''] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-[var(--before-bg-color)];
+            @apply w-3.5 h-3.5 rounded-full;
+          }
+
+          &::after {
+            @apply content-[''] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-[var(--after-bg-color)] z-10;
+            @apply w-1.5 h-1.5 rounded-full;
+          }
+        }
+      }
+
+      input:disabled {
+        @apply opacity-50 cursor-not-allowed;
+      }
+
+      label {
+        @apply cursor-pointer;
+      }
+    }
+  }
+
+  &.vertical {
+    .wrapper {
+      @apply flex-col;
+    }
+  }
+
+  &.horizontal {
+    .wrapper {
+      @apply flex-row;
+    }
+  }
 }

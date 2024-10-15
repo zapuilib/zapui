@@ -7,7 +7,7 @@
   <label [for]="id" class="__zen__form__control__label" [ngStyle]="getStyle()">{{ label }}</label>
   }
   <fieldset>
-    <legend class="sr-only">{{ label }}</legend>
+    
     @if(icon && iconPosition) {
     <i class="fa-solid" [ngClass]="[icon, iconPosition]" [ngStyle]="getStyle()"></i>
     }

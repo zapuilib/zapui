@@ -1,3 +1,9 @@
+## Beta version 0.0.5 Updates
+
+- Badge added
+- Accordion added
+- Access control directive updated
+
 ## Beta version 0.0.4 Updates
 
 - Legend updated

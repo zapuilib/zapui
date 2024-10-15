@@ -35,6 +35,10 @@ export class SideMenuComponent {
           routerLink: '/button',
         },
         {
+          title: 'Badge',
+          routerLink: '/badge',
+        },
+        {
           title: 'Chip',
           routerLink: '/chip',
         },

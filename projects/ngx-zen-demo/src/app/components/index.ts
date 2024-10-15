@@ -2,6 +2,7 @@ import { AlertComponent } from './alert/alert.component';
 import { ButtonComponent } from './button/button.component';
 import { CheckboxComponent } from './checkbox/checkbox.component';
 import { GettingStartedComponent } from './getting-started/getting-started.component';
+import { BadgeComponent } from './badge/badge.component';
 import { ChipComponent } from './chip/chip.component';
 import { TooltipComponent } from './tooltip/tooltip.component';
 import { InputComponent } from './input/input.component';
@@ -13,6 +14,7 @@ import { ToggleComponent } from './toggle/toggle.component';
 
 export * from './alert/alert.component';
 export * from './button/button.component';
+export * from './badge/badge.component';
 export * from './getting-started/getting-started.component';
 export * from './chip/chip.component';
 export * from './tooltip/tooltip.component';
@@ -22,8 +24,8 @@ export * from './textarea/textarea.component';
 export * from './modal/modal.component';
 export * from './checkbox/checkbox.component';
 export * from './dialog/dialog.component';
-export * from './toggle/toggle.component';
 export * from './select/select.component';
+export * from './toggle/toggle.component';
 
 export const MAIN_COMPONENTS = [
   AlertComponent,
@@ -31,6 +33,7 @@ export const MAIN_COMPONENTS = [
   GettingStartedComponent,
   TooltipComponent,
   AlertComponent,
+  BadgeComponent,
   ChipComponent,
   InputComponent,
   TextareaComponent,

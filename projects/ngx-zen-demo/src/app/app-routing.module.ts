@@ -15,6 +15,7 @@ import {
   TextareaComponent,
   DialogComponent,
   ToggleComponent,
+  BadgeComponent,
 } from './components';
 
 const routes: Routes = [
@@ -40,6 +41,16 @@ const routes: Routes = [
       {
         path: 'button',
         component: ButtonComponent,
+        pathMatch: 'full',
+      },
+      {
+        path: 'badge',
+        component: BadgeComponent,
+        pathMatch: 'full',
+      },
+      {
+        path: 'chip',
+        component: ChipComponent,
         pathMatch: 'full',
       },
       {
@@ -80,11 +91,6 @@ const routes: Routes = [
       {
         path: 'toggle',
         component: ToggleComponent,
-        pathMatch: 'full',
-      },
-      {
-        path: 'chip',
-        component: ChipComponent,
         pathMatch: 'full',
       },
       {

@@ -1,4 +1,3 @@
-// accordion.component.ts
 import { Component } from '@angular/core';
 
 @Component({
@@ -12,7 +11,7 @@ export class AccordionComponent {
     { title: 'Accordion 2', content: 'Content for Accordion 2' },
     { title: 'Accordion 3', content: 'Content for Accordion 3' },
   ];
-  currentActiveIndex: number | null = 0; // Set the first accordion to open by default
+  currentActiveIndex: number | null = 0;
 
   openAccordion(index: number) {
     this.currentActiveIndex = index;

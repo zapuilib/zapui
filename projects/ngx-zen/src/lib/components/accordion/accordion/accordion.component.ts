@@ -156,7 +156,7 @@ export class AccordionComponent {
       'margin-left':
         this.iconPosition === 'left'
           ? `calc(${this.iconSize} + 0.875rem)`
-          : '0', // Offset content based on icon size
+          : '0',
       'padding-top': openPadding,
     };
   }

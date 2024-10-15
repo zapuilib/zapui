@@ -1,23 +1,22 @@
 <section class="min-h-screen">
-  <h1>Table Component</h1>
+  <h1>Tables</h1>
   @for(item of markdowns; track item; let i = $index) {
-    <ng-container
-      *ngTemplateOutlet="
-        card;
-        context: {
-          $implicit: markdowns[i].markdown,
-          title: markdowns[i].title,
-          index: i
-        }
-      "
-    >
-    </ng-container>
+  <ng-container
+    *ngTemplateOutlet="
+      card;
+      context: {
+        $implicit: markdowns[i].markdown,
+        title: markdowns[i].title,
+        index: i
+      }
+    "
+  >
+  </ng-container>
   }
-  <h2 id="properties" class="mt-5">Properties</h2>
+  <h2>Properties</h2>
   <table>
     <thead>
       <tr>
-        <th class="w-[5%]"><input type="checkbox" /></th>
         <th class="w-[10%]">Parameter</th>
         <th class="w-[10%]">Required</th>
         <th class="w-[30%]">Accepted values</th>
@@ -26,39 +25,52 @@
     </thead>
     <tbody>
       <tr>
-        <td><input type="checkbox" /></td>
-        <td>columns</td>
-        <td>Yes</td>
-        <td>Array of column definitions</td>
-        <td>Defines the structure and properties of table columns</td>
+        <td><code>data</code></td>
+        <td><p>Required</p></td>
+        <td><code>any[]</code></td>
+        <td><p>The data to be displayed in the table</p></td>
       </tr>
       <tr>
-        <td><input type="checkbox" /></td>
-        <td>data</td>
-        <td>Yes</td>
-        <td>Array of data objects</td>
-        <td>Provides the data to be displayed in the table</td>
+        <td><code>columns</code></td>
+        <td><p>Required</p></td>
+        <td><code>{{ '{' }} key: string; header: string {{ '}' }}[]</code></td>
+        <td><p>Defines the columns of the table</p></td>
       </tr>
       <tr>
-        <td><input type="checkbox" /></td>
-        <td>sortable</td>
-        <td>No</td>
-        <td>boolean</td>
-        <td>Enables sorting functionality for the table</td>
+        <td><code>zenClass</code></td>
+        <td><p>Optional</p></td>
+        <td><code>string</code></td>
+        <td><p>Custom CSS class for additional styling</p></td>
       </tr>
       <tr>
-        <td><input type="checkbox" /></td>
-        <td>selectable</td>
-        <td>No</td>
-        <td>boolean</td>
-        <td>Enables row selection functionality</td>
+        <td><code>striped</code></td>
+        <td><p>Optional</p></td>
+        <td><code>boolean</code></td>
+        <td><p>Applies alternating row colors when true</p></td>
       </tr>
       <tr>
-        <td><input type="checkbox" /></td>
-        <td>pageSize</td>
-        <td>No</td>
-        <td>number</td>
-        <td>Sets the number of rows per page for pagination</td>
+        <td><code>hover</code></td>
+        <td><p>Optional</p></td>
+        <td><code>boolean</code></td>
+        <td><p>Applies hover effect on rows when true</p></td>
+      </tr>
+      <tr>
+        <td><code>bordered</code></td>
+        <td><p>Optional</p></td>
+        <td><code>boolean</code></td>
+        <td><p>Adds borders to the table when true</p></td>
+      </tr>
+      <tr>
+        <td><code>size</code></td>
+        <td><p>Optional</p></td>
+        <td><code>'small'</code> | <code>'medium'</code> | <code>'large'</code></td>
+        <td><p>Controls the overall size of the table</p></td>
+      </tr>
+      <tr>
+        <td><code>(rowClick)</code></td>
+        <td><p>Optional</p></td>
+        <td><code>EventEmitter&lt;any&gt;</code></td>
+        <td><p>Emits the clicked row data</p></td>
       </tr>
     </tbody>
   </table>
@@ -73,19 +85,25 @@
       <div class="ui">
         @switch(index) {
           @case(0) {
-            <ngx-zen-table [columns]="basicColumns" [data]="basicData"></ngx-zen-table>
+            <ngx-zen-table [data]="tableData" [columns]="tableColumns"></ngx-zen-table>
           }
           @case(1) {
-            <ngx-zen-table [columns]="sortableColumns" [data]="sortableData" [sortable]="true"></ngx-zen-table>
+            <ngx-zen-table [data]="tableData" [columns]="tableColumns" [striped]="true"></ngx-zen-table>
           }
           @case(2) {
-            <ngx-zen-table [columns]="selectableColumns" [data]="selectableData" [selectable]="true"></ngx-zen-table>
+            <ngx-zen-table [data]="tableData" [columns]="tableColumns" [hover]="true"></ngx-zen-table>
           }
           @case(3) {
-            <ngx-zen-table [columns]="paginatedColumns" [data]="paginatedData" [pageSize]="5"></ngx-zen-table>
+            <ngx-zen-table [data]="tableData" [columns]="tableColumns"></ngx-zen-table>
           }
           @case(4) {
-            <ngx-zen-table [columns]="customColumns" [data]="customData"></ngx-zen-table>
+            <ngx-zen-table [data]="tableData" [columns]="tableColumns" size="small"></ngx-zen-table>
+          }
+          @case(5) {
+            <ngx-zen-table [data]="tableData" [columns]="tableColumns" size="large"></ngx-zen-table>
+          }
+          @case(6) {
+            <ngx-zen-table [data]="tableData" [columns]="tableColumns" (rowClick)="onRowClick($event)"></ngx-zen-table>
           }
         }
       </div>

@@ -1,37 +1,18 @@
-<table [ngStyle]="getStyle()" [ngClass]="zenClass">
+<table [ngClass]="tableClasses()">
   <thead>
     <tr>
-      @if (selectable) {
-        <th><input type="checkbox" (change)="onSelectionChange()"></th>
-      }
-      @for (column of columns; track column) {
-        <th (click)="sortable ? onSort(column.key) : null">
-          {{ column.header }}
-          @if (sortable) {
-            <span class="sort-icon">▲▼</span>
-          }
-        </th>
+      @for (column of columns; track column.key) {
+        <th>{{ column.header }}</th>
       }
     </tr>
   </thead>
   <tbody>
-    <!-- @for (row of data; track row) {
+    @for (row of data; track $index) {
       <tr (click)="onRowClick(row)">
-        @if (selectable) {
-          <td><input type="checkbox" [(ngModel)]="row.selected" (change)="onSelectionChange()"></td>
-        }
-        @for (column of columns; track column) {
+        @for (column of columns; track column.key) {
           <td>{{ row[column.key] }}</td>
         }
       </tr>
-    } -->
+    }
   </tbody>
 </table>
-@if (pageSize > 0) {
-  <div class="pagination">
-    <!-- Implement pagination controls here -->
-    <button (click)="onPageChange(1)">1</button>
-    <button (click)="onPageChange(2)">2</button>
-    <!-- Add more pagination buttons as needed -->
-  </div>
-}

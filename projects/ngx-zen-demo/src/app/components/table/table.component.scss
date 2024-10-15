@@ -1,51 +1,15 @@
 section {
-  @apply px-60 py-12 transition-all;
-
-  ngx-zen-table {
-    @apply col-span-4 p-32 flex justify-center items-center bg-zinc-50 rounded-md;
-  }
+  @apply px-4 py-8;
 
   h1 {
-    @apply text-2xl font-semibold mb-5;
+    @apply text-2xl font-bold mb-6;
   }
 
-  .card {
-    @apply py-5 w-[50%];
-  }
+  .example {
+    @apply mb-8;
 
-  table {
-    @apply w-[85%] border-collapse;
-  }
-
-  th, td {
-    @apply border border-gray-300 px-4 py-2;
-  }
-
-  tr:hover {
-    @apply bg-gray-100;
-  }
-
-  h2 {
-    @apply text-base mb-3;
-  }
-
-  .code-wrapper {
-    @apply mt-4 bg-gray-100 p-4 rounded;
-
-    pre {
-      @apply overflow-x-auto;
+    h2 {
+      @apply text-xl font-semibold mb-4;
     }
-
-    code {
-      @apply text-sm;
-    }
-  }
-
-  .content {
-    @apply mt-4;
-  }
-
-  .ui {
-    @apply mb-4;
   }
 }

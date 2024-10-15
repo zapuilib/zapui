@@ -1,10 +1,4 @@
-import {
-  Component,
-  ElementRef,
-  forwardRef,
-  Input,
-  ViewChild,
-} from '@angular/core';
+import { Component, forwardRef, Input } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 
 import { ControlValueAccessorDirective } from '../../directives/control-value-accessor.directive';
@@ -24,9 +18,7 @@ import type { Styles } from '../../interfaces/style.interface';
   ],
 })
 export class RadioComponent<T> extends ControlValueAccessorDirective<T> {
-  @ViewChild('radio') radio!: ElementRef;
-  @Input() id: string = '';
-  @Input() label: string = '';
+  @Input() options: { id: string; label: string }[] = [];
   @Input() customErrorMessages: Record<string, string> = {};
   @Input() zenClass: string = '';
   @Input() labelPostion: 'left' | 'right' = 'right';

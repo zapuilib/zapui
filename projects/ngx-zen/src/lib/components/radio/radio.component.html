@@ -1,18 +1,19 @@
 <div class="__ngx__radio__wrapper" [ngClass]="[shape, zenClass]">
+  @for (radio of options; track radio) {
   <fieldset>
-    @if(label){
-    <legend class="sr-only">{{ label }}</legend>
+    @if(radio.label){
+    <legend class="sr-only">{{ radio.label }}</legend>
     <label
       class="__zen__form__control__label"
-      [for]="id"
+      [for]="radio.id"
       [ngStyle]="getStyle()"
-      >{{ label }}</label
+      >{{ radio.label }}</label
     >
     }
 
-    <input type="radio" [id]="id" [formControl]="control" />
+    <input type="radio" [id]="radio.id" [formControl]="control" />
   </fieldset>
-  @if(control.invalid && control.touched) {
+  } @if(control.invalid && control.touched) {
   <validation-error
     [errors]="control.errors"
     [zenClass]="zenClass"

@@ -155,8 +155,11 @@
           @switch(index) { @case(0) {
           <fieldset>
             <ngx-zen-radio
-              id="terms1"
-              label="I accept the terms and conditions 1"
+              [options]="[
+                { id: 'terms1', label: 'I accept the terms and conditions 1' },
+                { id: 'terms2', label: 'I accept the terms and conditions 2' },
+                { id: 'terms3', label: 'I accept the terms and conditions 3' }
+              ]"
               formControlName="terms"
               zenClass=""
             ></ngx-zen-radio>

@@ -1,0 +1,29 @@
+<div class="__zen__accordion__wrapper"
+  [ngClass]="[
+    zenClass,
+    size,
+    shape,
+    transition, 'icon-' + iconPosition,
+    isSingle ? 'single-accordion' : '',
+    !isSingle && isFirst ? 'first-accordion' : '',
+    !isSingle && !isFirst ? 'not-first-accordion' : '',
+    isLast ? 'last-accordion' : ''
+    ]"
+    [ngStyle]="getBorderStyle()"
+    (click)="group.onAccordionToggle(this)"
+    >
+  <div class="__zen__accordion__header" (click)="toggleAccordion()" [ngClass]="{ 'disabled': disabled }">
+    <div class="title-wrapper">
+      <span class="accordion__title" [ngStyle]="getTitleStyle()">{{ title }}</span>
+      @if (subtitle) {
+      <span class="accordion__subtitle" [ngStyle]="getSubtitleStyle()">{{ subtitle }}</span>
+      }
+    </div>
+    <i class="accordion__icon fa" [ngClass]="icon" [ngStyle]="getIconStyle()" aria-hidden="true"></i>
+  </div>
+  @if (isOpen) {
+    <div class="__zen__accordion__content" [ngStyle]="getContentStyle()">
+      <ng-content></ng-content>
+    </div>
+  }
+</div>

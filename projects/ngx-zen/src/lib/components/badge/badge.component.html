@@ -1,0 +1,9 @@
+<div class="__ngx__zen__badge__wrapper" [ngClass]="[variant, zenClass]">
+  @if (variant !== 'empty') {
+    <span class="badge__wrapper" [ngStyle]="getStyle()">
+      {{ getContent() }}
+    </span>
+  } @else {
+    <span class="badge__wrapper empty" [ngStyle]="getStyle()"></span>
+  }
+</div>

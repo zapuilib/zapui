@@ -1,0 +1,26 @@
+/* accordion.component.scss */
+section {
+  @apply px-60 py-12 transition-all;
+
+  h1 {
+    @apply text-2xl font-semibold mb-5;
+  }
+
+  .card {
+    @apply py-5 w-[50%];
+
+    .content {
+      .ui {
+        @apply min-h-[295px] rounded bg-white relative p-4;
+      }
+    }
+  }
+
+  table {
+    @apply w-[85%];
+  }
+
+  h2 {
+    @apply text-base mb-3;
+  }
+}

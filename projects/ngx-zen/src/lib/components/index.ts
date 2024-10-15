@@ -10,9 +10,10 @@ import { TextareaComponent } from './textarea/textarea.component';
 import { DialogComponent } from './dialog/dialog.component';
 import { ToggleComponent } from './toggle/toggle.component';
 import { ChipComponent } from './chip/chip.component';
+import { AccordionComponent, AccordionGroupComponent } from './accordion';
 
 export const COMPONENTS = [
-  AlertComponent,
+  InputComponent,
   ButtonComponent,
   AlertComponent,
   BadgeComponent,
@@ -25,4 +26,6 @@ export const COMPONENTS = [
   ModalComponent,
   SelectComponent,
   ChipComponent,
+  AccordionComponent,
+  AccordionGroupComponent,
 ];

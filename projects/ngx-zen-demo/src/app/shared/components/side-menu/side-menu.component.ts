@@ -78,6 +78,10 @@ export class SideMenuComponent {
           title: 'Tooltip',
           routerLink: '/tooltip',
         },
+        {
+          title: 'Accordion',
+          routerLink: '/accordion',
+        },
       ],
     },
   ];

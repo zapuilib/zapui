@@ -1,0 +1,56 @@
+.__zen__accordion__wrapper {
+  @apply w-full flex flex-col;
+
+  &.curve {
+    @apply rounded-lg;
+
+    .__zen__accordion__header {
+      @apply rounded-t-lg;
+    }
+
+    .__zen__accordion__content {
+      @apply rounded-b-lg;
+    }
+  }
+
+  /* Size Variants */
+  &.compact .__zen__accordion__header,
+  &.compact .__zen__accordion__content {
+    @apply p-2 text-sm;
+  }
+
+  /* Transition Variants */
+  &.smooth .__zen__accordion__content {
+    @apply transition-all duration-500 ease-in-out;
+  }
+
+  &.snappy .__zen__accordion__content {
+    @apply transition-all duration-150 ease-out;
+  }
+
+  &.none .__zen__accordion__content {
+    @apply transition-none;
+  }
+
+  /* Icon Position Variants */
+  &.icon-left .__zen__accordion__header {
+    @apply flex-row-reverse;
+  }
+
+  /* Base Styles for Header */
+  .__zen__accordion__header {
+    @apply flex items-center justify-between cursor-pointer px-1.5 py-2;
+
+    .title-wrapper {
+      @apply flex-1 flex flex-col justify-start;
+    }
+
+    .accordion__title {
+      @apply flex-1;
+    }
+  }
+
+  .__zen__accordion__content {
+    @apply px-1.5 py-2  transition-all duration-300 ease-in-out;
+  }
+}

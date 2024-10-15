@@ -7,7 +7,7 @@ import {
   ButtonComponent,
   InputComponent,
   TooltipComponent,
-  ChipComponent, 
+  ChipComponent,
   GettingStartedComponent,
   CheckboxComponent,
   ModalComponent,
@@ -15,6 +15,7 @@ import {
   TextareaComponent,
   DialogComponent,
   ToggleComponent,
+  AccordionComponent,
   BadgeComponent,
 } from './components';
 
@@ -86,6 +87,11 @@ const routes: Routes = [
       {
         path: 'checkbox',
         component: CheckboxComponent,
+        pathMatch: 'full',
+      },
+      {
+        path: 'accordion',
+        component: AccordionComponent,
         pathMatch: 'full',
       },
       {

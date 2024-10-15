@@ -7,7 +7,7 @@ import {
   ButtonComponent,
   InputComponent,
   TooltipComponent,
-  ChipComponent, 
+  ChipComponent,
   GettingStartedComponent,
   CheckboxComponent,
   ModalComponent,
@@ -15,6 +15,8 @@ import {
   TextareaComponent,
   DialogComponent,
   ToggleComponent,
+  AccordionComponent,
+  BadgeComponent,
 } from './components';
 
 const routes: Routes = [
@@ -40,6 +42,16 @@ const routes: Routes = [
       {
         path: 'button',
         component: ButtonComponent,
+        pathMatch: 'full',
+      },
+      {
+        path: 'badge',
+        component: BadgeComponent,
+        pathMatch: 'full',
+      },
+      {
+        path: 'chip',
+        component: ChipComponent,
         pathMatch: 'full',
       },
       {
@@ -78,13 +90,13 @@ const routes: Routes = [
         pathMatch: 'full',
       },
       {
-        path: 'toggle',
-        component: ToggleComponent,
+        path: 'accordion',
+        component: AccordionComponent,
         pathMatch: 'full',
       },
       {
-        path: 'chip',
-        component: ChipComponent,
+        path: 'toggle',
+        component: ToggleComponent,
         pathMatch: 'full',
       },
       {

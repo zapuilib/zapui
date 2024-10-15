@@ -1,0 +1,267 @@
+<section class="min-h-screen">
+  <h1>Accordions</h1>
+  @for (item of markdowns; track item; let i = $index) {
+    <ng-container
+      *ngTemplateOutlet="
+        card;
+        context: {
+          $implicit: item.markdown,
+          title: item.title,
+          index: i
+        }
+      "
+    >
+    </ng-container>
+  }
+
+  <h2>Properties</h2>
+  <table>
+    <thead>
+      <tr>
+        <th class="w-[10%]">Parameter</th>
+        <th class="w-[10%]">Required</th>
+        <th class="w-[30%]">Accepted values</th>
+        <th class="w-[50%]">Usage</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>title</code></td>
+        <td><p>Required</p></td>
+        <td><code>string</code></td>
+        <td><p>Sets the title of the accordion section.</p></td>
+      </tr>
+      <tr>
+        <td><code>subtitle</code></td>
+        <td><p>Optional</p></td>
+        <td><code>string</code></td>
+        <td><p>Sets the subtitle text of the accordion section.</p></td>
+      </tr>
+      <tr>
+        <td><code>isOpen</code></td>
+        <td><p>Optional</p></td>
+        <td><code>boolean</code></td>
+        <td>
+          <p>Controls the initial open state of the accordion. Defaults to <code>false</code>.</p>
+        </td>
+      </tr>
+      <tr>
+        <td><code>disabled</code></td>
+        <td><p>Optional</p></td>
+        <td><code>boolean</code></td>
+        <td><p>Disables the accordion, preventing it from being opened or closed.</p></td>
+      </tr>
+      <tr>
+        <td><code>size</code></td>
+        <td><p>Optional</p></td>
+        <td><code>compact</code> | <code>default</code> | <code>large</code></td>
+        <td>
+          <p>Sets the padding and font size for the accordion content. <code>compact</code> reduces padding, while <code>large</code> increases it.</p>
+        </td>
+      </tr>
+      <tr>
+        <td><code>shape</code></td>
+        <td><p>Optional</p></td>
+        <td><code>default</code> | <code>curve</code></td>
+        <td>
+          <p>Defines the shape of the accordion edges. The <code>curve</code> option applies rounded corners to the accordion.</p>
+        </td>
+      </tr>
+      <tr>
+        <td><code>transition</code></td>
+        <td><p>Optional</p></td>
+        <td><code>smooth</code> | <code>snappy</code> | <code>none</code></td>
+        <td>
+          <p>Sets the transition effect for expanding and collapsing the accordion content. <code>smooth</code> offers a gradual transition, <code>snappy</code> is quicker, and <code>none</code> removes the transition effect.</p>
+        </td>
+      </tr>
+      <tr>
+        <td><code>iconPosition</code></td>
+        <td><p>Optional</p></td>
+        <td><code>left</code> | <code>right</code></td>
+        <td>
+          <p>Specifies the position of the accordion icon relative to the title. Defaults to <code>right</code>.</p>
+        </td>
+      </tr>
+      <tr>
+        <td><code>openIcon</code></td>
+        <td><p>Optional</p></td>
+        <td><code>string</code> (icon class)</td>
+        <td>
+          <p>Sets the icon displayed when the accordion is open. Default is <code>fa-minus</code>. Accepts any valid Font Awesome or custom icon class.</p>
+        </td>
+      </tr>
+      <tr>
+        <td><code>closeIcon</code></td>
+        <td><p>Optional</p></td>
+        <td><code>string</code> (icon class)</td>
+        <td>
+          <p>Sets the icon displayed when the accordion is closed. Default is <code>fa-plus</code>. Accepts any valid Font Awesome or custom icon class.</p>
+        </td>
+      </tr>
+      <tr>
+        <td><code>zenClass</code></td>
+        <td><p>Optional</p></td>
+        <td><code>string</code> (CSS classes)</td>
+        <td>
+          <p>Applies custom styles to the outer wrapper of the accordion. Allows custom control over styling such as colors and padding.</p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2 class="mt-10">Events</h2>
+  <table>
+    <thead>
+      <tr>
+        <th class="w-[10%]">Event</th>
+        <th class="w-[50%]">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>toggle</code></td>
+        <td>
+          <p>
+            Triggered each time the accordion is opened or closed. You can
+            handle this event to perform actions such as logging the accordion
+            state or loading dynamic content.
+          </p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<ng-template let-markdown let-title="title" let-index="index" #card>
+  <div class="card">
+    <div class="header">
+      <h2>{{ title }}</h2>
+    </div>
+    <div class="content">
+      <div class="ui mb-4">
+        @switch(index) {
+          @case(0) {
+            <ngx-zen-accordion title="Basic Accordion">
+              <p class="text-black">Content for Basic Accordion</p>
+            </ngx-zen-accordion>
+          }
+          @case(1) {
+            <ngx-zen-accordion title="Accordion Title" subtitle="Optional subtitle text">
+              <p class="text-black">Content for Basic Accordion</p>
+            </ngx-zen-accordion>
+          }
+          @case(2) {
+            <ngx-zen-accordion title="Non-interactive Accordion" [disabled]="true">
+              <p class="text-black">This content is not accessible when disabled.</p>
+            </ngx-zen-accordion>
+          }
+          @case(3) {
+            <ngx-zen-accordion-group [multiple]="false">
+              <ngx-zen-accordion title="Accordion 1">
+                <p class="text-black">Content for Accordion 1</p>
+              </ngx-zen-accordion>
+              <ngx-zen-accordion title="Accordion 2">
+                <p class="text-black">Content for Accordion 2</p>
+              </ngx-zen-accordion>
+              <ngx-zen-accordion title="Accordion 3">
+                <p class="text-black">Content for Accordion 3</p>
+              </ngx-zen-accordion>
+            </ngx-zen-accordion-group>
+          }
+          @case(4) {
+            <ngx-zen-accordion-group [multiple]="false">
+              @for (accordion of accordions; track accordion; let i = $index) {
+                <ngx-zen-accordion [title]="accordion.title">
+                  <p class="text-black">{{ accordion.content }}</p>
+                </ngx-zen-accordion>
+              }
+            </ngx-zen-accordion-group>
+          }
+          @case(5) {
+            <div>
+              <div class="mb-2">
+                <a (click)="setActiveIndex(0)" [ngClass]="{ 'text-blue-700 font-bold': currentActiveIndex === 0, 'text-blue-500 underline': currentActiveIndex !== 0 }" class="mr-2 cursor-pointer"
+>Open Accordion 1</a>
+                <a (click)="setActiveIndex(1)" [ngClass]="{ 'text-blue-700 font-bold': currentActiveIndex === 1, 'text-blue-500 underline': currentActiveIndex !== 1 }" class="mr-2 cursor-pointer"
+>Open Accordion 2</a>
+                <a (click)="setActiveIndex(2)" [ngClass]="{ 'text-blue-700 font-bold': currentActiveIndex === 2, 'text-blue-500 underline': currentActiveIndex !== 2 }" class="cursor-pointer">Open Accordion 3</a>
+              </div>
+
+              <ngx-zen-accordion-group [multiple]="false" [activeIndex]="currentActiveIndex">
+                <ngx-zen-accordion title="Accordion 1">
+                  <p class="text-black">Content for Accordion 1</p>
+                </ngx-zen-accordion>
+                <ngx-zen-accordion title="Accordion 2">
+                  <p class="text-black">Content for Accordion 2</p>
+                </ngx-zen-accordion>
+                <ngx-zen-accordion title="Accordion 3">
+                  <p class="text-black">Content for Accordion 3</p>
+                </ngx-zen-accordion>
+              </ngx-zen-accordion-group>
+            </div>
+          }
+          @case(6) {
+            <ngx-zen-accordion-group [multiple]="false">
+              <ngx-zen-accordion
+                title="Compact Accordion"
+                size="compact"
+              >
+                <p class="text-black">Compact size content 1</p>
+              </ngx-zen-accordion>
+              <ngx-zen-accordion
+              title="Compact Accordion"
+              size="compact"
+            >
+              <p class="text-black">Compact size content 2</p>
+            </ngx-zen-accordion>
+            <ngx-zen-accordion
+            title="Compact Accordion"
+            size="compact"
+          >
+            <p class="text-black">Compact size content 2</p>
+          </ngx-zen-accordion>
+
+            </ngx-zen-accordion-group>
+          }
+          @case(7) {
+            <ngx-zen-accordion
+              title="Rounded Shape Accordion"
+              shape="curve"
+            >
+              <p class="text-black">Rounded shape content</p>
+            </ngx-zen-accordion>
+          }
+          @case(8) {
+            <ngx-zen-accordion
+              title="Snappy Accordion"
+              transition="snappy"
+            >
+              <p class="text-black">Snappy transition content</p>
+            </ngx-zen-accordion>
+          }
+          @case(9) {
+            <ngx-zen-accordion
+              title="Icon on left Accordion"
+              iconPosition="left"
+            >
+              <p class="text-black">Icon on left content</p>
+            </ngx-zen-accordion>
+          }
+          @case(10) {
+            <ngx-zen-accordion
+              title="Custom icons Accordion"
+              openIcon="fa-chevron-up"
+              closeIcon="fa-chevron-down"
+            >
+              <p class="text-black">Custom icons content</p>
+            </ngx-zen-accordion>
+          }
+        }
+      </div>
+      <div class="code-wrapper">
+        <app-code-block [markdownData]="markdown"></app-code-block>
+      </div>
+    </div>
+  </div>
+</ng-template>

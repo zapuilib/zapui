@@ -1,3 +1,7 @@
+## Beta version 0.0.6 Updates
+
+- Input component output event added for icon click, useful for password fields
+
 ## Beta version 0.0.5 Updates
 
 - Badge added

@@ -1,26 +1,22 @@
 section {
   @apply px-60 py-12 transition-all;
 
-  ngx-zen-chip {
-    @apply col-span-4 p-32 flex justify-center items-center bg-zinc-50 rounded-md text-white;
+  ngx-zen-badge {
+    @apply col-span-4 p-32 flex justify-center items-center bg-zinc-50 rounded-md;
   }
 
-  h1,
-  h2,
-  th,
-  td,
-  span {
-    @apply text-white;
+  h1 {
+    @apply text-2xl font-semibold mb-5;
   }
 
   &.light {
-    @apply bg-white text-white;
+    @apply bg-white;
   }
 
   &.dark {
     @apply bg-[#181818] text-white;
 
-    ngx-zen-chip {
+    ngx-zen-badge {
       @apply bg-[#282828] text-white;
     }
   }
@@ -36,5 +32,5 @@ section {
   h2 {
     @apply text-base mb-3;
   }
-}
 
+}

@@ -15,6 +15,8 @@ export class ButtonComponent {
   @Input() type: 'icononly' | 'default' = 'default';
   @Input() icon!: string;
   @Input() iconPosition: 'left' | 'right' = 'left';
+  @Input() img: string | undefined = undefined;
+  @Input() imgPosition: 'left' | 'right' = 'left';
   @Input() variant: 'outlined' | 'default' | 'link' = 'default';
   @Input() disabled: boolean = false;
 

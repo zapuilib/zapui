@@ -86,6 +86,15 @@ export class ButtonComponent {
 \`\`\``,
       title: 'Disabled Button',
     },
+    {
+      markdown: `\`\`\`html
+<ngx-zen-button
+  text="Submit"
+  img="https://static-00.iconduck.com/assets.00/google-icon-2048x2048-czn3g8x8.png"
+></ngx-zen-button>
+      \`\`\``,
+      title: 'Button with image',
+    },
   ];
 
   constructor(private route: ActivatedRoute) {}

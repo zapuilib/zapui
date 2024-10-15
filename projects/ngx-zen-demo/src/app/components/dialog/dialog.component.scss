@@ -1,8 +1,8 @@
 section {
   @apply px-60 py-12 transition-all;
 
-  ngx-zen-modal {
-    @apply col-span-4 p-44 flex justify-center items-center bg-zinc-50 rounded-md relative;
+  ngx-zen-alert {
+    @apply col-span-4 p-32 flex justify-center items-center bg-zinc-50 rounded-md;
   }
 
   h1 {
@@ -11,6 +11,12 @@ section {
 
   .card {
     @apply py-5 w-[50%];
+
+    .content {
+      .ui {
+        @apply min-h-[295px] h-fit rounded bg-white relative;
+      }
+    }
   }
 
   table {
@@ -19,11 +25,5 @@ section {
 
   h2 {
     @apply text-base mb-3;
-  }
-
-  .content{
-    p{
-      @apply text-black;
-    }
   }
 }

@@ -7,11 +7,15 @@ import {
   ButtonComponent,
   InputComponent,
   TooltipComponent,
+  ChipComponent,
   GettingStartedComponent,
   CheckboxComponent,
   ModalComponent,
+  SelectComponent,
   TextareaComponent,
   RadioComponent,
+  DialogComponent,
+  ToggleComponent,
 } from './components';
 
 const routes: Routes = [
@@ -40,6 +44,11 @@ const routes: Routes = [
         pathMatch: 'full',
       },
       {
+        path: 'dialog',
+        component: DialogComponent,
+        pathMatch: 'full',
+      },
+      {
         path: 'input',
         component: InputComponent,
         pathMatch: 'full',
@@ -60,6 +69,11 @@ const routes: Routes = [
         pathMatch: 'full',
       },
       {
+        path: 'select',
+        component: SelectComponent,
+        pathMatch: 'full',
+      },
+      {
         path: 'textarea',
         component: TextareaComponent,
         pathMatch: 'full',
@@ -67,6 +81,16 @@ const routes: Routes = [
       {
         path: 'checkbox',
         component: CheckboxComponent,
+        pathMatch: 'full',
+      },
+      {
+        path: 'toggle',
+        component: ToggleComponent,
+        pathMatch: 'full',
+      },
+      {
+        path: 'chip',
+        component: ChipComponent,
         pathMatch: 'full',
       },
       {

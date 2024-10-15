@@ -1,9 +1,8 @@
 button {
   @apply px-5 py-2;
-  @apply focus-within:outline-blue-600;
   @apply hover:opacity-80;
   @apply flex items-center;
-  @apply bg-black text-white;
+  @apply border;
 
   &.pill {
     @apply rounded-full;
@@ -30,9 +29,8 @@ button {
   }
 
   &.outlined {
-    @apply border border-black;
+    @apply border;
     @apply bg-transparent #{!important};
-    @apply text-black;
   }
 
   i {
@@ -56,15 +54,17 @@ button {
   &.link {
     @apply border-0 px-0 py-0;
     @apply bg-transparent #{!important};
-    @apply text-black;
   }
 
   &.link {
     @apply underline;
-    @apply text-blue-600;
+  }
 
-    &:hover {
-      @apply text-blue-700;
+  img {
+    @apply w-6 h-6 mr-2;
+
+    &.right {
+      @apply mr-0 ml-2;
     }
   }
 }

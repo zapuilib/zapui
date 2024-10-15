@@ -1,0 +1,122 @@
+<section class="min-h-screen">
+  <h1>Toggles</h1>
+  @for(item of markdowns; track item; let i = $index) {
+  <ng-container
+    *ngTemplateOutlet="
+      card;
+      context: {
+        $implicit: markdowns[i].markdown,
+        title: markdowns[i].title,
+        index: i
+      }
+    "
+  >
+  </ng-container>
+  }
+  <h2>Properties</h2>
+  <table>
+    <thead>
+      <tr>
+        <th class="w-[10%]">Parameter</th>
+        <th class="w-[10%]">Required</th>
+        <th class="w-[30%]">Accepted values</th>
+        <th class="w-[50%]">Usage</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>label</code></td>
+        <td><p>Optional</p></td>
+        <td><code>string</code></td>
+        <td>
+          <p>Accepts a label for toggle.</p>
+        </td>
+      </tr>
+      <tr>
+        <td><code>text</code></td>
+        <td><p>Optional</p></td>
+        <td><code>string</code></td>
+        <td>
+          <p>Accepts a text for toggle.</p>
+        </td>
+      </tr>
+      <tr>
+        <td><code>zenClass</code></td>
+        <td><p>Optional</p></td>
+        <td><code>string</code></td>
+        <td>
+          <p>
+            Allows overriding default styles by passing Tailwind CSS classes.
+            Utilize the <code>ngx-zen/tailwind</code> plugin to target specific
+            elements within the alert component.
+          </p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <h2 class="mt-10">Events</h2>
+  <table>
+    <thead>
+      <tr>
+        <th class="w-[10%]">Event</th>
+        <th class="w-[50%]">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>toggle</code></td>
+        <td>
+          <p>
+            Triggered every time the toggle button is clicked. Returns boolean.
+          </p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <h2 class="mt-10">Zen Classes</h2>
+  <table>
+    <thead>
+      <tr>
+        <th class="w-[10%]">Prefixes</th>
+        <th class="w-[50%]">Usage</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>label</code></td>
+        <td>
+          <p>
+            Accepts Tailwind CSS classes for the label, e.g.,
+            <code>label:bg-red-500</code>. Some classes may need to be forced
+            with an exclamation mark <code>!</code>, e.g.,
+            <code>label:!ring-red-500</code>.
+          </p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<ng-template let-markdown let-title="title" let-index="index" #card>
+  <div class="card">
+    <div class="header">
+      <h2>{{ title }}</h2>
+    </div>
+    <div class="content">
+      <form [formGroup]="form">
+        @switch(index) { @case(0) {
+        <ngx-zen-toggle formControlName="terms"></ngx-zen-toggle>
+        } @case (1) {
+        <ngx-zen-toggle formControlName="terms2" label="Label"></ngx-zen-toggle>
+        } @case(2) {
+        <ngx-zen-toggle
+          formControlName="terms3"
+          label="Label"
+          text="Help text"
+        ></ngx-zen-toggle>
+        }}
+        <app-code-block [markdownData]="markdown"></app-code-block>
+      </form>
+    </div>
+  </div>
+</ng-template>

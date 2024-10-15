@@ -15,6 +15,8 @@ export class ButtonComponent {
   @Input() type: 'icononly' | 'default' = 'default';
   @Input() icon!: string;
   @Input() iconPosition: 'left' | 'right' = 'left';
+  @Input() img: string | undefined = undefined;
+  @Input() imgPosition: 'left' | 'right' = 'left';
   @Input() variant: 'outlined' | 'default' | 'link' = 'default';
   @Input() disabled: boolean = false;
 
@@ -29,8 +31,11 @@ export class ButtonComponent {
           : this.variant === 'outlined'
           ? this.config.colors.tertiary
           : this.config.colors.primary,
-      'border-color': this.variant === 'outlined' ? this.config.colors.tertiary : 'transparent',
-      'font-size': this.size === 'tight' ? this.config.fontSize.xs : this.config.fontSize.md,
+      'border-color': this.config.colors.tertiary,
+      'font-size':
+        this.size === 'tight'
+          ? this.config.fontSize.xs
+          : this.config.fontSize.md,
     };
   }
 }

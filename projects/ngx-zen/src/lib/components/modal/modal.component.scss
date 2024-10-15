@@ -1,5 +1,5 @@
 .__ngx__modal__wrapper {
-  @apply w-full h-full fixed top-0 left-0 z-50;
+  @apply w-full h-full fixed top-0 left-0 z-50 p-5 max-md:p-3;
   @apply flex items-center justify-center;
 
   &.classic {

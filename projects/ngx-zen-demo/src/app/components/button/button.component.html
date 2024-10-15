@@ -87,6 +87,29 @@
         </td>
       </tr>
       <tr>
+        <td><code>img</code></td>
+        <td><p>Optional</p></td>
+        <td><code>string</code></td>
+        <td>
+          <p>
+            Specifies an image URL for the button's icon (e.g.,
+            <code>https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png</code
+            >). Only works if <code>icon</code> is not specified.
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td><code>imgPosition</code></td>
+        <td><p>Optional</p></td>
+        <td><code>left</code>|<code>right</code></td>
+        <td>
+          <p>
+            Sets the image's position relative to the button text. Defaults to
+            "left".
+          </p>
+        </td>
+      </tr>
+      <tr>
         <td><code>variant</code></td>
         <td><p>Optional</p></td>
         <td><code>outlined</code>|<code>default</code>|<code>link</code></td>
@@ -152,6 +175,11 @@
         ></ngx-zen-button>
         } @case(10) {
         <ngx-zen-button text="Submit" [disabled]="true"></ngx-zen-button>
+        } @case(11) {
+        <ngx-zen-button
+          text="Submit"
+          img="https://static-00.iconduck.com/assets.00/google-icon-2048x2048-czn3g8x8.png"
+        ></ngx-zen-button>
         } }
       </div>
       <div class="code-wrapper">

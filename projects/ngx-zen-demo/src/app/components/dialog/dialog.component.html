@@ -1,0 +1,193 @@
+<section class="min-h-screen">
+  <h1>Dialogs</h1>
+  @for(item of markdowns; track item; let i = $index) {
+  <ng-container
+    *ngTemplateOutlet="
+      card;
+      context: {
+        $implicit: markdowns[i].markdown,
+        title: markdowns[i].title,
+        index: i
+      }
+    "
+  >
+  </ng-container>
+  }
+  <h2>Properties</h2>
+  <table>
+    <thead>
+      <tr>
+        <th class="w-[10%]">Parameter</th>
+        <th class="w-[10%]">Required</th>
+        <th class="w-[30%]">Accepted values</th>
+        <th class="w-[50%]">Usage</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>title</code></td>
+        <td><p>Required</p></td>
+        <td>
+          <code>string</code>
+        </td>
+        <td>
+          <p>Accepts a title for the dialog.</p>
+        </td>
+      </tr>
+      <tr>
+        <td><code>text</code></td>
+        <td><p>Optional</p></td>
+        <td><code>string</code></td>
+        <td>
+          <p>
+            Accepts a message for the dialog. Don't provide this property if you
+            want to use custom html with the <code>ng-content</code>
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td><code>shape</code></td>
+        <td><p>Optional</p></td>
+        <td><code>curve</code>|<code>default</code></td>
+        <td>
+          <p>
+            Controls the shape of the dialog. "curve" applies rounded corners,
+            while "default" uses standard corners.
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td><code>position</code></td>
+        <td><p>Optional</p></td>
+        <td><code>top</code>|<code>default</code></td>
+        <td>
+          <p>
+            Controls the position of the dialog. "top" positions the dialog on
+            the top of the screen, while "default" positions it in the center.
+            Initialy set to "default".
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td><code>primaryBtnTemplate</code></td>
+        <td><p>Optional</p></td>
+        <td><code>ngx-zen-button</code></td>
+        <td>
+          <p>Allows to inject a custom template for the primary button.</p>
+        </td>
+      </tr>
+      <tr>
+        <td><code>secondaryBtnTemplate</code></td>
+        <td><p>Optional</p></td>
+        <td><code>ngx-zen-button</code></td>
+        <td>
+          <p>Allows to inject a custom template for the secondary button.</p>
+        </td>
+      </tr>
+      <tr>
+        <td><code>zenClass</code></td>
+        <td><p>Optional</p></td>
+        <td><code>string</code></td>
+        <td>
+          <p>
+            Allows overriding default styles by passing Tailwind CSS classes.
+            Utilize the <code>ngx-zen/tailwind</code> plugin to target specific
+            elements within the dialog component.
+          </p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <h2 class="mt-10">Events</h2>
+  <table>
+    <thead>
+      <tr>
+        <th class="w-[10%]">Event</th>
+        <th class="w-[50%]">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>confirm</code></td>
+        <td>
+          <p>
+            Triggered when the user confirms the action. You can handle this
+            event to perform actions.
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td><code>cancel</code></td>
+        <td>
+          <p>
+            Triggered when the user cancels the action. You can handle this
+            event to perform actions.
+          </p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<ng-template let-markdown let-title="title" let-index="index" #card>
+  <div class="card">
+    <div class="header">
+      <h2>{{ title }}</h2>
+    </div>
+    <div class="content">
+      <div class="ui">
+        @switch(index) { @case(0) {
+        <ngx-zen-dialog
+          title="Confirm action"
+          text="Are you sure you want to proceed? This action cannot be undone"
+          zenClass="!absolute"
+        ></ngx-zen-dialog>
+        } @case(1) {
+        <ngx-zen-dialog
+          title="Confirm action"
+          shape="curve"
+          text="Are you sure you want to proceed? This action cannot be undone"
+          zenClass="!absolute"
+        ></ngx-zen-dialog>
+        } @case(2) {
+        <ngx-zen-dialog
+          title="Confirm action"
+          shape="pill"
+          text="Are you sure you want to proceed? This action cannot be undone"
+          zenClass="!absolute"
+        ></ngx-zen-dialog>
+        } @case(3) {
+        <ngx-zen-dialog title="Confirm action" zenClass="!absolute">
+          <div>
+            <h3 class="text-black">Title</h3>
+            <p class="text-black">Here goes the custom content</p>
+          </div>
+        </ngx-zen-dialog>
+        } @case(4){
+        <ngx-zen-dialog
+          title="Confirm action"
+          text="Are you sure you want to proceed? This action cannot be undone"
+          zenClass="!absolute"
+          [primaryBtnTemplate]="customPrimaryButton"
+          [secondaryBtnTemplate]="customSecondaryButton"
+        ></ngx-zen-dialog>
+        } }
+      </div>
+      <div class="code-wrapper">
+        <app-code-block [markdownData]="markdown"></app-code-block>
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #customPrimaryButton>
+  <ngx-zen-button text="Confirm" shape="default"></ngx-zen-button>
+</ng-template>
+
+<ng-template #customSecondaryButton>
+  <ngx-zen-button
+    text="Cancel"
+    shape="default"
+    variant="outlined"
+  ></ngx-zen-button>
+</ng-template>

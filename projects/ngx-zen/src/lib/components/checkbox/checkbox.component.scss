@@ -14,7 +14,7 @@
   }
 
   input {
-    @apply appearance-none h-5 w-5 border cursor-pointer relative;
+    @apply appearance-none min-h-5 min-w-5 h-5 w-5 border cursor-pointer relative;
 
     &:checked {
       &::after {

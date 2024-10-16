@@ -1,3 +1,17 @@
+## Beta version 0.0.7 Updates
+
+- Chekbox input now have a min height and width
+
+## Beta version 0.0.6 Updates
+
+- Input component output event added for icon click, useful for password fields
+
+## Beta version 0.0.5 Updates
+
+- Badge added
+- Accordion added
+- Access control directive updated
+
 ## Beta version 0.0.4 Updates
 
 - Legend updated

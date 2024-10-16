@@ -1,4 +1,4 @@
-import { Component, forwardRef, Input } from '@angular/core';
+import { Component, EventEmitter, forwardRef, Input, Output } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 
 import { ControlValueAccessorDirective } from '../../directives/control-value-accessor.directive';
@@ -18,6 +18,7 @@ type InputType = 'password' | 'text' | 'number' | 'email' | 'tel';
   ],
 })
 export class InputComponent<T> extends ControlValueAccessorDirective<T> {
+  @Output() iconClick: EventEmitter<void> = new EventEmitter<void>();
   @Input() type: InputType = 'text';
   @Input() label: string = '';
   @Input() id: string = '';
@@ -29,4 +30,9 @@ export class InputComponent<T> extends ControlValueAccessorDirective<T> {
   @Input() icon!: string;
   @Input() iconPosition: 'left' | 'right' = 'left';
   @Input() autoComplete: string = 'off';
+
+  handleIconClick(event: any): void {
+    event.stopPropagation();
+    this.iconClick.emit();
+  }
 }

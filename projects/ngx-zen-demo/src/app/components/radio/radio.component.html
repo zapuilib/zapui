@@ -1,0 +1,192 @@
+<section class="min-h-screen">
+  <h1>Radios</h1>
+  @for(item of markdowns; track item; let i = $index) {
+  <ng-container
+    *ngTemplateOutlet="
+      card;
+      context: {
+        $implicit: markdowns[i].markdown,
+        title: markdowns[i].title,
+        index: i
+      }
+    "
+  >
+  </ng-container>
+  }
+  <h2>Properties</h2>
+  <table>
+    <thead>
+      <tr>
+        <th class="w-[10%]">Parameter</th>
+        <th class="w-[10%]">Required</th>
+        <th class="w-[30%]">Accepted values</th>
+        <th class="w-[50%]">Usage</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>options</code></td>
+        <td><p>Required</p></td>
+        <td>
+          <code>Array<&#123; name: string; value: string &#125;></code>
+        </td>
+        <td>
+          <p>
+            Accepts an array of options for the form control. Name will be
+            displayed in the label. Value will be returned.
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td><code>formControlName</code></td>
+        <td><p>Required</p></td>
+        <td><code>string</code></td>
+        <td>
+          <p>
+            Accepts a form control name from either your form group or your
+            single control
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td><code>label</code></td>
+        <td><p>Optional</p></td>
+        <td><code>string</code></td>
+        <td>
+          <p>Accepts a label for the form control.</p>
+        </td>
+      </tr>
+      <tr>
+        <td><code>variant</code></td>
+        <td><p>Optional</p></td>
+        <td><code>vertical</code>|<code>horizontal</code></td>
+        <td>
+          <p>
+            Defines the direction of the radio buttons. Defaults to
+            <code>vertical</code>.
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td><code>zenClass</code></td>
+        <td><p>Optional</p></td>
+        <td><code>string</code></td>
+        <td>
+          <p>
+            Allows overriding default styles by passing Tailwind CSS classes.
+            Utilize the <code>ngx-zen/tailwind</code> plugin to target specific
+            elements within the alert component.
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td><code>customErrorMessages</code></td>
+        <td><p>Optional</p></td>
+        <td><code>Record&lt;string, string&gt;</code></td>
+        <td>
+          <p>
+            Accepts custom error messages for the form control. Defaults to
+            automatically generated error messages.
+          </p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <h2 class="mt-5">Zen Classes</h2>
+  <table>
+    <thead>
+      <tr>
+        <th class="w-[10%]">Prefixes</th>
+        <th class="w-[50%]">Usage</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>input</code></td>
+        <td>
+          <p>
+            Accepts Tailwind CSS classes for the input, e.g.,
+            <code>input:bg-red-500</code>. Some classes may need to be forced
+            with an exclamation mark <code>!</code>, e.g.,
+            <code>input:!ring-red-500</code>.
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td><code>label</code></td>
+        <td>
+          <p>
+            Accepts Tailwind CSS classes for the label, e.g.,
+            <code>label:bg-red-500</code>. Some classes may need to be forced
+            with an exclamation mark <code>!</code>, e.g.,
+            <code>label:!ring-red-500</code>.
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td><code>error</code></td>
+        <td>
+          <p>
+            Accepts Tailwind CSS classes for the error, e.g.,
+            <code>error:bg-red-500</code>. Some classes may need to be forced
+            with an exclamation mark <code>!</code>, e.g.,
+            <code>error:!ring-red-500</code>.
+          </p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<ng-template let-markdown let-title="title" let-index="index" #card>
+  <div class="card">
+    <div class="header">
+      <h2>{{ title }}</h2>
+    </div>
+    <div class="content">
+      <div class="ui">
+        <form action="" [formGroup]="form">
+          @switch(index) { @case(0) {
+          <fieldset>
+            <ngx-zen-radio
+              [options]="[
+                { name: 'Email 1', value: 'email1' },
+                { name: 'Phone 1', value: 'phone1' },
+                { name: 'None 1', value: 'none1' }
+              ]"
+              formControlName="contact1"
+            ></ngx-zen-radio>
+          </fieldset>
+          } @case(1) {
+          <fieldset>
+            <ngx-zen-radio
+              label="Contact method"
+              [options]="[
+                { name: 'Email 2', value: 'email2' },
+                { name: 'Phone 2', value: 'phone2' },
+                { name: 'None 2', value: 'none2' }
+              ]"
+              formControlName="contact2"
+            ></ngx-zen-radio>
+          </fieldset>
+          } @case (2) {
+          <fieldset>
+            <ngx-zen-radio
+              [options]="[
+                { name: 'Email 3', value: 'email3' },
+                { name: 'Phone 3', value: 'phone3' },
+                { name: 'None 3', value: 'none3' }
+              ]"
+              formControlName="contact3"
+              variant="horizontal"
+            ></ngx-zen-radio>
+          </fieldset>
+          }}
+        </form>
+      </div>
+      <div class="code-wrapper">
+        <app-code-block [markdownData]="markdown"></app-code-block>
+      </div>
+    </div>
+  </div>
+</ng-template>

@@ -36,13 +36,5 @@ export class ToggleComponent {
       terms3: ['', [Validators.required]],
       terms4: ['', [Validators.required]],
     });
-
-    this.handleFormChanges();
-  }
-
-  handleFormChanges(): void {
-    this.form.valueChanges.subscribe((value) => {
-      console.log(value);
-    });
   }
 }

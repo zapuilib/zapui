@@ -9,7 +9,7 @@
   <fieldset>
     
     @if(icon && iconPosition) {
-    <i class="fa-solid" [ngClass]="[icon, iconPosition]" [ngStyle]="getStyle()"></i>
+    <i class="fa-solid" [ngClass]="[icon, iconPosition]" [ngStyle]="getStyle()" (click)="handleIconClick($event)"></i>
     }
     <input
       [type]="type"

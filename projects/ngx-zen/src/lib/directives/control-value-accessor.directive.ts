@@ -106,9 +106,11 @@ export class ControlValueAccessorDirective<T>
         takeUntil(this._destroy$),
         startWith(this.control.value),
         distinctUntilChanged(),
-        tap((val) => fn(val))
+        tap((val) => {
+          fn(val), this.control?.updateValueAndValidity();
+        })
       )
-      .subscribe(() => this.control?.markAsUntouched());
+      .subscribe();
   }
 
   registerOnTouched(fn: () => T): void {

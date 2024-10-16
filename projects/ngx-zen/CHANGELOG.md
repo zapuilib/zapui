@@ -1,3 +1,7 @@
+## Beta version 0.0.7 Updates
+
+- Chekbox input now have a min height and width
+
 ## Beta version 0.0.6 Updates
 
 - Input component output event added for icon click, useful for password fields

@@ -52,11 +52,11 @@ export class ControlValueAccessorDirective<T>
     );
     document.documentElement.style.setProperty('--focus-color', focusColor);
     document.documentElement.style.setProperty(
-      '--before-bg-color',
+      '--before-checked-color',
       this.config.colors.tertiary
     );
     document.documentElement.style.setProperty(
-      '--after-bg-color',
+      '--after-checked-color',
       this.config.colors.primary
     );
   }

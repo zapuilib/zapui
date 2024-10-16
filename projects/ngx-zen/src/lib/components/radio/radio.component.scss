@@ -1,6 +1,6 @@
 .__ngx__radio__wrapper {
   .wrapper {
-    @apply flex gap-y-2 gap-x-4 w-full flex-nowrap;
+    @apply flex gap-y-2 gap-x-2 w-full flex-nowrap;
 
     fieldset {
       @apply flex items-center gap-x-2 cursor-pointer;
@@ -12,12 +12,12 @@
 
         &:checked {
           &::before {
-            @apply content-[''] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-[var(--before-bg-color)];
+            @apply content-[''] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-[var(--before-checked-color)];
             @apply w-4 h-4 rounded-full;
           }
 
           &::after {
-            @apply content-[''] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-[var(--after-bg-color)] z-10;
+            @apply content-[''] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-[var(--after-checked-color)] z-10;
             @apply w-1.5 h-1.5 rounded-full;
           }
         }

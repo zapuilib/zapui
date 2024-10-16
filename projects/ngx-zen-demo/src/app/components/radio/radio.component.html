@@ -25,11 +25,16 @@
     </thead>
     <tbody>
       <tr>
-        <td><code>id</code></td>
+        <td><code>options</code></td>
         <td><p>Required</p></td>
-        <td><code>string</code></td>
         <td>
-          <p>Accepts a unique identifier for the form control.</p>
+          <code>Array<&#123; name: string; value: string &#125;></code>
+        </td>
+        <td>
+          <p>
+            Accepts an array of options for the form control. Name will be
+            displayed in the label. Value will be returned.
+          </p>
         </td>
       </tr>
       <tr>
@@ -52,24 +57,13 @@
         </td>
       </tr>
       <tr>
-        <td><code>size</code></td>
+        <td><code>variant</code></td>
         <td><p>Optional</p></td>
-        <td><code>compact</code>|<code>default</code></td>
+        <td><code>vertical</code>|<code>horizontal</code></td>
         <td>
           <p>
-            Defines the input size. "Compact" is a smaller input, and "default"
-            is a standard input.
-          </p>
-        </td>
-      </tr>
-      <tr>
-        <td><code>shape</code></td>
-        <td><p>Optional</p></td>
-        <td><code>pill</code>|<code>curve</code>|<code>default</code></td>
-        <td>
-          <p>
-            Defines the input shape."Pill" is a fully rounded input, "curve" has
-            rounded corners, and "default" is a classic square-cornered input.
+            Defines the direction of the radio buttons. Defaults to
+            <code>vertical</code>.
           </p>
         </td>
       </tr>
@@ -151,21 +145,42 @@
     </div>
     <div class="content">
       <div class="ui">
-        {{ form | json }}
-
         <form action="" [formGroup]="form">
           @switch(index) { @case(0) {
           <fieldset>
             <ngx-zen-radio
               [options]="[
-                { name: 'Email', value: 'email' },
-                { name: 'Phone', value: 'phone' },
-                { name: 'None', value: 'none' }
+                { name: 'Email 1', value: 'email1' },
+                { name: 'Phone 1', value: 'phone1' },
+                { name: 'None 1', value: 'none1' }
               ]"
-              formControlName="contact"
+              formControlName="contact1"
             ></ngx-zen-radio>
           </fieldset>
-
+          } @case(1) {
+          <fieldset>
+            <ngx-zen-radio
+              label="Contact method"
+              [options]="[
+                { name: 'Email 2', value: 'email2' },
+                { name: 'Phone 2', value: 'phone2' },
+                { name: 'None 2', value: 'none2' }
+              ]"
+              formControlName="contact2"
+            ></ngx-zen-radio>
+          </fieldset>
+          } @case (2) {
+          <fieldset>
+            <ngx-zen-radio
+              [options]="[
+                { name: 'Email 3', value: 'email3' },
+                { name: 'Phone 3', value: 'phone3' },
+                { name: 'None 3', value: 'none3' }
+              ]"
+              formControlName="contact3"
+              variant="horizontal"
+            ></ngx-zen-radio>
+          </fieldset>
           }}
         </form>
       </div>

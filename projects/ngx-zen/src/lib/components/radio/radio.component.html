@@ -1,24 +1,24 @@
 <div class="__ngx__radio__wrapper" [ngClass]="[variant, zenClass]">
   <div class="wrapper">
-    @for (radio of options; track radio) {
-    <fieldset (change)="control.setValue(radio.value)">
+    @if(label) {
+    <p [ngStyle]="getLabelStyle()">{{ label }}</p>
+    } @for (radio of options; track radio) {
+    <fieldset>
       <input
         type="radio"
         [id]="radio.value"
-        [value]="radio.value"
         [formControl]="control"
+        [value]="radio.value"
         [ngStyle]="getRadioStyle()"
       />
 
-      @if(radio.name){
-      <legend class="sr-only">{{ radio.value }}</legend>
       <label
         class="__zen__form__control__label"
         [for]="radio.value"
         [ngStyle]="getLabelStyle()"
+        (click)="control.setValue(radio.value)"
         >{{ radio.name }}</label
       >
-      }
     </fieldset>
     }
   </div>

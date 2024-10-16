@@ -52,12 +52,12 @@ export class ControlValueAccessorDirective<T>
     );
     document.documentElement.style.setProperty('--focus-color', focusColor);
     document.documentElement.style.setProperty(
-      '--after-bg-color',
-      this.config.colors.primary
+      '--before-bg-color',
+      this.config.colors.tertiary
     );
     document.documentElement.style.setProperty(
-      '--before-bg-color',
-      this.config.colors.secondary
+      '--after-bg-color',
+      this.config.colors.primary
     );
   }
 

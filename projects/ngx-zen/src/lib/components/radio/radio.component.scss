@@ -7,14 +7,13 @@
 
       input {
         @apply appearance-none;
-        @apply relative h-4 w-4 border cursor-pointer;
-        @apply rounded-full;
-        @apply input:focus-within:outline-0 input:focus-within:ring-2 input:focus-within:ring-offset-0;
+        @apply relative h-4 w-4;
+        @apply border rounded-full cursor-pointer;
 
         &:checked {
           &::before {
             @apply content-[''] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-[var(--before-bg-color)];
-            @apply w-3.5 h-3.5 rounded-full;
+            @apply w-4 h-4 rounded-full;
           }
 
           &::after {
@@ -22,10 +21,10 @@
             @apply w-1.5 h-1.5 rounded-full;
           }
         }
-      }
 
-      input:disabled {
-        @apply opacity-50 cursor-not-allowed;
+        &:disabled {
+          @apply opacity-50 cursor-not-allowed;
+        }
       }
 
       label {

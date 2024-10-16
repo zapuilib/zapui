@@ -18,7 +18,8 @@ import type { Styles } from '../../interfaces/style.interface';
   ],
 })
 export class RadioComponent<T> extends ControlValueAccessorDirective<T> {
-  @Input() options: { name?: string; value: string }[] = [];
+  @Input() options: Array<{ name: string; value: string }> = [];
+  @Input() label: string = '';
   @Input() customErrorMessages: Record<string, string> = {};
   @Input() zenClass: string = '';
   @Input() variant: 'vertical' | 'horizontal' = 'vertical';

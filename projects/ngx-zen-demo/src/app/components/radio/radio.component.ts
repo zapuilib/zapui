@@ -15,19 +15,55 @@ export class RadioComponent {
     {
       markdown: `\`\`\`html
 <ngx-zen-checkbox
-  id="terms"
-  label="I accept the terms and conditions"
-  formControlName="terms"
+    [options]="[
+        { name: 'Email 1', value: 'email1' },
+        { name: 'Phone 1', value: 'phone1' },
+        { name: 'None 1', value: 'none1' }
+    ]"
+    formControlName="contact1"
 >
 </ngx-zen-checkbox>
   \`\`\``,
-      title: 'Basic checkbox',
+      title: 'Basic radio',
+    },
+    {
+      markdown: `\`\`\`html
+<fieldset>
+  <ngx-zen-radio
+            label="Contact method"
+            [options]="[
+                { name: 'Email 2', value: 'email2' },
+                { name: 'Phone 2', value: 'phone2' },
+                { name: 'None 2', value: 'none2' }
+            ]"
+            formControlName="contact2"
+    ></ngx-zen-radio>
+</fieldset>
+  \`\`\``,
+      title: 'With label',
+    },
+    {
+      markdown: `\`\`\`html
+<ngx-zen-checkbox
+    [options]="[
+        { name: 'Email 3', value: 'email3' },
+        { name: 'Phone 3', value: 'phone3' },
+        { name: 'None 3', value: 'none3' }
+    ]"
+    formControlName="contact3"
+    variant="horizontal"
+>
+</ngx-zen-checkbox>
+  \`\`\``,
+      title: 'Horizontal radio',
     },
   ];
 
   constructor(private fb: FormBuilder) {
     this.form = this.fb.group({
-      contact: ['', Validators.required],
+      contact1: ['', Validators.required],
+      contact2: ['', Validators.required],
+      contact3: ['', Validators.required],
     });
   }
 }

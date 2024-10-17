@@ -10,7 +10,7 @@ import { TextareaComponent } from './textarea/textarea.component';
 import { DialogComponent } from './dialog/dialog.component';
 import { ToggleComponent } from './toggle/toggle.component';
 import { ChipComponent } from './chip/chip.component';
-import { TableComponent } from './table/table.component';
+import { TableComponent, TableBodyComponent, TableCellComponent, TableColumnComponent, TableFooterComponent, TableHeaderComponent, TableRowComponent } from './table';
 import { AccordionComponent, AccordionGroupComponent } from './accordion';
 
 export const COMPONENTS = [
@@ -28,6 +28,12 @@ export const COMPONENTS = [
   SelectComponent,
   ChipComponent,
   TableComponent,
+  TableRowComponent,  
+  TableBodyComponent,
+  TableCellComponent,
+  TableColumnComponent,
+  TableFooterComponent,
+  TableHeaderComponent,
   AccordionComponent,
   AccordionGroupComponent,
 ];

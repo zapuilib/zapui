@@ -1,18 +1,39 @@
-<table [ngClass]="tableClasses()">
-  <thead>
-    <tr>
-      @for (column of columns; track column.key) {
-        <th>{{ column.header }}</th>
-      }
-    </tr>
-  </thead>
-  <tbody>
-    @for (row of data; track $index) {
-      <tr (click)="onRowClick(row)">
-        @for (column of columns; track column.key) {
-          <td>{{ row[column.key] }}</td>
+<div [ngClass]="['ngx-zen-table', zenClass]">
+  <table>
+    <thead>
+      <tr>
+        @for (column of columnDefinitions; track column) {
+          <th [ngStyle]="getHeaderStyle()"
+              [class.sortable]="sortable && column.sortable !== false"
+              (click)="onSort(column.field)">
+            {{ column.header }}
+            @if (sortable && column.sortable !== false) {
+              <span class="sort-icon">{{ getSortIcon(column.field) }}</span>
+            }
+          </th>
         }
       </tr>
-    }
-  </tbody>
-</table>
+    </thead>
+    <tbody>
+      @for (row of paginatedData; track row; let i = $index) {
+        <tr [ngStyle]="getRowStyle(i)"
+            [class.selected]="selectedRows.includes(row)"
+            (click)="onRowSelect(row)">
+          @for (column of columns; track column) {
+            <td [ngStyle]="getCellStyle()">
+              {{ row[column.field] }}
+            </td>
+          }
+        </tr>
+      }
+    </tbody>
+  </table>
+
+  @if (pageable && totalPages > 1) {
+    <div class="pagination">
+      <button (click)="onPageChange(currentPage - 1)" [disabled]="currentPage === 1">Previous</button>
+      <span>Page {{ currentPage }} of {{ totalPages }}</span>
+      <button (click)="onPageChange(currentPage + 1)" [disabled]="currentPage === totalPages">Next</button>
+    </div>
+  }
+</div>

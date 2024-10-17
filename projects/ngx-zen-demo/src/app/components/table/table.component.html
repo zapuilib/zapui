@@ -1,115 +1,99 @@
 <section class="min-h-screen">
-  <h1>Tables</h1>
-  @for(item of markdowns; track item; let i = $index) {
-  <ng-container
-    *ngTemplateOutlet="
-      card;
-      context: {
-        $implicit: markdowns[i].markdown,
-        title: markdowns[i].title,
-        index: i
-      }
-    "
-  >
-  </ng-container>
-  }
-  <h2>Properties</h2>
-  <table>
-    <thead>
-      <tr>
-        <th class="w-[10%]">Parameter</th>
-        <th class="w-[10%]">Required</th>
-        <th class="w-[30%]">Accepted values</th>
-        <th class="w-[50%]">Usage</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><code>data</code></td>
-        <td><p>Required</p></td>
-        <td><code>any[]</code></td>
-        <td><p>The data to be displayed in the table</p></td>
-      </tr>
-      <tr>
-        <td><code>columns</code></td>
-        <td><p>Required</p></td>
-        <td><code>{{ '{' }} key: string; header: string {{ '}' }}[]</code></td>
-        <td><p>Defines the columns of the table</p></td>
-      </tr>
-      <tr>
-        <td><code>zenClass</code></td>
-        <td><p>Optional</p></td>
-        <td><code>string</code></td>
-        <td><p>Custom CSS class for additional styling</p></td>
-      </tr>
-      <tr>
-        <td><code>striped</code></td>
-        <td><p>Optional</p></td>
-        <td><code>boolean</code></td>
-        <td><p>Applies alternating row colors when true</p></td>
-      </tr>
-      <tr>
-        <td><code>hover</code></td>
-        <td><p>Optional</p></td>
-        <td><code>boolean</code></td>
-        <td><p>Applies hover effect on rows when true</p></td>
-      </tr>
-      <tr>
-        <td><code>bordered</code></td>
-        <td><p>Optional</p></td>
-        <td><code>boolean</code></td>
-        <td><p>Adds borders to the table when true</p></td>
-      </tr>
-      <tr>
-        <td><code>size</code></td>
-        <td><p>Optional</p></td>
-        <td><code>'small'</code> | <code>'medium'</code> | <code>'large'</code></td>
-        <td><p>Controls the overall size of the table</p></td>
-      </tr>
-      <tr>
-        <td><code>(rowClick)</code></td>
-        <td><p>Optional</p></td>
-        <td><code>EventEmitter&lt;any&gt;</code></td>
-        <td><p>Emits the clicked row data</p></td>
-      </tr>
-    </tbody>
-  </table>
-</section>
+  <h1>Table Component</h1>
 
-<ng-template let-markdown let-title="title" let-index="index" #card>
   <div class="card">
     <div class="header">
-      <h2>{{ title }}</h2>
+      <h2>{{ markdowns[0].title }}</h2>
     </div>
     <div class="content">
-      <div class="ui">
-        @switch(index) {
-          @case(0) {
-            <ngx-zen-table [data]="tableData" [columns]="tableColumns"></ngx-zen-table>
-          }
-          @case(1) {
-            <ngx-zen-table [data]="tableData" [columns]="tableColumns" [striped]="true"></ngx-zen-table>
-          }
-          @case(2) {
-            <ngx-zen-table [data]="tableData" [columns]="tableColumns" [hover]="true"></ngx-zen-table>
-          }
-          @case(3) {
-            <ngx-zen-table [data]="tableData" [columns]="tableColumns"></ngx-zen-table>
-          }
-          @case(4) {
-            <ngx-zen-table [data]="tableData" [columns]="tableColumns" size="small"></ngx-zen-table>
-          }
-          @case(5) {
-            <ngx-zen-table [data]="tableData" [columns]="tableColumns" size="large"></ngx-zen-table>
-          }
-          @case(6) {
-            <ngx-zen-table [data]="tableData" [columns]="tableColumns" (rowClick)="onRowClick($event)"></ngx-zen-table>
-          }
-        }
+      <div class="ui mb-4">
+        <ngx-zen-table 
+          [data]="users" 
+          [columnDefinitions]="columnDefinitions"
+          [sortable]="true" 
+          [selectable]="true" 
+          [pageSize]="3"
+          (rowClick)="onRowClick($event)"
+          (selectionChange)="onSelectionChange($event)"
+          (pageChange)="onPageChange($event)">
+          <ngx-zen-table-header>
+            @for (col of columnDefinitions; track col.field) {
+              <ngx-zen-table-column 
+                [field]="col.field" 
+                [header]="col.header" 
+                [sortable]="col.sortable">
+              </ngx-zen-table-column>
+            }
+          </ngx-zen-table-header>
+          <ngx-zen-table-body>
+            @for (user of users; track user.id) {
+              <ngx-zen-table-row [rowData]="user">
+                @for (col of columnDefinitions; track col.field) {
+                  <ngx-zen-table-cell>
+                    {{ getUserProperty(user, col.field) }}
+                  </ngx-zen-table-cell>
+                }
+              </ngx-zen-table-row>
+            }
+          </ngx-zen-table-body>
+        </ngx-zen-table>
       </div>
       <div class="code-wrapper">
-        <app-code-block [markdownData]="markdown"></app-code-block>
+        <markdown [data]="markdowns[0].markdown"></markdown>
       </div>
     </div>
   </div>
-</ng-template>
+
+  <div class="card mt-8">
+    <div class="header">
+      <h2>{{ markdowns[1].title }}</h2>
+    </div>
+    <div class="content">
+      <div class="ui mb-4">
+        <ngx-zen-table 
+          [data]="users" 
+          [columnDefinitions]="columnDefinitions"
+          [sortable]="true" 
+          [selectable]="true" 
+          [pageSize]="3"
+          (rowClick)="onRowClick($event)"
+          (selectionChange)="onSelectionChange($event)"
+          (pageChange)="onPageChange($event)">
+          <ngx-zen-table-header>
+            @for (col of columnDefinitions; track col.field) {
+              <ngx-zen-table-column 
+                [field]="col.field" 
+                [header]="col.header" 
+                [sortable]="col.sortable">
+              </ngx-zen-table-column>
+            }
+          </ngx-zen-table-header>
+          <ngx-zen-table-body>
+            @for (user of users; track user.id) {
+              <ngx-zen-table-row [rowData]="user">
+                <ngx-zen-table-cell>
+                  <strong>{{ user.name }}</strong>
+                </ngx-zen-table-cell>
+                <ngx-zen-table-cell>
+                  <a href="mailto:{{ user.email }}">{{ user.email }}</a>
+                </ngx-zen-table-cell>
+                <ngx-zen-table-cell>
+                  <span [ngStyle]="{ 'color': user.age < 30 ? 'green' : 'blue' }">{{ user.age }}</span>
+                </ngx-zen-table-cell>
+                <ngx-zen-table-cell>{{ user.city }}</ngx-zen-table-cell>
+              </ngx-zen-table-row>
+            }
+          </ngx-zen-table-body>
+          <ngx-zen-table-footer>
+            <tr>
+              <td colspan="4">Total users: {{ users.length }}</td>
+            </tr>
+          </ngx-zen-table-footer>
+        </ngx-zen-table>
+      </div>
+      <div class="code-wrapper">
+        <markdown [data]="markdowns[1].markdown"></markdown>
+      </div>
+    </div>
+  </div>
+</section>

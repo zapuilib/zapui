@@ -1,40 +1,56 @@
-table {
-  @apply w-full border-collapse;
+.ngx-zen-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: Arial, sans-serif;
+
+  table {
+    width: 100%;
+  }
 
   th, td {
-    @apply px-4 py-2;
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #000000;
   }
 
-  &.striped {
-    tbody tr:nth-child(even) {
-      @apply bg-gray-100;
+  th {
+    background-color: #000000;
+    font-weight: bold;
+  }
+
+  th.sortable {
+    cursor: pointer;
+
+    &:hover {
+      background-color: #e6e6e6;
     }
   }
 
-  &.hover {
-    tbody tr:hover {
-      @apply bg-gray-200;
-    }
+  tr.selected {
+    background-color: #e6f7ff;
   }
 
-  &.bordered {
-    @apply border; // Add this line to apply border to the table
-    th, td {
-      @apply border;
-    }
-  }
-}
+  .pagination {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-top: 20px;
 
-:host {
-  &.small {
-    table {
-      @apply text-sm;
-    }
-  }
+    button {
+      padding: 8px 12px;
+      margin: 0 5px;
+      background-color: #000000;
+      border: none;
+      cursor: pointer;
 
-  &.large {
-    table {
-      @apply text-lg;
+      &:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+      }
+    }
+
+    span {
+      margin: 0 10px;
     }
   }
 }

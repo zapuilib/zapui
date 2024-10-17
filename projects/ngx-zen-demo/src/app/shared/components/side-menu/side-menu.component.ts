@@ -81,7 +81,7 @@ export class SideMenuComponent {
         {
           title: 'Table',
           RouterLink: '/table',
-        }
+        },
         {
           title: 'Accordion',
           routerLink: '/accordion',

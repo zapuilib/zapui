@@ -1,15 +1,37 @@
-section {
-  @apply px-4 py-8;
+.card {
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin-bottom: 24px;
+  overflow: hidden;
 
-  h1 {
-    @apply text-2xl font-bold mb-6;
-  }
-
-  .example {
-    @apply mb-8;
+  .header {
+    background-color: #f8f9fa;
+    padding: 16px;
+    border-bottom: 1px solid #e9ecef;
 
     h2 {
-      @apply text-xl font-semibold mb-4;
+      margin: 0;
+      font-size: 18px;
+      font-weight: 600;
     }
   }
+
+  .content {
+    padding: 16px;
+
+    .ui {
+      margin-bottom: 16px;
+    }
+
+    .code-wrapper {
+      background-color: #f8f9fa;
+      border-radius: 4px;
+      padding: 16px;
+    }
+  }
+}
+
+.mt-8 {
+  margin-top: 32px;
 }

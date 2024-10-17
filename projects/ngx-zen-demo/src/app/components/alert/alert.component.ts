@@ -52,18 +52,6 @@ export class AlertComponent {
     },
     {
       markdown: `\`\`\`html
-<ngx-zen-alert type="info" positionX="left" positionY="top">A new version is available</ngx-zen-alert>
-  \`\`\``,
-      title: 'Top left alert',
-    },
-    {
-      markdown: `\`\`\`html
-<ngx-zen-alert type="info" positionX="right" positionY="bottom">A new version is available</ngx-zen-alert>
-  \`\`\``,
-      title: 'Bottom right alert',
-    },
-    {
-      markdown: `\`\`\`html
 <ngx-zen-alert type="info" icon="fa-circle-info">A new version is available</ngx-zen-alert>
   \`\`\``,
       title: 'Custom icon alert',

@@ -1,3 +1,8 @@
+## Beta version 0.0.8 Updates
+
+- Radio groups added
+- Alert position fixed with flexible positioning
+
 ## Beta version 0.0.7 Updates
 
 - Chekbox input now have a min height and width

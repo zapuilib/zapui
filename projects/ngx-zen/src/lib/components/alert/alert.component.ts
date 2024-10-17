@@ -23,8 +23,6 @@ export class AlertComponent implements OnInit {
     'default';
   @Input() variant: 'classic' | 'default' = 'default';
   @Input() shape: 'curve' | 'default' = 'default';
-  @Input() positionX: 'left' | 'right' = 'right';
-  @Input() positionY: 'top' | 'bottom' = 'top';
   @Input() icon: string = '';
   @Input() zenClass: string = '';
 

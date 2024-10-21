@@ -1,13 +1,14 @@
-import { Component, ContentChild, ContentChildren, QueryList, Input, Output, EventEmitter, Inject } from '@angular/core';
+import { Component, Input, Output, EventEmitter, ContentChild, ContentChildren, QueryList, Inject } from '@angular/core';
+import { NGX_ZEN_CONFIG } from '../../tokens/ngx-zen.tokens';
+import { NgxZenConfig } from '../../interfaces/config.interface';
 import { TableHeaderComponent } from './table-group/table-header.component';
 import { TableBodyComponent } from './table-group/table-body.component';
 import { TableFooterComponent } from './table-group/table-footer.component';
 import { TableRowComponent } from './table-group/table-row.component';
 import { TableColumnComponent } from './table-group/table-column.component';
 import { TableCellComponent } from './table-group/table-cell.component';
-import { NGX_ZEN_CONFIG } from '../../tokens/ngx-zen.tokens';
-import { NgxZenConfig } from '../../interfaces/config.interface';
 import { ColorUtility } from '../../utilities/color.utility';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'ngx-zen-table',
@@ -15,126 +16,165 @@ import { ColorUtility } from '../../utilities/color.utility';
   styleUrls: ['./table.component.scss']
 })
 export class TableComponent {
+  @Input() data: any[] = [];
+  @Input() zenClass: string = '';
+  @Input() size: 'compact' | 'default' | 'large' = 'default';
+  @Input() shape: 'curve' | 'default' = 'default';
+  @Input() striped: boolean = false;
+  @Input() hoverable: boolean = false;
+  @Input() borderless: boolean = false;
+  @Input() searchable: boolean = false;
+  @Input() sortable: boolean = false;
+  @Input() searchTerm: string = '';
+  @Input() selectable: boolean = false;
+  @Output() sortChange = new EventEmitter<{ column: string; direction: 'asc' | 'desc' }>();
+  @Output() rowClick = new EventEmitter<any>();
+  @Output() selectionChange = new EventEmitter<any[]>();
+  @Output() pageChange = new EventEmitter<number>();
+
   @ContentChild(TableHeaderComponent) header!: TableHeaderComponent;
   @ContentChild(TableBodyComponent) body!: TableBodyComponent;
   @ContentChild(TableFooterComponent) footer!: TableFooterComponent;
   @ContentChildren(TableRowComponent) rows!: QueryList<TableRowComponent>;
-  @ContentChildren(TableCellComponent) cells!: QueryList<TableCellComponent>;
   @ContentChildren(TableColumnComponent) columns!: QueryList<TableColumnComponent>;
+  @ContentChildren(TableCellComponent) cells!: QueryList<TableCellComponent>;
   
-  @Output() rowClick = new EventEmitter<any>();
-  @Output() sortChange = new EventEmitter<{ column: string; direction: 'asc' | 'desc' }>();
-  @Output() selectionChange = new EventEmitter<any[]>();
-  @Output() pageChange = new EventEmitter<number>();
-  
-  @Input() data: any[] = [];
-  @Input() columnDefinitions: {field: string, header: string, sortable?: boolean}[] = [];
- 
-  @Input() zenClass: string = '';
-  @Input() size: 'compact' | 'default' | 'large' = 'default';
-  @Input() sortable: boolean = true;
-  @Input() pageable: boolean = true;
-  @Input() pageSize: number = 10;
-  @Input() selectable: boolean = false;
-  
-  
-  currentPage: number = 1;
+  currentSortColumn: string | null = null;
+  currentSortDirection: 'asc' | 'desc' = 'asc';
   selectedRows: any[] = [];
-  sortColumn: string | null = null;
-  sortDirection: 'asc' | 'desc' = 'asc';
+  filteredData: any[] = [];
+
+  searchControl: FormControl = new FormControl('');
 
   constructor(
     @Inject(NGX_ZEN_CONFIG) private config: NgxZenConfig,
     private colorUtility: ColorUtility
   ) {}
-
-  ngOnInit(): void {
-    // Initialize component if needed
+  
+  ngOnInit() {
+    this.filteredData = this.data;
   }
 
-  getHeaderStyle(): Record<string, string> {
-    return {
-      'background-color': this.config.colors.secondary,
-      'color': this.config.colors.primary,
-      'font-size': this.getFontSize(),
-      'padding': this.getPadding()
-    };
+  getTableClass(): string {
+    return [
+      this.zenClass,
+      this.size,
+      this.shape,
+      this.striped ? 'striped' : '',
+      this.hoverable ? 'hoverable' : '',
+      this.borderless ? 'borderless' : ''
+    ].filter(Boolean).join(' ');
   }
 
-  getCellStyle(): Record<string, string> {
-    return {
-      'font-size': this.getFontSize(),
-      'padding': this.getPadding(),
-      'border-bottom': `1px solid ${this.config.colors.quaternary}`
-    };
-  }
-
-  getRowStyle(index: number): Record<string, string> {
-    return {
-      'background-color': index % 2 === 0 ? this.config.colors.primary : this.colorUtility.hexToRgba(this.config.colors.quaternary, 0.1)
-    };
-  }
-
-  onSort(column: string): void {
-    if (this.sortable && this.columns.find(col => col.field === column)?.sortable !== false) {
-      if (this.sortColumn === column) {
-        this.sortDirection = this.sortDirection === 'asc' ? 'desc' : 'asc';
-      } else {
-        this.sortColumn = column;
-        this.sortDirection = 'asc';
-      }
-      this.sortChange.emit({ column, direction: this.sortDirection });
-    }
-  }
-
-  onPageChange(page: number): void {
-    if (page >= 1 && page <= this.totalPages) {
-      this.currentPage = page;
-      this.pageChange.emit(page);
-    }
-  }
-
-  onRowSelect(row: any): void {
-    if (this.selectable) {
-      const index = this.selectedRows.indexOf(row);
-      if (index > -1) {
-        this.selectedRows.splice(index, 1);
-      } else {
-        this.selectedRows.push(row);
-      }
-      this.selectionChange.emit(this.selectedRows);
-    }
-  }
-
-  get paginatedData(): any[] {
-    const start = (this.currentPage - 1) * this.pageSize;
-    return this.data.slice(start, start + this.pageSize);
-  }
-
-  get totalPages(): number {
-    return Math.ceil(this.data.length / this.pageSize);
-  }
-
-  getSortIcon(column: string): string {
-    if (this.sortColumn === column) {
-      return this.sortDirection === 'asc' ? '↑' : '↓';
-    }
-    return '';
-  }
-
-  private getFontSize(): string {
-    switch(this.size) {
+  getFontSize(): string {
+    switch (this.size) {
       case 'compact': return this.config.fontSize.sm;
       case 'large': return this.config.fontSize.lg;
       default: return this.config.fontSize.md;
     }
   }
 
-  private getPadding(): string {
-    switch(this.size) {
-      case 'compact': return '0.5rem';
-      case 'large': return '1rem';
-      default: return '0.75rem';
+  getHeaderStyle(): Record<string, string> {
+    return {
+      backgroundColor: this.colorUtility.hexToRgba(this.config.colors.quaternary, 0.1),
+      color: this.config.colors.secondary,
+      fontSize: this.config.fontSize.md,
+    };
+  }
+
+  getRowStyle(isEven: boolean): Record<string, string> {
+    if (this.striped && isEven) {
+      return {
+        backgroundColor: this.colorUtility.hexToRgba(this.config.colors.quaternary, 0.05),
+      };
+    }
+    return {};
+  }
+
+  getCellStyle(): Record<string, string> {
+    return {};
+  }
+
+  onRowSelect(row: any) {
+    const index = this.selectedRows.findIndex(r => r === row);
+    if (index > -1) {
+      this.selectedRows.splice(index, 1);
+    } else {
+      this.selectedRows.push(row);
+    }
+    this.selectionChange.emit(this.selectedRows);
+  }
+
+  isSelected(row: any): boolean {
+    return this.selectedRows.includes(row);
+  }
+
+  onSelectAll() {
+    if (this.selectedRows.length === this.data.length) {
+      this.selectedRows = [];
+    } else {
+      this.selectedRows = [...this.data];
+    }
+    this.selectionChange.emit(this.selectedRows);
+  }
+
+  onRowClick(row: any) {
+    this.rowClick.emit(row);
+  }
+
+  onSearch() {
+    if (!this.searchTerm.trim()) {
+      this.filteredData = this.data;
+    } else {
+      const searchTermLower = this.searchTerm.toLowerCase();
+      this.filteredData = this.data.filter(item =>
+        Object.values(item).some(val =>
+          this.stringifyValue(val).toLowerCase().includes(searchTermLower)
+        )
+      );
+    }
+  }
+  
+  private stringifyValue(value: unknown): string {
+    if (value === null || value === undefined) {
+      return '';
+    }
+    if (typeof value === 'string') {
+      return value;
+    }
+    if (typeof value === 'number' || typeof value === 'boolean') {
+      return value.toString();
+    }
+    if (value instanceof Date) {
+      return value.toISOString();
+    }
+    return '';
+  }
+
+  onSort(column: string) {
+    if (this.sortable) {
+      if (this.currentSortColumn === column) {
+        this.currentSortDirection = this.currentSortDirection === 'asc' ? 'desc' : 'asc';
+      } else {
+        this.currentSortColumn = column;
+        this.currentSortDirection = 'asc';
+      }
+
+      this.sortData();
+      this.sortChange.emit({ column: this.currentSortColumn, direction: this.currentSortDirection });
+    }
+  }
+
+  private sortData() {
+    if (this.currentSortColumn) {
+      this.filteredData.sort((a, b) => {
+        const valueA = a[this.currentSortColumn!];
+        const valueB = b[this.currentSortColumn!];
+        
+        if (valueA < valueB) return this.currentSortDirection === 'asc' ? -1 : 1;
+        if (valueA > valueB) return this.currentSortDirection === 'asc' ? 1 : -1;
+        return 0;
+      });
     }
   }
 }

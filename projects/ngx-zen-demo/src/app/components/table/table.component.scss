@@ -1,37 +1,29 @@
-.card {
-  background-color: #ffffff;
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  margin-bottom: 24px;
-  overflow: hidden;
+section {
+  @apply px-60 py-12 transition-all;
 
-  .header {
-    background-color: #f8f9fa;
-    padding: 16px;
-    border-bottom: 1px solid #e9ecef;
-
-    h2 {
-      margin: 0;
-      font-size: 18px;
-      font-weight: 600;
-    }
+  h1 {
+    @apply text-2xl font-semibold mb-5;
   }
 
-  .content {
-    padding: 16px;
+  .card {
+    @apply py-5 w-full;
 
-    .ui {
-      margin-bottom: 16px;
+    .header {
+      h2 {
+        @apply text-base mb-3;
+      }
     }
 
-    .code-wrapper {
-      background-color: #f8f9fa;
-      border-radius: 4px;
-      padding: 16px;
+    .content {
+      @apply flex flex-col md:flex-row;
+
+      .ui {
+        @apply w-full md:w-1/2 mb-4 md:mb-0 md:mr-4;
+      }
+
+      .code-wrapper {
+        @apply w-full md:w-1/2;
+      }
     }
   }
-}
-
-.mt-8 {
-  margin-top: 32px;
 }

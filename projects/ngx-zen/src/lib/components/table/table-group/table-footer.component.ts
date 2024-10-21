@@ -2,6 +2,10 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'ngx-zen-table-footer',
-  template: '<ng-content></ng-content>'
+  template: `
+    <tfoot>
+      <ng-content></ng-content>
+    </tfoot>
+  `
 })
 export class TableFooterComponent {}

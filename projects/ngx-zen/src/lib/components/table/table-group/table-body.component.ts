@@ -1,10 +1,9 @@
-import { Component, ContentChildren, QueryList } from '@angular/core';
-import { TableRowComponent } from './table-row.component';
+import { Component, ContentChild, TemplateRef } from '@angular/core';
 
 @Component({
   selector: 'ngx-zen-table-body',
   template: '<ng-content></ng-content>'
 })
 export class TableBodyComponent {
-  @ContentChildren(TableRowComponent) rows!: QueryList<TableRowComponent>;
+  @ContentChild(TemplateRef) rowTemplate!: TemplateRef<any>;
 }

@@ -1,4 +1,4 @@
-import { Component, ContentChildren, QueryList, Input } from '@angular/core';
+import { Component, Input, ContentChildren, QueryList } from '@angular/core';
 import { TableCellComponent } from './table-cell.component';
 
 @Component({
@@ -6,6 +6,6 @@ import { TableCellComponent } from './table-cell.component';
   template: '<ng-content></ng-content>'
 })
 export class TableRowComponent {
+  @Input() item: any;
   @ContentChildren(TableCellComponent) cells!: QueryList<TableCellComponent>;
-  @Input() rowData: any;
 }

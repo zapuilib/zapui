@@ -1,56 +1,60 @@
-.ngx-zen-table {
-  width: 100%;
-  border-collapse: collapse;
-  font-family: Arial, sans-serif;
+.__zen__table__wrapper {
+  @apply bg-white rounded-lg overflow-hidden shadow-sm;
+
+  .__zen__table__search-header {
+    @apply p-4 bg-gray-50 border-b border-gray-200;
+  }
+
+  .__zen__table__search {
+    @apply max-w-[300px];
+  }
 
   table {
-    width: 100%;
-  }
+    @apply w-full border-separate border-spacing-0;
 
-  th, td {
-    padding: 12px;
-    text-align: left;
-    border-bottom: 1px solid #000000;
-  }
+    th, td {
+      @apply py-3 px-4 text-left border-b border-gray-200;
+    }
 
-  th {
-    background-color: #000000;
-    font-weight: bold;
-  }
+    th {
+      @apply bg-gray-50 font-semibold text-gray-700 text-xs uppercase tracking-wider;
+    }
 
-  th.sortable {
-    cursor: pointer;
+    td {
+      @apply bg-white text-gray-800;
+    }
 
-    &:hover {
-      background-color: #e6e6e6;
+    tr:last-child td {
+      @apply border-b-0;
     }
   }
 
-  tr.selected {
-    background-color: #e6f7ff;
+  &.striped {
+    tbody tr:nth-child(even) td {
+      @apply bg-gray-50;
+    }
   }
 
-  .pagination {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    margin-top: 20px;
-
-    button {
-      padding: 8px 12px;
-      margin: 0 5px;
-      background-color: #000000;
-      border: none;
-      cursor: pointer;
-
-      &:disabled {
-        opacity: 0.5;
-        cursor: not-allowed;
-      }
+  &.hoverable {
+    tbody tr:hover td {
+      @apply bg-gray-100;
     }
+  }
 
-    span {
-      margin: 0 10px;
+  &.borderless {
+    table, th, td {
+      @apply border-0;
+    }
+  }
+
+  &.curve {
+    @apply rounded-lg;
+  }
+
+  .__zen__table__checkbox {
+    &-header,
+    &-cell {
+      @apply w-10 text-center;
     }
   }
 }

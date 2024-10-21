@@ -16,6 +16,12 @@ export class TooltipComponent {
     },
     {
       markdown: `\`\`\`html
+<ngx-zen-tooltip text="This is a tooltip" size="small"></ngx-zen-tooltip>
+  \`\`\``,
+      title: 'Small tooltip',
+    },
+    {
+      markdown: `\`\`\`html
 <ngx-zen-tooltip text="This is a tooltip" positionX="left"></ngx-zen-tooltip>
   \`\`\``,
       title: 'Position left',
@@ -37,6 +43,22 @@ export class TooltipComponent {
 <ngx-zen-tooltip text="This is a tooltip" positionY="y-center"></ngx-zen-tooltip>
   \`\`\``,
       title: 'Position y-center',
+    },
+    {
+      markdown: `\`\`\`html
+<ngx-zen-tooltip
+        text="This is a tooltip"
+        positionX="x-center"
+        positionY="top"
+        size="small"
+        [template]="template"
+></ngx-zen-tooltip>
+
+<ng-template #template>
+  <p>This could be any html</p>
+</ng-template>
+  \`\`\``,
+      title: 'Tempalte instead of icon',
     },
     {
       markdown: `\`\`\`html

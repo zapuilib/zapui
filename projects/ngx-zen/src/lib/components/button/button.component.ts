@@ -1,6 +1,9 @@
 import { Component, Inject, Input } from '@angular/core';
+
 import { NGX_ZEN_CONFIG } from '../../tokens/ngx-zen.tokens';
-import { NgxZenConfig } from '../../interfaces/config.interface';
+
+import type { NgxZenConfig } from '../../interfaces/config.interface';
+import type { Styles } from '../../interfaces/style.interface';
 
 @Component({
   selector: 'ngx-zen-button',
@@ -22,17 +25,17 @@ export class ButtonComponent {
 
   constructor(@Inject(NGX_ZEN_CONFIG) private config: NgxZenConfig) {}
 
-  getStyle() {
+  getStyle(): Styles {
     return {
-      'background-color': this.config.colors.tertiary,
+      backgroundColor: this.config.colors.tertiary,
       color:
         this.variant === 'link'
           ? this.config.colors.tertiary
           : this.variant === 'outlined'
           ? this.config.colors.tertiary
           : this.config.colors.primary,
-      'border-color': this.config.colors.tertiary,
-      'font-size':
+      borderColor: this.config.colors.tertiary,
+      fontSize:
         this.size === 'tight'
           ? this.config.fontSize.xs
           : this.config.fontSize.md,

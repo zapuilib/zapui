@@ -41,6 +41,30 @@
         </td>
       </tr>
       <tr>
+        <td><code>shape</code></td>
+        <td><p>Optional</p></td>
+        <td><code>curve</code>|<code>default</code></td>
+        <td>
+          <p>
+            The shape of the tooltip. <code>curve</code> applies rounded
+            corners, while <code>default</code> uses standard corners
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td><code>size</code></td>
+        <td><p>Optional</p></td>
+        <td><code>small</code>|<code>default</code></td>
+        <td>
+          <p>
+            The size of the tooltip. <code>small</code> has smaller bigger
+            passing than <code>default</code>. Also, it does not wrap text so
+            it's indended use for custom htnl with small amount of text in
+            tooltip
+          </p>
+        </td>
+      </tr>
+      <tr>
         <td><code>positionX</code></td>
         <td><p>Optional</p></td>
         <td><code>left</code>|<code>x-center</code>|<code>right</code></td>
@@ -62,6 +86,14 @@
             <code>x-center</code> and <code>y-center</code> can't be used at the
             same time
           </p>
+        </td>
+      </tr>
+      <tr>
+        <td><code>template</code></td>
+        <td><p>Optional</p></td>
+        <td><code>html</code></td>
+        <td>
+          <p>Allows to inject a custom html template.</p>
         </td>
       </tr>
       <tr>
@@ -90,18 +122,28 @@
       @switch(index) { @case(0) {
       <ngx-zen-tooltip text="This is a tooltip"></ngx-zen-tooltip>
       } @case(1){
+      <ngx-zen-tooltip text="This is a tooltip" size="small"> </ngx-zen-tooltip>
+      } @case(2){
       <ngx-zen-tooltip text="This is a tooltip" positionX="left">
       </ngx-zen-tooltip>
-      } @case (2) {
+      } @case (3) {
       <ngx-zen-tooltip text="This is a tooltip" positionX="x-center">
       </ngx-zen-tooltip>
-      } @case(3){
+      } @case(4){
       <ngx-zen-tooltip text="This is a tooltip" positionY="top">
       </ngx-zen-tooltip>
-      } @case(4){
+      } @case(5){
       <ngx-zen-tooltip text="This is a tooltip" positionY="y-center">
       </ngx-zen-tooltip>
-      } @case(5){
+      } @case(6){
+      <ngx-zen-tooltip
+        text="This is a tooltip"
+        positionX="x-center"
+        positionY="top"
+        size="small"
+        [template]="template"
+      ></ngx-zen-tooltip>
+      } @case(7){
       <ngx-zen-tooltip>
         <div>
           <h2>Title</h2>
@@ -112,4 +154,8 @@
       <app-code-block [markdownData]="markdown"></app-code-block>
     </div>
   </div>
+</ng-template>
+
+<ng-template #template>
+  <p class="text-black">This could be any html</p>
 </ng-template>

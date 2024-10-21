@@ -1,6 +1,9 @@
-import { Component, Inject, Input } from '@angular/core';
+import { Component, Inject, Input, TemplateRef } from '@angular/core';
+
 import { NGX_ZEN_CONFIG } from '../../tokens/ngx-zen.tokens';
-import { NgxZenConfig } from '../../interfaces/config.interface';
+
+import type { NgxZenConfig } from '../../interfaces/config.interface';
+import type { Styles } from '../../interfaces/style.interface';
 
 @Component({
   selector: 'ngx-zen-tooltip',
@@ -10,35 +13,37 @@ import { NgxZenConfig } from '../../interfaces/config.interface';
 export class TooltipComponent {
   @Input() icon: string = '';
   @Input() text: string = '';
-  @Input() variant: 'classic' | 'default' = 'default';
+  @Input() shape: 'curve' | 'default' = 'default';
+  @Input() size: 'small' | 'default' = 'default';
   @Input() positionX: 'left' | 'x-center' | 'right' = 'right';
   @Input() positionY: 'top' | 'y-center' | 'bottom' = 'bottom';
+  @Input() template: TemplateRef<any> | null = null;
   @Input() zenClass: string = '';
   isActive: boolean = false;
 
   constructor(@Inject(NGX_ZEN_CONFIG) private config: NgxZenConfig) {}
 
-  getIconStyle(): any {
+  getIconStyle(): Styles {
     return {
-      'background-color': this.config.colors.secondary,
-      'border-color': this.config.colors.secondary,
-      'font-size': this.config.fontSize.xxs,
+      backgroundColor: this.config.colors.secondary,
+      borderColor: this.config.colors.secondary,
+      fontSize: this.config.fontSize.xxs,
       color: this.config.colors.primary,
     };
   }
 
-  getContentStyle(): any {
+  getContentStyle(): Styles {
     return {
-      'background-color': this.config.colors.secondary,
-      'border-color': this.config.colors.secondary,
-      'font-size': this.config.fontSize.sm,
+      backgroundColor: this.config.colors.secondary,
+      borderColor: this.config.colors.secondary,
+      fontSize: this.config.fontSize.sm,
       color: this.config.colors.primary,
     };
   }
 
-  getPointerStyle(): any {
+  getPointerStyle(): Styles {
     return {
-      'background-color': this.config.colors.secondary,
+      backgroundColor: this.config.colors.secondary,
     };
   }
 

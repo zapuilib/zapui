@@ -4,7 +4,9 @@ import { Component } from '@angular/core';
   selector: 'ngx-zen-table-footer',
   template: `
     <tfoot>
-      <ng-content></ng-content>
+      <tr>
+          <ng-content></ng-content>
+      </tr>
     </tfoot>
   `
 })

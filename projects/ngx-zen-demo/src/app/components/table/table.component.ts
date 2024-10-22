@@ -3,94 +3,85 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-table',
   templateUrl: './table.component.html',
-  styleUrls: ['./table.component.scss']
+  styleUrls: ['./table.component.scss'],
 })
 export class TableComponent {
-  data = [
-    { id: 1, name: 'Example one', age: 30, email: 'email@example.com' },
-    { id: 2, name: 'Example two', age: 25, email: 'email@example.com' },
-    { id: 3, name: 'Example three', age: 35, email: 'email@example.com' },
-  
-  ];
-  selectedRows: any[] = [];
-
   markdowns = [
     {
       markdown: `\`\`\`html
-<ngx-zen-table [data]="data">
-  <ngx-zen-table-column field="id" header="ID"></ngx-zen-table-column>
-  <ngx-zen-table-column field="name" header="Name"></ngx-zen-table-column>
-  <ngx-zen-table-column field="age" header="Age"></ngx-zen-table-column>
-  <ngx-zen-table-column field="email" header="Email"></ngx-zen-table-column>
+<ngx-zen-table [hoverable]="true" [striped]="true" size="default">
+  <ngx-zen-table-head>
+    <ngx-zen-table-column>ID</ngx-zen-table-column>
+    <ngx-zen-table-column>Name</ngx-zen-table-column>
+    <ngx-zen-table-column>Age</ngx-zen-table-column>
+    <ngx-zen-table-column>Email</ngx-zen-table-column>
+  </ngx-zen-table-head>
+  <ngx-zen-table-body>
+    <ngx-zen-table-row>
+      <ngx-zen-table-cell>1</ngx-zen-table-cell>
+      <ngx-zen-table-cell>Alice</ngx-zen-table-cell>
+      <ngx-zen-table-cell>28</ngx-zen-table-cell>
+      <ngx-zen-table-cell>alice@example.com</ngx-zen-table-cell>
+    </ngx-zen-table-row>
+    <ngx-zen-table-row>
+      <ngx-zen-table-cell>2</ngx-zen-table-cell>
+      <ngx-zen-table-cell>Bob</ngx-zen-table-cell>
+      <ngx-zen-table-cell>35</ngx-zen-table-cell>
+      <ngx-zen-table-cell>bob@example.com</ngx-zen-table-cell>
+    </ngx-zen-table-row>
+  </ngx-zen-table-body>
 </ngx-zen-table>
 \`\`\``,
-      title: 'Basic Table',
-      config: {}
+      title: 'Hoverable and Striped Table',
+      config: {
+        hoverable: true,
+        striped: true,
+        size: 'default',
+      },
+      rows: [
+        { id: 1, name: 'Alice', age: 28, email: 'alice@example.com' },
+        { id: 2, name: 'Bob', age: 35, email: 'bob@example.com' },
+      ],
     },
     {
       markdown: `\`\`\`html
-<ngx-zen-table [data]="data" shape="curve">
-  <ngx-zen-table-column field="id" header="ID"></ngx-zen-table-column>
-  <ngx-zen-table-column field="name" header="Name"></ngx-zen-table-column>
-  <ngx-zen-table-column field="age" header="Age"></ngx-zen-table-column>
-  <ngx-zen-table-column field="email" header="Email"></ngx-zen-table-column>
+<ngx-zen-table [borderless]="true" size="compact">
+  <ngx-zen-table-head>
+    <ngx-zen-table-column>ID</ngx-zen-table-column>
+    <ngx-zen-table-column>Name</ngx-zen-table-column>
+    <ngx-zen-table-column>Age</ngx-zen-table-column>
+    <ngx-zen-table-column>Email</ngx-zen-table-column>
+  </ngx-zen-table-head>
+  <ngx-zen-table-body>
+    <ngx-zen-table-row>
+      <ngx-zen-table-cell>1</ngx-zen-table-cell>
+      <ngx-zen-table-cell>Alice</ngx-zen-table-cell>
+      <ngx-zen-table-cell>28</ngx-zen-table-cell>
+      <ngx-zen-table-cell>alice@example.com</ngx-zen-table-cell>
+    </ngx-zen-table-row>
+  </ngx-zen-table-body>
 </ngx-zen-table>
 \`\`\``,
-      title: 'Curved Table',
-      config: { shape: 'curve' }
+      title: 'Borderless Compact Table',
+      config: {
+        borderless: true,
+        size: 'compact',
+      },
+      rows: [
+        { id: 1, name: 'Alice', age: 28, email: 'alice@example.com' },
+      ],
     },
-    {
-      markdown: `\`\`\`html
-<ngx-zen-table [data]="data" [hoverable]="true">
-  <ngx-zen-table-column field="id" header="ID"></ngx-zen-table-column>
-  <ngx-zen-table-column field="name" header="Name"></ngx-zen-table-column>
-  <ngx-zen-table-column field="age" header="Age"></ngx-zen-table-column>
-  <ngx-zen-table-column field="email" header="Email"></ngx-zen-table-column>
-</ngx-zen-table>
-\`\`\``,
-      title: 'Hoverable Table',
-      config: { hoverable: true }
-    },
-    {
-      markdown: `\`\`\`html
-<ngx-zen-table [data]="data" [striped]="true">
-  <ngx-zen-table-column field="id" header="ID"></ngx-zen-table-column>
-  <ngx-zen-table-column field="name" header="Name"></ngx-zen-table-column>
-  <ngx-zen-table-column field="age" header="Age"></ngx-zen-table-column>
-  <ngx-zen-table-column field="email" header="Email"></ngx-zen-table-column>
-</ngx-zen-table>
-\`\`\``,
-      title: 'Striped Table',
-      config: { striped: true }
-    },
-    {
-      markdown: `\`\`\`html
-<ngx-zen-table [data]="data" [borderless]="true" [selectable]="true">
-  <ngx-zen-table-column field="id" header="ID"></ngx-zen-table-column>
-  <ngx-zen-table-column field="name" header="Name"></ngx-zen-table-column>
-  <ngx-zen-table-column field="age" header="Age"></ngx-zen-table-column>
-  <ngx-zen-table-column field="email" header="Email"></ngx-zen-table-column>
-</ngx-zen-table>
-\`\`\``,
-      title: 'Borderless Table',
-      config: { borderless: true, selectable: true }
-    },
-    {
-      markdown: `\`\`\`html
-<ngx-zen-table [data]="data" [searchable]="true" [sortable]="true">
-  <ngx-zen-table-column field="id" header="ID"></ngx-zen-table-column>
-  <ngx-zen-table-column field="name" header="Name"></ngx-zen-table-column>
-  <ngx-zen-table-column field="age" header="Age"></ngx-zen-table-column>
-  <ngx-zen-table-column field="email" header="Email"></ngx-zen-table-column>
-</ngx-zen-table>
-\`\`\``,
-      title: 'Searchable Table (With search input and icon)',
-      config: { searchable: true }
-    }
   ];
 
   onSelectionChange(selectedRows: any[]) {
-    this.selectedRows = selectedRows;
-    console.log('Selected rows:', this.selectedRows);
+    console.log('Selected rows:', selectedRows);
+  }
+
+  onSortChange(event: { field: string; direction: 'asc' | 'desc' }) {
+    console.log('Sort change event:', event);
+  }
+
+  getConfigFromMarkdown(markdown: any) {
+    return markdown.config || {};
   }
 }

@@ -1,5 +1,5 @@
 export * from './table.component';
-export * from './table-group/table-header.component';
+export * from './table-group/table-head.component';
 export * from './table-group/table-body.component';
 export * from './table-group/table-footer.component';
 export * from './table-group/table-row.component';

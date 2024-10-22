@@ -1,9 +1,14 @@
-import { Component, Input } from '@angular/core';
+import { Component, Optional, Host } from '@angular/core';
+import { TableComponent } from '../table.component';
 
 @Component({
   selector: 'ngx-zen-table-cell',
-  template: '<ng-content></ng-content>'
+  template: `
+    <td [ngStyle]="table?.getTableCellStyle()">
+      <ng-content></ng-content>
+    </td>
+  `
 })
 export class TableCellComponent {
-  @Input() field: string;
+  constructor(@Optional() @Host() public table: TableComponent) {}
 }

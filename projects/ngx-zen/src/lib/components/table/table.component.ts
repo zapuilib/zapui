@@ -1,22 +1,21 @@
-import { Component, Input, Output, EventEmitter, ContentChild, ContentChildren, QueryList, Inject } from '@angular/core';
+// projects/ngx-zen/src/lib/components/table/table.component.ts
+
+import { Component, Input, ContentChildren, QueryList, AfterContentInit, Output, EventEmitter, Inject } from '@angular/core';
+import { TableHeadComponent } from './table-group/table-head.component';
+import { TableBodyComponent } from './table-group/table-body.component';
 import { NGX_ZEN_CONFIG } from '../../tokens/ngx-zen.tokens';
 import { NgxZenConfig } from '../../interfaces/config.interface';
-import { TableHeaderComponent } from './table-group/table-header.component';
-import { TableBodyComponent } from './table-group/table-body.component';
-import { TableFooterComponent } from './table-group/table-footer.component';
-import { TableRowComponent } from './table-group/table-row.component';
-import { TableColumnComponent } from './table-group/table-column.component';
-import { TableCellComponent } from './table-group/table-cell.component';
 import { ColorUtility } from '../../utilities/color.utility';
-import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'ngx-zen-table',
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.scss']
 })
-export class TableComponent {
-  @Input() data: any[] = [];
+export class TableComponent implements AfterContentInit {
+  @ContentChildren(TableHeadComponent) headComponents!: QueryList<TableHeadComponent>;
+  @ContentChildren(TableBodyComponent) bodyComponents!: QueryList<TableBodyComponent>;
+
   @Input() zenClass: string = '';
   @Input() size: 'compact' | 'default' | 'large' = 'default';
   @Input() shape: 'curve' | 'default' = 'default';
@@ -24,157 +23,63 @@ export class TableComponent {
   @Input() hoverable: boolean = false;
   @Input() borderless: boolean = false;
   @Input() searchable: boolean = false;
-  @Input() sortable: boolean = false;
-  @Input() searchTerm: string = '';
   @Input() selectable: boolean = false;
-  @Output() sortChange = new EventEmitter<{ column: string; direction: 'asc' | 'desc' }>();
-  @Output() rowClick = new EventEmitter<any>();
+  @Input() sortable: boolean = false;
+
   @Output() selectionChange = new EventEmitter<any[]>();
-  @Output() pageChange = new EventEmitter<number>();
-
-  @ContentChild(TableHeaderComponent) header!: TableHeaderComponent;
-  @ContentChild(TableBodyComponent) body!: TableBodyComponent;
-  @ContentChild(TableFooterComponent) footer!: TableFooterComponent;
-  @ContentChildren(TableRowComponent) rows!: QueryList<TableRowComponent>;
-  @ContentChildren(TableColumnComponent) columns!: QueryList<TableColumnComponent>;
-  @ContentChildren(TableCellComponent) cells!: QueryList<TableCellComponent>;
-  
-  currentSortColumn: string | null = null;
-  currentSortDirection: 'asc' | 'desc' = 'asc';
-  selectedRows: any[] = [];
-  filteredData: any[] = [];
-
-  searchControl: FormControl = new FormControl('');
+  @Output() sortChange = new EventEmitter<{ field: string; direction: 'asc' | 'desc' }>();
 
   constructor(
     @Inject(NGX_ZEN_CONFIG) private config: NgxZenConfig,
     private colorUtility: ColorUtility
   ) {}
-  
-  ngOnInit() {
-    this.filteredData = this.data;
+
+  ngAfterContentInit() {}
+
+  onSelectionChange(selection: any[]) {
+    this.selectionChange.emit(selection);
   }
 
-  getTableClass(): string {
-    return [
-      this.zenClass,
-      this.size,
-      this.shape,
-      this.striped ? 'striped' : '',
-      this.hoverable ? 'hoverable' : '',
-      this.borderless ? 'borderless' : ''
-    ].filter(Boolean).join(' ');
+  onSortChange(sort: { field: string; direction: 'asc' | 'desc' }) {
+    this.sortChange.emit(sort);
   }
 
-  getFontSize(): string {
-    switch (this.size) {
-      case 'compact': return this.config.fontSize.sm;
-      case 'large': return this.config.fontSize.lg;
-      default: return this.config.fontSize.md;
-    }
-  }
-
-  getHeaderStyle(): Record<string, string> {
+  getTableWrapperStyle(): Record<string, string> {
     return {
-      backgroundColor: this.colorUtility.hexToRgba(this.config.colors.quaternary, 0.1),
-      color: this.config.colors.secondary,
-      fontSize: this.config.fontSize.md,
+      'background-color': this.config.colors.secondary,
+      'border-radius': this.shape === 'curve' ? '0.5rem' : '0',
+      'overflow': 'hidden',
+      'box-shadow': '0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)',
     };
   }
-
-  getRowStyle(isEven: boolean): Record<string, string> {
-    if (this.striped && isEven) {
-      return {
-        backgroundColor: this.colorUtility.hexToRgba(this.config.colors.quaternary, 0.05),
-      };
-    }
-    return {};
-  }
-
-  getCellStyle(): Record<string, string> {
-    return {};
-  }
-
-  onRowSelect(row: any) {
-    const index = this.selectedRows.findIndex(r => r === row);
-    if (index > -1) {
-      this.selectedRows.splice(index, 1);
-    } else {
-      this.selectedRows.push(row);
-    }
-    this.selectionChange.emit(this.selectedRows);
-  }
-
-  isSelected(row: any): boolean {
-    return this.selectedRows.includes(row);
-  }
-
-  onSelectAll() {
-    if (this.selectedRows.length === this.data.length) {
-      this.selectedRows = [];
-    } else {
-      this.selectedRows = [...this.data];
-    }
-    this.selectionChange.emit(this.selectedRows);
-  }
-
-  onRowClick(row: any) {
-    this.rowClick.emit(row);
-  }
-
-  onSearch() {
-    if (!this.searchTerm.trim()) {
-      this.filteredData = this.data;
-    } else {
-      const searchTermLower = this.searchTerm.toLowerCase();
-      this.filteredData = this.data.filter(item =>
-        Object.values(item).some(val =>
-          this.stringifyValue(val).toLowerCase().includes(searchTermLower)
-        )
-      );
-    }
+  
+  getTableStyle(): Record<string, string> {
+    return {
+      'width': '100%',
+      'border-collapse': 'separate',
+      'border-spacing': '0',
+    };
   }
   
-  private stringifyValue(value: unknown): string {
-    if (value === null || value === undefined) {
-      return '';
-    }
-    if (typeof value === 'string') {
-      return value;
-    }
-    if (typeof value === 'number' || typeof value === 'boolean') {
-      return value.toString();
-    }
-    if (value instanceof Date) {
-      return value.toISOString();
-    }
-    return '';
+  getTableHeadStyle(): Record<string, string> {
+    return {
+      'background-color': this.config.colors.tertiary,
+    };
   }
-
-  onSort(column: string) {
-    if (this.sortable) {
-      if (this.currentSortColumn === column) {
-        this.currentSortDirection = this.currentSortDirection === 'asc' ? 'desc' : 'asc';
-      } else {
-        this.currentSortColumn = column;
-        this.currentSortDirection = 'asc';
-      }
-
-      this.sortData();
-      this.sortChange.emit({ column: this.currentSortColumn, direction: this.currentSortDirection });
-    }
+  
+  getTableCellStyle(): Record<string, string> {
+    const fontSize = this.size === 'compact' ? this.config.fontSize.sm : this.config.fontSize.md;
+    return {
+      'padding': this.size === 'compact' ? '0.5rem 1rem' : '0.75rem 1.5rem',
+      'font-size': fontSize,
+      'border-bottom': this.borderless ? 'none' : `1px solid ${this.colorUtility.hexToRgba(this.config.colors.primary, 0.1)}`,
+    };
   }
-
-  private sortData() {
-    if (this.currentSortColumn) {
-      this.filteredData.sort((a, b) => {
-        const valueA = a[this.currentSortColumn!];
-        const valueB = b[this.currentSortColumn!];
-        
-        if (valueA < valueB) return this.currentSortDirection === 'asc' ? -1 : 1;
-        if (valueA > valueB) return this.currentSortDirection === 'asc' ? 1 : -1;
-        return 0;
-      });
+  
+  getStripedRowStyle(index: number): Record<string, string> {
+    if (this.striped && index % 2 !== 0) {
+      return { 'background-color': this.colorUtility.hexToRgba(this.config.colors.primary, 0.05) };
     }
+    return {};
   }
 }

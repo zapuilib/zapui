@@ -19,7 +19,7 @@ export * from './lib/components/dialog/dialog.component';
 export * from './lib/components/toggle/toggle.component';
 export * from './lib/components/select/select.component';
 export * from './lib/components/table/table.component';
-export * from './lib/components/table/table-group/table-header.component';
+export * from './lib/components/table/table-group/table-head.component';
 export * from './lib/components/table/table-group/table-body.component';
 export * from './lib/components/table/table-group/table-footer.component';
 export * from './lib/components/table/table-group/table-row.component';

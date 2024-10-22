@@ -2,7 +2,7 @@ section {
   @apply px-60 py-12 transition-all;
 
   h1 {
-    @apply text-2xl font-semibold mb-5;
+    @apply text-2xl font-semibold mb-5 text-gray-200;
   }
 
   .card {
@@ -10,7 +10,7 @@ section {
 
     .header {
       h2 {
-        @apply text-base mb-3;
+        @apply text-base mb-3 text-gray-300;
       }
     }
 
@@ -26,4 +26,5 @@ section {
       }
     }
   }
+
 }

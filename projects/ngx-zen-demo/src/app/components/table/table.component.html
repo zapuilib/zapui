@@ -1,221 +1,41 @@
 <section class="min-h-screen">
   <h1>Tables</h1>
+
   @for (item of markdowns; track item; let i = $index) {
-    <ng-container
-      *ngTemplateOutlet="
-        card;
-        context: {
-          $implicit: item.markdown,
-          title: item.title,
-          index: i
-        }
-      "
-    >
-    </ng-container>
-  }
+    <div class="mb-8">
+      <h2>{{ item.title }}</h2>
+      <ngx-zen-table
+        [hoverable]="getConfigFromMarkdown(item).hoverable"
+        [striped]="getConfigFromMarkdown(item).striped"
+        [borderless]="getConfigFromMarkdown(item).borderless"
+        [selectable]="getConfigFromMarkdown(item).selectable"
+        [sortable]="getConfigFromMarkdown(item).sortable"
+        [size]="getConfigFromMarkdown(item).size"
+        (selectionChange)="onSelectionChange($event)"
+        (sortChange)="onSortChange($event)"
+      >
+        <ngx-zen-table-head>
+          <ngx-zen-table-column>ID</ngx-zen-table-column>
+          <ngx-zen-table-column>Name</ngx-zen-table-column>
+          <ngx-zen-table-column>Age</ngx-zen-table-column>
+          <ngx-zen-table-column>Email</ngx-zen-table-column>
+        </ngx-zen-table-head>
 
-  <h2>Properties</h2>
-  <table>
-    <thead>
-      <tr>
-        <th class="w-[10%]">Parameter</th>
-        <th class="w-[10%]">Required</th>
-        <th class="w-[30%]">Accepted values</th>
-        <th class="w-[50%]">Usage</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><code>data</code></td>
-        <td>
-          <p>Required</p>
-        </td>
-        <td><code>any[]</code></td>
-        <td>
-          <p>The data to be displayed in the table.</p>
-        </td>
-      </tr>
-      <tr>
-        <td><code>zenClass</code></td>
-        <td>
-          <p>Optional</p>
-        </td>
-        <td><code>string</code></td>
-        <td>
-          <p>Additional CSS classes to be applied to the table.</p>
-        </td>
-      </tr>
-      <tr>
-        <td><code>size</code></td>
-        <td>
-          <p>Optional</p>
-        </td>
-        <td><code>compact</code> | <code>default</code> | <code>large</code></td>
-        <td>
-          <p>Sets the size of the table cells. Default is <code>default</code>.</p>
-        </td>
-      </tr>
-      <tr>
-        <td><code>shape</code></td>
-        <td>
-          <p>Optional</p>
-        </td>
-        <td><code>default</code> | <code>curve</code></td>
-        <td>
-          <p>Defines the shape of the table edges. The <code>curve</code> option applies rounded corners to the table.</p>
-        </td>
-      </tr>
-      <tr>
-        <td><code>striped</code></td>
-        <td>
-          <p>Optional</p>
-        </td>
-        <td><code>boolean</code></td>
-        <td>
-          <p>Applies alternating background colors to table rows when set to <code>true</code>.</p>
-        </td>
-      </tr>
-      <tr>
-        <td><code>hoverable</code></td>
-        <td>
-          <p>Optional</p>
-        </td>
-        <td><code>boolean</code></td>
-        <td>
-          <p>Applies a hover effect to table rows when set to <code>true</code>.</p>
-        </td>
-      </tr>
-      <tr>
-        <td><code>borderless</code></td>
-        <td>
-          <p>Optional</p>
-        </td>
-        <td><code>boolean</code></td>
-        <td>
-          <p>Removes borders from the table when set to <code>true</code>.</p>
-        </td>
-      </tr>
-      <tr>
-        <td><code>searchable</code></td>
-        <td>
-          <p>Optional</p>
-        </td>
-        <td><code>boolean</code></td>
-        <td>
-          <p>Adds a search input to filter table rows when set to <code>true</code>.</p>
-        </td>
-      </tr>
-      <tr>
-        <td><code>selectable</code></td>
-        <td>
-          <p>Optional</p>
-        </td>
-        <td><code>boolean</code></td>
-        <td>
-          <p>Adds checkboxes for row selection when set to <code>true</code>.</p>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+        <ngx-zen-table-body>
+          @for (row of item.rows; track row) {
+            <ngx-zen-table-row>
+              <ngx-zen-table-cell>{{ row.id }}</ngx-zen-table-cell>
+              <ngx-zen-table-cell>{{ row.name }}</ngx-zen-table-cell>
+              <ngx-zen-table-cell>{{ row.age }}</ngx-zen-table-cell>
+              <ngx-zen-table-cell>{{ row.email }}</ngx-zen-table-cell>
+            </ngx-zen-table-row>
+          }
+        </ngx-zen-table-body>
+      </ngx-zen-table>
 
-  <h2 class="mt-10">Events</h2>
-  <table>
-    <thead>
-      <tr>
-        <th class="w-[10%]">Event</th>
-        <th class="w-[50%]">Actions</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><code>sortChange</code></td>
-        <td>
-          <p>
-            Emitted when a column is sorted. Provides the column field and sort direction.
-          </p>
-        </td>
-      </tr>
-      <tr>
-        <td><code>rowClick</code></td>
-        <td>
-          <p>
-            Emitted when a row is clicked. Provides the clicked row data.
-          </p>
-        </td>
-      </tr>
-      <tr>
-        <td><code>selectionChange</code></td>
-        <td>
-          <p>
-            Emitted when row selection changes. Provides an array of selected rows.
-          </p>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</section>
-
-<ng-template let-markdown let-title="title" let-index="index" #card>
-  <div class="card">
-    <div class="header">
-      <h2>{{ title }}</h2>
-    </div>
-    <div class="content">
-      <div class="ui mb-4">
-        @switch (index) {
-          @case (0) {
-            <ngx-zen-table [data]="data" [sortable]="true">
-              <ngx-zen-table-column field="id" header="ID"></ngx-zen-table-column>
-              <ngx-zen-table-column field="name" header="Name"></ngx-zen-table-column>
-              <ngx-zen-table-column field="age" header="Age"></ngx-zen-table-column>
-              <ngx-zen-table-column field="email" header="Email"></ngx-zen-table-column>
-            </ngx-zen-table>
-          }
-          @case (1) {
-            <ngx-zen-table [data]="data" [sortable]="true" shape="curve">
-              <ngx-zen-table-column field="id" header="ID"></ngx-zen-table-column>
-              <ngx-zen-table-column field="name" header="Name"></ngx-zen-table-column>
-              <ngx-zen-table-column field="age" header="Age"></ngx-zen-table-column>
-              <ngx-zen-table-column field="email" header="Email"></ngx-zen-table-column>
-            </ngx-zen-table>
-          }
-          @case (2) {
-            <ngx-zen-table [data]="data" [sortable]="true" [hoverable]="true">
-              <ngx-zen-table-column field="id" header="ID"></ngx-zen-table-column>
-              <ngx-zen-table-column field="name" header="Name"></ngx-zen-table-column>
-              <ngx-zen-table-column field="age" header="Age"></ngx-zen-table-column>
-              <ngx-zen-table-column field="email" header="Email"></ngx-zen-table-column>
-            </ngx-zen-table>
-          }
-          @case (3) {
-            <ngx-zen-table [data]="data" [sortable]="true" [striped]="true">
-              <ngx-zen-table-column field="id" header="ID"></ngx-zen-table-column>
-              <ngx-zen-table-column field="name" header="Name"></ngx-zen-table-column>
-              <ngx-zen-table-column field="age" header="Age"></ngx-zen-table-column>
-              <ngx-zen-table-column field="email" header="Email"></ngx-zen-table-column>
-            </ngx-zen-table>
-          }
-          @case (4) {
-            <ngx-zen-table [data]="data" [sortable]="true" [borderless]="true" [selectable]="true" (selectionChange)="onSelectionChange($event)">
-              <ngx-zen-table-column field="id" header="ID"></ngx-zen-table-column>
-              <ngx-zen-table-column field="name" header="Name"></ngx-zen-table-column>
-              <ngx-zen-table-column field="age" header="Age"></ngx-zen-table-column>
-              <ngx-zen-table-column field="email" header="Email"></ngx-zen-table-column>
-            </ngx-zen-table>
-          }
-          @case (5) {
-            <ngx-zen-table [data]="data" [sortable]="true" [searchable]="true">
-              <ngx-zen-table-column field="id" header="ID"></ngx-zen-table-column>
-              <ngx-zen-table-column field="name" header="Name"></ngx-zen-table-column>
-              <ngx-zen-table-column field="age" header="Age"></ngx-zen-table-column>
-              <ngx-zen-table-column field="email" header="Email"></ngx-zen-table-column>
-            </ngx-zen-table>
-          }
-        }
-      </div>
       <div class="code-wrapper">
-        <app-code-block [markdownData]="markdown"></app-code-block>
+        <app-code-block [markdownData]="item.markdown"></app-code-block>
       </div>
     </div>
-  </div>
-</ng-template>
+  }
+</section>

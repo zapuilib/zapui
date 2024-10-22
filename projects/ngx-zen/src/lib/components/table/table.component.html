@@ -1,70 +1,9 @@
-<div class="__zen__table__wrapper" [ngClass]="getTableClass()">
+<!-- projects/ngx-zen/src/lib/components/table/table.component.html -->
 
-  <table>
-    <thead>
-      @if (searchable) {
-        <tr>
-          <th colspan="100%" class="__zen__table__search-header">
-            <div class="__zen__table__search">
-              <ngx-zen-input 
-                #search 
-                id="search" 
-                type="text" 
-                shape="curve" 
-                [formControl]="searchControl"
-                (input)="onSearch()"
-                iconPosition="right"
-                icon="fa-search"
-                placeholder="Enter your search">
-              </ngx-zen-input>
-            </div>
-          </th>
-        </tr>
-      }
-      <tr>
-        @if (selectable) {
-          <th class="__zen__table__checkbox-header">
-            <ngx-zen-checkbox
-              (click)="onSelectAll()"
-            ></ngx-zen-checkbox>
-          </th>
-        }
-        @for (column of columns; track column) {
-          <th [ngStyle]="getHeaderStyle()"
-              [class.sortable]="sortable" 
-              (click)="sortable ? onSort(column.field) : null">
-            {{ column.header }}
-            <span *ngIf="sortable && currentSortColumn === column.field">
-              {{ currentSortDirection === 'asc' ? '▲' : '▼' }}
-            </span>
-          </th>
-        }
-      </tr>
-    </thead>
-    <tbody>
-      @for (item of filteredData; track item; let even = $even) {
-        <tr [ngClass]="{ 'even': even }" [ngStyle]="getRowStyle(even)" (click)="onRowClick(item)">
-          @if (selectable) {
-            <td class="__zen__table__checkbox-cell">
-              <ngx-zen-checkbox
-                (click)="onRowSelect(item)"
-              ></ngx-zen-checkbox>
-            </td>
-          }
-          @for (column of columns; track column) {
-            <td [ngStyle]="getCellStyle()">{{ item[column.field] }}</td>
-          }
-        </tr>
-      }
-    </tbody>
-    @if (footer) {
-      <tfoot>
-        <tr>
-          <td [attr.colspan]="columns.length">
-            <ng-content select="ngx-zen-table-footer"></ng-content>
-          </td>
-        </tr>
-      </tfoot>
-    }
+<div class="__zen__table__wrapper" [ngStyle]="getTableWrapperStyle()"
+  [ngClass]="[zenClass, size, shape, striped ? 'striped' : '', hoverable ? 'hoverable' : '', borderless ? 'borderless' : '']">
+  <table [ngStyle]="getTableStyle()">
+    <ng-content select="ngx-zen-table-head"></ng-content>
+    <ng-content select="ngx-zen-table-body"></ng-content>
   </table>
 </div>

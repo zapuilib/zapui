@@ -1,3 +1,8 @@
+## Beta version 0.0.9 Updates
+
+- New tooltip size small added
+- Tooltip now works with custom template too
+
 ## Beta version 0.0.8 Updates
 
 - Radio groups added

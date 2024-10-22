@@ -1,91 +1,91 @@
 
-// .__zen__table__wrapper {
-//   @apply bg-gray-800 rounded-lg overflow-hidden shadow-sm;
+.__zen__table__wrapper {
+  @apply bg-gray-800 rounded-lg overflow-hidden shadow-sm;
 
-//   .__zen__table__search-header {
-//     @apply p-4 bg-gray-700 border-b border-gray-600;
-//   }
+  .__zen__table__search-header {
+    @apply p-4 bg-gray-700 border-b border-gray-600;
+  }
 
-//   .__zen__table__search {
-//     @apply max-w-[300px];
-//   }
+  .__zen__table__search {
+    @apply max-w-[300px];
+  }
   
-//   .__zen__table__head {
-//     @apply bg-gray-700;
-//   }
+  .__zen__table__head {
+    @apply bg-gray-700;
+  }
 
-//   .__zen__table__body {
-//     @apply bg-gray-800;
-//   }
+  .__zen__table__body {
+    @apply bg-gray-800;
+  }
 
-//   .__zen__table__row {
-//     &:hover {
-//       @apply bg-gray-700;
-//     }
-//   }
+  .__zen__table__row {
+    &:hover {
+      @apply bg-gray-700;
+    }
+  }
 
-//   .__zen__table__cell {
-//     @apply py-2 px-4;
-//   }
+  .__zen__table__cell {
+    @apply py-2 px-4;
+  }
 
 
-//   table {
-//     @apply w-full border-separate border-spacing-0;
+  table {
+    @apply w-full border-separate border-spacing-0;
 
-//     th, td {
-//       @apply py-3 px-4 text-left border-b border-gray-600;
-//     }
+    th, td {
+      @apply py-3 px-4 text-left border-b border-gray-600;
+    }
 
-//     th {
-//       @apply bg-gray-700 font-semibold text-gray-200 text-xs uppercase tracking-wider;
-//     }
+    th {
+      @apply bg-gray-700 font-semibold text-gray-200 text-xs uppercase tracking-wider;
+    }
 
-//     td {
-//       @apply bg-gray-800 text-gray-300;
-//     }
+    td {
+      @apply bg-gray-800 text-gray-300;
+    }
 
-//     tr:last-child td {
-//       @apply border-b-0;
-//     }
-//   }
+    tr:last-child td {
+      @apply border-b-0;
+    }
+  }
 
-//   &.striped {
-//     tbody tr:nth-child(even) td {
-//       @apply bg-gray-700;
-//     }
-//   }
+  &.striped {
+    tbody tr:nth-child(even) td {
+      @apply bg-gray-700;
+    }
+  }
 
-//   &.hoverable {
-//     tbody tr:hover td {
-//       @apply bg-gray-600;
-//     }
-//   }
+  &.hoverable {
+    tbody tr:hover td {
+      @apply bg-gray-600;
+    }
+  }
 
-//   &.borderless {
-//     table, th, td {
-//       @apply border-0;
-//     }
-//   }
+  &.borderless {
+    table, th, td {
+      @apply border-0;
+    }
+  }
 
-//   &.curve {
-//     @apply rounded-lg;
+  &.curve {
+    @apply rounded-lg;
     
-//     th:first-child {
-//       @apply rounded-tl-lg;
-//     }
+    th:first-child {
+      @apply rounded-tl-lg;
+    }
     
-//     th:last-child {
-//       @apply rounded-tr-lg;
-//     }
+    th:last-child {
+      @apply rounded-tr-lg;
+    }
     
-//     tr:last-child {
-//       td:first-child {
-//         @apply rounded-bl-lg;
-//       }
+    tr:last-child {
+      td:first-child {
+        @apply rounded-bl-lg;
+      }
       
-//       td:last-child {
-//         @apply rounded-br-lg;
-//       }
-//     }
-//   }
-// }
+      td:last-child {
+        @apply rounded-br-lg;
+      }
+    }
+  }
+}

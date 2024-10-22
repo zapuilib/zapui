@@ -1,9 +1,24 @@
-<!-- projects/ngx-zen/src/lib/components/table/table.component.html -->
-
-<div class="__zen__table__wrapper" [ngStyle]="getTableWrapperStyle()"
-  [ngClass]="[zenClass, size, shape, striped ? 'striped' : '', hoverable ? 'hoverable' : '', borderless ? 'borderless' : '']">
-  <table [ngStyle]="getTableStyle()">
-    <ng-content select="ngx-zen-table-head"></ng-content>
-    <ng-content select="ngx-zen-table-body"></ng-content>
+<div class="table-wrapper" 
+     [ngClass]="[
+       zenClass,
+       size,
+       shape,
+       { 
+         'hoverable': hoverable, 
+         'striped': striped, 
+         'borderless': borderless, 
+         'selectable': selectable, 
+         'sortable': sortable, 
+         'searchable': searchable 
+       }
+     ]" 
+     [ngStyle]="getTableWrapperStyle()">
+  <table class="table" [ngStyle]="getTableStyle()">
+    <thead>
+      <ng-content select="ngx-zen-table-head"></ng-content>
+    </thead>
+    <tbody>
+      <ng-content select="ngx-zen-table-body"></ng-content>
+    </tbody>
   </table>
 </div>

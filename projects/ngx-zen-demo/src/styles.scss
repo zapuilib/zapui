@@ -11,26 +11,26 @@
   @apply text-white font-sans;
 }
 
-// table {
-//   @apply w-full;
+table {
+  @apply w-full;
 
-//   thead {
-//     tr {
-//       th {
-//         @apply text-left border border-[#404040] px-3 py-2;
-//       }
-//     }
-//   }
+  thead {
+    tr {
+      th {
+        @apply text-left border border-[#404040] px-3 py-2;
+      }
+    }
+  }
 
-//   tbody {
-//     tr {
-//       td {
-//         @apply text-left border border-[#404040] px-3 py-2;
+  tbody {
+    tr {
+      td {
+        @apply text-left border border-[#404040] px-3 py-2;
 
-//         code {
-//           @apply text-sm text-[#a6e22e] bg-[#212121] px-1 rounded-sm;
-//         }
-//       }
-//     }
-//   }
-// }
+        code {
+          @apply text-sm text-[#a6e22e] bg-[#212121] px-1 rounded-sm;
+        }
+      }
+    }
+  }
+}

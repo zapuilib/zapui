@@ -1,5 +1,3 @@
-// projects/ngx-zen/src/lib/components/table/table-group/table-body.component.ts
-
 import { Component, Optional, Host } from '@angular/core';
 import { TableComponent } from '../table.component';
 

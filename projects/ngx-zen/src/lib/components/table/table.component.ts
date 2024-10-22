@@ -1,6 +1,4 @@
-// projects/ngx-zen/src/lib/components/table/table.component.ts
-
-import { Component, Input, ContentChildren, QueryList, AfterContentInit, Output, EventEmitter, Inject } from '@angular/core';
+import { Component, Input, ContentChildren, QueryList, AfterContentInit, Output, EventEmitter, Inject, ViewEncapsulation } from '@angular/core';
 import { TableHeadComponent } from './table-group/table-head.component';
 import { TableBodyComponent } from './table-group/table-body.component';
 import { NGX_ZEN_CONFIG } from '../../tokens/ngx-zen.tokens';
@@ -10,7 +8,7 @@ import { ColorUtility } from '../../utilities/color.utility';
 @Component({
   selector: 'ngx-zen-table',
   templateUrl: './table.component.html',
-  styleUrls: ['./table.component.scss']
+  encapsulation: ViewEncapsulation.None
 })
 export class TableComponent implements AfterContentInit {
   @ContentChildren(TableHeadComponent) headComponents!: QueryList<TableHeadComponent>;
@@ -30,56 +28,68 @@ export class TableComponent implements AfterContentInit {
   @Output() sortChange = new EventEmitter<{ field: string; direction: 'asc' | 'desc' }>();
 
   constructor(
-    @Inject(NGX_ZEN_CONFIG) private config: NgxZenConfig,
+    @Inject(NGX_ZEN_CONFIG) public config: NgxZenConfig,
     private colorUtility: ColorUtility
   ) {}
 
-  ngAfterContentInit() {}
+  ngAfterContentInit() {
 
-  onSelectionChange(selection: any[]) {
-    this.selectionChange.emit(selection);
   }
 
-  onSortChange(sort: { field: string; direction: 'asc' | 'desc' }) {
-    this.sortChange.emit(sort);
+  getTableStyle(): Record<string, string> {
+    return {
+      'width': '100%',
+      'border-collapse': 'separate',
+      'border-spacing': '0',
+      'background-color': this.colorUtility.hexToRgba(this.config.colors.info, 0.05),
+      'border-radius': this.shape === 'curve' ? '0.5rem' : '0',
+      'overflow': 'hidden',
+    };
+  }
+
+  getTableHeadStyle(): Record<string, string> {
+    return {
+      'background-color': this.config.colors.quaternary,
+      'color': this.config.colors.info,
+      'font-weight': '600',
+    };
+  }
+
+  getTableCellStyle(): Record<string, string> {
+    return {
+      'padding': this.size === 'compact' ? '0.5rem' : '0.75rem',
+      'border-bottom': this.borderless ? 'none' : 
+        `1px solid ${this.colorUtility.hexToRgba(this.config.colors.quaternary, 0.1)}`,
+    };
+  }
+
+  getStripedRowStyle(index: number): Record<string, string> {
+    if (this.striped && index % 2 !== 0) {
+      return { 
+        'background-color': this.colorUtility.hexToRgba(this.config.colors.quaternary, 0.05)
+      };
+    }
+    return {};
+  }
+
+  getHoverableRowStyle(): Record<string, string> {
+    return {
+      'background-color': this.colorUtility.hexToRgba(this.config.colors.tertiary, 0.1),
+    };
   }
 
   getTableWrapperStyle(): Record<string, string> {
     return {
       'background-color': this.config.colors.secondary,
       'border-radius': this.shape === 'curve' ? '0.5rem' : '0',
-      'overflow': 'hidden',
-      'box-shadow': '0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)',
     };
   }
-  
-  getTableStyle(): Record<string, string> {
-    return {
-      'width': '100%',
-      'border-collapse': 'separate',
-      'border-spacing': '0',
-    };
+
+  onSortChange(sort: { field: string; direction: 'asc' | 'desc' }) {
+    this.sortChange.emit(sort);
   }
-  
-  getTableHeadStyle(): Record<string, string> {
-    return {
-      'background-color': this.config.colors.tertiary,
-    };
-  }
-  
-  getTableCellStyle(): Record<string, string> {
-    const fontSize = this.size === 'compact' ? this.config.fontSize.sm : this.config.fontSize.md;
-    return {
-      'padding': this.size === 'compact' ? '0.5rem 1rem' : '0.75rem 1.5rem',
-      'font-size': fontSize,
-      'border-bottom': this.borderless ? 'none' : `1px solid ${this.colorUtility.hexToRgba(this.config.colors.primary, 0.1)}`,
-    };
-  }
-  
-  getStripedRowStyle(index: number): Record<string, string> {
-    if (this.striped && index % 2 !== 0) {
-      return { 'background-color': this.colorUtility.hexToRgba(this.config.colors.primary, 0.05) };
-    }
-    return {};
+
+  onSelectionChange(selection: any[]) {
+    this.selectionChange.emit(selection);
   }
 }

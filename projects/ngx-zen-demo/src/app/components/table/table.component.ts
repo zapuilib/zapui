@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-table',
   templateUrl: './table.component.html',
-  styleUrls: ['./table.component.scss']
+  styleUrls: ['./table.component.scss'],
 })
 export class TableComponent {
   markdowns = [
@@ -26,7 +26,7 @@ export class TableComponent {
   </ngx-zen-table-body>
 </ngx-zen-table>
 \`\`\``,
-      title: 'Basic Table'
+      title: 'Basic Table',
     },
     {
       markdown: `\`\`\`html
@@ -46,7 +46,7 @@ export class TableComponent {
   </ngx-zen-table-body>
 </ngx-zen-table>
 \`\`\``,
-      title: 'Table'
+      title: 'Table',
     },
     {
       markdown: `\`\`\`html
@@ -57,7 +57,7 @@ export class TableComponent {
   <!-- table content -->
 </ngx-zen-table>
 \`\`\``,
-      title: 'Non-interactive Table'
+      title: 'Non-interactive Table',
     },
     {
       markdown: `\`\`\`html
@@ -82,14 +82,19 @@ export class TableComponent {
   </ngx-zen-table-body>
 </ngx-zen-table>
 \`\`\``,
-      title: 'Table with Components'
-    }
+      title: 'Table with Components',
+    },
   ];
 
   // Example data for dynamic tables
   tableData = [
     { name: 'John Doe', email: 'john@example.com', status: 'Active' },
-    { name: 'Jane Smith', email: 'jane@example.com', status: 'Inactive' },
-    { name: 'Bob Johnson', email: 'bob@example.com', status: 'Active' }
+    {
+      name: 'Jane Smith',
+      email:
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. ',
+      status: 'Inactive',
+    },
+    { name: 'Bob Johnson', email: 'bob@example.com', status: 'Active' },
   ];
 }

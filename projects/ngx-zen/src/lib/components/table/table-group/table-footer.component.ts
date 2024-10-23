@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
 
 @Component({
   selector: 'ngx-zen-table-footer',
@@ -8,6 +8,7 @@ import { Component } from '@angular/core';
           <ng-content></ng-content>
       </tr>
     </tfoot>
-  `
+  `,
+  encapsulation: ViewEncapsulation.None
 })
 export class TableFooterComponent {}

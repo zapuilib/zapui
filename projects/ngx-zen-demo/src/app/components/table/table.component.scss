@@ -7,13 +7,12 @@ section {
   }
 
   .card {
-    @apply py-5 w-[50%];
+    @apply py-5;
 
     .content {
       .ui {
-        @apply min-h-[295px] rounded bg-white relative p-4;
+        @apply min-h-[95px] rounded bg-white relative p-4;
         
-        // Reset any table styles within the demo area
         ngx-zen-table {
           table {
             width: 100% !important;

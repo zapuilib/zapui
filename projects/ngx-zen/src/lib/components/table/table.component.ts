@@ -8,7 +8,7 @@ import {
   ContentChild,
   ContentChildren,
   QueryList,
-  AfterContentInit
+  AfterContentInit,
 } from '@angular/core';
 
 import { NGX_ZEN_CONFIG } from '../../tokens/ngx-zen.tokens';
@@ -16,12 +16,11 @@ import { NgxZenConfig } from '../../interfaces/config.interface';
 import { ColorUtility } from '../../utilities/color.utility';
 import { TableHeadComponent } from './table-group/table-head.component';
 import { TableBodyComponent } from './table-group/table-body.component';
-import { TableColumnComponent } from './table-group/table-column.component';
 
 @Component({
   selector: 'ngx-zen-table',
   templateUrl: './table.component.html',
-  styleUrls: ['./table.component.scss']
+  styleUrls: ['./table.component.scss'],
 })
 export class TableComponent implements AfterContentInit {
   @Input() title: string = '';
@@ -33,36 +32,44 @@ export class TableComponent implements AfterContentInit {
   @Input() disabled: boolean = false;
   @Input() sortable: boolean = false;
   @Input() selectable: boolean = false;
-
+  @Input() width: string = '';
   @Output() sort = new EventEmitter<any>();
   @Output() select = new EventEmitter<any>();
 
   @ContentChild(TableHeadComponent) tableHead?: TableHeadComponent;
   @ContentChild(TableBodyComponent) tableBody?: TableBodyComponent;
-  @ContentChildren(TableColumnComponent) columns!: QueryList<TableColumnComponent>;
 
   constructor(
-      @Inject(NGX_ZEN_CONFIG) private config: NgxZenConfig,
-      private colorUtility: ColorUtility
+    @Inject(NGX_ZEN_CONFIG) private config: NgxZenConfig,
+    private colorUtility: ColorUtility
   ) {}
 
   ngAfterContentInit() {
-      if (this.columns) {
-          this.columns.forEach((column, index) => {
-              column.index = index;
-              column.size = this.size;
-              column.sortable = this.sortable;
-          });
-      }
+    if (this.tableHead && this.tableHead.columns.length > 0) {
+      this.handleWidth();
+    }
+  }
 
-      if (this.tableHead) {
-          this.tableHead.size = this.size;
-      }
+  handleWidth(): void {
+    if (this.width && this.tableHead && this.tableHead.columns.length > 0) {
+      const columnWidths = this.width.split('_');
+      this.tableHead.columns.forEach((column, index) => {
+        const width = columnWidths[index] ? `${columnWidths[index]}%` : 'auto';
+        column.width = width;
+      });
+    }
 
-      if (this.tableBody) {
-          this.tableBody.size = this.size;
-          this.tableBody.selectable = this.selectable;
-      }
+    if (this.width && this.tableBody && this.tableBody.rows.length > 0) {
+      const columnWidths = this.width.split('_');
+      this.tableBody.rows.forEach((row, index) => {
+        row.cells.forEach((cell, cellIndex) => {
+          const width = columnWidths[cellIndex]
+            ? `${columnWidths[cellIndex]}%`
+            : 'auto';
+          cell.width = width;
+        });
+      });
+    }
   }
 
   getTableStyle(): Record<string, string> {
@@ -81,30 +88,29 @@ export class TableComponent implements AfterContentInit {
     };
   }
 
-
   getSubtitleStyle(): Record<string, string> {
-      const fontSize =
-          this.size === 'compact'
-              ? this.config.fontSize.md
-              : this.config.fontSize.lg;
+    const fontSize =
+      this.size === 'compact'
+        ? this.config.fontSize.md
+        : this.config.fontSize.lg;
 
-      const mutedColor = this.colorUtility.hexToRgba(
-          this.config.colors.quaternary,
-          0.5
-      );
+    const mutedColor = this.colorUtility.hexToRgba(
+      this.config.colors.quaternary,
+      0.5
+    );
 
-      return {
-          'font-size': fontSize,
-          color: mutedColor,
-          'margin-top': '0.25rem',
-      };
+    return {
+      'font-size': fontSize,
+      color: mutedColor,
+      'margin-top': '0.25rem',
+    };
   }
 
   onSort(event: any) {
-      this.sort.emit(event);
+    this.sort.emit(event);
   }
 
   onSelect(event: any) {
-      this.select.emit(event);
+    this.select.emit(event);
   }
 }

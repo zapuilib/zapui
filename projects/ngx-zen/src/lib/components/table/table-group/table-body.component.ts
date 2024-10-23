@@ -4,8 +4,10 @@ import {
   Input, 
   ContentChildren, 
   QueryList, 
-  AfterContentInit 
+  AfterContentInit, 
+  ViewEncapsulation
 } from '@angular/core';
+
 import { TableRowComponent } from './table-row.component';
 
 @Component({
@@ -15,11 +17,13 @@ import { TableRowComponent } from './table-row.component';
       <ng-content></ng-content>
     </tbody>
   `,
-  styleUrls: ['./table-component.style.scss']
+  styleUrls: ['./table-component.style.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class TableBodyComponent implements AfterContentInit {
   @Input() size: 'compact' | 'default' | 'large' = 'default';
   @Input() selectable: boolean = false;
+  @Input() width: string = '';
   @ContentChildren(TableRowComponent) rows!: QueryList<TableRowComponent>;
 
   ngAfterContentInit() {

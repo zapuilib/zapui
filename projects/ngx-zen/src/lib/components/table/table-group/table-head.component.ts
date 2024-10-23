@@ -4,8 +4,10 @@ import {
   Input,
   ContentChildren,
   QueryList,
-  AfterContentInit
+  AfterContentInit,
+  ViewEncapsulation
 } from '@angular/core';
+
 import { TableColumnComponent } from './table-column.component';
 
 @Component({
@@ -17,7 +19,8 @@ import { TableColumnComponent } from './table-column.component';
       </tr>
     </thead>
   `,
-  styleUrls: ['./table-component.style.scss']
+  styleUrls: ['./table-component.style.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class TableHeadComponent implements AfterContentInit {
   @Input() size: 'compact' | 'default' | 'large' = 'default';

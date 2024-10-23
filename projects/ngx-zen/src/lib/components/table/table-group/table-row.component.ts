@@ -5,8 +5,10 @@ import {
   EventEmitter, 
   ContentChildren, 
   QueryList, 
-  AfterContentInit 
+  AfterContentInit, 
+  ViewEncapsulation
 } from '@angular/core';
+
 import { TableCellComponent } from './table-cell.component';
 
 @Component({
@@ -23,7 +25,8 @@ import { TableCellComponent } from './table-cell.component';
       <ng-content></ng-content>
     </tr>
   `,
-  styleUrls: ['./table-component.style.scss']
+  styleUrls: ['./table-component.style.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class TableRowComponent implements AfterContentInit {
   @Input() size: 'compact' | 'default' | 'large' = 'default';

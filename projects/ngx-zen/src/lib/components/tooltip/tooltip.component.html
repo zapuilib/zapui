@@ -15,7 +15,7 @@
   } @if (isActive) {
   <div
     class="content"
-    [ngClass]="[size, positionX, positionY]"
+    [ngClass]="[shape, size, positionX, positionY]"
     [ngStyle]="getContentStyle()"
   >
     @if(text) {

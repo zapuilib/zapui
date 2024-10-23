@@ -52,33 +52,4 @@
     }
   }
 
-  &.compact {
-    .__zen__table__column,
-    .__zen__table__cell {
-      @apply px-2 py-1.5 text-sm;
-    }
-    .__zen__table__column {
-      @apply font-semibold;
-    }
-  }
-
-  &.default {
-    .__zen__table__column,
-    .__zen__table__cell {
-      @apply px-4 py-3 text-base;
-    }
-    .__zen__table__column {
-      @apply font-semibold;
-    }
-  }
-
-  &.large {
-    .__zen__table__column,
-    .__zen__table__cell {
-      @apply px-6 py-4 text-lg;
-    }
-    .__zen__table__column {
-      @apply font-semibold;
-    }
-  }
 }

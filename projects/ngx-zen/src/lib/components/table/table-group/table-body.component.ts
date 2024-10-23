@@ -30,7 +30,6 @@ export class TableBodyComponent implements AfterContentInit {
     if (this.rows) {
       this.rows.forEach(row => {
         row.size = this.size;
-        row.selectable = this.selectable;
       });
     }
   }

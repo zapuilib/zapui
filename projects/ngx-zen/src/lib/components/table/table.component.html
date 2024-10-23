@@ -1,21 +1,11 @@
 <div class="__zen__table__wrapper" 
      [ngClass]="[
        zenClass,
-       size,
-       shape,
-       transition,
-       disabled ? 'disabled' : '',
-       sortable ? 'sortable' : '',
-       selectable ? 'selectable' : ''
+       disabled ? 'disabled' : ''      
      ]">
   @if (title) {
     <div class="__zen__table__title" [ngStyle]="getTableStyle()">
       {{ title }}
-    </div>
-  }
-  @if (subtitle) {
-    <div class="__zen__table__subtitle" [ngStyle]="getSubtitleStyle()">
-      {{ subtitle }}
     </div>
   }
   <div class="__zen__table__content">

@@ -3,11 +3,7 @@ import {
   Component,
   Input,
   Inject,
-  Output,
-  EventEmitter,
   ContentChild,
-  ContentChildren,
-  QueryList,
   AfterContentInit,
 } from '@angular/core';
 
@@ -23,18 +19,10 @@ import { TableBodyComponent } from './table-group/table-body.component';
   styleUrls: ['./table.component.scss'],
 })
 export class TableComponent implements AfterContentInit {
-  @Input() title: string = '';
-  @Input() subtitle: string = '';
   @Input() zenClass: string = '';
-  @Input() size: 'compact' | 'default' | 'large' = 'default';
-  @Input() shape: 'curve' | 'default' = 'default';
-  @Input() transition: 'smooth' | 'snappy' | 'none' = 'smooth';
   @Input() disabled: boolean = false;
-  @Input() sortable: boolean = false;
-  @Input() selectable: boolean = false;
   @Input() width: string = '';
-  @Output() sort = new EventEmitter<any>();
-  @Output() select = new EventEmitter<any>();
+  @Input() title: string = '';
 
   @ContentChild(TableHeadComponent) tableHead?: TableHeadComponent;
   @ContentChild(TableBodyComponent) tableBody?: TableBodyComponent;
@@ -76,41 +64,10 @@ export class TableComponent implements AfterContentInit {
     const color = this.disabled
       ? this.colorUtility.hexToRgba(this.config.colors.secondary, 0.5)
       : this.config.colors.secondary;
-
-    const fontSize =
-      this.size === 'compact'
-        ? this.config.fontSize.md
-        : this.config.fontSize.lg;
-
+  
     return {
       color,
-      'font-size': fontSize,
+      'font-size': this.config.fontSize.md, // Using a default font size
     };
-  }
-
-  getSubtitleStyle(): Record<string, string> {
-    const fontSize =
-      this.size === 'compact'
-        ? this.config.fontSize.md
-        : this.config.fontSize.lg;
-
-    const mutedColor = this.colorUtility.hexToRgba(
-      this.config.colors.quaternary,
-      0.5
-    );
-
-    return {
-      'font-size': fontSize,
-      color: mutedColor,
-      'margin-top': '0.25rem',
-    };
-  }
-
-  onSort(event: any) {
-    this.sort.emit(event);
-  }
-
-  onSelect(event: any) {
-    this.select.emit(event);
   }
 }

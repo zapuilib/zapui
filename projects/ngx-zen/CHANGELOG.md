@@ -1,3 +1,7 @@
+## Beta version 0.0.11 Updates
+
+- Shape curve on tooltip fixed
+
 ## Beta version 0.0.10 Updates
 
 - Escape handler added on modals

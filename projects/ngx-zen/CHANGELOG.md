@@ -1,3 +1,7 @@
+## Beta version 0.0.10 Updates
+
+- Escape handler added on modals
+
 ## Beta version 0.0.9 Updates
 
 - New tooltip size small added

@@ -1,6 +1,10 @@
 .__ngx__radio__wrapper {
   .wrapper {
-    @apply flex gap-y-2 gap-x-2 w-full flex-nowrap;
+    @apply flex flex-col gap-y-2 gap-x-2 w-full flex-nowrap;
+
+    .options__wrapper {
+      @apply flex gap-y-2 w-full flex-nowrap;
+    }
 
     fieldset {
       @apply flex items-center gap-x-2 cursor-pointer;
@@ -35,13 +39,17 @@
 
   &.vertical {
     .wrapper {
-      @apply flex-col;
+      .options__wrapper {
+        @apply flex-col;
+      }
     }
   }
 
   &.horizontal {
     .wrapper {
-      @apply flex-row;
+      .options__wrapper {
+        @apply flex-row gap-x-3;
+      }
     }
   }
 }

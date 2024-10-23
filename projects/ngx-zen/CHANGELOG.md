@@ -1,3 +1,7 @@
+## Beta version 0.0.12 Updates
+
+- Radio groups variant fixed - works with label
+
 ## Beta version 0.0.11 Updates
 
 - Shape curve on tooltip fixed

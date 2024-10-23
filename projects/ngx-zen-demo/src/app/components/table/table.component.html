@@ -1,5 +1,7 @@
+<!-- table.component.html -->
 <section class="min-h-screen">
   <h1>Tables</h1>
+
   @for (item of markdowns; track item; let i = $index) {
     <ng-container
       *ngTemplateOutlet="
@@ -29,34 +31,26 @@
         <td><code>title</code></td>
         <td><p>Required</p></td>
         <td><code>string</code></td>
-        <td><p>Sets the title of the accordion section.</p></td>
+        <td><p>Sets the title of the table section.</p></td>
       </tr>
       <tr>
         <td><code>subtitle</code></td>
         <td><p>Optional</p></td>
         <td><code>string</code></td>
-        <td><p>Sets the subtitle text of the accordion section.</p></td>
-      </tr>
-      <tr>
-        <td><code>isOpen</code></td>
-        <td><p>Optional</p></td>
-        <td><code>boolean</code></td>
-        <td>
-          <p>Controls the initial open state of the accordion. Defaults to <code>false</code>.</p>
-        </td>
+        <td><p>Sets the subtitle text of the table section.</p></td>
       </tr>
       <tr>
         <td><code>disabled</code></td>
         <td><p>Optional</p></td>
         <td><code>boolean</code></td>
-        <td><p>Disables the accordion, preventing it from being opened or closed.</p></td>
+        <td><p>Disables the table, preventing it from being interacted with.</p></td>
       </tr>
       <tr>
         <td><code>size</code></td>
         <td><p>Optional</p></td>
         <td><code>compact</code> | <code>default</code> | <code>large</code></td>
         <td>
-          <p>Sets the padding and font size for the accordion content. <code>compact</code> reduces padding, while <code>large</code> increases it.</p>
+          <p>Sets the padding and font size for the table content. <code>compact</code> reduces padding, while <code>large</code> increases it.</p>
         </td>
       </tr>
       <tr>
@@ -64,7 +58,7 @@
         <td><p>Optional</p></td>
         <td><code>default</code> | <code>curve</code></td>
         <td>
-          <p>Defines the shape of the accordion edges. The <code>curve</code> option applies rounded corners to the accordion.</p>
+          <p>Defines the shape of the table edges. The <code>curve</code> option applies rounded corners to the table.</p>
         </td>
       </tr>
       <tr>
@@ -72,31 +66,7 @@
         <td><p>Optional</p></td>
         <td><code>smooth</code> | <code>snappy</code> | <code>none</code></td>
         <td>
-          <p>Sets the transition effect for expanding and collapsing the accordion content. <code>smooth</code> offers a gradual transition, <code>snappy</code> is quicker, and <code>none</code> removes the transition effect.</p>
-        </td>
-      </tr>
-      <tr>
-        <td><code>iconPosition</code></td>
-        <td><p>Optional</p></td>
-        <td><code>left</code> | <code>right</code></td>
-        <td>
-          <p>Specifies the position of the accordion icon relative to the title. Defaults to <code>right</code>.</p>
-        </td>
-      </tr>
-      <tr>
-        <td><code>openIcon</code></td>
-        <td><p>Optional</p></td>
-        <td><code>string</code> (icon class)</td>
-        <td>
-          <p>Sets the icon displayed when the accordion is open. Default is <code>fa-minus</code>. Accepts any valid Font Awesome or custom icon class.</p>
-        </td>
-      </tr>
-      <tr>
-        <td><code>closeIcon</code></td>
-        <td><p>Optional</p></td>
-        <td><code>string</code> (icon class)</td>
-        <td>
-          <p>Sets the icon displayed when the accordion is closed. Default is <code>fa-plus</code>. Accepts any valid Font Awesome or custom icon class.</p>
+          <p>Sets the transition effect for table interactions. <code>smooth</code> offers a gradual transition, <code>snappy</code> is quicker, and <code>none</code> removes the transition effect.</p>
         </td>
       </tr>
       <tr>
@@ -104,7 +74,7 @@
         <td><p>Optional</p></td>
         <td><code>string</code> (CSS classes)</td>
         <td>
-          <p>Applies custom styles to the outer wrapper of the accordion. Allows custom control over styling such as colors and padding.</p>
+          <p>Applies custom styles to the outer wrapper of the table. Allows custom control over styling such as colors and padding.</p>
         </td>
       </tr>
     </tbody>
@@ -120,12 +90,18 @@
     </thead>
     <tbody>
       <tr>
-        <td><code>toggle</code></td>
+        <td><code>sort</code></td>
         <td>
           <p>
-            Triggered each time the accordion is opened or closed. You can
-            handle this event to perform actions such as logging the accordion
-            state or loading dynamic content.
+            Triggered when a sortable column is clicked. Returns the column field and sort direction.
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td><code>select</code></td>
+        <td>
+          <p>
+            Triggered when a row is selected in a selectable table. Returns the selected state and row data.
           </p>
         </td>
       </tr>
@@ -142,37 +118,58 @@
       <div class="ui mb-4">
         @switch(index) {
           @case(0) {
-            <!-- <ngx-zen-table>
+            <ngx-zen-table title="Basic Table">
               <ngx-zen-table-head>
-                <ngx-zen-table-column>ID</ngx-zen-table-column>
                 <ngx-zen-table-column>Name</ngx-zen-table-column>
-                <ngx-zen-table-column>Age</ngx-zen-table-column>
                 <ngx-zen-table-column>Email</ngx-zen-table-column>
+                <ngx-zen-table-column>Status</ngx-zen-table-column>
               </ngx-zen-table-head>
               <ngx-zen-table-body>
                 <ngx-zen-table-row>
-                  <ngx-zen-table-cell>1</ngx-zen-table-cell>
-                  <ngx-zen-table-cell>Example Name</ngx-zen-table-cell>
-                  <ngx-zen-table-cell>28</ngx-zen-table-cell>
-                  <ngx-zen-table-cell>example&#64;mail.com</ngx-zen-table-cell>
+                  <ngx-zen-table-cell>John Doe</ngx-zen-table-cell>
+                  <ngx-zen-table-cell>john&#64;example.com</ngx-zen-table-cell>
+                  <ngx-zen-table-cell>Active</ngx-zen-table-cell>
                 </ngx-zen-table-row>
               </ngx-zen-table-body>
-            </ngx-zen-table> -->
+            </ngx-zen-table>
           }
           @case(1) {
-          
+            <ngx-zen-table 
+              title="Table"
+              subtitle="table-type-1"
+            >
+              <!-- Similar structure as above -->
+            </ngx-zen-table>
           }
           @case(2) {
-            
+            <ngx-zen-table 
+              title="Non-interactive Table"
+              [disabled]="true"
+            >
+              <!-- Similar structure -->
+            </ngx-zen-table>
           }
           @case(3) {
-            
-          }
-          @case(4) {
-            
-          }
-          @case(5) {
-        
+            <ngx-zen-table title="Table with Components">
+              <ngx-zen-table-head>
+                <ngx-zen-table-column>Name</ngx-zen-table-column>
+                <ngx-zen-table-column>Status</ngx-zen-table-column>
+                <ngx-zen-table-column>Actions</ngx-zen-table-column>
+              </ngx-zen-table-head>
+              <ngx-zen-table-body>
+                <ngx-zen-table-row>
+                  <ngx-zen-table-cell>
+                    <ngx-zen-input value="John Doe"></ngx-zen-input>
+                  </ngx-zen-table-cell>
+                  <ngx-zen-table-cell>
+                    <ngx-zen-chip>Active</ngx-zen-chip>
+                  </ngx-zen-table-cell>
+                  <ngx-zen-table-cell>
+                    <ngx-zen-button>Edit</ngx-zen-button>
+                  </ngx-zen-table-cell>
+                </ngx-zen-table-row>
+              </ngx-zen-table-body>
+            </ngx-zen-table>
           }
         }
       </div>

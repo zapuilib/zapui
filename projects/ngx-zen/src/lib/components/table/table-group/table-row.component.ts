@@ -1,45 +1,50 @@
-import { Component, Optional, Host, Input } from '@angular/core';
-import { TableComponent } from '../table.component';
+import { 
+  Component, 
+  Input, 
+  Output, 
+  EventEmitter, 
+  ContentChildren, 
+  QueryList, 
+  AfterContentInit 
+} from '@angular/core';
+import { TableCellComponent } from './table-cell.component';
 
 @Component({
   selector: 'ngx-zen-table-row',
   template: `
-    <tr class="table-row"
-        [ngClass]="{
-          'hoverable': table?.hoverable, 
-          'striped': table?.striped && index % 2 === 0
-        }"
-        (mouseenter)="hovering = true" 
-        (mouseleave)="hovering = false"
-        [ngStyle]="getRowStyle()">
-      <ng-content select="ngx-zen-table-cell"></ng-content>
+    <tr 
+      class="__zen__table__row"
+      [ngClass]="{ 
+        'selected': selected,
+        'selectable': selectable
+      }"
+      (click)="onRowClick()"
+    >
+      <ng-content></ng-content>
     </tr>
   `,
   styleUrls: ['./table-component.style.scss']
 })
-export class TableRowComponent {
-  @Input() index: number = 0;
+export class TableRowComponent implements AfterContentInit {
+  @Input() size: 'compact' | 'default' | 'large' = 'default';
   @Input() selected: boolean = false;
-  
-  hovering: boolean = false;
-  
-  constructor(@Optional() @Host() public table: TableComponent | null) {}
+  @Input() selectable: boolean = false;
+  @Output() select = new EventEmitter<boolean>();
 
-  getRowStyle(): Record<string, string> {
-    let style: Record<string, string> = {};
-    
-    if (this.hovering && this.table?.hoverable) {
-      style = {...style, ...this.table.getHoverableRowStyle()};
-    }
-    
-    if (this.table?.striped) {
-      style = {...style, ...this.table.getStripedRowStyle(this.index)};
-    }
+  @ContentChildren(TableCellComponent) cells!: QueryList<TableCellComponent>;
 
-    if (this.selected && this.table?.selectable) {
-      style['background-color'] = this.table.config.colors.info + '1A';
+  ngAfterContentInit() {
+    if (this.cells) {
+      this.cells.forEach(cell => {
+        cell.size = this.size;
+      });
     }
-    
-    return style;
+  }
+
+  onRowClick() {
+    if (this.selectable) {
+      this.selected = !this.selected;
+      this.select.emit(this.selected);
+    }
   }
 }

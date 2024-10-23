@@ -1,95 +1,110 @@
-import { Component, Input, ContentChildren, QueryList, AfterContentInit, Output, EventEmitter, Inject, ViewEncapsulation } from '@angular/core';
-import { TableHeadComponent } from './table-group/table-head.component';
-import { TableBodyComponent } from './table-group/table-body.component';
+// table.component.ts
+import {
+  Component,
+  Input,
+  Inject,
+  Output,
+  EventEmitter,
+  ContentChild,
+  ContentChildren,
+  QueryList,
+  AfterContentInit
+} from '@angular/core';
+
 import { NGX_ZEN_CONFIG } from '../../tokens/ngx-zen.tokens';
 import { NgxZenConfig } from '../../interfaces/config.interface';
 import { ColorUtility } from '../../utilities/color.utility';
+import { TableHeadComponent } from './table-group/table-head.component';
+import { TableBodyComponent } from './table-group/table-body.component';
+import { TableColumnComponent } from './table-group/table-column.component';
 
 @Component({
   selector: 'ngx-zen-table',
   templateUrl: './table.component.html',
-  encapsulation: ViewEncapsulation.None
+  styleUrls: ['./table.component.scss']
 })
 export class TableComponent implements AfterContentInit {
-  @ContentChildren(TableHeadComponent) headComponents!: QueryList<TableHeadComponent>;
-  @ContentChildren(TableBodyComponent) bodyComponents!: QueryList<TableBodyComponent>;
-
+  @Input() title: string = '';
+  @Input() subtitle: string = '';
   @Input() zenClass: string = '';
   @Input() size: 'compact' | 'default' | 'large' = 'default';
   @Input() shape: 'curve' | 'default' = 'default';
-  @Input() striped: boolean = false;
-  @Input() hoverable: boolean = false;
-  @Input() borderless: boolean = false;
-  @Input() searchable: boolean = false;
-  @Input() selectable: boolean = false;
+  @Input() transition: 'smooth' | 'snappy' | 'none' = 'smooth';
+  @Input() disabled: boolean = false;
   @Input() sortable: boolean = false;
+  @Input() selectable: boolean = false;
 
-  @Output() selectionChange = new EventEmitter<any[]>();
-  @Output() sortChange = new EventEmitter<{ field: string; direction: 'asc' | 'desc' }>();
+  @Output() sort = new EventEmitter<any>();
+  @Output() select = new EventEmitter<any>();
+
+  @ContentChild(TableHeadComponent) tableHead?: TableHeadComponent;
+  @ContentChild(TableBodyComponent) tableBody?: TableBodyComponent;
+  @ContentChildren(TableColumnComponent) columns!: QueryList<TableColumnComponent>;
 
   constructor(
-    @Inject(NGX_ZEN_CONFIG) public config: NgxZenConfig,
-    private colorUtility: ColorUtility
+      @Inject(NGX_ZEN_CONFIG) private config: NgxZenConfig,
+      private colorUtility: ColorUtility
   ) {}
 
   ngAfterContentInit() {
+      if (this.columns) {
+          this.columns.forEach((column, index) => {
+              column.index = index;
+              column.size = this.size;
+              column.sortable = this.sortable;
+          });
+      }
 
+      if (this.tableHead) {
+          this.tableHead.size = this.size;
+      }
+
+      if (this.tableBody) {
+          this.tableBody.size = this.size;
+          this.tableBody.selectable = this.selectable;
+      }
   }
 
   getTableStyle(): Record<string, string> {
+    const color = this.disabled
+      ? this.colorUtility.hexToRgba(this.config.colors.secondary, 0.5)
+      : this.config.colors.secondary;
+
+    const fontSize =
+      this.size === 'compact'
+        ? this.config.fontSize.md
+        : this.config.fontSize.lg;
+
     return {
-      'width': '100%',
-      'border-collapse': 'separate',
-      'border-spacing': '0',
-      'background-color': this.colorUtility.hexToRgba(this.config.colors.info, 0.05),
-      'border-radius': this.shape === 'curve' ? '0.5rem' : '0',
-      'overflow': 'hidden',
+      color,
+      'font-size': fontSize,
     };
   }
 
-  getTableHeadStyle(): Record<string, string> {
-    return {
-      'background-color': this.config.colors.quaternary,
-      'color': this.config.colors.info,
-      'font-weight': '600',
-    };
-  }
 
-  getTableCellStyle(): Record<string, string> {
-    return {
-      'padding': this.size === 'compact' ? '0.5rem' : '0.75rem',
-      'border-bottom': this.borderless ? 'none' : 
-        `1px solid ${this.colorUtility.hexToRgba(this.config.colors.quaternary, 0.1)}`,
-    };
-  }
+  getSubtitleStyle(): Record<string, string> {
+      const fontSize =
+          this.size === 'compact'
+              ? this.config.fontSize.md
+              : this.config.fontSize.lg;
 
-  getStripedRowStyle(index: number): Record<string, string> {
-    if (this.striped && index % 2 !== 0) {
-      return { 
-        'background-color': this.colorUtility.hexToRgba(this.config.colors.quaternary, 0.05)
+      const mutedColor = this.colorUtility.hexToRgba(
+          this.config.colors.quaternary,
+          0.5
+      );
+
+      return {
+          'font-size': fontSize,
+          color: mutedColor,
+          'margin-top': '0.25rem',
       };
-    }
-    return {};
   }
 
-  getHoverableRowStyle(): Record<string, string> {
-    return {
-      'background-color': this.colorUtility.hexToRgba(this.config.colors.tertiary, 0.1),
-    };
+  onSort(event: any) {
+      this.sort.emit(event);
   }
 
-  getTableWrapperStyle(): Record<string, string> {
-    return {
-      'background-color': this.config.colors.secondary,
-      'border-radius': this.shape === 'curve' ? '0.5rem' : '0',
-    };
-  }
-
-  onSortChange(sort: { field: string; direction: 'asc' | 'desc' }) {
-    this.sortChange.emit(sort);
-  }
-
-  onSelectionChange(selection: any[]) {
-    this.selectionChange.emit(selection);
+  onSelect(event: any) {
+      this.select.emit(event);
   }
 }

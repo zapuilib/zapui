@@ -9,141 +9,87 @@ export class TableComponent {
   markdowns = [
     {
       markdown: `\`\`\`html
-<ngx-zen-table>
+<ngx-zen-table
+  title="Basic Table"
+>
   <ngx-zen-table-head>
-    <ngx-zen-table-column>ID</ngx-zen-table-column>
     <ngx-zen-table-column>Name</ngx-zen-table-column>
-    <ngx-zen-table-column>Age</ngx-zen-table-column>
     <ngx-zen-table-column>Email</ngx-zen-table-column>
+    <ngx-zen-table-column>Status</ngx-zen-table-column>
   </ngx-zen-table-head>
   <ngx-zen-table-body>
     <ngx-zen-table-row>
-      <ngx-zen-table-cell>1</ngx-zen-table-cell>
-      <ngx-zen-table-cell>Example Name</ngx-zen-table-cell>
-      <ngx-zen-table-cell>28</ngx-zen-table-cell>
-      <ngx-zen-table-cell>example&#64;mail.com</ngx-zen-table-cell>
+      <ngx-zen-table-cell>John Doe</ngx-zen-table-cell>
+      <ngx-zen-table-cell>john@example.com</ngx-zen-table-cell>
+      <ngx-zen-table-cell>Active</ngx-zen-table-cell>
     </ngx-zen-table-row>
   </ngx-zen-table-body>
-</ngx-zen-table>\`\`\``,
+</ngx-zen-table>
+\`\`\``,
       title: 'Basic Table'
     },
     {
       markdown: `\`\`\`html
-<ngx-zen-table [hoverable]="true">
+<ngx-zen-table
+  title="Table"
+  subtitle="Table type 1"
+>
   <ngx-zen-table-head>
-    <ngx-zen-table-column>ID</ngx-zen-table-column>
     <ngx-zen-table-column>Name</ngx-zen-table-column>
-    <ngx-zen-table-column>Age</ngx-zen-table-column>
     <ngx-zen-table-column>Email</ngx-zen-table-column>
   </ngx-zen-table-head>
   <ngx-zen-table-body>
     <ngx-zen-table-row>
-      <ngx-zen-table-cell>1</ngx-zen-table-cell>
-      <ngx-zen-table-cell>Example Name</ngx-zen-table-cell>
-      <ngx-zen-table-cell>28</ngx-zen-table-cell>
-      <ngx-zen-table-cell>example&#64;mail.com</ngx-zen-table-cell>
+      <ngx-zen-table-cell>John Doe</ngx-zen-table-cell>
+      <ngx-zen-table-cell>john@example.com</ngx-zen-table-cell>
     </ngx-zen-table-row>
   </ngx-zen-table-body>
-</ngx-zen-table>\`\`\``,
-      title: 'Hoverable Table'
+</ngx-zen-table>
+\`\`\``,
+      title: 'Table'
     },
     {
       markdown: `\`\`\`html
-<ngx-zen-table [striped]="true">
-  <ngx-zen-table-head>
-    <ngx-zen-table-column>ID</ngx-zen-table-column>
-    <ngx-zen-table-column>Name</ngx-zen-table-column>
-    <ngx-zen-table-column>Age</ngx-zen-table-column>
-    <ngx-zen-table-column>Email</ngx-zen-table-column>
-  </ngx-zen-table-head>
-  <ngx-zen-table-body>
-    <ngx-zen-table-row [index]="0">
-      <ngx-zen-table-cell>1</ngx-zen-table-cell>
-      <ngx-zen-table-cell>First Row</ngx-zen-table-cell>
-      <ngx-zen-table-cell>28</ngx-zen-table-cell>
-      <ngx-zen-table-cell>first&#64;mail.com</ngx-zen-table-cell>
-    </ngx-zen-table-row>
-    <ngx-zen-table-row [index]="1">
-      <ngx-zen-table-cell>2</ngx-zen-table-cell>
-      <ngx-zen-table-cell>Second Row</ngx-zen-table-cell>
-      <ngx-zen-table-cell>32</ngx-zen-table-cell>
-      <ngx-zen-table-cell>second&#64;mail.com</ngx-zen-table-cell>
-    </ngx-zen-table-row>
-  </ngx-zen-table-body>
-</ngx-zen-table>\`\`\``,
-      title: 'Striped Table'
+<ngx-zen-table
+  title="Non-interactive Table"
+  [disabled]="true"
+>
+  <!-- table content -->
+</ngx-zen-table>
+\`\`\``,
+      title: 'Non-interactive Table'
     },
     {
       markdown: `\`\`\`html
-<ngx-zen-table size="compact">
+<ngx-zen-table title="Table with Components">
   <ngx-zen-table-head>
-    <ngx-zen-table-column>ID</ngx-zen-table-column>
     <ngx-zen-table-column>Name</ngx-zen-table-column>
-    <ngx-zen-table-column>Age</ngx-zen-table-column>
-    <ngx-zen-table-column>Email</ngx-zen-table-column>
+    <ngx-zen-table-column>Status</ngx-zen-table-column>
+    <ngx-zen-table-column>Actions</ngx-zen-table-column>
   </ngx-zen-table-head>
   <ngx-zen-table-body>
     <ngx-zen-table-row>
-      <ngx-zen-table-cell>1</ngx-zen-table-cell>
-      <ngx-zen-table-cell>Compact Row</ngx-zen-table-cell>
-      <ngx-zen-table-cell>28</ngx-zen-table-cell>
-      <ngx-zen-table-cell>compact&#64;mail.com</ngx-zen-table-cell>
+      <ngx-zen-table-cell>
+        <ngx-zen-input value="John Doe"></ngx-zen-input>
+      </ngx-zen-table-cell>
+      <ngx-zen-table-cell>
+        <ngx-zen-chip>Active</ngx-zen-chip>
+      </ngx-zen-table-cell>
+      <ngx-zen-table-cell>
+        <ngx-zen-button>Edit</ngx-zen-button>
+      </ngx-zen-table-cell>
     </ngx-zen-table-row>
   </ngx-zen-table-body>
-</ngx-zen-table>\`\`\``,
-      title: 'Compact Table'
-    },
-    {
-      markdown: `\`\`\`html
-<ngx-zen-table shape="curve">
-  <ngx-zen-table-head>
-    <ngx-zen-table-column>ID</ngx-zen-table-column>
-    <ngx-zen-table-column>Name</ngx-zen-table-column>
-    <ngx-zen-table-column>Age</ngx-zen-table-column>
-    <ngx-zen-table-column>Email</ngx-zen-table-column>
-  </ngx-zen-table-head>
-  <ngx-zen-table-body>
-    <ngx-zen-table-row>
-      <ngx-zen-table-cell>1</ngx-zen-table-cell>
-      <ngx-zen-table-cell>Curved Table</ngx-zen-table-cell>
-      <ngx-zen-table-cell>28</ngx-zen-table-cell>
-      <ngx-zen-table-cell>curved&#64;mail.com</ngx-zen-table-cell>
-    </ngx-zen-table-row>
-  </ngx-zen-table-body>
-</ngx-zen-table>\`\`\``,
-      title: 'Curved Table'
-    },
-    {
-      markdown: `\`\`\`html
-<ngx-zen-table>
-  <ngx-zen-table-head>
-    <ngx-zen-table-column>ID</ngx-zen-table-column>
-    <ngx-zen-table-column [sortable]="true" field="name">Name</ngx-zen-table-column>
-    <ngx-zen-table-column [sortable]="true" field="age">Age</ngx-zen-table-column>
-    <ngx-zen-table-column>Email</ngx-zen-table-column>
-  </ngx-zen-table-head>
-  <ngx-zen-table-body>
-    <ngx-zen-table-row>
-      <ngx-zen-table-cell>1</ngx-zen-table-cell>
-      <ngx-zen-table-cell>Sortable Example</ngx-zen-table-cell>
-      <ngx-zen-table-cell>28</ngx-zen-table-cell>
-      <ngx-zen-table-cell>sortable&#64;mail.com</ngx-zen-table-cell>
-    </ngx-zen-table-row>
-  </ngx-zen-table-body>
-</ngx-zen-table>\`\`\``,
-      title: 'Sortable Columns'
+</ngx-zen-table>
+\`\`\``,
+      title: 'Table with Components'
     }
   ];
 
-   onSelectionChange(selectedRows: any[]) {
-    console.log('Selected rows:', selectedRows);
-  }
-
-  onSortChange(event: { field: string; direction: 'asc' | 'desc' }) {
-    console.log('Sort change event:', event);
-  }
-
-  getConfigFromMarkdown(markdown: any) {
-    return markdown.config || {};
-  }
+  // Example data for dynamic tables
+  tableData = [
+    { name: 'John Doe', email: 'john@example.com', status: 'Active' },
+    { name: 'Jane Smith', email: 'jane@example.com', status: 'Inactive' },
+    { name: 'Bob Johnson', email: 'bob@example.com', status: 'Active' }
+  ];
 }

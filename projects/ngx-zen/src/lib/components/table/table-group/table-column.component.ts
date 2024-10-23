@@ -1,91 +1,46 @@
-import { Component, Optional, Host, Input, Output, EventEmitter } from '@angular/core';
-import { TableComponent } from '../table.component';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'ngx-zen-table-column',
   template: `
     <th 
-      class="table-cell" 
-      [ngClass]="[
-        table?.size || '',
-        sortable ? 'sortable' : '',
-        currentSortDirection ? 'sorting-' + currentSortDirection : ''
-      ]" 
-      [ngStyle]="getColumnStyle()"
+      class="__zen__table__column"
+      [ngClass]="{ 
+        'sortable': sortable,
+        'asc': sortDirection === 'asc',
+        'desc': sortDirection === 'desc'
+      }"
       (click)="onSort()"
     >
-      <div class="column-content">
-        <ng-content></ng-content>
-        @if (sortable) {
-          <span class="sort-icon">
-            @if (currentSortDirection === 'asc') {
-              ↑
-            } @else if (currentSortDirection === 'desc') {
-              ↓
-            } @else {
-              ⇅
-            }
-          </span>
-        }
-      </div>
+      <ng-content></ng-content>
+      @if (sortable) {
+        <span class="sort-icon">
+          <i [class]="sortDirection === 'asc' ? 'fa-chevron-up' : 'fa-chevron-down'"></i>
+        </span>
+      }
     </th>
   `,
-  styleUrls: ['./table-component.style.scss'],
-  styles: [`
-    .column-content {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      cursor: pointer;
-    }
-    .sort-icon {
-      opacity: 0.5;
-      font-size: 0.875rem;
-    }
-    .sorting-asc .sort-icon,
-    .sorting-desc .sort-icon {
-      opacity: 1;
-    }
-    .sortable:hover .sort-icon {
-      opacity: 0.8;
-    }
-  `]
+  styleUrls: ['./table-component.style.scss']
+
 })
 export class TableColumnComponent {
-  @Input() width: string = 'auto';
-  @Input() sortable: boolean = false;
   @Input() field: string = '';
-  @Input() align: 'left' | 'center' | 'right' = 'left';
-  
-  currentSortDirection: 'asc' | 'desc' | null = null;
-  
-  constructor(@Optional() @Host() public table: TableComponent) {}
+  @Input() sortable: boolean = false;
+  @Input() size: 'compact' | 'default' | 'large' = 'default';
+  @Input() width: string = '';
+  @Output() sort = new EventEmitter<{field: string, direction: 'asc' | 'desc'}>();
 
-  getColumnStyle(): Record<string, string> {
-    return {
-      ...this.table?.getTableCellStyle(),
-      width: this.width,
-      'text-align': this.align,
-      cursor: this.sortable ? 'pointer' : 'default'
-    };
-  }
+  index: number = 0;
+  isHeader: boolean = false;
+  sortDirection: 'asc' | 'desc' | null = null;
 
-  onSort(): void {
+  onSort() {
     if (!this.sortable) return;
 
-    if (!this.currentSortDirection) {
-      this.currentSortDirection = 'asc';
-    } else if (this.currentSortDirection === 'asc') {
-      this.currentSortDirection = 'desc';
-    } else {
-      this.currentSortDirection = null;
-    }
-
-    if (this.table) {
-      this.table.onSortChange({
-        field: this.field,
-        direction: this.currentSortDirection || 'asc'
-      });
-    }
+    this.sortDirection = this.sortDirection === 'asc' ? 'desc' : 'asc';
+    this.sort.emit({
+      field: this.field,
+      direction: this.sortDirection
+    });
   }
 }

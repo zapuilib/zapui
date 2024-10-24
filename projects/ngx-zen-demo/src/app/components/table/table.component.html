@@ -155,10 +155,34 @@
           </ngx-zen-table-body>
         </ngx-zen-table>
         } @case(1) {
-        <ngx-zen-table title="Table" subtitle="table-type-1">
-          <!-- Similar structure as above -->
-        </ngx-zen-table>
-        } @case(2) {
+          <ngx-zen-table title="Table sortable">
+            <ngx-zen-table-head>
+              <ngx-zen-table-column 
+                [sortable]="true" 
+                field="name"
+                (sort)="onSort($event)">Name</ngx-zen-table-column>
+              <ngx-zen-table-column 
+                [sortable]="true" 
+                field="email"
+                (sort)="onSort($event)">Email</ngx-zen-table-column>
+              <ngx-zen-table-column 
+                [sortable]="true" 
+                field="status"
+                (sort)="onSort($event)">Status</ngx-zen-table-column>
+            </ngx-zen-table-head>
+            <ngx-zen-table-body>
+              @for(item of tableData; track item; let i = $index) {
+                <ngx-zen-table-row>
+                  <ngx-zen-table-cell>{{ item.name }}</ngx-zen-table-cell>
+                  <ngx-zen-table-cell>{{ item.email }}</ngx-zen-table-cell>
+                  <ngx-zen-table-cell>
+                    <ngx-zen-chip [text]="item.status"></ngx-zen-chip>
+                  </ngx-zen-table-cell>
+                </ngx-zen-table-row>
+              }
+            </ngx-zen-table-body>
+          </ngx-zen-table>
+          } @case(2) {
         <ngx-zen-table title="Non-interactive Table" [disabled]="true">
           <!-- Similar structure -->
         </ngx-zen-table>

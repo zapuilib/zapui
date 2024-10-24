@@ -1,5 +1,11 @@
 import { Component } from '@angular/core';
 
+interface TableData {
+  name: string;
+  email: string;
+  status: string;
+  [key: string]: string; // This is the index signature that allows string indexing
+}
 @Component({
   selector: 'app-table',
   templateUrl: './table.component.html',
@@ -86,15 +92,19 @@ export class TableComponent {
     },
   ];
 
-  // Example data for dynamic tables
-  tableData = [
+  tableData: TableData[] = [
     { name: 'John Doe', email: 'john@example.com', status: 'Active' },
-    {
-      name: 'Jane Smith',
-      email:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. ',
-      status: 'Inactive',
-    },
+    { name: 'Jane Smith', email: 'jane@example.com', status: 'Inactive' },
     { name: 'Bob Johnson', email: 'bob@example.com', status: 'Active' },
   ];
+
+  onSort(event: { field: string; direction: 'asc' | 'desc' }) {
+    this.tableData = [...this.tableData].sort((a: TableData, b: TableData) => {
+      if (event.direction === 'asc') {
+        return a[event.field] > b[event.field] ? 1 : -1;
+      } else {
+        return a[event.field] < b[event.field] ? 1 : -1;
+      }
+    });
+  }
 }

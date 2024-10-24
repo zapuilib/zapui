@@ -1,13 +1,17 @@
+import { NgxZenConfig } from './../../../interfaces/config.interface';
 import { 
   Component, 
   Input, 
   ContentChildren, 
   QueryList, 
   AfterContentInit, 
-  ViewEncapsulation
+  ViewEncapsulation,
+  Inject
 } from '@angular/core';
 
 import { TableCellComponent } from './table-cell.component';
+import { NGX_ZEN_CONFIG } from '../../../tokens/ngx-zen.tokens';
+import { Styles } from '../../../interfaces/style.interface';
 
 @Component({
   selector: 'ngx-zen-table-row',

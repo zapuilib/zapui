@@ -25,13 +25,6 @@ export class TableComponent implements AfterContentInit {
   @Input() disabled: boolean = false;
   @Input() width: string = '';
   @Input() title: string = '';
-  @Input() sortable: boolean = false;
-  @Output() onSort = new EventEmitter<{field: string; direction: 'asc' | 'desc'}>();
-
-  activeSort: {field: string; direction: 'asc' | 'desc'} | null = null;
-
-
-
   @ContentChild(TableHeadComponent) tableHead?: TableHeadComponent;
   @ContentChild(TableBodyComponent) tableBody?: TableBodyComponent;
 
@@ -77,13 +70,5 @@ export class TableComponent implements AfterContentInit {
       color,
       'font-size': this.config.fontSize.md, // Using a default font size
     };
-  }
-
-  handleSort(field: string) {
-    if (!this.sortable) return;
-
-    const newDirection = this.activeSort?.field === field && this.activeSort.direction === 'asc' ? 'desc' : 'asc';
-    this.activeSort = { field, direction: newDirection };
-    this.onSort.emit(this.activeSort);
   }
 }

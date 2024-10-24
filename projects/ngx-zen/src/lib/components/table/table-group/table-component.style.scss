@@ -17,7 +17,15 @@
     @apply text-left relative font-semibold w-full flex items-center text-black  border-r-0;
     @apply whitespace-nowrap overflow-hidden text-ellipsis p-3;
   }
+  
+  .column-content {
+    @apply text-black;
 
+    i {
+      @apply text-black;
+
+    }
+  }
   &__body {
     @apply bg-white w-full block;
   }

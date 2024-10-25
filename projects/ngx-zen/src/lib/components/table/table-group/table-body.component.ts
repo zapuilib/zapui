@@ -5,11 +5,15 @@ import {
   ContentChildren, 
   QueryList, 
   AfterContentInit, 
-  ViewEncapsulation
+  ViewEncapsulation,
+  Output,
+  EventEmitter,
+  SimpleChanges
 } from '@angular/core';
 
 import { TableRowComponent } from './table-row.component';
 
+// table-body.component.ts
 @Component({
   selector: 'ngx-zen-table-body',
   template: `
@@ -24,12 +28,30 @@ export class TableBodyComponent implements AfterContentInit {
   @Input() size: 'compact' | 'default' | 'large' = 'default';
   @Input() selectable: boolean = false;
   @Input() width: string = '';
+  @Input() selectAllState: boolean = false;
+
+  @Output() rowSelect = new EventEmitter<number>();
+  
   @ContentChildren(TableRowComponent) rows!: QueryList<TableRowComponent>;
 
   ngAfterContentInit() {
     if (this.rows) {
-      this.rows.forEach(row => {
+      this.rows.forEach((row, index) => {
         row.size = this.size;
+        row.selectable = this.selectable;
+        row.index = index;
+        
+        row.select.subscribe((index) => {
+          this.rowSelect.emit(index);
+        });
+      });
+    }
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['selectAllState'] && this.rows) {
+      this.rows.forEach(row => {
+        row.selected = this.selectAllState;
       });
     }
   }

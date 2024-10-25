@@ -25,6 +25,7 @@ export class TableComponent implements AfterContentInit {
   @Input() disabled: boolean = false;
   @Input() width: string = '';
   @Input() title: string = '';
+  @Input() selectable: boolean = false;
   @ContentChild(TableHeadComponent) tableHead?: TableHeadComponent;
   @ContentChild(TableBodyComponent) tableBody?: TableBodyComponent;
 

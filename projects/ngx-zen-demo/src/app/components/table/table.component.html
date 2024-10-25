@@ -182,7 +182,6 @@
           </ngx-zen-table>
           } @case(2) {
         <ngx-zen-table title="Non-interactive Table" [disabled]="true">
-          <!-- Similar structure -->
         </ngx-zen-table>
         } @case(3) {
         <ngx-zen-table title="Table with Components">
@@ -205,7 +204,32 @@
             </ngx-zen-table-row>
           </ngx-zen-table-body>
         </ngx-zen-table>
-        } }
+        } @case(4) {
+          <ngx-zen-table [selectable]="true">
+            <ngx-zen-table-head [selectable]="true" (selectAll)="onSelectAll($event)">
+              <ngx-zen-table-column>Name</ngx-zen-table-column>
+              <ngx-zen-table-column>Email</ngx-zen-table-column>
+              <ngx-zen-table-column>Status</ngx-zen-table-column>
+            </ngx-zen-table-head>
+            
+            <ngx-zen-table-body [selectable]="true" (rowSelect)="onRowSelect($event)">
+              @for (row of tableData; track row; let i = $index) {
+                <ngx-zen-table-row 
+                  [selectable]="true"
+                  [selected]="selectedIndexes.has(i)"
+                  [index]="i"
+                >
+                  <ngx-zen-table-cell>{{row.name}}</ngx-zen-table-cell>
+                  <ngx-zen-table-cell>{{row.email}}</ngx-zen-table-cell>
+                  <ngx-zen-table-cell>
+                    <ngx-zen-chip [text]="row.status"></ngx-zen-chip>
+                  </ngx-zen-table-cell>
+                </ngx-zen-table-row>
+              }
+            </ngx-zen-table-body>
+          </ngx-zen-table>
+        }
+      }
       </div>
       <div class="code-wrapper">
         <app-code-block [markdownData]="markdown"></app-code-block>

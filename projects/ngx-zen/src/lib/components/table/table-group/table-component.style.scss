@@ -7,6 +7,12 @@
 
   ngx-zen-table-head {
     @apply w-full;
+
+    tr:first-child {
+      th, .checkbox-column {
+        @apply border-t;
+      }
+    }
   }
 
   &__head {
@@ -41,6 +47,12 @@
       }
     }
   }
+
+  .checkbox-column {
+    @apply w-16 flex justify-center items-center min-w-[4rem] ;
+    @apply border-t-0 border-r-0;
+  }
+
 
   ngx-zen-table-cell {
     @apply w-full flex;

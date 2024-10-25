@@ -16,9 +16,45 @@ section {
         ngx-zen-table {
           table {
             width: 100% !important;
-            
+          }
+        }
+
+        .advanced-table {
+          ::ng-deep {
+            table {
+              border-collapse: separate;
+              border-spacing: 0;
+            }
+
             th, td {
-              background: white !important;
+              border: none;
+              padding: 12px 15px;
+              text-align: left;
+              background: transparent !important;
+            }
+
+            thead {
+              background-color: #f8f9fa;
+              th {
+                font-weight: 500;
+                color: #6c757d;
+              }
+            }
+
+            tbody tr:nth-child(even) {
+              background-color: #f8f9fa;
+            }
+
+            .ngx-zen-checkbox {
+              // Style for light checkboxes
+              // You may need to adjust this based on your ngx-zen library implementation
+            }
+
+            .ngx-zen-chip {
+              border-radius: 12px;
+              padding: 4px 8px;
+              font-size: 12px;
+              font-weight: 500;
             }
           }
         }

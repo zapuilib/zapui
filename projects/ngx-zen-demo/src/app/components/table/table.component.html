@@ -228,6 +228,43 @@
               }
             </ngx-zen-table-body>
           </ngx-zen-table>
+        } @case(5) {
+          <ngx-zen-table 
+            class="advanced-table" 
+            title="Advanced Table (Sortable & Selectable)" 
+            [selectable]="true"
+            width="5_10_20_10_15_15_10_10"
+>
+  <ngx-zen-table-head [selectable]="true" (selectAll)="onSelectAll($event)">
+    <ngx-zen-table-column [sortable]="true" field="invoice" (sort)="onSort($event)">Invoice #</ngx-zen-table-column>
+    <ngx-zen-table-column [sortable]="true" field="address" (sort)="onSort($event)">Customer address</ngx-zen-table-column>
+    <ngx-zen-table-column [sortable]="true" field="date" (sort)="onSort($event)">Date</ngx-zen-table-column>
+    <ngx-zen-table-column [sortable]="true" field="orderNumber" (sort)="onSort($event)">Order number</ngx-zen-table-column>
+    <ngx-zen-table-column [sortable]="true" field="name" (sort)="onSort($event)">Customer name</ngx-zen-table-column>
+    <ngx-zen-table-column [sortable]="true" field="status" (sort)="onSort($event)">Status</ngx-zen-table-column>
+    <ngx-zen-table-column [sortable]="true" field="dueDate" (sort)="onSort($event)">Due date</ngx-zen-table-column>
+  </ngx-zen-table-head>
+  
+  <ngx-zen-table-body [selectable]="true" (rowSelect)="onRowSelect($event)">
+    @for (row of advancedTableData; track row; let i = $index) {
+      <ngx-zen-table-row 
+        [selectable]="true"
+        [selected]="selectedIndexes.has(i)"
+        [index]="i"
+      >
+        <ngx-zen-table-cell>{{row.invoice}}</ngx-zen-table-cell>
+        <ngx-zen-table-cell>{{row.address}}</ngx-zen-table-cell>
+        <ngx-zen-table-cell>{{row.date}}</ngx-zen-table-cell>
+        <ngx-zen-table-cell>{{row.orderNumber}}</ngx-zen-table-cell>
+        <ngx-zen-table-cell>{{row.name}}</ngx-zen-table-cell>
+        <ngx-zen-table-cell>
+          <ngx-zen-chip [text]="row.status"></ngx-zen-chip>
+        </ngx-zen-table-cell>
+        <ngx-zen-table-cell>{{row.dueDate}}</ngx-zen-table-cell>
+      </ngx-zen-table-row>
+    }
+  </ngx-zen-table-body>
+</ngx-zen-table>
         }
       }
       </div>

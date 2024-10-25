@@ -26,6 +26,19 @@
 
   &__body {
     @apply bg-white w-full block;
+
+    &__body {
+        @apply bg-white w-full block;
+    
+        tr {
+          transition: background-color 0.3s ease;
+    
+          &.hoverable:hover {
+            background-color: #e9ecef;
+          }
+        }
+      }
+    
   }
 
   &__row {

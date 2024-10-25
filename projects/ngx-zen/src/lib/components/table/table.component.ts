@@ -21,6 +21,8 @@ import { TableBodyComponent } from './table-group/table-body.component';
   styleUrls: ['./table.component.scss'],
 })
 export class TableComponent implements AfterContentInit {
+  @Input() hoverable: boolean = false;
+  @Input() striped: boolean = false;
   @Input() zenClass: string = '';
   @Input() disabled: boolean = false;
   @Input() width: string = '';
@@ -69,7 +71,8 @@ export class TableComponent implements AfterContentInit {
   
     return {
       color,
-      'font-size': this.config.fontSize.md, // Using a default font size
+      'fontSize': this.config.fontSize.md, 
     };
   }
+  
 }

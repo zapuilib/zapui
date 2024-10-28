@@ -15,6 +15,7 @@ interface AdvancedTableData {
   name: string;
   status: string;
   dueDate: string;
+  paid: string;
   [key: string]: string;
 }
 
@@ -167,24 +168,24 @@ export class TableComponent {
   ];
 
   tableData: TableData[] = [
-    { name: 'John Doe', email: 'john@example.com', status: 'Active' },
+    { name: 'John Doe', email: 'john@example.com Runte, Wiegand and Pagac', status: 'Active' },
     { name: 'Jane Smith', email: 'jane@example.com', status: 'Inactive' },
     { name: 'Bob Johnson', email: 'bob@example.com', status: 'Active' },
   ];
 
   advancedTableData: AdvancedTableData[] = [
-    { invoice: '33597', address: '5843 Schulis', date: 'Jun 03 2024', orderNumber: '82213', name: 'Runte, Wiegand and Pagac', status: 'Paid', dueDate: 'Jun 03 2024' },
-    { invoice: '25788', address: '03539 Lilyan ', date: 'Sep 24 2024', orderNumber: '3328', name: 'Deckow - Conroy', status: 'Paid', dueDate: 'Sep 24 2024' },
-    { invoice: '64708', address: '91791 Max Summit', date: 'Jul 06 2024', orderNumber: '16279', name: 'Hane Inc', status: 'Paid', dueDate: 'Jul 06 2024' },
-    { invoice: '95321', address: '4793 Palma Springs', date: 'Feb 13 2024', orderNumber: '42248', name: 'Heller - Turner', status: 'Outstanding', dueDate: 'Feb 13 2024' },
-    { invoice: '60733', address: '504 Dina Neck', date: 'Aug 27 2024', orderNumber: '89214', name: 'Daugherty', status: 'Outstanding', dueDate: 'Aug 27 2024' },
-    { invoice: '58591', address: '07428 Easton ', date: 'Jul 07 2024', orderNumber: '11769', name: 'Botsford, Adams', status: 'Partially paid', dueDate: 'Jul 07 2024' },
-    { invoice: '72493', address: '9680 Kelley ', date: 'Jun 15 2024', orderNumber: '66846', name: 'Kreiger and Sons', status: 'Past Due', dueDate: 'Jun 15 2024' },
-    { invoice: '75181', address: '26629 General Street', date: 'Aug 14 2024', orderNumber: '74396', name: 'Cummerata', status: 'Past Due', dueDate: 'Aug 14 2024' },
-    { invoice: '95580', address: '3077 Kemmer Lodge', date: 'Oct 30 2024', orderNumber: '37397', name: 'Bergnaum - Reilly', status: 'Past Due', dueDate: 'Oct 30 2024' },
-    { invoice: '59318', address: '01263 Stuart Port', date: 'Jul 27 2024', orderNumber: '93365', name: 'Veum, O\'Hara ', status: 'Past Due', dueDate: 'Jul 27 2024' },
-    { invoice: '85111', address: '4652 Aurelie', date: 'Dec 31 2023', orderNumber: '48718', name: 'Langosh - Adams', status: 'Past Due', dueDate: 'Dec 31 2023' },
-    { invoice: '31919', address: '195 Ledner St', date: 'Apr 29 2024', orderNumber: '24050', name: 'Connelly - Rogahn', status: 'Past Due', dueDate: 'Apr 29 2024' },
+    { invoice: '33597', address: '5843 Schulis', date: 'Jun 03 2024', orderNumber: '82213', name: 'Runte, Wiegand', status: 'Paid', dueDate: 'Jun 03 2024', paid: 'June 04 2024' },
+    { invoice: '25788', address: '03539 Lilyan ', date: 'Sep 24 2024', orderNumber: '3328', name: 'Deckow - Conroy', status: 'Paid', dueDate: 'Sep 24 2024', paid: 'Sep 24 2024' },
+    { invoice: '64708', address: '91791 Max Summit  Max Summit Max Summit Max Summit', date: 'Jul 06 2024', orderNumber: '16279', name: 'Hane Inc', status: 'Paid', dueDate: 'Jul 06 2024', paid: 'Jul 06 2024' },
+    { invoice: '95321', address: '4793 Palma Springs', date: 'Feb 13 2024', orderNumber: '42248', name: 'Heller - Turner', status: 'Outstanding', dueDate: 'Feb 13 2024', paid: 'Feb 13 2024' },
+    { invoice: '60733', address: '504 Dina Neck', date: 'Aug 27 2024', orderNumber: '89214', name: 'Daugherty', status: 'Outstanding', dueDate: 'Aug 27 2024', paid: 'Aug 27 2024' },
+    { invoice: '58591', address: '07428 Easton ', date: 'Jul 07 2024', orderNumber: '11769', name: 'Botsford, Adams', status: 'Partially paid', dueDate: 'Jul 07 2024', paid: 'Jul 07 2024' },
+    { invoice: '72493', address: '9680 Kelley ', date: 'Jun 15 2024', orderNumber: '66846', name: 'Kreiger and Sons', status: 'Past Due', dueDate: 'Jun 15 2024', paid: 'Jun 15 2024' },
+    { invoice: '75181', address: '26629 General Street', date: 'Aug 14 2024', orderNumber: '74396', name: 'Cummerata', status: 'Past Due', dueDate: 'Aug 14 2024', paid: 'Aug 14 2024' },
+    { invoice: '95580', address: '3077 Kemmer Lodge', date: 'Oct 30 2024', orderNumber: '37397', name: 'Bergnaum - Reilly', status: 'Past Due', dueDate: 'Oct 30 2024', paid: 'Oct 30 2024' },
+    { invoice: '59318', address: '01263 Stuart Port', date: 'Jul 27 2024', orderNumber: '93365', name: 'Veum, O\'Hara ', status: 'Past Due', dueDate: 'Jul 27 2024', paid: 'Jul 27 2024' },
+    { invoice: '85111', address: '4652 Aurelie', date: 'Dec 31 2023', orderNumber: '48718', name: 'Langosh - Adams', status: 'Past Due', dueDate: 'Dec 31 2023', paid: 'Dec 31 2023' },
+    { invoice: '31919', address: '195 Ledner St', date: 'Apr 29 2024', orderNumber: '24050', name: 'Connelly - Rogahn', status: 'Past Due', dueDate: 'Apr 29 2024', paid: 'Apr 29 2024' },
   ];
   
   basicTableSelectedIndexes = new Set<number>();

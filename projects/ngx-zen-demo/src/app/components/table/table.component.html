@@ -138,7 +138,7 @@
     <div class="content">
       <div class="ui mb-4">
         @switch(index) { @case(0) {
-        <ngx-zen-table title="Basic Table" width="10_60_20">
+        <ngx-zen-table title="Basic Table" width="10_60">
           <ngx-zen-table-head>
             <ngx-zen-table-column>Name</ngx-zen-table-column>
             <ngx-zen-table-column>Email</ngx-zen-table-column>
@@ -238,6 +238,8 @@
               <ngx-zen-table-column [sortable]="true" field="name" (sort)="onSort($event)">Customer name</ngx-zen-table-column>
               <ngx-zen-table-column [sortable]="true" field="status" (sort)="onSort($event)">Status</ngx-zen-table-column>
               <ngx-zen-table-column [sortable]="true" field="dueDate" (sort)="onSort($event)">Due date</ngx-zen-table-column>
+              <ngx-zen-table-column [sortable]="true" field="paid" (sort)="onSort($event)">Paid</ngx-zen-table-column>
+              <ngx-zen-table-column [sortable]="true" field="dueDate" (sort)="onSort($event)">Due date</ngx-zen-table-column>
             </ngx-zen-table-head>
             
             <ngx-zen-table-body [selectable]="true" (rowSelect)="onRowSelect($event, true)">
@@ -255,6 +257,8 @@
                   <ngx-zen-table-cell>
                     <ngx-zen-chip [text]="row.status"></ngx-zen-chip>
                   </ngx-zen-table-cell>
+                  <ngx-zen-table-cell>{{row.dueDate}}</ngx-zen-table-cell>
+                  <ngx-zen-table-cell>{{row.paid}}</ngx-zen-table-cell>
                   <ngx-zen-table-cell>{{row.dueDate}}</ngx-zen-table-cell>
                 </ngx-zen-table-row>
               }

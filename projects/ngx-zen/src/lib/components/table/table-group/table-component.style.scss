@@ -1,8 +1,18 @@
 .__zen__table {
   @apply w-full flex flex-col overflow-x-auto;
 
+  &__wrapper {
+    @apply overflow-x-auto;
+  }
+  
+  &__content {
+    @apply min-w-max; // This ensures the table doesn't squeeze below its content width
+  }
+
+
   table {
-    @apply w-full min-w-full;
+    @apply w-full;
+    table-layout: fixed;
   }
 
   ngx-zen-table-head {
@@ -22,6 +32,8 @@
   &__column {
     @apply text-left relative font-semibold w-full flex items-center text-black  border-r-0;
     @apply whitespace-nowrap overflow-hidden text-ellipsis p-3;
+    flex: 0 0 auto; 
+    min-width: 100px;
   }
 
   &__body {
@@ -41,13 +53,16 @@
   }
 
   &__row {
-    @apply w-full flex items-stretch min-w-max;
+    @apply w-full flex;
+    min-width: fit-content;
   }
 
   &__cell {
     @apply p-3 w-full flex items-center  text-black border-t-0 border-r-0;
     @apply whitespace-nowrap overflow-hidden text-ellipsis;
     @apply align-middle;
+    flex: 0 0 auto; 
+    min-width: 100px;
   }
 
   // .__zen__table {

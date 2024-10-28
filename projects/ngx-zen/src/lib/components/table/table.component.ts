@@ -43,24 +43,54 @@ export class TableComponent implements AfterContentInit {
   }
 
   handleWidth(): void {
-    if (this.width && this.tableHead && this.tableHead.columns.length > 0) {
-      const columnWidths = this.width.split('_');
-      this.tableHead.columns.forEach((column, index) => {
-        const width = columnWidths[index] ? `${columnWidths[index]}%` : 'auto';
-        column.width = width;
-      });
-    }
-
-    if (this.width && this.tableBody && this.tableBody.rows.length > 0) {
-      const columnWidths = this.width.split('_');
-      this.tableBody.rows.forEach((row, index) => {
-        row.cells.forEach((cell, cellIndex) => {
-          const width = columnWidths[cellIndex]
-            ? `${columnWidths[cellIndex]}%`
-            : 'auto';
-          cell.width = width;
+    if (!this.width) {
+      if (this.tableHead && this.tableHead.columns.length > 0) {
+        const equalWidth = `${100 / this.tableHead.columns.length}%`;
+        this.tableHead.columns.forEach(column => {
+          column.width = equalWidth;
         });
+      }
+  
+      if (this.tableBody && this.tableBody.rows.length > 0) {
+        const equalWidth = `${100 / this.tableHead!.columns.length}%`;
+        this.tableBody.rows.forEach(row => {
+          row.cells.forEach(cell => {
+            cell.width = equalWidth;
+          });
+        });
+      }
+      return;
+    }
+  
+    if (this.tableHead && this.tableHead.columns.length > 0) {
+      const columnWidths = this.width.split('_');
+      const totalColumns = this.tableHead.columns.length;
+      const totalSpecifiedWidth = columnWidths.reduce((sum, width) => sum + (parseInt(width) || 0), 0);
+
+      const remainingColumns = totalColumns - columnWidths.length;
+      const remainingWidthPerColumn = remainingColumns > 0 
+        ? (100 - totalSpecifiedWidth) / remainingColumns 
+        : 0;
+  
+      this.tableHead.columns.forEach((column, index) => {
+        if (index < columnWidths.length) {
+          column.width = `${columnWidths[index]}%`;
+        } else {
+          column.width = `${remainingWidthPerColumn}%`;
+        }
       });
+
+      if (this.tableBody) {
+        this.tableBody.rows.forEach(row => {
+          row.cells.forEach((cell, cellIndex) => {
+            if (cellIndex < columnWidths.length) {
+              cell.width = `${columnWidths[cellIndex]}%`;
+            } else {
+              cell.width = `${remainingWidthPerColumn}%`;
+            }
+          });
+        });
+      }
     }
   }
 

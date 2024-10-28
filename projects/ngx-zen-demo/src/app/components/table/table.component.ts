@@ -6,6 +6,18 @@ interface TableData {
   status: string;
   [key: string]: string; // This is the index signature that allows string indexing
 }
+
+interface AdvancedTableData {
+  invoice: string;
+  address: string;
+  date: string;
+  orderNumber: string;
+  name: string;
+  status: string;
+  dueDate: string;
+  [key: string]: string;
+}
+
 @Component({
   selector: 'app-table',
   templateUrl: './table.component.html',
@@ -160,7 +172,7 @@ export class TableComponent {
     { name: 'Bob Johnson', email: 'bob@example.com', status: 'Active' },
   ];
 
-  advancedTableData = [
+  advancedTableData: AdvancedTableData[] = [
     { invoice: '33597', address: '5843 Schulis', date: 'Jun 03 2024', orderNumber: '82213', name: 'Runte, Wiegand and Pagac', status: 'Paid', dueDate: 'Jun 03 2024' },
     { invoice: '25788', address: '03539 Lilyan ', date: 'Sep 24 2024', orderNumber: '3328', name: 'Deckow - Conroy', status: 'Paid', dueDate: 'Sep 24 2024' },
     { invoice: '64708', address: '91791 Max Summit', date: 'Jul 06 2024', orderNumber: '16279', name: 'Hane Inc', status: 'Paid', dueDate: 'Jul 06 2024' },
@@ -174,46 +186,72 @@ export class TableComponent {
     { invoice: '85111', address: '4652 Aurelie', date: 'Dec 31 2023', orderNumber: '48718', name: 'Langosh - Adams', status: 'Past Due', dueDate: 'Dec 31 2023' },
     { invoice: '31919', address: '195 Ledner St', date: 'Apr 29 2024', orderNumber: '24050', name: 'Connelly - Rogahn', status: 'Past Due', dueDate: 'Apr 29 2024' },
   ];
+  
+  basicTableSelectedIndexes = new Set<number>();
+  advancedTableSelectedIndexes = new Set<number>();
 
   onSort(event: { field: string; direction: 'asc' | 'desc' }) {
-    this.tableData = [...this.tableData].sort((a: TableData, b: TableData) => {
-      if (event.direction === 'asc') {
-        return a[event.field] > b[event.field] ? 1 : -1;
-      } else {
-        return a[event.field] < b[event.field] ? 1 : -1;
-      }
-    });
-  }
-  
-  selectedIndexes = new Set<number>();
+    const isAdvancedTable = [
+      'invoice',
+      'address',
+      'orderNumber',
+      'dueDate',
+      'date'
+    ].includes(event.field);
 
-  onSelectAll(checked: boolean) {
-    console.log('Select All Event:', { checked });
-    
-    if (checked) {
-      this.tableData && this.advancedTableData.forEach((_, index) => this.selectedIndexes.add(index));
+    if (isAdvancedTable) {
+      this.advancedTableData = [...this.advancedTableData].sort((a, b) => {
+        if (event.direction === 'asc') {
+          return a[event.field] > b[event.field] ? 1 : -1;
+        } else {
+          return a[event.field] < b[event.field] ? 1 : -1;
+        }
+      });
     } else {
-      this.selectedIndexes.clear();
+      this.tableData = [...this.tableData].sort((a, b) => {
+        if (event.direction === 'asc') {
+          return a[event.field] > b[event.field] ? 1 : -1;
+        } else {
+          return a[event.field] < b[event.field] ? 1 : -1;
+        }
+      });
+    }
+  }
+
+  onSelectAll(checked: boolean, isAdvancedTable: boolean = false) {
+    console.log('Select All Event:', { checked, isAdvancedTable });
+    
+    const selectedSet = isAdvancedTable ? this.advancedTableSelectedIndexes : this.basicTableSelectedIndexes;
+    const data = isAdvancedTable ? this.advancedTableData : this.tableData;
+
+    if (checked) {
+      data.forEach((_, index) => selectedSet.add(index));
+    } else {
+      selectedSet.clear();
     }
 
     console.log('After Select All:', {
-      selectedIndexes: Array.from(this.selectedIndexes),
-      selectedRows: (this.tableData && this.advancedTableData).filter((_, index) => 
-        this.selectedIndexes.has(index)
-      )
+      basicSelectedIndexes: Array.from(this.basicTableSelectedIndexes),
+      advancedSelectedIndexes: Array.from(this.advancedTableSelectedIndexes)
     });
   }
 
-  onRowSelect(index: number) {
-    console.log('Row Select Event:', { index });
+  onRowSelect(event: number, isAdvancedTable: boolean = false) {
+    console.log('Row Select Event:', { index: event, isAdvancedTable });
     
-    if (this.selectedIndexes.has(index)) {
-      this.selectedIndexes.delete(index);
+    const selectedSet = isAdvancedTable ? this.advancedTableSelectedIndexes : this.basicTableSelectedIndexes;
+
+    if (selectedSet.has(event)) {
+      selectedSet.delete(event);
     } else {
-      this.selectedIndexes.add(index);
+      selectedSet.add(event);
     }
 
-    console.log(this.selectedIndexes);
-
+    console.log('Selected Indexes:', {
+      basicSelectedIndexes: Array.from(this.basicTableSelectedIndexes),
+      advancedSelectedIndexes: Array.from(this.advancedTableSelectedIndexes)
+    });
   }
 }
+
+

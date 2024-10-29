@@ -25,7 +25,7 @@
     >
       <span
         class="roller"
-        [ngClass]="[isToggleOn ? 'on' : 'off']"
+        [ngClass]="[this.control.value ? 'on' : 'off']"
         [ngStyle]="getRollerStyle()"
       ></span>
     </button>

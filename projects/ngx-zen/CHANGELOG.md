@@ -1,4 +1,8 @@
 
+## Beta version 0.0.15 Updates
+
+- Checkbox default fixed with checked inpu, works with both form control and checked
+
 ## Beta version 0.0.14 Updates
 
 - Select default fixed with form control

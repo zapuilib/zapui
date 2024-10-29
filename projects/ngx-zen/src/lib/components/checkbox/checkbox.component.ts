@@ -1,4 +1,10 @@
-import { Component, ElementRef, forwardRef, Input, ViewChild } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  forwardRef,
+  Input,
+  ViewChild,
+} from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 
 import { ControlValueAccessorDirective } from '../../directives/control-value-accessor.directive';
@@ -24,6 +30,16 @@ export class CheckboxComponent<T> extends ControlValueAccessorDirective<T> {
   @Input() shape: 'pill' | 'curve' | 'default' = 'default';
   @Input() size: 'compact' | 'default' = 'default';
   @Input() labelPosition: 'left' | 'right' = 'right';
+  @Input() checked: boolean = false;
+
+  override ngOnInit(): void {
+    super.ngOnInit();
+    this.handleDefultValue();
+  }
+
+  handleDefultValue(): void {
+    this.control.setValue(this.checked);
+  }
 
   getCheckboxStyle(): any {
     return {

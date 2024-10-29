@@ -1,4 +1,8 @@
 
+## Beta version 0.0.14 Updates
+
+- Select default fixed with form control
+
 ## Beta version 0.0.13 Updates
 
 - Toggle default fixed with form control

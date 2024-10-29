@@ -61,6 +61,7 @@ export class SelectComponent<T> extends ControlValueAccessorDirective<T> {
   override ngOnInit(): void {
     super.ngOnInit();
     this.filteredOptions = this.options;
+    this.handleDefaultValue();
   }
 
   getOptionListStyle(): { [key: string]: string } {
@@ -70,6 +71,12 @@ export class SelectComponent<T> extends ControlValueAccessorDirective<T> {
       'font-size': this.config.fontSize.md,
       'background-color': this.config.colors.primary,
     };
+  }
+
+  handleDefaultValue(): void {
+    if (this.control.value) {
+      this.selectedOptionValue = [...this.selectedOptionValue, this.control.value]
+    }
   }
 
   toggleOptionsList(): void {

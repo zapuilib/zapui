@@ -19,6 +19,30 @@ interface AdvancedTableData {
   [key: string]: string;
 }
 
+interface ProjectData {
+  calculationName: string;
+  building: string;
+  project: string;
+  createdBy: {
+    email: string;
+    date: string;
+  };
+  energySavings: {
+    value: number;
+    unit: string;
+  };
+  costSavings: {
+    value: number;
+    unit: string;
+  };
+  totalCost: number;
+  paybackPeriod: {
+    value: number;
+    unit: string;
+  };
+  status?: 'Highest' | 'Best' | 'Cheapest';
+}
+
 @Component({
   selector: 'app-table',
   templateUrl: './table.component.html',
@@ -164,7 +188,44 @@ export class TableComponent {
           </ngx-zen-table>
   \`\`\``,
       title: 'Advance Table',
-    }
+    },
+    {
+      markdown: `\`\`\`html
+  <ngx-zen-table  class="advanced-table" title="Advanced Table (Sortable & Selectable)" [selectable]="true">
+            <ngx-zen-table-head [selectable]="true" (selectAll)="onSelectAll($event)">
+              <ngx-zen-table-column 
+                [sortable]="true" 
+                field="name"
+                (sort)="onSort($event)">Name</ngx-zen-table-column>
+              <ngx-zen-table-column 
+                [sortable]="true" 
+                field="email"
+                (sort)="onSort($event)">Email</ngx-zen-table-column>
+              <ngx-zen-table-column 
+                [sortable]="true" 
+                field="status"
+                (sort)="onSort($event)">Status</ngx-zen-table-column>
+            </ngx-zen-table-head>
+            
+            <ngx-zen-table-body [selectable]="true" (rowSelect)="onRowSelect($event)">
+              @for (row of tableData; track row; let i = $index) {
+                <ngx-zen-table-row 
+                  [selectable]="true"
+                  [selected]="selectedIndexes.has(i)"
+                  [index]="i"
+                >
+                  <ngx-zen-table-cell>{{row.name}}</ngx-zen-table-cell>
+                  <ngx-zen-table-cell>{{row.email}}</ngx-zen-table-cell>
+                  <ngx-zen-table-cell>
+                    <ngx-zen-chip [text]="row.status"></ngx-zen-chip>
+                  </ngx-zen-table-cell>
+                </ngx-zen-table-row>
+              }
+            </ngx-zen-table-body>
+          </ngx-zen-table>
+  \`\`\``,
+      title: 'Advance Table',
+    },
   ];
 
   tableData: TableData[] = [
@@ -187,6 +248,146 @@ export class TableComponent {
     { invoice: '85111', address: '4652 Aurelie', date: 'Dec 31 2023', orderNumber: '48718', name: 'Langosh - Adams', status: 'Past Due', dueDate: 'Dec 31 2023', paid: 'Dec 31 2023' },
     { invoice: '31919', address: '195 Ledner St', date: 'Apr 29 2024', orderNumber: '24050', name: 'Connelly - Rogahn', status: 'Past Due', dueDate: 'Apr 29 2024', paid: 'Apr 29 2024' },
   ];
+
+  projectData: ProjectData[] = [
+    {
+      calculationName: 'Calculation name with a long name truncat...',
+      building: 'Building A',
+      project: 'Pump motor VFD installation for Hot water plant',
+      createdBy: {
+        email: 'mail@gmail.com',
+        date: '10/01/24 10:00 am'
+      },
+      energySavings: {
+        value: 6732,
+        unit: 'kWh/yr'
+      },
+      costSavings: {
+        value: 673,
+        unit: 'yr'
+      },
+      totalCost: 7300,
+      paybackPeriod: {
+        value: 10.8,
+        unit: 'yrs'
+      },
+      status: 'Highest'
+    },
+    {
+      calculationName: 'Calculation name with a long name truncat...',
+      building: 'Building A',
+      project: 'Pump motor VFD installation for Hot water plant',
+      createdBy: {
+        email: 'mail@gmail.com',
+        date: '10/01/24 10:00 am'
+      },
+      energySavings: {
+        value: 6534,
+        unit: 'kWh/yr'
+      },
+      costSavings: {
+        value: 650,
+        unit: 'yr'
+      },
+      totalCost: 8778,
+      paybackPeriod: {
+        value: 13.5,
+        unit: 'yrs'
+      }
+    },
+    {
+      calculationName: 'Calculation name with a long name truncat...',
+      building: 'Building A',
+      project: 'Pump motor VFD installation for Hot water plant',
+      createdBy: {
+        email: 'mail@gmail.com',
+        date: '10/01/24 10:00 am'
+      },
+      energySavings: {
+        value: 5872,
+        unit: 'kWh/yr'
+      },
+      costSavings: {
+        value: 858,
+        unit: 'yr'
+      },
+      totalCost: 6355,
+      paybackPeriod: {
+        value: 7.4,
+        unit: 'yrs'
+      },
+      status: 'Highest'
+    },
+    {
+      calculationName: 'Calculation name with a long name truncat...',
+      building: 'Building A',
+      project: 'Pump motor VFD installation for Hot water plant',
+      createdBy: {
+        email: 'mail@gmail.com',
+        date: '10/01/24 10:00 am'
+      },
+      energySavings: {
+        value: 2534,
+        unit: 'kWh/yr'
+      },
+      costSavings: {
+        value: 472,
+        unit: 'yr'
+      },
+      totalCost: 1378,
+      paybackPeriod: {
+        value: 2.9,
+        unit: 'yrs'
+      },
+      status: 'Best'
+    },
+    {
+      calculationName: 'Calculation name with a long name truncat...',
+      building: 'Building A',
+      project: 'Pump motor VFD installation for Hot water plant',
+      createdBy: {
+        email: 'mail@gmail.com',
+        date: '10/01/24 10:00 am'
+      },
+      energySavings: {
+        value: 4054,
+        unit: 'kWh/yr'
+      },
+      costSavings: {
+        value: 400,
+        unit: 'yr'
+      },
+      totalCost: 4778,
+      paybackPeriod: {
+        value: 11.9,
+        unit: 'yrs'
+      },
+      status: 'Cheapest'
+    },
+    {
+      calculationName: 'Calculation name with a long name truncat...',
+      building: 'Building A',
+      project: 'Pump motor VFD installation for Hot water plant',
+      createdBy: {
+        email: 'mail@gmail.com',
+        date: '10/01/24 10:00 am'
+      },
+      energySavings: {
+        value: 5234,
+        unit: 'kWh/yr'
+      },
+      costSavings: {
+        value: 258,
+        unit: 'yr'
+      },
+      totalCost: 5258,
+      paybackPeriod: {
+        value: 20.3,
+        unit: 'yrs'
+      }
+    }
+  ];
+
   
   basicTableSelectedIndexes = new Set<number>();
   advancedTableSelectedIndexes = new Set<number>();

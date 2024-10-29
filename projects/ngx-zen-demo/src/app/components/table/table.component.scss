@@ -12,7 +12,7 @@ section {
     .content {
       .ui {
         @apply min-h-[95px] rounded bg-white relative p-4;
-        
+
         ngx-zen-table {
           table {
             width: 100% !important;
@@ -26,7 +26,8 @@ section {
               border-spacing: 0;
             }
 
-            th, td {
+            th,
+            td {
               border: none;
               padding: 12px 15px;
               text-align: left;
@@ -37,7 +38,7 @@ section {
               background-color: #f8f9fa;
               th {
                 font-weight: 500;
-                color: #6c757d;
+                color: #000000;
               }
             }
 
@@ -55,6 +56,101 @@ section {
               padding: 4px 8px;
               font-size: 12px;
               font-weight: 500;
+            }
+          }
+        }
+
+        .project-table {
+          ::ng-deep {
+            .__zen__table {
+              &__wrapper {
+          
+              }
+
+              table {
+                border-collapse: separate;
+                border-spacing: 0;
+              }
+  
+              th,
+              td {
+                border: none;
+                padding: 12px 15px;
+                text-align: left;
+                background: transparent !important;
+              }
+  
+
+              &__column {
+                padding: 12px 16px;
+                font-weight: 500;
+                color: #111827;
+             
+                border-bottom: 1px solid #e5e7eb;
+              }
+
+              &__cell {
+                padding: 16px;
+                border-bottom: 1px solid #e5e7eb;
+                background: white;
+              }
+
+              &__row {
+                &:nth-child(even) {
+                  td {
+                    background-color: #f9fafb !important;
+                  }
+                }
+              }
+            }
+
+            .title {
+              font-weight: 500;
+              margin-bottom: 4px;
+              white-space: nowrap;
+              overflow: hidden;
+              text-overflow: ellipsis;
+              max-width: 300px;
+            }
+
+            .info {
+              font-size: 0.875rem;
+              line-height: 1.4;
+              color: #6B7280;
+            }
+
+            .date {
+              color: #6B7280;
+              font-size: 0.875rem;
+            }
+
+            .label-chip {
+              display: inline-flex;
+              align-items: center;
+              padding: 2px 12px;
+              margin-left: 8px;
+              background-color: #0066FF;
+              color: white;
+              border-radius: 4px;
+              font-size: 0.75rem;
+              height: 24px;
+              font-weight: 500;
+            }
+
+            .flex {
+              display: flex;
+            }
+
+            .items-center {
+              align-items: center;
+            }
+
+            .justify-between {
+              justify-content: space-between;
+            }
+
+            .flex-col {
+              flex-direction: column;
             }
           }
         }

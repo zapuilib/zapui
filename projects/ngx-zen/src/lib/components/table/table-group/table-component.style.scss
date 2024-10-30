@@ -6,7 +6,7 @@
   }
   
   &__content {
-    @apply min-w-max overflow-hidden text-ellipsis whitespace-nowrap; // This ensures the table doesn't squeeze below its content width
+    @apply min-w-max text-ellipsis whitespace-nowrap; // This ensures the table doesn't squeeze below its content width
   }
   
   * {
@@ -73,7 +73,7 @@
   }
 
   ngx-zen-table-column {
-    @apply w-full flex;
+    @apply w-full grid;
 
     &:last-of-type {
       .__zen__table__column {
@@ -89,7 +89,7 @@
 
 
   ngx-zen-table-cell {
-    @apply w-full flex;
+    @apply w-full grid;
 
     &:last-of-type {
       .__zen__table__cell {

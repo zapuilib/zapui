@@ -1,0 +1,69 @@
+.__zen__custom-table {
+  @apply w-full overflow-x-auto;
+
+  table {
+    @apply w-full border-collapse;
+  }
+
+  // Header styles
+  th {
+    @apply px-4 py-2 text-left font-semibold border-b;
+    
+    &.sortable {
+      @apply cursor-pointer hover:bg-gray-50;
+    }
+  }
+
+  // Body styles
+  td {
+    @apply px-4 py-2 border-b;
+  }
+
+  // Row styles
+  tr {
+    &.selected {
+      @apply bg-blue-50;
+    }
+  }
+
+  // Theme variations
+  &.light {
+    @apply bg-white;
+    th { @apply bg-gray-50 text-gray-700; }
+    td { @apply text-gray-900; }
+  }
+
+  &.dark {
+    @apply bg-gray-800;
+    th { @apply bg-gray-700 text-gray-100; }
+    td { @apply text-gray-200; }
+  }
+
+  // Size variations
+  &.compact {
+    th, td { @apply px-2 py-1 text-sm; }
+  }
+
+  &.large {
+    th, td { @apply px-6 py-4; }
+  }
+
+  // Striped rows
+  &.striped {
+    tbody tr:nth-child(even) {
+      @apply bg-gray-50;
+    }
+  }
+
+  // Hoverable rows
+  &.hoverable {
+    tbody tr:hover {
+      @apply bg-gray-50;
+    }
+  }
+
+  // Selection column
+  .select-column {
+    @apply w-10 text-center;
+  }
+} 

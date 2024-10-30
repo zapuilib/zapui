@@ -1,14 +1,18 @@
 .__zen__table {
-  @apply w-full flex flex-col overflow-x-auto;
+  @apply w-full flex flex-col;
 
   &__wrapper {
     @apply overflow-x-auto;
   }
   
   &__content {
-    @apply min-w-max; // This ensures the table doesn't squeeze below its content width
+    @apply min-w-max overflow-hidden text-ellipsis whitespace-nowrap; // This ensures the table doesn't squeeze below its content width
   }
-
+  
+  * {
+    color: inherit;
+  }
+  
 
   table {
     @apply w-full;
@@ -34,7 +38,9 @@
     @apply whitespace-nowrap overflow-hidden text-ellipsis p-3;
     flex: 0 0 auto; 
     min-width: 100px;
+    color: inherit;
   }
+  
 
   &__body {
     @apply bg-white w-full block;
@@ -63,50 +69,8 @@
     @apply align-middle;
     flex: 0 0 auto; 
     min-width: 100px;
+    color: inherit;
   }
-
-  // .__zen__table {
-  //   @apply w-full flex flex-col;
-  
-  //   &__wrapper {
-  //     @apply overflow-x-auto;
-  //   }
-  
-  //   &__content {
-  //     @apply min-w-max;
-  //   }
-  
-  //   table {
-  //     @apply w-full table-fixed;
-  //   }
-  
-  //   &__head {
-  //     @apply w-full;
-  //     display: table-header-group;
-  //   }
-  
-  //   &__body {
-  //     @apply bg-white w-full;
-  //     display: table-row-group;
-  //   }
-  
-  //   &__row {
-  //     @apply w-full;
-  //     display: table-row;
-  //   }
-  
-  //   &__column {
-  //     @apply text-left relative font-semibold text-black border-r-0 p-3;
-  //     @apply whitespace-nowrap overflow-hidden text-ellipsis;
-  //     display: table-cell;
-  //   }
-  
-  //   &__cell {
-  //     @apply p-3 text-black border-t-0 border-r-0;
-  //     @apply whitespace-nowrap overflow-hidden text-ellipsis;
-  //     @apply align-middle;
-  //     display: table-cell;
-  //   }
 
   ngx-zen-table-column {
     @apply w-full flex;

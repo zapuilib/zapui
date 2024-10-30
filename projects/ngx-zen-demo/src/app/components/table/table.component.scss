@@ -11,7 +11,7 @@ section {
 
     .content {
       .ui {
-        @apply min-h-[95px] rounded bg-white relative p-4;
+        @apply min-h-[95px] rounded bg-white relative p-4 text-black;
 
         ngx-zen-table {
           table {
@@ -24,6 +24,7 @@ section {
             table {
               border-collapse: separate;
               border-spacing: 0;
+             
             }
 
             th,
@@ -45,18 +46,6 @@ section {
             tbody tr:nth-child(even) {
               background-color: #f8f9fa;
             }
-
-            .ngx-zen-checkbox {
-              // Style for light checkboxes
-              // You may need to adjust this based on your ngx-zen library implementation
-            }
-
-            .ngx-zen-chip {
-              border-radius: 12px;
-              padding: 4px 8px;
-              font-size: 12px;
-              font-weight: 500;
-            }
           }
         }
 
@@ -64,14 +53,14 @@ section {
           ::ng-deep {
             .__zen__table {
               &__wrapper {
-          
               }
 
               table {
                 border-collapse: separate;
                 border-spacing: 0;
+                color: #000000;
               }
-  
+
               th,
               td {
                 border: none;
@@ -79,13 +68,12 @@ section {
                 text-align: left;
                 background: transparent !important;
               }
-  
 
               &__column {
                 padding: 12px 16px;
                 font-weight: 500;
                 color: #111827;
-             
+
                 border-bottom: 1px solid #e5e7eb;
               }
 
@@ -116,25 +104,12 @@ section {
             .info {
               font-size: 0.875rem;
               line-height: 1.4;
-              color: #6B7280;
+              color: #6b7280;
             }
 
             .date {
-              color: #6B7280;
+              color: #6b7280;
               font-size: 0.875rem;
-            }
-
-            .label-chip {
-              display: inline-flex;
-              align-items: center;
-              padding: 2px 12px;
-              margin-left: 8px;
-              background-color: #0066FF;
-              color: white;
-              border-radius: 4px;
-              font-size: 0.75rem;
-              height: 24px;
-              font-weight: 500;
             }
 
             .flex {

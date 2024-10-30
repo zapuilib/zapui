@@ -154,7 +154,7 @@
     <div class="content">
       <div class="ui mb-4">
         @switch(index) { @case(0) {
-        <ngx-zen-table title="Basic Table" width="10_60">
+        <ngx-zen-table title="Basic Table">
           <ngx-zen-table-head>
             <ngx-zen-table-column>Name</ngx-zen-table-column>
             <ngx-zen-table-column>Email</ngx-zen-table-column>
@@ -214,25 +214,25 @@
           </ngx-zen-table-body>
         </ngx-zen-table>
         } @case(4) {
-        <ngx-zen-table [selectable]="true">
-          <ngx-zen-table-head [selectable]="true" (selectAll)="onSelectAll($event, false)">
-            <ngx-zen-table-column>Name</ngx-zen-table-column>
-            <ngx-zen-table-column>Email</ngx-zen-table-column>
-            <ngx-zen-table-column>Status</ngx-zen-table-column>
-          </ngx-zen-table-head>
-
-          <ngx-zen-table-body [selectable]="true" (rowSelect)="onRowSelect($event, false)">
-            @for (row of tableData; track row; let i = $index) {
-            <ngx-zen-table-row [selectable]="true" [selected]="basicTableSelectedIndexes.has(i)" [index]="i">
-              <ngx-zen-table-cell>{{row.name}}</ngx-zen-table-cell>
-              <ngx-zen-table-cell>{{row.email}}</ngx-zen-table-cell>
-              <ngx-zen-table-cell>
-                <ngx-zen-chip [text]="row.status"></ngx-zen-chip>
-              </ngx-zen-table-cell>
-            </ngx-zen-table-row>
-            }
-          </ngx-zen-table-body>
-        </ngx-zen-table>
+          <ngx-zen-table class="selectable-table" title="Selectable Table" [selectable]="true">
+            <ngx-zen-table-head [selectable]="true" (selectAll)="onSelectAll($event, false)">
+              <ngx-zen-table-column>Name</ngx-zen-table-column>
+              <ngx-zen-table-column>Email</ngx-zen-table-column>
+              <ngx-zen-table-column>Status</ngx-zen-table-column>
+            </ngx-zen-table-head>
+          
+            <ngx-zen-table-body [selectable]="true" (rowSelect)="onRowSelect($event, false)">
+              @for (row of tableData; track row; let i = $index) {
+              <ngx-zen-table-row [selectable]="true" [selected]="basicTableSelectedIndexes.has(i)" [index]="i">
+                <ngx-zen-table-cell>{{row.name}}</ngx-zen-table-cell>
+                <ngx-zen-table-cell class="truncate">{{row.email}}</ngx-zen-table-cell>
+                <ngx-zen-table-cell>
+                  <ngx-zen-chip [text]="row.status" [size]="'small'"></ngx-zen-chip>
+                </ngx-zen-table-cell>
+              </ngx-zen-table-row>
+              }
+            </ngx-zen-table-body>
+          </ngx-zen-table>
         } @case(5) {
         <ngx-zen-table class="advanced-table" title="Advanced Table (Sortable & Selectable)" [selectable]="true">
           <ngx-zen-table-head [selectable]="true" (selectAll)="onSelectAll($event, true)">
@@ -300,10 +300,10 @@
                   </ngx-zen-table-cell>
   
                   <ngx-zen-table-cell>
-                    <div class="flex items-center">
+                    <div class="flex items-center flex-col">
                       <span>{{item.energySavings.value}} {{item.energySavings.unit}}</span>
                       @if(item.status === 'Highest') {
-                        <div class="label-chip">Highest</div>
+                        <ngx-zen-chip text="Highest" size="small"></ngx-zen-chip>
                       }
                     </div>
                   </ngx-zen-table-cell>
@@ -321,13 +321,13 @@
                   </ngx-zen-table-cell>
   
                   <ngx-zen-table-cell>
-                    <div class="flex items-center justify-between">
+                    <div class="flex flex-col items-center justify-between">
                       <span>{{item.paybackPeriod.value}} {{item.paybackPeriod.unit}}</span>
                       @if(item.status === 'Best') {
-                        <div class="label-chip">Best</div>
+                        <ngx-zen-chip text="Best" size="small"></ngx-zen-chip>
                       }
                       @if(item.status === 'Cheapest') {
-                        <div class="label-chip">Cheapest</div>
+                        <ngx-zen-chip text="Cheapest" size="small"></ngx-zen-chip>
                       }
                     </div>
                   </ngx-zen-table-cell>

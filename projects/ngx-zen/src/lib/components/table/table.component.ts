@@ -7,6 +7,7 @@ import {
   AfterContentInit,
   EventEmitter,
   Output,
+  ElementRef,
 } from '@angular/core';
 
 import { NGX_ZEN_CONFIG } from '../../tokens/ngx-zen.tokens';
@@ -28,66 +29,110 @@ export class TableComponent implements AfterContentInit {
   @Input() width: string = '';
   @Input() title: string = '';
   @Input() selectable: boolean = false;
+  @Input() allowMultiline: boolean = false;
+  @Input() size: 'compact' | 'default' | 'large' = 'default';
   @ContentChild(TableHeadComponent) tableHead?: TableHeadComponent;
   @ContentChild(TableBodyComponent) tableBody?: TableBodyComponent;
 
   constructor(
     @Inject(NGX_ZEN_CONFIG) private config: NgxZenConfig,
-    private colorUtility: ColorUtility
+    private colorUtility: ColorUtility,
+    private elementRef: ElementRef
   ) {}
 
   ngAfterContentInit() {
-    if (this.tableHead && this.tableHead.columns.length > 0) {
-      this.handleWidth();
+    this.handleWidth();
+
+    if (this.tableHead?.columns) {
+      this.tableHead.columns.changes.subscribe(() => {
+        this.handleWidth();
+      });
+    }
+
+    if (this.tableBody?.rows) {
+      this.tableBody.rows.changes.subscribe(() => {
+        this.handleWidth();
+      });
     }
   }
 
   handleWidth(): void {
     if (!this.width) {
-      if (this.tableHead && this.tableHead.columns.length > 0) {
-        const equalWidth = `${100 / this.tableHead.columns.length}%`;
-        this.tableHead.columns.forEach(column => {
-          column.width = equalWidth;
-        });
-      }
-  
-      if (this.tableBody && this.tableBody.rows.length > 0) {
-        const equalWidth = `${100 / this.tableHead!.columns.length}%`;
-        this.tableBody.rows.forEach(row => {
-          row.cells.forEach(cell => {
+      this.handleEqualWidths();
+    } else {
+      this.handleCustomWidths();
+    }
+  }
+
+  private handleEqualWidths(): void {
+    if (this.tableHead?.columns) {
+      const equalWidth = `${100 / this.tableHead.columns.length}%`;
+      this.tableHead.columns.forEach((column) => {
+        column.width = equalWidth;
+      });
+
+      if (this.tableBody?.rows) {
+        this.tableBody.rows.forEach((row) => {
+          row.cells.forEach((cell) => {
             cell.width = equalWidth;
           });
         });
       }
-      return;
     }
-  
-    if (this.tableHead && this.tableHead.columns.length > 0) {
-      const columnWidths = this.width.split('_');
-      const totalColumns = this.tableHead.columns.length;
-      const totalSpecifiedWidth = columnWidths.reduce((sum, width) => sum + (parseInt(width) || 0), 0);
+  }
 
-      const remainingColumns = totalColumns - columnWidths.length;
-      const remainingWidthPerColumn = remainingColumns > 0 
-        ? (100 - totalSpecifiedWidth) / remainingColumns 
-        : 0;
-  
-      this.tableHead.columns.forEach((column, index) => {
-        if (index < columnWidths.length) {
-          column.width = `${columnWidths[index]}%`;
-        } else {
-          column.width = `${remainingWidthPerColumn}%`;
+  private handleCustomWidths(): void {
+    if (this.tableHead?.columns) {
+      const totalColumns =
+        this.tableHead.columns.length + (this.selectable ? 1 : 0);
+      let columnWidths = this.width ? this.width.split('_') : [];
+
+      const totalSpecifiedWidth = columnWidths.reduce(
+        (sum, width) => sum + (parseInt(width) || 0),
+        0
+      );
+
+      const specifiedColumns = columnWidths.length;
+      const remainingColumns = totalColumns - specifiedColumns;
+
+      if (remainingColumns > 0) {
+        const remainingWidth = Math.floor(
+          (100 - totalSpecifiedWidth) / remainingColumns
+        );
+
+        columnWidths = [
+          ...columnWidths,
+          ...Array(remainingColumns).fill(remainingWidth.toString()),
+        ];
+      }
+
+      let columnIndex = 0;
+
+      if (this.selectable) {
+        const checkboxColumn =
+          this.elementRef.nativeElement.querySelector('.checkbox-column');
+        if (checkboxColumn) {
+          checkboxColumn.style.width = `${columnWidths[columnIndex]}%`;
+          columnIndex++;
         }
+      }
+
+      this.tableHead.columns.forEach((column) => {
+        column.width = `${columnWidths[columnIndex]}%`;
+        columnIndex++;
       });
 
-      if (this.tableBody) {
-        this.tableBody.rows.forEach(row => {
-          row.cells.forEach((cell, cellIndex) => {
-            if (cellIndex < columnWidths.length) {
-              cell.width = `${columnWidths[cellIndex]}%`;
-            } else {
-              cell.width = `${remainingWidthPerColumn}%`;
-            }
+      if (this.tableBody?.rows) {
+        this.tableBody.rows.forEach((row) => {
+          columnIndex = 0;
+
+          if (this.selectable) {
+            columnIndex++;
+          }
+
+          row.cells.forEach((cell) => {
+            cell.width = `${columnWidths[columnIndex]}%`;
+            columnIndex++;
           });
         });
       }
@@ -98,11 +143,10 @@ export class TableComponent implements AfterContentInit {
     const color = this.disabled
       ? this.colorUtility.hexToRgba(this.config.colors.secondary, 0.5)
       : this.config.colors.secondary;
-  
+
     return {
       color,
-      'fontSize': this.config.fontSize.md, 
+      fontSize: this.config.fontSize.md,
     };
   }
-  
 }

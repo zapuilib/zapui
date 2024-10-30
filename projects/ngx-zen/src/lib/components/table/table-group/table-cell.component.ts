@@ -31,4 +31,5 @@ export class TableCellComponent {
       borderColor: this.config.colors.secondary,
     };
   }
+  
 }

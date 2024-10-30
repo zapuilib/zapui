@@ -1,19 +1,17 @@
-
-import { 
-  Component, 
-  Input, 
-  ContentChildren, 
-  QueryList, 
-  AfterContentInit, 
+import {
+  Component,
+  Input,
+  ContentChildren,
+  QueryList,
+  AfterContentInit,
   ViewEncapsulation,
   Output,
   EventEmitter,
-  SimpleChanges
+  SimpleChanges,
 } from '@angular/core';
 
 import { TableRowComponent } from './table-row.component';
 
-// table-body.component.ts
 @Component({
   selector: 'ngx-zen-table-body',
   template: `
@@ -22,7 +20,7 @@ import { TableRowComponent } from './table-row.component';
     </tbody>
   `,
   styleUrls: ['./table-component.style.scss'],
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
 })
 export class TableBodyComponent implements AfterContentInit {
   @Input() size: 'compact' | 'default' | 'large' = 'default';
@@ -31,7 +29,7 @@ export class TableBodyComponent implements AfterContentInit {
   @Input() selectAllState: boolean = false;
 
   @Output() rowSelect = new EventEmitter<number>();
-  
+
   @ContentChildren(TableRowComponent) rows!: QueryList<TableRowComponent>;
 
   ngAfterContentInit() {
@@ -40,7 +38,7 @@ export class TableBodyComponent implements AfterContentInit {
         row.size = this.size;
         row.selectable = this.selectable;
         row.index = index;
-        
+
         row.select.subscribe((index) => {
           this.rowSelect.emit(index);
         });
@@ -50,7 +48,7 @@ export class TableBodyComponent implements AfterContentInit {
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes['selectAllState'] && this.rows) {
-      this.rows.forEach(row => {
+      this.rows.forEach((row) => {
         row.selected = this.selectAllState;
       });
     }

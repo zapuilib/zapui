@@ -42,9 +42,11 @@ export class TableRowComponent implements AfterContentInit {
   @Input() index: number = -1;
 
   @Output() select = new EventEmitter<number>();
+  @Input() width: string = '';
   @ContentChildren(TableCellComponent) cells!: QueryList<TableCellComponent>;
 
   rowControl = new FormControl(false);
+  
 
   ngAfterContentInit() {
     if (this.cells) {

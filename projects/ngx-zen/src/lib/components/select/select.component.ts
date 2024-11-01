@@ -86,7 +86,7 @@ export class SelectComponent<T> extends ControlValueAccessorDirective<T> {
     this.isOptionListOpen = !this.isOptionListOpen;
     if (this.isOptionListOpen) {
       setTimeout(() => {
-        this.search.nativeElement.focus();
+        this.search?.nativeElement?.focus();
       });
     } else {
       this.control.markAsTouched();

@@ -1,3 +1,7 @@
+## Beta version 0.0.16 Updates
+
+- Select field change event emitter added
+- Select field console issue with native element fixed
 
 ## Beta version 0.0.15 Updates
 

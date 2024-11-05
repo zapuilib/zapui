@@ -31,17 +31,10 @@ export class ToggleComponent {
 
   constructor(private fb: FormBuilder) {
     this.form = this.fb.group({
-      terms: ['', [Validators.required]],
+      terms: [true, [Validators.required]],
       terms2: ['', [Validators.required]],
       terms3: ['', [Validators.required]],
       terms4: ['', [Validators.required]],
-    });
-
-    this.handleFormChanges();
-  }
-
-  handleFormChanges(): void {
-    this.form.valueChanges.subscribe((value) => {
     });
   }
 }

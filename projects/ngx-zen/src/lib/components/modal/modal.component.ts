@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Inject, Input, Output } from '@angular/core';
+import { Component, EventEmitter, HostListener, Inject, Input, Output } from '@angular/core';
 
 import { NGX_ZEN_CONFIG } from '../../tokens/ngx-zen.tokens';
 import { NgxZenConfig } from '../../interfaces/config.interface';
@@ -15,7 +15,11 @@ export class ModalComponent {
   @Input() size: 'small' | 'wide' | 'wider' | 'default' = 'default';
   @Input() zenClass: string = '';
   @Input() style: 'classic' | 'noblur' = 'classic';
-
+  @HostListener('document:keydown', ['$event'])
+  handleEsc(event: KeyboardEvent): void {
+    if (event.key === 'Escape' || event.code === 'Escape') this.close.emit();
+  }
+  
   constructor(
     @Inject(NGX_ZEN_CONFIG) private config: NgxZenConfig,
     private colorUtility: ColorUtility

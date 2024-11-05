@@ -9,6 +9,7 @@ import { InputComponent } from './input/input.component';
 import { ModalComponent } from './modal/modal.component';
 import { SelectComponent } from './select/select.component';
 import { TextareaComponent } from './textarea/textarea.component';
+import { RadioComponent } from './radio/radio.component';
 import { DialogComponent } from './dialog/dialog.component';
 import { ToggleComponent } from './toggle/toggle.component';
 import { TableComponent } from './table/table.component';
@@ -25,6 +26,7 @@ export * from './input/input.component';
 export * from './textarea/textarea.component';
 export * from './modal/modal.component';
 export * from './checkbox/checkbox.component';
+export * from './radio/radio.component';
 export * from './dialog/dialog.component';
 export * from './select/select.component';
 export * from './table/table.component';
@@ -44,6 +46,7 @@ export const MAIN_COMPONENTS = [
   TextareaComponent,
   ModalComponent,
   CheckboxComponent,
+  RadioComponent,
   DialogComponent,
   ToggleComponent,
   SelectComponent,

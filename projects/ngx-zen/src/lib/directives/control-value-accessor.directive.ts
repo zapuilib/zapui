@@ -51,6 +51,14 @@ export class ControlValueAccessorDirective<T>
       placeholderColor
     );
     document.documentElement.style.setProperty('--focus-color', focusColor);
+    document.documentElement.style.setProperty(
+      '--before-checked-color',
+      this.config.colors.tertiary
+    );
+    document.documentElement.style.setProperty(
+      '--after-checked-color',
+      this.config.colors.primary
+    );
   }
 
   getFieldStyle() {

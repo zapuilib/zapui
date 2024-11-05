@@ -1,3 +1,45 @@
+## Beta version 0.0.17 Updates
+
+- Select field console issue with native element fixed
+
+## Beta version 0.0.16 Updates
+
+- Select field console issue with native element fixed
+
+## Beta version 0.0.15 Updates
+
+- Checkbox default fixed with checked inpu, works with both form control and checked
+
+## Beta version 0.0.14 Updates
+
+- Select default fixed with form control
+
+## Beta version 0.0.13 Updates
+
+- Toggle default fixed with form control
+
+## Beta version 0.0.12 Updates
+
+- Radio groups variant fixed - works with label
+
+## Beta version 0.0.11 Updates
+
+- Shape curve on tooltip fixed
+
+## Beta version 0.0.10 Updates
+
+- Escape handler added on modals
+
+## Beta version 0.0.9 Updates
+
+- New tooltip size small added
+- Tooltip now works with custom template too
+
+## Beta version 0.0.8 Updates
+
+- Radio groups added
+- Alert position fixed with flexible positioning
+
 ## Beta version 0.0.7 Updates
 
 - Chekbox input now have a min height and width

@@ -22,7 +22,6 @@ export class ToggleComponent<T> extends ControlValueAccessorDirective<T> {
   @Input() text: string = '';
   @Input() zenClass: string = '';
   @Input() customErrorMessages: Record<string, string> = {};
-  isToggleOn: boolean = false;
 
   getLabelStyle(): Styles {
     return {
@@ -40,7 +39,7 @@ export class ToggleComponent<T> extends ControlValueAccessorDirective<T> {
 
   getToggleStyle(): Styles {
     return {
-      backgroundColor: this.isToggleOn
+      backgroundColor: this.control.value
         ? this.config.colors.tertiary
         : this.colorUtility.hexToRgba(this.config.colors.quaternary, 0.5),
       borderColor: this.config.colors.tertiary,
@@ -56,8 +55,7 @@ export class ToggleComponent<T> extends ControlValueAccessorDirective<T> {
   }
 
   handleToggle(): void {
-    this.isToggleOn = !this.isToggleOn;
-    this.control.setValue(this.isToggleOn);
+    this.control.setValue(!this.control.value);
   }
 
   handleFocus(): void {

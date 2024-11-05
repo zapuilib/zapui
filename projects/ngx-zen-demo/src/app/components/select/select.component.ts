@@ -74,7 +74,7 @@ export class SelectComponent {
 
   constructor(private fb: FormBuilder) {
     this.form = this.fb.group({
-      assignee: ['', [Validators.required]],
+      assignee: ['randomid', [Validators.required]],
       assignee2: ['', [Validators.required]],
     });
 

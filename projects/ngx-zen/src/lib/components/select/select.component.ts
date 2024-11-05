@@ -1,9 +1,11 @@
 import {
   Component,
   ElementRef,
+  EventEmitter,
   forwardRef,
   HostListener,
   Input,
+  Output,
   ViewChild,
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
@@ -26,6 +28,7 @@ export class SelectComponent<T> extends ControlValueAccessorDirective<T> {
   @ViewChild('inputSelectValueHolder') inputSelectValueHolder!: ElementRef;
   @ViewChild('optionList') optionList!: ElementRef;
   @ViewChild('search') search!: ElementRef;
+  @Output() change: EventEmitter<string[] | string> = new EventEmitter<string[] | string>();
   @Input() label: string = '';
   @Input() id: string = '';
   @Input() placeholder: string = '';
@@ -61,6 +64,7 @@ export class SelectComponent<T> extends ControlValueAccessorDirective<T> {
   override ngOnInit(): void {
     super.ngOnInit();
     this.filteredOptions = this.options;
+    this.handleDefaultValue();
   }
 
   getOptionListStyle(): { [key: string]: string } {
@@ -72,11 +76,17 @@ export class SelectComponent<T> extends ControlValueAccessorDirective<T> {
     };
   }
 
+  handleDefaultValue(): void {
+    if (this.control.value) {
+      this.selectedOptionValue = [...this.selectedOptionValue, this.control.value]
+    }
+  }
+
   toggleOptionsList(): void {
     this.isOptionListOpen = !this.isOptionListOpen;
     if (this.isOptionListOpen) {
       setTimeout(() => {
-        this.search.nativeElement.focus();
+        this.search?.nativeElement?.focus();
       });
     } else {
       this.control.markAsTouched();
@@ -101,8 +111,10 @@ export class SelectComponent<T> extends ControlValueAccessorDirective<T> {
         this.selectedOptionValue = [...this.selectedOptionValue, option.value];
       }
       this.control.setValue(this.selectedOptionValue);
+      this.change.emit(this.selectedOptionValue);
     } else {
       this.control.setValue(option.value);
+      this.change.emit(option.value);
       this.selectedOptionValue = [option.value];
       this.toggleOptionsList();
     }
@@ -115,6 +127,7 @@ export class SelectComponent<T> extends ControlValueAccessorDirective<T> {
         (option) => option !== value
       );
       this.control.setValue(this.selectedOptionValue);
+      this.change.emit(this.selectedOptionValue);
     }
   }
 

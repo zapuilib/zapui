@@ -63,28 +63,6 @@
         </td>
       </tr>
       <tr>
-        <td><code>positionX</code></td>
-        <td><p>Optional</p></td>
-        <td><code>left</code>|<code>right</code></td>
-        <td>
-          <p>
-            Determines the horizontal position of the alert on the screen.
-            "left" aligns it to the left, "right" to the right.
-          </p>
-        </td>
-      </tr>
-      <tr>
-        <td><code>positionY</code></td>
-        <td><p>Optional</p></td>
-        <td><code>top</code>|<code>bottom</code></td>
-        <td>
-          <p>
-            Determines the vertical position of the alert. "top" places it at
-            the top of the screen, and "bottom" places it at the bottom.
-          </p>
-        </td>
-      </tr>
-      <tr>
         <td><code>icon</code></td>
         <td><p>Optional</p></td>
         <td><code>string</code></td>
@@ -161,14 +139,6 @@
           Sucessfully exported
         </ngx-zen-alert>
         } @case(7) {
-        <ngx-zen-alert type="info" positionX="left" positionY="top">
-          A new version is available
-        </ngx-zen-alert>
-        } @case(8) {
-        <ngx-zen-alert type="info" positionX="right" positionY="bottom">
-          A new version is available
-        </ngx-zen-alert>
-        } @case(9) {
         <ngx-zen-alert type="info" icon="fa-triangle-exclamation">
           A new version is available
         </ngx-zen-alert>

@@ -15,6 +15,7 @@ export * from './lib/components/tooltip/tooltip.component';
 export * from './lib/components/textarea/textarea.component';
 export * from './lib/components/modal/modal.component';
 export * from './lib/components/checkbox/checkbox.component';
+export * from './lib/components/radio/radio.component';
 export * from './lib/components/dialog/dialog.component';
 export * from './lib/components/toggle/toggle.component';
 export * from './lib/components/select/select.component';

@@ -1,5 +1,5 @@
 <section class="min-h-screen">
-  <h1>Checkboxes</h1>
+  <h1>Radios</h1>
   @for(item of markdowns; track item; let i = $index) {
   <ng-container
     *ngTemplateOutlet="
@@ -25,11 +25,16 @@
     </thead>
     <tbody>
       <tr>
-        <td><code>id</code></td>
+        <td><code>options</code></td>
         <td><p>Required</p></td>
-        <td><code>string</code></td>
         <td>
-          <p>Accepts a unique identifier for the form control.</p>
+          <code>Array<&#123; name: string; value: string &#125;></code>
+        </td>
+        <td>
+          <p>
+            Accepts an array of options for the form control. Name will be
+            displayed in the label. Value will be returned.
+          </p>
         </td>
       </tr>
       <tr>
@@ -52,34 +57,13 @@
         </td>
       </tr>
       <tr>
-        <td><code>size</code></td>
+        <td><code>variant</code></td>
         <td><p>Optional</p></td>
-        <td><code>compact</code>|<code>default</code></td>
+        <td><code>vertical</code>|<code>horizontal</code></td>
         <td>
           <p>
-            Defines the input size. "Compact" is a smaller input, and "default"
-            is a standard input.
-          </p>
-        </td>
-      </tr>
-      <tr>
-        <td><code>shape</code></td>
-        <td><p>Optional</p></td>
-        <td><code>pill</code>|<code>curve</code>|<code>default</code></td>
-        <td>
-          <p>
-            Defines the input shape."Pill" is a fully rounded input, "curve" has
-            rounded corners, and "default" is a classic square-cornered input.
-          </p>
-        </td>
-      </tr>
-      <tr>
-        <td><code>checked</code></td>
-        <td><p>Optional</p></td>
-        <td><code>boolean</code></td>
-        <td>
-          <p>
-            Sets the checkbox's checked state. Defaults to <code>false</code>.
+            Defines the direction of the radio buttons. Defaults to
+            <code>vertical</code>.
           </p>
         </td>
       </tr>
@@ -163,23 +147,41 @@
       <div class="ui">
         <form action="" [formGroup]="form">
           @switch(index) { @case(0) {
-          <ngx-zen-checkbox
-            id="terms"
-            label="I accept the terms and conditions"
-            formControlName="terms"
-            zenClass=""
-          >
-          </ngx-zen-checkbox>
+          <fieldset>
+            <ngx-zen-radio
+              [options]="[
+                { name: 'Email 1', value: 'email1' },
+                { name: 'Phone 1', value: 'phone1' },
+                { name: 'None 1', value: 'none1' }
+              ]"
+              formControlName="contact1"
+            ></ngx-zen-radio>
+          </fieldset>
           } @case(1) {
-          <ngx-zen-checkbox id="terms2" formControlName="terms2" zenClass="">
-          </ngx-zen-checkbox>
-          } @case(2) {
-          <ngx-zen-checkbox id="terms3" formControlName="terms3" shape="curve">
-          </ngx-zen-checkbox>
-          } @case(3) {
-          <ngx-zen-checkbox id="terms4" formControlName="terms4" shape="pill">
-          </ngx-zen-checkbox>
-          } }
+          <fieldset>
+            <ngx-zen-radio
+              label="Contact method"
+              [options]="[
+                { name: 'Email 2', value: 'email2' },
+                { name: 'Phone 2', value: 'phone2' },
+                { name: 'None 2', value: 'none2' }
+              ]"
+              formControlName="contact2"
+            ></ngx-zen-radio>
+          </fieldset>
+          } @case (2) {
+          <fieldset>
+            <ngx-zen-radio
+              [options]="[
+                { name: 'Email 3', value: 'email3' },
+                { name: 'Phone 3', value: 'phone3' },
+                { name: 'None 3', value: 'none3' }
+              ]"
+              formControlName="contact3"
+              variant="horizontal"
+            ></ngx-zen-radio>
+          </fieldset>
+          }}
         </form>
       </div>
       <div class="code-wrapper">

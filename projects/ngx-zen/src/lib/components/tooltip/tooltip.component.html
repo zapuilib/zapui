@@ -1,4 +1,9 @@
 <div class="__ngx__zen__tooltip__wrapper" [ngClass]="[zenClass]">
+  @if (template) {
+  <div class="element" (mouseenter)="toggle()" (mouseleave)="toggle()">
+    <ng-container [ngTemplateOutlet]="template"></ng-container>
+  </div>
+  } @else {
   <div
     class="icon"
     [ngStyle]="getIconStyle()"
@@ -7,11 +12,10 @@
   >
     <i class="fa-regular" [ngClass]="[icon ? icon : 'fa-question']"></i>
   </div>
-
-  @if (isActive) {
+  } @if (isActive) {
   <div
     class="content"
-    [ngClass]="[positionX, positionY]"
+    [ngClass]="[shape, size, positionX, positionY]"
     [ngStyle]="getContentStyle()"
   >
     @if(text) {

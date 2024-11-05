@@ -13,6 +13,7 @@ import {
   ModalComponent,
   SelectComponent,
   TextareaComponent,
+  RadioComponent,
   DialogComponent,
   ToggleComponent,
   TableComponent,
@@ -73,6 +74,11 @@ const routes: Routes = [
       {
         path: 'modal',
         component: ModalComponent,
+        pathMatch: 'full',
+      },
+      {
+        path: 'radio',
+        component: RadioComponent,
         pathMatch: 'full',
       },
       {

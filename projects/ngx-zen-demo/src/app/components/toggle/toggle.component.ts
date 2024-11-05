@@ -42,7 +42,6 @@ export class ToggleComponent {
 
   handleFormChanges(): void {
     this.form.valueChanges.subscribe((value) => {
-      console.log(value);
     });
   }
 }

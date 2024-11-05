@@ -1,4 +1,3 @@
-// table.component.ts
 import {
   Component,
   Input,
@@ -29,7 +28,7 @@ export class TableComponent implements AfterContentInit {
   @Input() selectable: boolean = false;
   @Input() allowMultiline: boolean = false;
   @Input() size: 'compact' | 'default' | 'large' = 'default';
-  @Input() outlined: boolean = false;
+  @Input() variant: 'outlined' | 'default' = 'default';
   @ContentChild(TableHeadComponent) tableHead?: TableHeadComponent;
   @ContentChild(TableBodyComponent) tableBody?: TableBodyComponent;
   tableWidth: string = '';
@@ -108,10 +107,10 @@ export class TableComponent implements AfterContentInit {
   getTableClass() {
     return {
       [this.zenClass]: true,
-      outlined: this.outlined,
       disabled: this.disabled,
       hoverable: this.hoverable,
       striped: this.striped,
+      outlined: this.variant === 'outlined' 
     };
   }
 }

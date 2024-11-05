@@ -27,6 +27,7 @@ export class TableBodyComponent implements AfterContentInit {
   @Input() selectable: boolean = false;
   @Input() width: string = '';
   @Input() selectAllState: boolean = false;
+  @Input() variant: 'outlined' | 'default' = 'default';
 
   @Output() rowSelect = new EventEmitter<number>();
 

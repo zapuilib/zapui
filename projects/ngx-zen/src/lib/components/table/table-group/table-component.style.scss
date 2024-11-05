@@ -3,10 +3,62 @@
 
   &__wrapper {
     @apply overflow-x-auto;
+
+    table {
+      @apply border-separate border-spacing-0;
+    }
+
+    &.hoverable {
+      tbody tr {
+        @apply transition-colors duration-300 ease-in-out;
+        
+        &:hover {
+          @apply bg-gray-200 cursor-pointer;
+        }
+      }
+    }
+
+    thead {
+      th {
+        @apply bg-gray-100; 
+      }
+    }
+
+    &:not(.outlined) {
+      th, td {
+       @apply border-none;
+      }
+    }
+
+    &.outlined {
+      table {
+        @apply border border-separate border-spacing-0;
+      }
+
+      thead {
+        th {
+          @apply border-b relative;
+
+          &::after {
+            @apply content-[''] absolute right-0 top-0 h-full w-[1px] bg-gray-200;
+          }
+        }
+      }
+
+      tbody {
+        td {
+          @apply border-b border-gray-200 relative;
+
+          &::after {
+            @apply content-[''] absolute right-0 top-0 h-full w-[1px] bg-gray-200;
+          }
+        }
+      }
+    }
   }
-  
+
   &__content {
-    @apply min-w-max text-ellipsis whitespace-nowrap; // This ensures the table doesn't squeeze below its content width
+    @apply min-w-max text-ellipsis whitespace-nowrap; 
   }
   
   * {
@@ -47,14 +99,6 @@
 
     &__body {
         @apply bg-white w-full block;
-    
-        tr {
-          transition: background-color 0.3s ease;
-    
-          &.hoverable:hover {
-            background-color: #e9ecef;
-          }
-        }
       }
   }
 

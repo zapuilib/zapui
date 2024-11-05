@@ -4,7 +4,7 @@ interface TableData {
   name: string;
   email: string;
   status: string;
-  [key: string]: string; // This is the index signature that allows string indexing
+  [key: string]: string;
 }
 
 interface AdvancedTableData {
@@ -52,44 +52,47 @@ export class TableComponent {
   markdowns = [
     {
       markdown: `\`\`\`html
-<ngx-zen-table
-  title="Basic Table"
->
-  <ngx-zen-table-head>
-    <ngx-zen-table-column>Name</ngx-zen-table-column>
-    <ngx-zen-table-column>Email</ngx-zen-table-column>
-    <ngx-zen-table-column>Status</ngx-zen-table-column>
-  </ngx-zen-table-head>
-  <ngx-zen-table-body>
-    <ngx-zen-table-row>
-      <ngx-zen-table-cell>John Doe</ngx-zen-table-cell>
-      <ngx-zen-table-cell>john@example.com</ngx-zen-table-cell>
-      <ngx-zen-table-cell>Active</ngx-zen-table-cell>
-    </ngx-zen-table-row>
-  </ngx-zen-table-body>
-</ngx-zen-table>
+<ngx-zen-table [outlined]="true" [hoverable]="true">
+          <ngx-zen-table-head>
+            <ngx-zen-table-column>Name</ngx-zen-table-column>
+            <ngx-zen-table-column>Email</ngx-zen-table-column>
+            <ngx-zen-table-column>Status</ngx-zen-table-column>
+          </ngx-zen-table-head>
+          <ngx-zen-table-body>
+            @for(item of tableData; track item; let i = $index) {
+            <ngx-zen-table-row>
+              <ngx-zen-table-cell>{{ item.name }}</ngx-zen-table-cell>
+              <ngx-zen-table-cell>{{ item.email }}</ngx-zen-table-cell>
+              <ngx-zen-table-cell><ngx-zen-chip [text]="item.status"></ngx-zen-chip></ngx-zen-table-cell>
+            </ngx-zen-table-row>
+            }
+          </ngx-zen-table-body>
+        </ngx-zen-table>
 \`\`\``,
       title: 'Basic Table',
     },
     {
       markdown: `\`\`\`html
-<ngx-zen-table
-  title="Table"
-  subtitle="Table type 1"
->
-  <ngx-zen-table-head>
-    <ngx-zen-table-column>Name</ngx-zen-table-column>
-    <ngx-zen-table-column>Email</ngx-zen-table-column>
-  </ngx-zen-table-head>
-  <ngx-zen-table-body>
-    <ngx-zen-table-row>
-      <ngx-zen-table-cell>John Doe</ngx-zen-table-cell>
-      <ngx-zen-table-cell>john@example.com</ngx-zen-table-cell>
-    </ngx-zen-table-row>
-  </ngx-zen-table-body>
-</ngx-zen-table>
+<ngx-zen-table>
+          <ngx-zen-table-head>
+            <ngx-zen-table-column field="name" (sort)="onSort($event)">Name</ngx-zen-table-column>
+            <ngx-zen-table-column [sortable]="true" field="email" (sort)="onSort($event)">Email</ngx-zen-table-column>
+            <ngx-zen-table-column field="status" (sort)="onSort($event)">Status</ngx-zen-table-column>
+          </ngx-zen-table-head>
+          <ngx-zen-table-body>
+            @for(item of tableData; track item; let i = $index) {
+            <ngx-zen-table-row>
+              <ngx-zen-table-cell>{{ item.name }}</ngx-zen-table-cell>
+              <ngx-zen-table-cell>{{ item.email }}</ngx-zen-table-cell>
+              <ngx-zen-table-cell>
+                <ngx-zen-chip [text]="item.status"></ngx-zen-chip>
+              </ngx-zen-table-cell>
+            </ngx-zen-table-row>
+            }
+          </ngx-zen-table-body>
+        </ngx-zen-table>
 \`\`\``,
-      title: 'Table',
+      title: 'Sortable Table',
     },
     {
       markdown: `\`\`\`html
@@ -129,69 +132,73 @@ export class TableComponent {
     },
     {
       markdown: `\`\`\`html
-  <ngx-zen-table [selectable]="true">
-    <ngx-zen-table-head [selectable]="true">
-      <ngx-zen-table-column>Name</ngx-zen-table-column>
-      <ngx-zen-table-column>Email</ngx-zen-table-column>
-      <ngx-zen-table-column>Status</ngx-zen-table-column>
-    </ngx-zen-table-head>
-    <ngx-zen-table-body [selectable]="true">
-      <ngx-zen-table-row
-        [selectable]="true"
-        [selected]="selected"
-        [index]="index"
-      >
-        <ngx-zen-table-cell>John Doe</ngx-zen-table-cell>
-        <ngx-zen-table-cell>john@example.com</ngx-zen-table-cell>
-        <ngx-zen-table-cell>
-          <ngx-zen-chip [type]="'success'">Active</ngx-zen-chip>
-        </ngx-zen-table-cell>
-      </ngx-zen-table-row>
-    </ngx-zen-table-body>
-  </ngx-zen-table>
+  <ngx-zen-table class="selectable-table" [selectable]="true">
+            <ngx-zen-table-head [selectable]="true" (selectAll)="onSelectAll($event, false)">
+              <ngx-zen-table-column>Name</ngx-zen-table-column>
+              <ngx-zen-table-column>Email</ngx-zen-table-column>
+              <ngx-zen-table-column>Status</ngx-zen-table-column>
+            </ngx-zen-table-head>
+          
+            <ngx-zen-table-body [selectable]="true" (rowSelect)="onRowSelect($event, false)">
+              @for (row of tableData; track row; let i = $index) {
+              <ngx-zen-table-row [selectable]="true" [selected]="basicTableSelectedIndexes.has(i)" [index]="i">
+                <ngx-zen-table-cell>{{row.name}}</ngx-zen-table-cell>
+                <ngx-zen-table-cell class="truncate">{{row.email}}</ngx-zen-table-cell>
+                <ngx-zen-table-cell>
+                  <ngx-zen-chip [text]="row.status" [size]="'small'"></ngx-zen-chip>
+                </ngx-zen-table-cell>
+              </ngx-zen-table-row>
+              }
+            </ngx-zen-table-body>
+          </ngx-zen-table>
   \`\`\``,
       title: 'Table with Checkboxes',
     },
     {
       markdown: `\`\`\`html
-  <ngx-zen-table  class="advanced-table" title="Advanced Table (Sortable & Selectable)" [selectable]="true">
-            <ngx-zen-table-head [selectable]="true" (selectAll)="onSelectAll($event)">
-              <ngx-zen-table-column 
-                [sortable]="true" 
-                field="name"
-                (sort)="onSort($event)">Name</ngx-zen-table-column>
-              <ngx-zen-table-column 
-                [sortable]="true" 
-                field="email"
-                (sort)="onSort($event)">Email</ngx-zen-table-column>
-              <ngx-zen-table-column 
-                [sortable]="true" 
-                field="status"
-                (sort)="onSort($event)">Status</ngx-zen-table-column>
-            </ngx-zen-table-head>
-            
-            <ngx-zen-table-body [selectable]="true" (rowSelect)="onRowSelect($event)">
-              @for (row of tableData; track row; let i = $index) {
-                <ngx-zen-table-row 
-                  [selectable]="true"
-                  [selected]="selectedIndexes.has(i)"
-                  [index]="i"
-                >
-                  <ngx-zen-table-cell>{{row.name}}</ngx-zen-table-cell>
-                  <ngx-zen-table-cell>{{row.email}}</ngx-zen-table-cell>
-                  <ngx-zen-table-cell>
-                    <ngx-zen-chip [text]="row.status"></ngx-zen-chip>
-                  </ngx-zen-table-cell>
-                </ngx-zen-table-row>
-              }
-            </ngx-zen-table-body>
-          </ngx-zen-table>
+  <ngx-zen-table [selectable]="true" width="10_20_10_10_20_10_10_10_10">
+          <ngx-zen-table-head [selectable]="true" (selectAll)="onSelectAll($event, true)">
+            <ngx-zen-table-column [sortable]="true" field="invoice" (sort)="onSort($event)">Invoice
+              #</ngx-zen-table-column>
+            <ngx-zen-table-column [sortable]="true" field="address" (sort)="onSort($event)">Customer
+              address</ngx-zen-table-column>
+            <ngx-zen-table-column [sortable]="true" field="date" (sort)="onSort($event)">Date</ngx-zen-table-column>
+            <ngx-zen-table-column [sortable]="true" field="orderNumber" (sort)="onSort($event)">Order
+              number</ngx-zen-table-column>
+            <ngx-zen-table-column [sortable]="true" field="name" (sort)="onSort($event)">Customer
+              name</ngx-zen-table-column>
+            <ngx-zen-table-column [sortable]="true" field="status" (sort)="onSort($event)">Status</ngx-zen-table-column>
+            <ngx-zen-table-column [sortable]="true" field="dueDate" (sort)="onSort($event)">Due
+              date</ngx-zen-table-column>
+            <ngx-zen-table-column [sortable]="true" field="paid" (sort)="onSort($event)">Paid</ngx-zen-table-column>
+            <ngx-zen-table-column [sortable]="true" field="dueDate" (sort)="onSort($event)">Due
+              date</ngx-zen-table-column>
+          </ngx-zen-table-head>
+
+          <ngx-zen-table-body [selectable]="true" (rowSelect)="onRowSelect($event, true)">
+            @for (row of advancedTableData; track row; let i = $index) {
+            <ngx-zen-table-row [selectable]="true" [selected]="advancedTableSelectedIndexes.has(i)" [index]="i">
+              <ngx-zen-table-cell>{{row.invoice}}</ngx-zen-table-cell>
+              <ngx-zen-table-cell>{{row.address}}</ngx-zen-table-cell>
+              <ngx-zen-table-cell>{{row.date}}</ngx-zen-table-cell>
+              <ngx-zen-table-cell>{{row.orderNumber}}</ngx-zen-table-cell>
+              <ngx-zen-table-cell>{{row.name}}</ngx-zen-table-cell>
+              <ngx-zen-table-cell>
+                <ngx-zen-chip [text]="row.status"></ngx-zen-chip>
+              </ngx-zen-table-cell>
+              <ngx-zen-table-cell>{{row.dueDate}}</ngx-zen-table-cell>
+              <ngx-zen-table-cell>{{row.paid}}</ngx-zen-table-cell>
+              <ngx-zen-table-cell>{{row.dueDate}}</ngx-zen-table-cell>
+            </ngx-zen-table-row>
+            }
+          </ngx-zen-table-body>
+        </ngx-zen-table>
   \`\`\``,
       title: 'Advance Table',
     },
     {
       markdown: `\`\`\`html
-  <ngx-zen-table class="project-table">
+  <ngx-zen-table class="project-table" [outlined]="true">
             <ngx-zen-table-head>
               <ngx-zen-table-column [sortable]="true" field="calculationName">Calculation</ngx-zen-table-column>
               <ngx-zen-table-column>Created by</ngx-zen-table-column>
@@ -265,7 +272,12 @@ export class TableComponent {
       email: 'john@example.com Runte, Wiegand and Pagac',
       status: 'Active',
     },
-    { name: 'Jane Smith', email: 'jane@example.com Wiegand and PagacWiegand and PagacWiegand and PagacWiegand and PagacWiegand and Pagac', status: 'Inactive' },
+    {
+      name: 'Jane Smith',
+      email:
+        'jane@example.com Wiegand and PagacWiegand and PagacWiegand and PagacWiegand and PagacWiegand and Pagac',
+      status: 'Inactive',
+    },
     { name: 'Bob Johnson', email: 'bob@example.com', status: 'Active' },
   ];
 

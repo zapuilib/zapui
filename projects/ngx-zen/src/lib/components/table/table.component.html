@@ -1,10 +1,5 @@
 <div class="__zen__table__wrapper" 
-     [ngClass]="[
-       zenClass,
-       disabled ? 'disabled' : '',
-       hoverable ? 'hoverable' : '',
-       striped ? 'striped' : ''
-     ]">
+     [ngClass]="getTableClass()">
   @if (title) {
     <div class="__zen__table__title" [ngStyle]="getTableStyle()">
       {{ title }}

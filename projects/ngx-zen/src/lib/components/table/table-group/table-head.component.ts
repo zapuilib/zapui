@@ -13,7 +13,6 @@ import {
 import { TableColumnComponent } from './table-column.component';
 import { FormControl } from '@angular/forms';
 
-// table-head.component.ts
 @Component({
   selector: 'ngx-zen-table-head',
   template: `
@@ -54,7 +53,6 @@ export class TableHeadComponent implements AfterContentInit {
   }
 
   onMasterChange() {
-    // Ensure we're passing a boolean value
     this.selectAll.emit(this.masterControl.value ?? false);
   }
 }

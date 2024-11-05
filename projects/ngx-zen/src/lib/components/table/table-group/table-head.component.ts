@@ -7,7 +7,7 @@ import {
   AfterContentInit,
   ViewEncapsulation,
   Output,
-  EventEmitter
+  EventEmitter,
 } from '@angular/core';
 
 import { TableColumnComponent } from './table-column.component';
@@ -19,27 +19,29 @@ import { FormControl } from '@angular/forms';
     <thead class="__zen__table__head">
       <tr class="__zen__table__row">
         @if(selectable) {
-          <th class="checkbox-column">
-            <ngx-zen-checkbox 
-              [formControl]="masterControl"
-              (change)="onMasterChange()"
-            ></ngx-zen-checkbox>
-          </th>
+        <th class="checkbox-column">
+          <ngx-zen-checkbox
+            [formControl]="masterControl"
+            (change)="onMasterChange()"
+          ></ngx-zen-checkbox>
+        </th>
         }
         <ng-content></ng-content>
       </tr>
     </thead>
   `,
   styleUrls: ['./table-component.style.scss'],
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
 })
 export class TableHeadComponent implements AfterContentInit {
-  @Input() size: 'compact' | 'default' | 'large' = 'default';
-  @Input() selectable: boolean = false;
+  @ContentChildren(TableColumnComponent)
+  columns!: QueryList<TableColumnComponent>;
+
   @Output() selectAll = new EventEmitter<boolean>();
 
-  @ContentChildren(TableColumnComponent) columns!: QueryList<TableColumnComponent>;
-  
+  @Input() size: 'compact' | 'default' | 'large' = 'default';
+  @Input() selectable: boolean = false;
+
   masterControl = new FormControl(false);
 
   ngAfterContentInit() {

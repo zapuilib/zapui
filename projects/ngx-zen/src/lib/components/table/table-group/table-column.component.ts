@@ -1,4 +1,3 @@
-
 import {
   Component,
   Input,
@@ -20,7 +19,11 @@ import { Styles } from '../../../interfaces/style.interface';
       <div class="column-content text-re" [ngStyle]="getStyle()">
         <ng-content></ng-content>
         @if(sortable) {
-        <i class="fa-solid fa-sort sort-handler" (click)="onSort()" [ngStyle]="getStyle()"></i>
+        <i
+          class="fa-solid fa-sort sort-handler"
+          (click)="onSort()"
+          [ngStyle]="getStyle()"
+        ></i>
         }
       </div>
     </th>
@@ -44,11 +47,7 @@ export class TableColumnComponent {
   isHeader: boolean = false;
   sortDirection: 'asc' | 'desc' | null = null;
 
-
-  constructor(
-    @Inject(NGX_ZEN_CONFIG) public config: NgxZenConfig
-  ) {}
-
+  constructor(@Inject(NGX_ZEN_CONFIG) public config: NgxZenConfig) {}
 
   getHeaderStyle(): Styles {
     return {

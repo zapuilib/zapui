@@ -19,6 +19,9 @@ import { TableBodyComponent } from './table-group/table-body.component';
   styleUrls: ['./table.component.scss'],
 })
 export class TableComponent implements AfterContentInit {
+  @ContentChild(TableHeadComponent) tableHead?: TableHeadComponent;
+  @ContentChild(TableBodyComponent) tableBody?: TableBodyComponent;
+
   @Input() hoverable: boolean = false;
   @Input() striped: boolean = false;
   @Input() zenClass: string = '';
@@ -29,8 +32,6 @@ export class TableComponent implements AfterContentInit {
   @Input() allowMultiline: boolean = false;
   @Input() size: 'compact' | 'default' | 'large' = 'default';
   @Input() variant: 'outlined' | 'default' = 'default';
-  @ContentChild(TableHeadComponent) tableHead?: TableHeadComponent;
-  @ContentChild(TableBodyComponent) tableBody?: TableBodyComponent;
   tableWidth: string = '';
 
   constructor(
@@ -110,7 +111,7 @@ export class TableComponent implements AfterContentInit {
       disabled: this.disabled,
       hoverable: this.hoverable,
       striped: this.striped,
-      outlined: this.variant === 'outlined' 
+      outlined: this.variant === 'outlined',
     };
   }
 }

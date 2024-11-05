@@ -23,15 +23,15 @@ import { TableRowComponent } from './table-row.component';
   encapsulation: ViewEncapsulation.None,
 })
 export class TableBodyComponent implements AfterContentInit {
+  @ContentChildren(TableRowComponent) rows!: QueryList<TableRowComponent>;
+  
+  @Output() rowSelect = new EventEmitter<number>();
+
   @Input() size: 'compact' | 'default' | 'large' = 'default';
   @Input() selectable: boolean = false;
   @Input() width: string = '';
   @Input() selectAllState: boolean = false;
   @Input() variant: 'outlined' | 'default' = 'default';
-
-  @Output() rowSelect = new EventEmitter<number>();
-
-  @ContentChildren(TableRowComponent) rows!: QueryList<TableRowComponent>;
 
   ngAfterContentInit() {
     if (this.rows) {

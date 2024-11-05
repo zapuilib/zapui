@@ -36,14 +36,15 @@ import { FormControl } from '@angular/forms';
   encapsulation: ViewEncapsulation.None
 })
 export class TableRowComponent implements AfterContentInit {
+  @ContentChildren(TableCellComponent) cells!: QueryList<TableCellComponent>;
+  
+  @Output() select = new EventEmitter<number>();
+  
   @Input() size: 'compact' | 'default' | 'large' = 'default';
   @Input() selectable: boolean = false;
   @Input() selected: boolean = false;
   @Input() index: number = -1;
-
-  @Output() select = new EventEmitter<number>();
   @Input() width: string = '';
-  @ContentChildren(TableCellComponent) cells!: QueryList<TableCellComponent>;
 
   rowControl = new FormControl(false);
   

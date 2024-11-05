@@ -1,0 +1,437 @@
+<!-- table.component.html -->
+<section class="min-h-screen">
+  <h1>Tables</h1>
+
+  @for (item of markdowns; track item; let i = $index) {
+  <ng-container
+    *ngTemplateOutlet="
+      card;
+      context: {
+        $implicit: item.markdown,
+        title: item.title,
+        index: i
+      }
+    "
+  >
+  </ng-container>
+  }
+
+  <h2>Properties</h2>
+  <table>
+    <thead>
+      <tr>
+        <th class="w-[10%]">Parameter</th>
+        <th class="w-[10%]">Required</th>
+        <th class="w-[30%]">Accepted values</th>
+        <th class="w-[50%]">Usage</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>hoverable</code></td>
+        <td><p>Optional</p></td>
+        <td><code>boolean</code></td>
+        <td><p>Enables hover effect on table rows when set to true.</p></td>
+      </tr>
+      <tr>
+        <td><code>striped</code></td>
+        <td><p>Optional</p></td>
+        <td><code>boolean</code></td>
+        <td><p>Applies alternating background colors to rows when true.</p></td>
+      </tr>
+      <tr>
+        <td><code>zenClass</code></td>
+        <td><p>Optional</p></td>
+        <td><code>string</code></td>
+        <td><p>Custom CSS classes to apply to the table wrapper.</p></td>
+      </tr>
+      <tr>
+        <td><code>disabled</code></td>
+        <td><p>Optional</p></td>
+        <td><code>boolean</code></td>
+        <td><p>Disables all interactions with the table when true.</p></td>
+      </tr>
+      <tr>
+        <td><code>width</code></td>
+        <td><p>Optional</p></td>
+        <td><code>string</code></td>
+        <td>
+          <p>
+            Sets column widths using underscore-separated percentages (e.g.
+            "10_20_30_40").
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td><code>title</code></td>
+        <td><p>Optional</p></td>
+        <td><code>string</code></td>
+        <td><p>Displays a title above the table.</p></td>
+      </tr>
+      <tr>
+        <td><code>selectable</code></td>
+        <td><p>Optional</p></td>
+        <td><code>boolean</code></td>
+        <td>
+          <p>
+            Enables row selection functionality when true. Adds checkboxes to
+            rows.
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td><code>allowMultiline</code></td>
+        <td><p>Optional</p></td>
+        <td><code>boolean</code></td>
+        <td>
+          <p>Allows text in cells to wrap to multiple lines when true.</p>
+        </td>
+      </tr>
+      <tr>
+        <td><code>size</code></td>
+        <td><p>Optional</p></td>
+        <td><code>'compact' | 'default' | 'large'</code></td>
+        <td>
+          <p>
+            Controls the padding and sizing of table cells. Default is
+            'default'.
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td><code>outlined</code></td>
+        <td><p>Optional</p></td>
+        <td><code>boolean</code></td>
+        <td>
+          <p>Adds borders around the table and between cells when true.</p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2 class="mt-10">Events</h2>
+  <table>
+    <thead>
+      <tr>
+        <th class="w-[10%]">Event</th>
+        <th class="w-[50%]">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>sort</code></td>
+        <td>
+          <p>
+            Triggered when a sortable column is clicked. Returns the column
+            field and sort direction.
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td><code>select</code></td>
+        <td>
+          <p>
+            Triggered when a row is selected in a selectable table. Returns the
+            selected state and row data.
+          </p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<ng-template let-markdown let-title="title" let-index="index" #card>
+  <div class="card">
+    <div class="header">
+      <h2>{{ title }}</h2>
+    </div>
+    <div class="content">
+      <div class="ui mb-4">
+        @switch(index) { @case(0) {
+        <ngx-zen-table variant="outlined" [hoverable]="true">
+          <ngx-zen-table-head>
+            <ngx-zen-table-column>Name</ngx-zen-table-column>
+            <ngx-zen-table-column>Email</ngx-zen-table-column>
+            <ngx-zen-table-column>Status</ngx-zen-table-column>
+          </ngx-zen-table-head>
+          <ngx-zen-table-body>
+            @for(item of tableData; track item; let i = $index) {
+            <ngx-zen-table-row>
+              <ngx-zen-table-cell>{{ item.name }}</ngx-zen-table-cell>
+              <ngx-zen-table-cell>{{ item.email }}</ngx-zen-table-cell>
+              <ngx-zen-table-cell
+                ><ngx-zen-chip [text]="item.status"></ngx-zen-chip
+              ></ngx-zen-table-cell>
+            </ngx-zen-table-row>
+            }
+          </ngx-zen-table-body>
+        </ngx-zen-table>
+        } @case(1) {
+        <ngx-zen-table>
+          <ngx-zen-table-head>
+            <ngx-zen-table-column field="name" (sort)="onSort($event)"
+              >Name</ngx-zen-table-column
+            >
+            <ngx-zen-table-column
+              [sortable]="true"
+              field="email"
+              (sort)="onSort($event)"
+              >Email</ngx-zen-table-column
+            >
+            <ngx-zen-table-column field="status" (sort)="onSort($event)"
+              >Status</ngx-zen-table-column
+            >
+          </ngx-zen-table-head>
+          <ngx-zen-table-body>
+            @for(item of tableData; track item; let i = $index) {
+            <ngx-zen-table-row>
+              <ngx-zen-table-cell>{{ item.name }}</ngx-zen-table-cell>
+              <ngx-zen-table-cell>{{ item.email }}</ngx-zen-table-cell>
+              <ngx-zen-table-cell>
+                <ngx-zen-chip [text]="item.status"></ngx-zen-chip>
+              </ngx-zen-table-cell>
+            </ngx-zen-table-row>
+            }
+          </ngx-zen-table-body>
+        </ngx-zen-table>
+        } @case(2) {
+        <ngx-zen-table title="Non-interactive Table" [disabled]="true">
+        </ngx-zen-table>
+        } @case(3) {
+        <ngx-zen-table title="Table with Components">
+          <ngx-zen-table-head>
+            <ngx-zen-table-column>Name</ngx-zen-table-column>
+            <ngx-zen-table-column>Status</ngx-zen-table-column>
+            <ngx-zen-table-column>Actions</ngx-zen-table-column>
+          </ngx-zen-table-head>
+          <ngx-zen-table-body>
+            <ngx-zen-table-row>
+              <ngx-zen-table-cell>
+                <ngx-zen-input value="John Doe"></ngx-zen-input>
+              </ngx-zen-table-cell>
+              <ngx-zen-table-cell>
+                <ngx-zen-chip>Active</ngx-zen-chip>
+              </ngx-zen-table-cell>
+              <ngx-zen-table-cell>
+                <ngx-zen-button>Edit</ngx-zen-button>
+              </ngx-zen-table-cell>
+            </ngx-zen-table-row>
+          </ngx-zen-table-body>
+        </ngx-zen-table>
+        } @case(4) {
+        <ngx-zen-table class="selectable-table" [selectable]="true">
+          <ngx-zen-table-head
+            [selectable]="true"
+            (selectAll)="onSelectAll($event, false)"
+          >
+            <ngx-zen-table-column>Name</ngx-zen-table-column>
+            <ngx-zen-table-column>Email</ngx-zen-table-column>
+            <ngx-zen-table-column>Status</ngx-zen-table-column>
+          </ngx-zen-table-head>
+
+          <ngx-zen-table-body
+            [selectable]="true"
+            (rowSelect)="onRowSelect($event, false)"
+          >
+            @for (row of tableData; track row; let i = $index) {
+            <ngx-zen-table-row
+              [selectable]="true"
+              [selected]="basicTableSelectedIndexes.has(i)"
+              [index]="i"
+            >
+              <ngx-zen-table-cell>{{ row.name }}</ngx-zen-table-cell>
+              <ngx-zen-table-cell class="truncate">{{
+                row.email
+              }}</ngx-zen-table-cell>
+              <ngx-zen-table-cell>
+                <ngx-zen-chip
+                  [text]="row.status"
+                  [size]="'small'"
+                ></ngx-zen-chip>
+              </ngx-zen-table-cell>
+            </ngx-zen-table-row>
+            }
+          </ngx-zen-table-body>
+        </ngx-zen-table>
+        } @case(5) {
+        <ngx-zen-table
+          title="Advanced Table (Sortable & Selectable)"
+          [selectable]="true"
+          width="10_20_10_10_20_10_10_10_10"
+        >
+          <ngx-zen-table-head
+            [selectable]="true"
+            (selectAll)="onSelectAll($event, true)"
+          >
+            <ngx-zen-table-column
+              [sortable]="true"
+              field="invoice"
+              (sort)="onSort($event)"
+              >Invoice #</ngx-zen-table-column
+            >
+            <ngx-zen-table-column
+              [sortable]="true"
+              field="address"
+              (sort)="onSort($event)"
+              >Customer address</ngx-zen-table-column
+            >
+            <ngx-zen-table-column
+              [sortable]="true"
+              field="date"
+              (sort)="onSort($event)"
+              >Date</ngx-zen-table-column
+            >
+            <ngx-zen-table-column
+              [sortable]="true"
+              field="orderNumber"
+              (sort)="onSort($event)"
+              >Order number</ngx-zen-table-column
+            >
+            <ngx-zen-table-column
+              [sortable]="true"
+              field="name"
+              (sort)="onSort($event)"
+              >Customer name</ngx-zen-table-column
+            >
+            <ngx-zen-table-column
+              [sortable]="true"
+              field="status"
+              (sort)="onSort($event)"
+              >Status</ngx-zen-table-column
+            >
+            <ngx-zen-table-column
+              [sortable]="true"
+              field="dueDate"
+              (sort)="onSort($event)"
+              >Due date</ngx-zen-table-column
+            >
+            <ngx-zen-table-column
+              [sortable]="true"
+              field="paid"
+              (sort)="onSort($event)"
+              >Paid</ngx-zen-table-column
+            >
+            <ngx-zen-table-column
+              [sortable]="true"
+              field="dueDate"
+              (sort)="onSort($event)"
+              >Due date</ngx-zen-table-column
+            >
+          </ngx-zen-table-head>
+
+          <ngx-zen-table-body
+            [selectable]="true"
+            (rowSelect)="onRowSelect($event, true)"
+          >
+            @for (row of advancedTableData; track row; let i = $index) {
+            <ngx-zen-table-row
+              [selectable]="true"
+              [selected]="advancedTableSelectedIndexes.has(i)"
+              [index]="i"
+            >
+              <ngx-zen-table-cell>{{ row.invoice }}</ngx-zen-table-cell>
+              <ngx-zen-table-cell>{{ row.address }}</ngx-zen-table-cell>
+              <ngx-zen-table-cell>{{ row.date }}</ngx-zen-table-cell>
+              <ngx-zen-table-cell>{{ row.orderNumber }}</ngx-zen-table-cell>
+              <ngx-zen-table-cell>{{ row.name }}</ngx-zen-table-cell>
+              <ngx-zen-table-cell>
+                <ngx-zen-chip [text]="row.status"></ngx-zen-chip>
+              </ngx-zen-table-cell>
+              <ngx-zen-table-cell>{{ row.dueDate }}</ngx-zen-table-cell>
+              <ngx-zen-table-cell>{{ row.paid }}</ngx-zen-table-cell>
+              <ngx-zen-table-cell>{{ row.dueDate }}</ngx-zen-table-cell>
+            </ngx-zen-table-row>
+            }
+          </ngx-zen-table-body>
+        </ngx-zen-table>
+        } @case(6) {
+        <ngx-zen-table class="project-table" [outlined]="true">
+          <ngx-zen-table-head>
+            <ngx-zen-table-column [sortable]="true" field="calculationName"
+              >Calculation</ngx-zen-table-column
+            >
+            <ngx-zen-table-column>Created by</ngx-zen-table-column>
+            <ngx-zen-table-column [sortable]="true" field="energySavings"
+              >Energy savings</ngx-zen-table-column
+            >
+            <ngx-zen-table-column [sortable]="true" field="costSavings"
+              >Cost savings</ngx-zen-table-column
+            >
+            <ngx-zen-table-column [sortable]="true" field="totalCost"
+              >Total cost</ngx-zen-table-column
+            >
+            <ngx-zen-table-column [sortable]="true" field="paybackPeriod"
+              >Payback period</ngx-zen-table-column
+            >
+          </ngx-zen-table-head>
+
+          <ngx-zen-table-body>
+            @for(item of projectData; track item) {
+            <ngx-zen-table-row>
+              <ngx-zen-table-cell>
+                <div class="flex flex-col">
+                  <div class="title">{{ item.calculationName }}</div>
+                  <div class="info">
+                    <div>Building: {{ item.building }}</div>
+                    <div>Project: {{ item.project }}</div>
+                  </div>
+                </div>
+              </ngx-zen-table-cell>
+
+              <ngx-zen-table-cell>
+                <div class="date">{{ item.createdBy.date }}</div>
+              </ngx-zen-table-cell>
+
+              <ngx-zen-table-cell>
+                <div class="flex items-center flex-col">
+                  <span
+                    >{{ item.energySavings.value }}
+                    {{ item.energySavings.unit }}</span
+                  >
+                  @if(item.status === 'Highest') {
+                  <ngx-zen-chip text="Highest" size="small"></ngx-zen-chip>
+                  }
+                </div>
+              </ngx-zen-table-cell>
+
+              <ngx-zen-table-cell>
+                <div class="flex items-center">
+                  <span
+                    >$ {{ item.costSavings.value }}/{{
+                      item.costSavings.unit
+                    }}</span
+                  >
+                </div>
+              </ngx-zen-table-cell>
+
+              <ngx-zen-table-cell>
+                <div class="flex items-center">
+                  <span>$ {{ item.totalCost }}</span>
+                </div>
+              </ngx-zen-table-cell>
+
+              <ngx-zen-table-cell>
+                <div class="flex flex-col items-center justify-between">
+                  <span
+                    >{{ item.paybackPeriod.value }}
+                    {{ item.paybackPeriod.unit }}</span
+                  >
+                  @if(item.status === 'Best') {
+                  <ngx-zen-chip text="Best" size="small"></ngx-zen-chip>
+                  } @if(item.status === 'Cheapest') {
+                  <ngx-zen-chip text="Cheapest" size="small"></ngx-zen-chip>
+                  }
+                </div>
+              </ngx-zen-table-cell>
+            </ngx-zen-table-row>
+            }
+          </ngx-zen-table-body>
+        </ngx-zen-table>
+        } }
+      </div>
+      <div class="code-wrapper">
+        <app-code-block [markdownData]="markdown"></app-code-block>
+      </div>
+    </div>
+  </div>
+</ng-template>

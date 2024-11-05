@@ -2,14 +2,14 @@ import { NgxZenConfig } from '../interfaces/config.interface';
 
 export const defaultConfig: NgxZenConfig = {
   colors: {
-    primary: '#FFFFFF', // A shade of white
-    secondary: '#000000', // A shade of black
-    tertiary: '#2563eb', // A shade of blue
-    quaternary: '#374151', // A shade of gray
-    success: '#15803d', // A shade of green
-    error: '#b91c1c', // A shade of red
-    warning: '#f59e0b', // A shade of yellow
-    info: '#3b82f6', // A shade of blue
+    primary: '#FFFFFF', 
+    secondary: '#000000', 
+    tertiary: '#2563eb', 
+    quaternary: '#374151',
+    success: '#15803d', 
+    error: '#b91c1c', 
+    warning: '#f59e0b', 
+    info: '#3b82f6', 
   },
   fontSize: {
     '7xl': '5rem', // 80px

@@ -16,6 +16,7 @@ import {
   RadioComponent,
   DialogComponent,
   ToggleComponent,
+  TableComponent,
   AccordionComponent,
   BadgeComponent,
 } from './components';
@@ -103,6 +104,11 @@ const routes: Routes = [
       {
         path: 'toggle',
         component: ToggleComponent,
+        pathMatch: 'full',
+      },
+      {
+        path: 'table',
+        component: TableComponent,
         pathMatch: 'full',
       },
       {

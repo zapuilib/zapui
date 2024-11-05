@@ -12,6 +12,7 @@ import { TextareaComponent } from './textarea/textarea.component';
 import { RadioComponent } from './radio/radio.component';
 import { DialogComponent } from './dialog/dialog.component';
 import { ToggleComponent } from './toggle/toggle.component';
+import { TableComponent } from './table/table.component';
 import { AccordionComponent } from './accordion/accordion.component';
 
 export * from './alert/alert.component';
@@ -28,6 +29,8 @@ export * from './checkbox/checkbox.component';
 export * from './radio/radio.component';
 export * from './dialog/dialog.component';
 export * from './select/select.component';
+export * from './table/table.component';
+
 export * from './accordion/accordion.component';
 export * from './toggle/toggle.component';
 
@@ -47,5 +50,6 @@ export const MAIN_COMPONENTS = [
   DialogComponent,
   ToggleComponent,
   SelectComponent,
+  TableComponent,
   AccordionComponent,
 ];

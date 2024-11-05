@@ -80,7 +80,7 @@ export class SideMenuComponent {
         },
         {
           title: 'Table',
-          RouterLink: '/table',
+          routerLink: '/table',
         },
         {
           title: 'Accordion',

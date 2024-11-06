@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute, RouterLink } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-side-menu',
@@ -85,14 +85,6 @@ export class SideMenuComponent {
         {
           title: 'Tooltip',
           routerLink: '/tooltip',
-        },
-        {
-          title: 'Table',
-          routerLink: '/table',
-        },
-        {
-          title: 'Accordion',
-          routerLink: '/accordion',
         },
       ],
     },

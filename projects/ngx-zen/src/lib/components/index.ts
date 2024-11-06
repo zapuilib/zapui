@@ -11,7 +11,6 @@ import { RadioComponent } from './radio/radio.component';
 import { DialogComponent } from './dialog/dialog.component';
 import { ToggleComponent } from './toggle/toggle.component';
 import { ChipComponent } from './chip/chip.component';
-import { TableComponent, TableBodyComponent, TableCellComponent, TableColumnComponent, TableFooterComponent, TableHeadComponent, TableRowComponent } from './table';
 import { AccordionComponent, AccordionGroupComponent } from './accordion';
 
 export const COMPONENTS = [
@@ -29,13 +28,6 @@ export const COMPONENTS = [
   ModalComponent,
   SelectComponent,
   ChipComponent,
-  TableComponent,
-  TableRowComponent,  
-  TableBodyComponent,
-  TableCellComponent,
-  TableColumnComponent,
-  TableFooterComponent,
-  TableHeadComponent,
   AccordionComponent,
   AccordionGroupComponent,
 ];

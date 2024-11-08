@@ -1,3 +1,8 @@
+
+## Beta version 0.0.18 Updates
+
+- ngOnchanges added to detect the reset of the form control in seelect
+
 ## Beta version 0.0.17 Updates
 
 - Select field console issue with native element fixed

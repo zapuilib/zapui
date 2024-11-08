@@ -5,6 +5,7 @@ import {
   forwardRef,
   HostListener,
   Input,
+  OnChanges,
   Output,
   ViewChild,
 } from '@angular/core';
@@ -24,7 +25,7 @@ import { ControlValueAccessorDirective } from '../../directives/control-value-ac
     },
   ],
 })
-export class SelectComponent<T> extends ControlValueAccessorDirective<T> {
+export class SelectComponent<T> extends ControlValueAccessorDirective<T> implements OnChanges {
   @ViewChild('inputSelectValueHolder') inputSelectValueHolder!: ElementRef;
   @ViewChild('optionList') optionList!: ElementRef;
   @ViewChild('search') search!: ElementRef;
@@ -67,6 +68,10 @@ export class SelectComponent<T> extends ControlValueAccessorDirective<T> {
     this.handleDefaultValue();
   }
 
+  ngOnChanges(): void {
+    this.handleDefaultValue();
+  }
+  
   getOptionListStyle(): { [key: string]: string } {
     return {
       color: this.config.colors.secondary,

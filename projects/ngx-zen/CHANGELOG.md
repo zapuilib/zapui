@@ -1,7 +1,7 @@
-
 ## Beta version 0.0.18 Updates
 
-- ngOnchanges added to detect the reset of the form control in seelect
+- ngOnchanges added to detect the reset of the form control in select
+- has bugs
 
 ## Beta version 0.0.17 Updates
 

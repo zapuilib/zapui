@@ -68,6 +68,7 @@ export class SelectComponent<T> extends ControlValueAccessorDirective<T> impleme
     this.handleDefaultValue();
   }
 
+  //TODO: causing an error
   ngOnChanges(): void {
     this.handleDefaultValue();
   }

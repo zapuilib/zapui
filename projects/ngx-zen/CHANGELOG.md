@@ -1,3 +1,9 @@
+## Beta version 0.0.24 Updates
+
+- skipped versions in between for testing
+- fixed dependency error for testing
+- added forward ref the accordion group
+
 ## Beta version 0.0.18 Updates
 
 - ngOnchanges added to detect the reset of the form control in select

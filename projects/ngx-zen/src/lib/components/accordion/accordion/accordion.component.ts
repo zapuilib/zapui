@@ -5,6 +5,7 @@ import {
   Output,
   EventEmitter,
   Optional,
+  forwardRef,
 } from '@angular/core';
 
 import { NGX_ZEN_CONFIG } from '../../../tokens/ngx-zen.tokens';
@@ -18,6 +19,7 @@ import { AccordionGroupComponent } from '../accordion-group/accordion-group.comp
   styleUrls: ['./accordion.component.scss'],
 })
 export class AccordionComponent {
+  @Output() toggle: EventEmitter<void> = new EventEmitter<void>();
   @Input() title: string = '';
   @Input() subtitle: string = '';
   @Input() zenClass: string = '';
@@ -33,14 +35,11 @@ export class AccordionComponent {
   @Input() isLast: boolean = false;
   @Input() index: number = 0;
   @Input() isSingle: boolean = false;
-
   disabledColor: string = '';
   iconSize: string = '';
 
-  @Output() toggle: EventEmitter<void> = new EventEmitter<void>();
-
   constructor(
-    @Optional() public group: AccordionGroupComponent,
+    @Optional() @Inject(forwardRef(() => AccordionGroupComponent)) public group: AccordionGroupComponent,
     @Inject(NGX_ZEN_CONFIG) private config: NgxZenConfig,
     private colorUtility: ColorUtility
   ) {}

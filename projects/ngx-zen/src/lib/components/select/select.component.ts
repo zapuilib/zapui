@@ -25,7 +25,7 @@ import { ControlValueAccessorDirective } from '../../directives/control-value-ac
     },
   ],
 })
-export class SelectComponent<T> extends ControlValueAccessorDirective<T> implements OnChanges {
+export class SelectComponent<T> extends ControlValueAccessorDirective<T> {
   @ViewChild('inputSelectValueHolder') inputSelectValueHolder!: ElementRef;
   @ViewChild('optionList') optionList!: ElementRef;
   @ViewChild('search') search!: ElementRef;
@@ -65,11 +65,6 @@ export class SelectComponent<T> extends ControlValueAccessorDirective<T> impleme
   override ngOnInit(): void {
     super.ngOnInit();
     this.filteredOptions = this.options;
-    this.handleDefaultValue();
-  }
-
-  //TODO: causing an error
-  ngOnChanges(): void {
     this.handleDefaultValue();
   }
   

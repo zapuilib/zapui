@@ -1,3 +1,7 @@
+## Beta version 0.0.25 Updates
+
+- Fixed problem with on changes in select component
+
 ## Beta version 0.0.24 Updates
 
 - skipped versions in between for testing

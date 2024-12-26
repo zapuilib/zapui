@@ -1,3 +1,10 @@
+## Beta version 0.0.26 Updates
+
+- Select field now supports
+    - Resetting the field
+    - Async option updates using onSearch   
+    - Custom template for the option
+
 ## Beta version 0.0.25 Updates
 
 - Fixed problem with on changes in select component

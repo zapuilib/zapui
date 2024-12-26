@@ -42,6 +42,7 @@
             [async]="true"
             (onSearch)="handleSearch($event)"
             (onReset)="handleReset()"
+            [optionTemplate]="customOption"
             [options]="options"
             ></ngx-zen-select>
           } @case(2) {
@@ -75,5 +76,12 @@
         <app-code-block [markdownData]="markdown"></app-code-block>
       </div>
     </div>
+  </div>
+</ng-template>
+
+<ng-template #customOption let-option>
+  <div class="custom-option">
+    <strong>{{ option.label }}</strong>
+    <p>a</p>
   </div>
 </ng-template>

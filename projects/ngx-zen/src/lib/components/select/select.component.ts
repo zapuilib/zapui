@@ -7,6 +7,7 @@ import {
   Input,
   OnChanges,
   Output,
+  TemplateRef,
   ViewChild,
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
@@ -48,6 +49,7 @@ export class SelectComponent<T> extends ControlValueAccessorDirective<T> {
   @Input() notFound: string = 'No options found';
   @Input() multiselect: boolean = false;
   @Input() async: boolean = false;
+  @Input() optionTemplate?: TemplateRef<any>;
   private _options: { label: string; value: any }[] = [];
   isOptionListOpen: boolean = false;
   hoveredOption: string = '';

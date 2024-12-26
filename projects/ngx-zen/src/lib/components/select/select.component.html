@@ -18,7 +18,6 @@
       (click)="toggleOptionsList()"
       tabindex="0"
     >
-      
       @if(icon && iconPosition) {
       <i
         class="fa-solid __zen__form__control__icon"
@@ -108,8 +107,14 @@
             selectedOptionValue.includes(option.value)
           "
         ></div>
-        }
+        } @if(optionTemplate) {
+        <ng-container
+          [ngTemplateOutlet]="optionTemplate"
+          [ngTemplateOutletContext]="{ $implicit: option }"
+        ></ng-container>
+        } @else {
         {{ option.label }}
+        }
       </div>
       } } @else {
       <div

@@ -41,4 +41,14 @@ section {
       @apply text-base mb-3;
     }
   }
+
+  .custom-option {
+    strong {
+      @apply text-black;
+    }
+
+    p {
+      @apply text-zinc-300;
+    }
+  }
   

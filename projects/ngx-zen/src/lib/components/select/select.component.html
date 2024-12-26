@@ -79,7 +79,7 @@
           id="search"
           class="__zen__form__control__search"
           [placeholder]="searchPlaceholder"
-          (input)="filterOptions($event)"
+          (input)="handleSearch($event)"
           [ngStyle]="getSearchFieldStyle()"
         />
       </fieldset>

@@ -29,7 +29,11 @@ export class SelectComponent<T> extends ControlValueAccessorDirective<T> {
   @ViewChild('inputSelectValueHolder') inputSelectValueHolder!: ElementRef;
   @ViewChild('optionList') optionList!: ElementRef;
   @ViewChild('search') search!: ElementRef;
-  @Output() change: EventEmitter<string[] | string> = new EventEmitter<string[] | string>();
+  @Output() change: EventEmitter<string[] | string> = new EventEmitter<
+    string[] | string
+  >();
+  @Output() onSearch: EventEmitter<string> = new EventEmitter<string>();
+  @Output() onReset: EventEmitter<void> = new EventEmitter<void>();
   @Input() label: string = '';
   @Input() id: string = '';
   @Input() placeholder: string = '';
@@ -39,15 +43,26 @@ export class SelectComponent<T> extends ControlValueAccessorDirective<T> {
   @Input() size: 'compact' | 'default' = 'default';
   @Input() icon!: string;
   @Input() iconPosition: 'left' | 'right' = 'left';
-  @Input() options: { label: string; value: any }[] = [];
   @Input() searchable: boolean = false;
   @Input() searchPlaceholder: string = 'Search';
   @Input() notFound: string = 'No options found';
   @Input() multiselect: boolean = false;
+  @Input() async: boolean = false;
+  private _options: { label: string; value: any }[] = [];
   isOptionListOpen: boolean = false;
   hoveredOption: string = '';
   selectedOptionValue: string[] = [];
   filteredOptions: any[] = [];
+
+  @Input()
+  set options(newOptions: { label: string; value: any }[]) {
+    this._options = newOptions || [];
+    this.filteredOptions = [...this._options];
+  }
+
+  get options(): { label: string; value: any }[] {
+    return this._options;
+  }
 
   @HostListener('document:click', ['$event'])
   onDocumentClick(event: MouseEvent): void {
@@ -64,10 +79,11 @@ export class SelectComponent<T> extends ControlValueAccessorDirective<T> {
 
   override ngOnInit(): void {
     super.ngOnInit();
-    this.filteredOptions = this.options;
+    this.filteredOptions = [...this._options];
     this.handleDefaultValue();
+    this.checkIfEmpty();
   }
-  
+
   getOptionListStyle(): { [key: string]: string } {
     return {
       color: this.config.colors.secondary,
@@ -79,8 +95,20 @@ export class SelectComponent<T> extends ControlValueAccessorDirective<T> {
 
   handleDefaultValue(): void {
     if (this.control.value) {
-      this.selectedOptionValue = [...this.selectedOptionValue, this.control.value]
+      this.selectedOptionValue = [
+        ...this.selectedOptionValue,
+        this.control.value,
+      ];
     }
+  }
+
+  checkIfEmpty(): void {
+    this.control.valueChanges.subscribe((value) => {
+      if (!value || (Array.isArray(value) && value.length === 0)) {
+        this.selectedOptionValue = [];
+        this.onReset.emit();
+      }
+    });
   }
 
   toggleOptionsList(): void {
@@ -96,10 +124,17 @@ export class SelectComponent<T> extends ControlValueAccessorDirective<T> {
     this.filteredOptions = this.options;
   }
 
-  filterOptions(event: any): void {
-    this.filteredOptions = this.options.filter((option) =>
-      option.label.toLowerCase().includes(event.target.value.toLowerCase())
-    );
+  handleSearch(event: Event): void {
+    const searchTerm = (event.target as HTMLInputElement).value
+      .trim()
+      .toLowerCase();
+    if (this.async) {
+      this.onSearch.emit(searchTerm);
+    } else {
+      this.filteredOptions = this.options.filter((option) =>
+        option.label.toLowerCase().includes(searchTerm)
+      );
+    }
   }
 
   selectOption(option: { label: string; value: any }): void {
@@ -190,5 +225,10 @@ export class SelectComponent<T> extends ControlValueAccessorDirective<T> {
       color: this.colorUtility.hexToRgba(this.config.colors.quaternary, 0.5),
       'font-size': this.config.fontSize.md,
     };
+  }
+
+  reset(): void {
+    this.control.reset();
+    this.selectedOptionValue = [];
   }
 }

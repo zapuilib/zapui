@@ -29,7 +29,8 @@
             id="assignee"
             formControlName="assignee"
             placeholder="Select assignee"
-            [options]="options"
+            [options]="options2"
+            [searchable]="true"
           ></ngx-zen-select>
           } @case(1) {
           <ngx-zen-select
@@ -38,8 +39,11 @@
             formControlName="assignee2"
             placeholder="Select assignee"
             [searchable]="true"
+            [async]="true"
+            (onSearch)="handleSearch($event)"
+            (onReset)="handleReset()"
             [options]="options"
-          ></ngx-zen-select>
+            ></ngx-zen-select>
           } @case(2) {
           <ngx-zen-select
             label="Select"
@@ -64,6 +68,7 @@
             shape="curve"
           ></ngx-zen-select>
           }}
+
         </form>
       </div>
       <div class="code-wrapper">

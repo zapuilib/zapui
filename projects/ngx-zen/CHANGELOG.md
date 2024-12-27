@@ -1,3 +1,13 @@
+
+
+## Beta version 0.0.28 Updates
+
+- Type updated for select options
+
+## Beta version 0.0.27 Updates
+
+- Type updated for select options
+    
 ## Beta version 0.0.26 Updates
 
 - Select field now supports

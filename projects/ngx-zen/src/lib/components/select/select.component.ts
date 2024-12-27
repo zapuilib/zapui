@@ -50,19 +50,19 @@ export class SelectComponent<T> extends ControlValueAccessorDirective<T> {
   @Input() multiselect: boolean = false;
   @Input() async: boolean = false;
   @Input() optionTemplate?: TemplateRef<any>;
-  private _options: { label: string; value: any }[] = [];
+  private _options: { label: string; value: any, [key: string]: any }[] = [];
   isOptionListOpen: boolean = false;
   hoveredOption: string = '';
   selectedOptionValue: string[] = [];
   filteredOptions: any[] = [];
 
   @Input()
-  set options(newOptions: { label: string; value: any }[]) {
+  set options(newOptions: { label: string; value: any, [key: string]: any }[]) {
     this._options = newOptions || [];
     this.filteredOptions = [...this._options];
   }
 
-  get options(): { label: string; value: any }[] {
+  get options(): { label: string; value: any, [key: string]: any }[] {
     return this._options;
   }
 

@@ -51,19 +51,19 @@ export class SelectComponent<T> extends ControlValueAccessorDirective<T> {
   @Input() async: boolean = false;
   @Input() optionTemplate?: TemplateRef<any>;
   @Input() selectedTemplate?: TemplateRef<any>;
-  private _options: { label: string; value: any, [key: string]: any }[] = [];
+  private _options: { label: string; value: any; [key: string]: any }[] = [];
   isOptionListOpen: boolean = false;
   hoveredOption: string = '';
   selectedOptionValue: string[] = [];
   filteredOptions: any[] = [];
 
   @Input()
-  set options(newOptions: { label: string; value: any, [key: string]: any }[]) {
+  set options(newOptions: { label: string; value: any; [key: string]: any }[]) {
     this._options = newOptions || [];
     this.filteredOptions = [...this._options];
   }
 
-  get options(): { label: string; value: any, [key: string]: any }[] {
+  get options(): { label: string; value: any; [key: string]: any }[] {
     return this._options;
   }
 
@@ -221,6 +221,15 @@ export class SelectComponent<T> extends ControlValueAccessorDirective<T> {
 
   getSelected(value: string): string {
     return this.options.find((option) => option.value === value)?.label || '';
+  }
+
+  getSelectedOption(value: string): { label: string; value: string } {
+    return (
+      this.options.find((option) => option.value === value) || {
+        label: '',
+        value: '',
+      }
+    );
   }
 
   getPlaceholderStyle(): any {

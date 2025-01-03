@@ -1,6 +1,6 @@
 {
   "name": "@tc_developers/ngx-zen",
-  "version": "0.0.29",
+  "version": "0.0.30",
   "peerDependencies": {
     "@angular/common": ">=16.1.0",
     "@angular/core": ">=16.1.0",

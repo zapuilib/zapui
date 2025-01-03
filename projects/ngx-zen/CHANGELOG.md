@@ -1,3 +1,8 @@
+## Beta version 0.0.30 Updates
+
+- Selected template bug fixed to return whole option
+-
+
 ## Beta version 0.0.29 Updates
 
 - Select now supports selected template if not multiselect

@@ -50,6 +50,7 @@ export class SelectComponent<T> extends ControlValueAccessorDirective<T> {
   @Input() multiselect: boolean = false;
   @Input() async: boolean = false;
   @Input() optionTemplate?: TemplateRef<any>;
+  @Input() selectedTemplate?: TemplateRef<any>;
   private _options: { label: string; value: any, [key: string]: any }[] = [];
   isOptionListOpen: boolean = false;
   hoveredOption: string = '';

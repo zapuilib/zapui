@@ -24,7 +24,13 @@
         [ngClass]="[icon, iconPosition]"
         [ngStyle]="getStyle()"
       ></i>
-      } @if(selectedOptionValue.length > 0 && !multiselect) {
+      } @if(selectedTemplate && selectedOptionValue.length > 0 && !multiselect)
+      {
+      <ng-container
+        [ngTemplateOutlet]="selectedTemplate"
+        [ngTemplateOutletContext]="{ $implicit: getSelected(selectedOptionValue[0]) }"
+      ></ng-container>
+      } @else if(selectedOptionValue.length > 0 && !multiselect) {
       <p [ngStyle]="getStyle()" class="__zen__form__control__selected">
         {{ getSelected(selectedOptionValue[0]) }}
       </p>

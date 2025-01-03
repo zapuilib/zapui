@@ -1,4 +1,6 @@
+## Beta version 0.0.29 Updates
 
+- Select now supports selected template if not multiselect
 
 ## Beta version 0.0.28 Updates
 

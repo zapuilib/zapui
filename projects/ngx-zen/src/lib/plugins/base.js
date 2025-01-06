@@ -20,7 +20,6 @@ module.exports = plugin(function ({ addVariant, e }) {
     { name: "fieldset", targetElement: "fieldset" },
     { name: "chip-icon", targetElement: ".chip__icon" },
     { name: "chip-text", targetElement: ".chip__text" },
-    { name: "chip-remove", targetElement: ".chip__remove" },
     { name: "select", targetElement: ".__zen__form__control__select" },
     { name: "select-placeholder", targetElement: ".__zen__form__control__select .__zen__form__control__placeholder" },
     { name: "select-dropdown", targetElement: ".__zen__form__control__select .__zen__form__control__dropdown" },

@@ -1,4 +1,8 @@
-## Beta version 0.0.32 Updates
+## Beta version 0.0.34 Updates
+
+- chip-remove support removed
+
+## Beta version 0.0.33 Updates
 
 - zenClass now support chip-remove
 

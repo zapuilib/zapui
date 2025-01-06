@@ -1,3 +1,7 @@
+## Beta version 0.0.31 Updates
+
+- zenClass now support chip-text
+
 ## Beta version 0.0.30 Updates
 
 - Selected template bug fixed to return whole option

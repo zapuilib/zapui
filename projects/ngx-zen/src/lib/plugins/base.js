@@ -18,6 +18,7 @@ module.exports = plugin(function ({ addVariant, e }) {
     { name: "modal", targetElement: ".modal" },
     { name: "wrapper", targetElement: ".wrapper" },
     { name: "fieldset", targetElement: "fieldset" },
+    { name: "chip-text", targetElement: ".chip__text" },
     { name: "select", targetElement: ".__zen__form__control__select" },
     { name: "select-placeholder", targetElement: ".__zen__form__control__select .__zen__form__control__placeholder" },
     { name: "select-dropdown", targetElement: ".__zen__form__control__select .__zen__form__control__dropdown" },

@@ -1,5 +1,9 @@
 ## Beta version 0.0.32 Updates
 
+- zenClass now support chip-remove
+
+## Beta version 0.0.32 Updates
+
 - zenClass now support chip-icon
 
 ## Beta version 0.0.31 Updates

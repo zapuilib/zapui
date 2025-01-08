@@ -1,3 +1,7 @@
+## Beta version 0.0.36 Updates
+
+- Fixed issue with previous version
+
 ## Beta version 0.0.35 Updates
 
 - form control disabled added to the toggle and input

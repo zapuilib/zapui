@@ -1,3 +1,9 @@
+## Beta version 0.0.37 Updates
+
+- Fixed "It looks like you're using the disabled attribute with a reactive form directive. If you set disabled to true
+  when you set up this control in your component class, the disabled attribute will actually be set in the DOM for
+  you. We recommend using this approach to avoid 'changed after checked' errors."
+
 ## Beta version 0.0.36 Updates
 
 - Fixed issue with previous version

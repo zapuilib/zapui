@@ -4,12 +4,21 @@
   [ngClass]="[zenClass, size, shape, icon ? iconPosition : '']"
 >
   @if(label){
-  <label [for]="id" class="__zen__form__control__label" [ngStyle]="getStyle()">{{ label }}</label>
+  <label
+    [for]="id"
+    class="__zen__form__control__label"
+    [ngStyle]="getStyle()"
+    >{{ label }}</label
+  >
   }
   <fieldset>
-    
     @if(icon && iconPosition) {
-    <i class="fa-solid" [ngClass]="[icon, iconPosition]" [ngStyle]="getStyle()" (click)="handleIconClick($event)"></i>
+    <i
+      class="fa-solid"
+      [ngClass]="[icon, iconPosition]"
+      [ngStyle]="getStyle()"
+      (click)="handleIconClick($event)"
+    ></i>
     }
     <input
       [type]="type"
@@ -19,8 +28,6 @@
       [autocomplete]="autoComplete"
       [formControl]="control"
       [ngStyle]="getFieldStyle()"
-      [attr.aria-disabled]="control.disabled"
-      [disabled]="control.disabled"
     />
   </fieldset>
   @if(control.invalid && control.touched) {

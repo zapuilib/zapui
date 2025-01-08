@@ -1,3 +1,7 @@
+## Beta version 0.0.35 Updates
+
+- form control disabled added to the toggle and input
+
 ## Beta version 0.0.34 Updates
 
 - chip-remove support removed

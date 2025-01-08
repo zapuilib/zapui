@@ -19,6 +19,7 @@
       [autocomplete]="autoComplete"
       [formControl]="control"
       [ngStyle]="getFieldStyle()"
+      [attr.aria-disabled]="control.disabled"
     />
   </fieldset>
   @if(control.invalid && control.touched) {

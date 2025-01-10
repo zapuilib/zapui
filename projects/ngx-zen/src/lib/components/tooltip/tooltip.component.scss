@@ -10,18 +10,21 @@
 
   .content {
     @apply absolute min-w-44;
-    @apply px-3 py-2;
     @apply border;
+
+    p {
+      @apply inline-block px-3 py-2;
+    }
 
     &.curve {
       @apply rounded;
     }
 
     &.small {
-      @apply px-1.5 py-0.5 min-w-fit whitespace-nowrap;
+      @apply min-w-fit whitespace-nowrap;
 
       p {
-        @apply relative z-[2];
+        @apply relative z-[2] px-1.5 py-0.5;
       }
 
       .pointer {
@@ -96,6 +99,12 @@
       & .pointer {
         @apply left-1/2 -translate-x-1/2;
         @apply top-0 -translate-y-[40%];
+      }
+    }
+
+    &.auto {
+      .pointer {
+        @apply hidden;
       }
     }
   }

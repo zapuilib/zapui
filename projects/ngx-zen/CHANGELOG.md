@@ -1,3 +1,8 @@
+## Beta version 0.0.38 Updates
+
+- Tooltip has new default postion "auto"
+- Tooltip can implicitly hide pointer
+
 ## Beta version 0.0.37 Updates
 
 - Fixed "It looks like you're using the disabled attribute with a reactive form directive. If you set disabled to true
@@ -44,13 +49,13 @@
 ## Beta version 0.0.27 Updates
 
 - Type updated for select options
-    
+
 ## Beta version 0.0.26 Updates
 
 - Select field now supports
-    - Resetting the field
-    - Async option updates using onSearch   
-    - Custom template for the option
+  - Resetting the field
+  - Async option updates using onSearch
+  - Custom template for the option
 
 ## Beta version 0.0.25 Updates
 
@@ -133,14 +138,14 @@
 
 ## Beta version 0.0.1 Updates
 
-1) Alert
-2) Button
-3) Chip
-4) Checkbox
-5) Dialog
-6) Input
-7) Modal
-8) Select
-9) Textarea
-10) Toggle
-11) Tooltip
+1. Alert
+2. Button
+3. Chip
+4. Checkbox
+5. Dialog
+6. Input
+7. Modal
+8. Select
+9. Textarea
+10. Toggle
+11. Tooltip

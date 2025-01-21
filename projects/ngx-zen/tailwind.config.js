@@ -10,5 +10,5 @@ module.exports = {
       },
     },
   },
-  plugins: [require("@tailwindcss/forms"), require("./src/lib/plugins/base")],
+  plugins: [require("@tailwindcss/forms"), require("./plugin/base")],
 };

@@ -26,11 +26,23 @@
       @if (secondaryBtnTemplate) {
       <ng-container [ngTemplateOutlet]="secondaryBtnTemplate"></ng-container>
       } @else {
-      <button class="btn" [ngStyle]="getSecondaryBtnStyle()" (click)="cancel.emit()">Cancel</button>
+      <button
+        class="btn"
+        [ngStyle]="getSecondaryBtnStyle()"
+        (click)="cancel.emit()"
+      >
+        Cancel
+      </button>
       } @if (primaryBtnTemplate) {
       <ng-container [ngTemplateOutlet]="primaryBtnTemplate"></ng-container>
       } @else {
-      <button class="btn" [ngStyle]="getPrimaryBtnStyle()" (click)="confirm.emit()">Confirm</button>
+      <button
+        class="btn"
+        [ngStyle]="getPrimaryBtnStyle()"
+        (click)="confirm.emit()"
+      >
+        Confirm
+      </button>
       }
     </div>
   </div>

@@ -2,6 +2,8 @@
 
 - Tooltip has new default postion "auto"
 - Tooltip can implicitly hide pointer
+- Dialog default buttons now emits the right data
+- Zen plugin now have its own entry point
 
 ## Beta version 0.0.37 Updates
 

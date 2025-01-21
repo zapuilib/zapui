@@ -1,5 +1,5 @@
 /** @type {import('tailwindcss').Config} */
-const plugin = require("../../dist/ngx-zen/plugins/base.js");
+const ZenPlugin = require('../../dist/ngx-zen/plugin/base.js');
 
 module.exports = {
   content: ["./src/**/*.{html,ts}"],
@@ -10,5 +10,5 @@ module.exports = {
       },
     },
   },
-  plugins: [plugin],
+  plugins: [ZenPlugin],
 };

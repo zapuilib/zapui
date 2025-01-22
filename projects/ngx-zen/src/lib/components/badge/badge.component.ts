@@ -9,7 +9,7 @@ import { Styles } from '../../interfaces/style.interface';
   styleUrls: ['./badge.component.scss'],
 })
 export class BadgeComponent {
-  @Input() variant: 'empty' | 'content' | 'border' = 'content';
+  @Input() variant: 'empty' | 'default' | 'outlined' = 'default';
   @Input() count: number = 0;
   @Input() zenClass: string = '';
 
@@ -22,9 +22,10 @@ export class BadgeComponent {
 
   getStyle(): Styles {
     return {
-      backgroundColor: this.config.colors.tertiary,
-      color: this.variant === 'border' ? this.config.colors.primary : this.config.colors.primary,
+      backgroundColor: this.variant === 'outlined' ? 'transparent' : this.config.colors.tertiary,
+      color: this.variant === 'outlined' ? this.config.colors.tertiary : this.config.colors.primary,
       fontSize: this.config.fontSize.xs,
+      borderColor: this.variant === 'outlined' ? this.config.colors.tertiary : 'transparent',
     };
   }
 

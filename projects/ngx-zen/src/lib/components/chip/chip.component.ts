@@ -10,7 +10,7 @@ import { Styles } from '../../interfaces/style.interface';
   styleUrls: ['./chip.component.scss'],
 })
 export class ChipComponent {
-  @Output() removed = new EventEmitter<void>();
+  @Output() dissmiss = new EventEmitter<void>();
   @Input() text = 'Chip';
   @Input() zenClass: string = '';
   @Input() variant: 'outlined' | 'default' = 'default';
@@ -51,7 +51,7 @@ export class ChipComponent {
   onRemove(event: Event) {
     event.stopPropagation();
     if (!this.disabled && this.dismissible) {
-      this.removed.emit();
+      this.dissmiss.emit();
     }
   }
 }

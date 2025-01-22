@@ -1,3 +1,8 @@
+## Beta version 0.0.39 Updates
+
+- Badge variant types updated to be consistent
+- Chip nwo emits dissmiss instead of removed
+
 ## Beta version 0.0.38 Updates
 
 - Tooltip has new default postion "auto"

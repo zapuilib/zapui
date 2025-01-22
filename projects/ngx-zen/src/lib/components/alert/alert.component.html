@@ -1,22 +1,15 @@
 <div
-  class="__ngx__zen__alert__wrapper"
-  [ngClass]="[type, shape, variant]"
+  class="__ngx__zen__alert"
+  [ngClass]="[type, shape, variant, zenClass]"
+  [ngStyle]="getStyle()"
 >
-  <div
-    class="alert__inner"
-    [ngClass]="[variant === 'classic' ? type : 'default', zenClass]"
-    [ngStyle]="getStyle()"
-  >
-    <div class="content__wrapper">
-      @if(type !== 'default') {
-      <div class="type__wrapper">
-        <i class="fa-solid" [ngClass]="[icon]"></i>
-      </div>
-      }
-      <ng-content></ng-content>
+  <div class="content__wrapper">
+    <div *ngIf="type !== 'default'" class="type__wrapper">
+      <i class="fa-solid" [ngClass]="[icon]"></i>
     </div>
-    <div class="handler__wrapper" (click)="dismiss.emit()">
-      <i class="fa-solid fa-xmark"></i>
-    </div>
+    <ng-content></ng-content>
+  </div>
+  <div class="handler__wrapper" (click)="dismiss.emit()">
+    <i class="fa-solid fa-xmark"></i>
   </div>
 </div>

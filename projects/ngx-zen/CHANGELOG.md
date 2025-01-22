@@ -1,4 +1,48 @@
+## Beta version 0.0.38 Updates
 
+- Tooltip has new default postion "auto"
+- Tooltip can implicitly hide pointer
+- Dialog default buttons now emits the right data
+- Zen plugin now have its own entry point
+
+## Beta version 0.0.37 Updates
+
+- Fixed "It looks like you're using the disabled attribute with a reactive form directive. If you set disabled to true
+  when you set up this control in your component class, the disabled attribute will actually be set in the DOM for
+  you. We recommend using this approach to avoid 'changed after checked' errors."
+
+## Beta version 0.0.36 Updates
+
+- Fixed issue with previous version
+
+## Beta version 0.0.35 Updates
+
+- form control disabled added to the toggle and input
+
+## Beta version 0.0.34 Updates
+
+- chip-remove support removed
+
+## Beta version 0.0.33 Updates
+
+- zenClass now support chip-remove
+
+## Beta version 0.0.32 Updates
+
+- zenClass now support chip-icon
+
+## Beta version 0.0.31 Updates
+
+- zenClass now support chip-text
+
+## Beta version 0.0.30 Updates
+
+- Selected template bug fixed to return whole option
+-
+
+## Beta version 0.0.29 Updates
+
+- Select now supports selected template if not multiselect
 
 ## Beta version 0.0.28 Updates
 
@@ -7,13 +51,13 @@
 ## Beta version 0.0.27 Updates
 
 - Type updated for select options
-    
+
 ## Beta version 0.0.26 Updates
 
 - Select field now supports
-    - Resetting the field
-    - Async option updates using onSearch   
-    - Custom template for the option
+  - Resetting the field
+  - Async option updates using onSearch
+  - Custom template for the option
 
 ## Beta version 0.0.25 Updates
 
@@ -96,14 +140,14 @@
 
 ## Beta version 0.0.1 Updates
 
-1) Alert
-2) Button
-3) Chip
-4) Checkbox
-5) Dialog
-6) Input
-7) Modal
-8) Select
-9) Textarea
-10) Toggle
-11) Tooltip
+1. Alert
+2. Button
+3. Chip
+4. Checkbox
+5. Dialog
+6. Input
+7. Modal
+8. Select
+9. Textarea
+10. Toggle
+11. Tooltip

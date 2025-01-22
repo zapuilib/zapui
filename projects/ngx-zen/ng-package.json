@@ -7,9 +7,9 @@
   "allowedNonPeerDependencies": ["@tailwindcss/forms"],
   "assets": [
     {
-      "input": "src/lib/plugins",
+      "input": "./plugin",
       "glob": "**/*",
-      "output": "plugins"
+      "output": "plugin"
     }
   ]
 }

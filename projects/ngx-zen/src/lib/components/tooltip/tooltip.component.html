@@ -1,22 +1,29 @@
 <div class="__ngx__zen__tooltip__wrapper" [ngClass]="[zenClass]">
   @if (template) {
-  <div class="element" (mouseenter)="toggle()" (mouseleave)="toggle()">
+  <div
+    class="element"
+    (mouseenter)="showContent($event)"
+    (mouseleave)="hideContent()"
+  >
     <ng-container [ngTemplateOutlet]="template"></ng-container>
   </div>
   } @else {
   <div
     class="icon"
     [ngStyle]="getIconStyle()"
-    (mouseenter)="toggle()"
-    (mouseleave)="toggle()"
+    (mouseenter)="showContent($event)"
+    (mouseleave)="hideContent()"
   >
     <i class="fa-regular" [ngClass]="[icon ? icon : 'fa-question']"></i>
   </div>
   } @if (isActive) {
   <div
+    #contentRef
     class="content"
     [ngClass]="[shape, size, positionX, positionY]"
     [ngStyle]="getContentStyle()"
+    (mouseenter)="isActive = true"
+    (mouseleave)="isActive = false"
   >
     @if(text) {
     <p>{{ text }}</p>
@@ -24,7 +31,9 @@
 
     <ng-content></ng-content>
 
+    @if(!hidePointer){
     <span class="pointer" [ngStyle]="getPointerStyle()"></span>
+    }
   </div>
   }
 </div>

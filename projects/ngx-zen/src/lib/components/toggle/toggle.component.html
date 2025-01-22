@@ -22,6 +22,8 @@
       [ngStyle]="getToggleStyle()"
       (click)="handleToggle()"
       (blur)="handleFocus()"
+      [attr.aria-disabled]="control.disabled"
+      [disabled]="control.disabled"
     >
       <span
         class="roller"

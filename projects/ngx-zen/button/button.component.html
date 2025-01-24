@@ -1,0 +1,12 @@
+<button
+  [ngClass]="[type, size, shape, variant, zenClass]"
+  [disabled]="disabled"
+>
+  @if(icon && iconPosition) {
+  <i class="fa-solid" [ngClass]="[icon, iconPosition]"></i>
+  } @else if (img && imgPosition) {
+  <img [src]="img" alt="Logo" [ngClass]="[imgPosition]" />
+  } @if(type !== 'icononly') {
+  {{ text }}
+  }
+</button>

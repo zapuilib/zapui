@@ -39,6 +39,6 @@ export const appConfig: ApplicationConfig = {
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
-    importProvidersFrom(NgxZenModule.forRoot(ngxConfig)),
+    importProvidersFrom(NgxZenModule),
   ],
 };

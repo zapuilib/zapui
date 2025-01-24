@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { NgxZenModule } from 'ngx-zen';
+import { NgxButtonComponent } from 'ngx-zen/button';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, NgxZenModule],
+  imports: [RouterOutlet, NgxButtonComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })

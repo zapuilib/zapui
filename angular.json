@@ -6,7 +6,7 @@
     "ngx-zen": {
       "projectType": "library",
       "root": "projects/ngx-zen",
-      "sourceRoot": "projects/ngx-zen/src",
+      "sourceRoot": "projects/ngx-zen",
       "prefix": "lib",
       "architect": {
         "build": {

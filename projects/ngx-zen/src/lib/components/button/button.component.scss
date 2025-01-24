@@ -3,6 +3,22 @@ button {
   @apply hover:opacity-80;
   @apply flex items-center;
   @apply border;
+  @apply bg-tertiary;
+  @apply text-primary;
+  @apply border-tertiary;
+  @apply text-md;
+
+  &.link {
+    @apply text-tertiary;
+  }
+
+  &.outlined {
+    @apply text-tertiary;
+  }
+
+  &.tight {
+    @apply text-xs;
+  }
 
   &.pill {
     @apply rounded-full;

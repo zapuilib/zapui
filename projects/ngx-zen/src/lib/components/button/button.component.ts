@@ -1,9 +1,4 @@
-import { Component, Inject, Input } from '@angular/core';
-
-import { NGX_ZEN_CONFIG } from '../../tokens/ngx-zen.tokens';
-
-import type { NgxZenConfig } from '../../interfaces/config.interface';
-import type { Styles } from '../../interfaces/style.interface';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'ngx-zen-button',
@@ -22,23 +17,4 @@ export class ButtonComponent {
   @Input() imgPosition: 'left' | 'right' = 'left';
   @Input() variant: 'outlined' | 'default' | 'link' = 'default';
   @Input() disabled: boolean = false;
-
-  constructor(@Inject(NGX_ZEN_CONFIG) private config: NgxZenConfig) {}
-
-  getStyle(): Styles {
-    return {
-      backgroundColor: this.config.colors.tertiary,
-      color:
-        this.variant === 'link'
-          ? this.config.colors.tertiary
-          : this.variant === 'outlined'
-          ? this.config.colors.tertiary
-          : this.config.colors.primary,
-      borderColor: this.config.colors.tertiary,
-      fontSize:
-        this.size === 'tight'
-          ? this.config.fontSize.xs
-          : this.config.fontSize.md,
-    };
-  }
 }

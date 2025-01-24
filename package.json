@@ -19,8 +19,10 @@
     "@angular/platform-browser-dynamic": "^18.2.5",
     "@angular/router": "^18.2.5",
     "clipboard": "^2.0.11",
+    "http-proxy-middleware": "^3.0.3",
     "ngx-markdown": "^18.1.0",
     "prismjs": "^1.29.0",
+    "rollup": "^4.32.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.14.10"
@@ -38,8 +40,8 @@
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
     "ng-packagr": "^18.2.1",
-    "postcss": "^8.4.47",
-    "tailwindcss": "^3.4.12",
-    "typescript": "~5.4.5"
+    "postcss": "^8.5.1",
+    "tailwindcss": "^3.4.17",
+    "typescript": ">=5.4 <5.6"
   }
 }

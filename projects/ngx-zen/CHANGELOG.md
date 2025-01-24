@@ -1,7 +1,8 @@
 ## Beta version 0.0.39 Updates
 
 - Badge variant types updated to be consistent
-- Chip nwo emits dissmiss instead of removed
+- Chip now emits dissmiss instead of removed
+- Tooltip auto position content wrapper now has z-index of 999
 
 ## Beta version 0.0.38 Updates
 

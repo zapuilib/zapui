@@ -9,7 +9,7 @@
   }
 
   .content {
-    @apply absolute min-w-44;
+    @apply absolute min-w-44 z-[999];
     @apply border;
 
     p {

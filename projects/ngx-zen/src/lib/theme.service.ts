@@ -6,7 +6,7 @@ import { NgxZenConfig } from '../public-api';
 import {
   lightTheme,
   defaultConfig,
-  darkTheme ,
+  darkTheme,
 } from './constants/default-config.constants';
 
 @Injectable({
@@ -29,7 +29,12 @@ export class ThemeService {
         ? lightTheme
         : config.theme === 'dark'
         ? darkTheme
-        : config.theme;
+        : config.theme || darkTheme;
+
+    if (config.shape) root.style.setProperty('--shape', config.shape);
+
+    if(config.btnSize) root.style.setProperty('--btn-size', config.btnSize);
+
 
     Object.entries(theme.colors || {}).forEach(([key, value]) => {
       root.style.setProperty(`--color-${key}`, value);

@@ -1,8 +1,9 @@
 type HexCode = `#${string}`;
 
 export interface NgxZenConfig {
-  theme: 'light' | 'dark' | ZenTheme;
-  shape: 'pill' | 'curve' | 'default';
+  theme?: 'light' | 'dark' | ZenTheme;
+  shape?: 'pill' | 'curve' | 'default';
+  btnSize?: 'compact' | 'wide' | 'tight' | 'default';
 }
 
 export interface ZenTheme {

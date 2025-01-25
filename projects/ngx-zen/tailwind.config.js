@@ -1,11 +1,12 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
+  prefix: "zen-",
   content: ["./src/**/*.{html,ts}"],
   darkMode: "selector",
   safelist: [
     {
-      pattern: /(bg-|text-).*/,
-    }
+      pattern: /(zen-bg-|zen-text-).*/,
+    },
   ],
   theme: {
     extend: {

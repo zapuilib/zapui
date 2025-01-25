@@ -11,14 +11,18 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primary: 'var(--color-primary)',
-        secondary: 'var(--color-secondary)',
-        tertiary: 'var(--color-tertiary)',
-        quaternary: 'var(--color-quaternary)',
-        success: 'var(--color-success)',
-        error: 'var(--color-error)',
-        warning: 'var(--color-warning)',
-        info: 'var(--color-info)',
+        primary: 'var(--zen-color-primary)',
+        secondary: 'var(--zen-color-secondary)',
+        tertiary: 'var(--zen-color-tertiary)',
+        quaternary: 'var(--zen-color-quaternary)',
+        success: 'var(--zen-color-success)',
+        successText: 'var(--zen-color-success-text)',
+        error: 'var(--zen-color-error)',
+        errorText: 'var(--zen-color-error-text)',
+        warning: 'var(--zen-color-warning)',
+        warningText: 'var(--zen-color-warning-text)',
+        info: 'var(--zen-color-info)',
+        infoText: 'var(--zen-color-info-text)',
       },
       fontSize: {
         '7xl': 'var(--font-size-7xl)',
@@ -39,5 +43,5 @@ module.exports = {
       },
     },
   },
-  plugins: [require("@tailwindcss/forms"), require("./plugin/base")],
+  plugins: [require("@tailwindcss/forms"), require("./plugin/base"),],
 };

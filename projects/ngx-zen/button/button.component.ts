@@ -21,16 +21,26 @@ export class NgxButtonComponent implements OnInit {
   @Input() variant: 'outlined' | 'default' | 'link' = 'default';
   @Input() disabled: boolean = false;
 
-  private globalConfig: { shape: string, btnSize: string } = { shape: '', btnSize: '' };
+  private globalConfig: { shape: string; btnSize: string } = {
+    shape: '',
+    btnSize: '',
+  };
 
   ngOnInit(): void {
     const rootStyles = getComputedStyle(document.documentElement);
-    this.globalConfig.shape = rootStyles.getPropertyValue('--shape').trim();
-    this.globalConfig.btnSize = rootStyles.getPropertyValue('--btn-size').trim();
+    this.globalConfig.shape = rootStyles.getPropertyValue('--zen-shape').trim();
+    this.globalConfig.btnSize = rootStyles
+      .getPropertyValue('--zen-btn-size')
+      .trim();
   }
-  
-  get buttonClasses(): string[] {
-    return [this.type, this.shape || this.globalConfig.shape, this.size || this.globalConfig.btnSize, this.variant, this.zenClass]
-      .filter(cls => cls && cls !== 'default');
+
+  get classes(): string[] {
+    return [
+      this.type,
+      this.shape || this.globalConfig.shape,
+      this.size || this.globalConfig.btnSize,
+      this.variant,
+      this.zenClass,
+    ].filter((cls) => cls && cls !== 'default');
   }
 }

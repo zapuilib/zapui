@@ -31,17 +31,18 @@ export class ThemeService {
         ? darkTheme
         : config.theme || darkTheme;
 
-    if (config.shape) root.style.setProperty('--shape', config.shape);
+    if (config.shape) root.style.setProperty('--zen-shape', config.shape);
 
-    if(config.btnSize) root.style.setProperty('--btn-size', config.btnSize);
+    if(config.btnSize) root.style.setProperty('--zen-btn-size', config.btnSize);
 
 
     Object.entries(theme.colors || {}).forEach(([key, value]) => {
-      root.style.setProperty(`--color-${key}`, value);
+      const kebabKey = key.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase();      
+      root.style.setProperty(`--zen-color-${kebabKey}`, value);
     });
 
     Object.entries(theme.fontSize || {}).forEach(([key, value]) => {
-      root.style.setProperty(`--font-size-${key}`, value);
+      root.style.setProperty(`--zen-font-size-${key}`, value);
     });
   }
 }

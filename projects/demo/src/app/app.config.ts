@@ -9,7 +9,7 @@ import { NgxZenConfig, NgxZenModule } from 'ngx-zen';
 import { routes } from './app.routes';
 
 const ngxConfig: NgxZenConfig = {
-  shape: 'pill',
+  shape: 'curve',
   btnSize: 'wide',
 };
 

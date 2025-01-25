@@ -13,9 +13,13 @@ export interface ZenTheme {
     tertiary: HexCode;
     quaternary: HexCode;
     success: HexCode;
+    successText: HexCode;
     error: HexCode;
+    errorText: HexCode;
     warning: HexCode;
+    warningText: HexCode;
     info: HexCode;
+    infoText: HexCode;
   };
   fontSize: {
     '7xl': string;

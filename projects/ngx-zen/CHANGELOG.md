@@ -2,6 +2,10 @@
 
 - Root config format changed, see the root config documentation for full
 - Curve shape changed from 4px to 6px
+- Button have its own entry
+- Alert have its own entry
+- Alert does not support classic variant anymore
+- Root config now support 4 new colors for successText, warningText, errorText and infoText
 
 ## Beta version 0.0.39 Updates
 

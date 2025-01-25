@@ -1,6 +1,11 @@
 type HexCode = `#${string}`;
 
 export interface NgxZenConfig {
+  theme: 'light' | 'dark' | ZenTheme;
+  shape: 'pill' | 'curve' | 'default';
+}
+
+export interface ZenTheme {
   colors: {
     primary: HexCode;
     secondary: HexCode;

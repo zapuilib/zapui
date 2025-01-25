@@ -2,17 +2,15 @@ import { ModuleWithProviders, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 
-import { COMPONENTS } from './components';
-import { INTERNAL_COMPONENTS } from './components/internal';
 import { NgxZenConfig } from './interfaces/config.interface';
 import { NGX_ZEN_CONFIG } from './tokens/ngx-zen.tokens';
 import { defaultConfig } from './constants/default-config.constants';
 import { ThemeService } from './theme.service';
 
 @NgModule({
-  declarations: [INTERNAL_COMPONENTS, COMPONENTS],
+  declarations: [],
   imports: [CommonModule, ReactiveFormsModule],
-  exports: [COMPONENTS],
+  exports: [],
   providers: [
     { provide: NGX_ZEN_CONFIG, useValue: defaultConfig },
   ],

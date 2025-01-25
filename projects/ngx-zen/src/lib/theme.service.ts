@@ -3,7 +3,11 @@ import { DOCUMENT } from '@angular/common';
 
 import { NGX_ZEN_CONFIG } from './tokens/ngx-zen.tokens';
 import { NgxZenConfig } from '../public-api';
-import { defaultConfig } from './constants/default-config.constants';
+import {
+  lightTheme,
+  defaultConfig,
+  darkTheme ,
+} from './constants/default-config.constants';
 
 @Injectable({
   providedIn: 'root',
@@ -20,12 +24,18 @@ export class ThemeService {
     const root = this.document.documentElement;
 
     const config = this.config || defaultConfig;
+    const theme =
+      config.theme === 'light'
+        ? lightTheme
+        : config.theme === 'dark'
+        ? darkTheme
+        : config.theme;
 
-    Object.entries(config.colors || {}).forEach(([key, value]) => {
+    Object.entries(theme.colors || {}).forEach(([key, value]) => {
       root.style.setProperty(`--color-${key}`, value);
     });
 
-    Object.entries(config.fontSize || {}).forEach(([key, value]) => {
+    Object.entries(theme.fontSize || {}).forEach(([key, value]) => {
       root.style.setProperty(`--font-size-${key}`, value);
     });
   }

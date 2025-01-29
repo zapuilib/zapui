@@ -5,6 +5,7 @@ import {
   ZenButtonComponent,
   ZenAlertComponent,
   ZenBadgeComponent,
+  ZenChipComponent
 } from 'ngx-zen/core';
 
 @Component({
@@ -15,6 +16,7 @@ import {
     ZenAlertComponent,
     ZenBadgeComponent,
     ZenButtonComponent,
+    ZenChipComponent
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',

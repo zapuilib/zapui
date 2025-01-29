@@ -1,0 +1,57 @@
+.__ngx__zen__chip__wrapper {
+  @apply zen-inline-flex zen-items-center zen-px-3 zen-py-1 zen-font-medium zen-rounded-full zen-bg-tertiary zen-border-transparent zen-text-primary zen-text-sm;
+
+  &.small {
+    @apply zen-text-xs;
+  }
+
+  &.wide {
+    @apply zen-px-4;
+  }
+
+  &.outlined {
+    @apply zen-border-2 zen-bg-transparent zen-border-tertiary zen-text-tertiary;
+  }
+
+  &.disabled {
+    @apply zen-opacity-50 zen-cursor-not-allowed;
+  }
+
+  i {
+    @apply zen-flex-shrink-0 zen-flex zen-items-center;
+  }
+
+  .chip__remove {
+    @apply zen-bg-none zen-border-none zen-text-inherit zen-cursor-pointer zen-ml-2 zen-p-0 zen-text-sm zen-opacity-70 zen-transition-opacity;
+
+    &:hover {
+      @apply zen-opacity-100;
+    }
+
+    &:disabled {
+      @apply zen-cursor-not-allowed;
+    }
+  }
+
+  .chip__text {
+    @apply zen-flex-grow zen-flex zen-items-center zen-text-primary;
+  }
+
+
+  &.outlined {
+    .chip__text {
+      @apply zen-text-tertiary;
+    }
+  }
+
+
+  i {
+    &.right {
+      @apply zen-pl-2 zen-order-last;
+    }
+
+    &.left {
+      @apply zen-pr-2;
+    }
+  }
+}

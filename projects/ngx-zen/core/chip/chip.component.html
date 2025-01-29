@@ -1,0 +1,15 @@
+<div
+  class="__ngx__zen__chip__wrapper"
+  [ngClass]="classes"
+>
+  @if (icon) {
+  <i class="fa-solid chip__icon" [ngClass]="[icon, iconPosition]"></i>
+  }
+  <span class="chip__text">{{ text }}</span>
+
+  @if (dismissible) {
+  <button class="chip__remove" (click)="onRemove($event)" [disabled]="disabled">
+    <i class="fa-solid fa-times chip__icon"></i>
+  </button>
+  }
+</div>

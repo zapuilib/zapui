@@ -41,7 +41,7 @@ export const darkTheme: ZenTheme = {
     primary: '#000000',
     secondary: '#FFFFFF',
     tertiary: '#FFFFFF',
-    quaternary: '#374151',
+    quaternary: '#9CA3AF',
     success: '#04E824',
     successText: '#000000',
     warning: '#f6ad55',

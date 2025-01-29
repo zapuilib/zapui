@@ -7,6 +7,8 @@
 - Alert does not support classic variant anymore
 - Root config now support 4 new colors for successText, warningText, errorText and infoText
 - Badge component added
+- Dialog, modal, input entry updated
+- Input focus ring goes outside
 
 ## Beta version 0.0.39 Updates
 

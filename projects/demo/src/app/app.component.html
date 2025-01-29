@@ -1,5 +1,8 @@
+<h1 class="text-white mx-auto max-w-screen-2xl font-semibold pt-10 text-3xl">
+  Your component library
+</h1>
 <div
-  class="wrapper mx-auto max-w-screen-2xl grid grid-cols-3 p-20 min-h-screen gap-10"
+  class="wrapper mx-auto max-w-screen-2xl grid grid-cols-3 py-10 min-h-screen gap-5"
 >
   <ngx-zen-button text="Explore now"></ngx-zen-button>
   <ngx-zen-badge [count]="100"></ngx-zen-badge>
@@ -7,7 +10,11 @@
   <div class="relative w-full h-full col-span-2">
     <ngx-zen-dialog zenClass="!absolute !bg-transparent"></ngx-zen-dialog>
   </div>
-  
+  <ngx-zen-input
+    label="Username"
+    formControl="usernameControl"
+    placeholder="Enter your username"
+  ></ngx-zen-input>
   <div class="relative w-full h-full">
     <ngx-zen-modal zenClass="!absolute !bg-transparent">
       <h2 class="font-semibold">Modal</h2>

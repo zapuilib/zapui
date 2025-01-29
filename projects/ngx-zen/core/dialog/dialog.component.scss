@@ -9,7 +9,7 @@
 
   .inner {
     @apply zen-relative zen-flex zen-flex-col zen-m-5;
-    @apply zen-w-[30rem] zen-min-h-[14rem] zen-p-5 zen-bg-tertiary;
+    @apply zen-w-[30rem] zen-min-h-[14rem] zen-p-5 zen-bg-secondary;
 
     .header {
       @apply zen-flex zen-justify-between zen-items-center;

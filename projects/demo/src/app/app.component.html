@@ -1,9 +1,10 @@
-<div class="flex flex-col items-center justify-center h-screen gap-y-10">
-  <ngx-zen-button
-    text="Explore now"
-  ></ngx-zen-button>
-  <ngx-zen-badge text="Explore now" [count]="100"></ngx-zen-badge>
-  <ngx-zen-chip text="Explore now"></ngx-zen-chip>
+<div class="flex flex-col items-center justify-center min-h-screen gap-y-10">
+  <ngx-zen-button text="Explore now"></ngx-zen-button>
+  <ngx-zen-badge [count]="100"></ngx-zen-badge>
+  <ngx-zen-chip text="Pending"></ngx-zen-chip>
+  <div class="relative w-[480px] h-[240px]">
+    <ngx-zen-dialog zenClass="!absolute"></ngx-zen-dialog>
+  </div>
 </div>
 
 <!-- <ngx-zen-alert type="info" class="fixed top-0">

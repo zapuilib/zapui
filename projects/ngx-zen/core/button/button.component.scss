@@ -1,18 +1,14 @@
 button {
-  @apply zen-px-4 zen-py-2;
-  @apply hover:zen-opacity-90;
+  @apply zen-px-4 zen-py-2 zen-transition-colors zen-duration-150;
   @apply zen-flex zen-items-center;
   @apply zen-border;
   @apply zen-bg-tertiary;
   @apply zen-text-primary;
   @apply zen-border-tertiary;
   @apply zen-text-md;
+  @apply hover:zen-bg-tertiary/90 hover:zen-border-tertiary/90;
 
   &.link {
-    @apply zen-text-tertiary;
-  }
-
-  &.outlined {
     @apply zen-text-tertiary;
   }
 
@@ -45,7 +41,7 @@ button {
   }
 
   &.outlined {
-    @apply zen-border;
+    @apply zen-border zen-text-tertiary;
     @apply zen-bg-transparent #{!important};
   }
 

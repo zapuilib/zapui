@@ -1,5 +1,5 @@
 .__ngx__zen__chip__wrapper {
-  @apply zen-inline-flex zen-items-center zen-px-3 zen-py-1 zen-font-medium zen-rounded-full zen-bg-tertiary zen-border-transparent zen-text-primary zen-text-sm;
+  @apply zen-inline-flex zen-items-center zen-px-3 zen-py-1 zen-font-medium zen-rounded-lg zen-bg-tertiary zen-border-transparent zen-text-primary zen-text-sm;
 
   &.small {
     @apply zen-text-xs;
@@ -7,6 +7,14 @@
 
   &.wide {
     @apply zen-px-4;
+  }
+
+  &.pill {
+    @apply zen-rounded-full;
+  }
+
+  &.curve {
+    @apply zen-rounded-md;
   }
 
   &.outlined {
@@ -52,6 +60,38 @@
 
     &.left {
       @apply zen-pr-2;
+    }
+  }
+
+  &.info {
+    @apply zen-bg-info;
+
+    span {
+      @apply zen-text-infoText;
+    }
+  }
+
+  &.success {
+    @apply zen-bg-success;
+
+    span {
+      @apply zen-text-successText;
+    }
+  }
+
+  &.warning {
+    @apply zen-bg-warning;
+
+    span {
+      @apply zen-text-warningText;
+    }
+  }
+
+  &.error {
+    @apply zen-bg-error;
+
+    span {
+      @apply zen-text-errorText;
     }
   }
 }

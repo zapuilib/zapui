@@ -11,18 +11,54 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primary: 'var(--zen-color-primary)',
-        secondary: 'var(--zen-color-secondary)',
-        tertiary: 'var(--zen-color-tertiary)',
-        quaternary: 'var(--zen-color-quaternary)',
-        success: 'var(--zen-color-success)',
-        successText: 'var(--zen-color-success-text)',
-        error: 'var(--zen-color-error)',
-        errorText: 'var(--zen-color-error-text)',
-        warning: 'var(--zen-color-warning)',
-        warningText: 'var(--zen-color-warning-text)',
-        info: 'var(--zen-color-info)',
-        infoText: 'var(--zen-color-info-text)',
+        primary: ({ opacityValue }) =>
+          opacityValue
+            ? `rgba(var(--zen-color-primary), ${opacityValue})`
+            : `rgb(var(--zen-color-primary))`,
+        secondary: ({ opacityValue }) =>
+          opacityValue
+            ? `rgba(var(--zen-color-secondary), ${opacityValue})`
+            : `rgb(var(--zen-color-secondary))`,
+        tertiary: ({ opacityValue }) =>
+          opacityValue
+            ? `rgba(var(--zen-color-tertiary), ${opacityValue})`
+            : `rgb(var(--zen-color-tertiary))`,
+        quaternary: ({ opacityValue }) =>
+          opacityValue
+            ? `rgba(var(--zen-color-quaternary), ${opacityValue})`
+            : `rgb(var(--zen-color-quaternary))`,
+        success: ({ opacityValue }) =>
+          opacityValue
+            ? `rgba(var(--zen-color-success), ${opacityValue})`
+            : `rgb(var(--zen-color-success))`,
+        error: ({ opacityValue }) =>
+          opacityValue
+            ? `rgba(var(--zen-color-error), ${opacityValue})`
+            : `rgb(var(--zen-color-error))`,
+        warning: ({ opacityValue }) =>
+          opacityValue
+            ? `rgba(var(--zen-color-warning), ${opacityValue})`
+            : `rgb(var(--zen-color-warning))`,
+        info: ({ opacityValue }) =>
+          opacityValue
+            ? `rgba(var(--zen-color-info), ${opacityValue})`
+            : `rgb(var(--zen-color-info))`,
+        successText: ({ opacityValue }) =>
+          opacityValue
+            ? `rgba(var(--zen-color-success-text), ${opacityValue})`
+            : `rgb(var(--zen-color-success-text))`,
+        errorText: ({ opacityValue }) =>
+          opacityValue
+            ? `rgba(var(--zen-color-error-text), ${opacityValue})`
+            : `rgb(var(--zen-color-error-text))`,
+        warningText: ({ opacityValue }) =>
+          opacityValue
+            ? `rgba(var(--zen-color-warning-text), ${opacityValue})`
+            : `rgb(var(--zen-color-warning-text))`,
+        infoText: ({ opacityValue }) =>
+          opacityValue
+            ? `rgba(var(--zen-color-info-text), ${opacityValue})`
+            : `rgb(var(--zen-color-info-text))`,
       },
       fontSize: {
         '7xl': 'var(--zen-font-size-7xl)',

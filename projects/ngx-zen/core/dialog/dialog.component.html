@@ -1,0 +1,46 @@
+<div
+  class="__ngx__zen__dialog__wrapper"
+  [ngClass]="classes"
+>
+  <div class="inner">
+    <div class="content">
+      <div class="header">
+        <h3>{{ title }}</h3>
+
+        <div class="handler" (click)="cancel.emit()">
+          <i class="fa-solid fa-xmark"></i>
+        </div>
+      </div>
+
+      @if(text) {
+      <div class="helper">
+        <p class="text">{{ text }}</p>
+      </div>
+      }
+
+      <ng-content></ng-content>
+    </div>
+
+    <div class="footer">
+      @if (secondaryBtnTemplate) {
+      <ng-container [ngTemplateOutlet]="secondaryBtnTemplate"></ng-container>
+      } @else {
+      <button
+        class="btn secondary"
+        (click)="cancel.emit()"
+      >
+        No, cancel
+      </button>
+      } @if (primaryBtnTemplate) {
+      <ng-container [ngTemplateOutlet]="primaryBtnTemplate"></ng-container>
+      } @else {
+      <button
+        class="btn primary"
+        (click)="confirm.emit()"
+      >
+        Yes, confirm
+      </button>
+      }
+    </div>
+  </div>
+</div>

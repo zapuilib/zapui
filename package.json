@@ -5,6 +5,10 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
+    "build:lib" : "ng build ngx-zen",
+    "build:lib:watch" : "ng build ngx-zen --watch",
+    "start:demo" : "ng serve demo",
+    "publish": "ng build ngx-zen --prod && cd dist/ngx-zen && npm publish",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },

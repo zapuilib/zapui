@@ -23,7 +23,7 @@
   }
 
   &__input {
-    @apply zen-text-secondary zen-border-secondary zen-text-md;
+    @apply zen-text-secondary zen-border-secondary/10 zen-text-md;
     @apply zen-w-full zen-px-3 zen-py-2 zen-border zen-bg-transparent;
     @apply focus-within:zen-outline-0 focus-within:zen-ring-2  focus-within:zen-ring-offset-0;
   }
@@ -61,7 +61,7 @@
   }
 
   input::placeholder {
-    @apply zen-text-quaternary/50;
+    @apply zen-text-secondary/30;
   }
 
   input:focus {

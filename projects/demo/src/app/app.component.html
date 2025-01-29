@@ -1,9 +1,21 @@
-<div class="flex flex-col items-center justify-center min-h-screen gap-y-10">
+<div
+  class="wrapper mx-auto max-w-screen-2xl grid grid-cols-3 p-20 min-h-screen gap-10"
+>
   <ngx-zen-button text="Explore now"></ngx-zen-button>
   <ngx-zen-badge [count]="100"></ngx-zen-badge>
   <ngx-zen-chip text="Pending"></ngx-zen-chip>
-  <div class="relative w-[480px] h-[240px]">
-    <ngx-zen-dialog zenClass="!absolute"></ngx-zen-dialog>
+  <div class="relative w-full h-full col-span-2">
+    <ngx-zen-dialog zenClass="!absolute !bg-transparent"></ngx-zen-dialog>
+  </div>
+  
+  <div class="relative w-full h-full">
+    <ngx-zen-modal zenClass="!absolute !bg-transparent">
+      <h2 class="font-semibold">Modal</h2>
+      <p class="mt-2">
+        Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua
+      </p>
+    </ngx-zen-modal>
   </div>
 </div>
 

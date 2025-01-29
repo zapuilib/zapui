@@ -1,0 +1,15 @@
+<div class="__ngx__modal__wrapper" [ngClass]="classes">
+  <div class="__ngx__modal__inner wrapper">
+    <div class="__ngx__modal modal">
+      <div class="handler" (click)="close.emit()">
+        <i class="fa-solid fa-xmark"></i>
+      </div>
+      <div #modalContent class="content">
+        <ng-content></ng-content>
+      </div>
+      @if(!modalContent.hasChildNodes()) {
+      <div class="empty-content">No content available.</div>
+      }
+    </div>
+  </div>
+</div>

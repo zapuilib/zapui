@@ -1,0 +1,5 @@
+.wrapper {
+    & > * { 
+        @apply flex items-center justify-center bg-zinc-900 rounded-xl;
+    }
+}

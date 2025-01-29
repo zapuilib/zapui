@@ -14,12 +14,12 @@ import { CommonModule } from '@angular/common';
   templateUrl: './alert.component.html',
   styleUrls: ['./alert.component.scss'],
 })
-export class NgxAlertComponent implements OnInit {
+export class ZenAlertComponent implements OnInit {
   @Output() dismiss: EventEmitter<void> = new EventEmitter<void>();
   @Input() type: 'success' | 'warning' | 'error' | 'info' | 'default' =
     'default';
   @Input() variant: 'default' = 'default';
-  @Input() shape!: 'curve' | 'default';
+  @Input() shape!: 'curve' | 'pill' | 'default';
   @Input() icon: string = '';
   @Input() zenClass: string = '';
 

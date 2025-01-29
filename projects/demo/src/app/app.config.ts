@@ -10,7 +10,7 @@ import { routes } from './app.routes';
 
 const ngxConfig: NgxZenConfig = {
   shape: 'curve',
-  btnSize: 'wide',
+  btnSize: 'default',
 };
 
 export const appConfig: ApplicationConfig = {

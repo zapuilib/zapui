@@ -1,0 +1,27 @@
+.__ngx__zen__badge {
+  @apply zen-border zen-rounded-full zen-w-6 zen-h-6 zen-flex zen-justify-center zen-items-center zen-bg-tertiary zen-text-primary zen-text-xs zen-border-transparent;
+
+  &.empty {
+    @apply zen-h-2 zen-w-2;
+  }
+
+  &.outlined {
+    @apply zen-bg-transparent zen-text-primary zen-border-tertiary;
+  }
+
+  &.info {
+    @apply zen-bg-info zen-text-infoText;
+  }
+
+  &.success {
+    @apply zen-bg-success zen-text-successText;
+  }
+
+  &.warning {
+    @apply zen-bg-warning zen-text-warningText;
+  }
+
+  &.error {
+    @apply zen-bg-error zen-text-errorText;
+  }
+}

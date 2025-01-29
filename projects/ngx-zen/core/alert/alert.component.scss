@@ -24,6 +24,10 @@
   &.curve {
     @apply zen-rounded-lg;
   }
+
+  &.pill {
+    @apply zen-rounded-full;
+  }
 }
 
 .handler__wrapper {

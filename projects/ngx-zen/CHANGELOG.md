@@ -2,10 +2,11 @@
 
 - Root config format changed, see the root config documentation for full
 - Curve shape changed from 4px to 6px
-- Button have its own entry
-- Alert have its own entry
+- New core entry added
+- Button padding top changed from py-2 to py-2.5
 - Alert does not support classic variant anymore
 - Root config now support 4 new colors for successText, warningText, errorText and infoText
+- Badge component added
 
 ## Beta version 0.0.39 Updates
 

@@ -8,7 +8,7 @@ import { Component, Input, OnInit } from '@angular/core';
   templateUrl: './button.component.html',
   styleUrls: ['./button.component.scss'],
 })
-export class NgxButtonComponent implements OnInit {
+export class ZenButtonComponent implements OnInit {
   @Input() text = 'Submit';
   @Input() zenClass: string = '';
   @Input() shape!: 'pill' | 'curve' | 'default';
@@ -41,6 +41,6 @@ export class NgxButtonComponent implements OnInit {
       this.size || this.globalConfig.btnSize,
       this.variant,
       this.zenClass,
-    ].filter((cls) => cls && cls !== 'default');
+    ].filter((cls) => cls && cls !== 'default')
   }
 }

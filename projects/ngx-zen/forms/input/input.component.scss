@@ -26,6 +26,7 @@
     @apply zen-text-secondary zen-border-secondary/10 zen-text-md;
     @apply zen-w-full zen-px-3 zen-py-2 zen-border zen-bg-transparent;
     @apply focus-within:zen-outline-0 focus-within:zen-ring-2  focus-within:zen-ring-offset-0;
+    @apply zen-rounded-[var(--zen-shape)];
   }
 
   &.left {

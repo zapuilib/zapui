@@ -32,12 +32,6 @@ export class ControlValueAccessorDirective<T>
   ngOnInit(): void {
     this.setFormControl();
     this.isRequired = this.control?.hasValidator(Validators.required) ?? false;
-    if (typeof window !== 'undefined') {
-      const rootStyles = getComputedStyle(document.documentElement);
-      this.globalConfig.shape = rootStyles
-        .getPropertyValue('--zen-shape')
-        .trim();
-    }
   }
 
   setFormControl() {

@@ -11,6 +11,7 @@
 
     .__ngx__modal {
       @apply zen-w-full zen-p-5 zen-relative zen-bg-secondary zen-text-md;
+      @apply zen-rounded-[var(--zen-shape)];
 
       .handler {
         @apply zen-absolute zen-top-3 zen-right-3 zen-cursor-pointer;

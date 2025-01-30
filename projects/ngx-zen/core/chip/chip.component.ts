@@ -8,7 +8,7 @@ import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
   templateUrl: './chip.component.html',
   styleUrls: ['./chip.component.scss'],
 })
-export class ZenChipComponent implements OnInit {
+export class ZenChipComponent {
   @Output() dissmiss = new EventEmitter<void>();
   @Input() text = 'Chip';
   @Input() zenClass: string = '';
@@ -22,19 +22,6 @@ export class ZenChipComponent implements OnInit {
   @Input() disabled = false;
   @Input() dismissible = false;
 
-  private globalConfig: { shape: string } = {
-    shape: '',
-  };
-
-  ngOnInit(): void {
-    if (typeof window !== 'undefined') {
-      const rootStyles = getComputedStyle(document.documentElement);
-      this.globalConfig.shape = rootStyles
-        .getPropertyValue('--zen-shape')
-        .trim();
-    }
-  }
-
   onRemove(event: Event) {
     event.stopPropagation();
     if (!this.disabled && this.dismissible) {
@@ -45,7 +32,7 @@ export class ZenChipComponent implements OnInit {
   get classes(): string[] {
     return [
       this.type,
-      this.shape || this.globalConfig.shape,
+      this.shape,
       this.size,
       this.variant,
       this.zenClass,

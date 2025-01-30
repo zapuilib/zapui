@@ -18,7 +18,7 @@ import { CommonModule } from '@angular/common';
   templateUrl: './modal.component.html',
   styleUrls: ['./modal.component.scss'],
 })
-export class ZenModalComponent implements OnInit {
+export class ZenModalComponent {
   @ViewChild('modalContent') modalContent!: ElementRef;
   @Output() close: EventEmitter<void> = new EventEmitter<void>();
   @Input() shape!: 'curve' | 'default' | 'pill';
@@ -29,22 +29,10 @@ export class ZenModalComponent implements OnInit {
   handleEsc(event: KeyboardEvent): void {
     if (event.key === 'Escape' || event.code === 'Escape') this.close.emit();
   }
-  private globalConfig: { shape: string } = {
-    shape: '',
-  };
-
-  ngOnInit(): void {
-    if (typeof window !== 'undefined') {
-      const rootStyles = getComputedStyle(document.documentElement);
-      this.globalConfig.shape = rootStyles
-        .getPropertyValue('--zen-shape')
-        .trim();
-    }
-  }
 
   get classes(): string[] {
     return [
-      this.shape || this.globalConfig.shape,
+      this.shape,
       this.size,
       this.style,
       this.zenClass,

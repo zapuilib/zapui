@@ -16,7 +16,7 @@ import { CommonModule } from '@angular/common';
   templateUrl: './dialog.component.html',
   styleUrls: ['./dialog.component.scss'],
 })
-export class ZenDialogComponent implements OnInit {
+export class ZenDialogComponent {
   @Output() confirm: EventEmitter<void> = new EventEmitter<void>();
   @Output() cancel: EventEmitter<void> = new EventEmitter<void>();
   @Input() title: string = 'Are you sure?';
@@ -31,22 +31,9 @@ export class ZenDialogComponent implements OnInit {
     if (event.key === 'Escape' || event.code === 'Escape') this.cancel.emit();
   }
 
-  private globalConfig: { shape: string } = {
-    shape: '',
-  };
-
-  ngOnInit(): void {
-    if (typeof window !== 'undefined') {
-      const rootStyles = getComputedStyle(document.documentElement);
-      this.globalConfig.shape = rootStyles
-        .getPropertyValue('--zen-shape')
-        .trim();
-    }
-  }
-
   get classes(): string[] {
     return [
-      this.shape || this.globalConfig.shape,
+      this.shape,
       this.position,
       this.zenClass,
     ].filter((cls) => cls && cls !== 'default');

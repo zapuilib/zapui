@@ -1,6 +1,7 @@
 .__ngx__zen__chip__wrapper {
   @apply zen-inline-flex zen-items-center zen-px-3 zen-py-1 zen-font-medium zen-rounded-lg zen-bg-tertiary zen-border-transparent zen-text-primary zen-text-sm;
-
+  @apply zen-rounded-[var(--zen-shape)];
+  
   &.small {
     @apply zen-text-xs;
   }

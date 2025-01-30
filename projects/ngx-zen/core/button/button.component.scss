@@ -1,12 +1,14 @@
 button {
-  @apply zen-px-4 zen-py-2 zen-transition-colors zen-duration-150;
-  @apply zen-flex zen-items-center;
+  @apply zen-transition-colors zen-duration-150;
+  @apply zen-flex zen-items-center zen-justify-center;
   @apply zen-border;
   @apply zen-bg-tertiary;
   @apply zen-text-primary;
   @apply zen-border-tertiary;
-  @apply zen-text-md;
   @apply hover:zen-bg-tertiary/90 hover:zen-border-tertiary/90;
+  @apply zen-rounded-[var(--zen-shape)];
+  @apply zen-px-[var(--zen-btn-size-x)] zen-py-[var(--zen-btn-size-y)] zen-text-[length:var(--zen-btn-text-size)];
+  @apply zen-w-[var(--zen-btn-width)];
 
   &.link {
     @apply zen-text-tertiary;
@@ -25,7 +27,7 @@ button {
   }
 
   &.wide {
-    @apply zen-w-full zen-flex zen-justify-center;
+    @apply zen-w-full;
   }
 
   &.tight {

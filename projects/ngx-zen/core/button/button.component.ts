@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'ngx-zen-button',
@@ -8,7 +8,7 @@ import { Component, Input, OnInit } from '@angular/core';
   templateUrl: './button.component.html',
   styleUrls: ['./button.component.scss'],
 })
-export class ZenButtonComponent implements OnInit {
+export class ZenButtonComponent {
   @Input() text = 'Submit';
   @Input() zenClass: string = '';
   @Input() shape!: 'pill' | 'curve' | 'default';
@@ -21,28 +21,11 @@ export class ZenButtonComponent implements OnInit {
   @Input() variant: 'outlined' | 'default' | 'link' = 'default';
   @Input() disabled: boolean = false;
 
-  private globalConfig: { shape: string; btnSize: string } = {
-    shape: '',
-    btnSize: '',
-  };
-
-  ngOnInit(): void {
-    if (typeof window !== 'undefined') {
-      const rootStyles = getComputedStyle(document.documentElement);
-      this.globalConfig.shape = rootStyles
-        .getPropertyValue('--zen-shape')
-        .trim();
-      this.globalConfig.btnSize = rootStyles
-        .getPropertyValue('--zen-btn-size')
-        .trim();
-    }
-  }
-
   get classes(): string[] {
     return [
       this.type,
-      this.shape || this.globalConfig.shape,
-      this.size || this.globalConfig.btnSize,
+      this.shape,
+      this.size,
       this.variant,
       this.zenClass,
     ].filter((cls) => cls && cls !== 'default');

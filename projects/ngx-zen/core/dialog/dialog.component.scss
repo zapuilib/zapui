@@ -2,14 +2,15 @@
   @apply zen-fixed zen-top-0 zen-left-0 zen-z-[999];
   @apply zen-flex zen-justify-center zen-items-center;
   @apply zen-w-full zen-h-full zen-bg-quaternary/30 zen-backdrop-blur-sm;
-
+  
   &.top {
     @apply zen-items-start zen-pt-20;
   }
-
+  
   .inner {
     @apply zen-relative zen-flex zen-flex-col zen-m-5;
     @apply zen-w-[30rem] zen-min-h-[14rem] zen-p-5 zen-bg-secondary;
+    @apply zen-rounded-[var(--zen-shape)];
 
     .header {
       @apply zen-flex zen-justify-between zen-items-center;

@@ -37,16 +37,14 @@ export class ThemeService {
 
     let cssVariables = '';
 
-    if (config.shape) cssVariables += `--zen-shape: ${config.shape};\n`;
-
-    if (config.btnSize) cssVariables += `--zen-btn-size: ${config.btnSize};\n`;
-
     Object.entries(theme.colors || {}).forEach(([key, value]) => {
       const kebabKey = key.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase();
       let existingColor;
-      
+
       if (typeof window !== 'undefined') {
-        existingColor = getComputedStyle(root).getPropertyValue(`--zen-color-${kebabKey}`).trim();
+        existingColor = getComputedStyle(root)
+          .getPropertyValue(`--zen-color-${kebabKey}`)
+          .trim();
       }
       if (existingColor) {
         if (existingColor.startsWith('#')) {
@@ -65,10 +63,65 @@ export class ThemeService {
       cssVariables += `--zen-font-size-${key}: ${value};\n`;
     });
 
+    let existingShape;
+    if (typeof window !== 'undefined') {
+      existingShape = getComputedStyle(root)
+        .getPropertyValue('--zen-shape')
+        .trim();
+    }
+
+    const shapeValue = existingShape || config.shape;
+    if (shapeValue) {
+      let shapeCssValue = shapeValue;
+      if (shapeValue === 'pill') {
+        shapeCssValue = 'calc(infinity * 1px)';
+      } else if (shapeValue === 'curve') {
+        shapeCssValue = '0.375rem';
+      }
+      cssVariables += `--zen-shape: ${shapeCssValue};\n`;
+    }
+
+    let existingSize;
+    if (typeof window !== 'undefined') {
+      existingSize = getComputedStyle(root)
+        .getPropertyValue('--zen-btn-size')
+        .trim();
+    }
+
+    const btnSizeValue = existingSize || config.btnSize;
+    if (btnSizeValue) {
+      if (btnSizeValue === 'compact') {
+        cssVariables += `--zen-btn-size-x: 0.75rem;\n`;
+        cssVariables += `--zen-btn-size-y: 0.25rem;\n`;
+        cssVariables += `--zen-btn-text-size: 1rem;\n`;
+      } else if (btnSizeValue === 'tight') {
+        cssVariables += `--zen-btn-size-x: 0.5rem;\n`;
+        cssVariables += `--zen-btn-size-y: 0.25rem;\n`;
+        let existingFontSize;
+        if (typeof window !== 'undefined') {
+          existingFontSize = getComputedStyle(root)
+            .getPropertyValue('--zen-font-size-sm')
+            .trim();
+        }
+        const btnTextSizeValue = existingFontSize || '0.875rem';
+        cssVariables += `--zen-btn-text-size: ${btnTextSizeValue};\n`;
+      } else if (btnSizeValue === 'wide') {
+        cssVariables += `--zen-btn-size-x: 1rem;\n`;
+        cssVariables += `--zen-btn-size-y: 0.5rem;\n`;
+        cssVariables += `--zen-btn-width: 100%;\n`;
+      } else {
+        cssVariables += `--zen-btn-size-x: 1rem;\n`;
+        cssVariables += `--zen-btn-size-y: 0.5rem;\n`;
+        cssVariables += `--zen-btn-text-size: 1rem;\n`;
+      }
+    }
+
     styleElement.innerHTML = `:root {\n${cssVariables}}`;
 
     function hexToRgb(hex: string): string {
-      let r = 0, g = 0, b = 0;
+      let r = 0,
+        g = 0,
+        b = 0;
       if (hex.length == 4) {
         r = parseInt(hex[1] + hex[1], 16);
         g = parseInt(hex[2] + hex[2], 16);

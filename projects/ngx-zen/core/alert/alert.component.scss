@@ -1,5 +1,6 @@
 .__ngx__zen__alert {
   @apply zen-min-w-[25rem] zen-max-w-[40rem] zen-p-4 zen-rounded-none zen-bg-secondary zen-text-primary zen-flex zen-justify-between zen-items-start;
+  @apply zen-rounded-[var(--zen-shape)];
 
   .content__wrapper {
     @apply zen-flex zen-gap-x-3 zen-w-full;

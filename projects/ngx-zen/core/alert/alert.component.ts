@@ -8,7 +8,7 @@ import { CommonModule } from '@angular/common';
   templateUrl: './alert.component.html',
   styleUrls: ['./alert.component.scss'],
 })
-export class ZenAlertComponent implements OnInit {
+export class ZenAlertComponent {
   @Output() dismiss: EventEmitter<void> = new EventEmitter<void>();
   @Input() type: 'success' | 'warning' | 'error' | 'info' | 'default' =
     'default';
@@ -17,17 +17,6 @@ export class ZenAlertComponent implements OnInit {
   @Input() icon: string = '';
   @Input() zenClass: string = '';
 
-  private globalConfig: { shape: string } = { shape: '' };
-
-  ngOnInit(): void {
-    if (typeof window !== 'undefined') {
-      const rootStyles = getComputedStyle(document.documentElement);
-      this.globalConfig.shape = rootStyles
-        .getPropertyValue('--zen-shape')
-        .trim();
-      this.assignIcon();
-    }
-  }
 
   private assignIcon(): void {
     if (this.icon) return;
@@ -51,7 +40,7 @@ export class ZenAlertComponent implements OnInit {
 
   get classes() {
     return [
-      this.shape || this.globalConfig.shape,
+      this.shape,
       this.variant,
       this.type,
       this.zenClass,

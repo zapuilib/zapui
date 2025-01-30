@@ -87,7 +87,7 @@ export class ThemeService {
         .getPropertyValue('--zen-btn-size')
         .trim();
     }
-
+    
     const btnSizeValue = existingSize || config.btnSize;
     if (btnSizeValue) {
       if (btnSizeValue === 'compact') {
@@ -114,6 +114,10 @@ export class ThemeService {
         cssVariables += `--zen-btn-size-y: 0.5rem;\n`;
         cssVariables += `--zen-btn-text-size: 1rem;\n`;
       }
+    } else {
+      cssVariables += `--zen-btn-size-x: 1rem;\n`;
+      cssVariables += `--zen-btn-size-y: 0.5rem;\n`;
+      cssVariables += `--zen-btn-text-size: 1rem;\n`;
     }
 
     styleElement.innerHTML = `:root {\n${cssVariables}}`;

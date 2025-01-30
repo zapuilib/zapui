@@ -1,7 +1,7 @@
 import { ZenTheme, NgxZenConfig } from '../interfaces/config.interface';
 
 export const defaultConfig: NgxZenConfig = {
-  theme: 'light',
+  theme: 'dark',
   shape: 'default',
 };
 

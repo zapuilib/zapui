@@ -10,7 +10,7 @@
   .inner {
     @apply zen-relative zen-flex zen-flex-col zen-m-5;
     @apply zen-w-[30rem] zen-min-h-[14rem] zen-p-5 zen-bg-secondary;
-    @apply zen-rounded-[var(--zen-shape)];
+    @apply zen-rounded-[var(--zen-shape-modal)];
 
     .header {
       @apply zen-flex zen-justify-between zen-items-center;
@@ -42,6 +42,7 @@
       .btn {
         @apply zen-px-4 zen-py-2;
         @apply zen-border zen-transition-colors zen-duration-200;
+        @apply zen-rounded-[var(--zen-shape)];
 
         &.primary {
           @apply zen-border-error zen-bg-error zen-text-secondary zen-text-md;

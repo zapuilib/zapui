@@ -20,7 +20,7 @@ export class ThemeService {
     this.applyTheme();
   }
 
-  applyTheme(): void {
+  applyTheme(): void {    
     const root = this.document.documentElement;
 
     const config = this.config || defaultConfig;
@@ -69,17 +69,27 @@ export class ThemeService {
         .getPropertyValue('--zen-shape')
         .trim();
     }
+    
+    const validShapes = ['pill', 'curve', 'default'];
+    if (existingShape && !validShapes.includes(existingShape)) {
+      existingShape = '';
+    }
 
     const shapeValue = existingShape || config.shape;
     if (shapeValue) {
       let shapeCssValue = shapeValue;
+      let shapeCssValueModals = shapeValue;
       if (shapeValue === 'pill') {
         shapeCssValue = 'calc(infinity * 1px)';
+        shapeCssValueModals = '1rem';
       } else if (shapeValue === 'curve') {
         shapeCssValue = '0.375rem';
+        shapeCssValueModals = '0.5rem';
       }
       cssVariables += `--zen-shape: ${shapeCssValue};\n`;
+      cssVariables += `--zen-shape-modal: ${shapeCssValueModals};\n`;
     }
+    
 
     let existingSize;
     if (typeof window !== 'undefined') {

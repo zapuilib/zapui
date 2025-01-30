@@ -32,12 +32,15 @@ export class ZenModalComponent implements OnInit {
   private globalConfig: { shape: string } = {
     shape: '',
   };
-    
-  ngOnInit(): void {
-    const rootStyles = getComputedStyle(document.documentElement);
-    this.globalConfig.shape = rootStyles.getPropertyValue('--zen-shape').trim();    
-  }
 
+  ngOnInit(): void {
+    if (typeof window !== 'undefined') {
+      const rootStyles = getComputedStyle(document.documentElement);
+      this.globalConfig.shape = rootStyles
+        .getPropertyValue('--zen-shape')
+        .trim();
+    }
+  }
 
   get classes(): string[] {
     return [

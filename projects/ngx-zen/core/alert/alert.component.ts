@@ -1,10 +1,4 @@
-import {
-  Component,
-  EventEmitter,
-  Input,
-  OnInit,
-  Output,
-} from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -26,9 +20,13 @@ export class ZenAlertComponent implements OnInit {
   private globalConfig: { shape: string } = { shape: '' };
 
   ngOnInit(): void {
-    const rootStyles = getComputedStyle(document.documentElement);
-    this.globalConfig.shape = rootStyles.getPropertyValue('--zen-shape').trim();
-    this.assignIcon();
+    if (typeof window !== 'undefined') {
+      const rootStyles = getComputedStyle(document.documentElement);
+      this.globalConfig.shape = rootStyles
+        .getPropertyValue('--zen-shape')
+        .trim();
+      this.assignIcon();
+    }
   }
 
   private assignIcon(): void {

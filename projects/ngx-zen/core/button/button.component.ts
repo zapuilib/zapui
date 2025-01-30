@@ -27,11 +27,15 @@ export class ZenButtonComponent implements OnInit {
   };
 
   ngOnInit(): void {
-    const rootStyles = getComputedStyle(document.documentElement);
-    this.globalConfig.shape = rootStyles.getPropertyValue('--zen-shape').trim();
-    this.globalConfig.btnSize = rootStyles
-      .getPropertyValue('--zen-btn-size')
-      .trim();
+    if (typeof window !== 'undefined') {
+      const rootStyles = getComputedStyle(document.documentElement);
+      this.globalConfig.shape = rootStyles
+        .getPropertyValue('--zen-shape')
+        .trim();
+      this.globalConfig.btnSize = rootStyles
+        .getPropertyValue('--zen-btn-size')
+        .trim();
+    }
   }
 
   get classes(): string[] {
@@ -41,6 +45,6 @@ export class ZenButtonComponent implements OnInit {
       this.size || this.globalConfig.btnSize,
       this.variant,
       this.zenClass,
-    ].filter((cls) => cls && cls !== 'default')
+    ].filter((cls) => cls && cls !== 'default');
   }
 }

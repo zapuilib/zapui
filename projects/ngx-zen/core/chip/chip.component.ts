@@ -15,7 +15,8 @@ export class ZenChipComponent implements OnInit {
   @Input() variant: 'outlined' | 'default' = 'default';
   @Input() shape!: 'pill' | 'curve' | 'default';
   @Input() size: 'default' | 'small' | 'wide' = 'default';
-  @Input() type: 'default' | 'info' | 'success' | 'warning' | 'error' = 'default';
+  @Input() type: 'default' | 'info' | 'success' | 'warning' | 'error' =
+    'default';
   @Input() icon?: string;
   @Input() iconPosition: 'left' | 'right' = 'left';
   @Input() disabled = false;
@@ -26,8 +27,12 @@ export class ZenChipComponent implements OnInit {
   };
 
   ngOnInit(): void {
-    const rootStyles = getComputedStyle(document.documentElement);
-    this.globalConfig.shape = rootStyles.getPropertyValue('--zen-shape').trim();
+    if (typeof window !== 'undefined') {
+      const rootStyles = getComputedStyle(document.documentElement);
+      this.globalConfig.shape = rootStyles
+        .getPropertyValue('--zen-shape')
+        .trim();
+    }
   }
 
   onRemove(event: Event) {

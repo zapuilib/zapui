@@ -36,8 +36,12 @@ export class ZenDialogComponent implements OnInit {
   };
 
   ngOnInit(): void {
-    const rootStyles = getComputedStyle(document.documentElement);
-    this.globalConfig.shape = rootStyles.getPropertyValue('--zen-shape').trim();
+    if (typeof window !== 'undefined') {
+      const rootStyles = getComputedStyle(document.documentElement);
+      this.globalConfig.shape = rootStyles
+        .getPropertyValue('--zen-shape')
+        .trim();
+    }
   }
 
   get classes(): string[] {
@@ -45,6 +49,6 @@ export class ZenDialogComponent implements OnInit {
       this.shape || this.globalConfig.shape,
       this.position,
       this.zenClass,
-    ].filter((cls) => cls && cls !== 'default')
+    ].filter((cls) => cls && cls !== 'default');
   }
 }

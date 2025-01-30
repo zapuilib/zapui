@@ -43,7 +43,11 @@ export class ThemeService {
 
     Object.entries(theme.colors || {}).forEach(([key, value]) => {
       const kebabKey = key.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase();
-      let existingColor = getComputedStyle(root).getPropertyValue(`--zen-color-${kebabKey}`).trim();
+      let existingColor;
+      
+      if (typeof window !== 'undefined') {
+        existingColor = getComputedStyle(root).getPropertyValue(`--zen-color-${kebabKey}`).trim();
+      }
       if (existingColor) {
         if (existingColor.startsWith('#')) {
           existingColor = hexToRgb(existingColor);

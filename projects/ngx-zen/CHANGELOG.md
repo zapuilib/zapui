@@ -1,4 +1,4 @@
-## Beta version 0.0.40 Updates
+## Beta version 0.0.40-dev-beta.0 Updates
 
 - Root config format changed, see the root config documentation for full
 - Curve shape changed from 4px to 6px

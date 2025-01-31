@@ -6,7 +6,7 @@
     "start": "ng serve",
     "build": "ng build",
     "build:lib": "ng build ngx-zen",
-    "build:lib:watch": "ng build ngx-zen --watch",
+    "build:lib:watch": "ng build ngx-zen --watch && cd dist/ngx-zen && npm link",
     "start:demo": "ng serve demo",
     "publish": "ng build ngx-zen && cd dist/ngx-zen && npm publish --tag dev-alpha",
     "watch": "ng build --watch --configuration development",

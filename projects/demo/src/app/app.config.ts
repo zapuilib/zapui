@@ -40,7 +40,6 @@ const folly: ZenTheme = {
 };
 
 const ngxConfig: NgxZenConfig = {
-  theme: folly,
   shape: 'pill',
   btnSize: 'default',
 };

@@ -1,5 +1,5 @@
-import { Inject, Injectable, Optional } from '@angular/core';
-import { DOCUMENT } from '@angular/common';
+import { Inject, Injectable, Optional, PLATFORM_ID } from '@angular/core';
+import { DOCUMENT, isPlatformBrowser } from '@angular/common';
 
 import { NGX_ZEN_CONFIG } from './tokens/ngx-zen.tokens';
 import { NgxZenConfig } from '../public-api';
@@ -13,16 +13,22 @@ import {
   providedIn: 'root',
 })
 export class ThemeService {
+  private isBrowser: boolean;
+
   constructor(
     @Inject(DOCUMENT) private document: Document,
+    @Inject(PLATFORM_ID) private platformId: Object,
     @Optional() @Inject(NGX_ZEN_CONFIG) private config: NgxZenConfig
   ) {
-    this.applyTheme();
+    this.isBrowser = isPlatformBrowser(this.platformId);
+
+    if (this.isBrowser) {
+      this.applyTheme();
+    }
   }
 
-  applyTheme(): void {    
+  applyTheme(): void {
     const root = this.document.documentElement;
-
     const config = this.config || defaultConfig;
     const theme =
       config.theme === 'light'
@@ -39,23 +45,25 @@ export class ThemeService {
 
     Object.entries(theme.colors || {}).forEach(([key, value]) => {
       const kebabKey = key.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase();
-      let existingColor;
+      let existingColor = '';
 
-      if (typeof window !== 'undefined') {
+      if (this.isBrowser) {
         existingColor = getComputedStyle(root)
           .getPropertyValue(`--zen-color-${kebabKey}`)
           .trim();
       }
+
       if (existingColor) {
         if (existingColor.startsWith('#')) {
-          existingColor = hexToRgb(existingColor);
+          existingColor = this.hexToRgb(existingColor);
         } else if (existingColor.startsWith('rgb')) {
-          existingColor = rgbToRgbNumber(existingColor);
+          existingColor = this.rgbToRgbNumber(existingColor);
         } else if (existingColor.startsWith('rgba')) {
-          existingColor = rgbaToRgbNumber(existingColor);
+          existingColor = this.rgbaToRgbNumber(existingColor);
         }
       }
-      const rgbValue = existingColor || hexToRgb(value);
+      
+      const rgbValue = existingColor || this.hexToRgb(value);
       cssVariables += `--zen-color-${kebabKey}: ${rgbValue};\n`;
     });
 
@@ -63,13 +71,13 @@ export class ThemeService {
       cssVariables += `--zen-font-size-${key}: ${value};\n`;
     });
 
-    let existingShape;
-    if (typeof window !== 'undefined') {
+    let existingShape = '';
+    if (this.isBrowser) {
       existingShape = getComputedStyle(root)
         .getPropertyValue('--zen-shape')
         .trim();
     }
-    
+
     const validShapes = ['pill', 'curve', 'default'];
     if (existingShape && !validShapes.includes(existingShape)) {
       existingShape = '';
@@ -89,15 +97,14 @@ export class ThemeService {
       cssVariables += `--zen-shape: ${shapeCssValue};\n`;
       cssVariables += `--zen-shape-modal: ${shapeCssValueModals};\n`;
     }
-    
 
-    let existingSize;
-    if (typeof window !== 'undefined') {
+    let existingSize = '';
+    if (this.isBrowser) {
       existingSize = getComputedStyle(root)
         .getPropertyValue('--zen-btn-size')
         .trim();
     }
-    
+
     const btnSizeValue = existingSize || config.btnSize;
     if (btnSizeValue) {
       if (btnSizeValue === 'compact') {
@@ -107,8 +114,8 @@ export class ThemeService {
       } else if (btnSizeValue === 'tight') {
         cssVariables += `--zen-btn-size-x: 0.5rem;\n`;
         cssVariables += `--zen-btn-size-y: 0.25rem;\n`;
-        let existingFontSize;
-        if (typeof window !== 'undefined') {
+        let existingFontSize = '';
+        if (this.isBrowser) {
           existingFontSize = getComputedStyle(root)
             .getPropertyValue('--zen-font-size-sm')
             .trim();
@@ -131,41 +138,41 @@ export class ThemeService {
     }
 
     styleElement.innerHTML = `:root {\n${cssVariables}}`;
+  }
 
-    function hexToRgb(hex: string): string {
-      let r = 0,
-        g = 0,
-        b = 0;
-      if (hex.length == 4) {
-        r = parseInt(hex[1] + hex[1], 16);
-        g = parseInt(hex[2] + hex[2], 16);
-        b = parseInt(hex[3] + hex[3], 16);
-      } else if (hex.length == 7) {
-        r = parseInt(hex[1] + hex[2], 16);
-        g = parseInt(hex[3] + hex[4], 16);
-        b = parseInt(hex[5] + hex[6], 16);
-      }
-      return `${r}, ${g}, ${b}`;
+  private hexToRgb(hex: string): string {
+    let r = 0,
+      g = 0,
+      b = 0;
+    if (hex.length == 4) {
+      r = parseInt(hex[1] + hex[1], 16);
+      g = parseInt(hex[2] + hex[2], 16);
+      b = parseInt(hex[3] + hex[3], 16);
+    } else if (hex.length == 7) {
+      r = parseInt(hex[1] + hex[2], 16);
+      g = parseInt(hex[3] + hex[4], 16);
+      b = parseInt(hex[5] + hex[6], 16);
     }
+    return `${r}, ${g}, ${b}`;
+  }
 
-    function rgbToRgbNumber(rgb: string): string {
-      const result = rgb.match(/\d+/g);
-      return result ? `${result[0]}, ${result[1]}, ${result[2]}` : '';
-    }
+  private rgbToRgbNumber(rgb: string): string {
+    const result = rgb.match(/\d+/g);
+    return result ? `${result[0]}, ${result[1]}, ${result[2]}` : '';
+  }
 
-    function rgbaToRgbNumber(rgba: string): string {
-      const result = rgba.match(/\d+/g);
-      if (result) {
-        const r = parseInt(result[0]);
-        const g = parseInt(result[1]);
-        const b = parseInt(result[2]);
-        const a = parseFloat(result[3]);
-        const newR = Math.round((1 - a) * 255 + a * r);
-        const newG = Math.round((1 - a) * 255 + a * g);
-        const newB = Math.round((1 - a) * 255 + a * b);
-        return `${newR}, ${newG}, ${newB}`;
-      }
-      return '';
+  private rgbaToRgbNumber(rgba: string): string {
+    const result = rgba.match(/\d+/g);
+    if (result) {
+      const r = parseInt(result[0]);
+      const g = parseInt(result[1]);
+      const b = parseInt(result[2]);
+      const a = parseFloat(result[3]);
+      const newR = Math.round((1 - a) * 255 + a * r);
+      const newG = Math.round((1 - a) * 255 + a * g);
+      const newB = Math.round((1 - a) * 255 + a * b);
+      return `${newR}, ${newG}, ${newB}`;
     }
+    return '';
   }
 }

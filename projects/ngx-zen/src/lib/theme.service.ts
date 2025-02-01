@@ -37,6 +37,13 @@ export class ThemeService {
         ? darkTheme
         : config.theme || darkTheme;
 
+    const existingStyleElement =
+      this.document.getElementById('zen-theme-styles');
+
+    if (existingStyleElement) {
+      return;
+    }
+
     const styleElement = this.document.createElement('style');
     styleElement.setAttribute('id', 'zen-theme-styles');
     this.document.head.appendChild(styleElement);
@@ -62,7 +69,7 @@ export class ThemeService {
           existingColor = this.rgbaToRgbNumber(existingColor);
         }
       }
-      
+
       const rgbValue = existingColor || this.hexToRgb(value);
       cssVariables += `--zen-color-${kebabKey}: ${rgbValue};\n`;
     });

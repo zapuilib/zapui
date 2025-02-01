@@ -21,8 +21,8 @@ import { CommonModule } from '@angular/common';
 export class ZenModalComponent {
   @ViewChild('modalContent') modalContent!: ElementRef;
   @Output() close: EventEmitter<void> = new EventEmitter<void>();
-  @Input() shape!: 'curve' | 'default' | 'pill';
-  @Input() size: 'small' | 'wide' | 'wider' | 'default' = 'default';
+  @Input() shape!: 'curve' | 'flat' | 'pill';
+  @Input() size: 'small' | 'wide' | 'wider' | 'base' = 'base';
   @Input() zenClass: string = '';
   @Input() style: 'classic' | 'noblur' = 'classic';
   @HostListener('document:keydown', ['$event'])

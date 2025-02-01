@@ -76,4 +76,14 @@
       @apply zen-rounded-full;
     }
   }
+
+  &.flat {
+    .inner {
+      @apply zen-rounded-none;
+    }
+
+    .btn {
+      @apply zen-rounded-none;
+    }
+  }
 }

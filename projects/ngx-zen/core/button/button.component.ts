@@ -11,8 +11,8 @@ import { Component, Input } from '@angular/core';
 export class ZenButtonComponent {
   @Input() text = 'Submit';
   @Input() zenClass: string = '';
-  @Input() shape!: 'pill' | 'curve' | 'default';
-  @Input() size!: 'compact' | 'wide' | 'tight' | 'default';
+  @Input() shape!: 'pill' | 'curve' | 'flat';
+  @Input() size!: 'compact' | 'wide' | 'tight' | 'base';
   @Input() type: 'icononly' | 'default' = 'default';
   @Input() icon!: string;
   @Input() iconPosition: 'left' | 'right' = 'left';

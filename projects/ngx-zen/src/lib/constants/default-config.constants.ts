@@ -2,7 +2,8 @@ import { ZenTheme, NgxZenConfig } from '../interfaces/config.interface';
 
 export const defaultConfig: NgxZenConfig = {
   theme: 'dark',
-  shape: 'default',
+  shape: 'flat',
+  btnSize: 'base',
 };
 
 export const lightTheme: ZenTheme = {

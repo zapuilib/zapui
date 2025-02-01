@@ -18,6 +18,14 @@ button {
     @apply zen-text-xs;
   }
 
+  &.flat {
+    @apply zen-rounded-none;
+  }
+
+  &.base {
+    @apply zen-px-4 zen-py-2;
+  }
+
   &.pill {
     @apply zen-rounded-full;
   }
@@ -78,7 +86,7 @@ button {
     @apply zen-w-6 zen-h-6 zen-mr-2;
 
     &.right {
-      @apply zen-mr-0 zen-ml-2;
+      @apply zen-mr-0 zen-ml-2 zen-order-2;
     }
   }
 }

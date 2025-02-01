@@ -57,6 +57,12 @@
     }
   }
 
+  &.flat {
+    .__zen__form__control__input {
+      @apply zen-rounded-none;
+    }
+  }
+
   input:disabled {
     @apply zen-opacity-50;
   }

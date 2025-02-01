@@ -29,6 +29,12 @@
     }
   }
 
+  &.flat {
+    .__ngx__modal {
+      @apply zen-rounded-none;
+    }
+  }
+
   &.pill {
     .__ngx__modal {
       @apply zen-rounded-xl;

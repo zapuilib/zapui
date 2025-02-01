@@ -18,6 +18,10 @@
     @apply zen-rounded-md;
   }
 
+  &.flat {
+    @apply zen-rounded-none;
+  }
+
   &.outlined {
     @apply zen-border-2 zen-bg-transparent zen-border-tertiary zen-text-tertiary;
   }

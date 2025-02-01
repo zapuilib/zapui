@@ -22,7 +22,7 @@ export class ZenDialogComponent {
   @Input() title: string = 'Are you sure?';
   @Input() text: string = 'This action cannot be undone.';
   @Input() zenClass: string = '';
-  @Input() shape!: 'curve' | 'pill' | 'default';
+  @Input() shape!: 'curve' | 'pill' | 'flat';
   @Input() position: 'top' | 'default' = 'default';
   @Input() primaryBtnTemplate: TemplateRef<any> | null = null;
   @Input() secondaryBtnTemplate: TemplateRef<any> | null = null;

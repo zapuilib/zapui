@@ -13,8 +13,8 @@ export class ZenChipComponent {
   @Input() text = 'Chip';
   @Input() zenClass: string = '';
   @Input() variant: 'outlined' | 'default' = 'default';
-  @Input() shape!: 'pill' | 'curve' | 'default';
-  @Input() size: 'default' | 'small' | 'wide' = 'default';
+  @Input() shape!: 'pill' | 'curve' | 'flat';
+  @Input() size: 'base' | 'small' | 'wide' = 'base';
   @Input() type: 'default' | 'info' | 'success' | 'warning' | 'error' =
     'default';
   @Input() icon?: string;

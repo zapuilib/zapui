@@ -13,7 +13,7 @@ export class ZenAlertComponent {
   @Input() type: 'success' | 'warning' | 'error' | 'info' | 'default' =
     'default';
   @Input() variant: 'default' = 'default';
-  @Input() shape!: 'curve' | 'pill' | 'default';
+  @Input() shape!: 'curve' | 'pill' | 'flat';
   @Input() icon: string = '';
   @Input() zenClass: string = '';
 

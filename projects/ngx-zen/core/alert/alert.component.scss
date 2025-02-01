@@ -29,6 +29,10 @@
   &.pill {
     @apply zen-rounded-full;
   }
+
+  &.flat {
+    @apply zen-rounded-none;
+  }
 }
 
 .handler__wrapper {

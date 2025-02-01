@@ -40,8 +40,8 @@ const folly: ZenTheme = {
 };
 
 const ngxConfig: NgxZenConfig = {
-  shape: 'pill',
-  btnSize: 'default',
+  shape: 'flat',
+  btnSize: 'base',
 };
 
 export const appConfig: ApplicationConfig = {

@@ -44,8 +44,8 @@ export class ZenInputComponent<T> extends ControlValueAccessorDirective<T> {
   @Input() placeholder: string = '';
   @Input() customErrorMessages: Record<string, string> = {};
   @Input() zenClass: string = '';
-  @Input() size: 'compact' | 'default' = 'default';
-  @Input() shape!: 'pill' | 'curve' | 'default';
+  @Input() size: 'compact' | 'base' = 'base';
+  @Input() shape!: 'pill' | 'curve' | 'flat';
   @Input() icon!: string;
   @Input() iconPosition: 'left' | 'right' = 'left';
   @Input() autoComplete: string = 'off';

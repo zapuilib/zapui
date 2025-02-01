@@ -2,7 +2,7 @@ import { Inject, Injectable, Optional, PLATFORM_ID } from '@angular/core';
 import { DOCUMENT, isPlatformBrowser } from '@angular/common';
 
 import { NGX_ZEN_CONFIG } from './tokens/ngx-zen.tokens';
-import { NgxZenConfig } from '../public-api';
+import { NgxZenConfig, ZenTheme } from '../public-api';
 import {
   lightTheme,
   defaultConfig,
@@ -26,22 +26,24 @@ export class ThemeService {
       this.applyTheme();
     }
   }
-
-  applyTheme(): void {
+  
+  applyTheme(customTheme?: 'light' | 'dark' | ZenTheme): void {
     const root = this.document.documentElement;
     const config = this.config || defaultConfig;
+    if(customTheme){
+      this.config.theme = customTheme;
+    }
     const theme =
       config.theme === 'light'
         ? lightTheme
         : config.theme === 'dark'
         ? darkTheme
-        : config.theme || darkTheme;
+        : config.theme || darkTheme;    
 
-    const existingStyleElement =
-      this.document.getElementById('zen-theme-styles');
+    const existingStyleElement = this.document.getElementById('zen-theme-styles');
 
     if (existingStyleElement) {
-      return;
+      existingStyleElement.remove();
     }
 
     const styleElement = this.document.createElement('style');

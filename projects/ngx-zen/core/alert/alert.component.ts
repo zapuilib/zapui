@@ -16,8 +16,7 @@ export class ZenAlertComponent {
   @Input() shape!: 'curve' | 'pill' | 'flat';
   @Input() icon: string = '';
   @Input() zenClass: string = '';
-
-
+  
   private assignIcon(): void {
     if (this.icon) return;
     switch (this.type) {

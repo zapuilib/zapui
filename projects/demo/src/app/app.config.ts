@@ -4,11 +4,11 @@ import {
   importProvidersFrom,
 } from '@angular/core';
 import { provideRouter } from '@angular/router';
-import { NgxZenConfig, provideZenOptions } from 'ngx-zen';
+import { ZapConfig, provideZapOptions } from 'zap';
 
 import { routes } from './app.routes';
 
-const ngxConfig: NgxZenConfig = {
+const ngxConfig: ZapConfig = {
   shape: 'flat',
   btnSize: 'base',
 };
@@ -17,6 +17,6 @@ export const appConfig: ApplicationConfig = {
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
-    provideZenOptions(ngxConfig),
+    provideZapOptions(ngxConfig),
   ],
 };

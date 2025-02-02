@@ -9,5 +9,5 @@ module.exports = {
       },
     },
   },
-  plugins: [require('../../dist/ngx-zen/plugin')],
+  plugins: [require('../../dist/zap/plugin')],
 };

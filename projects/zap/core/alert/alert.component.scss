@@ -1,0 +1,40 @@
+.__ngx__zap__alert {
+  @apply min-w-[25rem] max-w-[40rem] p-4 rounded-none bg-secondary text-primary flex justify-between items-start;
+  @apply rounded-[var(--zap-shape)];
+
+  .content__wrapper {
+    @apply flex gap-x-3 w-full;
+  }
+
+  &.success {
+    @apply bg-success text-successText;
+  }
+
+  &.error {
+    @apply bg-error text-errorText;
+  }
+
+  &.warning {
+    @apply bg-warning text-warningText;
+  }
+
+  &.info {
+    @apply bg-info text-infoText;
+  }
+
+  &.curve {
+    @apply rounded-lg;
+  }
+
+  &.pill {
+    @apply rounded-full;
+  }
+
+  &.flat {
+    @apply rounded-none;
+  }
+}
+
+.handler__wrapper {
+  @apply cursor-pointer;
+}

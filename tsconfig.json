@@ -12,11 +12,11 @@
     "noFallthroughCasesInSwitch": true,
     "sourceMap": true,
     "paths": {
-      "ngx-zen": [
-        "dist/ngx-zen"
+      "zap": [
+        "dist/zap"
       ],
-      "ngx-zen/*": [
-        "dist/ngx-zen/*"
+      "zap/*": [
+        "dist/zap/*"
       ]
     },
     "declaration": false,

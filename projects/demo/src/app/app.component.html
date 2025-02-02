@@ -1,32 +1,32 @@
 <div
   class="wrapper mx-auto max-w-screen-2xl grid grid-cols-3 py-10 min-h-screen gap-5"
 >
-  <ngx-zen-button
+  <zap-button
     text="Explore now"
-    zenClass="bg-lime-300 border-lime-300"
-  ></ngx-zen-button>
-  <ngx-zen-button text="Switch theme" shape="flat" size="base" (click)="toggleTheme()"></ngx-zen-button>
-  <ngx-zen-badge [count]="100"></ngx-zen-badge>
-  <ngx-zen-chip shape="pill" text="Pending"></ngx-zen-chip>
+    zapClass="bg-lime-300 border-lime-300"
+  ></zap-button>
+  <zap-button text="Switch theme" shape="flat" size="base" (click)="toggleTheme()"></zap-button>
+  <zap-badge [count]="100"></zap-badge>
+  <zap-chip shape="pill" text="Pending"></zap-chip>
   <div class="relative w-full h-full col-span-2">
-    <ngx-zen-dialog zenClass="!absolute"></ngx-zen-dialog>
+    <zap-dialog zapClass="!absolute"></zap-dialog>
   </div>
-  <ngx-zen-input
+  <zap-input
     label="Username"
     formControl="usernameControl"
     placeholder="Enter your username"
-  ></ngx-zen-input>
+  ></zap-input>
   <div class="relative w-full h-full">
-    <ngx-zen-modal zenClass="!absolute">
+    <zap-modal zapClass="!absolute">
       <h2 class="font-semibold">Modal</h2>
       <p class="mt-2">
         Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod
         tempor incididunt ut labore et dolore magna aliqua
       </p>
-    </ngx-zen-modal>
+    </zap-modal>
   </div>
 </div>
 
-<!-- <ngx-zen-alert type="info" class="fixed top-0">
+<!-- <zap-alert type="info" class="fixed top-0">
   You have a new alert
-</ngx-zen-alert> -->
+</zap-alert> -->

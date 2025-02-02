@@ -1,0 +1,81 @@
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+  content: ["./src/**/*.{html,ts}"],
+  safelist: [
+    {
+      pattern: /(bg-|text-).*/,
+    },
+  ],
+  theme: {
+    extend: {
+      colors: {
+        primary: ({ opacityValue }) =>
+          opacityValue
+            ? `rgba(var(--zap-color-primary), ${opacityValue})`
+            : `rgb(var(--zap-color-primary))`,
+        secondary: ({ opacityValue }) =>
+          opacityValue
+            ? `rgba(var(--zap-color-secondary), ${opacityValue})`
+            : `rgb(var(--zap-color-secondary))`,
+        tertiary: ({ opacityValue }) =>
+          opacityValue
+            ? `rgba(var(--zap-color-tertiary), ${opacityValue})`
+            : `rgb(var(--zap-color-tertiary))`,
+        quaternary: ({ opacityValue }) =>
+          opacityValue
+            ? `rgba(var(--zap-color-quaternary), ${opacityValue})`
+            : `rgb(var(--zap-color-quaternary))`,
+        success: ({ opacityValue }) =>
+          opacityValue
+            ? `rgba(var(--zap-color-success), ${opacityValue})`
+            : `rgb(var(--zap-color-success))`,
+        error: ({ opacityValue }) =>
+          opacityValue
+            ? `rgba(var(--zap-color-error), ${opacityValue})`
+            : `rgb(var(--zap-color-error))`,
+        warning: ({ opacityValue }) =>
+          opacityValue
+            ? `rgba(var(--zap-color-warning), ${opacityValue})`
+            : `rgb(var(--zap-color-warning))`,
+        info: ({ opacityValue }) =>
+          opacityValue
+            ? `rgba(var(--zap-color-info), ${opacityValue})`
+            : `rgb(var(--zap-color-info))`,
+        successText: ({ opacityValue }) =>
+          opacityValue
+            ? `rgba(var(--zap-color-success-text), ${opacityValue})`
+            : `rgb(var(--zap-color-success-text))`,
+        errorText: ({ opacityValue }) =>
+          opacityValue
+            ? `rgba(var(--zap-color-error-text), ${opacityValue})`
+            : `rgb(var(--zap-color-error-text))`,
+        warningText: ({ opacityValue }) =>
+          opacityValue
+            ? `rgba(var(--zap-color-warning-text), ${opacityValue})`
+            : `rgb(var(--zap-color-warning-text))`,
+        infoText: ({ opacityValue }) =>
+          opacityValue
+            ? `rgba(var(--zap-color-info-text), ${opacityValue})`
+            : `rgb(var(--zap-color-info-text))`,
+      },
+      fontSize: {
+        "7xl": "var(--zap-font-size-7xl)",
+        "6xl": "var(--zap-font-size-6xl)",
+        "5xl": "var(--zap-font-size-5xl)",
+        "4xl": "var(--zap-font-size-4xl)",
+        "3xl": "var(--zap-font-size-3xl)",
+        "2xl": "var(--zap-font-size-2xl)",
+        xl: "var(--zap-font-size-xl)",
+        lg: "var(--zap-font-size-lg)",
+        md: "var(--zap-font-size-md)",
+        sm: "var(--zap-font-size-sm)",
+        xs: "var(--zap-font-size-xs)",
+        xxs: "var(--zap-font-size-xxs)",
+      },
+      fontFamily: {
+        icon: ['"Font Awesome 6 Pro"'],
+      },
+    },
+  },
+  plugins: [require("@tailwindcss/forms"), require("./plugin/base")],
+};

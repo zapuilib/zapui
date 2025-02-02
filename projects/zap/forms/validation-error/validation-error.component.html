@@ -1,0 +1,5 @@
+<div class="__zap__form__control__error__wrapper" [ngClass]="zapClass">
+  @for(error of errors | keyvalue ; track error){
+  <p class="error">{{ errorMessages[error.key] }}</p>
+  }
+</div>

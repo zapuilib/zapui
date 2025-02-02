@@ -1,0 +1,27 @@
+.__ngx__zap__badge {
+  @apply border rounded-full w-6 h-6 flex justify-center items-center bg-tertiary text-primary text-xs border-transparent;
+
+  &.empty {
+    @apply h-2 w-2;
+  }
+
+  &.outlined {
+    @apply bg-transparent text-primary border-tertiary;
+  }
+
+  &.info {
+    @apply bg-info text-infoText;
+  }
+
+  &.success {
+    @apply bg-success text-successText;
+  }
+
+  &.warning {
+    @apply bg-warning text-warningText;
+  }
+
+  &.error {
+    @apply bg-error text-errorText;
+  }
+}

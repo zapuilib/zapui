@@ -3,23 +3,23 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "ngx-zen": {
+    "zap": {
       "projectType": "library",
-      "root": "projects/ngx-zen",
-      "sourceRoot": "projects/ngx-zen",
+      "root": "projects/zap",
+      "sourceRoot": "projects/zap",
       "prefix": "lib",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
-            "project": "projects/ngx-zen/ng-package.json"
+            "project": "projects/zap/ng-package.json"
           },
           "configurations": {
             "production": {
-              "tsConfig": "projects/ngx-zen/tsconfig.lib.prod.json"
+              "tsConfig": "projects/zap/tsconfig.lib.prod.json"
             },
             "development": {
-              "tsConfig": "projects/ngx-zen/tsconfig.lib.json"
+              "tsConfig": "projects/zap/tsconfig.lib.json"
             }
           },
           "defaultConfiguration": "production"
@@ -27,7 +27,7 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "tsConfig": "projects/ngx-zen/tsconfig.spec.json",
+            "tsConfig": "projects/zap/tsconfig.spec.json",
             "polyfills": [
               "zone.js",
               "zone.js/testing"

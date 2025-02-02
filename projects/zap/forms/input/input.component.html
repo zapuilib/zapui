@@ -1,0 +1,38 @@
+@if(control){
+<div
+  class="__zap__form__control"
+  [ngClass]="classes"
+>
+  @if(label){
+  <label
+    [for]="id"
+    class="__zap__form__control__label"
+    >{{ label }}</label
+  >
+  }
+  <fieldset>
+    @if(icon && iconPosition) {
+    <i
+      class="fa-solid"
+      [ngClass]="[icon, iconPosition]"
+      (click)="handleIconClick($event)"
+    ></i>
+    }
+    <input
+      [type]="type"
+      [placeholder]="placeholder"
+      [id]="id"
+      class="__zap__form__control__input"
+      [autocomplete]="autoComplete"
+      [formControl]="control"
+    />
+  </fieldset>
+  @if(control.invalid && control.touched) {
+  <validation-error
+    [errors]="control.errors"
+    [zapClass]="zapClass"
+    [customErrorMessages]="customErrorMessages"
+  ></validation-error>
+  }
+</div>
+}

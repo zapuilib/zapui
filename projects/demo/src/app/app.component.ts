@@ -2,29 +2,29 @@ import { Component, inject, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { RouterOutlet } from '@angular/router';
 
-import { ZenTheme, ZenThemer } from 'ngx-zen';
+import { ZapTheme, ZapThemer } from 'zap';
 import {
-  ZenButtonComponent,
-  ZenAlertComponent,
-  ZenBadgeComponent,
-  ZenChipComponent,
-  ZenDialogComponent,
-  ZenModalComponent
-} from 'ngx-zen/core';
-import { ZenInputComponent } from 'ngx-zen/forms';
+  ZapButtonComponent,
+  ZapAlertComponent,
+  ZapBadgeComponent,
+  ZapChipComponent,
+  ZapDialogComponent,
+  ZapModalComponent
+} from 'zap/core';
+import { ZapInputComponent } from 'zap/forms';
 
 @Component({
   selector: 'app-root',
   standalone: true,
   imports: [
     RouterOutlet,
-    ZenAlertComponent,
-    ZenBadgeComponent,
-    ZenButtonComponent,
-    ZenChipComponent,
-    ZenDialogComponent,
-    ZenModalComponent,
-    ZenInputComponent
+    ZapAlertComponent,
+    ZapBadgeComponent,
+    ZapButtonComponent,
+    ZapChipComponent,
+    ZapDialogComponent,
+    ZapModalComponent,
+    ZapInputComponent
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
@@ -33,9 +33,9 @@ export class AppComponent implements OnInit {
   theme: 'light' | 'dark' | 'folly' = 'dark';
   usernameControl = new FormControl('', [Validators.required]);
 
-  private zenThemeService: ZenThemer = inject(ZenThemer);
+  private zapThemeService: ZapThemer = inject(ZapThemer);
 
-  folly: ZenTheme = {
+  folly: ZapTheme = {
     colors: {
       primary: '#000000',
       secondary: '#FFFFFF',
@@ -67,24 +67,24 @@ export class AppComponent implements OnInit {
   };
 
   ngOnInit(): void {
-    if(localStorage.getItem('zendemo-theme') === null) {
-      localStorage.setItem('zendemo-theme', 'dark');
+    if(localStorage.getItem('zapdemo-theme') === null) {
+      localStorage.setItem('zapdemo-theme', 'dark');
     }
-    this.theme = localStorage.getItem('zendemo-theme') as 'light' | 'dark' | 'folly';
+    this.theme = localStorage.getItem('zapdemo-theme') as 'light' | 'dark' | 'folly';
     if (this.theme === 'folly') {
-      this.zenThemeService.setTheme(this.folly);
+      this.zapThemeService.setTheme(this.folly);
     } else {
-      this.zenThemeService.setTheme(this.theme);
+      this.zapThemeService.setTheme(this.theme);
     }
   }
 
   toggleTheme(): void {
     this.theme = this.theme === 'dark' ? 'folly' : 'dark';
-    localStorage.setItem('zendemo-theme', this.theme);
+    localStorage.setItem('zapdemo-theme', this.theme);
     if (this.theme === 'folly') {
-      this.zenThemeService.setTheme(this.folly);
+      this.zapThemeService.setTheme(this.folly);
     } else {
-      this.zenThemeService.setTheme(this.theme);
+      this.zapThemeService.setTheme(this.theme);
     }
   }
 }

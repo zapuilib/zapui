@@ -1,102 +1,100 @@
 .__ngx__zen__chip__wrapper {
-  @apply zen-inline-flex zen-items-center zen-px-3 zen-py-1 zen-font-medium zen-rounded-lg zen-bg-tertiary zen-border-transparent zen-text-primary zen-text-sm;
-  @apply zen-rounded-[var(--zen-shape)];
+  @apply inline-flex items-center px-3 py-1 font-medium rounded-lg bg-tertiary border-transparent text-primary text-sm;
+  @apply rounded-[var(--zen-shape)];
   
   &.small {
-    @apply zen-text-xs;
+    @apply text-xs;
   }
 
   &.wide {
-    @apply zen-px-4;
+    @apply px-4;
   }
 
   &.pill {
-    @apply zen-rounded-full;
+    @apply rounded-full;
   }
 
   &.curve {
-    @apply zen-rounded-md;
+    @apply rounded-md;
   }
 
   &.flat {
-    @apply zen-rounded-none;
+    @apply rounded-none;
   }
 
   &.outlined {
-    @apply zen-border-2 zen-bg-transparent zen-border-tertiary zen-text-tertiary;
+    @apply border-2 bg-transparent border-tertiary text-tertiary;
   }
 
   &.disabled {
-    @apply zen-opacity-50 zen-cursor-not-allowed;
+    @apply opacity-50 cursor-not-allowed;
   }
 
   i {
-    @apply zen-flex-shrink-0 zen-flex zen-items-center;
+    @apply flex-shrink-0 flex items-center;
   }
 
   .chip__remove {
-    @apply zen-bg-none zen-border-none zen-text-inherit zen-cursor-pointer zen-ml-2 zen-p-0 zen-text-sm zen-opacity-70 zen-transition-opacity;
+    @apply bg-none border-none text-inherit cursor-pointer ml-2 p-0 text-sm opacity-70 transition-opacity;
 
     &:hover {
-      @apply zen-opacity-100;
+      @apply opacity-100;
     }
 
     &:disabled {
-      @apply zen-cursor-not-allowed;
+      @apply cursor-not-allowed;
     }
   }
 
   .chip__text {
-    @apply zen-flex-grow zen-flex zen-items-center zen-text-primary;
+    @apply flex-grow flex items-center text-primary;
   }
-
 
   &.outlined {
     .chip__text {
-      @apply zen-text-tertiary;
+      @apply text-tertiary;
     }
   }
 
-
   i {
     &.right {
-      @apply zen-pl-2 zen-order-last;
+      @apply pl-2 order-last;
     }
 
     &.left {
-      @apply zen-pr-2;
+      @apply pr-2;
     }
   }
 
   &.info {
-    @apply zen-bg-info;
+    @apply bg-info;
 
     span {
-      @apply zen-text-infoText;
+      @apply text-infoText;
     }
   }
 
   &.success {
-    @apply zen-bg-success;
+    @apply bg-success;
 
     span {
-      @apply zen-text-successText;
+      @apply text-successText;
     }
   }
 
   &.warning {
-    @apply zen-bg-warning;
+    @apply bg-warning;
 
     span {
-      @apply zen-text-warningText;
+      @apply text-warningText;
     }
   }
 
   &.error {
-    @apply zen-bg-error;
+    @apply bg-error;
 
     span {
-      @apply zen-text-errorText;
+      @apply text-errorText;
     }
   }
 }

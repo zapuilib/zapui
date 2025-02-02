@@ -1,83 +1,83 @@
 .__zen__form__control {
-  @apply zen-flex zen-flex-col zen-gap-y-2 zen-w-full zen-rounded-none;
+  @apply flex flex-col gap-y-2 w-full rounded-none;
 
   fieldset {
-    @apply zen-relative zen-border-0 zen-outline-none;
+    @apply relative border-0 outline-none;
 
     i {
-      @apply zen-absolute;
-      @apply zen-text-primary;
-      @apply zen-top-1/2;
-      @apply -zen-translate-y-1/2;
-      @apply zen-left-3;
+      @apply absolute;
+      @apply text-primary;
+      @apply top-1/2;
+      @apply -translate-y-1/2;
+      @apply left-3;
 
       &.right {
-        @apply zen-left-auto;
-        @apply zen-right-3;
+        @apply left-auto;
+        @apply right-3;
       }
     }
   }
 
   &__label {
-    @apply zen-text-secondary;
+    @apply text-secondary;
   }
 
   &__input {
-    @apply zen-text-secondary zen-border-secondary/10 zen-text-md;
-    @apply zen-w-full zen-px-3 zen-py-2 zen-border zen-bg-transparent;
-    @apply focus-within:zen-outline-0 focus-within:zen-ring-2  focus-within:zen-ring-offset-0;
-    @apply zen-rounded-[var(--zen-shape)];
+    @apply text-secondary border-secondary/10 text-md;
+    @apply w-full px-3 py-2 border bg-transparent;
+    @apply focus-within:outline-0 focus-within:ring-2 focus-within:ring-offset-0;
+    @apply rounded-[var(--zen-shape)];
   }
 
   &.left {
     .__zen__form__control__input {
-      @apply zen-pl-10;
+      @apply pl-10;
     }
   }
 
   &.pill {
     .__zen__form__control__input {
-      @apply zen-rounded-full;
+      @apply rounded-full;
     }
   }
 
   &.compact {
     i {
-      @apply zen-text-xs;
+      @apply text-xs;
     }
 
     .__zen__form__control__input {
-      @apply zen-text-sm zen-px-2 zen-py-1.5
+      @apply text-sm px-2 py-1.5;
     }
   }
 
   &.curve {
     .__zen__form__control__input {
-      @apply zen-rounded-md;
+      @apply rounded-md;
     }
   }
 
   &.flat {
     .__zen__form__control__input {
-      @apply zen-rounded-none;
+      @apply rounded-none;
     }
   }
 
   input:disabled {
-    @apply zen-opacity-50;
+    @apply opacity-50;
   }
 
   input::placeholder {
-    @apply zen-text-secondary/30;
+    @apply text-secondary/30;
   }
 
   input:focus {
-    @apply zen-ring-info;
+    @apply ring-info;
   }
 
   input::-webkit-inner-spin-button {
     -webkit-appearance: none;
-    @apply zen-m-0;
+    @apply m-0;
   }
 
   input[type="number"] {

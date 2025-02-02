@@ -1,40 +1,40 @@
 .__ngx__zen__alert {
-  @apply zen-min-w-[25rem] zen-max-w-[40rem] zen-p-4 zen-rounded-none zen-bg-secondary zen-text-primary zen-flex zen-justify-between zen-items-start;
-  @apply zen-rounded-[var(--zen-shape)];
+  @apply min-w-[25rem] max-w-[40rem] p-4 rounded-none bg-secondary text-primary flex justify-between items-start;
+  @apply rounded-[var(--zen-shape)];
 
   .content__wrapper {
-    @apply zen-flex zen-gap-x-3 zen-w-full;
+    @apply flex gap-x-3 w-full;
   }
 
   &.success {
-    @apply zen-bg-success zen-text-successText;
+    @apply bg-success text-successText;
   }
 
   &.error {
-    @apply zen-bg-error zen-text-errorText;
+    @apply bg-error text-errorText;
   }
 
   &.warning {
-    @apply zen-bg-warning zen-text-warningText;
+    @apply bg-warning text-warningText;
   }
 
   &.info {
-    @apply zen-bg-info zen-text-infoText;
+    @apply bg-info text-infoText;
   }
 
   &.curve {
-    @apply zen-rounded-lg;
+    @apply rounded-lg;
   }
 
   &.pill {
-    @apply zen-rounded-full;
+    @apply rounded-full;
   }
 
   &.flat {
-    @apply zen-rounded-none;
+    @apply rounded-none;
   }
 }
 
 .handler__wrapper {
-  @apply zen-cursor-pointer;
+  @apply cursor-pointer;
 }

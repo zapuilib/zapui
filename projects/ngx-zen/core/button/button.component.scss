@@ -1,92 +1,92 @@
 button {
-  @apply zen-transition-colors zen-duration-150;
-  @apply zen-flex zen-items-center zen-justify-center;
-  @apply zen-border;
-  @apply zen-bg-tertiary;
-  @apply zen-text-primary;
-  @apply zen-border-tertiary;
-  @apply hover:zen-bg-tertiary/90 hover:zen-border-tertiary/90;
-  @apply zen-rounded-[var(--zen-shape)];
-  @apply zen-px-[var(--zen-btn-size-x)] zen-py-[var(--zen-btn-size-y)] zen-text-[length:var(--zen-btn-text-size)];
-  @apply zen-w-[var(--zen-btn-width)];
+  @apply transition-colors duration-150;
+  @apply flex items-center justify-center;
+  @apply border;
+  @apply bg-tertiary;
+  @apply text-primary;
+  @apply border-tertiary;
+  @apply hover:bg-tertiary/90 hover:border-tertiary/90;
+  @apply rounded-[var(--zen-shape)];
+  @apply px-[var(--zen-btn-size-x)] py-[var(--zen-btn-size-y)] text-[length:var(--zen-btn-text-size)];
+  @apply w-[var(--zen-btn-width)];
 
   &.link {
-    @apply zen-text-tertiary;
+    @apply text-tertiary;
   }
 
   &.tight {
-    @apply zen-text-xs;
+    @apply text-xs;
   }
 
   &.flat {
-    @apply zen-rounded-none;
+    @apply rounded-none;
   }
 
   &.base {
-    @apply zen-px-4 zen-py-2;
+    @apply px-4 py-2;
   }
 
   &.pill {
-    @apply zen-rounded-full;
+    @apply rounded-full;
   }
 
   &.compact {
-    @apply zen-px-3 zen-py-1;
+    @apply px-3 py-1;
   }
 
   &.wide {
-    @apply zen-w-full;
+    @apply w-full;
   }
 
   &.tight {
-    @apply zen-text-sm zen-px-2 zen-py-1;
+    @apply text-sm px-2 py-1;
   }
 
   &.curve {
-    @apply zen-rounded-md;
+    @apply rounded-md;
   }
 
   &:disabled {
-    @apply zen-opacity-50;
+    @apply opacity-50;
   }
 
   &.outlined {
-    @apply zen-border zen-text-tertiary;
-    @apply zen-bg-transparent #{!important};
+    @apply border text-tertiary;
+    @apply bg-transparent #{!important};
   }
 
   i {
-    @apply zen-mr-2;
+    @apply mr-2;
 
     &.right {
-      @apply zen-mr-0 zen-ml-2 zen-order-2;
+      @apply mr-0 ml-2 order-2;
     }
   }
 
   &.icononly {
     i {
-      @apply zen-mx-0;
+      @apply mx-0;
     }
 
     &.pill {
-      @apply zen-px-3 zen-py-3;
+      @apply px-3 py-3;
     }
   }
 
   &.link {
-    @apply zen-border-0 zen-px-0 zen-py-0;
-    @apply zen-bg-transparent #{!important};
+    @apply border-0 px-0 py-0;
+    @apply bg-transparent #{!important};
   }
 
   &.link {
-    @apply zen-underline;
+    @apply underline;
   }
 
   img {
-    @apply zen-w-6 zen-h-6 zen-mr-2;
+    @apply w-6 h-6 mr-2;
 
     &.right {
-      @apply zen-mr-0 zen-ml-2 zen-order-2;
+      @apply mr-0 ml-2 order-2;
     }
   }
 }

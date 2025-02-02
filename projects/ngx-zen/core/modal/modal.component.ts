@@ -24,7 +24,6 @@ export class ZenModalComponent {
   @Input() shape!: 'curve' | 'flat' | 'pill';
   @Input() size: 'small' | 'wide' | 'wider' | 'base' = 'base';
   @Input() zenClass: string = '';
-  @Input() style: 'classic' | 'noblur' = 'classic';
   @HostListener('document:keydown', ['$event'])
   handleEsc(event: KeyboardEvent): void {
     if (event.key === 'Escape' || event.code === 'Escape') this.close.emit();
@@ -34,7 +33,6 @@ export class ZenModalComponent {
     return [
       this.shape,
       this.size,
-      this.style,
       this.zenClass,
     ].filter((cls) => cls && cls !== 'default');
   }

@@ -1,8 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  prefix: "zen-",
   content: ["./src/**/*.{html,ts}"],
-  darkMode: "selector",
   safelist: [
     {
       pattern: /(zen-bg-|zen-text-).*/,

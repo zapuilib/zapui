@@ -1,39 +1,36 @@
 .__ngx__modal__wrapper {
-  @apply zen-w-full zen-p-5 zen-bg-secondary zen-text-md zen-rounded-[var(--zen-shape-modal)] zen-max-w-md zen-fixed zen-top-1/2 zen-left-1/2 -zen-translate-x-1/2 -zen-translate-y-1/2 zen-z-[99];
+  @apply w-full p-5 bg-secondary text-md rounded-[var(--zen-shape-modal)] max-w-md fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-[99];
 
-  &.classic {
-    @apply zen-backdrop-blur-sm;
-  }
-
+  
   .handler {
-    @apply zen-absolute zen-top-3 zen-right-3 zen-cursor-pointer;
+    @apply absolute top-3 right-3 cursor-pointer;
 
     i {
-      @apply zen-text-primary zen-text-md zen-transition-colors hover:zen-text-primary/80;
+      @apply text-primary text-md transition-colors hover:text-primary/80;
     }
   }
 
   &.curve {
-    @apply zen-rounded-md;
+    @apply rounded-md;
   }
 
   &.flat {
-    @apply zen-rounded-none;
+    @apply rounded-none;
   }
 
   &.pill {
-    @apply zen-rounded-xl;
+    @apply rounded-xl;
   }
 
   &.small {
-    @apply zen-max-w-3xl;
+    @apply max-w-3xl;
   }
 
   &.wide {
-    @apply zen-max-w-5xl;
+    @apply max-w-5xl;
   }
 
   &.wider {
-    @apply zen-max-w-7xl;
+    @apply max-w-7xl;
   }
 }

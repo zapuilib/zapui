@@ -3,7 +3,7 @@ module.exports = {
   content: ["./src/**/*.{html,ts}"],
   safelist: [
     {
-      pattern: /(zen-bg-|zen-text-).*/,
+      pattern: /(bg-|text-).*/,
     },
   ],
   theme: {

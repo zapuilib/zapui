@@ -18,8 +18,7 @@
   "exports": {
     "./plugin": {
       "import": "./plugin/index.js",
-      "require": "./plugin/index.js",
-      "types": "./plugin/base.d.ts"
+      "require": "./plugin/index.js"
     }
   }
 }

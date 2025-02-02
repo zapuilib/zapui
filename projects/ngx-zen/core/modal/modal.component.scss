@@ -1,63 +1,39 @@
 .__ngx__modal__wrapper {
-  @apply zen-w-full zen-h-full zen-fixed zen-top-0 zen-left-0 zen-z-50 zen-p-5 max-md:zen-p-3;
-  @apply zen-flex zen-items-center zen-justify-center zen-bg-quaternary/30 zen-backdrop-blur-sm zen-text-md;
+  @apply zen-w-full zen-p-5 zen-bg-secondary zen-text-md zen-rounded-[var(--zen-shape-modal)] zen-max-w-md zen-fixed zen-top-1/2 zen-left-1/2 -zen-translate-x-1/2 -zen-translate-y-1/2 zen-z-[99];
 
   &.classic {
     @apply zen-backdrop-blur-sm;
   }
 
-  .__ngx__modal__inner {
-    @apply zen-w-full zen-max-w-xl;
+  .handler {
+    @apply zen-absolute zen-top-3 zen-right-3 zen-cursor-pointer;
 
-    .__ngx__modal {
-      @apply zen-w-full zen-p-5 zen-relative zen-bg-secondary zen-text-md;
-      @apply zen-rounded-[var(--zen-shape-modal)];
-
-      .handler {
-        @apply zen-absolute zen-top-3 zen-right-3 zen-cursor-pointer;
-
-        i {
-          @apply zen-text-primary zen-text-md;
-        }
-      }
+    i {
+      @apply zen-text-primary zen-text-md zen-transition-colors hover:zen-text-primary/80;
     }
   }
 
   &.curve {
-    .__ngx__modal {
-      @apply zen-rounded-md;
-    }
+    @apply zen-rounded-md;
   }
 
   &.flat {
-    .__ngx__modal {
-      @apply zen-rounded-none;
-    }
+    @apply zen-rounded-none;
   }
 
   &.pill {
-    .__ngx__modal {
-      @apply zen-rounded-xl;
-    }
+    @apply zen-rounded-xl;
   }
 
   &.small {
-    .__ngx__modal__inner {
-      @apply zen-max-w-3xl;
-    }
+    @apply zen-max-w-3xl;
   }
 
   &.wide {
-    .__ngx__modal__inner {
-      @apply zen-max-w-5xl;
-    }
+    @apply zen-max-w-5xl;
   }
 
   &.wider {
-    @apply zen-px-5;
-
-    .__ngx__modal__inner {
-      @apply zen-max-w-7xl;
-    }
+    @apply zen-max-w-7xl;
   }
 }

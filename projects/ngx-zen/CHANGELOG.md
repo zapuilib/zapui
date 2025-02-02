@@ -9,6 +9,8 @@
 - Badge component added
 - Dialog, modal, input entry updated
 - Input focus ring goes outside
+- Modal does not support any handler, inner, wrapper zenclasses
+- Modal does nto have background anymore
 
 ## Beta version 0.0.39 Updates
 

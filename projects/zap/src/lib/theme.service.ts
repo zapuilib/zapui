@@ -31,7 +31,13 @@ export class ThemeService {
     const root = this.document.documentElement;
     const config = this.config || defaultConfig;
 
-    if (customTheme) {
+    if (customTheme && typeof customTheme === 'object') {
+      if (this.deepEqual(customTheme, this.config.theme)) {
+        return;
+      }
+    } else if (customTheme && customTheme === this.config.theme) {
+      return;
+    } else if (customTheme) {
       this.config.theme = customTheme;
     }
 
@@ -75,9 +81,11 @@ export class ThemeService {
   ): string {
     let cssVariables = '';
 
+    const timer = new Date().getTime();
+
     cssVariables += this.generateColorVariables(theme, root);
-    cssVariables += this.generateStylesVariables(theme, root);
     cssVariables += this.generateFontSizeVariables(theme);
+    cssVariables += this.generateStylesVariables(theme, root);
 
     if (config.components) {
       for (const [componentKey, value] of Object.entries(config.components)) {
@@ -91,6 +99,7 @@ export class ThemeService {
           default:
             break;
         }
+
         // this handles all styles for the button component, if border radius, padding etc are provided, it will overrirde the shape and size values
         if (value.styles) {
           Object.entries(value.styles).forEach(([styleKey, value]) => {
@@ -246,11 +255,13 @@ export class ThemeService {
 
     for (const [component, stylesArray] of Object.entries(styles)) {
       for (const style of stylesArray) {
-        const existingStyle = getComputedStyle(root)
-          .getPropertyValue(`--zap-${component}-${style['label']}`)
-          .trim();
-        const styleExist = existingStyle || style['value'];
-        cssVariables += `--zap-${component}-${style['label']}: ${styleExist};\n`;
+        if (this.isBrowser) {
+          const existingStyle = getComputedStyle(root)
+            .getPropertyValue(`--zap-${component}-${style['label']}`)
+            .trim();
+          const styleExist = existingStyle || style['value'];
+          cssVariables += `--zap-${component}-${style['label']}: ${styleExist};\n`;
+        }
       }
     }
 
@@ -477,5 +488,29 @@ export class ThemeService {
       return `${newR}, ${newG}, ${newB}`;
     }
     return '';
+  }
+
+  private deepEqual(obj1: any, obj2: any): boolean {
+    if (obj1 === obj2) return true;
+    if (
+      typeof obj1 !== 'object' ||
+      typeof obj2 !== 'object' ||
+      obj1 === null ||
+      obj2 === null
+    ) {
+      return false;
+    }
+
+    const keys1 = Object.keys(obj1);
+    const keys2 = Object.keys(obj2);
+
+    if (keys1.length !== keys2.length) return false;
+
+    for (const key of keys1) {
+      if (!keys2.includes(key)) return false;
+      if (!this.deepEqual(obj1[key], obj2[key])) return false;
+    }
+
+    return true;
   }
 }

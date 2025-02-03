@@ -1,14 +1,7 @@
-import { Inject, Injectable, Optional, PLATFORM_ID } from '@angular/core';
-import { DOCUMENT, isPlatformBrowser } from '@angular/common';
+import { Injectable} from '@angular/core';
 
-import { NGX_ZAP_CONFIG } from './tokens/zap.tokens';
 import { ThemeService } from './theme.service';
-import { ZapConfig, ZapTheme } from '../public-api';
-import {
-  lightTheme,
-  defaultConfig,
-  darkTheme,
-} from './constants/default-config.constants';
+import { ZapTheme } from '../public-api';
 
 @Injectable({
   providedIn: 'root',

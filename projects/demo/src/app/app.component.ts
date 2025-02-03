@@ -81,7 +81,7 @@ export class AppComponent implements OnInit {
   }
 
   private updateTheme(): void {
-      this.zapThemeService.setTheme(this.theme);
+    this.zapThemeService.setTheme(this.theme);
     document.documentElement.setAttribute('data-theme', this.theme);
   }
 }

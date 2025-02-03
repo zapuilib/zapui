@@ -5,6 +5,7 @@ import { ZapConfig, provideZapOptions } from 'zap';
 import { routes } from './app.routes';
 
 const ngxConfig: ZapConfig = {
+  theme: 'dark', 
   components: {
     global: {
       shape: 'curve', // this will replace root

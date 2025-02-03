@@ -1,5 +1,5 @@
 .__ngx__modal__wrapper {
-  @apply w-full p-5 bg-secondary text-md rounded-[var(--zap-shape-modal)] max-w-md fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-[99];
+  @apply w-full p-5 bg-secondary text-md rounded-[var(--zap-modal-border-radius)] max-w-md fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-[99];
 
   
   .handler {

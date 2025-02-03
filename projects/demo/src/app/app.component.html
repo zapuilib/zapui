@@ -1,13 +1,22 @@
 <div
   class="wrapper mx-auto max-w-screen-2xl grid grid-cols-3 py-10 min-h-screen gap-5"
 >
-  <zap-button
-    text="Explore now"
-    zapClass="bg-lime-300 border-lime-300"
-  ></zap-button>
-  <zap-button text="Switch theme" shape="flat" size="base" (click)="toggleTheme()"></zap-button>
+  <div>
+    <zap-button
+      text="Explore now"
+      zapClass="bg-lime-300 border-lime-300 dark:bg-green-500 dark:border-green-500"
+    ></zap-button>
+  </div>
+  <div>
+    <zap-button
+      text="Switch theme"
+      shape="flat"
+      size="base"
+      (click)="toggleTheme()"
+    ></zap-button>
+  </div>
   <zap-badge [count]="100"></zap-badge>
-  <zap-chip shape="pill" text="Pending"></zap-chip>
+  <zap-chip text="Pending"></zap-chip>
   <div class="relative w-full h-full col-span-2">
     <zap-dialog zapClass="!absolute"></zap-dialog>
   </div>

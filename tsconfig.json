@@ -19,7 +19,7 @@
         "dist/zap/*"
       ]
     },
-    "declaration": false,
+    "declaration": true,
     "downlevelIteration": true,
     "experimentalDecorators": true,
     "moduleResolution": "node",

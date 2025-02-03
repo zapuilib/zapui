@@ -1,7 +1,7 @@
 .__ngx__zap__dialog__wrapper {
   @apply relative flex flex-col m-5;
   @apply w-[30rem] min-h-[14rem] p-5 bg-secondary;
-  @apply rounded-[var(--zap-shape-modal)];
+  @apply rounded-[var(--zap-dialog-border-radius)];
   @apply fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-[99];
 
   &.top {
@@ -33,7 +33,7 @@
     .btn {
       @apply px-4 py-2;
       @apply border transition-colors duration-200;
-      @apply rounded-[var(--zap-shape)];
+      @apply rounded-[var(--zap-button-border-radius)];
 
       &.primary {
         @apply border-error bg-error text-secondary text-md;

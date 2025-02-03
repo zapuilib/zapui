@@ -1,7 +1,7 @@
 import { Inject, Injectable, Optional, PLATFORM_ID } from '@angular/core';
 import { DOCUMENT, isPlatformBrowser } from '@angular/common';
 
-import { NGX_ZEN_CONFIG } from './tokens/zap.tokens';
+import { NGX_ZAP_CONFIG } from './tokens/zap.tokens';
 import { ThemeService } from './theme.service';
 import { ZapConfig, ZapTheme } from '../public-api';
 import {

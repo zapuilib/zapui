@@ -2,13 +2,15 @@ button {
   @apply transition-colors duration-150;
   @apply flex items-center justify-center;
   @apply border;
-  @apply bg-tertiary;
-  @apply text-primary;
-  @apply border-tertiary;
-  @apply hover:bg-tertiary/90 hover:border-tertiary/90;
-  @apply rounded-[var(--zap-shape)];
-  @apply px-[var(--zap-btn-size-x)] py-[var(--zap-btn-size-y)] text-[length:var(--zap-btn-text-size)];
-  @apply w-[var(--zap-btn-width)];
+  @apply bg-[var(--zap-button-bg-color)];
+  @apply text-[var(--zap-button-text-color)];
+  @apply border-[var(--zap-button-border-color)];
+  @apply hover:bg-[var(--zap-button-bg-hover-color)] hover:border-[var(--zap-button-border-hover-color)] hover:text-[var(--zap-button-text-hover-color)];
+  @apply rounded-[var(--zap-button-border-radius)];
+  @apply pl-[var(--zap-button-padding-left)] pr-[var(--zap-button-padding-right)] pt-[var(--zap-button-padding-top)] pb-[var(--zap-button-padding-bottom)] text-[length:var(--zap-button-font-size)] font-[var(--zap-button-font-weight)];
+  @apply w-[var(--zap-button-width)] h-[var(--zap-button-height)];
+  @apply active:ring-1 active:ring-[var(--zap-button-border-active-color)] active:bg-[var(--zap-button-bg-active-color)] active:text-[var(--zap-button-text-active-color)] leading-[var(--zap-button-line-height)] tracking-[var(--zap-button-letter-spacing)]; //ring is adding weird effect on click
+  text-transform: var(--zap-button-text-transform);
 
   &.link {
     @apply text-tertiary;
@@ -47,11 +49,11 @@ button {
   }
 
   &:disabled {
-    @apply opacity-50;
+    @apply bg-[var(--zap-button-disabled-bg-color)] text-[var(--zap-button-disabled-text-color)] border-[var(--zap-button-disabled-border-color)];
   }
 
   &.outlined {
-    @apply border text-tertiary;
+    @apply border text-[var(--zap-button-bg-color)];
     @apply bg-transparent #{!important};
   }
 

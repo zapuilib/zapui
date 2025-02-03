@@ -10,7 +10,7 @@ import {
 } from '@angular/forms';
 import { distinctUntilChanged, startWith, Subject, takeUntil, tap } from 'rxjs';
 
-import { NGX_ZEN_CONFIG } from '../tokens/zap.tokens';
+import { NGX_ZAP_CONFIG } from '../tokens/zap.tokens';
 import { ZapConfig } from '../interfaces/config.interface';
 import { ColorUtility } from '../utilities/color.utility';
 
@@ -30,7 +30,7 @@ export class ControlValueAccessorDirective<T>
 
   constructor(
     @Inject(Injector) private injector: Injector,
-    @Inject(NGX_ZEN_CONFIG) public config: ZapConfig,
+    @Inject(NGX_ZAP_CONFIG) public config: ZapConfig,
     public colorUtility: ColorUtility
   ) {}
 

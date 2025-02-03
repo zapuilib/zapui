@@ -1,8 +1,8 @@
 import { Inject, Injectable, Optional, PLATFORM_ID } from '@angular/core';
 import { DOCUMENT, isPlatformBrowser } from '@angular/common';
 
-import { NGX_ZEN_CONFIG } from './tokens/zap.tokens';
-import { ZapConfig, ZapTheme } from '../public-api';
+import { NGX_ZAP_CONFIG } from './tokens/zap.tokens';
+import { ButtonConfig, GlobalConfig, ZapConfig, ZapTheme } from '../public-api';
 import {
   lightTheme,
   defaultConfig,
@@ -18,7 +18,7 @@ export class ThemeService {
   constructor(
     @Inject(DOCUMENT) private document: Document,
     @Inject(PLATFORM_ID) private platformId: Object,
-    @Optional() @Inject(NGX_ZEN_CONFIG) private config: ZapConfig
+    @Optional() @Inject(NGX_ZAP_CONFIG) private config: ZapConfig
   ) {
     this.isBrowser = isPlatformBrowser(this.platformId);
 
@@ -55,7 +55,8 @@ export class ThemeService {
   }
 
   private removeExistingStyleElement(): void {
-    const existingStyleElement = this.document.getElementById('zap-theme-styles');
+    const existingStyleElement =
+      this.document.getElementById('zap-theme-styles');
     if (existingStyleElement) {
       existingStyleElement.remove();
     }
@@ -67,14 +68,215 @@ export class ThemeService {
     return styleElement;
   }
 
-  private generateCssVariables(theme: ZapTheme, config: ZapConfig, root: HTMLElement): string {
+  private generateCssVariables(
+    theme: ZapTheme,
+    config: ZapConfig,
+    root: HTMLElement
+  ): string {
     let cssVariables = '';
 
     cssVariables += this.generateColorVariables(theme, root);
+    cssVariables += this.generateStylesVariables(theme, root);
     cssVariables += this.generateFontSizeVariables(theme);
-    cssVariables += this.generateShapeVariables(config, root);
-    cssVariables += this.generateButtonSizeVariables(config, root);
 
+    if (config.components) {
+      for (const [componentKey, value] of Object.entries(config.components)) {
+        switch (componentKey) {
+          case 'global':
+            cssVariables += this.generateComponentGlobalVariables(value, root);
+            break;
+          case 'button':
+            cssVariables += this.generateComponentButtonVariables(value, root);
+            break;
+          default:
+            break;
+        }
+        // this handles all styles for the button component, if border radius, padding etc are provided, it will overrirde the shape and size values
+        if (value.styles) {
+          Object.entries(value.styles).forEach(([styleKey, value]) => {
+            if (styleKey === 'padding') {
+              cssVariables += this.handlePaddingStyles(componentKey, value);
+            } else {
+              cssVariables += `--zap-${componentKey}-${this.toKebabCase(
+                styleKey
+              )}: ${value};\n`;
+            }
+          });
+        }
+      }
+    }
+
+    return cssVariables;
+  }
+
+  //this hadles the padding styles for the components incase the user want to use css padding instead of left right etc
+  private handlePaddingStyles(
+    componentKey: string,
+    value: string
+  ): string | undefined {
+    let cssVariables = '';
+    let pt;
+    let pr;
+    let pb;
+    let pl;
+    if (value.split(' ').length === 4) {
+      pt = value.split(' ')[0];
+      pr = value.split(' ')[1];
+      pb = value.split(' ')[2];
+      pl = value.split(' ')[3];
+    } else if (value.split(' ').length === 2) {
+      pt = value.split(' ')[0];
+      pb = value.split(' ')[0];
+      pl = value.split(' ')[1];
+      pr = value.split(' ')[1];
+    } else if (value.split(' ').length === 3) {
+      pt = value.split(' ')[0];
+      pb = value.split(' ')[1];
+      pl = value.split(' ')[2];
+      pr = value.split(' ')[2];
+    } else if (value.split(' ').length === 1) {
+      pt = value.split(' ')[0];
+      pb = value.split(' ')[0];
+      pl = value.split(' ')[0];
+      pr = value.split(' ')[0];
+    } else {
+      return;
+    }
+
+    cssVariables += `--zap-${componentKey}-padding-left: ${pl};\n`;
+    cssVariables += `--zap-${componentKey}-padding-top: ${pt};\n`;
+    cssVariables += `--zap-${componentKey}-padding-bottom: ${pb};\n`;
+    cssVariables += `--zap-${componentKey}-padding-right: ${pr};\n`;
+
+    return cssVariables;
+  }
+
+  /**
+   * This function generates the css variables for the button component
+   * @param value - ButtonConfig
+   * @param root - HTMLElement
+   * @returns string
+   */
+  private generateComponentButtonVariables(
+    value: ButtonConfig,
+    root: HTMLElement
+  ) {
+    let cssVariables = '';
+    const existingSize = this.getExistingButtonSize(root);
+    const existingShape = this.getExistingShapeFor('button', root);
+    const btnSizeValue = existingSize || value.size;
+    const btnShapeValue = existingShape || value.shape || '';
+
+    // this handles the shape, size of the button component
+    if (btnShapeValue) {
+      const { shapeCssValue } = this.getShapeCssValues(btnShapeValue, 'button');
+      cssVariables += `--zap-button-border-radius: ${shapeCssValue};\n`;
+    }
+
+    if (btnSizeValue) {
+      cssVariables += this.getButtonSizeCssValues(btnSizeValue, root);
+    } else {
+      cssVariables += this.getDefaultButtonSizeCssValues();
+    }
+
+    return cssVariables;
+  }
+
+  // Below handles all the shape, sizees, font sizes, colors etc for the components
+  /**
+   * This function generates the global styles for the all the components
+   * @param theme
+   * @param root
+   * @returns
+   */
+  private generateStylesVariables(theme: ZapTheme, root: HTMLElement): string {
+    let cssVariables = '';
+    const styles = {
+      button: [
+        {
+          label: 'bg-color',
+          value: theme.colors.tertiary,
+        },
+        {
+          label: 'text-color',
+          value: theme.colors.primary,
+        },
+        {
+          label: 'border-color',
+          value: theme.colors.tertiary,
+        },
+        {
+          label: 'bg-hover-color',
+          value: this.hexToRgba(theme.colors.tertiary, 0.9),
+        },
+        {
+          label: 'text-hover-color',
+          value: this.hexToRgba(theme.colors.primary, 0.9),
+        },
+        {
+          label: 'border-hover-color',
+          value: this.hexToRgba(theme.colors.tertiary, 0),
+        },
+        {
+          label: 'bg-active-color',
+          value: theme.colors.tertiary,
+        },
+        {
+          label: 'text-active-color',
+          value: theme.colors.primary,
+        },
+        {
+          label: 'border-active-color',
+          value: 'transparent',
+        },
+        {
+          label: 'disabled-bg-color',
+          value: this.hexToRgba(theme.colors.tertiary, 0.5),
+        },
+        {
+          label: 'disabled-text-color',
+          value: this.hexToRgba(theme.colors.primary, 0.5),
+        },
+        {
+          label: 'disabled-border-color',
+          value: this.hexToRgba(theme.colors.tertiary, 0),
+        },
+      ],
+    };
+
+    for (const [component, stylesArray] of Object.entries(styles)) {
+      for (const style of stylesArray) {
+        const existingStyle = getComputedStyle(root)
+          .getPropertyValue(`--zap-${component}-${style['label']}`)
+          .trim();
+        const styleExist = existingStyle || style['value'];
+        cssVariables += `--zap-${component}-${style['label']}: ${styleExist};\n`;
+      }
+    }
+
+    return cssVariables;
+  }
+
+  private generateComponentGlobalVariables(
+    config: GlobalConfig,
+    root: HTMLElement
+  ): string {
+    const components = ['alert', 'button', 'chip', 'dialog', 'input', 'modal'];
+    let cssVariables = '';
+    let existingShape = '';
+
+    for (const component of components) {
+      const existingShapeValue = this.getExistingShapeFor(component, root);
+      if (existingShapeValue) {
+        existingShape = existingShapeValue;
+      }
+      const shapeValue = existingShape || config.shape;
+
+      if (shapeValue) {
+        const { shapeCssValue } = this.getShapeCssValues(shapeValue, component);
+        cssVariables += `--zap-${component}-border-radius: ${shapeCssValue};\n`;
+      }
+    }
     return cssVariables;
   }
 
@@ -91,6 +293,106 @@ export class ThemeService {
     return cssVariables;
   }
 
+  private getExistingShapeFor(key: string, root: HTMLElement): string {
+    if (this.isBrowser) {
+      const existingShape = getComputedStyle(root)
+        .getPropertyValue(`--zap-${key}-border-radius`)
+        .trim();
+      const validShapes = ['pill', 'curve', 'default'];
+      return validShapes.includes(existingShape) ? existingShape : '';
+    } else {
+      return '';
+    }
+  }
+
+  private getExistingColor(root: HTMLElement, key: string): string {
+    if (this.isBrowser) {
+      const existingColor = getComputedStyle(root)
+        .getPropertyValue(`--zap-color-${key}`)
+        .trim();
+      return this.convertColorToRgb(existingColor);
+    }
+    return '';
+  }
+
+  private getShapeCssValues(
+    shapeValue: string,
+    component: string
+  ): {
+    shapeCssValue: string;
+  } {
+    let shapeCssValue = shapeValue;
+
+    const shapeValues: { [key: string]: string } = {
+      pill: 'calc(infinity * 1px)',
+      curve: '0.375rem',
+    };
+
+    const modalDialogShapeValues: { [key: string]: string } = {
+      pill: '1rem',
+      curve: '0.5rem',
+    };
+
+    if (
+      component === 'button' ||
+      component === 'input' ||
+      component === 'chip' ||
+      component === 'alert'
+    ) {
+      shapeCssValue = shapeValues[shapeValue] || shapeCssValue;
+    } else if (component === 'modal' || component === 'dialog') {
+      shapeCssValue = modalDialogShapeValues[shapeValue] || shapeCssValue;
+    }
+
+    return { shapeCssValue };
+  }
+
+  private getExistingButtonSize(root: HTMLElement): string {
+    if (this.isBrowser) {
+      return getComputedStyle(root)
+        .getPropertyValue('--zap-button-size')
+        .trim();
+    }
+    return '';
+  }
+
+  private getButtonSizeCssValues(
+    btnSizeValue: string,
+    root: HTMLElement
+  ): string {
+    let cssVariables = '';
+
+    if (btnSizeValue === 'compact') {
+      cssVariables += `--zap-button-padding-left: 0.75rem;\n`;
+      cssVariables += `--zap-button-padding-right: 0.75rem;\n`;
+      cssVariables += `--zap-button-padding-top: 0.25rem;\n`;
+      cssVariables += `--zap-button-padding-bottom: 0.25rem;\n`;
+      cssVariables += `--zap-button-font-size: 1rem;\n`;
+    } else if (btnSizeValue === 'tight') {
+      cssVariables += `--zap-button-padding-left: 0.5rem;\n`;
+      cssVariables += `--zap-button-padding-right: 0.5rem;\n`;
+      cssVariables += `--zap-button-padding-top: 0.25rem;\n`;
+      cssVariables += `--zap-button-padding-bottom: 0.25rem;\n`;
+      const existingFontSize = this.getExistingFontSize(root);
+      const btnTextSizeValue = existingFontSize || '0.875rem';
+      cssVariables += `--zap-button-font-size: ${btnTextSizeValue};\n`;
+    } else if (btnSizeValue === 'wide') {
+      cssVariables += `--zap-button-padding-left: 1rem;\n`;
+      cssVariables += `--zap-button-padding-right: 1rem;\n`;
+      cssVariables += `--zap-button-padding-top: 0.5rem;\n`;
+      cssVariables += `--zap-button-padding-bottom: 0.5rem;\n`;
+      cssVariables += `--zap-button-width: 100%;\n`;
+    } else {
+      cssVariables += this.getDefaultButtonSizeCssValues();
+    }
+
+    return cssVariables;
+  }
+
+  private getDefaultButtonSizeCssValues(): string {
+    return `--zap-button-padding-left: 1rem;\n--zap-button-padding-right: 1rem;\n--zap-button-padding-top: 0.5rem;\n--zap-button-padding-bottom: 0.5rem;\n--zap-button-font-size: 1rem;\n`;
+  }
+
   private generateFontSizeVariables(theme: ZapTheme): string {
     let cssVariables = '';
 
@@ -101,44 +403,18 @@ export class ThemeService {
     return cssVariables;
   }
 
-  private generateShapeVariables(config: ZapConfig, root: HTMLElement): string {
-    let cssVariables = '';
-    const existingShape = this.getExistingShape(root);
-    const shapeValue = existingShape || config.shape;
-
-    if (shapeValue) {
-      const { shapeCssValue, shapeCssValueModals } = this.getShapeCssValues(shapeValue);
-      cssVariables += `--zap-shape: ${shapeCssValue};\n`;
-      cssVariables += `--zap-shape-modal: ${shapeCssValueModals};\n`;
-    }
-
-    return cssVariables;
-  }
-
-  private generateButtonSizeVariables(config: ZapConfig, root: HTMLElement): string {
-    let cssVariables = '';
-    const existingSize = this.getExistingButtonSize(root);
-    const btnSizeValue = existingSize || config.btnSize;
-
-    if (btnSizeValue) {
-      cssVariables += this.getButtonSizeCssValues(btnSizeValue, root);
-    } else {
-      cssVariables += this.getDefaultButtonSizeCssValues();
-    }
-
-    return cssVariables;
-  }
-
-  private toKebabCase(str: string): string {
-    return str.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase();
-  }
-
-  private getExistingColor(root: HTMLElement, key: string): string {
+  private getExistingFontSize(root: HTMLElement): string {
     if (this.isBrowser) {
-      const existingColor = getComputedStyle(root).getPropertyValue(`--zap-color-${key}`).trim();
-      return this.convertColorToRgb(existingColor);
+      return getComputedStyle(root)
+        .getPropertyValue('--zap-font-size-sm')
+        .trim();
     }
     return '';
+  }
+
+  // Utility functions
+  private toKebabCase(str: string): string {
+    return str.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase();
   }
 
   private convertColorToRgb(color: string): string {
@@ -151,75 +427,26 @@ export class ThemeService {
     }
     return '';
   }
-
-  private getExistingShape(root: HTMLElement): string {
-    if (this.isBrowser) {
-      const existingShape = getComputedStyle(root).getPropertyValue('--zap-shape').trim();
-      const validShapes = ['pill', 'curve', 'default'];
-      return validShapes.includes(existingShape) ? existingShape : '';
+  private hexToRgba(hex: string, alpha: number): string {
+    let r = 0,
+      g = 0,
+      b = 0;
+    if (hex.length === 4) {
+      r = parseInt(hex[1] + hex[1], 16);
+      g = parseInt(hex[2] + hex[2], 16);
+      b = parseInt(hex[3] + hex[3], 16);
+    } else if (hex.length === 7) {
+      r = parseInt(hex[1] + hex[2], 16);
+      g = parseInt(hex[3] + hex[4], 16);
+      b = parseInt(hex[5] + hex[6], 16);
     }
-    return '';
-  }
-
-  private getShapeCssValues(shapeValue: string): { shapeCssValue: string; shapeCssValueModals: string } {
-    let shapeCssValue = shapeValue;
-    let shapeCssValueModals = shapeValue;
-
-    if (shapeValue === 'pill') {
-      shapeCssValue = 'calc(infinity * 1px)';
-      shapeCssValueModals = '1rem';
-    } else if (shapeValue === 'curve') {
-      shapeCssValue = '0.375rem';
-      shapeCssValueModals = '0.5rem';
-    }
-
-    return { shapeCssValue, shapeCssValueModals };
-  }
-
-  private getExistingButtonSize(root: HTMLElement): string {
-    if (this.isBrowser) {
-      return getComputedStyle(root).getPropertyValue('--zap-btn-size').trim();
-    }
-    return '';
-  }
-
-  private getButtonSizeCssValues(btnSizeValue: string, root: HTMLElement): string {
-    let cssVariables = '';
-
-    if (btnSizeValue === 'compact') {
-      cssVariables += `--zap-btn-size-x: 0.75rem;\n`;
-      cssVariables += `--zap-btn-size-y: 0.25rem;\n`;
-      cssVariables += `--zap-btn-text-size: 1rem;\n`;
-    } else if (btnSizeValue === 'tight') {
-      cssVariables += `--zap-btn-size-x: 0.5rem;\n`;
-      cssVariables += `--zap-btn-size-y: 0.25rem;\n`;
-      const existingFontSize = this.getExistingFontSize(root);
-      const btnTextSizeValue = existingFontSize || '0.875rem';
-      cssVariables += `--zap-btn-text-size: ${btnTextSizeValue};\n`;
-    } else if (btnSizeValue === 'wide') {
-      cssVariables += `--zap-btn-size-x: 1rem;\n`;
-      cssVariables += `--zap-btn-size-y: 0.5rem;\n`;
-      cssVariables += `--zap-btn-width: 100%;\n`;
-    } else {
-      cssVariables += this.getDefaultButtonSizeCssValues();
-    }
-
-    return cssVariables;
-  }
-
-  private getExistingFontSize(root: HTMLElement): string {
-    if (this.isBrowser) {
-      return getComputedStyle(root).getPropertyValue('--zap-font-size-sm').trim();
-    }
-    return '';
-  }
-
-  private getDefaultButtonSizeCssValues(): string {
-    return `--zap-btn-size-x: 1rem;\n--zap-btn-size-y: 0.5rem;\n--zap-btn-text-size: 1rem;\n`;
+    return `rgba(${r}, ${g}, ${b}, ${alpha})`;
   }
 
   private hexToRgb(hex: string): string {
-    let r = 0, g = 0, b = 0;
+    let r = 0,
+      g = 0,
+      b = 0;
     if (hex.length === 4) {
       r = parseInt(hex[1] + hex[1], 16);
       g = parseInt(hex[2] + hex[2], 16);

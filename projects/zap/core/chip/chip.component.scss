@@ -1,6 +1,6 @@
 .__ngx__zap__chip__wrapper {
   @apply inline-flex items-center px-3 py-1 font-medium rounded-lg bg-tertiary border-transparent text-primary text-sm;
-  @apply rounded-[var(--zap-shape)];
+  @apply rounded-[var(--zap-chip-border-radius)];
   
   &.small {
     @apply text-xs;

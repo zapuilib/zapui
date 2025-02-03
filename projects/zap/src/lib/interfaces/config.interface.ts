@@ -2,9 +2,63 @@ type HexCode = `#${string}`;
 
 export interface ZapConfig {
   theme?: 'light' | 'dark' | ZapTheme;
-  shape?: 'pill' | 'curve' | 'flat';
-  btnSize?: 'compact' | 'wide' | 'tight' | 'base';
+  components?: {
+    global?: GlobalConfig;
+    button?: ButtonConfig;
+    chip?: ChipConfig;
+  };
 }
+
+export interface ButtonConfig {
+  shape?: ShapeType;
+  size?: 'compact' | 'wide' | 'tight' | 'base';
+  styles?: {
+    bgColor?: HexCode;
+    textColor?: HexCode;
+    borderColor?: HexCode;
+    bgHoverColor?: HexCode;
+    textHoverColor?: HexCode;
+    borderHoverColor?: HexCode;
+    bgActiveColor?: HexCode;
+    textActiveColor?: HexCode;
+    borderActiveColor?: HexCode;
+    borderRadius?: string;
+    paddingLeft?: string;
+    paddingRight?: string;
+    paddingTop?: string;
+    paddingBottom?: string;
+    padding?: Padding;
+    width?: string;
+    height?: string;
+    fontSize?: string;
+    fontWeight?: string;
+    lineHeight?: string;
+    letterSpacing?: string;
+    textTransform?: string;
+    disabledBgColor?: HexCode;
+    disabledTextColor?: HexCode;
+    disabledBorderColor?: HexCode;
+  };
+}
+
+export interface ChipConfig {
+  shape?: ShapeType;
+  styles?: {
+
+  }
+}
+
+export interface GlobalConfig {
+  shape?: ShapeType;
+  styles?: {
+  };
+}
+
+type ShapeType = 'flat' | 'curve' | 'pill';
+
+type Padding = `${paddingString} ${paddingString} ${paddingString} ${paddingString}` | `${paddingString} ${paddingString} ${paddingString}` | `${paddingString} ${paddingString}` | paddingString;
+
+type paddingString = `${string}px` | `${string}rem` | `${string}em` | `${string}%`  | `${string}vw` | `${string}vh` | `${string}vmin` | `${string}vmax` | `${string}ch` | `${string}ex` | `${string}cm` | `${string}mm` | `${string}in` | `${string}pt` | `${string}pc`;
 
 export interface ZapTheme {
   colors: {

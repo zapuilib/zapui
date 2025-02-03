@@ -37,7 +37,7 @@ export class ThemeService {
   applyTheme(customTheme?: 'light' | 'dark' | string): void {
     const root = this.document.documentElement;
     const config = this.config || defaultConfig;
-
+    
     if (customTheme && typeof customTheme === 'object') {
       if (deepEqual(customTheme, this.config.theme)) {
         return;
@@ -88,7 +88,7 @@ export class ThemeService {
     config: ZapConfig,
     root: HTMLElement
   ): string {
-    let cssVariables = '';
+    let cssVariables = '';    
     cssVariables += generateColorVariables(theme, root, this.isBrowser); // generates galobal color variables like primary, secondary, etc
     cssVariables += generateFontSizeVariables(theme); // generates global font size variables
     cssVariables += generateGlobalStylesVariables(theme, root, this.isBrowser); // generates global styles for all components this will be replace by css styles if passed

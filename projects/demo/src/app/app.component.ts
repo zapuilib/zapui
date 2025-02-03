@@ -30,7 +30,7 @@ import { ZapInputComponent } from 'zap/forms';
   styleUrl: './app.component.scss',
 })
 export class AppComponent implements OnInit {
-  theme: 'light' | 'dark' | 'folly' = 'folly';
+  theme: 'light' | 'dark' = 'dark';
   usernameControl = new FormControl('', [Validators.required]);
 
   private zapThemeService: ZapThemer = inject(ZapThemer);
@@ -39,12 +39,12 @@ export class AppComponent implements OnInit {
     if(localStorage.getItem('zapdemo-theme') === null) {
       localStorage.setItem('zapdemo-theme', 'dark');
     }
-    this.theme = localStorage.getItem('zapdemo-theme') as 'light' | 'dark' | 'folly' ;
+    this.theme = localStorage.getItem('zapdemo-theme') as 'light' | 'dark' ;
     this.updateTheme();
   }
 
   toggleTheme(): void {
-    this.theme = this.theme === 'folly' ? 'light' : this.theme === 'light' ? 'dark' : 'folly';
+    this.theme = this.theme === 'dark' ? 'light' : 'dark';
     localStorage.setItem('zapdemo-theme', this.theme);
     this.updateTheme();
   }

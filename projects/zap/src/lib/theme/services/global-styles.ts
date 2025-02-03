@@ -1,5 +1,6 @@
-import { ZapTheme } from "../../interfaces/config.interface";
-import { hexToRgba } from "../utils/base-theme-utils";
+import { ZapTheme } from '../../interfaces/config.interface';
+import { getDefaultButtonSizeCssValues } from '../components/button-theme';
+import { hexToRgba } from '../utils/base-theme-utils';
 
 /**
  * This function generates the global styles for the all the components
@@ -77,6 +78,8 @@ export function generateGlobalStylesVariables(
       }
     }
   }
+
+  cssVariables += getDefaultButtonSizeCssValues();
 
   return cssVariables;
 }

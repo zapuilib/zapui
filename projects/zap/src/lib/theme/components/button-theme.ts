@@ -83,7 +83,7 @@ export function getDefaultButtonSizeCssValues(): string {
 
 export function getExistingFontSize(
   root: HTMLElement,
-  isBrowser?: boolean
+  isBrowser: boolean
 ): string {
   if (isBrowser) {
     return getComputedStyle(root).getPropertyValue('--zap-font-size-sm').trim();

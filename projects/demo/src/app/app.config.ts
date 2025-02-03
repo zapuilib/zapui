@@ -36,51 +36,51 @@ const folly: ZapTheme = {
 };
 
 const ngxConfig: ZapConfig = {
-  theme: localStorage.getItem('zapdemo-theme') as 'light' | 'dark' | 'folly', // make sure this is always set to active theme
-  themeLibrary: {
-    folly,
-  },
-  components: {
-    global: {
-      shape: 'curve', // this will replace root
-    },
-    button: {
-      shape: 'pill', // this will replace global and root
-      size: 'base', // this will replace root
-      styles: {
-        // this will replace global and root and priority is given based on the order of each style passed
-        colors: {
-          dark: {
-            bgColor: '#4CB963',
-            textColor: '#FFFFFF',
-            borderColor: '#4CB963',
-            bgHoverColor: '#4CB963',
-            borderHoverColor: '#4CB963',
-            textHoverColor: '#FFFFFF',
-            bgActiveColor: '#4CB963',
-            borderActiveColor: '#4CB963',
-            textActiveColor: '#FFFFFF',
-            // disabledBgColor: '#A9DEF9',
-            // disabledTextColor: '#4CB963',
-            // disabledBorderColor: '#A9DEF9',
-          },
-        },
-        // borderRadius: '15px',
-        // paddingLeft: '20px',
-        // paddingRight: '20px',
-        // paddingTop: '10px',
-        // paddingBottom: '10px',
-        // padding: '10px 30px',
-        // width: '100%',
-        // height: '50px',
-        // fontSize: '1.5rem',
-        // fontWeight: 'bold',
-        // lineHeight: '2',
-        // letterSpacing: '1px',
-        // textTransform: 'uppercase',
-      },
-    },
-  },
+  theme: localStorage.getItem('zapdemo-theme') as 'light' | 'dark', // make sure this is always set to active theme pass/  can pass folly and used later with dynamic theme
+  // themeLibrary: {
+  //   folly,
+  // },
+  // components: {
+  //   global: {
+  //     shape: 'curve', // this will replace root
+  //   },
+  //   button: {
+  //     shape: 'pill', // this will replace global and root
+  //     size: 'base', // this will replace root
+  //     styles: {
+  //       // this will replace global and root and priority is given based on the order of each style passed
+  //       colors: {
+  //         dark: {
+  //           bgColor: '#4CB963',
+  //           textColor: '#FFFFFF',
+  //           borderColor: '#4CB963',
+  //           bgHoverColor: '#4CB963',
+  //           borderHoverColor: '#4CB963',
+  //           textHoverColor: '#FFFFFF',
+  //           bgActiveColor: '#4CB963',
+  //           borderActiveColor: '#4CB963',
+  //           textActiveColor: '#FFFFFF',
+  //           // disabledBgColor: '#A9DEF9',
+  //           // disabledTextColor: '#4CB963',
+  //           // disabledBorderColor: '#A9DEF9',
+  //         },
+  //       },
+  //       // borderRadius: '15px',
+  //       // paddingLeft: '20px',
+  //       // paddingRight: '20px',
+  //       // paddingTop: '10px',
+  //       // paddingBottom: '10px',
+  //       // padding: '10px 30px',
+  //       // width: '100%',
+  //       // height: '50px',
+  //       // fontSize: '1.5rem',
+  //       // fontWeight: 'bold',
+  //       // lineHeight: '2',
+  //       // letterSpacing: '1px',
+  //       // textTransform: 'uppercase',
+  //     },
+  //   },
+  // },
 };
 
 export const appConfig: ApplicationConfig = {

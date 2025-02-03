@@ -5,7 +5,7 @@ import { ZapConfig, provideZapOptions } from 'zap';
 import { routes } from './app.routes';
 
 const ngxConfig: ZapConfig = {
-  theme: 'dark', 
+  theme: localStorage.getItem('zapdemo-theme') as 'light' | 'dark', // make sure this is always set to active theme
   components: {
     global: {
       shape: 'curve', // this will replace root

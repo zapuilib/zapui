@@ -1,4 +1,4 @@
-type HexCode = `#${string}`;
+export type HexCode = `#${string}`;
 
 export interface ZapConfig {
   theme?: 'light' | 'dark' | string;

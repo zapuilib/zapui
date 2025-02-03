@@ -1,0 +1,26 @@
+import { GlobalConfig } from '../../interfaces/config.interface';
+import { getExistingShapeFor, getShapeCssValues } from '../utils/shape-utils';
+
+export function generateComponentGlobalVariables(
+  config: GlobalConfig,
+  root: HTMLElement,
+  isBrowser: boolean
+): string {
+  const components = ['alert', 'button', 'chip', 'dialog', 'input', 'modal'];
+  let cssVariables = '';
+  let existingShape = '';
+
+  for (const component of components) {
+    const existingShapeValue = getExistingShapeFor(component, root, isBrowser);
+    if (existingShapeValue) {
+      existingShape = existingShapeValue;
+    }
+    const shapeValue = existingShape || config.shape;
+
+    if (shapeValue) {
+      const { shapeCssValue } = getShapeCssValues(shapeValue, component);
+      cssVariables += `--zap-${component}-border-radius: ${shapeCssValue};\n`;
+    }
+  }
+  return cssVariables;
+}

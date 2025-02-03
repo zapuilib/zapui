@@ -27,7 +27,7 @@ export class ThemeService {
     }
   }
 
-  applyTheme(customTheme?: 'light' | 'dark' | ZapTheme): void {
+  applyTheme(customTheme?: 'light' | 'dark' | string): void {
     const root = this.document.documentElement;
     const config = this.config || defaultConfig;
 
@@ -50,13 +50,15 @@ export class ThemeService {
     styleElement.innerHTML = `:root {\n${cssVariables}}`;
   }
 
-  private getTheme(theme: string | ZapTheme): ZapTheme {
+  private getTheme(theme: string): ZapTheme {
     if (theme === 'light') {
       return lightTheme;
     } else if (theme === 'dark') {
       return darkTheme;
+    } else if (this.config.themeLibrary) {
+      return this.config.themeLibrary[theme];
     } else {
-      return typeof theme === 'string' ? darkTheme : theme;
+      return darkTheme;
     }
   }
 
@@ -102,13 +104,24 @@ export class ThemeService {
 
         // this handles all styles for the button component, if border radius, padding etc are provided, it will overrirde the shape and size values
         if (value.styles) {
-          Object.entries(value.styles).forEach(([styleKey, value]) => {
-            if (styleKey === 'padding') {
-              cssVariables += this.handlePaddingStyles(componentKey, value);
+          Object.entries(value.styles).forEach(([styleKey, styleValue]) => {
+            if (styleKey === 'padding' && typeof styleValue === 'string') {
+              cssVariables += this.handlePaddingStyles(
+                componentKey,
+                styleValue
+              );
+            } else if (styleKey === 'colors' && config.theme) {
+              if (typeof styleValue === 'object' && styleValue[config.theme]) {
+                Object.entries(styleValue[config.theme]).forEach(
+                  ([colorKey, colorValue]) => {
+                    cssVariables += `--zap-${componentKey}-${this.toKebabCase(colorKey)}: ${colorValue};\n`;
+                  }
+                );
+              }
             } else {
               cssVariables += `--zap-${componentKey}-${this.toKebabCase(
                 styleKey
-              )}: ${value};\n`;
+              )}: ${styleValue};\n`;
             }
           });
         }

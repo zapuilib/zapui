@@ -1,5 +1,5 @@
 .wrapper {
   & > * {
-    @apply flex items-center justify-center border dark:border-zinc-800 border-zinc-100 rounded-xl overflow-hidden px-10 py-60;
+    @apply flex items-center justify-center border dark:border-zinc-800 border-zinc-500 rounded-xl overflow-hidden px-10 py-60;
   }
 }

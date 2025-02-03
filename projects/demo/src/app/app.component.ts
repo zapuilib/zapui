@@ -30,52 +30,21 @@ import { ZapInputComponent } from 'zap/forms';
   styleUrl: './app.component.scss',
 })
 export class AppComponent implements OnInit {
-  theme: 'light' | 'dark' = 'dark';
+  theme: 'light' | 'dark' | 'folly' = 'folly';
   usernameControl = new FormControl('', [Validators.required]);
 
   private zapThemeService: ZapThemer = inject(ZapThemer);
-
-  // folly: ZapTheme = {
-  //   colors: {
-  //     primary: '#000000',
-  //     secondary: '#FFFFFF',
-  //     tertiary: '#F52F57',
-  //     quaternary: '#9CA3AF',
-  //     success: '#04E824',
-  //     successText: '#000000',
-  //     warning: '#f6ad55',
-  //     warningText: '#000000',
-  //     error: '#e3342f',
-  //     errorText: '#FFFFFF',
-  //     info: '#5438DC',
-  //     infoText: '#FFFFFF',
-  //   },
-  //   fontSize: {
-  //     '7xl': '4.5rem',
-  //     '6xl': '3.75rem',
-  //     '5xl': '3rem',
-  //     '4xl': '2.25rem',
-  //     '3xl': '1.875rem',
-  //     '2xl': '1.5rem',
-  //     xl: '1.25rem',
-  //     lg: '1.125rem',
-  //     md: '1rem',
-  //     sm: '0.875rem',
-  //     xs: '0.75rem',
-  //     xxs: '0.625rem',
-  //   },
-  // };
 
   ngOnInit(): void {
     if(localStorage.getItem('zapdemo-theme') === null) {
       localStorage.setItem('zapdemo-theme', 'dark');
     }
-    this.theme = localStorage.getItem('zapdemo-theme') as 'light' | 'dark';
+    this.theme = localStorage.getItem('zapdemo-theme') as 'light' | 'dark' | 'folly' ;
     this.updateTheme();
   }
 
   toggleTheme(): void {
-    this.theme = this.theme === 'dark' ? 'light' : 'dark';
+    this.theme = this.theme === 'folly' ? 'light' : this.theme === 'light' ? 'dark' : 'folly';
     localStorage.setItem('zapdemo-theme', this.theme);
     this.updateTheme();
   }

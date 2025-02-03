@@ -9,7 +9,7 @@ import { ZapTheme } from '../public-api';
 export class ZapThemer {
   constructor(private themeService: ThemeService) {}
 
-  setTheme(theme: 'light' | 'dark' | ZapTheme): void {
+  setTheme(theme: 'light' | 'dark' | string): void {
     this.themeService.applyTheme(theme);
   }
 }

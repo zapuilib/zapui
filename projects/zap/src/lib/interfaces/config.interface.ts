@@ -1,7 +1,8 @@
 type HexCode = `#${string}`;
 
 export interface ZapConfig {
-  theme?: 'light' | 'dark' | ZapTheme;
+  theme?: 'light' | 'dark' | string;
+  themeLibrary?: { [key: string]: ZapTheme };
   components?: {
     global?: GlobalConfig;
     button?: ButtonConfig;
@@ -13,15 +14,22 @@ export interface ButtonConfig {
   shape?: ShapeType;
   size?: 'compact' | 'wide' | 'tight' | 'base';
   styles?: {
-    bgColor?: HexCode;
-    textColor?: HexCode;
-    borderColor?: HexCode;
-    bgHoverColor?: HexCode;
-    textHoverColor?: HexCode;
-    borderHoverColor?: HexCode;
-    bgActiveColor?: HexCode;
-    textActiveColor?: HexCode;
-    borderActiveColor?: HexCode;
+    colors?: {
+      [theme: string]: {
+        bgColor?: HexCode;
+        textColor?: HexCode;
+        borderColor?: HexCode;
+        bgHoverColor?: HexCode;
+        textHoverColor?: HexCode;
+        borderHoverColor?: HexCode;
+        bgActiveColor?: HexCode;
+        textActiveColor?: HexCode;
+        borderActiveColor?: HexCode;
+        disabledBgColor?: HexCode;
+        disabledTextColor?: HexCode;
+        disabledBorderColor?: HexCode;
+      }
+    };
     borderRadius?: string;
     paddingLeft?: string;
     paddingRight?: string;
@@ -35,16 +43,14 @@ export interface ButtonConfig {
     lineHeight?: string;
     letterSpacing?: string;
     textTransform?: string;
-    disabledBgColor?: HexCode;
-    disabledTextColor?: HexCode;
-    disabledBorderColor?: HexCode;
   };
 }
+
+
 
 export interface ChipConfig {
   shape?: ShapeType;
   styles?: {
-
   }
 }
 

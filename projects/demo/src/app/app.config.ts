@@ -9,7 +9,7 @@ import { ZapConfig, provideZapOptions } from 'zap';
 import { routes } from './app.routes';
 
 const ngxConfig: ZapConfig = {
-  shape: 'flat',
+  shape: 'curve',
   btnSize: 'base',
 };
 

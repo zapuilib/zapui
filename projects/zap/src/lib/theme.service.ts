@@ -26,138 +26,205 @@ export class ThemeService {
       this.applyTheme();
     }
   }
-  
+
   applyTheme(customTheme?: 'light' | 'dark' | ZapTheme): void {
     const root = this.document.documentElement;
     const config = this.config || defaultConfig;
-    if(customTheme){
+
+    if (customTheme) {
       this.config.theme = customTheme;
     }
-    const theme =
-      config.theme === 'light'
-        ? lightTheme
-        : config.theme === 'dark'
-        ? darkTheme
-        : config.theme || darkTheme;    
 
+    const theme = this.getTheme(config.theme || 'dark');
+    this.removeExistingStyleElement();
+    const styleElement = this.createStyleElement();
+    this.document.head.appendChild(styleElement);
+
+    const cssVariables = this.generateCssVariables(theme, config, root);
+    styleElement.innerHTML = `:root {\n${cssVariables}}`;
+  }
+
+  private getTheme(theme: string | ZapTheme): ZapTheme {
+    if (theme === 'light') {
+      return lightTheme;
+    } else if (theme === 'dark') {
+      return darkTheme;
+    } else {
+      return typeof theme === 'string' ? darkTheme : theme;
+    }
+  }
+
+  private removeExistingStyleElement(): void {
     const existingStyleElement = this.document.getElementById('zap-theme-styles');
-
     if (existingStyleElement) {
       existingStyleElement.remove();
     }
+  }
 
+  private createStyleElement(): HTMLStyleElement {
     const styleElement = this.document.createElement('style');
     styleElement.setAttribute('id', 'zap-theme-styles');
-    this.document.head.appendChild(styleElement);
+    return styleElement;
+  }
 
+  private generateCssVariables(theme: ZapTheme, config: ZapConfig, root: HTMLElement): string {
+    let cssVariables = '';
+
+    cssVariables += this.generateColorVariables(theme, root);
+    cssVariables += this.generateFontSizeVariables(theme);
+    cssVariables += this.generateShapeVariables(config, root);
+    cssVariables += this.generateButtonSizeVariables(config, root);
+
+    return cssVariables;
+  }
+
+  private generateColorVariables(theme: ZapTheme, root: HTMLElement): string {
     let cssVariables = '';
 
     Object.entries(theme.colors || {}).forEach(([key, value]) => {
-      const kebabKey = key.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase();
-      let existingColor = '';
-
-      if (this.isBrowser) {
-        existingColor = getComputedStyle(root)
-          .getPropertyValue(`--zap-color-${kebabKey}`)
-          .trim();
-      }
-
-      if (existingColor) {
-        if (existingColor.startsWith('#')) {
-          existingColor = this.hexToRgb(existingColor);
-        } else if (existingColor.startsWith('rgb')) {
-          existingColor = this.rgbToRgbNumber(existingColor);
-        } else if (existingColor.startsWith('rgba')) {
-          existingColor = this.rgbaToRgbNumber(existingColor);
-        }
-      }
-
+      const kebabKey = this.toKebabCase(key);
+      const existingColor = this.getExistingColor(root, kebabKey);
       const rgbValue = existingColor || this.hexToRgb(value);
       cssVariables += `--zap-color-${kebabKey}: ${rgbValue};\n`;
     });
+
+    return cssVariables;
+  }
+
+  private generateFontSizeVariables(theme: ZapTheme): string {
+    let cssVariables = '';
 
     Object.entries(theme.fontSize || {}).forEach(([key, value]) => {
       cssVariables += `--zap-font-size-${key}: ${value};\n`;
     });
 
-    let existingShape = '';
-    if (this.isBrowser) {
-      existingShape = getComputedStyle(root)
-        .getPropertyValue('--zap-shape')
-        .trim();
-    }
+    return cssVariables;
+  }
 
-    const validShapes = ['pill', 'curve', 'default'];
-    if (existingShape && !validShapes.includes(existingShape)) {
-      existingShape = '';
-    }
-
+  private generateShapeVariables(config: ZapConfig, root: HTMLElement): string {
+    let cssVariables = '';
+    const existingShape = this.getExistingShape(root);
     const shapeValue = existingShape || config.shape;
+
     if (shapeValue) {
-      let shapeCssValue = shapeValue;
-      let shapeCssValueModals = shapeValue;
-      if (shapeValue === 'pill') {
-        shapeCssValue = 'calc(infinity * 1px)';
-        shapeCssValueModals = '1rem';
-      } else if (shapeValue === 'curve') {
-        shapeCssValue = '0.375rem';
-        shapeCssValueModals = '0.5rem';
-      }
+      const { shapeCssValue, shapeCssValueModals } = this.getShapeCssValues(shapeValue);
       cssVariables += `--zap-shape: ${shapeCssValue};\n`;
       cssVariables += `--zap-shape-modal: ${shapeCssValueModals};\n`;
     }
 
-    let existingSize = '';
-    if (this.isBrowser) {
-      existingSize = getComputedStyle(root)
-        .getPropertyValue('--zap-btn-size')
-        .trim();
+    return cssVariables;
+  }
+
+  private generateButtonSizeVariables(config: ZapConfig, root: HTMLElement): string {
+    let cssVariables = '';
+    const existingSize = this.getExistingButtonSize(root);
+    const btnSizeValue = existingSize || config.btnSize;
+
+    if (btnSizeValue) {
+      cssVariables += this.getButtonSizeCssValues(btnSizeValue, root);
+    } else {
+      cssVariables += this.getDefaultButtonSizeCssValues();
     }
 
-    const btnSizeValue = existingSize || config.btnSize;
-    if (btnSizeValue) {
-      if (btnSizeValue === 'compact') {
-        cssVariables += `--zap-btn-size-x: 0.75rem;\n`;
-        cssVariables += `--zap-btn-size-y: 0.25rem;\n`;
-        cssVariables += `--zap-btn-text-size: 1rem;\n`;
-      } else if (btnSizeValue === 'tight') {
-        cssVariables += `--zap-btn-size-x: 0.5rem;\n`;
-        cssVariables += `--zap-btn-size-y: 0.25rem;\n`;
-        let existingFontSize = '';
-        if (this.isBrowser) {
-          existingFontSize = getComputedStyle(root)
-            .getPropertyValue('--zap-font-size-sm')
-            .trim();
-        }
-        const btnTextSizeValue = existingFontSize || '0.875rem';
-        cssVariables += `--zap-btn-text-size: ${btnTextSizeValue};\n`;
-      } else if (btnSizeValue === 'wide') {
-        cssVariables += `--zap-btn-size-x: 1rem;\n`;
-        cssVariables += `--zap-btn-size-y: 0.5rem;\n`;
-        cssVariables += `--zap-btn-width: 100%;\n`;
-      } else {
-        cssVariables += `--zap-btn-size-x: 1rem;\n`;
-        cssVariables += `--zap-btn-size-y: 0.5rem;\n`;
-        cssVariables += `--zap-btn-text-size: 1rem;\n`;
-      }
-    } else {
+    return cssVariables;
+  }
+
+  private toKebabCase(str: string): string {
+    return str.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase();
+  }
+
+  private getExistingColor(root: HTMLElement, key: string): string {
+    if (this.isBrowser) {
+      const existingColor = getComputedStyle(root).getPropertyValue(`--zap-color-${key}`).trim();
+      return this.convertColorToRgb(existingColor);
+    }
+    return '';
+  }
+
+  private convertColorToRgb(color: string): string {
+    if (color.startsWith('#')) {
+      return this.hexToRgb(color);
+    } else if (color.startsWith('rgb')) {
+      return this.rgbToRgbNumber(color);
+    } else if (color.startsWith('rgba')) {
+      return this.rgbaToRgbNumber(color);
+    }
+    return '';
+  }
+
+  private getExistingShape(root: HTMLElement): string {
+    if (this.isBrowser) {
+      const existingShape = getComputedStyle(root).getPropertyValue('--zap-shape').trim();
+      const validShapes = ['pill', 'curve', 'default'];
+      return validShapes.includes(existingShape) ? existingShape : '';
+    }
+    return '';
+  }
+
+  private getShapeCssValues(shapeValue: string): { shapeCssValue: string; shapeCssValueModals: string } {
+    let shapeCssValue = shapeValue;
+    let shapeCssValueModals = shapeValue;
+
+    if (shapeValue === 'pill') {
+      shapeCssValue = 'calc(infinity * 1px)';
+      shapeCssValueModals = '1rem';
+    } else if (shapeValue === 'curve') {
+      shapeCssValue = '0.375rem';
+      shapeCssValueModals = '0.5rem';
+    }
+
+    return { shapeCssValue, shapeCssValueModals };
+  }
+
+  private getExistingButtonSize(root: HTMLElement): string {
+    if (this.isBrowser) {
+      return getComputedStyle(root).getPropertyValue('--zap-btn-size').trim();
+    }
+    return '';
+  }
+
+  private getButtonSizeCssValues(btnSizeValue: string, root: HTMLElement): string {
+    let cssVariables = '';
+
+    if (btnSizeValue === 'compact') {
+      cssVariables += `--zap-btn-size-x: 0.75rem;\n`;
+      cssVariables += `--zap-btn-size-y: 0.25rem;\n`;
+      cssVariables += `--zap-btn-text-size: 1rem;\n`;
+    } else if (btnSizeValue === 'tight') {
+      cssVariables += `--zap-btn-size-x: 0.5rem;\n`;
+      cssVariables += `--zap-btn-size-y: 0.25rem;\n`;
+      const existingFontSize = this.getExistingFontSize(root);
+      const btnTextSizeValue = existingFontSize || '0.875rem';
+      cssVariables += `--zap-btn-text-size: ${btnTextSizeValue};\n`;
+    } else if (btnSizeValue === 'wide') {
       cssVariables += `--zap-btn-size-x: 1rem;\n`;
       cssVariables += `--zap-btn-size-y: 0.5rem;\n`;
-      cssVariables += `--zap-btn-text-size: 1rem;\n`;
+      cssVariables += `--zap-btn-width: 100%;\n`;
+    } else {
+      cssVariables += this.getDefaultButtonSizeCssValues();
     }
 
-    styleElement.innerHTML = `:root {\n${cssVariables}}`;
+    return cssVariables;
+  }
+
+  private getExistingFontSize(root: HTMLElement): string {
+    if (this.isBrowser) {
+      return getComputedStyle(root).getPropertyValue('--zap-font-size-sm').trim();
+    }
+    return '';
+  }
+
+  private getDefaultButtonSizeCssValues(): string {
+    return `--zap-btn-size-x: 1rem;\n--zap-btn-size-y: 0.5rem;\n--zap-btn-text-size: 1rem;\n`;
   }
 
   private hexToRgb(hex: string): string {
-    let r = 0,
-      g = 0,
-      b = 0;
-    if (hex.length == 4) {
+    let r = 0, g = 0, b = 0;
+    if (hex.length === 4) {
       r = parseInt(hex[1] + hex[1], 16);
       g = parseInt(hex[2] + hex[2], 16);
       b = parseInt(hex[3] + hex[3], 16);
-    } else if (hex.length == 7) {
+    } else if (hex.length === 7) {
       r = parseInt(hex[1] + hex[2], 16);
       g = parseInt(hex[3] + hex[4], 16);
       b = parseInt(hex[5] + hex[6], 16);

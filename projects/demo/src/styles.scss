@@ -5,7 +5,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap');
 
 body {
-  @apply bg-white dark:bg-zinc-950;
+  @apply bg-white dark:bg-[#09090B] text-[#09090B] dark:text-white;
 }
 
 :root {

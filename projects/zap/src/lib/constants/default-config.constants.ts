@@ -16,15 +16,15 @@ export const defaultConfig: ZapConfig = {
 export const lightTheme: ZapTheme = {
   colors: {
     primary: '#FFFFFF',
-    secondary: '#000000',
-    tertiary: '#000000',
+    secondary: '#09090B',
+    tertiary: '#09090B',
     quaternary: '#495057',
     success: '#28a745',
     successText: '#FFFFFF',
     error: '#dc3545',
     errorText: '#FFFFFF',
     warning: '#ffc107',
-    warningText: '#000000',
+    warningText: '#09090B',
     info: '#17a2b8',
     infoText: '#FFFFFF',
   },

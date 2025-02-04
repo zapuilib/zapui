@@ -21,6 +21,8 @@ export function generateComponentButtonVariables(
   if (btnShapeValue) {
     const { shapeCssValue } = getShapeCssValues(btnShapeValue, 'button');
     cssVariables += `--zap-button-border-radius: ${shapeCssValue};\n`;
+    cssVariables += `--zap-dialog-primary-btn-border-radius: ${shapeCssValue};\n`;
+    cssVariables += `--zap-dialog-secondary-btn-border-radius: ${shapeCssValue};\n`;
   }
 
   if (btnSizeValue) {

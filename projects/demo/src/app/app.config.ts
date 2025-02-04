@@ -159,6 +159,50 @@ const ngxConfig: ZapConfig = {
         // textTransform: 'uppercase',
       },
     },
+    dialog: {
+      shape: 'curve', // this will replace global and root
+      styles: {
+        colors: {
+          dark: {
+            // bgColor: '#1877F2',
+            // textColor: '#FFFFFF',
+            // borderColor: '#1877F2',
+            // titleColor: '#FFFFFF',
+            // dismissColor: '#FFFFFF',
+            // dismissHoverColor: '#C0C0C0',
+            // primaryBtnBgColor: '#4CB963',
+            // primaryBtnTextColor: '#FFFFFF',
+            // secondaryBtnBgColor: '#FFFFFF',
+            // secondaryBtnTextColor: '#4CB963',
+            // secondaryBtnBgHoverColor: '#4CB963',
+            // secondaryBtnTextHoverColor: '#FFFFFF',
+          }
+        },
+        borderRadius: '15px',
+        // titleFontSize: '1.5rem',
+        // titleFontWeight: 'bold',
+        // titleLineHeight: '2',
+        // titleLetterSpacing: '1px',
+        // fontSize: '1.5rem',
+        // fontWeight: 'bold',
+        // lineHeight: '2',
+        // letterSpacing: '1px',
+        // dismissFontSize: '1.5rem',
+        // dismissFontWeight: 'bold',
+        // dismissLineHeight: '2',
+        // dismissLetterSpacing: '1px',
+        // primaryBtnFontSize: '1.5rem',
+        // primaryBtnFontWeight: 'bold',
+        // primaryBtnLineHeight: '2',
+        // primaryBtnLetterSpacing: '1px',
+        // secondaryBtnFontSize: '1.5rem',
+        // secondaryBtnFontWeight: 'bold',
+        // secondaryBtnLineHeight: '2',
+        // secondaryBtnLetterSpacing: '1px',
+        // primaryBtnBorderRadius: '15px', // by default border raidus is set by global or btn style, 
+        // secondaryBtnBorderRadius: '15px', // by default border raidus is set by global or btn style
+      }
+    }
   },
 };
 

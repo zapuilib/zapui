@@ -4,6 +4,7 @@ import { getDefaultButtonSizeCssValues } from '../components/button-theme';
 import { ZapTheme } from '../../interfaces/config.interface';
 import { hexToRgba } from '../utils/base-theme-utils';
 import { getDefaultChipSizeCssValues } from '../components/chip-theme';
+import { getDefaultDialogSizeCssValues } from '../components/dialog-theme';
 
 /**
  * This function generates the global styles for the all the components
@@ -36,7 +37,7 @@ export function generateGlobalStylesVariables(
       },
       {
         label: 'dismiss-hover-color',
-        value: hexToRgba(theme.colors.primary, 0.1),
+        value: hexToRgba(theme.colors.primary, 0.7),
       },
     ],
     badge: [
@@ -55,7 +56,7 @@ export function generateGlobalStylesVariables(
       {
         label: 'border-radius',
         value: 'calc(infinity * 1px)',
-      }
+      },
     ],
     button: [
       {
@@ -141,11 +142,87 @@ export function generateGlobalStylesVariables(
         value: hexToRgba(theme.colors.primary, 0.7),
       },
     ],
+    dialog: [
+      {
+        label: 'bg-color',
+        value: theme.colors.secondary,
+      },
+      {
+        label: 'border-color',
+        value: theme.colors.secondary,
+      },
+      {
+        label: 'text-color',
+        value: theme.colors.primary,
+      },
+      {
+        label: 'title-color',
+        value: theme.colors.primary,
+      },
+      {
+        label: 'dismiss-color',
+        value: theme.colors.primary,
+      },
+      {
+        label: 'dismiss-hover-color',
+        value: hexToRgba(theme.colors.primary, 0.7),
+      },
+      {
+        label: 'primary-btn-bg-color',
+        value: theme.colors.error,
+      },
+      {
+        label: 'primary-btn-border-color',
+        value: theme.colors.error,
+      },
+      {
+        label: 'primary-btn-text-color',
+        value: theme.colors.secondary,
+      },
+      {
+        label: 'primary-btn-bg-hover-color',
+        value: hexToRgba(theme.colors.error, 0.9),
+      },
+      {
+        label: 'primary-btn-border-hover-color',
+        value: hexToRgba(theme.colors.error, 0.9),
+      },
+      {
+        label: 'primary-btn-text-hover-color',
+        value: hexToRgba(theme.colors.secondary, 0.9),
+      },
+      {
+        label: 'secondary-btn-bg-color',
+        value: 'transparent',
+      },
+      {
+        label: 'secondary-btn-border-color',
+        value: hexToRgba(theme.colors.primary, 0.2),
+      },
+      {
+        label: 'secondary-btn-text-color',
+        value: theme.colors.primary,
+      },
+      {
+        label: 'secondary-btn-bg-hover-color',
+        value: 'transparent',
+      },
+      {
+        label: 'secondary-btn-border-hover-color',
+        value: hexToRgba(theme.colors.primary, 0.4),
+      },
+      {
+        label: 'secondary-btn-text-hover-color',
+        value: hexToRgba(theme.colors.primary, 0.8),
+      },
+    ],
   };
 
   for (const [component, stylesArray] of Object.entries(styles)) {
     for (const style of stylesArray) {
-      const existingStyle = root.style.getPropertyValue(`--zap-${component}-${style['label']}`).trim();
+      const existingStyle = root.style
+        .getPropertyValue(`--zap-${component}-${style['label']}`)
+        .trim();
       const styleExist = existingStyle || style['value'];
       cssVariables += `--zap-${component}-${style['label']}: ${styleExist};\n`;
     }
@@ -155,6 +232,7 @@ export function generateGlobalStylesVariables(
   cssVariables += getDefaultBadgeSizeCssValues();
   cssVariables += getDefaultButtonSizeCssValues();
   cssVariables += getDefaultChipSizeCssValues();
+  cssVariables += getDefaultDialogSizeCssValues();
 
   return cssVariables;
 }

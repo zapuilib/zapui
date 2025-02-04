@@ -19,6 +19,11 @@ export function generateComponentGlobalVariables(
     if (shapeValue) {
       const { shapeCssValue } = getShapeCssValues(shapeValue, component);
       cssVariables += `--zap-${component}-border-radius: ${shapeCssValue};\n`;
+      if (component === 'dialog') {
+        const { shapeCssValue } = getShapeCssValues(shapeValue, 'button');
+        cssVariables += `--zap-dialog-primary-btn-border-radius: ${shapeCssValue};\n`;
+        cssVariables += `--zap-dialog-secondary-btn-border-radius: ${shapeCssValue};\n`;
+      }
     }
   }
   return cssVariables;

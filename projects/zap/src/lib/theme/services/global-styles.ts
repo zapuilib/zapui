@@ -10,8 +10,7 @@ import { hexToRgba } from '../utils/base-theme-utils';
  */
 export function generateGlobalStylesVariables(
   theme: ZapTheme,
-  root: HTMLElement,
-  isBrowser: boolean
+  root: HTMLElement
 ): string {
   let cssVariables = '';
   const styles = {
@@ -69,13 +68,9 @@ export function generateGlobalStylesVariables(
 
   for (const [component, stylesArray] of Object.entries(styles)) {
     for (const style of stylesArray) {
-      if (isBrowser) {
-        const existingStyle = getComputedStyle(root)
-          .getPropertyValue(`--zap-${component}-${style['label']}`)
-          .trim();
-        const styleExist = existingStyle || style['value'];
-        cssVariables += `--zap-${component}-${style['label']}: ${styleExist};\n`;
-      }
+      const existingStyle = root.style.getPropertyValue(`--zap-${component}-${style['label']}`).trim();
+      const styleExist = existingStyle || style['value'];
+      cssVariables += `--zap-${component}-${style['label']}: ${styleExist};\n`;
     }
   }
 

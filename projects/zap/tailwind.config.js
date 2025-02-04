@@ -9,7 +9,6 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        //remove all variants later
         primary: ({ opacityValue }) =>
           opacityValue
             ? `rgba(var(--zap-color-primary), ${opacityValue})`

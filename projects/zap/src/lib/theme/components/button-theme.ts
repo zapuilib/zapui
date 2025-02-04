@@ -10,11 +10,10 @@ import { getExistingShapeFor, getShapeCssValues } from '../utils/shape-utils';
 export function generateComponentButtonVariables(
   value: ButtonConfig,
   root: HTMLElement,
-  isBrowser: boolean
 ) {
   let cssVariables = '';
-  const existingSize = getExistingButtonSize(root, isBrowser);
-  const existingShape = getExistingShapeFor('button', root, isBrowser);
+  const existingSize = getExistingButtonSize(root);
+  const existingShape = getExistingShapeFor('button', root);
   const btnSizeValue = existingSize || value.size;
   const btnShapeValue = existingShape || value.shape || '';
 
@@ -25,7 +24,7 @@ export function generateComponentButtonVariables(
   }
 
   if (btnSizeValue) {
-    cssVariables += getButtonSizeCssValues(btnSizeValue, root, isBrowser);
+    cssVariables += getButtonSizeCssValues(btnSizeValue, root);
   } else {
     cssVariables += getDefaultButtonSizeCssValues();
   }
@@ -34,19 +33,14 @@ export function generateComponentButtonVariables(
 }
 
 export function getExistingButtonSize(
-  root: HTMLElement,
-  isBrowser?: boolean
+  root: HTMLElement
 ): string {
-  if (isBrowser) {
-    return getComputedStyle(root).getPropertyValue('--zap-button-size').trim();
-  }
-  return '';
+    return root.style.getPropertyValue(`--zap-button-size`).trim();
 }
 
 export function getButtonSizeCssValues(
   btnSizeValue: string,
   root: HTMLElement,
-  isBrowser: boolean
 ): string {
   let cssVariables = '';
 
@@ -61,7 +55,7 @@ export function getButtonSizeCssValues(
     cssVariables += `--zap-button-padding-right: 0.5rem;\n`;
     cssVariables += `--zap-button-padding-top: 0.25rem;\n`;
     cssVariables += `--zap-button-padding-bottom: 0.25rem;\n`;
-    const existingFontSize = getExistingFontSize(root, isBrowser);
+    const existingFontSize = getExistingFontSize(root);
     const btnTextSizeValue = existingFontSize || '0.875rem';
     cssVariables += `--zap-button-font-size: ${btnTextSizeValue};\n`;
   } else if (btnSizeValue === 'wide') {
@@ -83,10 +77,8 @@ export function getDefaultButtonSizeCssValues(): string {
 
 export function getExistingFontSize(
   root: HTMLElement,
-  isBrowser: boolean
 ): string {
-  if (isBrowser) {
-    return getComputedStyle(root).getPropertyValue('--zap-font-size-sm').trim();
-  }
-  return '';
+
+    return root.style.getPropertyValue(`--zap-font-size-sm`).trim();
+
 }

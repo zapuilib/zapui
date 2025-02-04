@@ -1,13 +1,9 @@
-export function getExistingShapeFor(key: string, root: HTMLElement, isBrowser: boolean): string {
-  if (isBrowser) {
-    const existingShape = getComputedStyle(root)
-      .getPropertyValue(`--zap-${key}-border-radius`)
-      .trim();
-    const validShapes = ['pill', 'curve', 'default'];
-    return validShapes.includes(existingShape) ? existingShape : '';
-  } else {
-    return '';
-  }
+export function getExistingShapeFor(key: string, root: HTMLElement): string {
+  const existingShape = root.style
+    .getPropertyValue(`--zap-${key}-border-radius`)
+    .trim();
+  const validShapes = ['pill', 'curve', 'default'];
+  return validShapes.includes(existingShape) ? existingShape : '';
 }
 
 export function getShapeCssValues(

@@ -3,15 +3,14 @@ import { getExistingShapeFor, getShapeCssValues } from '../utils/shape-utils';
 
 export function generateComponentGlobalVariables(
   config: GlobalConfig,
-  root: HTMLElement,
-  isBrowser: boolean
+  root: HTMLElement
 ): string {
   const components = ['alert', 'button', 'chip', 'dialog', 'input', 'modal'];
   let cssVariables = '';
   let existingShape = '';
 
   for (const component of components) {
-    const existingShapeValue = getExistingShapeFor(component, root, isBrowser);
+    const existingShapeValue = getExistingShapeFor(component, root);
     if (existingShapeValue) {
       existingShape = existingShapeValue;
     }

@@ -89,20 +89,20 @@ export class ThemeService {
     root: HTMLElement
   ): string {
     let cssVariables = '';    
-    cssVariables += generateColorVariables(theme, root, this.isBrowser); // generates galobal color variables like primary, secondary, etc
+    cssVariables += generateColorVariables(theme, root); // generates galobal color variables like primary, secondary, etc
     cssVariables += generateFontSizeVariables(theme); // generates global font size variables
-    cssVariables += generateGlobalStylesVariables(theme, root, this.isBrowser); // generates global styles for all components this will be replace by css styles if passed
+    cssVariables += generateGlobalStylesVariables(theme, root); // generates global styles for all components this will be replace by css styles if passed
 
     if (config.components) {
       for (const [componentKey, value] of Object.entries(config.components)) {
         switch (componentKey) {
           case 'global':
             // handles global shape for the component
-            cssVariables += generateComponentGlobalVariables(value, root, this.isBrowser);
+            cssVariables += generateComponentGlobalVariables(value, root);
             break;
           case 'button':
             // handles shape and size for the button component
-            cssVariables += generateComponentButtonVariables(value, root, this.isBrowser);
+            cssVariables += generateComponentButtonVariables(value, root);
             break;
           default:
             break;

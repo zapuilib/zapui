@@ -23,7 +23,7 @@
   }
 
   &__input {
-    @apply text-secondary border-secondary/10 text-md;
+    @apply text-secondary border-secondary text-md;
     @apply w-full px-3 py-2 border bg-transparent;
     @apply focus-within:outline-0 focus-within:ring-2 focus-within:ring-offset-0;
     @apply rounded-[var(--zap-input-shape)];
@@ -68,7 +68,7 @@
   }
 
   input::placeholder {
-    @apply text-secondary/30;
+    @apply text-secondary;
   }
 
   input:focus {

@@ -145,27 +145,27 @@ export function generateGlobalStylesVariables(
     dialog: [
       {
         label: 'bg-color',
-        value: theme.colors.secondary,
+        value: hexToRgba(theme.colors.secondary, 0.03),
       },
       {
         label: 'border-color',
-        value: theme.colors.secondary,
+        value: hexToRgba(theme.colors.secondary, 0.1),
       },
       {
         label: 'text-color',
-        value: theme.colors.primary,
+        value: theme.colors.secondary,
       },
       {
         label: 'title-color',
-        value: theme.colors.primary,
+        value: theme.colors.secondary,
       },
       {
         label: 'dismiss-color',
-        value: theme.colors.primary,
+        value: theme.colors.secondary,
       },
       {
         label: 'dismiss-hover-color',
-        value: hexToRgba(theme.colors.primary, 0.7),
+        value: hexToRgba(theme.colors.secondary, 0.7),
       },
       {
         label: 'primary-btn-bg-color',
@@ -197,11 +197,11 @@ export function generateGlobalStylesVariables(
       },
       {
         label: 'secondary-btn-border-color',
-        value: hexToRgba(theme.colors.primary, 0.2),
+        value: hexToRgba(theme.colors.secondary, 0.1),
       },
       {
         label: 'secondary-btn-text-color',
-        value: theme.colors.primary,
+        value: theme.colors.secondary,
       },
       {
         label: 'secondary-btn-bg-hover-color',
@@ -209,11 +209,11 @@ export function generateGlobalStylesVariables(
       },
       {
         label: 'secondary-btn-border-hover-color',
-        value: hexToRgba(theme.colors.primary, 0.4),
+        value: hexToRgba(theme.colors.secondary, 0.05),
       },
       {
         label: 'secondary-btn-text-hover-color',
-        value: hexToRgba(theme.colors.primary, 0.8),
+        value: hexToRgba(theme.colors.secondary, 0.8),
       },
     ],
   };

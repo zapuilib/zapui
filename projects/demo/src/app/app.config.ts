@@ -46,43 +46,58 @@ const ngxConfig: ZapConfig = {
     },
     alert: {
       // shape: 'pill', // this will replace global and root
-    }
-    // button: {
-    //   shape: 'pill', // this will replace global and root
-    //   size: 'base', // this will replace root
-    //   styles: {
-    //     // this will replace global and root and priority is given based on the order of each style passed
-    //     colors: {
-    //       dark: {
-    //         bgColor: '#4CB963',
-    //         textColor: '#FFFFFF',
-    //         borderColor: '#4CB963',
-    //         bgHoverColor: '#4CB963',
-    //         borderHoverColor: '#4CB963',
-    //         textHoverColor: '#FFFFFF',
-    //         bgActiveColor: '#4CB963',
-    //         borderActiveColor: '#4CB963',
-    //         textActiveColor: '#FFFFFF',
-    //         // disabledBgColor: '#A9DEF9',
-    //         // disabledTextColor: '#4CB963',
-    //         // disabledBorderColor: '#A9DEF9',
-    //       },
-    //     },
-    //     // borderRadius: '15px',
-    //     // paddingLeft: '20px',
-    //     // paddingRight: '20px',
-    //     // paddingTop: '10px',
-    //     // paddingBottom: '10px',
-    //     // padding: '10px 30px',
-    //     // width: '100%',
-    //     // height: '50px',
-    //     // fontSize: '1.5rem',
-    //     // fontWeight: 'bold',
-    //     // lineHeight: '2',
-    //     // letterSpacing: '1px',
-    //     // textTransform: 'uppercase',
-    //   },
-    // },
+      styles: {
+        colors: {
+          dark: { // this is only if you want to use defautl alert, if you want to use success, error, warning, info alert then you can pass the custom alert component
+            bgColor: '#1877F2',
+            textColor: '#FFFFFF',
+            borderColor: '#1877F2',
+            dismissColor: '#FFFFFF',
+            dismissHoverColor: '#C0C0C0',
+          }
+        },
+        borderRadius: '15px',
+        // lineHeight: '5.5',
+        // letterSpacing: '1px',
+        textTransform: 'uppercase',
+      }
+    },
+    button: {
+      // shape: 'pill', // this will replace global and root
+      size: 'compact', // this will replace root
+      styles: {
+        // this will replace global and root and priority is given based on the order of each style passed
+        colors: {
+          dark: {
+            // bgColor: '#1877F2',
+            // textColor: '#FFFFFF',
+            // borderColor: '#1877F2',
+            // bgHoverColor: '#4CB963',
+            // borderHoverColor: '#4CB963',
+            // textHoverColor: '#FFFFFF',
+            // bgActiveColor: '#4CB963',
+            // borderActiveColor: '#4CB963',
+            // textActiveColor: '#FFFFFF',
+            // disabledBgColor: '#A9DEF9',
+            // disabledTextColor: '#4CB963',
+            // disabledBorderColor: '#A9DEF9',
+          },
+        },
+        // borderRadius: '15px',
+        // paddingLeft: '20px',
+        // paddingRight: '20px',
+        // paddingTop: '10px',
+        // paddingBottom: '10px',
+        // padding: '10px 30px',
+        // width: '100%',
+        // height: '50px',
+        // fontSize: '1.5rem',
+        // fontWeight: 'bold',
+        // lineHeight: '2',
+        // letterSpacing: '1px',
+        // textTransform: 'uppercase',
+      },
+    },
   },
 };
 

@@ -1,25 +1,48 @@
 .__ngx__zap__alert {
-  @apply min-w-[25rem] max-w-[40rem] p-4 rounded-none bg-[var(--zap-alert-bg-color)] text-primary flex justify-between items-start;
+  @apply min-w-[100vw] xs:min-w-[375px] max-w-[40rem] rounded-none bg-[var(--zap-alert-bg-color)] text-[var(--zap-alert-text-color)] border border-[var(--zap-alert-border-color)] flex justify-between items-start z-[9999] relative;
   @apply rounded-[var(--zap-alert-border-radius)];
+  @apply pl-[var(--zap-alert-padding-left)] pr-[var(--zap-alert-padding-right)] pt-[var(--zap-alert-padding-top)] pb-[var(--zap-alert-padding-bottom)] text-[length:var(--zap-alert-font-size)] font-[var(--zap-alert-font-weight)];
+  @apply w-[var(--zap-alert-width)] h-[var(--zap-alert-height)] leading-[var(--zap-alert-line-height)] tracking-[var(--zap-alert-letter-spacing)];
+  text-transform: var(--zap-button-text-transform);
+
+  .handler__wrapper i {
+    @apply text-[var(--zap-alert-dismiss-color)] hover:text-[var(--zap-alert-dismiss-hover-color)] absolute top-[22px] right-[22px] cursor-pointer;
+  }
 
   .content__wrapper {
     @apply flex gap-x-3 w-full;
   }
 
   &.success {
-    @apply bg-success text-successText;
+    @apply bg-success border-success text-successText;
+
+    .handler__wrapper i {
+      @apply text-successText hover:text-successText/70;
+    }
   }
 
   &.error {
-    @apply bg-error text-errorText;
+    @apply bg-error border-error text-errorText;
+
+    .handler__wrapper i {
+      @apply text-errorText hover:text-errorText/70;
+    }
   }
 
   &.warning {
-    @apply bg-warning text-warningText;
+    @apply bg-warning border-warning text-warningText;
+
+    .handler__wrapper i {
+      @apply text-warningText hover:text-warningText/70;
+    }
   }
 
   &.info {
-    @apply bg-info text-infoText;
+    @apply bg-info border-info text-infoText;
+
+    .handler__wrapper i {
+      @apply text-infoText hover:text-infoText/70;
+    }
   }
 
   &.curve {

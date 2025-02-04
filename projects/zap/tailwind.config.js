@@ -75,6 +75,10 @@ module.exports = {
       fontFamily: {
         icon: ['"Font Awesome 6 Pro"'],
       },
+      screens: {
+        xxs: "320px",
+        xs: '375px',
+      }
     },
   },
   plugins: [require("@tailwindcss/forms"), require("./plugin/base")],

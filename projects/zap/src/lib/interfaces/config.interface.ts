@@ -11,6 +11,22 @@ export interface ZapConfig {
   };
 }
 
+type CommonStyles = {
+  borderRadius?: string;
+  paddingLeft?: string;
+  paddingRight?: string;
+  paddingTop?: string;
+  paddingBottom?: string;
+  padding?: Padding;
+  width?: string;
+  height?: string;
+  fontSize?: string;
+  fontWeight?: string;
+  lineHeight?: string;
+  letterSpacing?: string;
+  textTransform?: string;
+}
+
 export interface ButtonConfig {
   shape?: ShapeType;
   size?: 'compact' | 'wide' | 'tight' | 'base';
@@ -29,49 +45,60 @@ export interface ButtonConfig {
         disabledBgColor?: HexCode;
         disabledTextColor?: HexCode;
         disabledBorderColor?: HexCode;
-      }
+      };
     };
-    borderRadius?: string;
-    paddingLeft?: string;
-    paddingRight?: string;
-    paddingTop?: string;
-    paddingBottom?: string;
-    padding?: Padding;
-    width?: string;
-    height?: string;
-    fontSize?: string;
-    fontWeight?: string;
-    lineHeight?: string;
-    letterSpacing?: string;
-    textTransform?: string;
-  };
+  } & CommonStyles;
 }
-
-
 
 export interface ChipConfig {
   shape?: ShapeType;
-  styles?: {
-  }
+  styles?: {};
 }
 
 export interface AlertConfig {
   shape?: ShapeType;
   styles?: {
-  }
+    colors?: {
+      [theme: string]: {
+        bgColor?: HexCode;
+        textColor?: HexCode;
+        borderColor?: HexCode;
+        dismissColor?: HexCode;
+        dismissHoverColor?: HexCode;
+      };
+    };
+  } & CommonStyles;
 }
 
 export interface GlobalConfig {
   shape?: ShapeType;
-  styles?: {
-  };
+  styles?: {};
 }
 
 type ShapeType = 'flat' | 'curve' | 'pill';
 
-type Padding = `${paddingString} ${paddingString} ${paddingString} ${paddingString}` | `${paddingString} ${paddingString} ${paddingString}` | `${paddingString} ${paddingString}` | paddingString;
+type Padding =
+  | `${paddingString} ${paddingString} ${paddingString} ${paddingString}`
+  | `${paddingString} ${paddingString} ${paddingString}`
+  | `${paddingString} ${paddingString}`
+  | paddingString;
 
-type paddingString = `${string}px` | `${string}rem` | `${string}em` | `${string}%`  | `${string}vw` | `${string}vh` | `${string}vmin` | `${string}vmax` | `${string}ch` | `${string}ex` | `${string}cm` | `${string}mm` | `${string}in` | `${string}pt` | `${string}pc`;
+type paddingString =
+  | `${string}px`
+  | `${string}rem`
+  | `${string}em`
+  | `${string}%`
+  | `${string}vw`
+  | `${string}vh`
+  | `${string}vmin`
+  | `${string}vmax`
+  | `${string}ch`
+  | `${string}ex`
+  | `${string}cm`
+  | `${string}mm`
+  | `${string}in`
+  | `${string}pt`
+  | `${string}pc`;
 
 export interface ZapTheme {
   colors: {

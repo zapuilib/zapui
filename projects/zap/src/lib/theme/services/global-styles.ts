@@ -1,4 +1,5 @@
 import { ZapTheme } from '../../interfaces/config.interface';
+import { getDefaultAlertSizeCssValues } from '../components/alert-theme';
 import { getDefaultButtonSizeCssValues } from '../components/button-theme';
 import { hexToRgba } from '../utils/base-theme-utils';
 
@@ -22,6 +23,18 @@ export function generateGlobalStylesVariables(
       {
         label: 'text-color',
         value: theme.colors.primary,
+      },
+      {
+        label: 'border-color',
+        value: theme.colors.tertiary,
+      },
+      {
+        label: 'dismiss-color',
+        value: theme.colors.primary,
+      },
+      {
+        label: 'dismiss-hover-color',
+        value: hexToRgba(theme.colors.primary, 0.1),
       },
     ],
     button: [
@@ -85,6 +98,7 @@ export function generateGlobalStylesVariables(
   }
 
   cssVariables += getDefaultButtonSizeCssValues();
+  cssVariables += getDefaultAlertSizeCssValues();
 
   return cssVariables;
 }

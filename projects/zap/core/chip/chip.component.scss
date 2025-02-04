@@ -83,33 +83,21 @@
 
   &.info {
     @apply bg-info;
-
-    span {
-      @apply text-infoText;
-    }
+    @apply text-infoText;
   }
 
   &.success {
     @apply bg-success;
-
-    span {
-      @apply text-successText;
-    }
+    @apply text-successText;
   }
 
   &.warning {
     @apply bg-warning;
-
-    span {
-      @apply text-warningText;
-    }
+    @apply text-warningText;
   }
 
   &.error {
     @apply bg-error;
-
-    span {
-      @apply text-errorText;
-    }
+    @apply text-errorText;
   }
 }

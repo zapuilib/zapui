@@ -132,18 +132,18 @@ const ngxConfig: ZapConfig = {
       // size: 'compact', // this will replace root
       styles: {
         // this will replace global and root and priority is given based on the order of each style passed
-        colors: {
-          dark: {
-            bgColor: '#1877F2',
-            textColor: '#FFFFFF',
-            borderColor: '#1877F2',
-            bgHoverColor: '#4CB963',
-            borderHoverColor: '#4CB963',
-            textHoverColor: '#FFFFFF',
-            dismissColor: '#FFFFFF',
-            dismissHoverColor: '#C0C0C0',
-          },
-        },
+        // colors: {
+        //   dark: {
+        //     bgColor: '#1877F2',
+        //     textColor: '#FFFFFF',
+        //     borderColor: '#1877F2',
+        //     bgHoverColor: '#4CB963',
+        //     borderHoverColor: '#4CB963',
+        //     textHoverColor: '#FFFFFF',
+        //     dismissColor: '#FFFFFF',
+        //     dismissHoverColor: '#C0C0C0',
+        //   },
+        // },
         // borderRadius: '15px',
         // paddingLeft: '20px',
         // paddingRight: '20px',

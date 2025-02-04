@@ -14,6 +14,16 @@ export function generateGlobalStylesVariables(
 ): string {
   let cssVariables = '';
   const styles = {
+    alert: [
+      {
+        label: 'bg-color',
+        value: theme.colors.tertiary,
+      },
+      {
+        label: 'text-color',
+        value: theme.colors.primary,
+      },
+    ],
     button: [
       {
         label: 'bg-color',

@@ -1,5 +1,5 @@
 .__ngx__zap__alert {
-  @apply min-w-[25rem] max-w-[40rem] p-4 rounded-none bg-secondary text-primary flex justify-between items-start;
+  @apply min-w-[25rem] max-w-[40rem] p-4 rounded-none bg-[var(--zap-alert-bg-color)] text-primary flex justify-between items-start;
   @apply rounded-[var(--zap-alert-border-radius)];
 
   .content__wrapper {

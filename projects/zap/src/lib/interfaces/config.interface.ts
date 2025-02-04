@@ -5,6 +5,7 @@ export interface ZapConfig {
   themeLibrary?: { [key: string]: ZapTheme };
   components?: {
     global?: GlobalConfig;
+    alert?: AlertConfig;
     button?: ButtonConfig;
     chip?: ChipConfig;
   };
@@ -49,6 +50,12 @@ export interface ButtonConfig {
 
 
 export interface ChipConfig {
+  shape?: ShapeType;
+  styles?: {
+  }
+}
+
+export interface AlertConfig {
   shape?: ShapeType;
   styles?: {
   }

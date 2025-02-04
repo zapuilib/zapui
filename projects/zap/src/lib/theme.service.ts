@@ -15,6 +15,7 @@ import { generateComponentGlobalVariables } from './theme/components/global-them
 import { generateFontSizeVariables } from './theme/utils/font-utils';
 import { generateGlobalStylesVariables } from './theme/services/global-styles';
 import { generateComponentStylesVariables } from './theme/services/component-styles';
+import { generateComponentAlertVariables } from './theme/components/alert-theme';
 
 @Injectable({
   providedIn: 'root',
@@ -103,6 +104,10 @@ export class ThemeService {
           case 'button':
             // handles shape and size for the button component
             cssVariables += generateComponentButtonVariables(value, root);
+            break;
+          case 'alert':
+            // handles shape and size for the alert component
+            cssVariables += generateComponentAlertVariables(value, root);
             break;
           default:
             break;

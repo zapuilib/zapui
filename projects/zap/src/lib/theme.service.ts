@@ -19,6 +19,7 @@ import { generateComponentAlertVariables } from './theme/components/alert-theme'
 import { generateComponentChipVariables } from './theme/components/chip-theme';
 import { generateComponentDialogVariables } from './theme/components/dialog-theme';
 import { generateComponentModalVariables } from './theme/components/modal-theme';
+import { generateComponentInputVariables } from './theme/components/input-theme';
 
 @Injectable({
   providedIn: 'root',
@@ -124,6 +125,10 @@ export class ThemeService {
             // handles shape and size for the modal component
             cssVariables += generateComponentModalVariables(value, root);
             break;  
+          case 'input':
+            // handles shape and size for the input component
+            cssVariables += generateComponentInputVariables(value, root);
+            break;
           default:
             break;
         }

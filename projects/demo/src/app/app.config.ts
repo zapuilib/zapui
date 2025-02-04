@@ -225,6 +225,40 @@ const ngxConfig: ZapConfig = {
         // width: '100%',
         // height: '50px',
       },
+    },
+    input: {
+      // shape: 'pill', // this will replace global and root
+      styles: {
+        colors: {
+          dark: {
+            // bgColor: '#1877F2',
+            // textColor: '#FFFFFF',
+            // borderColor: '#1877F2',
+            // labelColor: '#FFFFFF',
+            // placeholderColor: '#FFFFFF',
+            // borderFocusColor: '#FFFFFF',
+            // bgFocusColor: '#FFFFFF',
+            // textFocusColor: '#FFFFFF',
+          }
+        },
+        // borderRadius: '15px',
+        // paddingLeft: '20px',
+        // paddingRight: '20px',
+        // paddingTop: '10px',
+        // paddingBottom: '10px',
+        // padding: '10px 30px',
+        // labelFontSize: '1.5rem',
+        // labelFontWeight: 'bold',
+        // labelLineHeight: '2',
+        // labelLetterSpacing: '1px',
+        // fontSize: '1.5rem',
+        // fontWeight: 'bold',
+        // lineHeight: '2',
+        // letterSpacing: '1px',
+        // placeholderFontSize: '1.8rem',
+        // width: '100%',
+        // height: '50px',
+      }
     }
   },
 };

@@ -11,6 +11,7 @@ export interface ZapConfig {
     chip?: ChipConfig;
     dialog?: DialogConfig;
     modal?: ModalConfig;
+    input?: InputConfig;
   };
 }
 
@@ -181,6 +182,44 @@ export interface ModalConfig {
     dismissFontWeight?: string;
     dismissLineHeight?: string;
     dismissLetterSpacing?: string;
+  };
+}
+
+export interface InputConfig {
+  shape?: ShapeType;
+  styles?: {
+    colors?: {
+      [theme: string]: {
+        bgColor?: HexCode;
+        textColor?: HexCode;
+        borderColor?: HexCode;
+        labelColor?: HexCode;
+        placeholderColor?: HexCode;
+        borderFocusColor?: HexCode;
+        bgFocusColor?: HexCode;
+        textFocusColor?: HexCode;
+      };
+    };
+    borderRadius?: string;
+    paddingLeft?: string;
+    paddingRight?: string;
+    paddingTop?: string;
+    paddingBottom?: string;
+    padding?: Padding;
+    fontSize?: string;
+    fontWeight?: string;
+    lineHeight?: string;
+    letterSpacing?: string;
+    labelFontSize?: string;
+    labelFontWeight?: string;
+    labelLineHeight?: string;
+    labelLetterSpacing?: string;
+    placeholderFontSize?: string;
+    placeholderFontWeight?: string;
+    placeholderLineHeight?: string;
+    placeholderLetterSpacing?: string;
+    width?: string;
+    height?: string;
   };
 }
 

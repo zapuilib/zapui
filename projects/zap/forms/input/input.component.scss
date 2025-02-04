@@ -6,7 +6,7 @@
 
     i {
       @apply absolute;
-      @apply text-primary;
+      @apply text-[var(--zap-input-icon-color)];
       @apply top-1/2;
       @apply -translate-y-1/2;
       @apply left-3;
@@ -19,14 +19,16 @@
   }
 
   &__label {
-    @apply text-secondary;
+    @apply text-[var(--zap-input-label-color)] text-[length:var(--zap-input-label-font-size)] font-[var(--zap-input-label-font-weight)] leading-[var(--zap-input-label-line-height)] tracking-[var(--zap-input-label-letter-spacing)];
   }
 
   &__input {
-    @apply text-secondary border-secondary text-md;
-    @apply w-full px-3 py-2 border bg-transparent;
+    @apply text-[var(--zap-input-text-color)] border-[var(--zap-input-border-color)] text-[length:var(--zap-input-font-size)] font-[var(--zap-input-font-weight)] leading-[var(--zap-input-line-height)] tracking-[var(--zap-input-letter-spacing)];
+    @apply border bg-[var(--zap-input-bg-color)];
     @apply focus-within:outline-0 focus-within:ring-2 focus-within:ring-offset-0;
-    @apply rounded-[var(--zap-input-shape)];
+    @apply rounded-[var(--zap-input-border-radius)];
+    @apply pl-[var(--zap-input-padding-left)] pr-[var(--zap-input-padding-right)] pt-[var(--zap-input-padding-top)] pb-[var(--zap-input-padding-bottom)];
+    @apply w-[var(--zap-input-width)] h-[var(--zap-input-height)];
   }
 
   &.left {
@@ -68,11 +70,11 @@
   }
 
   input::placeholder {
-    @apply text-secondary;
+    @apply text-[var(--zap-input-placeholder-color)] text-[length:var(--zap-input-placeholder-font-size)] font-[var(--zap-input-placeholder-font-weight)] leading-[var(--zap-input-placeholder-line-height)] tracking-[var(--zap-input-placeholder-letter-spacing)];
   }
 
   input:focus {
-    @apply ring-info;
+    @apply ring-[var(--zap-input-border-focus-color)] text-[var(--zap-input-text-focus-color)] bg-[var(--zap-input-bg-focus-color)];
   }
 
   input::-webkit-inner-spin-button {

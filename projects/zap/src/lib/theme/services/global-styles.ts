@@ -6,6 +6,7 @@ import { hexToRgba } from '../utils/base-theme-utils';
 import { getDefaultChipSizeCssValues } from '../components/chip-theme';
 import { getDefaultDialogSizeCssValues } from '../components/dialog-theme';
 import { getDefaultModalSizeCssValues } from '../components/modal-theme';
+import { getDefaultInputSizeCssValues } from '../components/input-theme';
 
 /**
  * This function generates the global styles for the all the components
@@ -238,6 +239,28 @@ export function generateGlobalStylesVariables(
         label: 'dismiss-hover-color',
         value: hexToRgba(theme.colors.secondary, 0.7),
       },
+    ],
+    input: [
+      {
+        label: 'bg-color',
+        value: 'transparent',
+      },
+      {
+        label: 'border-color',
+        value: hexToRgba(theme.colors.secondary, 0.1),
+      },
+      {
+        label: 'text-color',
+        value: theme.colors.secondary,
+      },
+      {
+        label: 'placeholder-color',
+        value: hexToRgba(theme.colors.secondary, 0.5),
+      }, 
+      {
+        label: 'border-focus-color',
+        value: theme.colors.secondary,
+      }
     ]
   };
 
@@ -257,6 +280,7 @@ export function generateGlobalStylesVariables(
   cssVariables += getDefaultChipSizeCssValues();
   cssVariables += getDefaultDialogSizeCssValues();
   cssVariables += getDefaultModalSizeCssValues();
+  cssVariables += getDefaultInputSizeCssValues();
 
   return cssVariables;
 }

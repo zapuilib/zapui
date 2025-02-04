@@ -6,6 +6,7 @@ export interface ZapConfig {
   components?: {
     global?: GlobalConfig;
     alert?: AlertConfig;
+    badge?: BadgeConfig;
     button?: ButtonConfig;
     chip?: ChipConfig;
   };
@@ -70,9 +71,21 @@ export interface AlertConfig {
   } & CommonStyles;
 }
 
+export interface BadgeConfig {
+  styles?: {
+    colors?: {
+      [theme: string]: {
+        bgColor?: HexCode;
+        textColor?: HexCode;
+        borderColor?: HexCode;
+      };
+    };
+  } & CommonStyles;
+}
+
 export interface GlobalConfig {
   shape?: ShapeType;
-  styles?: {};
+  styles?: {}
 }
 
 type ShapeType = 'flat' | 'curve' | 'pill';

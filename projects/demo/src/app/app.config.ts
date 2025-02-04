@@ -44,6 +44,35 @@ const ngxConfig: ZapConfig = {
     global: {
       shape: 'curve', // this will replace root
     },
+    badge: {
+      styles: {
+        colors: {
+          // dark: {
+          //   bgColor: '#1877F2',
+          //   textColor: '#FFFFFF',
+          //   borderColor: '#1877F2',
+          // },
+          // light: {
+          //   bgColor: '#4CB963',
+          //   textColor: '#FFFFFF',
+          //   borderColor: '#4CB963',
+          // }
+        },
+        // borderRadius: '5px',
+        // paddingLeft: '20px',
+        // paddingRight: '20px',
+        // paddingTop: '10px',
+        // paddingBottom: '10px',
+        // padding: '10px 30px',
+        // width: '100%',
+        // height: '50px',
+        // fontSize: '1.5rem',
+        // fontWeight: 'bold',
+        // lineHeight: '5.5',
+        // letterSpacing: '1px',
+        // textTransform: 'uppercase',
+      }
+    },
     alert: {
       // shape: 'pill', // this will replace global and root
       styles: {

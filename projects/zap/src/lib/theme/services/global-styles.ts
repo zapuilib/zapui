@@ -1,6 +1,7 @@
-import { ZapTheme } from '../../interfaces/config.interface';
 import { getDefaultAlertSizeCssValues } from '../components/alert-theme';
+import { getDefaultBadgeSizeCssValues } from '../components/badge-theme';
 import { getDefaultButtonSizeCssValues } from '../components/button-theme';
+import { ZapTheme } from '../../interfaces/config.interface';
 import { hexToRgba } from '../utils/base-theme-utils';
 
 /**
@@ -36,6 +37,24 @@ export function generateGlobalStylesVariables(
         label: 'dismiss-hover-color',
         value: hexToRgba(theme.colors.primary, 0.1),
       },
+    ],
+    badge: [
+      {
+        label: 'bg-color',
+        value: theme.colors.tertiary,
+      },
+      {
+        label: 'text-color',
+        value: theme.colors.primary,
+      },
+      {
+        label: 'border-color',
+        value: theme.colors.tertiary,
+      },
+      {
+        label: 'border-radius',
+        value: 'calc(infinity * 1px)',
+      }
     ],
     button: [
       {
@@ -99,6 +118,7 @@ export function generateGlobalStylesVariables(
 
   cssVariables += getDefaultButtonSizeCssValues();
   cssVariables += getDefaultAlertSizeCssValues();
+  cssVariables += getDefaultBadgeSizeCssValues();
 
   return cssVariables;
 }

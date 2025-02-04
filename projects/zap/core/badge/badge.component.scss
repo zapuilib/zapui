@@ -1,5 +1,8 @@
 .__ngx__zap__badge {
-  @apply border rounded-full w-6 h-6 flex justify-center items-center bg-tertiary text-primary text-xs border-transparent;
+  @apply border rounded-[var(--zap-badge-border-radius)] flex justify-center items-center bg-[var(--zap-badge-bg-color)] text-[var(--zap-badge-text-color)] border-[var(--zap-badge-border-color)];
+  @apply pl-[var(--zap-badge-padding-left)] pr-[var(--zap-badge-padding-right)] pt-[var(--zap-badge-padding-top)] pb-[var(--zap-badge-padding-bottom)] text-[length:var(--zap-badge-font-size)] font-[var(--zap-badge-font-weight)];
+  @apply w-[var(--zap-badge-width)] h-[var(--zap-badge-height)] leading-[var(--zap-badge-line-height)] tracking-[var(--zap-badge-letter-spacing)]; //ring is adding weird effect on click
+  text-transform: var(--zap-badge-text-transform);
 
   &.empty {
     @apply h-2 w-2;

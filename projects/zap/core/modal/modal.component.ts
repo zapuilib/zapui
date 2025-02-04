@@ -22,7 +22,7 @@ export class ZapModalComponent {
   @ViewChild('modalContent') modalContent!: ElementRef;
   @Output() close: EventEmitter<void> = new EventEmitter<void>();
   @Input() shape!: 'curve' | 'flat' | 'pill';
-  @Input() size: 'small' | 'wide' | 'wider' | 'base' = 'base';
+  @Input() size: 'tight' | 'compact' | 'base' | 'wide' | 'full' = 'tight';
   @Input() zapClass: string = '';
   @HostListener('document:keydown', ['$event'])
   handleEsc(event: KeyboardEvent): void {

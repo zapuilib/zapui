@@ -5,6 +5,7 @@ import { ZapTheme } from '../../interfaces/config.interface';
 import { hexToRgba } from '../utils/base-theme-utils';
 import { getDefaultChipSizeCssValues } from '../components/chip-theme';
 import { getDefaultDialogSizeCssValues } from '../components/dialog-theme';
+import { getDefaultModalSizeCssValues } from '../components/modal-theme';
 
 /**
  * This function generates the global styles for the all the components
@@ -216,6 +217,28 @@ export function generateGlobalStylesVariables(
         value: hexToRgba(theme.colors.secondary, 0.8),
       },
     ],
+    modal: [
+      {
+        label: 'bg-color',
+        value: theme.colors.primary,
+      },
+      {
+        label: 'border-color',
+        value: hexToRgba(theme.colors.secondary, 0.1),
+      },
+      {
+        label: 'text-color',
+        value: theme.colors.secondary,
+      },
+      {
+        label: 'dismiss-color',
+        value: theme.colors.secondary,
+      },
+      {
+        label: 'dismiss-hover-color',
+        value: hexToRgba(theme.colors.secondary, 0.7),
+      },
+    ]
   };
 
   for (const [component, stylesArray] of Object.entries(styles)) {
@@ -233,6 +256,7 @@ export function generateGlobalStylesVariables(
   cssVariables += getDefaultButtonSizeCssValues();
   cssVariables += getDefaultChipSizeCssValues();
   cssVariables += getDefaultDialogSizeCssValues();
+  cssVariables += getDefaultModalSizeCssValues();
 
   return cssVariables;
 }

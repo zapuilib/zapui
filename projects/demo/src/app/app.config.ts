@@ -202,6 +202,29 @@ const ngxConfig: ZapConfig = {
         // primaryBtnBorderRadius: '15px', // by default border raidus is set by global or btn style, 
         // secondaryBtnBorderRadius: '15px', // by default border raidus is set by global or btn style
       }
+    },
+    modal: {
+      // shape: 'pill', // this will replace global and root
+      styles: {
+        // this will replace global and root and priority is given based on the order of each style passed
+        colors: {
+          dark: {
+            // bgColor: '#1877F2',
+            // borderColor: '#1877F2',
+            // titleColor: '#FFFFFF',
+            // dismissColor: '#FFFFFF',
+            // dismissHoverColor: '#C0C0C0',
+          },
+        },
+        borderRadius: '15px',
+        paddingLeft: '30px',
+        paddingRight: '30px',
+        paddingTop: '30px',
+        paddingBottom: '30px',
+        // padding: '40px 40px',
+        // width: '100%',
+        // height: '50px',
+      },
     }
   },
 };

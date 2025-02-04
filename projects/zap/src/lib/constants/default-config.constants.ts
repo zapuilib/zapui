@@ -46,14 +46,14 @@ export const lightTheme: ZapTheme = {
 
 export const darkTheme: ZapTheme = {
   colors: {
-    primary: '#000000',
+    primary: '#09090B',
     secondary: '#FFFFFF',
     tertiary: '#FFFFFF',
     quaternary: '#9CA3AF',
     success: '#04E824',
-    successText: '#000000',
+    successText: '#09090B',
     warning: '#f6ad55',
-    warningText: '#000000',
+    warningText: '#09090B',
     error: '#e3342f',
     errorText: '#FFFFFF',
     info: '#5438DC',

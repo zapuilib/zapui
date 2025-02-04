@@ -145,7 +145,7 @@ export function generateGlobalStylesVariables(
     dialog: [
       {
         label: 'bg-color',
-        value: hexToRgba(theme.colors.secondary, 0.03),
+        value: theme.colors.primary,
       },
       {
         label: 'border-color',
@@ -177,7 +177,7 @@ export function generateGlobalStylesVariables(
       },
       {
         label: 'primary-btn-text-color',
-        value: theme.colors.secondary,
+        value: theme.colors.primary,
       },
       {
         label: 'primary-btn-bg-hover-color',
@@ -189,7 +189,7 @@ export function generateGlobalStylesVariables(
       },
       {
         label: 'primary-btn-text-hover-color',
-        value: hexToRgba(theme.colors.secondary, 0.9),
+        value: hexToRgba(theme.colors.primary, 0.9),
       },
       {
         label: 'secondary-btn-bg-color',
@@ -197,7 +197,7 @@ export function generateGlobalStylesVariables(
       },
       {
         label: 'secondary-btn-border-color',
-        value: hexToRgba(theme.colors.secondary, 0.1),
+        value: hexToRgba(theme.colors.secondary, 0.15),
       },
       {
         label: 'secondary-btn-text-color',
@@ -209,7 +209,7 @@ export function generateGlobalStylesVariables(
       },
       {
         label: 'secondary-btn-border-hover-color',
-        value: hexToRgba(theme.colors.secondary, 0.05),
+        value: hexToRgba(theme.colors.secondary, 0.2),
       },
       {
         label: 'secondary-btn-text-hover-color',

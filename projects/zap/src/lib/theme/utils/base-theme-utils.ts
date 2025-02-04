@@ -29,6 +29,16 @@ export function hexToRgba(hex: string, alpha: number): string {
   return `rgba(${r}, ${g}, ${b}, ${alpha})`;
 }
 
+export function approximateSolidColor(rgbaColor: any): string {
+  const [r, g, b, a] = rgbaColor.match(/\d+(\.\d+)?/g).map(Number);
+
+  const newR = Math.round((1 - a) * 255 + a * r);
+  const newG = Math.round((1 - a) * 255 + a * g);
+  const newB = Math.round((1 - a) * 255 + a * b);
+
+  return `#${((1 << 24) | (newR << 16) | (newG << 8) | newB).toString(16).slice(1)}`;
+}
+
 export function hexToRgb(hex: string): string {
   let r = 0,
     g = 0,

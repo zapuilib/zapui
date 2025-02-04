@@ -3,6 +3,7 @@ import { getDefaultBadgeSizeCssValues } from '../components/badge-theme';
 import { getDefaultButtonSizeCssValues } from '../components/button-theme';
 import { ZapTheme } from '../../interfaces/config.interface';
 import { hexToRgba } from '../utils/base-theme-utils';
+import { getDefaultChipSizeCssValues } from '../components/chip-theme';
 
 /**
  * This function generates the global styles for the all the components
@@ -106,6 +107,40 @@ export function generateGlobalStylesVariables(
         value: hexToRgba(theme.colors.tertiary, 0),
       },
     ],
+    chip: [
+      {
+        label: 'bg-color',
+        value: theme.colors.tertiary,
+      },
+      {
+        label: 'text-color',
+        value: theme.colors.primary,
+      },
+      {
+        label: 'border-color',
+        value: theme.colors.tertiary,
+      },
+      {
+        label: 'bg-hover-color',
+        value: theme.colors.tertiary,
+      },
+      {
+        label: 'text-hover-color',
+        value: theme.colors.primary,
+      },
+      {
+        label: 'border-hover-color',
+        value: theme.colors.tertiary,
+      },
+      {
+        label: 'dismiss-color',
+        value: theme.colors.primary,
+      },
+      {
+        label: 'dismiss-hover-color',
+        value: hexToRgba(theme.colors.primary, 0.7),
+      },
+    ],
   };
 
   for (const [component, stylesArray] of Object.entries(styles)) {
@@ -116,9 +151,10 @@ export function generateGlobalStylesVariables(
     }
   }
 
-  cssVariables += getDefaultButtonSizeCssValues();
   cssVariables += getDefaultAlertSizeCssValues();
   cssVariables += getDefaultBadgeSizeCssValues();
+  cssVariables += getDefaultButtonSizeCssValues();
+  cssVariables += getDefaultChipSizeCssValues();
 
   return cssVariables;
 }

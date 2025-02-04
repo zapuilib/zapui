@@ -2,7 +2,7 @@ import { Inject, Injectable, Optional, PLATFORM_ID } from '@angular/core';
 import { DOCUMENT, isPlatformBrowser } from '@angular/common';
 
 import { NGX_ZAP_CONFIG } from './tokens/zap.tokens';
-import { ZapConfig, ZapTheme } from '../public-api';
+import { ChipConfig, ZapConfig, ZapTheme } from '../public-api';
 import {
   lightTheme,
   defaultConfig,
@@ -16,6 +16,7 @@ import { generateFontSizeVariables } from './theme/utils/font-utils';
 import { generateGlobalStylesVariables } from './theme/services/global-styles';
 import { generateComponentStylesVariables } from './theme/services/component-styles';
 import { generateComponentAlertVariables } from './theme/components/alert-theme';
+import { generateComponentChipVariables } from './theme/components/chip-theme';
 
 @Injectable({
   providedIn: 'root',
@@ -38,7 +39,7 @@ export class ThemeService {
   applyTheme(customTheme?: 'light' | 'dark' | string): void {
     const root = this.document.documentElement;
     const config = this.config || defaultConfig;
-    
+
     if (customTheme && typeof customTheme === 'object') {
       if (deepEqual(customTheme, this.config.theme)) {
         return;
@@ -89,7 +90,7 @@ export class ThemeService {
     config: ZapConfig,
     root: HTMLElement
   ): string {
-    let cssVariables = '';    
+    let cssVariables = '';
     cssVariables += generateColorVariables(theme, root); // generates galobal color variables like primary, secondary, etc
     cssVariables += generateFontSizeVariables(theme); // generates global font size variables
     cssVariables += generateGlobalStylesVariables(theme, root); // generates global styles for all components this will be replace by css styles if passed
@@ -101,13 +102,17 @@ export class ThemeService {
             // handles global shape for the component
             cssVariables += generateComponentGlobalVariables(value, root);
             break;
+          case 'alert':
+            // handles shape and size for the alert component
+            cssVariables += generateComponentAlertVariables(value, root);
+            break;
           case 'button':
             // handles shape and size for the button component
             cssVariables += generateComponentButtonVariables(value, root);
             break;
-          case 'alert':
-            // handles shape and size for the alert component
-            cssVariables += generateComponentAlertVariables(value, root);
+          case 'chip':
+            // handles shape and size for the chip component
+            cssVariables += generateComponentChipVariables(value as ChipConfig, root);
             break;
           default:
             break;
@@ -115,12 +120,15 @@ export class ThemeService {
 
         // handle the global css styles for the component
         if (value.styles) {
-          cssVariables += generateComponentStylesVariables(value.styles, componentKey, this.config);
+          cssVariables += generateComponentStylesVariables(
+            value.styles,
+            componentKey,
+            this.config
+          );
         }
       }
     }
 
     return cssVariables;
   }
-
 }

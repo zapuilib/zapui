@@ -9,12 +9,12 @@ import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
   styleUrls: ['./chip.component.scss'],
 })
 export class ZapChipComponent {
-  @Output() dissmiss = new EventEmitter<void>();
+  @Output() dismiss = new EventEmitter<void>();
   @Input() text = 'Chip';
   @Input() zapClass: string = '';
   @Input() variant: 'outlined' | 'default' = 'default';
   @Input() shape!: 'pill' | 'curve' | 'flat';
-  @Input() size: 'base' | 'small' | 'wide' = 'base';
+  @Input() size: 'base' | 'compact' | 'wide' = 'base';
   @Input() type: 'default' | 'info' | 'success' | 'warning' | 'error' =
     'default';
   @Input() icon?: string;
@@ -25,7 +25,7 @@ export class ZapChipComponent {
   onRemove(event: Event) {
     event.stopPropagation();
     if (!this.disabled && this.dismissible) {
-      this.dissmiss.emit();
+      this.dismiss.emit();
     }
   }
 
@@ -37,6 +37,7 @@ export class ZapChipComponent {
       this.variant,
       this.zapClass,
       this.disabled ? 'disabled' : '',
+      this.dismissible && this.icon && this.iconPosition === 'left' ? 'dismissible-left' : this.dismissible && this.icon && this.iconPosition === 'right' ? 'dismissible-right' : '',
     ].filter((cls) => cls && cls !== 'default');
   }
 }

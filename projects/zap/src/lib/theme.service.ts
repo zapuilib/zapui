@@ -20,6 +20,7 @@ import { generateComponentChipVariables } from './theme/components/chip-theme';
 import { generateComponentDialogVariables } from './theme/components/dialog-theme';
 import { generateComponentModalVariables } from './theme/components/modal-theme';
 import { generateComponentInputVariables } from './theme/components/input-theme';
+import { generateComponentCheckboxVariables } from './theme/components/checkbox-theme';
 
 @Injectable({
   providedIn: 'root',
@@ -115,7 +116,10 @@ export class ThemeService {
             break;
           case 'chip':
             // handles shape and size for the chip component
-            cssVariables += generateComponentChipVariables(value as ChipConfig, root);
+            cssVariables += generateComponentChipVariables(
+              value as ChipConfig,
+              root
+            );
             break;
           case 'dialog':
             // handles shape and size for the dialog component
@@ -124,10 +128,14 @@ export class ThemeService {
           case 'modal':
             // handles shape and size for the modal component
             cssVariables += generateComponentModalVariables(value, root);
-            break;  
+            break;
           case 'input':
             // handles shape and size for the input component
             cssVariables += generateComponentInputVariables(value, root);
+            break;
+          case 'checkbox':
+            // handles shape and size for the checkbox component
+            cssVariables += generateComponentCheckboxVariables(value, root);
             break;
           default:
             break;

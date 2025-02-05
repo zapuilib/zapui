@@ -57,7 +57,7 @@ export class ZapInputComponent<T> extends ControlValueAccessorDirective<T> {
 
   get classes(): string[] {
     return [
-      this.shape || this.globalConfig.shape,
+      this.shape,
       this.zapClass,
       this.size,
       this.icon ? this.iconPosition : '',

@@ -24,16 +24,18 @@ export function getShapeCssValues(
     curve: '0.5rem',
   };
 
-  if (
-    component === 'button' ||
-    component === 'input' ||
-    component === 'chip' ||
-    component === 'alert'
-  ) {
-    shapeCssValue = shapeValues[shapeValue] || shapeCssValue;
-  } else if (component === 'modal' || component === 'dialog') {
+  const checkboxValues: { [key: string]: string } = {
+    pill: '0.25rem',
+    curve: '0.25rem',
+  };
+
+   if (component === 'modal' || component === 'dialog') {
     shapeCssValue = modalDialogShapeValues[shapeValue] || shapeCssValue;
-  }
+  } else if (component === 'checkbox') {
+    shapeCssValue = checkboxValues[shapeValue] || shapeCssValue;
+  } else {
+    shapeCssValue = shapeValues[shapeValue] || shapeCssValue;
+  } 
 
   return { shapeCssValue };
 }

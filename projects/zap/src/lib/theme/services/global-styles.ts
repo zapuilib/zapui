@@ -7,6 +7,7 @@ import { getDefaultChipSizeCssValues } from '../components/chip-theme';
 import { getDefaultDialogSizeCssValues } from '../components/dialog-theme';
 import { getDefaultModalSizeCssValues } from '../components/modal-theme';
 import { getDefaultInputSizeCssValues } from '../components/input-theme';
+import { getDefaultCheckboxSizeCssValues } from '../components/checkbox-theme';
 
 /**
  * This function generates the global styles for the all the components
@@ -266,6 +267,41 @@ export function generateGlobalStylesVariables(
         value: hexToRgba(theme.colors.secondary, 0.5),
       },
     ],
+    checkbox: [
+      {
+        label: 'bg-color',
+        value: 'transparent',
+      },
+      {
+        label: 'border-color',
+        value: theme.colors.secondary,
+      },
+      {
+        label: 'text-color',
+        value: theme.colors.secondary,
+      },
+      {
+        label: 'bg-checked-color',
+        value: theme.colors.secondary,
+      },
+      {
+        label: 'text-checked-color',
+        value: theme.colors.primary,
+      },
+      {
+        label: 'bg-focus-color',
+        value: theme.colors.secondary,
+      },
+      {
+        label: 'text-focus-color',
+        value: theme.colors.primary,
+      },
+      {
+        label: 'border-focus-color',
+        value: theme.colors.secondary,
+      },
+      
+    ],
   };
 
   for (const [component, stylesArray] of Object.entries(styles)) {
@@ -285,6 +321,7 @@ export function generateGlobalStylesVariables(
   cssVariables += getDefaultDialogSizeCssValues();
   cssVariables += getDefaultModalSizeCssValues();
   cssVariables += getDefaultInputSizeCssValues();
+  cssVariables += getDefaultCheckboxSizeCssValues();
 
   return cssVariables;
 }

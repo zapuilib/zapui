@@ -11,7 +11,7 @@ import {
   ZapDialogComponent,
   ZapModalComponent
 } from 'zap/core';
-import { ZapInputComponent } from 'zap/forms';
+import { ZapCheckboxComponent, ZapInputComponent } from 'zap/forms';
 
 @Component({
   selector: 'app-root',
@@ -24,7 +24,8 @@ import { ZapInputComponent } from 'zap/forms';
     ZapChipComponent,
     ZapDialogComponent,
     ZapModalComponent,
-    ZapInputComponent
+    ZapInputComponent,
+    ZapCheckboxComponent
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',

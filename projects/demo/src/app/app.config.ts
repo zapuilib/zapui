@@ -259,6 +259,30 @@ const ngxConfig: ZapConfig = {
         // width: '100%',
         // height: '50px',
       }
+    },
+    checkbox: {
+      // shape: 'flat', // this will replace global and root
+      styles: {
+        colors: {
+          dark: {
+            // bgColor: '#1877F2',
+            // textColor: '#1877F2',
+            // borderColor: '#1877F2',
+            // bgCheckedColor: '#4CB963',
+            // textCheckedColor: '#4CB963',
+            // labelColor: '#4CB963',
+            // labelHoverColor: '#1877F2',
+          }
+        },
+        // borderRadius: '15px',
+        // paddingLeft: '20px',
+        // paddingRight: '20px',
+        // paddingTop: '10px',
+        // paddingBottom: '10px',
+        // height: '200px',
+        // width: '20px',
+        // fontSize: '1.5rem',
+      }
     }
   },
 };

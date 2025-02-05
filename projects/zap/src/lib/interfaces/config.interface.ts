@@ -12,6 +12,7 @@ export interface ZapConfig {
     dialog?: DialogConfig;
     modal?: ModalConfig;
     input?: InputConfig;
+    checkbox?: CheckboxConfig;
   };
 }
 
@@ -225,6 +226,41 @@ export interface InputConfig {
     iconLetterSpacing?: string;
     width?: string;
     height?: string;
+  };
+}
+
+export interface CheckboxConfig {
+  shape?: ShapeType;
+  styles?: {
+    colors?: {
+      [theme: string]: {
+        bgColor?: HexCode;
+        textColor?: HexCode;
+        borderColor?: HexCode;
+        bgHoverColor?: HexCode;
+        textHoverColor?: HexCode;
+        borderHoverColor?: HexCode;
+        bgFocusColor?: HexCode;
+        borderFocusColor?: HexCode;
+        textCheckedColor?: HexCode;
+        bgCheckedColor?: HexCode;
+        borderCheckedColor?: HexCode;
+        labelColor?: HexCode;
+        labelHoverColor?: HexCode;
+      };
+    };
+    borderRadius?: string;
+    paddingLeft?: string;
+    paddingRight?: string;
+    paddingTop?: string;
+    paddingBottom?: string;
+    padding?: Padding;
+    width?: string;
+    height?: string;
+    fontSize?: string;
+    fontWeight?: string;
+    lineHeight?: string;
+    letterSpacing?: string;
   };
 }
 

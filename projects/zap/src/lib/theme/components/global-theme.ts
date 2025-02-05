@@ -5,7 +5,7 @@ export function generateComponentGlobalVariables(
   config: GlobalConfig,
   root: HTMLElement
 ): string {
-  const components = ['alert', 'button', 'chip', 'dialog', 'input', 'modal'];
+  const components = ['alert', 'button', 'chip', 'dialog', 'input', 'modal', 'checkbox'];
   let cssVariables = '';
   let existingShape = '';
 

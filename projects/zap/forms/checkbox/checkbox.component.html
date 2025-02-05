@@ -1,0 +1,30 @@
+<div
+  class="__zap__checkbox__wrapper"
+  [ngClass]="classes"
+>
+  <fieldset>
+    @if(label){
+
+    <label
+      [for]="id"
+      class="__zap__form__control__label"
+      (click)="checkbox.click()"
+      >{{ label }}</label
+    >
+    }
+    <input
+      #checkbox
+      [id]="id"
+      type="checkbox"
+      class="__zap__form__control__input"
+      [formControl]="control"
+    />
+  </fieldset>
+  @if(control.invalid && control.touched) {
+  <validation-error
+    [errors]="control.errors"
+    [zapClass]="zapClass"
+    [customErrorMessages]="customErrorMessages"
+  ></validation-error>
+  }
+</div>

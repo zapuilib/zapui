@@ -1,0 +1,34 @@
+<div class="__zap__radio__wrapper" [ngClass]="classes">
+  <div class="wrapper">
+    @if(label) {
+    <p>{{ label }}</p>
+    }
+    <div class="options__wrapper">
+      @for (radio of options; track radio) {
+      <fieldset>
+        <input
+          type="radio"
+          [id]="radio.value"
+          [formControl]="control"
+          [value]="radio.value"
+        />
+
+        <label
+          class="__zap__form__control__label"
+          [for]="radio.value"
+          (click)="control.setValue(radio.value)"
+          >{{ radio.name }}</label
+        >
+      </fieldset>
+      }
+    </div>
+  </div>
+
+  @if(control.invalid && control.touched) {
+  <validation-error
+    [errors]="control.errors"
+    [zapClass]="zapClass"
+    [customErrorMessages]="customErrorMessages"
+  ></validation-error>
+  }
+</div>

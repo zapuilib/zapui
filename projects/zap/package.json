@@ -1,6 +1,8 @@
 {
   "name": "@tc_developers/zap",
   "version": "0.0.40-dev-beta.0",
+  "description": "Zap UI Library",
+  "license": "MIT",
   "peerDependencies": {
     "@angular/common": ">=16.1.0",
     "@angular/core": ">=16.1.0"

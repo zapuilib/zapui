@@ -1,0 +1,55 @@
+.__zap__radio__wrapper {
+  .wrapper {
+    @apply flex flex-col gap-y-2 gap-x-2 w-full flex-nowrap;
+
+    .options__wrapper {
+      @apply flex gap-y-2 w-full flex-nowrap;
+    }
+
+    fieldset {
+      @apply flex items-center gap-x-2 cursor-pointer;
+
+      input {
+        @apply appearance-none;
+        @apply relative h-4 w-4;
+        @apply border rounded-full cursor-pointer;
+
+        &:checked {
+          &::before {
+            @apply content-[''] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-[var(--before-checked-color)];
+            @apply w-4 h-4 rounded-full;
+          }
+
+          &::after {
+            @apply content-[''] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-[var(--after-checked-color)] z-10;
+            @apply w-1.5 h-1.5 rounded-full;
+          }
+        }
+
+        &:disabled {
+          @apply opacity-50 cursor-not-allowed;
+        }
+      }
+
+      label {
+        @apply cursor-pointer;
+      }
+    }
+  }
+
+  &.vertical {
+    .wrapper {
+      .options__wrapper {
+        @apply flex-col;
+      }
+    }
+  }
+
+  &.horizontal {
+    .wrapper {
+      .options__wrapper {
+        @apply flex-row gap-x-3;
+      }
+    }
+  }
+}

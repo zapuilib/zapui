@@ -248,7 +248,7 @@ export function generateGlobalStylesVariables(
       },
       {
         label: 'border-color',
-        value: hexToRgba(theme.colors.secondary, 0.1),
+        value: theme.colors.secondary,
       },
       {
         label: 'text-color',

@@ -198,6 +198,7 @@ export interface InputConfig {
         borderFocusColor?: HexCode;
         bgFocusColor?: HexCode;
         textFocusColor?: HexCode;
+        iconColor?: HexCode;
       };
     };
     borderRadius?: string;
@@ -218,6 +219,10 @@ export interface InputConfig {
     placeholderFontWeight?: string;
     placeholderLineHeight?: string;
     placeholderLetterSpacing?: string;
+    iconFontSize?: string;
+    iconFontWeight?: string;
+    iconLineHeight?: string;
+    iconLetterSpacing?: string;
     width?: string;
     height?: string;
   };

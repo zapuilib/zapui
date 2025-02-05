@@ -256,12 +256,16 @@ export function generateGlobalStylesVariables(
       {
         label: 'placeholder-color',
         value: hexToRgba(theme.colors.secondary, 0.5),
-      }, 
+      },
       {
         label: 'border-focus-color',
         value: theme.colors.secondary,
-      }
-    ]
+      },
+      {
+        label: 'icon-color',
+        value: hexToRgba(theme.colors.secondary, 0.5),
+      },
+    ],
   };
 
   for (const [component, stylesArray] of Object.entries(styles)) {

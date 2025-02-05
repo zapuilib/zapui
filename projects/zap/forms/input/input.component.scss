@@ -6,7 +6,7 @@
 
     i {
       @apply absolute;
-      @apply text-[var(--zap-input-icon-color)];
+      @apply text-[var(--zap-input-icon-color)] text-[length:var(--zap-input-icon-font-size)] font-[var(--zap-input-icon-font-weight)] leading-[var(--zap-input-icon-line-height)] tracking-[var(--zap-input-icon-letter-spacing)];
       @apply top-1/2;
       @apply -translate-y-1/2;
       @apply left-3;

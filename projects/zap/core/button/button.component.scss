@@ -1,6 +1,6 @@
 button {
   @apply transition-colors duration-150;
-  @apply flex items-center justify-center;
+  @apply flex items-center justify-center cursor-pointer;
   @apply border;
   @apply bg-[var(--zap-button-bg-color)];
   @apply text-[var(--zap-button-text-color)];

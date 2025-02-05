@@ -283,6 +283,28 @@ const ngxConfig: ZapConfig = {
         // width: '20px',
         // fontSize: '1.5rem',
       }
+    },
+    radio: {
+      styles: {
+        colors: {
+          dark: {
+            // bgColor: '#1877F2',
+            // borderColor: '#1877F2',
+            // bgCheckedColor: '#4CB963',
+            // textCheckedColor: '#4CB963',
+            // labelColor: '#4CB963',
+            // labelHoverColor: '#1877F2',
+          }
+        },
+        // borderRadius: '15px',
+        // paddingLeft: '20px',
+        // paddingRight: '20px',
+        // paddingTop: '10px',
+        // paddingBottom: '10px',
+        // height: '200px',
+        // width: '20px',
+        // fontSize: '1.5rem',
+      }
     }
   },
 };

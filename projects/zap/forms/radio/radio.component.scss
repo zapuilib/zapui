@@ -2,6 +2,10 @@
   .wrapper {
     @apply flex flex-col gap-y-2 gap-x-2 w-full flex-nowrap;
 
+    & > p {
+      @apply text-[var(--zap-radio-label-color)] text-[length:var(--zap-radio-font-size)] font-[var(--zap-radio-font-weight)] leading-[var(--zap-radio-line-height)] tracking-[var(--zap-radio-label-letter-spacing)];
+    }
+
     .options__wrapper {
       @apply flex gap-y-2 w-full flex-nowrap;
     }
@@ -11,28 +15,39 @@
 
       input {
         @apply appearance-none;
-        @apply relative h-4 w-4;
-        @apply border rounded-full cursor-pointer;
+        @apply relative;
+        @apply border border-[var(--zap-radio-border-color)] bg-[var(--zap-radio-bg-color)] rounded-full hover:bg-[var(--zap-radio-bg-hover-color)] hover:border-[var(--zap-radio-border-hover-color)] cursor-pointer relative;
+        @apply pl-[var(--zap-radio-padding-left)] pr-[var(--zap-radio-padding-right)] pt-[var(--zap-radio-padding-top)] pb-[var(--zap-radio-padding-bottom)];
+        @apply h-[var(--zap-radio-height)] w-[var(--zap-radio-width)];
 
         &:checked {
-          &::before {
-            @apply content-[''] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-[var(--before-checked-color)];
-            @apply w-4 h-4 rounded-full;
-          }
+          @apply border-[var(--zap-radio-border-checked-color)] bg-[var(--zap-radio-bg-checked-color)];
 
-          &::after {
-            @apply content-[''] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-[var(--after-checked-color)] z-10;
-            @apply w-1.5 h-1.5 rounded-full;
+          &::before {
+            @apply content-[''] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-[var(--zap-radio-checked-color)];
+            @apply w-2.5 h-2.5 rounded-full;
           }
         }
 
         &:disabled {
           @apply opacity-50 cursor-not-allowed;
         }
+
+        &:focus {
+          @apply ring-1 ring-[var(--zap-radio-border-focus-color)] bg-[var(--zap-radio-bg-focus-color)];
+
+          &:not(:checked) {
+            @apply bg-[var(--zap-radio-bg-color)];
+          }
+
+          &:checked {
+            @apply border-[var(--zap-radio-border-checked-color)] bg-[var(--zap-radio-bg-checked-color)];
+          }
+        }
       }
 
       label {
-        @apply cursor-pointer;
+        @apply cursor-pointer text-[var(--zap-radio-text-color)] hover:text-[var(--zap-radio-text-hover-color)] text-[length:var(--zap-radio-font-size)] font-[var(--zap-radio-font-weight)] leading-[var(--zap-radio-line-height)] tracking-[var(--zap-radio-letter-spacing)];
       }
     }
   }

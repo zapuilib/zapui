@@ -8,6 +8,7 @@ import { getDefaultDialogSizeCssValues } from '../components/dialog-theme';
 import { getDefaultModalSizeCssValues } from '../components/modal-theme';
 import { getDefaultInputSizeCssValues } from '../components/input-theme';
 import { getDefaultCheckboxSizeCssValues } from '../components/checkbox-theme';
+import { getDefaultRadioSizeCssValues } from '../components/radio-theme';
 
 /**
  * This function generates the global styles for the all the components
@@ -282,7 +283,7 @@ export function generateGlobalStylesVariables(
       },
       {
         label: 'bg-checked-color',
-        value: theme.colors.secondary,
+        value: theme.colors.tertiary,
       },
       {
         label: 'text-checked-color',
@@ -300,7 +301,36 @@ export function generateGlobalStylesVariables(
         label: 'border-focus-color',
         value: theme.colors.secondary,
       },
-      
+    ],
+    radio: [
+      {
+        label: 'bg-color',
+        value: 'transparent',
+      },
+      {
+        label: 'border-color',
+        value: theme.colors.secondary,
+      },
+      {
+        label: 'text-color',
+        value: theme.colors.secondary,
+      },
+      {
+        label: 'label-color',
+        value: theme.colors.tertiary,
+      },
+      {
+        label: 'bg-checked-color',
+        value: 'transparent',
+      },
+      {
+        label: 'checked-color',
+        value: theme.colors.tertiary,
+      },
+      {
+        label: 'border-focus-color',
+        value: theme.colors.secondary,
+      }, 
     ],
   };
 
@@ -322,6 +352,7 @@ export function generateGlobalStylesVariables(
   cssVariables += getDefaultModalSizeCssValues();
   cssVariables += getDefaultInputSizeCssValues();
   cssVariables += getDefaultCheckboxSizeCssValues();
+  cssVariables += getDefaultRadioSizeCssValues();
 
   return cssVariables;
 }

@@ -13,7 +13,7 @@
     @apply mb-2 text-[var(--zap-dialog-title-color)] text-[length:var(--zap-dialog-title-font-size)] font-[var(--zap-dialog-title-font-weight)] leading-[var(--zap-dialog-title-line-height)] tracking-[var(--zap-dialog-title-letter-spacing)];
   }
 
-  .__ngx__zap__dialog__handler {
+  .handler {
     @apply cursor-pointer p-1 text-[var(--zap-dialog-dismiss-color)] text-[length:var(--zap-dialog-dismiss-font-size)] font-[var(--zap-dialog-dismiss-font-weight)] leading-[var(--zap-dialog-dismiss-line-height)] tracking-[var(--zap-dialog-dismiss-letter-spacing)] transition-colors hover:text-[var(--zap-dialog-dismiss-hover-color)] absolute top-5 right-5;
   }
 

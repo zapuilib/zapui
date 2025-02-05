@@ -58,7 +58,7 @@
     @apply flex-shrink-0 flex items-center;
   }
 
-  .chip__remove {
+  .handler {
     @apply bg-none border-none text-inherit cursor-pointer ml-2 p-0 text-sm transition-all absolute right-2 top-1/2 -translate-y-1/2;
     @apply text-[var(--zap-chip-dismiss-color)] hover:text-[var(--zap-chip-dismiss-hover-color)];
 
@@ -84,20 +84,36 @@
   &.info {
     @apply bg-info;
     @apply text-infoText;
+
+    .handler {
+      @apply text-infoText hover:text-infoText/60;
+    }
   }
 
   &.success {
     @apply bg-success;
     @apply text-successText;
+
+    .handler {
+      @apply text-successText hover:text-successText/60;
+    }
   }
 
   &.warning {
     @apply bg-warning;
     @apply text-warningText;
+
+    .handler {
+      @apply text-warningText hover:text-warningText/60;
+    }
   }
 
   &.error {
     @apply bg-error;
     @apply text-errorText;
+
+    .handler {
+      @apply text-errorText hover:text-errorText/60;
+    }
   }
 }

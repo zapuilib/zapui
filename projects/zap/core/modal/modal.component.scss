@@ -4,11 +4,7 @@
   @apply w-[var(--zap-modal-max-width)] h-[var(--zap-modal-max-height)] overflow-auto;
 
   .handler {
-    @apply absolute top-3 right-3 cursor-pointer;
-
-    i {
-      @apply text-[length:var(--zap-modal-dismiss-font-size)] leading-[var(--zap-modal-dismiss-line-height)] tracking-[var(--zap-modal-dismiss-letter-spacing)] text-[var(--zap-modal-dismiss-color)] hover:text-[var(--zap-modal-dismiss-hover-color)] transition-colors;
-    }
+    @apply absolute top-3 right-3 cursor-pointer text-[length:var(--zap-modal-dismiss-font-size)] leading-[var(--zap-modal-dismiss-line-height)] tracking-[var(--zap-modal-dismiss-letter-spacing)] text-[var(--zap-modal-dismiss-color)] hover:text-[var(--zap-modal-dismiss-hover-color)] transition-colors;
   }
 
   &.curve {

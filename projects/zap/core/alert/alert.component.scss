@@ -5,8 +5,8 @@
   @apply w-[var(--zap-alert-width)] h-[var(--zap-alert-height)] leading-[var(--zap-alert-line-height)] tracking-[var(--zap-alert-letter-spacing)];
   text-transform: var(--zap-button-text-transform);
 
-  .handler__wrapper i {
-    @apply text-[var(--zap-alert-dismiss-color)] hover:text-[var(--zap-alert-dismiss-hover-color)] absolute top-[22px] right-[22px] cursor-pointer;
+  .handler {
+    @apply text-[var(--zap-alert-dismiss-color)] hover:text-[var(--zap-alert-dismiss-hover-color)] absolute top-1/2 -translate-y-1/2 right-[22px] cursor-pointer;
   }
 
   .content__wrapper {
@@ -16,7 +16,7 @@
   &.success {
     @apply bg-success border-success text-successText;
 
-    .handler__wrapper i {
+    .handler {
       @apply text-successText hover:text-successText/70;
     }
   }
@@ -24,7 +24,7 @@
   &.error {
     @apply bg-error border-error text-errorText;
 
-    .handler__wrapper i {
+    .handler {
       @apply text-errorText hover:text-errorText/70;
     }
   }
@@ -32,7 +32,7 @@
   &.warning {
     @apply bg-warning border-warning text-warningText;
 
-    .handler__wrapper i {
+    .handler {
       @apply text-warningText hover:text-warningText/70;
     }
   }
@@ -40,7 +40,7 @@
   &.info {
     @apply bg-info border-info text-infoText;
 
-    .handler__wrapper i {
+    .handler {
       @apply text-infoText hover:text-infoText/70;
     }
   }
@@ -58,6 +58,6 @@
   }
 }
 
-.handler__wrapper {
+.handler {
   @apply cursor-pointer;
 }

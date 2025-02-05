@@ -8,7 +8,7 @@
   {{ text }}
 
   @if (dismissible) {
-  <button class="chip__remove" (click)="onRemove($event)" [disabled]="disabled">
+  <button class="handler" (click)="onRemove($event)" [disabled]="disabled">
     <i class="fa-solid fa-times chip__icon"></i>
   </button>
   }

@@ -18,5 +18,5 @@ export function generateComponentInputVariables(
 }
 
 export function getDefaultInputSizeCssValues(): string {
-  return `--zap-input-padding-left: 0.75rem;\n--zap-input-padding-right: 0.75rem;\n--zap-input-padding-top: 0.5rem;\n--zap-input-padding-bottom: 0.5rem;\n--zap-input-width: 100%;\n`;
+  return `--zap-input-padding-left: 0.75rem;\n--zap-input-padding-right: 0.75rem;\n--zap-input-padding-top: 0.5rem;\n--zap-input-padding-bottom: 0.5rem;\n--zap-input-width: 100%;\n--zap-input-icon-font-size: 0.875rem;\n--zap-input-icon-line-height: auto;\n`;
 }

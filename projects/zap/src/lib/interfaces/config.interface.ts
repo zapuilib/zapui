@@ -14,6 +14,7 @@ export interface ZapConfig {
     input?: InputConfig;
     checkbox?: CheckboxConfig;
     radio?: RadioConfig;
+    textarea?: TextareaConfig;
   };
 }
 
@@ -189,6 +190,7 @@ export interface ModalConfig {
 
 export interface InputConfig {
   shape?: ShapeType;
+  size?: 'compact' | 'base';
   styles?: {
     colors?: {
       [theme: string]: {
@@ -301,6 +303,53 @@ export interface RadioConfig {
     letterSpacing?: string;
     labelLetterSpacing?: string;
   }
+}
+
+export interface TextareaConfig {
+  shape?: 'flat' | 'curve';
+  styles?: {
+    colors?: {
+      [theme: string]: {
+        bgColor?: HexCode;
+        textColor?: HexCode;
+        borderColor?: HexCode;
+        labelColor?: HexCode;
+        placeholderColor?: HexCode;
+        bgHoverColor?: HexCode;
+        borderHoverColor?: HexCode;
+        textHoverColor?: HexCode;
+        borderFocusColor?: HexCode;
+        ringFocusColor?: HexCode;
+        bgFocusColor?: HexCode;
+        textFocusColor?: HexCode;
+        iconColor?: HexCode;
+      };
+    };
+    borderRadius?: string;
+    paddingLeft?: string;
+    paddingRight?: string;
+    paddingTop?: string;
+    paddingBottom?: string;
+    padding?: Padding;
+    fontSize?: string;
+    fontWeight?: string;
+    lineHeight?: string;
+    letterSpacing?: string;
+    labelFontSize?: string;
+    labelFontWeight?: string;
+    labelLineHeight?: string;
+    labelLetterSpacing?: string;
+    placeholderFontSize?: string;
+    placeholderFontWeight?: string;
+    placeholderLineHeight?: string;
+    placeholderLetterSpacing?: string;
+    iconFontSize?: string;
+    iconFontWeight?: string;
+    iconLineHeight?: string;
+    iconLetterSpacing?: string;
+    width?: string;
+    height?: string;
+  };
 }
 
 export interface GlobalConfig {

@@ -9,6 +9,7 @@ import { getDefaultModalSizeCssValues } from '../components/modal-theme';
 import { getDefaultInputSizeCssValues } from '../components/input-theme';
 import { getDefaultCheckboxSizeCssValues } from '../components/checkbox-theme';
 import { getDefaultRadioSizeCssValues } from '../components/radio-theme';
+import { getDefaultTextareaSizeCssValues } from '../components/textarea-theme';
 
 /**
  * This function generates the global styles for the all the components
@@ -264,6 +265,10 @@ export function generateGlobalStylesVariables(
         value: theme.colors.secondary,
       },
       {
+        label: 'ring-focus-color',
+        value: theme.colors.secondary,
+      },
+      {
         label: 'icon-color',
         value: hexToRgba(theme.colors.secondary, 0.5),
       },
@@ -332,6 +337,32 @@ export function generateGlobalStylesVariables(
         value: theme.colors.secondary,
       }, 
     ],
+    textarea: [
+      {
+        label: 'bg-color',
+        value: 'transparent',
+      },
+      {
+        label: 'border-color',
+        value: theme.colors.tertiary,
+      },
+      {
+        label: 'text-color',
+        value: theme.colors.secondary,
+      },
+      {
+        label: 'placeholder-color',
+        value: hexToRgba(theme.colors.secondary, 0.5),
+      },
+      {
+        label: 'border-focus-color',
+        value: theme.colors.secondary,
+      },
+      {
+        label: 'ring-focus-color',
+        value: theme.colors.secondary,
+      },
+    ]
   };
 
   for (const [component, stylesArray] of Object.entries(styles)) {
@@ -353,6 +384,7 @@ export function generateGlobalStylesVariables(
   cssVariables += getDefaultInputSizeCssValues();
   cssVariables += getDefaultCheckboxSizeCssValues();
   cssVariables += getDefaultRadioSizeCssValues();
+  cssVariables += getDefaultTextareaSizeCssValues();
 
   return cssVariables;
 }

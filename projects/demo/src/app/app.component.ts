@@ -9,9 +9,9 @@ import {
   ZapBadgeComponent,
   ZapChipComponent,
   ZapDialogComponent,
-  ZapModalComponent
+  ZapModalComponent,
 } from 'zap/core';
-import { ZapCheckboxComponent, ZapInputComponent, ZapRadio } from 'zap/forms';
+import { ZapCheckboxComponent, ZapInputComponent, ZapRadio, ZapTextarea } from 'zap/forms';
 
 @Component({
   selector: 'app-root',
@@ -26,7 +26,8 @@ import { ZapCheckboxComponent, ZapInputComponent, ZapRadio } from 'zap/forms';
     ZapModalComponent,
     ZapInputComponent,
     ZapCheckboxComponent,
-    ZapRadio
+    ZapRadio,
+    ZapTextarea
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',

@@ -228,6 +228,7 @@ const ngxConfig: ZapConfig = {
     },
     input: {
       // shape: 'pill', // this will replace global and root
+      // size: 'compact', // this will replace root
       styles: {
         colors: {
           dark: {
@@ -304,6 +305,23 @@ const ngxConfig: ZapConfig = {
         // height: '200px',
         // width: '20px',
         // fontSize: '1.5rem',
+      }
+    },
+    textarea: {
+      // shape: 'flat', // this will replace global and root
+      styles: {
+        colors: {
+          dark: {
+            // bgColor: '#1877F2',
+            // textColor: '#FFFFFF',
+            // borderColor: '#4CB963',
+            // bgFocusColor: '#4CB963',
+            // borderFocusColor: '#4CB963',
+            // ringFocusColor: '#FFFFFF',
+            // textFocusColor: '#FFFFFF',
+            // labelColor: '#4CB963',
+          }
+        }
       }
     }
   },

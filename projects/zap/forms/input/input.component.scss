@@ -25,7 +25,7 @@
   &__input {
     @apply text-[var(--zap-input-text-color)] border-[var(--zap-input-border-color)] text-[length:var(--zap-input-font-size)] font-[var(--zap-input-font-weight)] leading-[var(--zap-input-line-height)] tracking-[var(--zap-input-letter-spacing)];
     @apply border bg-[var(--zap-input-bg-color)];
-    @apply focus-within:outline-0 focus-within:ring-2 focus-within:ring-offset-0;
+    @apply focus-within:outline-0;
     @apply rounded-[var(--zap-input-border-radius)];
     @apply pl-[var(--zap-input-padding-left)] pr-[var(--zap-input-padding-right)] pt-[var(--zap-input-padding-top)] pb-[var(--zap-input-padding-bottom)];
     @apply w-[var(--zap-input-width)] h-[var(--zap-input-height)];
@@ -81,7 +81,7 @@
   }
 
   input:focus {
-    @apply ring-[var(--zap-input-border-focus-color)] text-[var(--zap-input-text-focus-color)] bg-[var(--zap-input-bg-focus-color)];
+    @apply ring-1 ring-[var(--zap-textarea-ring-focus-color)] border-[var(--zap-textarea-border-focus-color)] text-[var(--zap-input-text-focus-color)] bg-[var(--zap-input-bg-focus-color)];
   }
 
   input::-webkit-inner-spin-button {

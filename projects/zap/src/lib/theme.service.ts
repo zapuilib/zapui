@@ -2,7 +2,7 @@ import { Inject, Injectable, Optional, PLATFORM_ID } from '@angular/core';
 import { DOCUMENT, isPlatformBrowser } from '@angular/common';
 
 import { NGX_ZAP_CONFIG } from './tokens/zap.tokens';
-import { ChipConfig, ZapConfig, ZapTheme } from '../public-api';
+import { ChipConfig, InputConfig, TextareaConfig, ZapConfig, ZapTheme } from '../public-api';
 import {
   lightTheme,
   defaultConfig,
@@ -21,6 +21,7 @@ import { generateComponentDialogVariables } from './theme/components/dialog-them
 import { generateComponentModalVariables } from './theme/components/modal-theme';
 import { generateComponentInputVariables } from './theme/components/input-theme';
 import { generateComponentCheckboxVariables } from './theme/components/checkbox-theme';
+import { generateComponentTextareaVariables } from './theme/components/textarea-theme';
 
 @Injectable({
   providedIn: 'root',
@@ -131,11 +132,15 @@ export class ThemeService {
             break;
           case 'input':
             // handles shape and size for the input component
-            cssVariables += generateComponentInputVariables(value, root);
+            cssVariables += generateComponentInputVariables(value as InputConfig, root);
             break;
           case 'checkbox':
             // handles shape and size for the checkbox component
             cssVariables += generateComponentCheckboxVariables(value, root);
+            break;
+          case 'textarea':
+            // handles shape and size for the textarea component
+            cssVariables += generateComponentTextareaVariables(value as TextareaConfig, root);
             break;
           default:
             break;

@@ -6,6 +6,7 @@
     <div class="options__wrapper">
       @for (radio of options; track radio) {
       <fieldset>
+        <legend class="sr-only">{{ radio.name }}</legend>
         <input
           type="radio"
           [id]="radio.value"

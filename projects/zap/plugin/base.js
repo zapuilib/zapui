@@ -16,6 +16,7 @@ module.exports = plugin(function ({ addVariant, e }) {
     { name: "error", targetElement: ".error" },
     { name: "dismiss", targetElement: ".handler" },
     { name: "textarea", targetElement: "textarea" },
+    { name: "textarea-placeholder", targetElement: ".__zap__form__control__textarea::placeholder" },
     { name: "chip-text", targetElement: ".chip__text" },
     { name: "chip-icon", targetElement: ".chip__icon" },
     { name: "dialog-title", targetElement: ".__ngx__zap__dialog__title" },

@@ -15,6 +15,7 @@
       [formControl]="control"
       [rows]="rows"
       [placeholder]="placeholder"
+      class="__zap__form__control__textarea"
       [ngClass]="resize === 'vertical' ? 'resizeyY' : resize === 'horizontal' ? 'resizeX' : ''"
       (input)="adjustRows($event)"
     ></textarea>

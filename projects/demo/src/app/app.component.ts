@@ -1,6 +1,7 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
+import { FormControl, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { RouterOutlet } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 import { ZapThemer } from 'zap';
 import {
@@ -18,6 +19,9 @@ import { ZapCheckboxComponent, ZapInputComponent, ZapRadio, ZapTextarea, ZapTogg
   standalone: true,
   imports: [
     RouterOutlet,
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
     ZapAlertComponent,
     ZapBadgeComponent,
     ZapButtonComponent,
@@ -36,7 +40,7 @@ import { ZapCheckboxComponent, ZapInputComponent, ZapRadio, ZapTextarea, ZapTogg
 export class AppComponent implements OnInit {
   theme: 'light' | 'dark' = 'dark';
   usernameControl = new FormControl('', [Validators.required]);
-
+  toggleControl: FormControl = new FormControl({ value: true, disabled: true });
   private zapThemeService: ZapThemer = inject(ZapThemer);
 
   ngOnInit(): void {

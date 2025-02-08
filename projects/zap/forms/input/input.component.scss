@@ -81,7 +81,7 @@
   }
 
   input:focus {
-    @apply ring-1 ring-[var(--zap-textarea-ring-focus-color)] border-[var(--zap-textarea-border-focus-color)] text-[var(--zap-input-text-focus-color)] bg-[var(--zap-input-bg-focus-color)];
+    @apply ring-1 ring-[var(--zap-input-ring-focus-color)] border-[var(--zap-input-border-focus-color)] text-[var(--zap-input-text-focus-color)] bg-[var(--zap-input-bg-focus-color)];
   }
 
   input::-webkit-inner-spin-button {

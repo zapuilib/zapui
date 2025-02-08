@@ -234,7 +234,7 @@ const ngxConfig: ZapConfig = {
           dark: {
             // bgColor: '#1877F2',
             // textColor: '#FFFFFF',
-            borderColor: '#181818',
+            // borderColor: '#181818',
             // labelColor: '#FFFFFF',
             // placeholderColor: '#404040',
             // borderFocusColor: '#FFFFFF',

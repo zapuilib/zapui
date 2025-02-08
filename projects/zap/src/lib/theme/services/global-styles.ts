@@ -251,7 +251,11 @@ export function generateGlobalStylesVariables(
       },
       {
         label: 'border-color',
-        value: theme.colors.secondary,
+        value: hexToRgba(theme.colors.secondary, 0.1),
+      },
+      {
+        label: 'border-hover-color',
+        value: hexToRgba(theme.colors.secondary, 0.1),
       },
       {
         label: 'text-color',
@@ -263,11 +267,11 @@ export function generateGlobalStylesVariables(
       },
       {
         label: 'border-focus-color',
-        value: theme.colors.secondary,
+        value: theme.colors.tertiary,
       },
       {
         label: 'ring-focus-color',
-        value: theme.colors.secondary,
+        value: theme.colors.tertiary,
       },
       {
         label: 'icon-color',
@@ -296,8 +300,12 @@ export function generateGlobalStylesVariables(
         value: theme.colors.primary,
       },
       {
+        label: 'border-checked-color',
+        value: theme.colors.tertiary,
+      },
+      {
         label: 'bg-focus-color',
-        value: theme.colors.secondary,
+        value: theme.colors.tertiary,
       },
       {
         label: 'text-focus-color',
@@ -305,7 +313,7 @@ export function generateGlobalStylesVariables(
       },
       {
         label: 'border-focus-color',
-        value: theme.colors.secondary,
+        value: theme.colors.tertiary,
       },
     ],
     radio: [
@@ -323,7 +331,7 @@ export function generateGlobalStylesVariables(
       },
       {
         label: 'label-color',
-        value: theme.colors.tertiary,
+        value: theme.colors.secondary,
       },
       {
         label: 'bg-checked-color',
@@ -334,8 +342,12 @@ export function generateGlobalStylesVariables(
         value: theme.colors.tertiary,
       },
       {
+        label: 'border-checked-color',
+        value: theme.colors.tertiary,
+      },
+      {
         label: 'border-focus-color',
-        value: theme.colors.secondary,
+        value: theme.colors.tertiary,
       },
     ],
     textarea: [
@@ -345,7 +357,11 @@ export function generateGlobalStylesVariables(
       },
       {
         label: 'border-color',
-        value: theme.colors.tertiary,
+        value: hexToRgba(theme.colors.secondary, 0.1),
+      },
+      {
+        label: 'border-hover-color',
+        value: hexToRgba(theme.colors.secondary, 0.1),
       },
       {
         label: 'text-color',
@@ -357,11 +373,11 @@ export function generateGlobalStylesVariables(
       },
       {
         label: 'border-focus-color',
-        value: theme.colors.secondary,
+        value: theme.colors.tertiary,
       },
       {
         label: 'ring-focus-color',
-        value: theme.colors.secondary,
+        value: theme.colors.tertiary,
       },
     ],
     toggle: [
@@ -375,7 +391,7 @@ export function generateGlobalStylesVariables(
       },
       {
         label: 'roller-color',
-        value: theme.colors.secondary,
+        value: theme.colors.primary,
       },
       {
         label: 'bg-on-color',

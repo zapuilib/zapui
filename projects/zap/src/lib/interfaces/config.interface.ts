@@ -15,6 +15,7 @@ export interface ZapConfig {
     checkbox?: CheckboxConfig;
     radio?: RadioConfig;
     textarea?: TextareaConfig;
+    toggle?: ToggleConfig;
   };
 }
 
@@ -349,6 +350,34 @@ export interface TextareaConfig {
     iconLetterSpacing?: string;
     width?: string;
     height?: string;
+  };
+}
+
+export interface ToggleConfig {
+  shape?: ShapeType;
+  styles?: {
+    colors?: {
+      [theme: string]: {
+        bgColor?: HexCode;
+        rollerColor?: HexCode;
+        bgOnColor?: HexCode;
+        rollerOnColor?: HexCode;
+        labelColor?: HexCode;
+        textColor?: HexCode;
+      };
+    };
+    width?: string;
+    height?: string;
+    rollerWidth?: string;
+    rollerHeight?: string;
+    labelFontSize?: string;
+    labelFontWeight?: string;
+    labelLineHeight?: string;
+    labelLetterSpacing?: string;
+    fontSize?: string;
+    fontWeight?: string;
+    lineHeight?: string;
+    letterSpacing?: string;
   };
 }
 

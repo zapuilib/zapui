@@ -73,11 +73,11 @@
     <zap-dialog zapClass="absolute"></zap-dialog>
   </div>
   <zap-input
-  id="username"
-  label="Username"
-  formControl="usernameControl"
-  placeholder="Enter your username"
-></zap-input>
+    id="username"
+    label="Username"
+    formControl="usernameControl"
+    placeholder="Enter your username"
+  ></zap-input>
   <div class="relative w-full h-full col-span-2 px-10 dark:bg-[#09090B]/90">
     <zap-modal zapClass="absolute" size="tight">
       <h2 class="font-semibold">Modal</h2>
@@ -115,4 +115,9 @@
     placeholder="Enter your message"
     zapClass=""
   ></zap-textarea>
+  <zap-toggle
+    id="toggle"
+    label="Save preferences"
+    text="Enable this setting to save your preferences"
+  ></zap-toggle>
 </div>

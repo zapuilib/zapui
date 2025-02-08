@@ -2,7 +2,7 @@ import { Component, inject, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { RouterOutlet } from '@angular/router';
 
-import { ZapTheme, ZapThemer } from 'zap';
+import { ZapThemer } from 'zap';
 import {
   ZapButtonComponent,
   ZapAlertComponent,
@@ -11,7 +11,7 @@ import {
   ZapDialogComponent,
   ZapModalComponent,
 } from 'zap/core';
-import { ZapCheckboxComponent, ZapInputComponent, ZapRadio, ZapTextarea } from 'zap/forms';
+import { ZapCheckboxComponent, ZapInputComponent, ZapRadio, ZapTextarea, ZapToggle } from 'zap/forms';
 
 @Component({
   selector: 'app-root',
@@ -27,7 +27,8 @@ import { ZapCheckboxComponent, ZapInputComponent, ZapRadio, ZapTextarea } from '
     ZapInputComponent,
     ZapCheckboxComponent,
     ZapRadio,
-    ZapTextarea
+    ZapTextarea,
+    ZapToggle
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',

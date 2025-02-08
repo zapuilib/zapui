@@ -323,6 +323,21 @@ const ngxConfig: ZapConfig = {
           }
         }
       }
+    },
+    toggle: {
+      styles: {
+        colors: {
+          dark: {
+            // bgColor: '#1877F2',
+            // rollerColor: '#1877F2',
+            // rollerOnColor: '#4CB963',
+          }
+        },
+        // height: '10px',
+        // width: '40px',
+        // rollerHeight: '20px',
+        // rollerWidth: '20px',
+      }
     }
   },
 };

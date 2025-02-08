@@ -49,7 +49,7 @@ export const darkTheme: ZapTheme = {
     primary: '#09090B',
     secondary: '#FFFFFF',
     tertiary: '#FFFFFF',
-    quaternary: '#9CA3AF',
+    quaternary: '#28282b',
     success: '#04E824',
     successText: '#09090B',
     warning: '#f6ad55',

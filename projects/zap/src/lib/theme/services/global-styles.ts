@@ -10,6 +10,7 @@ import { getDefaultInputSizeCssValues } from '../components/input-theme';
 import { getDefaultCheckboxSizeCssValues } from '../components/checkbox-theme';
 import { getDefaultRadioSizeCssValues } from '../components/radio-theme';
 import { getDefaultTextareaSizeCssValues } from '../components/textarea-theme';
+import { getDefaultToggleSizeCssValues } from '../components/toggle-theme';
 
 /**
  * This function generates the global styles for the all the components
@@ -335,7 +336,7 @@ export function generateGlobalStylesVariables(
       {
         label: 'border-focus-color',
         value: theme.colors.secondary,
-      }, 
+      },
     ],
     textarea: [
       {
@@ -362,7 +363,41 @@ export function generateGlobalStylesVariables(
         label: 'ring-focus-color',
         value: theme.colors.secondary,
       },
-    ]
+    ],
+    toggle: [
+      {
+        label: 'bg-color',
+        value: theme.colors.quaternary,
+      },
+      {
+        label: 'border-color',
+        value: theme.colors.quaternary,
+      },
+      {
+        label: 'roller-color',
+        value: theme.colors.secondary,
+      },
+      {
+        label: 'bg-on-color',
+        value: theme.colors.tertiary,
+      },
+      {
+        label: 'border-on-color',
+        value: theme.colors.tertiary,
+      },
+      {
+        label: 'roller-on-color',
+        value: theme.colors.primary,
+      },
+      {
+        label: 'label-color',
+        value: theme.colors.secondary,
+      },
+      {
+        label: 'text-color',
+        value: hexToRgba(theme.colors.secondary, 0.5),
+      }
+    ],
   };
 
   for (const [component, stylesArray] of Object.entries(styles)) {
@@ -385,6 +420,7 @@ export function generateGlobalStylesVariables(
   cssVariables += getDefaultCheckboxSizeCssValues();
   cssVariables += getDefaultRadioSizeCssValues();
   cssVariables += getDefaultTextareaSizeCssValues();
+  cssVariables += getDefaultToggleSizeCssValues();
 
   return cssVariables;
 }

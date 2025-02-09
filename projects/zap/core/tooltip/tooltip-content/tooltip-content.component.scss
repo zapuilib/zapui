@@ -3,6 +3,6 @@
     @apply bg-white border border-gray-200 rounded shadow-md;
     @apply px-1 py-0.5;
     @apply text-sm text-gray-700;
-    @apply transition-opacity duration-200;
+    @apply transition-opacity duration-200 whitespace-nowrap;
     @apply invisible opacity-0
 }

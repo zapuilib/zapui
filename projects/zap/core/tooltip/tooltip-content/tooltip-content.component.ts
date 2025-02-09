@@ -1,13 +1,18 @@
-import { Component, ElementRef, Renderer2, ViewChild } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Component, ElementRef, Input, Renderer2, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'zap-tooltip-content',
   standalone: true,
-  template: `<div #content class="zap__tooltip__content"><ng-content></ng-content></div>`,
+  imports: [
+    CommonModule
+  ],
+  template: `<div #content class="zap__tooltip__content" [ngClass]="[zapClass]"><ng-content></ng-content></div>`,
   styleUrls: ['./tooltip-content.component.scss']
 })
 export class ZapTooltipContent {
   @ViewChild('content', { static: true }) content!: ElementRef;
+  @Input() zapClass: string = ''; 
 
   constructor(private el: ElementRef, private renderer: Renderer2) {}
 

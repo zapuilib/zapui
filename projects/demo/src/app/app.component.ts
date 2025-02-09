@@ -11,6 +11,9 @@ import {
   ZapChipComponent,
   ZapDialogComponent,
   ZapModalComponent,
+  ZapTooltip,
+  ZapTooltipContent,
+  ZapTooltipHandler
 } from 'zap/core';
 import { ZapCheckboxComponent, ZapInputComponent, ZapRadio, ZapTextarea, ZapToggle } from 'zap/forms';
 
@@ -32,14 +35,17 @@ import { ZapCheckboxComponent, ZapInputComponent, ZapRadio, ZapTextarea, ZapTogg
     ZapCheckboxComponent,
     ZapRadio,
     ZapTextarea,
-    ZapToggle
+    ZapToggle,
+    ZapTooltip,
+    ZapTooltipHandler,
+    ZapTooltipContent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
 export class AppComponent implements OnInit {
   theme: 'light' | 'dark' = 'dark';
-  usernameControl = new FormControl('', [Validators.required]);
+  usernameControl = new FormControl({ value: '', disabled: true }, [Validators.required]);
   toggleControl: FormControl = new FormControl({ value: true, disabled: true });
   private zapThemeService: ZapThemer = inject(ZapThemer);
 

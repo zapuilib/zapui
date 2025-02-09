@@ -73,7 +73,7 @@
   }
 
   input:disabled {
-    @apply opacity-50;
+    @apply opacity-50 cursor-not-allowed;
   }
 
   input::placeholder {

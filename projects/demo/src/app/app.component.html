@@ -75,6 +75,7 @@
     id="username"
     label="Username"
     placeholder="Enter your username"
+    [formControl]="usernameControl"
   ></zap-input>
   <div class="relative w-full h-full col-span-2 px-10 dark:bg-[#09090B]/90">
     <zap-modal zapClass="absolute" size="tight">
@@ -118,4 +119,19 @@
     text="Enable this setting to save your preferences"
     [formControl]="toggleControl"
   ></zap-toggle>
+  <div>
+    <zap-tooltip>
+      <zap-tooltip-handler>
+        <button>Hover me</button>
+      </zap-tooltip-handler>
+      <zap-tooltip-content>
+        <p class="w-52">
+          This is a tooltip! And it has a large content inside it, too. Lorem
+          ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor
+          incididunt ut labore et dolore magna aliqua
+        </p>
+        <p class="pt-2"><a href="" class="underline">A link</a> can be used here as well</p>
+      </zap-tooltip-content>
+    </zap-tooltip>
+  </div>
 </div>

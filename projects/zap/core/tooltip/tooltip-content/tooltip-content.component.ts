@@ -1,18 +1,25 @@
 import { CommonModule } from '@angular/common';
-import { Component, ElementRef, Input, Renderer2, ViewChild } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  Input,
+  Renderer2,
+  ViewChild,
+} from '@angular/core';
 
 @Component({
   selector: 'zap-tooltip-content',
   standalone: true,
-  imports: [
-    CommonModule
-  ],
-  template: `<div #content class="zap__tooltip__content" [ngClass]="[zapClass]"><ng-content></ng-content></div>`,
-  styleUrls: ['./tooltip-content.component.scss']
+  imports: [CommonModule],
+  template: `<div #content class="zap__tooltip__content" [ngClass]="[zapClass]">
+    <ng-content></ng-content>
+  </div>`,
+  styleUrls: ['./tooltip-content.component.scss'],
 })
 export class ZapTooltipContent {
   @ViewChild('content', { static: true }) content!: ElementRef;
-  @Input() zapClass: string = ''; 
+  @Input() zapClass: string = '';
+  //TODO: Support custom positioning, e.g. top, bottom, left, right default to auto with dynamic positioning based on available space, also the position should not be relative to the parent element, but to the viewport
 
   constructor(private el: ElementRef, private renderer: Renderer2) {}
 

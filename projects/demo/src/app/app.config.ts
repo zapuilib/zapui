@@ -176,7 +176,7 @@ const ngxConfig: ZapConfig = {
             // secondaryBtnTextColor: '#4CB963',
             // secondaryBtnBgHoverColor: '#4CB963',
             // secondaryBtnTextHoverColor: '#FFFFFF',
-          }
+          },
         },
         borderRadius: '15px',
         // titleFontSize: '1.5rem',
@@ -199,9 +199,9 @@ const ngxConfig: ZapConfig = {
         // secondaryBtnFontWeight: 'bold',
         // secondaryBtnLineHeight: '2',
         // secondaryBtnLetterSpacing: '1px',
-        // primaryBtnBorderRadius: '15px', // by default border raidus is set by global or btn style, 
+        // primaryBtnBorderRadius: '15px', // by default border raidus is set by global or btn style,
         // secondaryBtnBorderRadius: '15px', // by default border raidus is set by global or btn style
-      }
+      },
     },
     modal: {
       // shape: 'pill', // this will replace global and root
@@ -240,7 +240,7 @@ const ngxConfig: ZapConfig = {
             // borderFocusColor: '#FFFFFF',
             // bgFocusColor: '#FFFFFF',
             // textFocusColor: '#FFFFFF',
-          }
+          },
         },
         // borderRadius: '15px',
         // paddingLeft: '20px',
@@ -259,7 +259,7 @@ const ngxConfig: ZapConfig = {
         // placeholderFontSize: '1.8rem',
         // width: '100%',
         // height: '50px',
-      }
+      },
     },
     checkbox: {
       // shape: 'flat', // this will replace global and root
@@ -273,7 +273,7 @@ const ngxConfig: ZapConfig = {
             // textCheckedColor: '#4CB963',
             // labelColor: '#4CB963',
             // labelHoverColor: '#1877F2',
-          }
+          },
         },
         // borderRadius: '15px',
         // paddingLeft: '20px',
@@ -283,7 +283,7 @@ const ngxConfig: ZapConfig = {
         // height: '200px',
         // width: '20px',
         // fontSize: '1.5rem',
-      }
+      },
     },
     radio: {
       styles: {
@@ -295,7 +295,7 @@ const ngxConfig: ZapConfig = {
             // textCheckedColor: '#4CB963',
             // labelColor: '#4CB963',
             // labelHoverColor: '#1877F2',
-          }
+          },
         },
         // borderRadius: '15px',
         // paddingLeft: '20px',
@@ -305,7 +305,7 @@ const ngxConfig: ZapConfig = {
         // height: '200px',
         // width: '20px',
         // fontSize: '1.5rem',
-      }
+      },
     },
     textarea: {
       // shape: 'flat', // this will replace global and root
@@ -320,9 +320,9 @@ const ngxConfig: ZapConfig = {
             // ringFocusColor: '#FFFFFF',
             // textFocusColor: '#FFFFFF',
             // labelColor: '#4CB963',
-          }
-        }
-      }
+          },
+        },
+      },
     },
     toggle: {
       styles: {
@@ -331,14 +331,28 @@ const ngxConfig: ZapConfig = {
             // bgColor: '#1877F2',
             // rollerColor: '#1877F2',
             // rollerOnColor: '#4CB963',
-          }
+          },
         },
         // height: '10px',
         // width: '40px',
         // rollerHeight: '20px',
         // rollerWidth: '20px',
-      }
-    }
+      },
+    },
+    accordion: {
+      styles: {
+        colors: {
+          dark: {
+            // headerBgColor: '#1877F2',
+            // headerTextColor: '#4CB963',
+            // itemBorderColor: '#1877F2',
+            // contentTextColor: '#1877F2',
+            // contentBgColor: '#4CB963',
+          },
+        },
+        // headerPaddingTop: '2.75rem',
+      },
+    },
   },
 };
 

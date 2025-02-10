@@ -11,6 +11,7 @@ import { getDefaultCheckboxSizeCssValues } from '../components/checkbox-theme';
 import { getDefaultRadioSizeCssValues } from '../components/radio-theme';
 import { getDefaultTextareaSizeCssValues } from '../components/textarea-theme';
 import { getDefaultToggleSizeCssValues } from '../components/toggle-theme';
+import { getDefaultAccordionSizeCssValues } from '../components/accordion-theme';
 
 /**
  * This function generates the global styles for the all the components
@@ -414,6 +415,12 @@ export function generateGlobalStylesVariables(
         value: hexToRgba(theme.colors.secondary, 0.5),
       }
     ],
+    accordion: [
+      {
+        label: 'item-border-color',
+        value: hexToRgba(theme.colors.secondary, 0.1),
+      }
+    ]
   };
 
   for (const [component, stylesArray] of Object.entries(styles)) {
@@ -437,6 +444,7 @@ export function generateGlobalStylesVariables(
   cssVariables += getDefaultRadioSizeCssValues();
   cssVariables += getDefaultTextareaSizeCssValues();
   cssVariables += getDefaultToggleSizeCssValues();
+  cssVariables += getDefaultAccordionSizeCssValues();
 
   return cssVariables;
 }

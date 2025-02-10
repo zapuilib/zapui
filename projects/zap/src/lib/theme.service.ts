@@ -2,7 +2,7 @@ import { Inject, Injectable, Optional, PLATFORM_ID } from '@angular/core';
 import { DOCUMENT, isPlatformBrowser } from '@angular/common';
 
 import { NGX_ZAP_CONFIG } from './tokens/zap.tokens';
-import { ChipConfig, InputConfig, TextareaConfig, ZapConfig, ZapTheme } from '../public-api';
+import { AlertConfig, ButtonConfig, ChipConfig, DialogConfig, InputConfig, ModalConfig, TextareaConfig, ZapConfig, ZapTheme } from '../public-api';
 import {
   lightTheme,
   defaultConfig,
@@ -109,11 +109,11 @@ export class ThemeService {
             break;
           case 'alert':
             // handles shape and size for the alert component
-            cssVariables += generateComponentAlertVariables(value, root);
+            cssVariables += generateComponentAlertVariables(value as AlertConfig, root);
             break;
           case 'button':
             // handles shape and size for the button component
-            cssVariables += generateComponentButtonVariables(value, root);
+            cssVariables += generateComponentButtonVariables(value as ButtonConfig, root);
             break;
           case 'chip':
             // handles shape and size for the chip component
@@ -124,11 +124,11 @@ export class ThemeService {
             break;
           case 'dialog':
             // handles shape and size for the dialog component
-            cssVariables += generateComponentDialogVariables(value, root);
+            cssVariables += generateComponentDialogVariables(value as DialogConfig, root);
             break;
           case 'modal':
             // handles shape and size for the modal component
-            cssVariables += generateComponentModalVariables(value, root);
+            cssVariables += generateComponentModalVariables(value as ModalConfig, root);
             break;
           case 'input':
             // handles shape and size for the input component
@@ -136,7 +136,7 @@ export class ThemeService {
             break;
           case 'checkbox':
             // handles shape and size for the checkbox component
-            cssVariables += generateComponentCheckboxVariables(value, root);
+            cssVariables += generateComponentCheckboxVariables(value as InputConfig, root);
             break;
           case 'textarea':
             // handles shape and size for the textarea component

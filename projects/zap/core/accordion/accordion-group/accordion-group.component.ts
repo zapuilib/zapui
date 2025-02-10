@@ -19,7 +19,7 @@ import { ZapAccordionItem } from '../accordion-item/accordion-item.component';
 })
 export class ZapAccordionGroup implements AfterViewInit {
   @ContentChildren(ZapAccordionItem) items!: QueryList<ZapAccordionItem>;
-  @Input() multiple: boolean = true;
+  @Input() multiple: boolean = false;
 
   constructor() {}
 

@@ -6,3 +6,4 @@ export * from './dialog/dialog.component';
 export * from './modal/modal.component';
 
 export * from './tooltip';
+export * from './accordion';

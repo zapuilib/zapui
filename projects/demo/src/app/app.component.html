@@ -131,4 +131,16 @@
       </zap-tooltip-content>
     </zap-tooltip>
   </div>
+  <div>
+    <zap-accordion-group class="w-full">
+      @for(accordion of accordions; track $index) {
+        <zap-accordion-item>
+          <zap-accordion-header>{{ accordion.title }}</zap-accordion-header>
+          <zap-accordion-content>
+            <p>{{ accordion.content }}</p>
+          </zap-accordion-content>
+        </zap-accordion-item>
+      }
+    </zap-accordion-group>
+  </div>
 </div>

@@ -1,0 +1,7 @@
+.__zap__accordion__content {
+  @apply max-h-0 overflow-hidden transition-all duration-150 ease-linear;
+
+  &.open {
+    @apply pb-4 pt-1 max-h-max;
+  }
+}

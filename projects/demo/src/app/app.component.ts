@@ -1,5 +1,10 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { FormControl, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import {
+  FormControl,
+  FormsModule,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
@@ -13,9 +18,19 @@ import {
   ZapModalComponent,
   ZapTooltip,
   ZapTooltipContent,
-  ZapTooltipHandler
+  ZapTooltipHandler,
+  ZapAccordionGroup,
+  ZapAccordionHeader,
+  ZapAccordionContent,
+  ZapAccordionItem,
 } from 'zap/core';
-import { ZapCheckboxComponent, ZapInputComponent, ZapRadio, ZapTextarea, ZapToggle } from 'zap/forms';
+import {
+  ZapCheckboxComponent,
+  ZapInputComponent,
+  ZapRadio,
+  ZapTextarea,
+  ZapToggle,
+} from 'zap/forms';
 
 @Component({
   selector: 'app-root',
@@ -39,21 +54,41 @@ import { ZapCheckboxComponent, ZapInputComponent, ZapRadio, ZapTextarea, ZapTogg
     ZapTooltip,
     ZapTooltipHandler,
     ZapTooltipContent,
+    ZapAccordionGroup,
+    ZapAccordionHeader,
+    ZapAccordionContent,
+    ZapAccordionItem,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
 export class AppComponent implements OnInit {
   theme: 'light' | 'dark' = 'dark';
-  usernameControl = new FormControl({ value: '', disabled: true }, [Validators.required]);
+  usernameControl = new FormControl({ value: '', disabled: true }, [
+    Validators.required,
+  ]);
   toggleControl: FormControl = new FormControl({ value: true, disabled: true });
   private zapThemeService: ZapThemer = inject(ZapThemer);
+  accordions = [
+    {
+      title: 'Accordion 1',
+      content: 'Content for Accordion 1',
+    },
+    {
+      title: 'Accordion 2',
+      content: 'Content for Accordion 2',
+    },
+    {
+      title: 'Accordion 3',
+      content: 'Content for Accordion 3',
+    },
+  ]
 
   ngOnInit(): void {
-    if(localStorage.getItem('zapdemo-theme') === null) {
+    if (localStorage.getItem('zapdemo-theme') === null) {
       localStorage.setItem('zapdemo-theme', 'dark');
     }
-    this.theme = localStorage.getItem('zapdemo-theme') as 'light' | 'dark' ;
+    this.theme = localStorage.getItem('zapdemo-theme') as 'light' | 'dark';
     this.updateTheme();
   }
 

@@ -17,6 +17,7 @@ export interface ZapConfig {
     textarea?: TextareaConfig;
     toggle?: ToggleConfig;
     accordion?: AccordionConfig;
+    select?: SelectConfig;
   };
 }
 
@@ -405,6 +406,18 @@ export interface AccordionConfig {
     contentPaddingBottom?: string;
     headerPadding?: Padding;
     contentPadding?: Padding;
+  };
+}
+
+export interface SelectConfig { 
+  shape?: ShapeType;
+  size?: 'base' | 'compact';
+  styles?: {
+    colors?: {
+      [theme: string]: {
+        bgColor?: HexCode;
+      };
+    };
   };
 }
 

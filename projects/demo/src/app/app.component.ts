@@ -28,6 +28,7 @@ import {
   ZapCheckboxComponent,
   ZapInputComponent,
   ZapRadio,
+  ZapSelect,
   ZapTextarea,
   ZapToggle,
 } from 'zap/forms';
@@ -58,13 +59,14 @@ import {
     ZapAccordionHeader,
     ZapAccordionContent,
     ZapAccordionItem,
+    ZapSelect,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
 export class AppComponent implements OnInit {
   theme: 'light' | 'dark' = 'dark';
-  usernameControl = new FormControl({ value: '', disabled: true }, [
+  usernameControl = new FormControl({ value: '', disabled: false }, [
     Validators.required,
   ]);
   toggleControl: FormControl = new FormControl({ value: true, disabled: true });

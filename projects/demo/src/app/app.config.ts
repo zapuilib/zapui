@@ -353,6 +353,10 @@ const ngxConfig: ZapConfig = {
         // headerPaddingTop: '2.75rem',
       },
     },
+    select: {
+      // shape: 'flat', // this will replace global and root
+      // size: 'compact', // this will replace root
+    }
   },
 };
 

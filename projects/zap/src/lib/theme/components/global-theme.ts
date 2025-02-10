@@ -5,7 +5,18 @@ export function generateComponentGlobalVariables(
   config: GlobalConfig,
   root: HTMLElement
 ): string {
-  const components = ['alert', 'button', 'chip', 'dialog', 'input', 'modal', 'checkbox', 'radio', 'textarea'];
+  const components = [
+    'alert',
+    'button',
+    'chip',
+    'dialog',
+    'input',
+    'modal',
+    'checkbox',
+    'radio',
+    'textarea',
+    'select',
+  ];
   let cssVariables = '';
   let existingShape = '';
 
@@ -23,6 +34,19 @@ export function generateComponentGlobalVariables(
         const { shapeCssValue } = getShapeCssValues(shapeValue, 'button');
         cssVariables += `--zap-dialog-primary-btn-border-radius: ${shapeCssValue};\n`;
         cssVariables += `--zap-dialog-secondary-btn-border-radius: ${shapeCssValue};\n`;
+      }
+      if (component === 'select') {
+        if (shapeValue === 'pill') {
+          cssVariables += `--zap-select-options-border-radius: 1.5rem;\n`;
+        } else {
+          cssVariables += `--zap-select-options-border-radius: ${shapeCssValue};\n`;
+        }
+        if(shapeValue === 'pill' || shapeValue === 'curve') { 
+          cssVariables += `--zap-select-checkbox-border-radius: 0.25rem;\n`;
+        } else {
+          cssVariables += `--zap-select-checkbox-border-radius: ${shapeCssValue};\n`;
+        }
+        cssVariables += `--zap-select-chip-border-radius: ${shapeCssValue};\n`;
       }
     }
   }

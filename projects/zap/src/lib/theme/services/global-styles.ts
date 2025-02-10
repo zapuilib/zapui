@@ -12,6 +12,7 @@ import { getDefaultRadioSizeCssValues } from '../components/radio-theme';
 import { getDefaultTextareaSizeCssValues } from '../components/textarea-theme';
 import { getDefaultToggleSizeCssValues } from '../components/toggle-theme';
 import { getDefaultAccordionSizeCssValues } from '../components/accordion-theme';
+import { getDefaultSelectSizeCssValues } from '../components/select-theme';
 
 /**
  * This function generates the global styles for the all the components
@@ -420,6 +421,148 @@ export function generateGlobalStylesVariables(
         label: 'item-border-color',
         value: hexToRgba(theme.colors.secondary, 0.1),
       }
+    ],
+    select: [
+      {
+        label: 'bg-color',
+        value: 'transparent',
+      },
+      {
+        label: 'label-color',
+        value: theme.colors.secondary,
+      },
+      {
+        label: 'border-color',
+        value: hexToRgba(theme.colors.secondary, 0.1),
+      },
+      {
+        label: 'border-hover-color',
+        value: hexToRgba(theme.colors.secondary, 0.1),
+      },
+      {
+        label: 'placeholder-color',
+        value: theme.colors.secondary,
+      },
+      {
+        label: 'border-focus-color',
+        value: theme.colors.tertiary,
+      },
+      {
+        label: 'ring-focus-color',
+        value: theme.colors.tertiary,
+      },
+      {
+        label: 'icon-color',
+        value: hexToRgba(theme.colors.secondary, 0.5),
+      },
+      {
+        label: 'options-bg-color',
+        value: theme.colors.primary,
+      },
+      {
+        label: 'options-border-color',
+        value: hexToRgba(theme.colors.secondary, 0.1),
+      },
+      {
+        label: 'search-border-color',
+        value: hexToRgba(theme.colors.secondary, 0.1),
+      },
+      {
+        label: 'search-border-hover-color',
+        value: hexToRgba(theme.colors.secondary, 0.1),
+      },
+      {
+        label: 'search-icon-color',
+        value: hexToRgba(theme.colors.secondary, 0.5),
+      },
+      {
+        label: 'search-placeholder-color',
+        value: hexToRgba(theme.colors.secondary, 0.5),
+      },
+      {
+        label: 'no-options-text-color',
+        value: hexToRgba(theme.colors.secondary, 0.5),
+      },
+      {
+        label: 'no-options-text-hover-color',
+        value: hexToRgba(theme.colors.secondary, 0.5),
+      },
+      {
+        label: 'no-options-border-color',
+        value: 'transparent',
+      },
+      {
+        label: 'no-options-border-hover-color',
+        value: 'transparent',
+      },
+      {
+        label: 'chip-bg-color',
+        value: theme.colors.tertiary,
+      },
+      {
+        label: 'chip-text-color',
+        value: theme.colors.primary,
+      },
+      {
+        label: 'chip-border-color',
+        value: theme.colors.tertiary,
+      },
+      {
+        label: 'chip-dismiss-color',
+        value: theme.colors.primary,
+      },
+      {
+        label: 'chip-dismiss-hover-color',
+        value: hexToRgba(theme.colors.primary, 0.7),
+      },
+      {
+        label: 'checkbox-checked-bg-color',
+        value: theme.colors.tertiary,
+      },
+      {
+        label: 'checkbox-checked-border-color',
+        value: theme.colors.tertiary,
+      },
+      {
+        label: 'checkbox-checked-text-color',
+        value: theme.colors.primary,
+      },
+      {
+        label: 'option-bg-color',
+        value: 'transparent',
+      },
+      {
+        label: 'option-text-color',
+        value: theme.colors.secondary,
+      },
+      {
+        label: 'option-border-color',
+        value: 'transparent',
+      },
+      {
+        label: 'option-bg-hover-color',
+        value: hexToRgba(theme.colors.secondary, 0.03),
+      },
+      {
+        label: 'option-text-hover-color',
+        value: theme.colors.secondary,
+      },
+      {
+        label: 'option-border-hover-color',
+        value: 'transparent',
+      },
+      {
+        label: 'selected-border-color',
+        value: 'transparent',
+      },
+      {
+        label: 'selected-border-hover-color',
+        value: 'transparent',
+      },
+      {
+        label: 'selected-bg-hover-color',
+        value: hexToRgba(theme.colors.secondary, 0.03),
+      }
     ]
   };
 
@@ -445,6 +588,7 @@ export function generateGlobalStylesVariables(
   cssVariables += getDefaultTextareaSizeCssValues();
   cssVariables += getDefaultToggleSizeCssValues();
   cssVariables += getDefaultAccordionSizeCssValues();
+  cssVariables += getDefaultSelectSizeCssValues();
 
   return cssVariables;
 }

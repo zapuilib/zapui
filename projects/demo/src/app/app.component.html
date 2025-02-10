@@ -131,8 +131,7 @@
       </zap-tooltip-content>
     </zap-tooltip>
   </div>
-  <div>
-    <zap-accordion-group class="w-full">
+    <zap-accordion-group >
       @for(accordion of accordions; track $index) {
         <zap-accordion-item>
           <zap-accordion-header>{{ accordion.title }}</zap-accordion-header>
@@ -142,5 +141,5 @@
         </zap-accordion-item>
       }
     </zap-accordion-group>
-  </div>
+    <zap-select id="country" label="Country" [options]="[{ label: 'US', value: 'us' }, { label: 'Canada', value: 'ca' }, { label: 'Mexico', value: 'mx' }, { label: 'Other', value: 'other' }]"></zap-select>
 </div>

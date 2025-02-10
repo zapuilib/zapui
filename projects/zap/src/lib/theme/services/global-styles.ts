@@ -256,6 +256,10 @@ export function generateGlobalStylesVariables(
         value: hexToRgba(theme.colors.secondary, 0.1),
       },
       {
+        label: 'label-color',
+        value: theme.colors.secondary,
+      },
+      {
         label: 'border-hover-color',
         value: hexToRgba(theme.colors.secondary, 0.1),
       },
@@ -287,6 +291,10 @@ export function generateGlobalStylesVariables(
       },
       {
         label: 'border-color',
+        value: theme.colors.secondary,
+      },
+      {
+        label: 'label-color',
         value: theme.colors.secondary,
       },
       {
@@ -358,6 +366,10 @@ export function generateGlobalStylesVariables(
         value: 'transparent',
       },
       {
+        label: 'label-color',
+        value: theme.colors.secondary,
+      },
+      {
         label: 'border-color',
         value: hexToRgba(theme.colors.secondary, 0.1),
       },
@@ -414,13 +426,29 @@ export function generateGlobalStylesVariables(
       {
         label: 'text-color',
         value: hexToRgba(theme.colors.secondary, 0.5),
-      }
+      },
     ],
     accordion: [
       {
         label: 'item-border-color',
         value: hexToRgba(theme.colors.secondary, 0.1),
-      }
+      },
+      {
+        label: 'header-text-color',
+        value: theme.colors.secondary,
+      },
+      {
+        label: 'header-text-hover-color',
+        value: theme.colors.secondary,
+      },
+      {
+        label: 'header-icon-color',
+        value: hexToRgba(theme.colors.secondary, 0.5),
+      },
+      {
+        label: 'content-text-color',
+        value: theme.colors.secondary,
+      },
     ],
     select: [
       {
@@ -429,6 +457,14 @@ export function generateGlobalStylesVariables(
       },
       {
         label: 'label-color',
+        value: theme.colors.secondary,
+      },
+      {
+        label: 'text-color',
+        value: theme.colors.secondary,
+      },
+      {
+        label: 'text-hover-color',
         value: theme.colors.secondary,
       },
       {
@@ -466,6 +502,14 @@ export function generateGlobalStylesVariables(
       {
         label: 'search-border-color',
         value: hexToRgba(theme.colors.secondary, 0.1),
+      },
+      {
+        label: 'search-text-color',
+        value: theme.colors.secondary,
+      },
+      {
+        label: 'search-text-hover-color',
+        value: theme.colors.secondary,
       },
       {
         label: 'search-border-hover-color',
@@ -514,6 +558,14 @@ export function generateGlobalStylesVariables(
       {
         label: 'chip-dismiss-hover-color',
         value: hexToRgba(theme.colors.primary, 0.7),
+      },
+      {
+        label: 'checkbox-bg-color',
+        value: 'transparent',
+      },
+      {
+        label: 'checkbox-border-color',
+        value: theme.colors.secondary,
       },
       {
         label: 'checkbox-checked-bg-color',
@@ -570,8 +622,16 @@ export function generateGlobalStylesVariables(
       {
         label: 'search-ring-focus-color',
         value: theme.colors.tertiary,
-      }
-    ]
+      },
+      {
+        label: 'selected-text-color',
+        value: theme.colors.secondary,
+      },
+      {
+        label: 'selected-text-hover-color',
+        value: theme.colors.secondary,
+      },
+    ],
   };
 
   for (const [component, stylesArray] of Object.entries(styles)) {

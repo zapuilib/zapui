@@ -119,27 +119,45 @@
     text="Enable this setting to save your preferences"
     [formControl]="toggleControl"
   ></zap-toggle>
+  <zap-accordion-group>
+    @for(accordion of accordions; track $index) {
+    <zap-accordion-item>
+      <zap-accordion-header>{{ accordion.title }}</zap-accordion-header>
+      <zap-accordion-content>
+        <p>{{ accordion.content }}</p>
+      </zap-accordion-content>
+    </zap-accordion-item>
+    }
+  </zap-accordion-group>
+  <zap-select
+    id="country"
+    label="Single select"
+    [options]="[
+      { label: 'US', value: 'us' },
+      { label: 'Canada', value: 'ca' },
+      { label: 'Mexico', value: 'mx' },
+      { label: 'Other', value: 'other' }
+    ]"
+  ></zap-select>
+  <zap-select
+    id="country"
+    label="Multiple select"
+    [options]="[
+      { label: 'US', value: 'us' },
+      { label: 'Canada', value: 'ca' },
+      { label: 'Mexico', value: 'mx' },
+      { label: 'Other', value: 'other' }
+    ]"
+    [multiselect]="true"
+  ></zap-select>
   <div>
     <zap-tooltip>
       <zap-tooltip-handler>
         <button>Hover me</button>
       </zap-tooltip-handler>
       <zap-tooltip-content>
-        <p>
-          This is a tooltip!
-        </p>
+        <p>This is a tooltip!</p>
       </zap-tooltip-content>
     </zap-tooltip>
   </div>
-    <zap-accordion-group >
-      @for(accordion of accordions; track $index) {
-        <zap-accordion-item>
-          <zap-accordion-header>{{ accordion.title }}</zap-accordion-header>
-          <zap-accordion-content>
-            <p>{{ accordion.content }}</p>
-          </zap-accordion-content>
-        </zap-accordion-item>
-      }
-    </zap-accordion-group>
-    <zap-select id="country" label="Country" [options]="[{ label: 'US', value: 'us' }, { label: 'Canada', value: 'ca' }, { label: 'Mexico', value: 'mx' }, { label: 'Other', value: 'other' }]" [multiselect]="true"></zap-select>
 </div>

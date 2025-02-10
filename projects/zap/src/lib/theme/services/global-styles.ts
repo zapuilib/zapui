@@ -524,7 +524,7 @@ export function generateGlobalStylesVariables(
         value: theme.colors.tertiary,
       },
       {
-        label: 'checkbox-checked-text-color',
+        label: 'checkbox-checked-color',
         value: theme.colors.primary,
       },
       {
@@ -562,6 +562,14 @@ export function generateGlobalStylesVariables(
       {
         label: 'selected-bg-hover-color',
         value: hexToRgba(theme.colors.secondary, 0.03),
+      },
+      {
+        label: 'ring-focus-color',
+        value: theme.colors.tertiary,
+      },
+      {
+        label: 'search-ring-focus-color',
+        value: theme.colors.tertiary,
       }
     ]
   };

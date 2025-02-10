@@ -70,6 +70,7 @@ export class ZapSelect<T> extends ControlValueAccessorDirective<T> {
   // TODO: Close the select dropdown when the user clicks outside of the select component.
   // TODO: Add custom positioning logic for the options dropdown based on the select component's position in the viewport.
   // TODO: The dropdown should open either upwards or downwards depending on the available space in the viewport.
+  // TODO: On searchable select, when you click it should focus on the search input, its not always working, to recreate try to click multiple times on the select input.
 
   @Input()
   set options(newOptions: { label: string; value: any; [key: string]: any }[]) {

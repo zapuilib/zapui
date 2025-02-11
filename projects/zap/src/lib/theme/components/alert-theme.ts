@@ -20,5 +20,5 @@ export function generateComponentAlertVariables(
 
 
 export function getDefaultAlertSizeCssValues(): string {
-  return `--zap-alert-padding-left: 1rem;\n--zap-alert-padding-right: 1rem;\n--zap-alert-padding-top: 1rem;\n--zap-alert-padding-bottom: 1rem;\n--zap-alert-font-size: 1rem;\n`;
+  return `--zap-alert-padding-left: 1rem;\n--zap-alert-padding-right: 1rem;\n--zap-alert-padding-top: 1rem;\n--zap-alert-padding-bottom: 1rem;\n--zap-alert-font-size: 1rem;\n--zap-alert-icon-height: 1rem;\n--zap-alert-icon-width: 1rem;\n`;
 }

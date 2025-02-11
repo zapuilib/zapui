@@ -8,7 +8,7 @@ import { CommonModule } from '@angular/common';
   templateUrl: './alert.component.html',
   styleUrls: ['./alert.component.scss'],
 })
-export class ZapAlertComponent implements OnInit {
+export class ZapAlertComponent {
   @Output() dismiss: EventEmitter<void> = new EventEmitter<void>();
   @Input() type: 'success' | 'warning' | 'error' | 'info' | 'default' =
     'default';
@@ -17,31 +17,6 @@ export class ZapAlertComponent implements OnInit {
   @Input() icon: string = '';
   @Input() zapClass: string = '';
 
-  constructor() {}
-
-  ngOnInit(): void {
-    this.assignIcon();
-  }
-  
-  private assignIcon(): void {
-    if (this.icon) return;
-    switch (this.type) {
-      case 'success':
-        this.icon = 'fa-circle-check';
-        break;
-      case 'warning':
-        this.icon = 'fa-triangle-exclamation';
-        break;
-      case 'error':
-        this.icon = 'fa-triangle-exclamation';
-        break;
-      case 'info':
-        this.icon = 'fa-circle-info';
-        break;
-      default:
-        break;
-    }
-  }
 
   get classes() {
     return [

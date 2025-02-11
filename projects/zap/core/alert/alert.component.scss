@@ -9,8 +9,16 @@
     @apply text-[var(--zap-alert-dismiss-color)] hover:text-[var(--zap-alert-dismiss-hover-color)] absolute top-1/2 -translate-y-1/2 right-[22px] cursor-pointer;
   }
 
+  .type__wrapper {
+    @apply h-max;
+
+    svg {
+      @apply w-[var(--zap-alert-icon-width)] h-[var(--zap-alert-icon-height)];
+    }
+  }
+
   .content__wrapper {
-    @apply flex gap-x-3 w-full;
+    @apply flex gap-x-3 items-center w-full;
   }
 
   &.success {

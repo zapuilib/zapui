@@ -1,8 +1,8 @@
 .zap__tooltip__content {
-    @apply absolute z-10 w-min left-1/2 -translate-x-1/2;
+    @apply absolute -top-[calc(100%+0.125rem)] z-10 w-min left-1/2 -translate-x-1/2;
     @apply px-1 py-0.5;
     @apply text-sm;
     @apply transition-opacity duration-200 whitespace-nowrap;
-    @apply invisible opacity-0 shadow-md;
+    @apply invisible opacity-0 shadow-md border;
     @apply bg-[var(--zap-tooltip-content-bg-color)] text-[var(--zap-tooltip-content-text-color)] border-[var(--zap-tooltip-content-border-color)] border rounded;
 }

@@ -635,7 +635,7 @@ export function generateGlobalStylesVariables(
     tooltip: [
       {
         label: 'content-bg-color',
-        value: hexToRgba(theme.colors.secondary, 0.1),
+        value: theme.colors.primary,
       },
       {
         label: 'content-text-color',

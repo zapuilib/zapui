@@ -55,6 +55,8 @@ export class ZapInputComponent<T> extends ControlValueAccessorDirective<T> {
     this.iconClick.emit();
   }
 
+  //TODO: Support custom icon (not a font) via iconTemplate
+
   get classes(): string[] {
     return [
       this.shape,

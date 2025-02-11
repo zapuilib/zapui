@@ -9,12 +9,15 @@ import {
   TemplateRef,
   ViewChild,
 } from '@angular/core';
-import { FormsModule, NG_VALUE_ACCESSOR, ReactiveFormsModule } from '@angular/forms';
+import {
+  FormsModule,
+  NG_VALUE_ACCESSOR,
+  ReactiveFormsModule,
+} from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
 import { ControlValueAccessorDirective } from '../directives/control-value-accessor.directive';
 import { ValidationErrorComponent } from '../validation-error/validation-error.component';
-
 
 @Component({
   selector: 'zap-select',
@@ -71,6 +74,7 @@ export class ZapSelect<T> extends ControlValueAccessorDirective<T> {
   // TODO: Add custom positioning logic for the options dropdown based on the select component's position in the viewport.
   // TODO: The dropdown should open either upwards or downwards depending on the available space in the viewport.
   // TODO: On searchable select, when you click it should focus on the search input, its not always working, to recreate try to click multiple times on the select input.
+  //TODO: Support custom icon (not a font) via iconTemplate
 
   @Input()
   set options(newOptions: { label: string; value: any; [key: string]: any }[]) {

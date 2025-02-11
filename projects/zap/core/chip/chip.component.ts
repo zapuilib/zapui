@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'zap-chip',
@@ -22,6 +22,8 @@ export class ZapChipComponent {
   @Input() disabled = false;
   @Input() dismissible = false;
 
+  //TODO: Support custom icon (not a font) via iconTemplate
+
   onRemove(event: Event) {
     event.stopPropagation();
     if (!this.disabled && this.dismissible) {
@@ -37,7 +39,11 @@ export class ZapChipComponent {
       this.variant,
       this.zapClass,
       this.disabled ? 'disabled' : '',
-      this.dismissible && this.icon && this.iconPosition === 'left' ? 'dismissible-left' : this.dismissible && this.icon && this.iconPosition === 'right' ? 'dismissible-right' : '',
+      this.dismissible && this.icon && this.iconPosition === 'left'
+        ? 'dismissible-left'
+        : this.dismissible && this.icon && this.iconPosition === 'right'
+        ? 'dismissible-right'
+        : '',
     ].filter((cls) => cls && cls !== 'default');
   }
 }

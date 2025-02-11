@@ -17,6 +17,7 @@ export class ZapAlertComponent {
   @Input() icon: string = '';
   @Input() zapClass: string = '';
 
+  //TODO: Support custom icon (not a font) via iconTemplate
 
   get classes() {
     return [

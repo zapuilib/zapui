@@ -22,6 +22,7 @@
       @apply border-[var(--zap-checkbox-border-checked-color)] bg-[var(--zap-checkbox-bg-checked-color)];
 
       &::after {
+        //TODO: Change the font icon to svg based icon
         @apply content-['\f00c'] font-icon absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2  text-[var(--zap-checkbox-text-checked-color)];
       }
     }

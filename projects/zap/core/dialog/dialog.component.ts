@@ -31,6 +31,8 @@ export class ZapDialogComponent {
     if (event.key === 'Escape' || event.code === 'Escape') this.cancel.emit();
   }
 
+  //TODO: We probably want to use directives for buttons along with template
+
   get classes(): string[] {
     return [
       this.shape,

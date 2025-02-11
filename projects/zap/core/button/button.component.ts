@@ -21,6 +21,8 @@ export class ZapButtonComponent {
   @Input() variant: 'outlined' | 'default' | 'link' = 'default';
   @Input() disabled: boolean = false;
 
+    //TODO: Support custom icon (not a font) via iconTemplate
+
   get classes(): string[] {
     return [
       this.type,

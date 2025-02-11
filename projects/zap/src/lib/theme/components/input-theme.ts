@@ -7,17 +7,17 @@ export function generateComponentInputVariables(
 ) {
   let cssVariables = '';
   const existingSize = getExistingInputSize(root);
-  const btnSizeValue = existingSize || value.size;
+  const inputSizeValue = existingSize || value.size;
   const existingShape = getExistingShapeFor('input', root);
-  const btnShapeValue = existingShape || value.shape || '';
+  const inputShapeValue = existingShape || value.shape || '';
 
-  if (btnShapeValue) {
-    const { shapeCssValue } = getShapeCssValues(btnShapeValue, 'input');
+  if (inputShapeValue) {
+    const { shapeCssValue } = getShapeCssValues(inputShapeValue, 'input');
     cssVariables += `--zap-input-border-radius: ${shapeCssValue};\n`;
   }
 
-    if (btnSizeValue) {
-      cssVariables += getInputSizeCssValues(btnSizeValue, root);
+    if (inputSizeValue) {
+      cssVariables += getInputSizeCssValues(inputSizeValue, root);
     } else {
       cssVariables += getDefaultInputSizeCssValues();
     }

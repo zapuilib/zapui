@@ -7,10 +7,10 @@ export function generateComponentModalVariables(
 ) {
   let cssVariables = '';
   const existingShape = getExistingShapeFor('modal', root);
-  const btnShapeValue = existingShape || value.shape || '';
+  const modalShapeValue = existingShape || value.shape || '';
 
-  if (btnShapeValue) {
-    const { shapeCssValue } = getShapeCssValues(btnShapeValue, 'modal');
+  if (modalShapeValue) {
+    const { shapeCssValue } = getShapeCssValues(modalShapeValue, 'modal');
     cssVariables += `--zap-modal-border-radius: ${shapeCssValue};\n`;
   }
 

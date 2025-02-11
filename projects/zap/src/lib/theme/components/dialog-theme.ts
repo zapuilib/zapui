@@ -7,10 +7,10 @@ export function generateComponentDialogVariables(
 ) {
   let cssVariables = '';
   const existingShape = getExistingShapeFor('dialog', root);
-  const btnShapeValue = existingShape || value.shape || '';
+  const dialogShapeValue = existingShape || value.shape || '';
 
-  if (btnShapeValue) {
-    const { shapeCssValue } = getShapeCssValues(btnShapeValue, 'dialog');
+  if (dialogShapeValue) {
+    const { shapeCssValue } = getShapeCssValues(dialogShapeValue, 'dialog');
     cssVariables += `--zap-dialog-border-radius: ${shapeCssValue};\n`;
   }
 

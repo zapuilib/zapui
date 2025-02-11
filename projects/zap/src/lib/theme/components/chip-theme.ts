@@ -14,17 +14,17 @@ export function generateComponentChipVariables(
   let cssVariables = '';
   const existingSize = getExistingChipSize(root);
   const existingShape = getExistingShapeFor('chip', root);
-  const btnSizeValue = existingSize || value.size;
-  const btnShapeValue = existingShape || value.shape || '';
+  const chipSizeValue = existingSize || value.size;
+  const chipShapeValue = existingShape || value.shape || '';
 
   // this handles the shape, size of the chip component
-  if (btnShapeValue) {
-    const { shapeCssValue } = getShapeCssValues(btnShapeValue, 'chip');
+  if (chipShapeValue) {
+    const { shapeCssValue } = getShapeCssValues(chipShapeValue, 'chip');
     cssVariables += `--zap-chip-border-radius: ${shapeCssValue};\n`;
   }
 
-  if (btnSizeValue) {
-    cssVariables += getChipSizeCssValues(btnSizeValue, root);
+  if (chipSizeValue) {
+    cssVariables += getChipSizeCssValues(chipSizeValue, root);
   } else {
     cssVariables += getDefaultChipSizeCssValues();
   }
@@ -39,21 +39,21 @@ export function getExistingChipSize(
 }
 
 export function getChipSizeCssValues(
-  btnSizeValue: string,
+  chipSizeValue: string,
   root: HTMLElement,
 ): string {
   let cssVariables = '';
 
-  if (btnSizeValue === 'compact') {
+  if (chipSizeValue === 'compact') {
     cssVariables += `--zap-chip-padding-left: 0.75rem;\n`;
     cssVariables += `--zap-chip-padding-right: 0.75rem;\n`;
     cssVariables += `--zap-chip-padding-top: 0.25rem;\n`;
     cssVariables += `--zap-chip-padding-bottom: 0.25rem;\n`;
     cssVariables += `--zap-chip-font-size: 1rem;\n`;
     const existingFontSize = getExistingFontSize(root);
-    const btnTextSizeValue = existingFontSize || '0.75rem';
-    cssVariables += `--zap-chip-font-size: ${btnTextSizeValue};\n`;
-  } else if (btnSizeValue === 'wide') {
+    const chipTextSizeValue = existingFontSize || '0.75rem';
+    cssVariables += `--zap-chip-font-size: ${chipTextSizeValue};\n`;
+  } else if (chipSizeValue === 'wide') {
     cssVariables += `--zap-chip-padding-left: 1rem;\n`;
     cssVariables += `--zap-chip-padding-right: 1rem;\n`;
     cssVariables += `--zap-chip-width: 100%;\n`;

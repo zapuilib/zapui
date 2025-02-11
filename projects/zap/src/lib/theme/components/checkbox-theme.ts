@@ -7,10 +7,10 @@ export function generateComponentCheckboxVariables(
 ) {
   let cssVariables = '';
   const existingShape = getExistingShapeFor('checkbox', root);
-  const btnShapeValue = existingShape || value.shape || '';
+  const checkboxShapeValue = existingShape || value.shape || '';
 
-  if (btnShapeValue) {
-    const { shapeCssValue } = getShapeCssValues(btnShapeValue, 'checkbox');
+  if (checkboxShapeValue) {
+    const { shapeCssValue } = getShapeCssValues(checkboxShapeValue, 'checkbox');
     cssVariables += `--zap-checkbox-border-radius: ${shapeCssValue};\n`;
   }
 

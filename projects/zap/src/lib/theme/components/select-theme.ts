@@ -7,7 +7,7 @@ export function generateComponentSelectVariables(
 ) {
   let cssVariables = '';
   const existingSize = getExistingSelectSize(root);
-  const btnSizeValue = existingSize || value.size;
+  const selectSizeValue = existingSize || value.size;
   const existingShape = getExistingShapeFor('select', root);
   const selectShapeValue = existingShape || value.shape || '';
 
@@ -27,8 +27,8 @@ export function generateComponentSelectVariables(
     cssVariables += `--zap-select-chip-border-radius: ${shapeCssValue};\n`;
   }
 
-  if (btnSizeValue) {
-    cssVariables += getSelectSizeCssValues(btnSizeValue, root);
+  if (selectSizeValue) {
+    cssVariables += getSelectSizeCssValues(selectSizeValue, root);
   } else {
     cssVariables += getDefaultSelectSizeCssValues();
   }

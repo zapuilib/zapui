@@ -7,11 +7,11 @@ export function generateComponentAlertVariables(
 ) {
   let cssVariables = '';
   const existingShape = getExistingShapeFor('alert', root);
-  const btnShapeValue = existingShape || value.shape || '';
+  const alertShapeValue = existingShape || value.shape || '';
 
   // this handles the shape, size of the alert component
-  if (btnShapeValue) {
-    const { shapeCssValue } = getShapeCssValues(btnShapeValue, 'alert');
+  if (alertShapeValue) {
+    const { shapeCssValue } = getShapeCssValues(alertShapeValue, 'alert');
     cssVariables += `--zap-alert-border-radius: ${shapeCssValue};\n`;
   }
 

@@ -7,10 +7,10 @@ export function generateComponentTextareaVariables(
 ) {
   let cssVariables = '';
   const existingShape = getExistingShapeFor('textarea', root);
-  const btnShapeValue = existingShape || value.shape || '';
+  const textareaShapeValue = existingShape || value.shape || '';
 
-  if (btnShapeValue) {
-    const { shapeCssValue } = getShapeCssValues(btnShapeValue, 'textarea');
+  if (textareaShapeValue) {
+    const { shapeCssValue } = getShapeCssValues(textareaShapeValue, 'textarea');
     cssVariables += `--zap-textarea-border-radius: ${shapeCssValue};\n`;
   }
 

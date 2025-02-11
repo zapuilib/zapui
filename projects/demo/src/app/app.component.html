@@ -53,8 +53,20 @@
     </div>
   </div>
   <div>
-    <zap-button text="Merge" icon="fa-code-merge"></zap-button>
+    <zap-button text="Merge">
+      <svg
+        zapButtonIcon
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 512 512"
+        class="w-4 h-4 mr-2"
+      >
+        <path
+          d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm0-384c13.3 0 24 10.7 24 24l0 112c0 13.3-10.7 24-24 24s-24-10.7-24-24l0-112c0-13.3 10.7-24 24-24zM224 352a32 32 0 1 1 64 0 32 32 0 1 1 -64 0z"
+        />
+      </svg>
+    </zap-button>
   </div>
+
   <div>
     <zap-button
       text="Switch theme"
@@ -64,9 +76,9 @@
     ></zap-button>
   </div>
   <zap-badge [count]="100"></zap-badge>
-  <zap-chip text="Awaiting confirmation" icon="fa-bell" type="info"></zap-chip>
+  <zap-chip text="Awaiting confirmation" icon="fa-bell"></zap-chip>
   <div class="relative w-full h-full col-span-1 dark:bg-[#09090B]/90 z-[10]">
-    <zap-alert type="warning"> You have a new alert </zap-alert>
+    <zap-alert> You have a new alert </zap-alert>
   </div>
   <div class="relative w-full h-full col-span-2 dark:bg-[#09090B]/90 z-[10]">
     <zap-dialog zapClass="absolute"></zap-dialog>

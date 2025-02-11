@@ -91,4 +91,20 @@ button {
       @apply mr-0 ml-2 order-2;
     }
   }
+
+  &.info {
+    @apply bg-info text-infoText border-info;
+  }
+
+  &.success {
+    @apply bg-success text-successText border-success;
+  }
+
+  &.warning {
+    @apply bg-warning text-warningText border-warning;
+  }
+
+  &.error {
+    @apply bg-error text-errorText border-error;
+  }
 }

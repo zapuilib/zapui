@@ -1,7 +1,7 @@
 import { Directive, ElementRef } from '@angular/core';
 
 @Directive({
-  selector: '[zapBtnIcon]',
+  selector: '[zapButtonIcon]',
   standalone: true,
 })
 export class ZapButtonIconDirective {

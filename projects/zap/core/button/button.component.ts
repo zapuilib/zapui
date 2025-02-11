@@ -1,16 +1,16 @@
 import { CommonModule } from '@angular/common';
-import { AfterContentInit, Component, ContentChild, Input } from '@angular/core';
+import { AfterViewInit, Component, ContentChild, Input } from '@angular/core';
 
 import { ZapButtonIconDirective } from './button-icon.directive';
 
 @Component({
   selector: 'zap-button',
   standalone: true,
-  imports: [CommonModule, ZapButtonIconDirective],
+  imports: [CommonModule],
   templateUrl: './button.component.html',
   styleUrls: ['./button.component.scss'],
 })
-export class ZapButtonComponent implements AfterContentInit {
+export class ZapButtonComponent implements AfterViewInit {
   @Input() text = 'Submit';
   @Input() zapClass: string = '';
   @Input() shape!: 'pill' | 'curve' | 'flat';
@@ -24,15 +24,17 @@ export class ZapButtonComponent implements AfterContentInit {
   @Input() variant: 'outlined' | 'default' | 'link' = 'default';
   @Input() disabled: boolean = false;
   @Input() icononly: boolean = false;
+  @ContentChild(ZapButtonIconDirective, { static: false })
+  iconDirective!: ZapButtonIconDirective;
 
-  @ContentChild(ZapButtonIconDirective, { static: false }) iconDirective?: ZapButtonIconDirective;
+  constructor() {}
 
-  ngAfterContentInit() {
-    console.log(this.iconDirective);
+  ngAfterViewInit() {
     if (this.iconDirective) {
-      
-      const iconElement = this.iconDirective.el.nativeElement;
-      iconElement.classList.add('__zap__button__icon');
+      this.iconDirective.el.nativeElement.style.order = this.iconPosition === 'left' ? '1' : '2';
+      this.iconDirective.el.nativeElement.style.height = this.size === 'tight' ? '14px' : '16px';
+      this.iconDirective.el.nativeElement.style.marginRight = this.iconPosition === 'left' ? '8px' : '0';
+      this.iconDirective.el.nativeElement.style.marginLeft = this.iconPosition === 'right' ? '8px' : '0';
     }
   }
 

@@ -69,7 +69,7 @@ export class AppComponent implements OnInit {
   usernameControl = new FormControl({ value: '', disabled: false }, [
     Validators.required,
   ]);
-  toggleControl: FormControl = new FormControl({ value: true, disabled: true });
+  toggleControl: FormControl = new FormControl({ value: false, disabled: false });
   private zapThemeService: ZapThemer = inject(ZapThemer);
   accordions = [
     {

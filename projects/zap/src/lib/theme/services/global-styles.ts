@@ -397,11 +397,11 @@ export function generateGlobalStylesVariables(
     toggle: [
       {
         label: 'bg-color',
-        value: theme.colors.quaternary,
+        value: hexToRgba(theme.colors.secondary, 0.1),
       },
       {
         label: 'border-color',
-        value: theme.colors.quaternary,
+        value: hexToRgba(theme.colors.secondary, 0.1),
       },
       {
         label: 'roller-color',
@@ -632,6 +632,24 @@ export function generateGlobalStylesVariables(
         value: theme.colors.secondary,
       },
     ],
+    tooltip: [
+      {
+        label: 'content-bg-color',
+        value: hexToRgba(theme.colors.secondary, 0.1),
+      },
+      {
+        label: 'content-text-color',
+        value: theme.colors.secondary,
+      },
+      {
+        label: 'text-color',
+        value: theme.colors.secondary,
+      },
+      {
+        label: 'content-border-color',
+        value: hexToRgba(theme.colors.secondary, 0.1),
+      }
+    ]
   };
 
   for (const [component, stylesArray] of Object.entries(styles)) {

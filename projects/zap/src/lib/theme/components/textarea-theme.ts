@@ -18,5 +18,5 @@ export function generateComponentTextareaVariables(
 }
 
 export function getDefaultTextareaSizeCssValues(): string {
-  return `--zap-textarea-padding-left: 0.75rem;\n--zap-textarea-padding-right: 0.75rem;\n--zap-textarea-padding-top: 0.5rem;\n--zap-textarea-padding-bottom: 0.5rem;\n--zap-textarea-width: 100%;\n--zap-textarea-icon-font-size: 0.875rem;\n--zap-textarea-icon-line-height: auto;\n`;
+  return `--zap-textarea-padding-left: 0.75rem;\n--zap-textarea-padding-right: 0.75rem;\n--zap-textarea-padding-top: 0.5rem;\n--zap-textarea-padding-bottom: 0.5rem;\n--zap-textarea-width: 100%;\n--zap-textarea-icon-font-size: 0.875rem;\n--zap-textarea-icon-line-height: auto;\n--zap-textarea-help-text-font-size: 0.875rem;\n`;
 }

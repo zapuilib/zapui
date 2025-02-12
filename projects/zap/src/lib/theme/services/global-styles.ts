@@ -393,6 +393,10 @@ export function generateGlobalStylesVariables(
         label: 'ring-focus-color',
         value: theme.colors.tertiary,
       },
+      {
+        label: 'help-text-color',
+        value: hexToRgba(theme.colors.secondary, 0.5),
+      }
     ],
     toggle: [
       {

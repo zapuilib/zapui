@@ -28,6 +28,7 @@ import {
 } from 'zap/core';
 import {
   ZapCheckbox,
+  ZapFormFieldHelpTextDirective,
   ZapInput,
   ZapRadio,
   ZapSelect,
@@ -64,6 +65,7 @@ import {
     ZapSelect,
     ZapIconDirective,
     ZapDialogButtonDirective,
+    ZapFormFieldHelpTextDirective
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',

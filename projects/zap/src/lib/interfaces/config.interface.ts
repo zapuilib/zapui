@@ -326,6 +326,7 @@ export interface TextareaConfig {
         bgFocusColor?: HexCode;
         textFocusColor?: HexCode;
         iconColor?: HexCode;
+        helpTextColor?: HexCode;
       };
     };
     borderRadius?: string;
@@ -346,6 +347,10 @@ export interface TextareaConfig {
     placeholderFontWeight?: string;
     placeholderLineHeight?: string;
     placeholderLetterSpacing?: string;
+    helpTextFontSize?: string;
+    helpTextFontWeight?: string;
+    helpTextLineHeight?: string;
+    helpTextLetterSpacing?: string;
     iconFontSize?: string;
     iconFontWeight?: string;
     iconLineHeight?: string;

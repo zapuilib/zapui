@@ -1,10 +1,6 @@
 <div class="__zap__textarea__wrapper" [ngClass]="classes">
   @if(label){
-  <label
-    [for]="id"
-    class="__zap__form__control__label"
-    >{{ label }}</label
-  >
+  <label [for]="id" class="__zap__form__control__label">{{ label }}</label>
   }
   <fieldset>
     @if(label) {
@@ -16,9 +12,20 @@
       [rows]="rows"
       [placeholder]="placeholder"
       class="__zap__form__control__textarea"
-      [ngClass]="resize === 'vertical' ? 'resizeyY' : resize === 'horizontal' ? 'resizeX' : ''"
+      [ngClass]="
+        resize === 'vertical'
+          ? 'resizeyY'
+          : resize === 'horizontal'
+          ? 'resizeX'
+          : ''
+      "
       (input)="adjustRows($event)"
     ></textarea>
+    @if(helpText) {
+    <p class="__zap__form__control__help__text">{{ helpText }}</p>
+    } @else if (helpTextDirective) {
+      <ng-content select="[zapFormFieldHelpText]"></ng-content>
+    }
   </fieldset>
   @if(control.invalid && control.touched) {
   <validation-error

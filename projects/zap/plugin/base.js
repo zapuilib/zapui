@@ -19,6 +19,7 @@ module.exports = plugin(function ({ addVariant, e }) {
     { name: "textarea-placeholder", targetElement: ".__zap__form__control__textarea::placeholder" },
     { name: "chip-text", targetElement: ".chip__text" },
     { name: "chip-icon", targetElement: ".chip__icon" },
+    { name: 'help-text', targetElement: ".__zap__form__control__help__text" },
     { name: "dialog-title", targetElement: ".__ngx__zap__dialog__title" },
     { name: "dialog-content", targetElement: ".__ngx__zap__dialog__content p" },
     { name: "dialog-btn-primary", targetElement: ".__ngx__zap__dialog__footer .primary" },
@@ -37,7 +38,7 @@ module.exports = plugin(function ({ addVariant, e }) {
     { name: "option-selected", targetElement: ".__zap__form__control__options .__zap__form__control__selected" },
     { name: "option-hovered", targetElement: ".__zap__form__control__options .__zap__form__control__hovered" },
   ];
-  
+
   variants.forEach((variant) => {
     addVariant(variant.name, createZapVariant(variant.name, variant.targetElement, e));
   });

@@ -12,6 +12,8 @@
       [ngClass]="[icon, iconPosition]"
       (click)="handleIconClick($event)"
     ></i>
+    } @else if (iconDirective) {
+    <ng-content select="[zapFormFieldIcon]"></ng-content>
     }
     <input
       [type]="type"
@@ -22,7 +24,12 @@
       [formControl]="control"
     />
   </fieldset>
-  @if(control.invalid && control.touched) {
+  @if(helpText) {
+  <p class="__zap__form__control__help__text">{{ helpText }}</p>
+  } @else if (helpTextDirective) {
+  <ng-content select="[zapFormFieldHelpText]"></ng-content>
+  }
+   @if(control.invalid && control.touched) {
   <validation-error
     [errors]="control.errors"
     [zapClass]="zapClass"

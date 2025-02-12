@@ -33,6 +33,7 @@ export class ZapButton implements AfterViewInit {
   ngAfterViewInit() {
     if (this.iconDirective) {
       this.iconDirective.el.nativeElement.style.height = 'var(--zap-button-font-size)';
+      this.iconDirective.el.nativeElement.style.fontSize = 'var(--zap-button-font-size)';
       this.iconDirective.el.nativeElement.style.marginRight = this.iconPosition === 'left' ? '8px' : '0';
       this.iconDirective.el.nativeElement.style.marginLeft = this.iconPosition === 'right' ? '8px' : '0';
       this.iconDirective.el.nativeElement.style.order = this.iconPosition === 'right' ? '1' : '0';

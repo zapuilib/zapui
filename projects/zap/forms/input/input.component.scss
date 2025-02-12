@@ -93,3 +93,7 @@
     -moz-appearance: textfield;
   }
 }
+
+.__zap__form__control__help__text {
+  @apply text-[var(--zap-textarea-help-text-color)] text-[length:var(--zap-textarea-help-text-font-size)] font-[var(--zap-textarea-help-text-font-weight)] leading-[var(--zap-textarea-help-text-line-height)] tracking-[var(--zap-textarea-help-text-letter-spacing)];
+}

@@ -71,7 +71,7 @@
     ></zap-button>
   </div>
   <zap-badge [count]="100"></zap-badge>
-  <zap-chip text="Awaiting confirmation"  icon="fa-bell" iconPosition="left">
+  <zap-chip text="Awaiting confirmation" icon="fa-bell" iconPosition="left">
     <svg zapIcon xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
       <path
         fill="currentColor"
@@ -92,8 +92,18 @@
   </div>
   <div class="relative w-full h-full col-span-2 dark:bg-[#09090B]/90 z-[10]">
     <zap-dialog zapClass="absolute">
-      <zap-button zapDialogButton text="No, cancel" size="base" variant="outlined"></zap-button>
-      <zap-button zapDialogButton text="Yes, I'm sure" size="base" type="default"></zap-button>
+      <zap-button
+        zapDialogButton
+        text="No, cancel"
+        size="base"
+        variant="outlined"
+      ></zap-button>
+      <zap-button
+        zapDialogButton
+        text="Yes, I'm sure"
+        size="base"
+        type="default"
+      ></zap-button>
       <p class="text-zinc-500">Are you sure you want to delete this item?</p>
     </zap-dialog>
   </div>
@@ -102,7 +112,15 @@
     label="Username"
     placeholder="Enter your username"
     [formControl]="usernameControl"
-  ></zap-input>
+  >
+    <svg zapFormFieldIcon xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+      <path
+        fill="currentColor"
+        d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm0-384c13.3 0 24 10.7 24 24l0 112c0 13.3-10.7 24-24 24s-24-10.7-24-24l0-112c0-13.3 10.7-24 24-24zM224 352a32 32 0 1 1 64 0 32 32 0 1 1 -64 0z"
+      />
+    </svg>
+    <p zapFormFieldHelpText>Explain your message in a few words</p>
+  </zap-input>
   <div class="relative w-full h-full col-span-2 px-10 dark:bg-[#09090B]/90">
     <zap-modal zapClass="absolute" size="tight">
       <h2 class="font-semibold">Modal</h2>
@@ -139,8 +157,8 @@
     placeholder="Enter your message"
     zapClass=""
   >
-  <p zapFormFieldHelpText>Explain your message in a few words</p>
-</zap-textarea>
+    <p zapFormFieldHelpText>Explain your message in a few words</p>
+  </zap-textarea>
   <zap-toggle
     id="toggle"
     label="Save preferences"

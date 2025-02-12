@@ -29,6 +29,7 @@ import {
 import {
   ZapCheckbox,
   ZapFormFieldHelpTextDirective,
+  ZapFormFieldIconDirective,
   ZapInput,
   ZapRadio,
   ZapSelect,
@@ -65,7 +66,8 @@ import {
     ZapSelect,
     ZapIconDirective,
     ZapDialogButtonDirective,
-    ZapFormFieldHelpTextDirective
+    ZapFormFieldHelpTextDirective,
+    ZapFormFieldIconDirective,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',

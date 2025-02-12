@@ -281,8 +281,12 @@ export function generateGlobalStylesVariables(
       },
       {
         label: 'icon-color',
-        value: hexToRgba(theme.colors.secondary, 0.5),
+        value: hexToRgba(theme.colors.secondary, 1),
       },
+      {
+        label: 'help-text-color',
+        value: hexToRgba(theme.colors.secondary, 0.5),
+      }
     ],
     checkbox: [
       {

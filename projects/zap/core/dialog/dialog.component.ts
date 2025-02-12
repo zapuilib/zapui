@@ -1,5 +1,7 @@
 import {
+  AfterViewInit,
   Component,
+  ContentChild,
   EventEmitter,
   HostListener,
   Input,
@@ -8,6 +10,7 @@ import {
   TemplateRef,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ZapDialogButtonDirective } from './dialog-btn.directive';
 
 @Component({
   selector: 'zap-dialog',
@@ -16,7 +19,7 @@ import { CommonModule } from '@angular/common';
   templateUrl: './dialog.component.html',
   styleUrls: ['./dialog.component.scss'],
 })
-export class ZapDialogComponent {
+export class ZapDialogComponent implements AfterViewInit {
   @Output() confirm: EventEmitter<void> = new EventEmitter<void>();
   @Output() cancel: EventEmitter<void> = new EventEmitter<void>();
   @Input() title: string = 'Are you sure?';
@@ -24,20 +27,25 @@ export class ZapDialogComponent {
   @Input() zapClass: string = '';
   @Input() shape!: 'curve' | 'pill' | 'flat';
   @Input() position: 'top' | 'default' = 'default';
-  @Input() primaryBtnTemplate: TemplateRef<any> | null = null;
-  @Input() secondaryBtnTemplate: TemplateRef<any> | null = null;
   @HostListener('document:keydown', ['$event'])
   handleEsc(event: KeyboardEvent): void {
     if (event.key === 'Escape' || event.code === 'Escape') this.cancel.emit();
   }
+  @ContentChild(ZapDialogButtonDirective, { static: false })
+  btnDirective!: ZapDialogButtonDirective;
+  hasZapBtn: boolean = false;
 
-  //TODO: We probably want to use directives for buttons along with template
+  constructor() {}
+
+  ngAfterViewInit() {
+    if (this.btnDirective) {
+      this.hasZapBtn = true;
+    }
+  }
 
   get classes(): string[] {
-    return [
-      this.shape,
-      this.position,
-      this.zapClass,
-    ].filter((cls) => cls && cls !== 'default');
+    return [this.shape, this.position, this.zapClass].filter(
+      (cls) => cls && cls !== 'default'
+    );
   }
 }

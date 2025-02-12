@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, ContentChild } from '@angular/core';
+import { ZapIconDirective } from '../public-api';
 
 @Component({
   selector: 'zap-chip',
@@ -21,8 +22,19 @@ export class ZapChipComponent {
   @Input() iconPosition: 'left' | 'right' = 'left';
   @Input() disabled = false;
   @Input() dismissible = false;
+  @ContentChild(ZapIconDirective, { static: false })
+  iconDirective!: ZapIconDirective;
 
-  //TODO: Support custom icon (not a font) via iconTemplate
+  constructor() {}
+
+  ngAfterViewInit() {
+    if (this.iconDirective) {
+      this.iconDirective.el.nativeElement.style.height = 'var(--zap-chip-font-size)';
+      this.iconDirective.el.nativeElement.style.marginRight = this.iconPosition === 'left' ? '8px' : '0';
+      this.iconDirective.el.nativeElement.style.marginLeft = this.iconPosition === 'right' ? '8px' : '0';
+      this.iconDirective.el.nativeElement.style.order = this.iconPosition === 'right' ? '1' : '0';
+    }
+  }
 
   onRemove(event: Event) {
     event.stopPropagation();

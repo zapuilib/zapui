@@ -1,9 +1,6 @@
 <div class="__ngx__zap__dialog" [ngClass]="classes">
   <h3 class="__ngx__zap__dialog__title">{{ title }}</h3>
-  <i
-    class="handler fa-solid fa-xmark"
-    (click)="cancel.emit()"
-  ></i>
+  <i class="handler fa-solid fa-xmark" (click)="cancel.emit()"></i>
 
   @if(text) {
   <div class="__ngx__zap__dialog__content">
@@ -14,13 +11,10 @@
   <ng-content></ng-content>
 
   <div class="__ngx__zap__dialog__footer">
-    @if (secondaryBtnTemplate) {
-    <ng-container [ngTemplateOutlet]="secondaryBtnTemplate"></ng-container>
+    @if (hasZapBtn) {
+    <ng-content select="[zapDialogButton]"></ng-content>
     } @else {
     <button class="btn secondary" (click)="cancel.emit()">No, cancel</button>
-    } @if (primaryBtnTemplate) {
-    <ng-container [ngTemplateOutlet]="primaryBtnTemplate"></ng-container>
-    } @else {
     <button class="btn primary" (click)="confirm.emit()">Yes, confirm</button>
     }
   </div>

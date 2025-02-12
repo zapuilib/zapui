@@ -53,8 +53,9 @@ button {
   }
 
   &.outlined {
-    @apply border text-[var(--zap-button-bg-color)];
-    @apply bg-transparent #{!important};
+    @apply border text-secondary/80 border-tertiary/20;
+    @apply bg-transparent;
+    @apply hover:border-tertiary/30 hover:text-secondary;
   }
 
   i {
@@ -94,17 +95,21 @@ button {
 
   &.info {
     @apply bg-info text-infoText border-info;
+    @apply hover:bg-info/80 hover:border-info/80;
   }
 
   &.success {
     @apply bg-success text-successText border-success;
+    @apply hover:bg-success/80 hover:border-success/80;
   }
 
   &.warning {
     @apply bg-warning text-warningText border-warning;
+    @apply hover:bg-warning/80 hover:border-warning/80;
   }
 
   &.error {
     @apply bg-error text-errorText border-error;
+    @apply hover:bg-error/80 hover:border-error/80;
   }
 }

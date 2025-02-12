@@ -1,5 +1,7 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { AfterViewInit, Component, ContentChild, EventEmitter, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
+
+import { ZapIconDirective } from '../public-api';
 
 @Component({
   selector: 'zap-alert',
@@ -8,7 +10,7 @@ import { CommonModule } from '@angular/common';
   templateUrl: './alert.component.html',
   styleUrls: ['./alert.component.scss'],
 })
-export class ZapAlertComponent {
+export class ZapAlertComponent implements AfterViewInit {
   @Output() dismiss: EventEmitter<void> = new EventEmitter<void>();
   @Input() type: 'success' | 'warning' | 'error' | 'info' | 'default' =
     'default';
@@ -16,8 +18,18 @@ export class ZapAlertComponent {
   @Input() shape!: 'curve' | 'pill' | 'flat';
   @Input() icon: string = '';
   @Input() zapClass: string = '';
+  @ContentChild(ZapIconDirective, { static: false })
+  iconDirective!: ZapIconDirective;
+  hasZapIcon: boolean = false;
 
-  //TODO: Support custom icon (not a font) via iconTemplate
+  constructor() {}
+
+  ngAfterViewInit() {
+    if (this.iconDirective) {
+      this.hasZapIcon = true;
+      this.iconDirective.el.nativeElement.style.height = 'var(--zap-alert-font-size)';
+    }
+  }
 
   get classes() {
     return [

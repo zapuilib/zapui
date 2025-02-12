@@ -3,6 +3,7 @@ import { AfterViewInit, Component, ContentChild, Input } from '@angular/core';
 
 import { ZapIconDirective } from '../directives/icon.directive';
 
+
 @Component({
   selector: 'zap-button',
   standalone: true,

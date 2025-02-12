@@ -23,7 +23,7 @@ import {
   ZapAccordionHeader,
   ZapAccordionContent,
   ZapAccordionItem,
-  ZapButtonIconDirective,
+  ZapIconDirective,
 } from 'zap/core';
 import {
   ZapCheckboxComponent,
@@ -61,7 +61,7 @@ import {
     ZapAccordionContent,
     ZapAccordionItem,
     ZapSelect,
-    ZapButtonIconDirective
+    ZapIconDirective
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',

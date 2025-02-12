@@ -1,5 +1,4 @@
 export * from './button/button.component';
-export * from './button/button-icon.directive';
 export * from './alert/alert.component';
 export * from './badge/badge.component';
 export * from './chip/chip.component';
@@ -8,3 +7,5 @@ export * from './modal/modal.component';
 
 export * from './tooltip';
 export * from './accordion';
+
+export * from './directives/icon.directive';

@@ -11,7 +11,7 @@ import { ZapIconDirective } from '../directives/icon.directive';
   templateUrl: './button.component.html',
   styleUrls: ['./button.component.scss'],
 })
-export class ZapButtonComponent implements AfterViewInit {
+export class ZapButton implements AfterViewInit {
   @Input() text = 'Submit';
   @Input() zapClass: string = '';
   @Input() shape!: 'pill' | 'curve' | 'flat';

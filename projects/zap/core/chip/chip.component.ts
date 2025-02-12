@@ -9,7 +9,7 @@ import { ZapIconDirective } from '../public-api';
   templateUrl: './chip.component.html',
   styleUrls: ['./chip.component.scss'],
 })
-export class ZapChipComponent {
+export class ZapChip {
   @Output() dismiss = new EventEmitter<void>();
   @Input() text = 'Chip';
   @Input() zapClass: string = '';

@@ -38,6 +38,8 @@ export class ZapTextarea<T> extends ControlValueAccessorDirective<T> {
   @Input() placeholder: string = '';
   @Input() resize: 'none' | 'vertical' | 'horizontal' | 'auto' = 'none';
 
+  //TODO: add a help text
+
   adjustRows(event: Event) {
     if (this.resize === 'auto') {
       const textarea = event.target as HTMLTextAreaElement;

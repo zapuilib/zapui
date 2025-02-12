@@ -76,6 +76,7 @@ export class ZapSelect<T> extends ControlValueAccessorDirective<T> {
   // TODO: On searchable select, when you click it should focus on the search input, its not always working, to recreate try to click multiple times on the select input.
   //TODO: Support custom icon (not a font) via iconTemplate
   //DISCUSSION: Should we support directive for option template? and selected template? instead of templateRef smae with other component that has it??
+  //TODO: add a help text
 
   @Input()
   set options(newOptions: { label: string; value: any; [key: string]: any }[]) {

@@ -10,7 +10,7 @@ import { ZapIconDirective } from '../public-api';
   templateUrl: './alert.component.html',
   styleUrls: ['./alert.component.scss'],
 })
-export class ZapAlertComponent implements AfterViewInit {
+export class ZapAlert implements AfterViewInit {
   @Output() dismiss: EventEmitter<void> = new EventEmitter<void>();
   @Input() type: 'success' | 'warning' | 'error' | 'info' | 'default' =
     'default';

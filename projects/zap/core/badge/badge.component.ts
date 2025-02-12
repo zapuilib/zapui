@@ -8,7 +8,7 @@ import { Component, Input } from '@angular/core';
   templateUrl: './badge.component.html',
   styleUrls: ['./badge.component.scss'],
 })
-export class ZapBadgeComponent {
+export class ZapBadge {
   @Input() variant: 'empty' | 'default' | 'outlined' = 'default';
   @Input() type: 'default' | 'info' | 'success' | 'warning' | 'error' = 'default';
   @Input() count: number = 0;

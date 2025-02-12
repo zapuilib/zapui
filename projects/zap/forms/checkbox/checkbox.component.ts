@@ -23,12 +23,12 @@ import { ValidationErrorComponent } from '../validation-error/validation-error.c
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => ZapCheckboxComponent),
+      useExisting: forwardRef(() => ZapCheckbox),
       multi: true,
     },
   ],
 })
-export class ZapCheckboxComponent<T> extends ControlValueAccessorDirective<T> {
+export class ZapCheckbox<T> extends ControlValueAccessorDirective<T> {
   @ViewChild('checkbox') checkbox!: ElementRef;
   @Input() label: string = '';
   @Input() customErrorMessages: Record<string, string> = {};

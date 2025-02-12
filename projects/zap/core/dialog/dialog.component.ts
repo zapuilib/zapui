@@ -5,11 +5,10 @@ import {
   EventEmitter,
   HostListener,
   Input,
-  OnInit,
   Output,
-  TemplateRef,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
+
 import { ZapDialogButtonDirective } from './dialog-btn.directive';
 
 @Component({
@@ -19,11 +18,11 @@ import { ZapDialogButtonDirective } from './dialog-btn.directive';
   templateUrl: './dialog.component.html',
   styleUrls: ['./dialog.component.scss'],
 })
-export class ZapDialogComponent implements AfterViewInit {
+export class ZapDialog implements AfterViewInit {
   @Output() confirm: EventEmitter<void> = new EventEmitter<void>();
   @Output() cancel: EventEmitter<void> = new EventEmitter<void>();
   @Input() title: string = 'Are you sure?';
-  @Input() text: string = 'This action cannot be undone.';
+  @Input() text: string = '';
   @Input() zapClass: string = '';
   @Input() shape!: 'curve' | 'pill' | 'flat';
   @Input() position: 'top' | 'default' = 'default';

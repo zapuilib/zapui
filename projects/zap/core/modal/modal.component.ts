@@ -18,7 +18,7 @@ import { CommonModule } from '@angular/common';
   templateUrl: './modal.component.html',
   styleUrls: ['./modal.component.scss'],
 })
-export class ZapModalComponent {
+export class ZapModal {
   @ViewChild('modalContent') modalContent!: ElementRef;
   @Output() close: EventEmitter<void> = new EventEmitter<void>();
   @Input() shape!: 'curve' | 'flat' | 'pill';

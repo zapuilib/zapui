@@ -31,12 +31,12 @@ type InputType = 'password' | 'text' | 'number' | 'email' | 'tel';
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => ZapInputComponent),
+      useExisting: forwardRef(() => ZapInput),
       multi: true,
     },
   ],
 })
-export class ZapInputComponent<T> extends ControlValueAccessorDirective<T> {
+export class ZapInput<T> extends ControlValueAccessorDirective<T> {
   @Output() iconClick: EventEmitter<void> = new EventEmitter<void>();
   @Input() type: InputType = 'text';
   @Input() label: string = '';
@@ -56,6 +56,7 @@ export class ZapInputComponent<T> extends ControlValueAccessorDirective<T> {
   }
 
   //TODO: Support custom icon (not a font) via iconTemplate
+  //TODO: add a help text
 
   get classes(): string[] {
     return [

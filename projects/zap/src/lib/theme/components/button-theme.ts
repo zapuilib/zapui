@@ -9,7 +9,7 @@ import { getExistingShapeFor, getShapeCssValues } from '../utils/shape-utils';
  */
 export function generateComponentButtonVariables(
   value: ButtonConfig,
-  root: HTMLElement,
+  root: HTMLElement
 ) {
   let cssVariables = '';
   const existingSize = getExistingButtonSize(root);
@@ -34,15 +34,16 @@ export function generateComponentButtonVariables(
   return cssVariables;
 }
 
-export function getExistingButtonSize(
-  root: HTMLElement
-): string {
-    return root.style.getPropertyValue(`--zap-button-size`).trim();
+export function getExistingButtonSize(root: HTMLElement): string {
+  if (typeof window !== 'undefined') {
+    return getComputedStyle(root).getPropertyValue(`--zap-button-size`).trim();
+  }
+  return '';
 }
 
 export function getButtonSizeCssValues(
   btnSizeValue: string,
-  root: HTMLElement,
+  root: HTMLElement
 ): string {
   let cssVariables = '';
 
@@ -77,10 +78,9 @@ export function getDefaultButtonSizeCssValues(): string {
   return `--zap-button-padding-left: 1rem;\n--zap-button-padding-right: 1rem;\n--zap-button-padding-top: 0.5rem;\n--zap-button-padding-bottom: 0.5rem;\n--zap-button-font-size: 1rem;\n`;
 }
 
-export function getExistingFontSize(
-  root: HTMLElement,
-): string {
-
-    return root.style.getPropertyValue(`--zap-font-size-sm`).trim();
-
+export function getExistingFontSize(root: HTMLElement): string {
+  if(typeof window !== 'undefined') {
+    return getComputedStyle(root).getPropertyValue(`--zap-font-size-sm`).trim();
+  }
+  return '';
 }

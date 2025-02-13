@@ -58,7 +58,10 @@ export function getSelectSizeCssValues(
 }
 
 export function getExistingSelectSize(root: HTMLElement): string {
-  return root.style.getPropertyValue(`--zap-select-size`).trim();
+  if (typeof window !== 'undefined') {
+    return getComputedStyle(root).getPropertyValue(`--zap-select-size`).trim();
+  }
+  return '';
 }
 
 export function getDefaultSelectSizeCssValues(): string {

@@ -112,9 +112,7 @@
     label="Username"
     placeholder="Enter your username"
     [formControl]="usernameControl"
-    size="compact"
   >
-    <i zapFormFieldIcon class="fa-solid fa-user"></i>
     <p zapFormFieldHelpText>Explain your message in a few words</p>
   </zap-input>
   <div class="relative w-full h-full col-span-2 px-10 dark:bg-[#09090B]/90">
@@ -215,7 +213,7 @@
   <div>
     <zap-tooltip>
       <zap-tooltip-handler>
-        <button>Hover me</button>
+        <button class="text-sm">Hover me</button>
       </zap-tooltip-handler>
       <zap-tooltip-content>
         <p>This is a tooltip!</p>

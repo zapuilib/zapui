@@ -674,11 +674,13 @@ export function generateGlobalStylesVariables(
 
   for (const [component, stylesArray] of Object.entries(styles)) {
     for (const style of stylesArray) {
-      const existingStyle = root.style
-        .getPropertyValue(`--zap-${component}-${style['label']}`)
-        .trim();
-      const styleExist = existingStyle || style['value'];
-      cssVariables += `--zap-${component}-${style['label']}: ${styleExist};\n`;
+      if (typeof window !== 'undefined') {
+        const existingStyle = getComputedStyle(root)
+          .getPropertyValue(`--zap-${component}-${style['label']}`)
+          .trim();
+        const styleExist = existingStyle || style['value'];
+        cssVariables += `--zap-${component}-${style['label']}: ${styleExist};\n`;
+      }
     }
   }
 

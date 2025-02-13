@@ -42,7 +42,10 @@ export function getInputSizeCssValues(inputSizeValue: string, root: HTMLElement)
 }
 
 export function getExistingInputSize(root: HTMLElement): string {
-  return root.style.getPropertyValue(`--zap-input-size`).trim();
+  if (typeof window !== 'undefined') {
+    return getComputedStyle(root).getPropertyValue(`--zap-input-size`).trim();
+  }
+  return '';
 }
 
 export function getDefaultInputSizeCssValues(): string {

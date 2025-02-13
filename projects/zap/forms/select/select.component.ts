@@ -68,7 +68,7 @@ export class ZapSelect<T> extends ControlValueAccessorDirective<T> {
   @Input() async: boolean = false;
   @Input() optionTemplate?: TemplateRef<any>;
   @Input() selectedTemplate?: TemplateRef<any>;
-  @Input() position: 'top' | 'bottom' | 'auto' = 'bottom';
+  @Input() position: 'top' | 'bottom' | 'auto' = 'auto';
   @Input() helpText: string = '';
   private _options: { label: string; value: any; [key: string]: any }[] = [];
   isOptionListOpen: boolean = false;
@@ -79,13 +79,16 @@ export class ZapSelect<T> extends ControlValueAccessorDirective<T> {
   iconDirective!: ZapFormFieldIconDirective;
   @ContentChild(ZapFormFieldHelpTextDirective, { static: false })
   helpTextDirective!: ZapFormFieldHelpTextDirective;
-
+  @HostListener('window:resize')
+  onWindowResize(): void {
+    this.handleSelectOptionPosition();
+  }
   ngAfterViewInit() {
     if (this.iconDirective) {
       this.iconDirective.el.nativeElement.style.height =
-        'var(--zap-select-icon-font-size)';
+        this.size === 'compact' ? '14px' : 'var(--zap-select-icon-font-size)';
       this.iconDirective.el.nativeElement.style.fontSize =
-        'var(--zap-select-icon-font-size)';
+        this.size === 'compact' ? '14px' : 'var(--zap-select-icon-font-size)';
       this.iconDirective.el.nativeElement.style.color =
         'var(--zap-select-icon-color)';
       this.iconDirective.el.nativeElement.style.marginRight =
@@ -170,7 +173,6 @@ export class ZapSelect<T> extends ControlValueAccessorDirective<T> {
       const inputRect = inputElement.getBoundingClientRect();
       const optionListRect = optionListElement.getBoundingClientRect();
       const viewportHeight = window.innerHeight;
-
       const spaceBelow = viewportHeight - inputRect.bottom;
       const spaceAbove = inputRect.top;
 
@@ -243,6 +245,8 @@ export class ZapSelect<T> extends ControlValueAccessorDirective<T> {
       }
       this.control.setValue(this.selectedOptionValue);
       this.change.emit(this.selectedOptionValue);
+      this.cdr.detectChanges();
+      this.handleSelectOptionPosition();
     } else {
       this.control.setValue(option.value);
       this.change.emit(option.value);

@@ -61,8 +61,8 @@ export class ZapInput<T> extends ControlValueAccessorDirective<T> implements Aft
 
   ngAfterViewInit() {
     if (this.iconDirective) {      
-      this.iconDirective.el.nativeElement.style.height = 'var(--zap-input-icon-font-size)';
-      this.iconDirective.el.nativeElement.style.fontSize = 'var(--zap-input-icon-font-size)';
+      this.iconDirective.el.nativeElement.style.height = this.size === 'compact' ? '14px' : 'var(--zap-input-icon-font-size)';
+      this.iconDirective.el.nativeElement.style.fontSize = this.size === 'compact' ? '14px' : 'var(--zap-input-icon-font-size)';
       this.iconDirective.el.nativeElement.style.color = 'var(--zap-input-icon-color)';
       this.iconDirective.el.nativeElement.style.marginRight = this.iconPosition === 'left' ? '8px' : '0';
       this.iconDirective.el.nativeElement.style.marginLeft = this.iconPosition === 'right' ? '8px' : '0';

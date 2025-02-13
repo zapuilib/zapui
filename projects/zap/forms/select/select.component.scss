@@ -4,7 +4,7 @@
   fieldset {
     @apply relative outline-none;
 
-    i {
+    svg {
       @apply absolute;
       @apply top-1/2;
       @apply -translate-y-1/2;
@@ -34,10 +34,6 @@
   }
 
   &.compact {
-    i {
-      @apply text-xs;
-    }
-
     .checkbox {
       @apply h-3 w-3;
     }
@@ -51,7 +47,7 @@
     }
 
     .__zap__form__control__select {
-      @apply text-sm py-1.5 px-2;
+      @apply text-sm py-1.5 px-2 pl-10;
     }
   }
 
@@ -97,13 +93,21 @@
   }
 
   .handler {
-    i {
-      @apply right-3 left-auto text-[var(--zap-select-icon-color)];
+    svg {
+      @apply right-3 left-auto fill-[var(--zap-select-icon-color)];
     }
   }
 
   .field__wrapper {
     @apply relative;
+  }
+
+  .__zap__form__control__dropdown {
+    @apply transition-all duration-150 ease-linear;
+    
+    &.open {
+      @apply rotate-180;
+    }
   }
 
   .__zap__form__control__options {

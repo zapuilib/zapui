@@ -33,6 +33,7 @@ export function getInputSizeCssValues(inputSizeValue: string, root: HTMLElement)
     cssVariables += `--zap-input-padding-right: 0.5rem;\n`;
     cssVariables += `--zap-input-padding-top: 0.375rem;\n`;
     cssVariables += `--zap-input-padding-bottom: 0.375rem;\n`;
+    cssVariables += `--zap-input-icon-font-size: 0.875rem;\n`;
   } else {
     cssVariables += getDefaultInputSizeCssValues();
   }
@@ -45,5 +46,5 @@ export function getExistingInputSize(root: HTMLElement): string {
 }
 
 export function getDefaultInputSizeCssValues(): string {
-  return `--zap-input-padding-left: 0.75rem;\n--zap-input-padding-right: 0.75rem;\n--zap-input-padding-top: 0.5rem;\n--zap-input-padding-bottom: 0.5rem;\n--zap-input-width: 100%;\n--zap-input-icon-font-size: 0.875rem;\n--zap-input-icon-line-height: auto;\n--zap-input-help-text-font-size: 0.875rem;\n`;
+  return `--zap-input-padding-left: 0.75rem;\n--zap-input-padding-right: 0.75rem;\n--zap-input-padding-top: 0.5rem;\n--zap-input-padding-bottom: 0.5rem;\n--zap-input-width: 100%;\n--zap-input-icon-font-size: 1rem;\n--zap-input-icon-line-height: auto;\n--zap-input-help-text-font-size: 0.875rem;\n`;
 }

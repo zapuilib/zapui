@@ -24,7 +24,7 @@ To run the project:
    ng build --watch
    ```
 
-2. Open a new terminal, navigate to `projects/zap-demo`, and start the demo app:
+2. Open a new terminal, navigate to `projects/demo`, and start the demo app:
    ```bash
    cd projects/zap-demo
    npm run start
@@ -34,10 +34,9 @@ To run the project:
 
 - **Class Name Format:** Use the following format for class names:
   ```
-  __ngx__zap__<some__name__here>
+  __zap__<some__name__here>
   ```
 - **No Inline Styling:** Avoid using inline styles.
-- **Dynamic Styling:** Use `ngStyle` to handle styles such as colors, font sizes, etc., to ensure all styling is sourced from the global configuration.
 
 ## Deploy a New Version
 

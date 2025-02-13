@@ -48,6 +48,8 @@ export function getSelectSizeCssValues(
     cssVariables += `--zap-select-padding-top: 0.375rem;\n`;
     cssVariables += `--zap-select-padding-bottom: 0.375rem;\n`;
     cssVariables += `--zap-select-font-size: 0.375rem;\n`;
+    cssVariables +' `--zap-select-icon-font-size: 0.875rem;\n';
+    
   } else {
     cssVariables += getDefaultSelectSizeCssValues();
   }
@@ -62,7 +64,7 @@ export function getExistingSelectSize(root: HTMLElement): string {
 export function getDefaultSelectSizeCssValues(): string {
   return `
         --zap-select-padding-left: 0.75rem;
-        --zap-select-padding-right: 0.75rem;
+        --zap-select-padding-right: 1.325rem;
         --zap-select-padding-top: 0.5rem;
         --zap-select-padding-bottom: 0.5rem;
         --zap-select-search-padding-left: 2.25rem;
@@ -88,6 +90,6 @@ export function getDefaultSelectSizeCssValues(): string {
         --zap-select-checkbox-padding-bottom: 0.25rem;
         --zap-select-checkbox-border-width: 0.125rem;
         --zap-select-help-text-font-size: 0.875rem;
-        --zap-select-icon-font-size: 0.875rem;
+        --zap-select-icon-font-size: 1rem;
     `;
 }

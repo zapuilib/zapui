@@ -76,8 +76,12 @@
     }
   }
 
-  &__select:disabled {
+  &.disabled {
     @apply opacity-50;
+
+    .__zap__form__control__select {
+      @apply cursor-not-allowed focus-within:ring-0;
+    }
   }
 
   &__placeholder {

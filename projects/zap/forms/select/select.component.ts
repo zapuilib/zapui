@@ -207,6 +207,7 @@ export class ZapSelect<T> extends ControlValueAccessorDirective<T> {
   }
 
   toggleOptionsList(): void {
+    if(this.control.disabled) return;
     this.isOptionListOpen = !this.isOptionListOpen;
     this.cdr.detectChanges();
     if (this.isOptionListOpen) {
@@ -222,6 +223,7 @@ export class ZapSelect<T> extends ControlValueAccessorDirective<T> {
   }
 
   handleSearch(event: Event): void {
+    if(this.control.disabled) return;
     const searchTerm = (event.target as HTMLInputElement).value
       .trim()
       .toLowerCase();
@@ -235,6 +237,7 @@ export class ZapSelect<T> extends ControlValueAccessorDirective<T> {
   }
 
   selectOption(option: { label: string; value: any }): void {
+    if(this.control.disabled) return;
     if (this.multiselect) {
       if (this.selectedOptionValue.includes(option.value)) {
         this.selectedOptionValue = this.selectedOptionValue.filter(
@@ -284,5 +287,15 @@ export class ZapSelect<T> extends ControlValueAccessorDirective<T> {
   reset(): void {
     this.control.reset();
     this.selectedOptionValue = [];
+  }
+
+  get classes(): string[] {    
+    return [
+      this.shape,
+      this.zapClass,
+      this.size,
+      this.icon || this.iconDirective ? this.iconPosition : '',
+      this.control.disabled ? 'disabled' : '',
+    ].filter((cls) => cls && cls !== 'default');
   }
 }

@@ -1,6 +1,6 @@
 <div
   class="__zap__form__control"
-  [ngClass]="[zapClass, size, shape, icon || iconDirective ? iconPosition : '']"
+  [ngClass]="classes"
 >
   @if(label){
   <label [for]="id" class="__zap__form__control__label">{{ label }}</label>

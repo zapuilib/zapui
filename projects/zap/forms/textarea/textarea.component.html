@@ -1,6 +1,8 @@
 <div class="__zap__textarea__wrapper" [ngClass]="classes">
   @if(label){
   <label [for]="id" class="__zap__form__control__label">{{ label }}</label>
+  } @else if(labelDirective) {
+  <ng-content select="[zapLabel]"></ng-content>
   }
   <fieldset>
     @if(label) {

@@ -22,6 +22,7 @@ import { ValidationErrorComponent } from '../validation-error/validation-error.c
 import {
   ZapFormFieldHelpTextDirective,
   ZapFormFieldIconDirective,
+  ZapLabelDirective,
 } from '../public-api';
 
 @Component({
@@ -79,6 +80,9 @@ export class ZapSelect<T> extends ControlValueAccessorDirective<T> {
   iconDirective!: ZapFormFieldIconDirective;
   @ContentChild(ZapFormFieldHelpTextDirective, { static: false })
   helpTextDirective!: ZapFormFieldHelpTextDirective;
+  @ContentChild(ZapLabelDirective, { static: false })
+  labelDirective!: ZapLabelDirective;
+
   @HostListener('window:resize')
   onWindowResize(): void {
     this.handleSelectOptionPosition();
@@ -118,9 +122,15 @@ export class ZapSelect<T> extends ControlValueAccessorDirective<T> {
       this.helpTextDirective.el.nativeElement.style.letterSpacing =
         'var(--zap-select-help-text-letter-spacing)';
     }
-  }
 
-  //TODO: Shoudl support  custom label directive
+    if (this.labelDirective) {
+      this.labelDirective.el.nativeElement.style.color = 'var(--zap-select-label-color)';
+      this.labelDirective.el.nativeElement.style.fontSize = 'var(--zap-select-label-font-size)';
+      this.labelDirective.el.nativeElement.style.fontWeight = 'var(--zap-select-label-font-weight)';
+      this.labelDirective.el.nativeElement.style.lineHeight = 'var(--zap-select-label-line-height)';
+      this.labelDirective.el.nativeElement.style.letterSpacing = 'var(--zap-select-label-letter-spacing)';
+    }
+  }
 
   @Input()
   set options(newOptions: { label: string; value: any; [key: string]: any }[]) {
@@ -209,7 +219,7 @@ export class ZapSelect<T> extends ControlValueAccessorDirective<T> {
   }
 
   toggleOptionsList(): void {
-    if(this.control.disabled) return;
+    if (this.control.disabled) return;
     this.isOptionListOpen = !this.isOptionListOpen;
     this.cdr.detectChanges();
     if (this.isOptionListOpen) {
@@ -225,7 +235,7 @@ export class ZapSelect<T> extends ControlValueAccessorDirective<T> {
   }
 
   handleSearch(event: Event): void {
-    if(this.control.disabled) return;
+    if (this.control.disabled) return;
     const searchTerm = (event.target as HTMLInputElement).value
       .trim()
       .toLowerCase();
@@ -239,7 +249,7 @@ export class ZapSelect<T> extends ControlValueAccessorDirective<T> {
   }
 
   selectOption(option: { label: string; value: any }): void {
-    if(this.control.disabled) return;
+    if (this.control.disabled) return;
     if (this.multiselect) {
       if (this.selectedOptionValue.includes(option.value)) {
         this.selectedOptionValue = this.selectedOptionValue.filter(
@@ -291,7 +301,7 @@ export class ZapSelect<T> extends ControlValueAccessorDirective<T> {
     this.selectedOptionValue = [];
   }
 
-  get classes(): string[] {    
+  get classes(): string[] {
     return [
       this.shape,
       this.zapClass,

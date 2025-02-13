@@ -1,16 +1,15 @@
-<div
-  class="__zap__checkbox__wrapper"
-  [ngClass]="classes"
->
+<div class="__zap__checkbox__wrapper" [ngClass]="classes">
   <fieldset>
     @if(label){
-      <legend class="sr-only">{{ label }}</legend>
+    <legend class="sr-only">{{ label }}</legend>
     <label
       [for]="id"
       class="__zap__form__control__label"
       (click)="checkbox.click()"
       >{{ label }}</label
     >
+    } @else if (labelDirective) {
+    <ng-content select="[zapLabel]"></ng-content>
     }
     <input
       #checkbox

@@ -370,7 +370,7 @@ export interface ToggleConfig {
         bgOnColor?: HexCode;
         rollerOnColor?: HexCode;
         labelColor?: HexCode;
-        textColor?: HexCode;
+        helpTextColor?: HexCode;
       };
     };
     width?: string;

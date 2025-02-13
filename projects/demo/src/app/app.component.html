@@ -109,10 +109,10 @@
   </div>
   <zap-input
     id="username"
-    label="Username"
     placeholder="Enter your username"
     [formControl]="usernameControl"
   >
+    <p zapLabel>Username or email</p>
     <p zapFormFieldHelpText>Explain your message in a few words</p>
   </zap-input>
   <div class="relative w-full h-full col-span-2 px-10 dark:bg-[#09090B]/90">
@@ -128,10 +128,9 @@
     </zap-modal>
   </div>
   <div class="flex justify-center items-center">
-    <zap-checkbox
-      id="checkbox"
-      label="I accept the terms and conditions"
-    ></zap-checkbox>
+    <zap-checkbox id="checkbox">
+      <label for="checkbox" zapLabel>Username or email</label>
+    </zap-checkbox>
   </div>
   <div class="flex justify-center items-center">
     <zap-radio
@@ -156,7 +155,7 @@
   <zap-toggle
     id="toggle"
     label="Save preferences"
-    text="Enable this setting to save your preferences"
+    helpText="Enable this setting to save your preferences"
     [formControl]="toggleControl"
   ></zap-toggle>
   <zap-accordion-group>

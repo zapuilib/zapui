@@ -31,6 +31,7 @@ import {
   ZapFormFieldHelpTextDirective,
   ZapFormFieldIconDirective,
   ZapInput,
+  ZapLabelDirective,
   ZapRadio,
   ZapSelect,
   ZapTextarea,
@@ -68,6 +69,7 @@ import {
     ZapDialogButtonDirective,
     ZapFormFieldHelpTextDirective,
     ZapFormFieldIconDirective,
+    ZapLabelDirective
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',

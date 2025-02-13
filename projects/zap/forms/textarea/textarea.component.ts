@@ -8,7 +8,7 @@ import { CommonModule } from '@angular/common';
 
 import { ControlValueAccessorDirective } from '../directives/control-value-accessor.directive';
 import { ValidationErrorComponent } from '../validation-error/validation-error.component';
-import { ZapFormFieldHelpTextDirective } from '../public-api';
+import { ZapFormFieldHelpTextDirective, ZapLabelDirective } from '../public-api';
 
 @Component({
   selector: 'zap-textarea',
@@ -41,7 +41,9 @@ export class ZapTextarea<T> extends ControlValueAccessorDirective<T> implements 
   @Input() helpText: string = '';
   @ContentChild(ZapFormFieldHelpTextDirective, { static: false })
   helpTextDirective!: ZapFormFieldHelpTextDirective;
-  //TODO: Shoudl support  custom label directive
+  @ContentChild(ZapLabelDirective, { static: false })
+  labelDirective!: ZapLabelDirective;
+
   ngAfterViewInit() {
     if (this.helpTextDirective) {
       this.helpTextDirective.el.nativeElement.style.color = 'var(--zap-textarea-help-text-color)';
@@ -49,6 +51,14 @@ export class ZapTextarea<T> extends ControlValueAccessorDirective<T> implements 
       this.helpTextDirective.el.nativeElement.style.fontWeight = 'var(--zap-textarea-help-text-font-weight)';
       this.helpTextDirective.el.nativeElement.style.lineHeight = 'var(--zap-textarea-help-text-line-height)';
       this.helpTextDirective.el.nativeElement.style.letterSpacing = 'var(--zap-textarea-help-text-letter-spacing)';
+    }
+
+    if (this.labelDirective) {
+      this.labelDirective.el.nativeElement.style.color = 'var(--zap-textarea-label-color)';
+      this.labelDirective.el.nativeElement.style.fontSize = 'var(--zap-textarea-label-font-size)';
+      this.labelDirective.el.nativeElement.style.fontWeight = 'var(--zap-textarea-label-font-weight)';
+      this.labelDirective.el.nativeElement.style.lineHeight = 'var(--zap-textarea-label-line-height)';
+      this.labelDirective.el.nativeElement.style.letterSpacing = 'var(--zap-textarea-label-letter-spacing)';
     }
   }
 

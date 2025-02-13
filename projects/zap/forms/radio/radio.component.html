@@ -2,6 +2,8 @@
   <div class="wrapper">
     @if(label) {
     <p>{{ label }}</p>
+    } @else if(labelDirective) {
+    <ng-content select="[zapLabel]"></ng-content>
     }
     <div class="options__wrapper">
       @for (radio of options; track radio) {

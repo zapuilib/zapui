@@ -432,7 +432,7 @@ export function generateGlobalStylesVariables(
         value: theme.colors.secondary,
       },
       {
-        label: 'text-color',
+        label: 'help-text-color',
         value: hexToRgba(theme.colors.secondary, 0.5),
       },
     ],

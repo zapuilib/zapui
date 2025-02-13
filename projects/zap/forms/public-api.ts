@@ -7,3 +7,4 @@ export * from './select/select.component'
 
 export * from './directives/help-text.directive';
 export * from './directives/icon.directive';
+export * from './directives/label.directive';

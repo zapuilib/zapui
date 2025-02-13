@@ -18,6 +18,7 @@ import { ControlValueAccessorDirective } from '../directives/control-value-acces
 import { ValidationErrorComponent } from '../validation-error/validation-error.component';
 import { ZapFormFieldIconDirective } from '../directives/icon.directive';
 import { ZapFormFieldHelpTextDirective } from '../public-api';
+import { ZapLabelDirective } from '../directives/label.directive';
 
 type InputType = 'password' | 'text' | 'number' | 'email' | 'tel';
 
@@ -58,6 +59,8 @@ export class ZapInput<T> extends ControlValueAccessorDirective<T> implements Aft
   iconDirective!: ZapFormFieldIconDirective;
  @ContentChild(ZapFormFieldHelpTextDirective, { static: false })
   helpTextDirective!: ZapFormFieldHelpTextDirective;
+  @ContentChild(ZapLabelDirective, { static: false })
+  labelDirective!: ZapLabelDirective;
 
   ngAfterViewInit() {
     if (this.iconDirective) {      
@@ -81,8 +84,16 @@ export class ZapInput<T> extends ControlValueAccessorDirective<T> implements Aft
       this.helpTextDirective.el.nativeElement.style.lineHeight = 'var(--zap-input-help-text-line-height)';
       this.helpTextDirective.el.nativeElement.style.letterSpacing = 'var(--zap-input-help-text-letter-spacing)';
     }
+
+    if (this.labelDirective) {
+      this.labelDirective.el.nativeElement.style.color = 'var(--zap-input-label-color)';
+      this.labelDirective.el.nativeElement.style.fontSize = 'var(--zap-input-label-font-size)';
+      this.labelDirective.el.nativeElement.style.fontWeight = 'var(--zap-input-label-font-weight)';
+      this.labelDirective.el.nativeElement.style.lineHeight = 'var(--zap-input-label-line-height)';
+      this.labelDirective.el.nativeElement.style.letterSpacing = 'var(--zap-input-label-letter-spacing)';
+    }
   }
-  //TODO: Shoudl support  custom label directive
+
   handleIconClick(event: any): void {
     event.stopPropagation();
     this.iconClick.emit();

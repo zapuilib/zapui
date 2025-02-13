@@ -1,17 +1,21 @@
 <div
   class="__zap__toggle__wrapper"
-  [ngClass]="[zapClass, label || text ? 'between' : 'start']"
+  [ngClass]="[zapClass, label || helpText ? 'between' : 'start']"
 >
   <div class="wrapper">
-    @if(label || text) {
+    @if(label || helpText) {
     <div class="content-wrapper">
       <div class="lable-wrapper">
         @if(label) {
         <label>
           {{ label }}
         </label>
-        } @if(text) {
-        <p>{{ text }}</p>
+        } @else if (labelDirective) {
+        <ng-content select="[zapLabel]"></ng-content>
+        } @if(helpText) {
+        <p>{{ helpText }}</p>
+        } @else if (helpTextDirective) {
+        <ng-content select="[zapFormFieldHelpText]"></ng-content>
         }
       </div>
     </div>
@@ -25,7 +29,7 @@
       [disabled]="control.disabled"
       [class.on]="this.control.value"
     >
-      <span class="sr-only">{{ label || text }}</span>
+      <span class="sr-only">{{ label || helpText }}</span>
       <span
         class="roller"
         [ngClass]="[this.control.value ? 'on' : 'off']"

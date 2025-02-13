@@ -1,13 +1,14 @@
-import { Component, ElementRef, forwardRef, Input, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ContentChild, ElementRef, forwardRef, Input, ViewChild } from '@angular/core';
 import {
   FormsModule,
   NG_VALUE_ACCESSOR,
   ReactiveFormsModule,
 } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 import { ControlValueAccessorDirective } from '../directives/control-value-accessor.directive';
-import { CommonModule } from '@angular/common';
 import { ValidationErrorComponent } from '../validation-error/validation-error.component';
+import { ZapLabelDirective } from '../public-api';
 
 @Component({
   selector: 'zap-checkbox',
@@ -28,7 +29,7 @@ import { ValidationErrorComponent } from '../validation-error/validation-error.c
     },
   ],
 })
-export class ZapCheckbox<T> extends ControlValueAccessorDirective<T> {
+export class ZapCheckbox<T> extends ControlValueAccessorDirective<T> implements AfterViewInit {
   @ViewChild('checkbox') checkbox!: ElementRef;
   @Input() label: string = '';
   @Input() customErrorMessages: Record<string, string> = {};
@@ -38,10 +39,22 @@ export class ZapCheckbox<T> extends ControlValueAccessorDirective<T> {
   @Input() size: 'compact' | 'base' = 'base';
   @Input() labelPosition: 'left' | 'right' = 'right';
   @Input() checked: boolean = false;
-  //TODO: Shoudl support  custom label directive
+  @ContentChild(ZapLabelDirective, { static: false })
+  labelDirective!: ZapLabelDirective;
+
   override ngOnInit(): void {
     super.ngOnInit();
     this.handleDefultValue();
+  }
+
+  ngAfterViewInit() {
+    if (this.labelDirective) {
+      this.labelDirective.el.nativeElement.style.color = 'var(--zap-checkbox-label-color)';
+      this.labelDirective.el.nativeElement.style.fontSize = 'var(--zap-checkbox-label-font-size)';
+      this.labelDirective.el.nativeElement.style.fontWeight = 'var(--zap-checkbox-label-font-weight)';
+      this.labelDirective.el.nativeElement.style.lineHeight = 'var(--zap-checkbox-label-line-height)';
+      this.labelDirective.el.nativeElement.style.letterSpacing = 'var(--zap-checkbox-label-letter-spacing)';
+    }
   }
 
   handleDefultValue(): void {

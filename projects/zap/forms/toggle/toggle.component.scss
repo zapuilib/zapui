@@ -21,7 +21,7 @@
     }
 
     p {
-      @apply text-[var(--zap-toggle-text-color)] text-[length:var(--zap-toggle-font-size)] font-[var(--zap-toggle-font-weight)] leading-[var(--zap-toggle-line-height)] tracking-[var(--zap-toggle-letter-spacing)];
+      @apply text-[var(--zap-toggle-help-text-color)] text-[length:var(--zap-toggle-help-text-font-size)] font-[var(--zap-toggle-help-text-font-weight)] leading-[var(--zap-toggle-help-text-line-height)] tracking-[var(--zap-toggle-help-text-letter-spacing)];
     }
   }
 

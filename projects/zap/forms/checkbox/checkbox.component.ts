@@ -38,7 +38,7 @@ export class ZapCheckbox<T> extends ControlValueAccessorDirective<T> {
   @Input() size: 'compact' | 'base' = 'base';
   @Input() labelPosition: 'left' | 'right' = 'right';
   @Input() checked: boolean = false;
-
+  //TODO: Shoudl support  custom label directive
   override ngOnInit(): void {
     super.ngOnInit();
     this.handleDefultValue();

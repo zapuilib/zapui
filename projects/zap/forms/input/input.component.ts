@@ -82,7 +82,7 @@ export class ZapInput<T> extends ControlValueAccessorDirective<T> implements Aft
       this.helpTextDirective.el.nativeElement.style.letterSpacing = 'var(--zap-input-help-text-letter-spacing)';
     }
   }
-
+  //TODO: Shoudl support  custom label directive
   handleIconClick(event: any): void {
     event.stopPropagation();
     this.iconClick.emit();

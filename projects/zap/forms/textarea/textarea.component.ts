@@ -41,7 +41,7 @@ export class ZapTextarea<T> extends ControlValueAccessorDirective<T> implements 
   @Input() helpText: string = '';
   @ContentChild(ZapFormFieldHelpTextDirective, { static: false })
   helpTextDirective!: ZapFormFieldHelpTextDirective;
-
+  //TODO: Shoudl support  custom label directive
   ngAfterViewInit() {
     if (this.helpTextDirective) {
       this.helpTextDirective.el.nativeElement.style.color = 'var(--zap-textarea-help-text-color)';

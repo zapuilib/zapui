@@ -30,7 +30,7 @@ export class ZapRadio<T> extends ControlValueAccessorDirective<T> {
   @Input() customErrorMessages: Record<string, string> = {};
   @Input() zapClass: string = '';
   @Input() variant: 'vertical' | 'horizontal' = 'vertical';
-
+  //TODO: Shoudl support  custom label directive
   get classes(): string[] {
     return [this.variant, this.zapClass].filter(
       (cls) => cls && cls !== 'default'

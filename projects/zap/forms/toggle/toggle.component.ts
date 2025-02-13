@@ -29,7 +29,7 @@ export class ZapToggle<T> extends ControlValueAccessorDirective<T> {
   @Input() text: string = '';
   @Input() zapClass: string = '';
   @Input() customErrorMessages: Record<string, string> = {};
-
+  //TODO: Shoudl support  custom label directive
   handleToggle(): void {
     this.control.setValue(!this.control.value);
   }

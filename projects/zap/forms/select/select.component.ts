@@ -120,6 +120,8 @@ export class ZapSelect<T> extends ControlValueAccessorDirective<T> {
     }
   }
 
+  //TODO: Shoudl support  custom label directive
+
   @Input()
   set options(newOptions: { label: string; value: any; [key: string]: any }[]) {
     this._options = newOptions || [];

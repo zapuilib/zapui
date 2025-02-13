@@ -206,6 +206,7 @@ export interface InputConfig {
         bgFocusColor?: HexCode;
         textFocusColor?: HexCode;
         iconColor?: HexCode;
+        helpTextColor?: HexCode;
       };
     };
     borderRadius?: string;
@@ -230,6 +231,10 @@ export interface InputConfig {
     iconFontWeight?: string;
     iconLineHeight?: string;
     iconLetterSpacing?: string;
+    helpTextFontSize?: string;
+    helpTextFontWeight?: string;
+    helpTextLineHeight?: string;
+    helpTextLetterSpacing?: string;
     width?: string;
     height?: string;
   };
@@ -253,6 +258,7 @@ export interface CheckboxConfig {
         borderCheckedColor?: HexCode;
         labelColor?: HexCode;
         labelHoverColor?: HexCode;
+        helpTextColor?: HexCode;
       };
     };
     borderRadius?: string;
@@ -267,6 +273,14 @@ export interface CheckboxConfig {
     fontWeight?: string;
     lineHeight?: string;
     letterSpacing?: string;
+    labelFontSize?: string;
+    labelFontWeight?: string;
+    labelLineHeight?: string;
+    labelLetterSpacing?: string;
+    helpTextFontSize?: string;
+    helpTextFontWeight?: string;
+    helpTextLineHeight?: string;
+    helpTextLetterSpacing?: string;
   };
 }
 
@@ -287,6 +301,7 @@ export interface RadioConfig {
         bgCheckedColor?: HexCode;
         borderCheckedColor?: HexCode;
         checkedColor?: HexCode;
+        helpTextColor?: HexCode;
       };
     };
     borderRadius?: string;
@@ -305,6 +320,10 @@ export interface RadioConfig {
     labelLineHeight?: string;
     letterSpacing?: string;
     labelLetterSpacing?: string;
+    helpTextFontSize?: string;
+    helpTextFontWeight?: string;
+    helpTextLineHeight?: string;
+    helpTextLetterSpacing?: string;
   }
 }
 
@@ -385,6 +404,10 @@ export interface ToggleConfig {
     fontWeight?: string;
     lineHeight?: string;
     letterSpacing?: string;
+    helpTextFontSize?: string;
+    helpTextFontWeight?: string;
+    helpTextLineHeight?: string;
+    helpTextLetterSpacing?: string;
   };
 }
 
@@ -446,6 +469,7 @@ export interface SelectConfig {
         chipBorderColor?: HexCode;
         dismissColor?: HexCode;
         dismissHoverColor?: HexCode;
+        helpTextColor?: HexCode;
       };
     };
     borderRadius?: string;
@@ -502,6 +526,10 @@ export interface SelectConfig {
     dismissFontWeight?: string;
     dismissLineHeight?: string;
     dismissLetterSpacing?: string;
+    helpTextFontSize?: string;
+    helpTextFontWeight?: string;
+    helpTextLineHeight?: string;
+    helpTextLetterSpacing?: string;
   };
 }
 

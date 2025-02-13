@@ -17,12 +17,10 @@ export function generateColorVariables(
   return cssVariables;
 }
 
-export function getExistingColor(root: HTMLElement, key: string): string {
-  if (typeof window !== 'undefined') {
-    const existingColor = getComputedStyle(root)
-      .getPropertyValue(`--zap-color-${key}`)
-      .trim();
+export function getExistingColor(
+  root: HTMLElement,
+  key: string,
+): string {
+    const existingColor = root.style.getPropertyValue(`--zap-color-${key}`).trim();
     return convertColorToRgb(existingColor);
-  }
-  return '';
 }

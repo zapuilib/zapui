@@ -1,12 +1,9 @@
 export function getExistingShapeFor(key: string, root: HTMLElement): string {
-  if (typeof window !== 'undefined') {
-    const existingShape = getComputedStyle(root)
-      .getPropertyValue(`--zap-${key}-border-radius`)
-      .trim();
-    const validShapes = ['pill', 'curve', 'default'];
-    return validShapes.includes(existingShape) ? existingShape : '';
-  }
-  return '';
+  const existingShape = root.style
+    .getPropertyValue(`--zap-${key}-border-radius`)
+    .trim();
+  const validShapes = ['pill', 'curve', 'default'];
+  return validShapes.includes(existingShape) ? existingShape : '';
 }
 
 export function getShapeCssValues(
@@ -32,13 +29,13 @@ export function getShapeCssValues(
     curve: '0.25rem',
   };
 
-  if (component === 'modal' || component === 'dialog') {
+   if (component === 'modal' || component === 'dialog') {
     shapeCssValue = modalDialogShapeValues[shapeValue] || shapeCssValue;
   } else if (component === 'checkbox') {
     shapeCssValue = checkboxValues[shapeValue] || shapeCssValue;
   } else {
     shapeCssValue = shapeValues[shapeValue] || shapeCssValue;
-  }
+  } 
 
   return { shapeCssValue };
 }

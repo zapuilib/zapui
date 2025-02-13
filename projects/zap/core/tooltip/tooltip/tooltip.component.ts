@@ -1,4 +1,4 @@
-import { Component, ContentChild, ElementRef, HostListener } from '@angular/core';
+import { Component, ContentChild, ElementRef, HostListener, Input, ViewChild } from '@angular/core';
 
 import { ZapTooltipHandler } from '../tooltip-handler/tooltip-handler.component';
 import { ZapTooltipContent } from '../tooltip-content/tooltip-content.component';
@@ -7,7 +7,7 @@ import { ZapTooltipContent } from '../tooltip-content/tooltip-content.component'
   selector: 'zap-tooltip',
   standalone: true,
   template: `
-    <div class="zap__tooltip">
+    <div #tooltip class="zap__tooltip">
       <ng-content select="zap-tooltip-handler"></ng-content>
       <ng-content select="zap-tooltip-content"></ng-content>
     </div>
@@ -15,12 +15,63 @@ import { ZapTooltipContent } from '../tooltip-content/tooltip-content.component'
   styleUrls: ['./tooltip.component.scss']
 })
 export class ZapTooltip {
+  @Input() shape: 'curve' | 'pill' | 'flat' = 'flat';
+  @Input() position: 'top' | 'bottom' | 'left' | 'right' | 'auto' = 'left';
+  @ViewChild('tooltip', { static: true }) tooltip!: ElementRef;
   @ContentChild(ZapTooltipHandler) handler!: ZapTooltipHandler;
   @ContentChild(ZapTooltipContent) content!: ZapTooltipContent;
 
   @HostListener('mouseenter')
   onMouseEnter() {
     this.content.show();
+    this.adjustPosition();
+  }
+
+  private adjustPosition() {
+    const holderElement = this.tooltip.nativeElement;
+    const contentElement = this.content.contentElement.nativeElement;
+    const holderRect = holderElement.getBoundingClientRect();
+    const contentRect = contentElement.getBoundingClientRect();
+    const viewportHeight = window.innerHeight;
+    const spaceBelow = viewportHeight - holderRect.bottom;
+    const spaceAbove = holderRect.top;
+
+    
+    if (this.position === 'auto') {
+      if (
+      spaceBelow < contentRect.height &&
+      spaceAbove > contentRect.height
+      ) {
+      contentElement.style.top = 'auto';
+      contentElement.style.bottom = `${holderRect.height + 5}px`;
+      } else {
+      contentElement.style.top = `${holderRect.height}px`;
+      contentElement.style.bottom = 'auto';
+      }
+    } else {
+      switch (this.position) {
+      case 'top':
+        contentElement.style.top = 'auto';
+        contentElement.style.bottom = `${holderRect.height + 5}px`;
+        break;
+      case 'bottom':
+        contentElement.style.top = `${holderRect.height}px`;
+        contentElement.style.bottom = 'auto';
+        break;
+      case 'left':
+        contentElement.style.left = 'auto';
+        contentElement.style.right = `${holderRect.width + 5}px`;
+        contentElement.style.top = '50%';
+        contentElement.style.transform = 'translateY(-50%)';
+        break;
+      case 'right':
+        contentElement.style.left = `${holderRect.width + 5}px`;
+        contentElement.style.right = 'auto';
+        contentElement.style.top = '50%';
+        contentElement.style.transform = 'translateY(-50%)';
+        break;
+      }
+    }
   }
 
   @HostListener('mouseleave')

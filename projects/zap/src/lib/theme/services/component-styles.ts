@@ -18,7 +18,7 @@ export function generateComponentStylesVariables(
 ): string {
   let cssVariables = '';
   Object.entries(styles).forEach(([styleKey, styleValue]) => {
-    if (styleKey === 'padding' && typeof styleValue === 'string') {
+    if ((styleKey === 'padding'  && typeof styleValue === 'string') || (styleKey.endsWith('Padding') && typeof styleValue === 'string')) {
       cssVariables += handlePaddingStyles(componentKey, styleValue);
     } else if (styleKey === 'colors' && config.theme) {
       if (typeof styleValue === 'object' && styleValue[config.theme]) {

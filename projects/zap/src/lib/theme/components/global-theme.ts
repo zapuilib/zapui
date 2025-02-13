@@ -16,6 +16,8 @@ export function generateComponentGlobalVariables(
     'radio',
     'textarea',
     'select',
+    'tooltip-content',
+    'tooltip-handler',
   ];
   let cssVariables = '';
   let existingShape = '';

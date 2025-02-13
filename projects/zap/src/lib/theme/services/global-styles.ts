@@ -13,6 +13,7 @@ import { getDefaultTextareaSizeCssValues } from '../components/textarea-theme';
 import { getDefaultToggleSizeCssValues } from '../components/toggle-theme';
 import { getDefaultAccordionSizeCssValues } from '../components/accordion-theme';
 import { getDefaultSelectSizeCssValues } from '../components/select-theme';
+import { getDefaultTooltipSizeCssValues } from '../components/tooltip-theme';
 
 /**
  * This function generates the global styles for the all the components
@@ -695,6 +696,7 @@ export function generateGlobalStylesVariables(
   cssVariables += getDefaultToggleSizeCssValues();
   cssVariables += getDefaultAccordionSizeCssValues();
   cssVariables += getDefaultSelectSizeCssValues();
+  cssVariables += getDefaultTooltipSizeCssValues();
 
   return cssVariables;
 }

@@ -18,6 +18,7 @@ export interface ZapConfig {
     toggle?: ToggleConfig;
     accordion?: AccordionConfig;
     select?: SelectConfig;
+    tooltip?: TooltipConfig;
   };
 }
 
@@ -35,7 +36,7 @@ type CommonStyles = {
   lineHeight?: string;
   letterSpacing?: string;
   textTransform?: string;
-}
+};
 
 export interface ButtonConfig {
   shape?: ShapeType;
@@ -165,7 +166,7 @@ export interface DialogConfig {
   };
 }
 
-export interface ModalConfig { 
+export interface ModalConfig {
   shape?: ShapeType;
   styles?: {
     colors?: {
@@ -174,8 +175,8 @@ export interface ModalConfig {
         borderColor?: HexCode;
         dismissColor?: HexCode;
         dismissHoverColor?: HexCode;
-      }
-    },
+      };
+    };
     borderRadius?: string;
     paddingLeft?: string;
     paddingRight?: string;
@@ -324,7 +325,7 @@ export interface RadioConfig {
     helpTextFontWeight?: string;
     helpTextLineHeight?: string;
     helpTextLetterSpacing?: string;
-  }
+  };
 }
 
 export interface TextareaConfig {
@@ -437,7 +438,7 @@ export interface AccordionConfig {
   };
 }
 
-export interface SelectConfig { 
+export interface SelectConfig {
   shape?: ShapeType;
   size?: 'base' | 'compact';
   styles?: {
@@ -533,9 +534,44 @@ export interface SelectConfig {
   };
 }
 
+export interface TooltipConfig {
+  shape?: ShapeType;
+  position?: 'top' | 'bottom' | 'left' | 'right' | 'auto';
+  styles?: {
+    colors?: {
+      [theme: string]: {
+        handlerBgColor?: HexCode;
+        handlerTextColor?: HexCode;
+        handlerBorderColor?: HexCode;
+        handlerBgHoverColor?: HexCode;
+        handlerTextHoverColor?: HexCode;
+        handlerBorderHoverColor?: HexCode;
+        contentBgColor?: HexCode;
+        contentTextColor?: HexCode;
+        contentBorderColor?: HexCode;
+      };
+    };
+    contentBorderRadius?: string;
+    contentPaddingLeft?: string;
+    contentPaddingRight?: string;
+    contentPaddingTop?: string;
+    contentPaddingBottom?: string;
+    contentPadding?: Padding;
+    contentFontSize?: string;
+    contentFontWeight?: string;
+    contentLineHeight?: string;
+    contentLetterSpacing?: string;
+    handlerBorderRadius?: string;
+    handlerFontSize?: string;
+    handlerFontWeight?: string;
+    handlerLineHeight?: string;
+    handlerLetterSpacing?: string;
+  };
+}
+
 export interface GlobalConfig {
   shape?: ShapeType;
-  styles?: {}
+  styles?: {};
 }
 
 type ShapeType = 'flat' | 'curve' | 'pill';

@@ -1,7 +1,6 @@
 .__zap__form__control {
   @apply flex flex-col gap-y-2 w-full;
 
-
   fieldset {
     @apply relative outline-none;
 
@@ -47,7 +46,7 @@
       @apply text-sm px-2 py-1.5;
     }
 
-    .__zap__form__control__search { 
+    .__zap__form__control__search {
       @apply text-sm py-1.5;
     }
 
@@ -64,7 +63,7 @@
     }
   }
 
-  &__select { 
+  &__select {
     @apply w-full border border-[var(--zap-select-border-color)] bg-[var(--zap-select-bg-color)] hover:bg-[var(--zap-select-bg-hover-color)] text-[var(--zap-select-text-color)] hover:border-[var(--zap-select-border-hover-color)] hover:text-[var(--zap-select-text-hover-color)];
     @apply focus-within:outline-0;
     @apply cursor-pointer relative rounded-[var(--zap-select-border-radius)];
@@ -90,7 +89,7 @@
   }
 
   &__select:focus {
-    @apply  ring-2 ring-[var(--zap-select-ring-focus-color)];
+    @apply ring-2 ring-[var(--zap-select-ring-focus-color)];
   }
 
   .__zap__form__control__search__icon {
@@ -109,6 +108,10 @@
 
   .__zap__form__control__options {
     @apply w-full border absolute top-auto mt-1 z-10 max-h-[250px] overflow-y-auto rounded-[var(--zap-select-options-border-radius)] border-[var(--zap-select-options-border-color)] bg-[var(--zap-select-options-bg-color)] text-[var(--zap-select-options-text-color)];
+
+    & > fieldset {
+      @apply sticky top-0 z-30 bg-[var(--zap-select-search-bg-color)];
+    }
 
     .__zap__form__control__option {
       @apply w-full border cursor-pointer flex gap-x-3 items-center;
@@ -134,13 +137,12 @@
     @apply pl-[var(--zap-select-checkbox-padding-left)] pr-[var(--zap-select-checkbox-padding-right)] pt-[var(--zap-select-checkbox-padding-top)] pb-[var(--zap-select-checkbox-padding-bottom)];
     @apply h-[var(--zap-select-checkbox-height)] w-[var(--zap-select-checkbox-width)];
     @apply rounded-[var(--zap-select-checkbox-border-radius)];
-  
 
     &.checked {
       @apply border-[var(--zap-select-checkbox-checked-border-color)] bg-[var(--zap-select-checkbox-checked-bg-color)];
 
       &::after {
-        @apply content-['\f00c'] font-icon absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 ;
+        @apply content-['\f00c'] font-icon absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2;
         @apply text-[var(--zap-select-checkbox-checked-color)];
       }
     }

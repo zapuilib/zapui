@@ -1,4 +1,4 @@
-import { Directive, Inject, Injector, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Directive, Inject, Injector, OnInit } from '@angular/core';
 import {
   ControlValueAccessor,
   FormControl,
@@ -27,7 +27,7 @@ export class ControlValueAccessorDirective<T>
     shape: '',
   };
 
-  constructor(@Inject(Injector) private injector: Injector) {}
+  constructor(@Inject(Injector) private injector: Injector, protected cdr: ChangeDetectorRef) {}
 
   ngOnInit(): void {
     this.setFormControl();

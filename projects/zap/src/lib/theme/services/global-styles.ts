@@ -286,7 +286,7 @@ export function generateGlobalStylesVariables(
       {
         label: 'help-text-color',
         value: hexToRgba(theme.colors.secondary, 0.5),
-      }
+      },
     ],
     checkbox: [
       {
@@ -400,7 +400,7 @@ export function generateGlobalStylesVariables(
       {
         label: 'help-text-color',
         value: hexToRgba(theme.colors.secondary, 0.5),
-      }
+      },
     ],
     toggle: [
       {
@@ -639,6 +639,10 @@ export function generateGlobalStylesVariables(
         label: 'selected-text-hover-color',
         value: theme.colors.secondary,
       },
+      {
+        label: 'search-bg-color',
+        value: theme.colors.primary,
+      },
     ],
     tooltip: [
       {
@@ -656,8 +660,8 @@ export function generateGlobalStylesVariables(
       {
         label: 'content-border-color',
         value: hexToRgba(theme.colors.secondary, 0.1),
-      }
-    ]
+      },
+    ],
   };
 
   for (const [component, stylesArray] of Object.entries(styles)) {

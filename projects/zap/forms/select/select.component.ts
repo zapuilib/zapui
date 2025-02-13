@@ -63,17 +63,13 @@ export class ZapSelect<T> extends ControlValueAccessorDirective<T> {
   @Input() async: boolean = false;
   @Input() optionTemplate?: TemplateRef<any>;
   @Input() selectedTemplate?: TemplateRef<any>;
+  @Input() position: 'top' | 'bottom' | 'auto' = 'bottom';
   private _options: { label: string; value: any; [key: string]: any }[] = [];
   isOptionListOpen: boolean = false;
   hoveredOption: string = '';
   selectedOptionValue: string[] = [];
   filteredOptions: any[] = [];
 
-  // TODO: Implement an escape key handler to close the select dropdown when the escape key is pressed.
-  // TODO: Close the select dropdown when the user clicks outside of the select component.
-  // TODO: Add custom positioning logic for the options dropdown based on the select component's position in the viewport.
-  // TODO: The dropdown should open either upwards or downwards depending on the available space in the viewport.
-  // TODO: On searchable select, when you click it should focus on the search input, its not always working, to recreate try to click multiple times on the select input.
   //TODO: Support custom icon (not a font) via iconTemplate
   //DISCUSSION: Should we support directive for option template? and selected template? instead of templateRef smae with other component that has it??
   //TODO: add a help text
@@ -101,6 +97,13 @@ export class ZapSelect<T> extends ControlValueAccessorDirective<T> {
     }
   }
 
+  @HostListener('document:keydown.escape', ['$event'])
+  onEscapePress(event: KeyboardEvent): void {
+    if (this.isOptionListOpen) {
+      this.toggleOptionsList();
+    }
+  }
+
   override ngOnInit(): void {
     super.ngOnInit();
     this.filteredOptions = [...this._options];
@@ -117,6 +120,38 @@ export class ZapSelect<T> extends ControlValueAccessorDirective<T> {
     }
   }
 
+  handleSelectOptionPosition(): void {
+    if (this.optionList) {
+      const optionListElement = this.optionList.nativeElement;
+      const inputElement = this.inputSelectValueHolder.nativeElement;
+      const inputRect = inputElement.getBoundingClientRect();
+      const optionListRect = optionListElement.getBoundingClientRect();
+      const viewportHeight = window.innerHeight;
+
+      const spaceBelow = viewportHeight - inputRect.bottom;
+      const spaceAbove = inputRect.top;
+
+      if (this.position === 'auto') {
+        if (
+          spaceBelow < optionListRect.height &&
+          spaceAbove > optionListRect.height
+        ) {
+          optionListElement.style.top = 'auto';
+          optionListElement.style.bottom = `${inputRect.height + 5}px`;
+        } else {
+          optionListElement.style.top = `${inputRect.height}px`;
+          optionListElement.style.bottom = 'auto';
+        }
+      } else if (this.position === 'top') {
+        optionListElement.style.top = 'auto';
+        optionListElement.style.bottom = `${inputRect.height + 5}px`;
+      } else {
+        optionListElement.style.top = `${inputRect.height}px`;
+        optionListElement.style.bottom = 'auto';
+      }
+    }
+  }
+
   checkIfEmpty(): void {
     this.control.valueChanges.subscribe((value) => {
       if (!value || (Array.isArray(value) && value.length === 0)) {
@@ -128,15 +163,17 @@ export class ZapSelect<T> extends ControlValueAccessorDirective<T> {
 
   toggleOptionsList(): void {
     this.isOptionListOpen = !this.isOptionListOpen;
+    this.cdr.detectChanges();
     if (this.isOptionListOpen) {
-      setTimeout(() => {
-        this.search?.nativeElement?.focus();
-      });
+      if (this.search) {
+        this.search.nativeElement.focus();
+      }
     } else {
       this.control.markAsTouched();
     }
     this.hoveredOption = '';
     this.filteredOptions = this.options;
+    this.handleSelectOptionPosition();
   }
 
   handleSearch(event: Event): void {

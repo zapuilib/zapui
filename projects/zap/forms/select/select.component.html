@@ -1,13 +1,9 @@
 <div
   class="__zap__form__control"
-  [ngClass]="[zapClass, size, shape, icon ? iconPosition : '']"
+  [ngClass]="[zapClass, size, shape, icon || iconDirective ? iconPosition : '']"
 >
   @if(label){
-  <label
-    [for]="id"
-    class="__zap__form__control__label"
-    >{{ label }}</label
-  >
+  <label [for]="id" class="__zap__form__control__label">{{ label }}</label>
   }
   <div class="field__wrapper">
     <fieldset
@@ -17,19 +13,23 @@
       [id]="id"
       tabindex="0"
     >
-    @if(label) {
+      @if(label) {
       <legend class="sr-only">{{ label }}</legend>
-    }
-      @if(icon && iconPosition) {
+      } @if(icon && iconPosition) {
       <i
         class="fa-solid __zap__form__control__icon"
         [ngClass]="[icon, iconPosition]"
       ></i>
-      } @if(selectedTemplate && selectedOptionValue.length > 0 && !multiselect)
+      } @else if (iconDirective) {
+      <ng-content select="[zapFormFieldIcon]"></ng-content>
+      }
+       @if(selectedTemplate && selectedOptionValue.length > 0 && !multiselect)
       {
       <ng-container
         [ngTemplateOutlet]="selectedTemplate"
-        [ngTemplateOutletContext]="{ $implicit: getSelectedOption(selectedOptionValue[0]) }"
+        [ngTemplateOutletContext]="{
+          $implicit: getSelectedOption(selectedOptionValue[0])
+        }"
       ></ng-container>
       } @else if(selectedOptionValue.length > 0 && !multiselect) {
       <p class="__zap__form__control__selected">
@@ -47,9 +47,7 @@
         }
       </div>
       } @else {
-      <span
-        class="__zap__form__control__placeholder"
-      >
+      <span class="__zap__form__control__placeholder">
         {{ placeholder }}
       </span>
       }
@@ -64,16 +62,10 @@
       </div>
     </fieldset>
     @if(isOptionListOpen) {
-    <div
-      #optionList
-      class="__zap__form__control__options"
-      role="list"
-    >
+    <div #optionList class="__zap__form__control__options" role="list">
       @if(searchable) {
       <fieldset>
-        <i
-          class="fa-solid fa-search __zap__form__control__search__icon"
-        ></i>
+        <i class="fa-solid fa-search __zap__form__control__search__icon"></i>
         <input
           #search
           type="text"
@@ -117,17 +109,18 @@
         }
       </div>
       } } @else {
-      <div
-        class="__zap__form__control__option __no__options"
-        role="listitem"
-      >
+      <div class="__zap__form__control__option __no__options" role="listitem">
         {{ notFound }}
       </div>
       }
     </div>
     }
   </div>
-  @if(control.invalid && control.touched) {
+  @if(helpText) {
+  <p class="__zap__form__control__help__text">{{ helpText }}</p>
+  } @else if (helpTextDirective) {
+  <ng-content select="[zapFormFieldHelpText]"></ng-content>
+  } @if(control.invalid && control.touched) {
   <div class="mt-30">
     <validation-error
       [errors]="control.errors"

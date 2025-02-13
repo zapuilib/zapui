@@ -87,5 +87,7 @@ export function getDefaultSelectSizeCssValues(): string {
         --zap-select-checkbox-padding-top: 0.25rem;
         --zap-select-checkbox-padding-bottom: 0.25rem;
         --zap-select-checkbox-border-width: 0.125rem;
+        --zap-select-help-text-font-size: 0.875rem;
+        --zap-select-icon-font-size: 0.875rem;
     `;
 }

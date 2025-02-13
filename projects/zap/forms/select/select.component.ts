@@ -1,5 +1,6 @@
 import {
   Component,
+  ContentChild,
   ElementRef,
   EventEmitter,
   forwardRef,
@@ -18,6 +19,10 @@ import { CommonModule } from '@angular/common';
 
 import { ControlValueAccessorDirective } from '../directives/control-value-accessor.directive';
 import { ValidationErrorComponent } from '../validation-error/validation-error.component';
+import {
+  ZapFormFieldHelpTextDirective,
+  ZapFormFieldIconDirective,
+} from '../public-api';
 
 @Component({
   selector: 'zap-select',
@@ -64,15 +69,55 @@ export class ZapSelect<T> extends ControlValueAccessorDirective<T> {
   @Input() optionTemplate?: TemplateRef<any>;
   @Input() selectedTemplate?: TemplateRef<any>;
   @Input() position: 'top' | 'bottom' | 'auto' = 'bottom';
+  @Input() helpText: string = '';
   private _options: { label: string; value: any; [key: string]: any }[] = [];
   isOptionListOpen: boolean = false;
   hoveredOption: string = '';
   selectedOptionValue: string[] = [];
   filteredOptions: any[] = [];
+  @ContentChild(ZapFormFieldIconDirective, { static: false })
+  iconDirective!: ZapFormFieldIconDirective;
+  @ContentChild(ZapFormFieldHelpTextDirective, { static: false })
+  helpTextDirective!: ZapFormFieldHelpTextDirective;
 
-  //TODO: Support custom icon (not a font) via iconTemplate
+  ngAfterViewInit() {
+    if (this.iconDirective) {
+      this.iconDirective.el.nativeElement.style.height =
+        'var(--zap-select-icon-font-size)';
+      this.iconDirective.el.nativeElement.style.fontSize =
+        'var(--zap-select-icon-font-size)';
+      this.iconDirective.el.nativeElement.style.color =
+        'var(--zap-select-icon-color)';
+      this.iconDirective.el.nativeElement.style.marginRight =
+        this.iconPosition === 'left' ? '8px' : '0';
+      this.iconDirective.el.nativeElement.style.marginLeft =
+        this.iconPosition === 'right' ? '8px' : '0';
+      this.iconDirective.el.nativeElement.style.order =
+        this.iconPosition === 'right' ? '1' : '0';
+      this.iconDirective.el.nativeElement.style.position = 'absolute';
+      this.iconDirective.el.nativeElement.style.top = '50%';
+      this.iconDirective.el.nativeElement.style.transform = 'translateY(-50%)';
+      this.iconDirective.el.nativeElement.style.left =
+        this.iconPosition === 'left' ? '0.75rem' : 'auto';
+      this.iconDirective.el.nativeElement.style.right =
+        this.iconPosition === 'right' ? '0.75rem' : 'auto';
+    }
+
+    if (this.helpTextDirective) {
+      this.helpTextDirective.el.nativeElement.style.color =
+        'var(--zap-select-help-text-color)';
+      this.helpTextDirective.el.nativeElement.style.fontSize =
+        'var(--zap-select-help-text-font-size)';
+      this.helpTextDirective.el.nativeElement.style.fontWeight =
+        'var(--zap-select-help-text-font-weight)';
+      this.helpTextDirective.el.nativeElement.style.lineHeight =
+        'var(--zap-select-help-text-line-height)';
+      this.helpTextDirective.el.nativeElement.style.letterSpacing =
+        'var(--zap-select-help-text-letter-spacing)';
+    }
+  }
+
   //DISCUSSION: Should we support directive for option template? and selected template? instead of templateRef smae with other component that has it??
-  //TODO: add a help text
 
   @Input()
   set options(newOptions: { label: string; value: any; [key: string]: any }[]) {

@@ -117,8 +117,6 @@ export class ZapSelect<T> extends ControlValueAccessorDirective<T> {
     }
   }
 
-  //DISCUSSION: Should we support directive for option template? and selected template? instead of templateRef smae with other component that has it??
-
   @Input()
   set options(newOptions: { label: string; value: any; [key: string]: any }[]) {
     this._options = newOptions || [];

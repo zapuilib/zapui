@@ -264,6 +264,8 @@ export class ZapSelect<T> extends ControlValueAccessorDirective<T> {
       this.control.setValue(this.selectedOptionValue);
       this.change.emit(this.selectedOptionValue);
     }
+    this.cdr.detectChanges();
+    this.handleSelectOptionPosition();
   }
 
   getSelected(value: string): string {

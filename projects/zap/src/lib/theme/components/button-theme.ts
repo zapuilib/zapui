@@ -1,4 +1,4 @@
-import { ButtonConfig } from '../../interfaces/config.interface';
+import { ButtonConfig } from '../../interfaces';
 import { getExistingShapeFor, getShapeCssValues } from '../utils/shape-utils';
 
 /**

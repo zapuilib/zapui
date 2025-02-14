@@ -1,4 +1,4 @@
-import { SelectConfig } from '../../interfaces/config.interface';
+import { SelectConfig } from '../../interfaces';
 import { getExistingShapeFor, getShapeCssValues } from '../utils/shape-utils';
 
 export function generateComponentSelectVariables(

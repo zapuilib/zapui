@@ -1,4 +1,4 @@
-import { TextareaConfig } from '../../interfaces/config.interface';
+import { TextareaConfig } from '../../interfaces';
 import { getExistingShapeFor, getShapeCssValues } from '../utils/shape-utils';
 
 export function generateComponentTextareaVariables(

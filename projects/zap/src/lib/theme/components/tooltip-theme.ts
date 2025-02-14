@@ -1,4 +1,4 @@
-import { TooltipConfig } from '../../interfaces/config.interface';
+import { TooltipConfig } from '../../interfaces';
 import { getExistingShapeFor, getShapeCssValues } from '../utils/shape-utils';
 
 export function generateComponentTooltipVariables(

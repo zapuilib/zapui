@@ -1,4 +1,4 @@
-import { InputConfig } from '../../interfaces/config.interface';
+import { InputConfig } from '../../interfaces';
 import { getExistingShapeFor, getShapeCssValues } from '../utils/shape-utils';
 
 export function generateComponentInputVariables(

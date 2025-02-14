@@ -1,4 +1,4 @@
-import { HexCode } from '../../interfaces/config.interface';
+import { HexCode } from '../../interfaces';
 import { toKebabCase } from '../utils/base-theme-utils';
 import { handlePaddingStyles } from '../utils/padding-utils';
 

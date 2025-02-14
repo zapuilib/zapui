@@ -1,4 +1,4 @@
-import { ChipConfig } from '../../interfaces/config.interface';
+import { ChipConfig } from '../../interfaces';
 import { getExistingShapeFor, getShapeCssValues } from '../utils/shape-utils';
 
 /**

@@ -9,13 +9,14 @@
   
   svg {
     @apply transition-all duration-150 ease-linear;
-
+    
     path {
       @apply fill-current;
     }
     
     &.open {
-      @apply transform rotate-180;
+      @apply transform;
+      transform: rotate(180deg);
     }
   }
 }

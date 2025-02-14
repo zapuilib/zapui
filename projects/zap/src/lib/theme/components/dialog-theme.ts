@@ -1,4 +1,4 @@
-import { DialogConfig } from '../../interfaces/config.interface';
+import { DialogConfig } from '../../interfaces';
 import { getExistingShapeFor, getShapeCssValues } from '../utils/shape-utils';
 
 export function generateComponentDialogVariables(

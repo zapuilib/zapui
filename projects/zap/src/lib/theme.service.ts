@@ -2,7 +2,7 @@ import { Inject, Injectable, Optional, PLATFORM_ID } from '@angular/core';
 import { DOCUMENT, isPlatformBrowser } from '@angular/common';
 
 import { NGX_ZAP_CONFIG } from './tokens/zap.tokens';
-import { AlertConfig, ButtonConfig, ChipConfig, DialogConfig, InputConfig, ModalConfig, SelectConfig, TextareaConfig, TooltipConfig, ZapConfig, ZapTheme } from '../public-api';
+import { AlertConfig, ButtonConfig, ChipConfig, DialogConfig, InputConfig, ModalConfig, SelectConfig, TextareaConfig, TooltipConfig, ZapConfig, ZapTheme } from './interfaces';
 import {
   lightTheme,
   defaultConfig,

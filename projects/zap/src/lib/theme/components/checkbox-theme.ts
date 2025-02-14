@@ -1,4 +1,4 @@
-import { CheckboxConfig } from "../../interfaces/config.interface";
+import { CheckboxConfig } from "../../interfaces";
 import { getExistingShapeFor, getShapeCssValues } from "../utils/shape-utils";
 
 export function generateComponentCheckboxVariables(

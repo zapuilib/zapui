@@ -1,5 +1,7 @@
 import {
+  AfterViewInit,
   Component,
+  ContentChild,
   EventEmitter,
   Host,
   Input,
@@ -9,6 +11,7 @@ import {
 import { CommonModule } from '@angular/common';
 
 import { ZapAccordionItem } from '../accordion-item/accordion-item.component';
+import { ZapIconDirective } from '../../public-api';
 
 @Component({
   standalone: true,
@@ -22,7 +25,9 @@ import { ZapAccordionItem } from '../accordion-item/accordion-item.component';
     [ngClass]="variant"
   >
     <ng-content></ng-content>
-    @switch(icon) { @case('chevron') {
+    @if(iconDirective) {
+    <ng-content select="[zapIcon]"></ng-content>
+    } @else { @switch(icon) { @case('chevron') {
     <svg
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 448 512"
@@ -53,19 +58,27 @@ import { ZapAccordionItem } from '../accordion-item/accordion-item.component';
       />
       }
     </svg>
-    } }
+    } } }
   </div>`,
   styleUrl: './accordion-header.component.scss',
 })
-export class ZapAccordionHeader {
+export class ZapAccordionHeader implements AfterViewInit {
   @Input() variant: 'default' | 'nounderline' = 'default';
   @Input() icon: 'chevron' | 'plus' = 'chevron';
   @Output() toggle: EventEmitter<void> = new EventEmitter<void>();
+  @ContentChild(ZapIconDirective, { static: false })
+  iconDirective!: ZapIconDirective;
 
   constructor(@Optional() @Host() private accordionItem: ZapAccordionItem) {}
 
   get isOpen(): boolean {
     return this.accordionItem ? this.accordionItem.isOpen : false;
+  }
+
+  ngAfterViewInit() {
+    if (this.iconDirective) {
+      this.iconDirective.el.nativeElement.style.height = '12px';
+    }
   }
 
   onToggle() {

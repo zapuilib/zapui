@@ -1,4 +1,4 @@
-import { AlertConfig } from "../../interfaces/config.interface";
+import { AlertConfig } from "../../interfaces";
 import { getExistingShapeFor, getShapeCssValues } from "../utils/shape-utils";
 
 export function generateComponentAlertVariables(

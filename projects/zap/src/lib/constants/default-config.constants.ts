@@ -17,7 +17,7 @@ export const lightTheme: ZapTheme = {
   colors: {
     primary: '#FFFFFF',
     secondary: '#09090B',
-    tertiary: '#1098F7',
+    tertiary: '#09090B',
     quaternary: '#e4e4e7',
     success: '#28a745',
     successText: '#FFFFFF',

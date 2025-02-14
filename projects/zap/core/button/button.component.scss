@@ -49,7 +49,7 @@ button {
   }
 
   &:disabled {
-    @apply bg-[var(--zap-button-disabled-bg-color)] text-[var(--zap-button-disabled-text-color)] border-[var(--zap-button-disabled-border-color)];
+    @apply bg-[var(--zap-button-disabled-bg-color)] text-[var(--zap-button-disabled-text-color)] border-[var(--zap-button-disabled-border-color)] cursor-not-allowed;
   }
 
   &.outlined {
@@ -74,6 +74,10 @@ button {
     &.pill {
       @apply px-3 py-3;
     }
+
+    &.curve {
+      @apply py-3;
+    }
   }
 
   &.link {
@@ -96,20 +100,56 @@ button {
   &.info {
     @apply bg-info text-infoText border-info;
     @apply hover:bg-info/80 hover:border-info/80;
+
+    &.outlined {
+      @apply text-info/80 border-info/80 bg-transparent;
+      @apply hover:text-info hover:border-info;
+    }
+
+    &.link {
+      @apply text-info/80 hover:text-info;
+    }
   }
 
   &.success {
     @apply bg-success text-successText border-success;
     @apply hover:bg-success/80 hover:border-success/80;
+
+    &.outlined {
+      @apply text-success/80 border-success/80 bg-transparent;
+      @apply hover:text-success hover:border-success;
+    }
+
+    &.link {
+      @apply text-success/80 hover:text-success;
+    }
   }
 
   &.warning {
     @apply bg-warning text-warningText border-warning;
     @apply hover:bg-warning/80 hover:border-warning/80;
+
+    &.outlined {
+      @apply text-warning/80 border-warning/80 bg-transparent;
+      @apply hover:text-warning hover:border-warning;
+    }
+
+    &.link {
+      @apply text-warning/80 hover:text-warning;
+    }
   }
 
   &.error {
     @apply bg-error text-errorText border-error;
     @apply hover:bg-error/80 hover:border-error/80;
+
+    &.outlined {
+      @apply text-error/80 border-error/80 bg-transparent;
+      @apply hover:text-error hover:border-error;
+    }
+
+    &.link {
+      @apply text-error/80 hover:text-error;
+    }
   }
 }

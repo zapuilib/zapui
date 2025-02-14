@@ -1,4 +1,4 @@
-import { ModalConfig } from '../../interfaces/config.interface';
+import { ModalConfig } from '../../interfaces';
 import { getExistingShapeFor, getShapeCssValues } from '../utils/shape-utils';
 
 export function generateComponentModalVariables(

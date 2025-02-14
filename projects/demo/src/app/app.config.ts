@@ -98,6 +98,7 @@ const ngxConfig: ZapConfig = {
         // this will replace global and root and priority is given based on the order of each style passed
         colors: {
           dark: {
+            // iconColor: '#4CB963',
             // bgColor: '#1877F2',
             // textColor: '#FFFFFF',
             // borderColor: '#1877F2',

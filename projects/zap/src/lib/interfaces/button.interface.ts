@@ -18,6 +18,7 @@ export interface ButtonConfig {
         disabledBgColor?: HexCode;
         disabledTextColor?: HexCode;
         disabledBorderColor?: HexCode;
+        iconColor?: HexCode;
       };
     };
   } & CommonStyles;

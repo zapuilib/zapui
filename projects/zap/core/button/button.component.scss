@@ -59,7 +59,7 @@ button {
   }
 
   i {
-    @apply mr-2;
+    @apply mr-2 text-[var(--zap-button-icon-color)];
 
     &.right {
       @apply mr-0 ml-2 order-2;

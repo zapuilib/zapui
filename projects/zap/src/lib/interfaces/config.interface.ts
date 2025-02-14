@@ -536,7 +536,6 @@ export interface SelectConfig {
 
 export interface TooltipConfig {
   shape?: ShapeType;
-  position?: 'top' | 'bottom' | 'left' | 'right' | 'auto';
   styles?: {
     colors?: {
       [theme: string]: {

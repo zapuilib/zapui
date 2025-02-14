@@ -1,5 +1,5 @@
-import { TooltipConfig } from "../../interfaces/config.interface";
-import { getExistingShapeFor, getShapeCssValues } from "../utils/shape-utils";
+import { TooltipConfig } from '../../interfaces/config.interface';
+import { getExistingShapeFor, getShapeCssValues } from '../utils/shape-utils';
 
 export function generateComponentTooltipVariables(
   value: TooltipConfig,
@@ -7,7 +7,6 @@ export function generateComponentTooltipVariables(
 ) {
   let cssVariables = '';
   const existingShape = getExistingShapeFor('tooltip', root);
-  const positionValue = value.position || 'left';
   const tooltipShapeValue = existingShape || value.shape || '';
 
   if (tooltipShapeValue) {
@@ -16,21 +15,14 @@ export function generateComponentTooltipVariables(
     cssVariables += `--zap-tooltip-handler-border-radius: ${shapeCssValue};\n`;
   }
 
-  if (positionValue) {
-    console.log('positionValue', positionValue);
-    //TODO: Add position based on the value
-  } 
-
   return cssVariables;
 }
 
-
 export function getDefaultTooltipSizeCssValues(): string {
-    return `
+  return `
     --zap-tooltip-content-padding-left: 0.5rem;
     --zap-tooltip-content-padding-right: 0.5rem;
     --zap-tooltip-content-padding-top: 0.25rem;
     --zap-tooltip-content-padding-bottom: 0.25rem;
     `;
-  }
-  
+}

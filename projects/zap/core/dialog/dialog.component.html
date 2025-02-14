@@ -11,7 +11,7 @@
   <ng-content></ng-content>
 
   <div class="__ngx__zap__dialog__footer">
-    @if (hasZapBtn) {
+    @if (btnDirective) {
     <ng-content select="[zapDialogButton]"></ng-content>
     } @else {
     <button class="btn secondary" (click)="cancel.emit()">No, cancel</button>

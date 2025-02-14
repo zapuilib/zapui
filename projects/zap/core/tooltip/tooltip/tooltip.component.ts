@@ -16,7 +16,7 @@ import { ZapTooltipContent } from '../tooltip-content/tooltip-content.component'
 })
 export class ZapTooltip {
   @Input() shape: 'curve' | 'pill' | 'flat' = 'flat';
-  @Input() position: 'top' | 'bottom' | 'left' | 'right' | 'auto' = 'left';
+  @Input() position: 'top' | 'bottom' | 'left' | 'right' | 'auto' = 'auto';
   @ViewChild('tooltip', { static: true }) tooltip!: ElementRef;
   @ContentChild(ZapTooltipHandler) handler!: ZapTooltipHandler;
   @ContentChild(ZapTooltipContent) content!: ZapTooltipContent;
@@ -39,14 +39,14 @@ export class ZapTooltip {
     
     if (this.position === 'auto') {
       if (
-      spaceBelow < contentRect.height &&
-      spaceAbove > contentRect.height
+        spaceAbove < contentRect.height &&
+        spaceBelow > contentRect.height
       ) {
-      contentElement.style.top = 'auto';
-      contentElement.style.bottom = `${holderRect.height + 5}px`;
+        contentElement.style.top = `${holderRect.height}px`;
+        contentElement.style.bottom = 'auto';
       } else {
-      contentElement.style.top = `${holderRect.height}px`;
-      contentElement.style.bottom = 'auto';
+        contentElement.style.top = 'auto';
+        contentElement.style.bottom = `${holderRect.height + 5}px`;
       }
     } else {
       switch (this.position) {

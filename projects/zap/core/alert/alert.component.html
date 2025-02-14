@@ -1,11 +1,9 @@
 <div class="__ngx__zap__alert" [ngClass]="classes">
-  <!-- main.ts:5 ERROR RuntimeError: NG0100: ExpressionChangedAfterItHasBeenCheckedError: Expression has changed after it was checked. Previous value: '5'. Current value: '4'. Expression location: _ZapAlert component. Find more at https://angular.dev/errors/NG0100
-    at ZapAlert_Template (alert.component.html:1:1) -->
   <div class="content__wrapper">
     <div class="type__wrapper">
       @if(icon) {
       <i class="fa-solid" [ngClass]="icon"></i>
-      } @else if (hasZapIcon) {
+      } @else if (iconDirective) {
       <ng-content select="[zapIcon]"></ng-content>
       } @else {
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">

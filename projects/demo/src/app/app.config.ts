@@ -359,7 +359,6 @@ const ngxConfig: ZapConfig = {
     },
     tooltip: {
       // shape: 'curve', // this will replace global and root
-      position: 'auto', // this will replace root
     }
   },
 };

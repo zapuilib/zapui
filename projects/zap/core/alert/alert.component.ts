@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ContentChild, EventEmitter, Input, Output } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, ContentChild, EventEmitter, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { ZapIconDirective } from '../public-api';
@@ -20,14 +20,13 @@ export class ZapAlert implements AfterViewInit {
   @Input() zapClass: string = '';
   @ContentChild(ZapIconDirective, { static: false })
   iconDirective!: ZapIconDirective;
-  hasZapIcon: boolean = false;
 
-  constructor() {}
+  constructor(private cdr: ChangeDetectorRef) {}
 
   ngAfterViewInit() {
     if (this.iconDirective) {
-      this.hasZapIcon = true;
       this.iconDirective.el.nativeElement.style.height = 'var(--zap-alert-font-size)';
+      this.cdr.detectChanges();
     }
   }
 

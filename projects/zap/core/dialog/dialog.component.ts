@@ -18,7 +18,7 @@ import { ZapDialogButtonDirective } from './dialog-btn.directive';
   templateUrl: './dialog.component.html',
   styleUrls: ['./dialog.component.scss'],
 })
-export class ZapDialog implements AfterViewInit {
+export class ZapDialog{
   @Output() confirm: EventEmitter<void> = new EventEmitter<void>();
   @Output() cancel: EventEmitter<void> = new EventEmitter<void>();
   @Input() title: string = 'Are you sure?';
@@ -32,15 +32,6 @@ export class ZapDialog implements AfterViewInit {
   }
   @ContentChild(ZapDialogButtonDirective, { static: false })
   btnDirective!: ZapDialogButtonDirective;
-  hasZapBtn: boolean = false;
-
-  constructor() {}
-
-  ngAfterViewInit() {
-    if (this.btnDirective) {
-      this.hasZapBtn = true;
-    }
-  }
 
   get classes(): string[] {
     return [this.shape, this.position, this.zapClass].filter(

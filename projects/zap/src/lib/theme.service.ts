@@ -100,7 +100,7 @@ export class ThemeService {
     let cssVariables = '';
     cssVariables += generateColorVariables(theme, root); // generates galobal color variables like primary, secondary, etc
     cssVariables += generateFontSizeVariables(theme); // generates global font size variables
-    cssVariables += generateGlobalStylesVariables(theme, root); // generates global styles for all components this will be replace by css styles if passed
+    cssVariables += generateGlobalStylesVariables(theme, root, this.platformId); // generates global styles for all components this will be replace by css styles if passed
 
     if (config.components) {
       for (const [componentKey, value] of Object.entries(config.components)) {

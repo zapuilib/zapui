@@ -1,3 +1,5 @@
+import { isPlatformBrowser } from '@angular/common';
+
 import { getDefaultAlertSizeCssValues } from '../components/alert-theme';
 import { getDefaultBadgeSizeCssValues } from '../components/badge-theme';
 import { getDefaultButtonSizeCssValues } from '../components/button-theme';
@@ -23,7 +25,8 @@ import { getDefaultTooltipSizeCssValues } from '../components/tooltip-theme';
  */
 export function generateGlobalStylesVariables(
   theme: ZapTheme,
-  root: HTMLElement
+  root: HTMLElement,
+  platformId: Object
 ): string {
   let cssVariables = '';
   const styles = {
@@ -675,9 +678,12 @@ export function generateGlobalStylesVariables(
 
   for (const [component, stylesArray] of Object.entries(styles)) {
     for (const style of stylesArray) {
-      const existingStyle = root.style
-        .getPropertyValue(`--zap-${component}-${style['label']}`)
-        .trim();
+      let existingStyle;
+      if (isPlatformBrowser(platformId)) {
+        existingStyle = getComputedStyle(document.documentElement)
+          .getPropertyValue(`--zap-${component}-${style['label']}`)
+          .trim();
+      }
       const styleExist = existingStyle || style['value'];
       cssVariables += `--zap-${component}-${style['label']}: ${styleExist};\n`;
     }

@@ -6,8 +6,7 @@ export function generateComponentTooltipVariables(
   root: HTMLElement
 ) {
   let cssVariables = '';
-  const existingShape = getExistingShapeFor('tooltip', root);
-  const tooltipShapeValue = existingShape || value.shape || '';
+  const tooltipShapeValue = value.shape || '';
 
   if (tooltipShapeValue) {
     const { shapeCssValue } = getShapeCssValues(tooltipShapeValue, 'tooltip');

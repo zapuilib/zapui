@@ -12,12 +12,9 @@ export function generateComponentButtonVariables(
   root: HTMLElement,
 ) {
   let cssVariables = '';
-  const existingSize = getExistingButtonSize(root);
-  const existingShape = getExistingShapeFor('button', root);
-  const btnSizeValue = existingSize || value.size;
-  const btnShapeValue = existingShape || value.shape || '';
+  const btnSizeValue = value.size;
+  const btnShapeValue = value.shape;
 
-  // this handles the shape, size of the button component
   if (btnShapeValue) {
     const { shapeCssValue } = getShapeCssValues(btnShapeValue, 'button');
     cssVariables += `--zap-button-border-radius: ${shapeCssValue};\n`;
@@ -32,12 +29,6 @@ export function generateComponentButtonVariables(
   }
 
   return cssVariables;
-}
-
-export function getExistingButtonSize(
-  root: HTMLElement
-): string {
-    return root.style.getPropertyValue(`--zap-button-size`).trim();
 }
 
 export function getButtonSizeCssValues(

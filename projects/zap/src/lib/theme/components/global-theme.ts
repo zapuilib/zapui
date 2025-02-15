@@ -20,14 +20,9 @@ export function generateComponentGlobalVariables(
     'tooltip-handler',
   ];
   let cssVariables = '';
-  let existingShape = '';
 
   for (const component of components) {
-    const existingShapeValue = getExistingShapeFor(component, root);
-    if (existingShapeValue) {
-      existingShape = existingShapeValue;
-    }
-    const shapeValue = existingShape || config.shape;
+    const shapeValue = config.shape;
 
     if (shapeValue) {
       const { shapeCssValue } = getShapeCssValues(shapeValue, component);

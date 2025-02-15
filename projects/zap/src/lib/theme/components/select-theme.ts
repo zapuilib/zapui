@@ -6,10 +6,8 @@ export function generateComponentSelectVariables(
   root: HTMLElement
 ) {
   let cssVariables = '';
-  const existingSize = getExistingSelectSize(root);
-  const selectSizeValue = existingSize || value.size;
-  const existingShape = getExistingShapeFor('select', root);
-  const selectShapeValue = existingShape || value.shape || '';
+  const selectSizeValue = value.size;
+  const selectShapeValue = value.shape;
 
   if (selectShapeValue) {
     const { shapeCssValue } = getShapeCssValues(selectShapeValue, 'select');
@@ -48,17 +46,12 @@ export function getSelectSizeCssValues(
     cssVariables += `--zap-select-padding-top: 0.375rem;\n`;
     cssVariables += `--zap-select-padding-bottom: 0.375rem;\n`;
     cssVariables += `--zap-select-font-size: 0.375rem;\n`;
-    cssVariables +' `--zap-select-icon-font-size: 0.875rem;\n';
-    
+    cssVariables + ' `--zap-select-icon-font-size: 0.875rem;\n';
   } else {
     cssVariables += getDefaultSelectSizeCssValues();
   }
 
   return cssVariables;
-}
-
-export function getExistingSelectSize(root: HTMLElement): string {
-  return root.style.getPropertyValue(`--zap-select-size`).trim();
 }
 
 export function getDefaultSelectSizeCssValues(): string {

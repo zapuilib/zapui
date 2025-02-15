@@ -13,6 +13,19 @@ export function convertColorToRgb(color: string): string {
   return '';
 }
 
+export function convertColorToHex(color: string): string {
+  if (color.startsWith('#')) {
+    return color;
+  } else if (color.startsWith('rgb')) {
+    return rgbToHex(color);
+  } else if (color.startsWith('rgba')) {
+    return rgbToHex(hexToRgba(color, 1));
+  } else {
+    return rgbNumberToHex(color);
+  }
+  return '';
+}
+
 export function hexToRgba(hex: string, alpha: number): string {
   let r = 0,
     g = 0,
@@ -29,15 +42,6 @@ export function hexToRgba(hex: string, alpha: number): string {
   return `rgba(${r}, ${g}, ${b}, ${alpha})`;
 }
 
-export function approximateSolidColor(rgbaColor: any): string {
-  const [r, g, b, a] = rgbaColor.match(/\d+(\.\d+)?/g).map(Number);
-
-  const newR = Math.round((1 - a) * 255 + a * r);
-  const newG = Math.round((1 - a) * 255 + a * g);
-  const newB = Math.round((1 - a) * 255 + a * b);
-
-  return `#${((1 << 24) | (newR << 16) | (newG << 8) | newB).toString(16).slice(1)}`;
-}
 
 export function hexToRgb(hex: string): string {
   let r = 0,
@@ -98,3 +102,23 @@ export function deepEqual(obj1: any, obj2: any): boolean {
 
   return true;
 }
+function rgbToHex(color: string): string {
+  const result = color.match(/\d+/g);
+  if (result) {
+    const r = parseInt(result[0]).toString(16).padStart(2, '0');
+    const g = parseInt(result[1]).toString(16).padStart(2, '0');
+    const b = parseInt(result[2]).toString(16).padStart(2, '0');
+    return `#${r}${g}${b}`;
+  }
+  return '';
+}
+function rgbNumberToHex(color: string): string {
+  const rgb = color.split(',').map(num => parseInt(num.trim()));
+  
+  if (rgb.length !== 3) {
+   return '';
+  }
+  const [r, g, b] = rgb;
+  return `#${r.toString(16).padStart(2, '0')}${g.toString(16).padStart(2, '0')}${b.toString(16).padStart(2, '0')}`;
+}
+

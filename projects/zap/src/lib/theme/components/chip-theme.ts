@@ -9,13 +9,11 @@ import { getExistingShapeFor, getShapeCssValues } from '../utils/shape-utils';
  */
 export function generateComponentChipVariables(
   value: ChipConfig,
-  root: HTMLElement,
+  root: HTMLElement
 ) {
   let cssVariables = '';
-  const existingSize = getExistingChipSize(root);
-  const existingShape = getExistingShapeFor('chip', root);
-  const chipSizeValue = existingSize || value.size;
-  const chipShapeValue = existingShape || value.shape || '';
+  const chipSizeValue = value.size;
+  const chipShapeValue = value.shape;
 
   // this handles the shape, size of the chip component
   if (chipShapeValue) {
@@ -32,15 +30,9 @@ export function generateComponentChipVariables(
   return cssVariables;
 }
 
-export function getExistingChipSize(
-  root: HTMLElement
-): string {
-    return root.style.getPropertyValue(`--zap-chip-size`).trim();
-}
-
 export function getChipSizeCssValues(
   chipSizeValue: string,
-  root: HTMLElement,
+  root: HTMLElement
 ): string {
   let cssVariables = '';
 
@@ -68,10 +60,6 @@ export function getDefaultChipSizeCssValues(): string {
   return `--zap-chip-padding-left: 0.75rem;\n--zap-chip-padding-right: 0.75rem;\n--zap-chip-padding-top: 0.25rem;\n--zap-chip-padding-bottom: 0.25rem;\n--zap-chip-font-size: 0.875rem;\n`;
 }
 
-export function getExistingFontSize(
-  root: HTMLElement,
-): string {
-
-    return root.style.getPropertyValue(`--zap-font-size-sm`).trim();
-
+export function getExistingFontSize(root: HTMLElement): string {
+  return root.style.getPropertyValue(`--zap-font-size-sm`).trim();
 }

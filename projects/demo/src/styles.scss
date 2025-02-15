@@ -12,5 +12,20 @@ body {
   // --zap-color-tertiary: #d400ff;
   // --zap-button-shape: curve;
   // --zap-button-border-radius: 0.25rem;
-  --zap-button-border-color: #d400ff;
+  // --zap-button-border-color: #d400ff;
+  // --zap-button-border-radius: 0.7rem;
+  // --zap-dialog-border-radius: 0rem;
+  --zap-color-tertiary: #d400ff;
+}
+
+[data-theme='dark'] {
+  --zap-color-tertiary: #ff0059;
+}
+
+[data-theme='light'] {
+  --zap-color-tertiary: #ff8400;
+}
+
+[data-theme='folly'] {
+  --zap-color-tertiary: #8000ff;
 }

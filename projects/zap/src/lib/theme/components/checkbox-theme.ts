@@ -6,8 +6,7 @@ export function generateComponentCheckboxVariables(
   root: HTMLElement
 ) {
   let cssVariables = '';
-  const existingShape = getExistingShapeFor('checkbox', root);
-  const checkboxShapeValue = existingShape || value.shape || '';
+  const checkboxShapeValue = value.shape;
 
   if (checkboxShapeValue) {
     const { shapeCssValue } = getShapeCssValues(checkboxShapeValue, 'checkbox');

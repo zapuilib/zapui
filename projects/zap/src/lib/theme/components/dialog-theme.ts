@@ -6,8 +6,7 @@ export function generateComponentDialogVariables(
   root: HTMLElement
 ) {
   let cssVariables = '';
-  const existingShape = getExistingShapeFor('dialog', root);
-  const dialogShapeValue = existingShape || value.shape || '';
+  const dialogShapeValue = value.shape;
 
   if (dialogShapeValue) {
     const { shapeCssValue } = getShapeCssValues(dialogShapeValue, 'dialog');

@@ -6,26 +6,27 @@ export function generateComponentInputVariables(
   root: HTMLElement
 ) {
   let cssVariables = '';
-  const existingSize = getExistingInputSize(root);
-  const inputSizeValue = existingSize || value.size;
-  const existingShape = getExistingShapeFor('input', root);
-  const inputShapeValue = existingShape || value.shape || '';
+  const inputSizeValue = value.size;
+  const inputShapeValue = value.shape;
 
   if (inputShapeValue) {
     const { shapeCssValue } = getShapeCssValues(inputShapeValue, 'input');
     cssVariables += `--zap-input-border-radius: ${shapeCssValue};\n`;
   }
 
-    if (inputSizeValue) {
-      cssVariables += getInputSizeCssValues(inputSizeValue, root);
-    } else {
-      cssVariables += getDefaultInputSizeCssValues();
-    }
+  if (inputSizeValue) {
+    cssVariables += getInputSizeCssValues(inputSizeValue, root);
+  } else {
+    cssVariables += getDefaultInputSizeCssValues();
+  }
 
   return cssVariables;
 }
 
-export function getInputSizeCssValues(inputSizeValue: string, root: HTMLElement): string {
+export function getInputSizeCssValues(
+  inputSizeValue: string,
+  root: HTMLElement
+): string {
   let cssVariables = '';
 
   if (inputSizeValue === 'compact') {
@@ -39,10 +40,6 @@ export function getInputSizeCssValues(inputSizeValue: string, root: HTMLElement)
   }
 
   return cssVariables;
-}
-
-export function getExistingInputSize(root: HTMLElement): string {
-  return root.style.getPropertyValue(`--zap-input-size`).trim();
 }
 
 export function getDefaultInputSizeCssValues(): string {

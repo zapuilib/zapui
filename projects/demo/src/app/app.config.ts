@@ -161,7 +161,7 @@ const ngxConfig: ZapConfig = {
       },
     },
     dialog: {
-      shape: 'curve', // this will replace global and root
+      // shape: 'curve', // this will replace global and root
       styles: {
         colors: {
           dark: {
@@ -179,7 +179,7 @@ const ngxConfig: ZapConfig = {
             // secondaryBtnTextHoverColor: '#FFFFFF',
           },
         },
-        borderRadius: '15px',
+        // borderRadius: '15px',
         // titleFontSize: '1.5rem',
         // titleFontWeight: 'bold',
         // titleLineHeight: '2',

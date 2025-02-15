@@ -1,13 +1,12 @@
 import { TextareaConfig } from '../../interfaces';
-import { getExistingShapeFor, getShapeCssValues } from '../utils/shape-utils';
+import {  getShapeCssValues } from '../utils/shape-utils';
 
 export function generateComponentTextareaVariables(
   value: TextareaConfig,
   root: HTMLElement
 ) {
   let cssVariables = '';
-  const existingShape = getExistingShapeFor('textarea', root);
-  const textareaShapeValue = existingShape || value.shape || '';
+  const textareaShapeValue = value.shape;
 
   if (textareaShapeValue) {
     const { shapeCssValue } = getShapeCssValues(textareaShapeValue, 'textarea');

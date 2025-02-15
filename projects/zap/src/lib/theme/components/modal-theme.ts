@@ -6,8 +6,7 @@ export function generateComponentModalVariables(
   root: HTMLElement
 ) {
   let cssVariables = '';
-  const existingShape = getExistingShapeFor('modal', root);
-  const modalShapeValue = existingShape || value.shape || '';
+  const modalShapeValue = value.shape;
 
   if (modalShapeValue) {
     const { shapeCssValue } = getShapeCssValues(modalShapeValue, 'modal');

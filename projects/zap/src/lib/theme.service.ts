@@ -7,7 +7,6 @@ import {
   ButtonConfig,
   ChipConfig,
   DialogConfig,
-  HexCode,
   InputConfig,
   ModalConfig,
   SelectConfig,
@@ -22,11 +21,7 @@ import {
   darkTheme,
 } from './constants/default-config.constants';
 import { generateComponentButtonVariables } from './theme/components/button-theme';
-import {
-  convertColorToHex,
-  convertColorToRgb,
-  deepEqual,
-} from './theme/utils/base-theme-utils';
+import { deepEqual } from './theme/utils/base-theme-utils';
 import { generateColorVariables } from './theme/utils/color-utils';
 import { generateComponentGlobalVariables } from './theme/components/global-theme';
 import { generateFontSizeVariables } from './theme/utils/font-utils';
@@ -95,9 +90,6 @@ export class ThemeService {
   }
 
   private getTheme(theme: string, root: HTMLElement): ZapTheme {
-    if (this.isBrowser) {
-      return this.getExistingColorFromRoot();
-    }
     if (theme === 'light') {
       return lightTheme;
     } else if (theme === 'dark') {
@@ -107,68 +99,6 @@ export class ThemeService {
     } else {
       return darkTheme;
     }
-  }
-
-  private getExistingColorFromRoot(): ZapTheme {
-    //FIXME: This is not working because of async nature of the function
-    this.document.addEventListener('DOMContentLoaded', () => {
-      const getColor = (colorVar: string, fallback: string): HexCode => {
-        const themeAttribute =
-          this.document.documentElement.getAttribute('data-theme');
-        const themeSelector = themeAttribute
-          ? `:root[data-theme="${themeAttribute}"]`
-          : ':root';
-        const element = document.querySelector(themeSelector) as Element;
-        const colorValue = getComputedStyle(element)
-          .getPropertyValue(colorVar)
-          .trim();
-
-        //FIXME: THis is currently working with :root level colors but not data-theme level colors
-        return convertColorToHex(colorValue || fallback) as `#${string}`;
-      };
-
-      //FIXME: Currently all of this is only working with dark theme, we need to make the dynamic based on active theme
-
-      const allColors: { [key in keyof typeof darkTheme.colors]: HexCode } = {
-        primary: getColor('--zap-color-primary', darkTheme.colors.primary),
-        secondary: getColor(
-          '--zap-color-secondary',
-          darkTheme.colors.secondary
-        ),
-        tertiary: getColor('--zap-color-tertiary', darkTheme.colors.tertiary),
-        quaternary: getColor(
-          '--zap-color-quaternary',
-          darkTheme.colors.quaternary
-        ),
-        info: getColor('--zap-color-info', darkTheme.colors.info),
-        success: getColor('--zap-color-success', darkTheme.colors.success),
-        warning: getColor('--zap-color-warning', darkTheme.colors.warning),
-        error: getColor('--zap-color-error', darkTheme.colors.error),
-        infoText: getColor('--zap-color-info-text', darkTheme.colors.infoText),
-        successText: getColor(
-          '--zap-color-success-text',
-          darkTheme.colors.successText
-        ),
-        warningText: getColor(
-          '--zap-color-warning-text',
-          darkTheme.colors.warningText
-        ),
-        errorText: getColor(
-          '--zap-color-error-text',
-          darkTheme.colors.errorText
-        ),
-      };
-
-      console.log(allColors);
-
-      //FIXME: once above is fixed we can return
-      return {
-        colors: allColors,
-        fontSize: darkTheme.fontSize,
-      };
-    });
-
-    return darkTheme;
   }
 
   private removeExistingStyleElement(): void {

@@ -1,10 +1,6 @@
-import { isPlatformBrowser } from '@angular/common';
-
 import { getDefaultAlertSizeCssValues } from '../components/alert-theme';
 import { getDefaultBadgeSizeCssValues } from '../components/badge-theme';
 import { getDefaultButtonSizeCssValues } from '../components/button-theme';
-import { ZapTheme } from '../../interfaces/config.interface';
-import { hexToRgba } from '../utils/base-theme-utils';
 import { getDefaultChipSizeCssValues } from '../components/chip-theme';
 import { getDefaultDialogSizeCssValues } from '../components/dialog-theme';
 import { getDefaultModalSizeCssValues } from '../components/modal-theme';
@@ -16,6 +12,8 @@ import { getDefaultToggleSizeCssValues } from '../components/toggle-theme';
 import { getDefaultAccordionSizeCssValues } from '../components/accordion-theme';
 import { getDefaultSelectSizeCssValues } from '../components/select-theme';
 import { getDefaultTooltipSizeCssValues } from '../components/tooltip-theme';
+import { ZapTheme } from '../../interfaces/config.interface';
+import { hexToRgba } from '../utils/base-theme-utils';
 
 /**
  * This function generates the global styles for the all the components
@@ -675,16 +673,9 @@ export function generateGlobalStylesVariables(
       },
     ],
   };
-
   for (const [component, stylesArray] of Object.entries(styles)) {
     for (const style of stylesArray) {
-      let existingStyle;
-      if (isPlatformBrowser(platformId)) {
-        existingStyle = getComputedStyle(document.documentElement)
-          .getPropertyValue(`--zap-${component}-${style['label']}`)
-          .trim();
-      }
-      const styleExist = existingStyle || style['value'];
+      const styleExist = style['value'];
       cssVariables += `--zap-${component}-${style['label']}: ${styleExist};\n`;
     }
   }

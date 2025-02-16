@@ -18,7 +18,7 @@ body {
   --zap-color-tertiary: #d400ff;
 }
 
-[data-theme='dark'] {
+:root[data-theme='dark'] {
   --zap-color-tertiary: #ff0059;
 }
 

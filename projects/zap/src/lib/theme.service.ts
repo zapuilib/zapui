@@ -96,16 +96,35 @@ export class ThemeService {
 
   private getTheme(theme: string, root: HTMLElement): ZapTheme {
     if (this.isBrowser) {
+      return this.getExistingColorFromRoot();
+    }
+    if (theme === 'light') {
+      return lightTheme;
+    } else if (theme === 'dark') {
+      return darkTheme;
+    } else if (this.config.themeLibrary) {
+      return this.config.themeLibrary[theme];
+    } else {
+      return darkTheme;
+    }
+  }
+
+  private getExistingColorFromRoot(): ZapTheme {
+    //FIXME: This is not working because of async nature of the function
+    this.document.addEventListener('DOMContentLoaded', () => {
       const getColor = (colorVar: string, fallback: string): HexCode => {
-        const themeAttribute = this.document.documentElement.getAttribute('data-theme');
-        const themeSelector = themeAttribute ? `[data-theme="${themeAttribute}"]` : ':root';
-        
-  //FIXME: THis is currently working with :root level colors but not data-theme level colors        
-        return convertColorToHex(
-          getComputedStyle(this.document.querySelector(themeSelector) as Element)
-        .getPropertyValue(colorVar)
-        .trim() || fallback
-        ) as `#${string}`;
+        const themeAttribute =
+          this.document.documentElement.getAttribute('data-theme');
+        const themeSelector = themeAttribute
+          ? `:root[data-theme="${themeAttribute}"]`
+          : ':root';
+        const element = document.querySelector(themeSelector) as Element;
+        const colorValue = getComputedStyle(element)
+          .getPropertyValue(colorVar)
+          .trim();
+
+        //FIXME: THis is currently working with :root level colors but not data-theme level colors
+        return convertColorToHex(colorValue || fallback) as `#${string}`;
       };
 
       //FIXME: Currently all of this is only working with dark theme, we need to make the dynamic based on active theme
@@ -140,21 +159,16 @@ export class ThemeService {
         ),
       };
 
+      console.log(allColors);
+
       //FIXME: once above is fixed we can return
-      // return {
-      //   colors: allColors,
-      //   fontSize: darkTheme.fontSize,
-      // };
-    }
-    if (theme === 'light') {
-      return lightTheme;
-    } else if (theme === 'dark') {
-      return darkTheme;
-    } else if (this.config.themeLibrary) {
-      return this.config.themeLibrary[theme];
-    } else {
-      return darkTheme;
-    }
+      return {
+        colors: allColors,
+        fontSize: darkTheme.fontSize,
+      };
+    });
+
+    return darkTheme;
   }
 
   private removeExistingStyleElement(): void {
@@ -177,82 +191,71 @@ export class ThemeService {
     root: HTMLElement
   ): string {
     let cssVariables = '';
-    cssVariables += generateColorVariables(theme, root); // generates galobal color variables like primary, secondary, etc
-    cssVariables += generateFontSizeVariables(theme); // generates global font size variables
-    cssVariables += generateGlobalStylesVariables(theme, root, this.platformId); // generates global styles for all components this will be replace by css styles if passed
+    cssVariables += generateColorVariables(theme, root);
+    cssVariables += generateFontSizeVariables(theme);
+    cssVariables += generateGlobalStylesVariables(theme, root, this.platformId);
 
     if (config.components) {
       for (const [componentKey, value] of Object.entries(config.components)) {
         switch (componentKey) {
           case 'global':
-            // handles global shape for the component
             cssVariables += generateComponentGlobalVariables(value, root);
             break;
           case 'alert':
-            // handles shape and size for the alert component
             cssVariables += generateComponentAlertVariables(
               value as AlertConfig,
               root
             );
             break;
           case 'button':
-            // handles shape and size for the button component
             cssVariables += generateComponentButtonVariables(
               value as ButtonConfig,
               root
             );
             break;
           case 'chip':
-            // handles shape and size for the chip component
             cssVariables += generateComponentChipVariables(
               value as ChipConfig,
               root
             );
             break;
           case 'dialog':
-            // handles shape and size for the dialog component
             cssVariables += generateComponentDialogVariables(
               value as DialogConfig,
               root
             );
             break;
           case 'modal':
-            // handles shape and size for the modal component
             cssVariables += generateComponentModalVariables(
               value as ModalConfig,
               root
             );
             break;
           case 'input':
-            // handles shape and size for the input component
             cssVariables += generateComponentInputVariables(
               value as InputConfig,
               root
             );
             break;
           case 'checkbox':
-            // handles shape and size for the checkbox component
             cssVariables += generateComponentCheckboxVariables(
               value as InputConfig,
               root
             );
             break;
           case 'textarea':
-            // handles shape and size for the textarea component
             cssVariables += generateComponentTextareaVariables(
               value as TextareaConfig,
               root
             );
             break;
           case 'select':
-            // handles shape and size for the select component
             cssVariables += generateComponentSelectVariables(
               value as SelectConfig,
               root
             );
             break;
           case 'tooltip':
-            // handles shape and size for the tooltip component
             cssVariables += generateComponentTooltipVariables(
               value as TooltipConfig,
               root
@@ -262,7 +265,6 @@ export class ThemeService {
             break;
         }
 
-        // handle the global css styles for the component
         if (value.styles) {
           cssVariables += generateComponentStylesVariables(
             value.styles,

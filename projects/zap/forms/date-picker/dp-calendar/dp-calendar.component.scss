@@ -1,6 +1,6 @@
 .__zap__calendar__container {
-  @apply absolute;
-  
+  @apply absolute animate-popup;
+
   .__zap__calendar {
     @apply flex flex-col items-center border border-secondary/10 bg-primary px-1 py-2 w-max mt-2;
     @apply rounded-[var(--zap-dp-calendar-border-radius)];

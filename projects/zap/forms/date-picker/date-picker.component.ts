@@ -12,6 +12,7 @@ import { CommonModule } from '@angular/common';
 import { ControlValueAccessorDirective } from '../directives/control-value-accessor.directive';
 import { ValidationErrorComponent } from '../validation-error/validation-error.component';
 import { DPCalendar } from './dp-calendar/dp-calendar.component';
+import { ZapDatePickerBreakpoints } from './interface/date-picker.interface';
 
 @Component({
   selector: 'zap-date-picker',
@@ -44,6 +45,10 @@ export class ZapDatePicker<T>
   @Input() iconPosition: 'left' | 'right' = 'left';
   @Input() position: 'top' | 'bottom' | 'auto' = 'auto';
   @Input() helpText: string = '';
+  @Input() breakpoints!: ZapDatePickerBreakpoints;
+  @Input() monthsPerView!: number;
+  @Input() maxPerRow!: number;
+  @Input() rangeSelection: boolean = true;
   isCalendarOpen: boolean = false;
   weeks!: Date[][];
   currentDate!: Date;
@@ -72,11 +77,13 @@ export class ZapDatePicker<T>
 
   @HostListener('window:resize')
   onWindowResize(): void {
+    this.handleBreakpoints();
     this.handleCalendarPosition();
   }
 
   override ngOnInit(): void {
     super.ngOnInit();
+    this.setDefaultsCalendarView();
     this.setCurrentDate();
     this.updateCalendar();
   }
@@ -110,8 +117,37 @@ export class ZapDatePicker<T>
     return weeks;
   }
 
+  private setDefaultsCalendarView(): void {
+    this.breakpoints = {
+      default: {
+        monthsPerView: this.monthsPerView ? this.monthsPerView : this.rangeSelection ? 2 : 1,
+        maxPerRow: this.maxPerRow ? this.maxPerRow : this.rangeSelection ? 2 : 1,
+      },
+      '1024': {
+        monthsPerView: 1,
+        maxPerRow: 1,
+      },
+    };
+  }
+
+  //TODO: Test this function by passing custom
+  private handleBreakpoints(): void {
+    if (!this.breakpoints) return;
+    const width = window.innerWidth;
+    let matchedBreakpoint = this.breakpoints.default;
+
+    for (const breakpoint in this.breakpoints) {
+      if (width <= parseInt(breakpoint)) {
+        matchedBreakpoint = this.breakpoints[breakpoint];
+      }
+    }
+    this.monthsPerView = matchedBreakpoint?.monthsPerView ?? 1;
+    this.maxPerRow = matchedBreakpoint?.maxPerRow ?? 1;
+  }
+
   //TODO: manage size wide
-  handleCalendarPosition(): void {
+  private handleCalendarPosition(): void {
+    this.handleBreakpoints();
     if (this.calendar && typeof window !== 'undefined') {
       const calendarElement = this.calendar.nativeElement;
       const inputElement = this.inputDateSelectValueHolder.nativeElement;

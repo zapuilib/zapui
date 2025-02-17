@@ -9,7 +9,7 @@ import { ZapDatePickerBreakpoints } from '../interface/date-picker.interface';
   templateUrl: './dp-calendar.component.html',
   styleUrl: './dp-calendar.component.scss'
 })
-export class DPCalendar implements OnInit {
+export class DPCalendar {
   @Output() previousMonth = new EventEmitter<number>();
   @Output() nextMonth = new EventEmitter<number>();  
   @Output() selectDate = new EventEmitter<{ startDate: Date | null, endDate: Date | null }>();
@@ -18,25 +18,12 @@ export class DPCalendar implements OnInit {
   @Input() currentMonth!: string;
   @Input() currentYear!: number;
   @Input() currentDate!: Date;
-  @Input() rangeSelection: boolean = true;
+  @Input() rangeSelection!: boolean;
   @Input() monthsPerView!: number;
   @Input() maxPerRow!: number;
-  @Input() breakpoints!: ZapDatePickerBreakpoints;
-
   startDate: Date | null = null;
   endDate: Date | null = null;
-
   daysOfWeek = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'];
-
-  ngOnInit(): void {
-    this.monthsPerView = this.monthsPerView ? this.monthsPerView : this.rangeSelection ? 2 : 1;
-    this.maxPerRow = this.maxPerRow ? this.maxPerRow : this.monthsPerView;
-  }
-
-  handleBreakpoints(): void {
-    if (!this.breakpoints) return;
-    //TODO: Implement breakpoint logic
-  }
 
   getCalendarRows(): { month: string, year: number, monthIndex: number, weeks: Date[][], absoluteIndex: number }[][] {
     const months = [];

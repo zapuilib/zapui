@@ -178,8 +178,9 @@ export class ZapSelect<T> extends ControlValueAccessorDirective<T> {
     }
   }
 
+  //FIXME: when opens on top its cutting of the input field
   handleSelectOptionPosition(): void {
-    if (this.optionList) {
+    if (this.optionList && typeof window !== 'undefined') {
       const optionListElement = this.optionList.nativeElement;
       const inputElement = this.inputSelectValueHolder.nativeElement;
       const inputRect = inputElement.getBoundingClientRect();
@@ -187,27 +188,25 @@ export class ZapSelect<T> extends ControlValueAccessorDirective<T> {
       const viewportHeight = window.innerHeight;
       const spaceBelow = viewportHeight - inputRect.bottom;
       const spaceAbove = inputRect.top;
-
+  
+      optionListElement.style.position = 'absolute';
+      optionListElement.style.left = `${inputRect.left + window.scrollX}px`;
+      optionListElement.style.width = `${inputRect.width}px`;
+  
       if (this.position === 'auto') {
-        if (
-          spaceBelow < optionListRect.height &&
-          spaceAbove > optionListRect.height
-        ) {
-          optionListElement.style.top = 'auto';
-          optionListElement.style.bottom = `${inputRect.height + 5}px`;
+        if (spaceBelow < optionListRect.height && spaceAbove > optionListRect.height) {
+          optionListElement.style.top = `${inputRect.top + window.scrollY - optionListRect.height - 5}px`;
         } else {
-          optionListElement.style.top = `${inputRect.height}px`;
-          optionListElement.style.bottom = 'auto';
+          optionListElement.style.top = `${inputRect.bottom + window.scrollY + 5}px`;
         }
       } else if (this.position === 'top') {
-        optionListElement.style.top = 'auto';
-        optionListElement.style.bottom = `${inputRect.height + 5}px`;
+        optionListElement.style.top = `${inputRect.top + window.scrollY - optionListRect.height - 5}px`;
       } else {
-        optionListElement.style.top = `${inputRect.height}px`;
-        optionListElement.style.bottom = 'auto';
+        optionListElement.style.top = `${inputRect.bottom + window.scrollY + 5}px`;
       }
     }
   }
+  
 
   checkIfEmpty(): void {
     this.control.valueChanges.subscribe((value) => {

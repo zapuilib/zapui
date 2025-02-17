@@ -19,8 +19,8 @@ export class DPCalendar implements OnInit {
   @Input() currentYear!: number;
   @Input() currentDate!: Date;
   @Input() rangeSelection: boolean = true;
-  @Input() monthsPerView: number = 1;
-  @Input() maxPerRow: number = 1;
+  @Input() monthsPerView!: number;
+  @Input() maxPerRow!: number;
   @Input() breakpoints!: ZapDatePickerBreakpoints;
 
   startDate: Date | null = null;
@@ -29,8 +29,8 @@ export class DPCalendar implements OnInit {
   daysOfWeek = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'];
 
   ngOnInit(): void {
-    this.monthsPerView = this.rangeSelection ? 2 : 1;
-    this.maxPerRow = this.monthsPerView;
+    this.monthsPerView = this.monthsPerView ? this.monthsPerView : this.rangeSelection ? 2 : 1;
+    this.maxPerRow = this.maxPerRow ? this.maxPerRow : this.monthsPerView;
   }
 
   handleBreakpoints(): void {

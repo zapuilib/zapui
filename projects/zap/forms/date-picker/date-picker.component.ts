@@ -30,7 +30,8 @@ export class ZapDatePicker<T>
   extends ControlValueAccessorDirective<T>
   implements OnInit
 {
-  @ViewChild('inputDateSelectValueHolder') inputDateSelectValueHolder!: ElementRef;
+  @ViewChild('inputDateSelectValueHolder')
+  inputDateSelectValueHolder!: ElementRef;
   @ViewChild('calendar') calendar!: ElementRef;
   @Input() label: string = '';
   @Input() id: string = '';
@@ -52,7 +53,7 @@ export class ZapDatePicker<T>
   @HostListener('document:click', ['$event'])
   onDocumentClick(event: MouseEvent): void {
     const clickedElement = event.target as HTMLElement;
-    const inputElement = this.inputDateSelectValueHolder.nativeElement;    
+    const inputElement = this.inputDateSelectValueHolder.nativeElement;
     if (
       this.calendar &&
       !this.calendar.nativeElement?.contains(clickedElement) &&
@@ -69,6 +70,11 @@ export class ZapDatePicker<T>
     }
   }
 
+  @HostListener('window:resize')
+  onWindowResize(): void {
+    this.handleCalendarPosition();
+  }
+
   override ngOnInit(): void {
     super.ngOnInit();
     this.setCurrentDate();
@@ -79,7 +85,7 @@ export class ZapDatePicker<T>
     this.currentDate = new Date();
   }
 
-  updateCalendar(): void {
+  private updateCalendar(): void {
     this.weeks = this.generateCalendar(this.currentDate);
     this.currentMonth = this.currentDate.toLocaleString('default', {
       month: 'long',
@@ -87,7 +93,7 @@ export class ZapDatePicker<T>
     this.currentYear = this.currentDate.getFullYear();
   }
 
-  generateCalendar(date: Date): Date[][] {
+  private generateCalendar(date: Date): Date[][] {
     const weeks: Date[][] = [];
     const startOfMonth = new Date(date.getFullYear(), date.getMonth(), 1);
     const startDay = startOfMonth.getDay();
@@ -102,6 +108,49 @@ export class ZapDatePicker<T>
       weeks.push(week);
     }
     return weeks;
+  }
+
+  //TODO: manage size wide
+  handleCalendarPosition(): void {
+    if (this.calendar && typeof window !== 'undefined') {
+      const calendarElement = this.calendar.nativeElement;
+      const inputElement = this.inputDateSelectValueHolder.nativeElement;
+      const inputRect = inputElement.getBoundingClientRect();
+      const calendarRect = calendarElement.getBoundingClientRect();
+      const viewportHeight = window.innerHeight;
+      const spaceBelow = viewportHeight - inputRect.bottom;
+      const spaceAbove = inputRect.top;
+
+      const scrollY = window.scrollY;
+
+      const inputAbsoluteTop = inputRect.top + scrollY;
+      const inputAbsoluteLeft = inputRect.left;
+
+      calendarElement.style.position = 'absolute';
+      calendarElement.style.left = `${inputAbsoluteLeft}px`;
+
+      const dynamicHeight = calendarRect.height;
+
+      if (this.position === 'auto') {
+        if (spaceBelow < dynamicHeight && spaceAbove > dynamicHeight) {
+          calendarElement.style.top = `${
+            inputAbsoluteTop - dynamicHeight - 5
+          }px`;
+          calendarElement.style.bottom = 'auto';
+        } else {
+          calendarElement.style.top = `${
+            inputAbsoluteTop + inputRect.height
+          }px`;
+          calendarElement.style.bottom = 'auto';
+        }
+      } else if (this.position === 'top') {
+        calendarElement.style.top = `${inputAbsoluteTop - dynamicHeight - 5}px`;
+        calendarElement.style.bottom = 'auto';
+      } else {
+        calendarElement.style.top = `${inputAbsoluteTop + inputRect.height}px`;
+        calendarElement.style.bottom = 'auto';
+      }
+    }
   }
 
   onPreviousMonth(offset: number): void {
@@ -128,5 +177,9 @@ export class ZapDatePicker<T>
 
   toggleCalendar(): void {
     this.isCalendarOpen = !this.isCalendarOpen;
+    this.cdr.detectChanges();
+    if (this.isCalendarOpen) {
+      this.handleCalendarPosition();
+    }
   }
 }

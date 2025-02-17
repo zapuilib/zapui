@@ -27,11 +27,14 @@
   &__placeholder {
     @apply text-[var(--zap-select-placeholder-color)] text-[length:var(--zap-select-placeholder-font-size)] font-[var(--zap-select-placeholder-font-weight)] leading-[var(--zap-select-placeholder-line-height)] tracking-[var(--zap-select-placeholder-letter-spacing)];
   }
-  
 
   .handler {
     svg {
       @apply right-3 left-auto fill-[var(--zap-select-icon-color)];
     }
   }
+}
+
+.__zap__form__control__calendar {
+  @apply absolute top-auto;
 }

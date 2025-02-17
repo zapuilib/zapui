@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ZapDatePickerBreakpoints } from '../interface/date-picker.interface';
 
 @Component({
   selector: 'dp-calendar',
@@ -8,9 +9,9 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
   templateUrl: './dp-calendar.component.html',
   styleUrl: './dp-calendar.component.scss'
 })
-export class DPCalendar {
-  @Output() previousMonth = new EventEmitter<void>();
-  @Output() nextMonth = new EventEmitter<void>();
+export class DPCalendar implements OnInit {
+  @Output() previousMonth = new EventEmitter<number>();
+  @Output() nextMonth = new EventEmitter<number>();  
   @Output() selectDate = new EventEmitter<{ startDate: Date | null, endDate: Date | null }>();
   @Input() size: 'compact' | 'base' | 'wide' = 'base';
   @Input() weeks!: Date[][];
@@ -19,13 +20,25 @@ export class DPCalendar {
   @Input() currentDate!: Date;
   @Input() rangeSelection: boolean = true;
   @Input() monthsPerView: number = 1;
+  @Input() maxPerRow: number = 1;
+  @Input() breakpoints!: ZapDatePickerBreakpoints;
 
   startDate: Date | null = null;
   endDate: Date | null = null;
 
   daysOfWeek = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'];
 
-  getCalendarMonths(): { month: string, year: number, monthIndex: number, weeks: Date[][] }[] {
+  ngOnInit(): void {
+    this.monthsPerView = this.rangeSelection ? 2 : 1;
+    this.maxPerRow = this.monthsPerView;
+  }
+
+  handleBreakpoints(): void {
+    if (!this.breakpoints) return;
+    //TODO: Implement breakpoint logic
+  }
+
+  getCalendarRows(): { month: string, year: number, monthIndex: number, weeks: Date[][], absoluteIndex: number }[][] {
     const months = [];
     for (let i = 0; i < this.monthsPerView; i++) {
       const date = new Date(this.currentYear, this.currentDate.getMonth() + i, 1);
@@ -33,25 +46,30 @@ export class DPCalendar {
       const year = date.getFullYear();
       const monthIndex = date.getMonth();
       const weeks = this.generateWeeksForMonth(date);
-      months.push({ month, year, monthIndex, weeks });
+      months.push({ month, year, monthIndex, weeks, absoluteIndex: i });
     }
-    return months;
+  
+    const rows = [];
+    for (let i = 0; i < months.length; i += this.maxPerRow) {
+      rows.push(months.slice(i, i + this.maxPerRow));
+    }
+  
+    return rows;
   }
-
+  
+  
   generateWeeksForMonth(date: Date): Date[][] {
     const weeks: Date[][] = [];
     const firstDayOfMonth = new Date(date.getFullYear(), date.getMonth(), 1);
     const lastDayOfMonth = new Date(date.getFullYear(), date.getMonth() + 1, 0);
     let currentWeek: Date[] = [];
   
-    // Fill the first week with days from the previous month if necessary
     for (let i = 0; i < firstDayOfMonth.getDay(); i++) {
       const prevMonthDay = new Date(firstDayOfMonth);
       prevMonthDay.setDate(firstDayOfMonth.getDate() - (firstDayOfMonth.getDay() - i));
       currentWeek.push(prevMonthDay);
     }
   
-    // Fill the rest of the weeks
     for (let i = 1; i <= lastDayOfMonth.getDate(); i++) {
       const currentDay = new Date(date.getFullYear(), date.getMonth(), i);
       currentWeek.push(currentDay);
@@ -61,7 +79,6 @@ export class DPCalendar {
       }
     }
   
-    // Fill the last week with days from the next month if necessary
     if (currentWeek.length > 0) {
       while (currentWeek.length < 7) {
         const nextMonthDay = new Date(lastDayOfMonth);
@@ -71,9 +88,8 @@ export class DPCalendar {
       weeks.push(currentWeek);
     }
     
-    // Ensure there are always 6 weeks
     while (weeks.length < 6) {
-      const lastDay = weeks[weeks.length - 1][6]; // Get the last day of the last week
+      const lastDay = weeks[weeks.length - 1][6];
       const nextWeek: Date[] = [];
       for (let i = 1; i <= 7; i++) {
         const nextDay = new Date(lastDay);

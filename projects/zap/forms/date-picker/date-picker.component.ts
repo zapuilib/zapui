@@ -1,4 +1,11 @@
-import { Component, Input, OnInit } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  HostListener,
+  Input,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
@@ -23,13 +30,15 @@ export class ZapDatePicker<T>
   extends ControlValueAccessorDirective<T>
   implements OnInit
 {
+  @ViewChild('inputDateSelectValueHolder') inputDateSelectValueHolder!: ElementRef;
+  @ViewChild('calendar') calendar!: ElementRef;
   @Input() label: string = '';
   @Input() id: string = '';
   @Input() placeholder: string = 'Select';
   @Input() customErrorMessages: Record<string, string> = {};
   @Input() zapClass: string = '';
   @Input() shape: 'pill' | 'curve' | 'flat' = 'flat';
-  @Input() size: 'compact' | 'base' | 'wide' = 'base';
+  @Input() size: 'compact' | 'base' | 'wide' = 'wide';
   @Input() icon!: string;
   @Input() iconPosition: 'left' | 'right' = 'left';
   @Input() position: 'top' | 'bottom' | 'auto' = 'auto';
@@ -39,6 +48,26 @@ export class ZapDatePicker<T>
   currentDate!: Date;
   currentMonth!: string;
   currentYear!: number;
+
+  @HostListener('document:click', ['$event'])
+  onDocumentClick(event: MouseEvent): void {
+    const clickedElement = event.target as HTMLElement;
+    const inputElement = this.inputDateSelectValueHolder.nativeElement;    
+    if (
+      this.calendar &&
+      !this.calendar.nativeElement?.contains(clickedElement) &&
+      !inputElement.contains(clickedElement)
+    ) {
+      this.toggleCalendar();
+    }
+  }
+
+  @HostListener('document:keydown.escape', ['$event'])
+  onEscapePress(event: KeyboardEvent): void {
+    if (this.isCalendarOpen) {
+      this.toggleCalendar();
+    }
+  }
 
   override ngOnInit(): void {
     super.ngOnInit();
@@ -75,19 +104,19 @@ export class ZapDatePicker<T>
     return weeks;
   }
 
-  onPreviousMonth(): void {
+  onPreviousMonth(offset: number): void {
     this.currentDate = new Date(
       this.currentDate.getFullYear(),
-      this.currentDate.getMonth() - 1,
+      this.currentDate.getMonth() - offset,
       1
     );
     this.updateCalendar();
   }
 
-  onNextMonth(): void {
+  onNextMonth(offset: number): void {
     this.currentDate = new Date(
       this.currentDate.getFullYear(),
-      this.currentDate.getMonth() + 1,
+      this.currentDate.getMonth() + offset,
       1
     );
     this.updateCalendar();

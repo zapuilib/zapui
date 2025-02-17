@@ -25,15 +25,15 @@
       </div>
     </fieldset>
     @if(isCalendarOpen) {
-    <div class="__zap__form__control__calendar">
+    <div #calendar class="__zap__form__control__calendar">
       <dp-calendar
         [weeks]="weeks"
         [currentMonth]="currentMonth"
         [currentYear]="currentYear"
         [currentDate]="currentDate"
-        (previousMonth)="onPreviousMonth()"
         [size]="size"
-        (nextMonth)="onNextMonth()"
+        (previousMonth)="onPreviousMonth($event)"
+        (nextMonth)="onNextMonth($event)"
       ></dp-calendar>
     </div>
     }

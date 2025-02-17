@@ -1,6 +1,10 @@
 .__zap__calendar__container {
   @apply absolute animate-popup;
 
+  .calendar-row {
+    @apply flex justify-start gap-4;
+  }
+  
   .__zap__calendar {
     @apply flex flex-col items-center border border-secondary/10 bg-primary px-1 py-2 w-max mt-2;
     @apply rounded-[var(--zap-dp-calendar-border-radius)];
@@ -15,7 +19,11 @@
       button {
         @apply border border-secondary/10 p-2 transition-colors duration-150 ease-linear;
         @apply hover:bg-secondary/[0.05];
-        @apply rounded-[var(--zap-dp-calendar-border-radius)];
+        @apply rounded-[var(--zap-dp-calendar-border-radius)] invisible;
+
+        &.active {
+          @apply visible;
+        }
 
         .__zap__calendar__handler {
           @apply h-4 w-4;
@@ -108,11 +116,11 @@
   }
 
   &.multi {
-    @apply flex gap-4 bg-primary p-2 mt-2 border border-secondary/10;
+    @apply flex gap-4 bg-primary flex-wrap p-2 mt-2 border border-secondary/10 w-min;
     @apply rounded-[var(--zap-dp-calendar-border-radius)];
 
     .__zap__calendar {
-      @apply mt-0;
+      @apply mt-0 px-0 py-0 border-0;
     }
   }
 }

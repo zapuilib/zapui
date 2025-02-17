@@ -178,7 +178,6 @@ export class ZapSelect<T> extends ControlValueAccessorDirective<T> {
     }
   }
 
-  //FIXME: when opens on top its cutting of the input field
   handleSelectOptionPosition(): void {
     if (this.optionList && typeof window !== 'undefined') {
       const optionListElement = this.optionList.nativeElement;
@@ -191,22 +190,20 @@ export class ZapSelect<T> extends ControlValueAccessorDirective<T> {
   
       optionListElement.style.position = 'absolute';
       optionListElement.style.left = `${inputRect.left + window.scrollX}px`;
-      optionListElement.style.width = `${inputRect.width}px`;
-  
+      optionListElement.style.width = `${inputRect.width}px`; 
       if (this.position === 'auto') {
         if (spaceBelow < optionListRect.height && spaceAbove > optionListRect.height) {
           optionListElement.style.top = `${inputRect.top + window.scrollY - optionListRect.height - 5}px`;
         } else {
-          optionListElement.style.top = `${inputRect.bottom + window.scrollY + 5}px`;
+          optionListElement.style.top = `${inputRect.bottom + window.scrollY}px`;
         }
       } else if (this.position === 'top') {
-        optionListElement.style.top = `${inputRect.top + window.scrollY - optionListRect.height - 5}px`;
+        optionListElement.style.top = `${inputRect.top + window.scrollY - optionListRect.height -5}px`;
       } else {
-        optionListElement.style.top = `${inputRect.bottom + window.scrollY + 5}px`;
+        optionListElement.style.top = `${inputRect.bottom + window.scrollY}px`;
       }
     }
   }
-  
 
   checkIfEmpty(): void {
     this.control.valueChanges.subscribe((value) => {
@@ -245,6 +242,7 @@ export class ZapSelect<T> extends ControlValueAccessorDirective<T> {
         option.label.toLowerCase().includes(searchTerm)
       );
     }
+    this.cdr.detectChanges();
   }
 
   selectOption(option: { label: string; value: any }): void {

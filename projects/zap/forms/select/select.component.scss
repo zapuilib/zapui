@@ -1,5 +1,6 @@
 .__zap__form__control {
   @apply flex flex-col gap-y-2 w-full;
+  
 
   fieldset {
     @apply relative outline-none;
@@ -110,8 +111,12 @@
     }
   }
 
+  .__zap__form__control__options__container {
+    @apply max-h-max absolute w-full;
+  }
+
   .__zap__form__control__options {
-    @apply w-full border absolute top-auto mt-1 z-10 max-h-[250px] overflow-y-auto rounded-[var(--zap-select-options-border-radius)] border-[var(--zap-select-options-border-color)] bg-[var(--zap-select-options-bg-color)] text-[var(--zap-select-options-text-color)] animate-popup;
+    @apply w-full border block mt-1 z-10 max-h-[250px] overflow-y-auto rounded-[var(--zap-select-options-border-radius)] border-[var(--zap-select-options-border-color)] bg-[var(--zap-select-options-bg-color)] text-[var(--zap-select-options-text-color)] animate-popup;
 
     & > fieldset {
       @apply sticky top-0 z-30 bg-[var(--zap-select-search-bg-color)];

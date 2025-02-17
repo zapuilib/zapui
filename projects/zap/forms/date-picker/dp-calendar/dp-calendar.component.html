@@ -1,0 +1,56 @@
+<div class="__zap__calendar__container" [ngClass]="size" [class.multi]="monthsPerView > 1">
+  @for(calendar of getCalendarMonths(); track $index;) {
+  <div class="__zap__calendar">
+    <div class="header">
+      <button (click)="previousMonth.emit()">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 320 512"
+          class="__zap__calendar__handler left"
+        >
+          <path
+            fill="currentColor"
+            d="M47 239c-9.4 9.4-9.4 24.6 0 33.9L207 433c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9L97.9 256 241 113c9.4-9.4 9.4-24.6 0-33.9s-24.6-9.4-33.9 0L47 239z"
+          />
+        </svg>
+      </button>
+      <span class="title">{{ calendar.month }} {{ calendar.year }}</span>
+      <button (click)="nextMonth.emit()">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 320 512"
+          class="__zap__calendar__handler right"
+        >
+          <path
+            fill="currentColor"
+            d="M273 239c9.4 9.4 9.4 24.6 0 33.9L113 433c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l143-143L79 113c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0L273 239z"
+          />
+        </svg>
+      </button>
+    </div>
+    <div class="days__of__week">
+      @for(day of daysOfWeek; track $index;) {
+      <div class="day">{{ day }}</div>
+      }
+    </div>
+    <div class="weeks">
+      @for(week of calendar.weeks; track $index;) {
+      <div class="week">
+        @for(day of week; track $index;) {
+        <div
+          class="day"
+          [class.this__month]="isCurrentMonth(day, calendar.monthIndex, calendar.year)"
+          [class.today]="isToday(day)"
+          [class.selected]="isSelected(day)"
+          [class.in__range]="isInRange(day)"
+          (click)="select(day)"
+        >
+          {{ day.getDate() }}
+        </div>
+        }
+      </div>
+      }
+    </div>
+  </div>
+  }
+</div>

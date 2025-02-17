@@ -1,0 +1,118 @@
+.__zap__calendar__container {
+  @apply absolute;
+  
+  .__zap__calendar {
+    @apply flex flex-col items-center border border-secondary/10 bg-primary px-1 py-2 w-max mt-2;
+    @apply rounded-[var(--zap-dp-calendar-border-radius)];
+
+    .header {
+      @apply flex justify-between items-center w-full mb-2.5 px-2;
+
+      .title {
+        @apply text-secondary text-sm;
+      }
+
+      button {
+        @apply border border-secondary/10 p-2 transition-colors duration-150 ease-linear;
+        @apply hover:bg-secondary/[0.05];
+        @apply rounded-[var(--zap-dp-calendar-border-radius)];
+
+        .__zap__calendar__handler {
+          @apply h-4 w-4;
+
+          path {
+            @apply fill-secondary/50;
+          }
+        }
+      }
+    }
+
+    .days__of__week,
+    .weeks {
+      @apply flex w-full;
+    }
+
+    .week {
+      @apply flex w-full;
+    }
+
+    .weeks {
+      @apply flex-col gap-y-1;
+    }
+
+    .day {
+      @apply flex-1 text-center w-10 h-10 whitespace-nowrap gap-x-2 inline-flex justify-center items-center text-secondary/50 text-sm;
+      @apply rounded-[var(--zap-dp-calendar-border-radius)] transition-colors duration-150 ease-linear;
+    }
+
+    .weeks {
+      .day {
+        @apply cursor-pointer hover:bg-secondary/[0.05];
+
+        &.today {
+          @apply bg-secondary/10;
+        }
+
+        &.in__range {
+          &:not(.selected) {
+            @apply bg-secondary/5 rounded-none last-of-type:rounded-r-[var(--zap-dp-calendar-border-radius)] first-of-type:rounded-l-[var(--zap-dp-calendar-border-radius)];
+          }
+        }
+
+        &.selected {
+          @apply relative z-10;
+        }
+
+        &.this__month {
+          @apply text-secondary;
+
+          &.in__range {
+            &:not(.selected) {
+              @apply bg-secondary/10;
+            }
+          }
+
+          &.selected {
+            @apply bg-secondary text-primary hover:bg-secondary;
+
+            &.in__range {
+              &::after {
+                @apply bg-secondary/10 absolute left-0 top-0 w-full h-full;
+                @apply content-[''];
+              }
+            }
+          }
+        }
+
+        &:not(.this__month) {
+          &.selected {
+            @apply bg-secondary/5;
+
+            &.in__range {
+              &:not(:first-of-type) {
+                @apply rounded-l-none;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    &.wide {
+      @apply w-full;
+
+      .day {
+        @apply w-12 h-12;
+      }
+    }
+  }
+
+  &.multi {
+    @apply flex gap-4 bg-primary p-2 mt-2 border border-secondary/10;
+    @apply rounded-[var(--zap-dp-calendar-border-radius)];
+
+    .__zap__calendar {
+      @apply mt-0;
+    }
+  }
+}

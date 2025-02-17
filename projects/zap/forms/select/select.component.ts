@@ -107,7 +107,7 @@ export class ZapSelect<T> extends ControlValueAccessorDirective<T> {
       this.iconDirective.el.nativeElement.style.left =
         this.iconPosition === 'left' ? '0.75rem' : 'auto';
       this.iconDirective.el.nativeElement.style.right =
-        this.iconPosition === 'right' ? '0.75rem' : 'auto';
+        this.iconPosition === 'right' ? '2rem' : 'auto';
     }
 
     if (this.helpTextDirective) {

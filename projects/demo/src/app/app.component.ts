@@ -28,6 +28,7 @@ import {
 } from 'zap/core';
 import {
   ZapCheckbox,
+  ZapDatePicker,
   ZapFormFieldHelpTextDirective,
   ZapFormFieldIconDirective,
   ZapInput,
@@ -69,7 +70,8 @@ import {
     ZapDialogButtonDirective,
     ZapFormFieldHelpTextDirective,
     ZapFormFieldIconDirective,
-    ZapLabelDirective
+    ZapLabelDirective,
+    ZapDatePicker
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',

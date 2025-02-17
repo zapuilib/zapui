@@ -4,6 +4,7 @@
     <fieldset
       #inputDateSelectValueHolder
       class="__zap__form__control__date__picker"
+      (click)="toggleCalendar()"
     >
       <span class="__zap__form__control__placeholder">
         {{ placeholder }}
@@ -23,6 +24,7 @@
         </svg>
       </div>
     </fieldset>
+    @if(isCalendarOpen) {
     <div class="__zap__form__control__calendar">
       <dp-calendar
         [weeks]="weeks"
@@ -34,5 +36,6 @@
         (nextMonth)="onNextMonth()"
       ></dp-calendar>
     </div>
+    }
   </div>
 </div>

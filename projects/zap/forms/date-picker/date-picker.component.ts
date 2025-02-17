@@ -34,6 +34,7 @@ export class ZapDatePicker<T>
   @Input() iconPosition: 'left' | 'right' = 'left';
   @Input() position: 'top' | 'bottom' | 'auto' = 'auto';
   @Input() helpText: string = '';
+  isCalendarOpen: boolean = false;
   weeks!: Date[][];
   currentDate!: Date;
   currentMonth!: string;
@@ -94,5 +95,9 @@ export class ZapDatePicker<T>
 
   isCurrentMonth(date: Date, month: number, year: number): boolean {
     return date.getMonth() === month && date.getFullYear() === year;
+  }
+
+  toggleCalendar(): void {
+    this.isCalendarOpen = !this.isCalendarOpen;
   }
 }

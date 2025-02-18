@@ -116,12 +116,33 @@
         }
       }
     }
-// TODO: Fix the wide and compact
-    &.wide {
+    // TODO: Fix the wide and compact
+  }
+
+  &.wide {
+    @apply w-full;
+
+    .calendar-row {
       @apply w-full;
 
+      .__zap__calendar {
+        @apply w-full;
+      }
+    }
+  }
+
+  &.compact {
+    .__zap__calendar {
+      .header{
+        button{
+          svg {
+            @apply h-3 w-3;
+          }
+        }
+      }
+      
       .day {
-        @apply w-12 h-12;
+        @apply h-8 w-8;
       }
     }
   }

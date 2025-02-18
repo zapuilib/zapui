@@ -29,6 +29,7 @@ import {
 import {
   ZapCheckbox,
   ZapDatePicker,
+  ZapDatePickerBreakpoints,
   ZapFormFieldHelpTextDirective,
   ZapFormFieldIconDirective,
   ZapInput,
@@ -103,7 +104,17 @@ export class AppComponent implements OnInit {
       title: 'Accordion 3',
       content: 'Content for Accordion 3',
     },
-  ]
+  ];
+  breakpoints: ZapDatePickerBreakpoints = {
+    default: {
+      maxPerRow: 2,
+      monthsPerView: 2,
+    },
+    '2xl': {
+      maxPerRow: 1,
+      monthsPerView: 1,
+    }
+  };
 
   ngOnInit(): void {
     if (localStorage.getItem('zapdemo-theme') === null) {

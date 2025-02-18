@@ -58,13 +58,13 @@ export class ZapDatePicker<T>
   @Input() id: string = '';
   @Input() placeholder: string = 'Select';
   @Input() shape: 'pill' | 'curve' | 'flat' = 'flat';
-  @Input() size: 'compact' | 'base' | 'wide' = 'wide'; //TODO
+  @Input() size: 'compact' | 'base' | 'wide' = 'base';
   @Input() position: 'top' | 'bottom' | 'auto' = 'auto';
   @Input() customErrorMessages: Record<string, string> = {};
   @Input() icon!: string;
   @Input() iconPosition: 'left' | 'right' = 'right';
   @Input() helpText: string = '';
-  @Input() breakpoints!: ZapDatePickerBreakpoints; //TODO
+  @Input() breakpoints!: ZapDatePickerBreakpoints;
   @Input() zapClass: string = ''; //TODO
   @Input() monthsPerView!: number;
   @Input() maxPerRow!: number;
@@ -223,6 +223,7 @@ export class ZapDatePicker<T>
   }
 
   private setDefaultsCalendarView(): void {
+    if(this.breakpoints) return;
     this.breakpoints = {
       default: {
         monthsPerView: this.monthsPerView
@@ -239,14 +240,28 @@ export class ZapDatePicker<T>
     };
   }
 
-  //TODO: Test this function by passing custom
   private handleBreakpoints(): void {
     if (!this.breakpoints) return;
     const width = window.innerWidth;
     let matchedBreakpoint = this.breakpoints.default;
 
     for (const breakpoint in this.breakpoints) {
-      if (width <= parseInt(breakpoint)) {
+      let breakPointWidth = breakpoint;
+
+      const breakpointWidths: Record<string, number> = {
+        sm: 640,
+        md: 768,
+        base: 1024,
+        lg: 1280,
+        xl: 1536,
+        '2xl': 1920,
+      };
+
+      if (breakpoint in breakpointWidths) {
+        breakPointWidth = breakpointWidths[breakpoint].toString();
+      }
+
+      if (width <= parseInt(breakPointWidth)) {
         matchedBreakpoint = this.breakpoints[breakpoint];
       }
     }
@@ -274,6 +289,7 @@ export class ZapDatePicker<T>
 
       calendarElement.style.position = 'absolute';
       calendarElement.style.left = `${inputAbsoluteLeft}px`;
+      calendarElement.style.width = `${inputRect.width}px`;
 
       const dynamicHeight = calendarRect.height;
 

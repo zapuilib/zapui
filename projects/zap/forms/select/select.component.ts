@@ -1,4 +1,5 @@
 import {
+  AfterViewInit,
   Component,
   ContentChild,
   ElementRef,
@@ -6,6 +7,8 @@ import {
   forwardRef,
   HostListener,
   Input,
+  OnDestroy,
+  OnInit,
   Output,
   TemplateRef,
   ViewChild,
@@ -44,7 +47,10 @@ import {
     },
   ],
 })
-export class ZapSelect<T> extends ControlValueAccessorDirective<T> {
+export class ZapSelect<T>
+  extends ControlValueAccessorDirective<T>
+  implements OnInit, OnDestroy, AfterViewInit
+{
   @ViewChild('inputSelectValueHolder') inputSelectValueHolder!: ElementRef;
   @ViewChild('optionList') optionList!: ElementRef;
   @ViewChild('search') search!: ElementRef;
@@ -180,6 +186,12 @@ export class ZapSelect<T> extends ControlValueAccessorDirective<T> {
     this.checkIfEmpty();
   }
 
+  removeOptionsFromDOM(): void {
+    if (this.optionList) {
+      this.optionList.nativeElement.remove();
+    }
+  }
+
   handleDefaultValue(): void {
     if (this.control.value) {
       this.selectedOptionValue = [
@@ -199,10 +211,20 @@ export class ZapSelect<T> extends ControlValueAccessorDirective<T> {
       const spaceBelow = viewportHeight - inputRect.bottom;
       const spaceAbove = inputRect.top;
 
-      document.body.appendChild(optionListElement);
+      if (!optionListElement.dataset.appendedToBody) {
+        document.body.appendChild(optionListElement);
+        optionListElement.dataset.appendedToBody = 'true';
+      }
 
       optionListElement.style.position = 'fixed';
-      optionListElement.style.zIndex = '999';
+
+      let parent = inputElement.closest(
+        '.__zap__modal__wrapper, .__zap__dialog, .modal, .dialog'
+      );
+      if (parent) {
+        optionListElement.style.zIndex = '999';
+      }
+
       optionListElement.style.left = `${inputRect.left + window.scrollX}px`;
       optionListElement.style.width = `${inputRect.width}px`;
 
@@ -259,6 +281,10 @@ export class ZapSelect<T> extends ControlValueAccessorDirective<T> {
     this.hoveredOption = '';
     this.filteredOptions = this.options;
     this.handleSelectOptionPosition();
+
+    if (!this.isOptionListOpen) {
+      this.removeOptionsFromDOM();
+    }
   }
 
   handleSearch(event: Event): void {
@@ -335,20 +361,43 @@ export class ZapSelect<T> extends ControlValueAccessorDirective<T> {
   }
 
   get selectClasses(): string[] {
-    return this.generateClasses(['select:', 'select-placeholder:', 'select-dropdown:', 'select-icon:', 'select-selected:']);
+    return this.generateClasses([
+      'select:',
+      'select-placeholder:',
+      'select-dropdown:',
+      'select-icon:',
+      'select-selected:',
+    ]);
   }
 
   get optionsClasses(): string[] {
-    return this.generateClasses(['options:', 'option:', 'search:', 'search-icon:', 'option-checkbox:', 'option-checked:', 'option-selected:', 'option-hovered:']);
+    return this.generateClasses([
+      'options:',
+      'option:',
+      'search:',
+      'search-icon:',
+      'option-checkbox:',
+      'option-checked:',
+      'option-selected:',
+      'option-hovered:',
+    ]);
   }
 
   private generateClasses(prefixes: string[] = ['']): string[] {
     return [
       this.shape,
-      ...this.zapClass.split(' ').filter(cls => prefixes.some(prefix => cls.startsWith(prefix))),
+      ...this.zapClass
+        .split(' ')
+        .filter((cls) => prefixes.some((prefix) => cls.startsWith(prefix))),
       this.size,
-      (this.icon || this.iconDirective) ? this.iconPosition : '',
+      this.icon || this.iconDirective ? this.iconPosition : '',
       this.control.disabled ? 'disabled' : '',
-    ].filter(cls => cls && cls !== 'default');
+    ].filter((cls) => cls && cls !== 'default');
+  }
+
+  ngOnDestroy(): void {
+    if (this.optionList) {
+      this.optionList.nativeElement.remove();
+    }
   }
 }

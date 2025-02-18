@@ -1,4 +1,4 @@
-.__ngx__zap__alert {
+.__zap__alert {
   @apply min-w-[100vw] xs:min-w-[375px] max-w-[40rem] rounded-none bg-[var(--zap-alert-bg-color)] text-[var(--zap-alert-text-color)] border border-[var(--zap-alert-border-color)] flex justify-between items-start z-[9999] relative;
   @apply rounded-[var(--zap-alert-border-radius)];
   @apply pl-[var(--zap-alert-padding-left)] pr-[var(--zap-alert-padding-right)] pt-[var(--zap-alert-padding-top)] pb-[var(--zap-alert-padding-bottom)] text-[length:var(--zap-alert-font-size)] font-[var(--zap-alert-font-weight)];

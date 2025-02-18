@@ -1,18 +1,30 @@
 import {
   Component,
+  ContentChild,
   ElementRef,
+  forwardRef,
   HostListener,
   Input,
   OnInit,
   ViewChild,
 } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {
+  FormsModule,
+  NG_VALUE_ACCESSOR,
+  ReactiveFormsModule,
+} from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
 import { ControlValueAccessorDirective } from '../directives/control-value-accessor.directive';
 import { ValidationErrorComponent } from '../validation-error/validation-error.component';
 import { DPCalendar } from './dp-calendar/dp-calendar.component';
 import { ZapDatePickerBreakpoints } from './interface/date-picker.interface';
+import { formatDate } from './utils';
+import {
+  ZapFormFieldHelpTextDirective,
+  ZapFormFieldIconDirective,
+  ZapLabelDirective,
+} from '../public-api';
 
 @Component({
   selector: 'zap-date-picker',
@@ -26,6 +38,13 @@ import { ZapDatePickerBreakpoints } from './interface/date-picker.interface';
   ],
   templateUrl: './date-picker.component.html',
   styleUrl: './date-picker.component.scss',
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => ZapDatePicker),
+      multi: true,
+    },
+  ],
 })
 export class ZapDatePicker<T>
   extends ControlValueAccessorDirective<T>
@@ -40,22 +59,31 @@ export class ZapDatePicker<T>
   @Input() shape: 'pill' | 'curve' | 'flat' = 'flat';
   @Input() size: 'compact' | 'base' | 'wide' = 'wide';
   @Input() position: 'top' | 'bottom' | 'auto' = 'auto';
-  @Input() zapClass: string = ''; //TODO
-  @Input() customErrorMessages: Record<string, string> = {}; //TODO
+  @Input() customErrorMessages: Record<string, string> = {};
   @Input() icon!: string; //TODO
   @Input() iconPosition: 'left' | 'right' = 'left'; //TODO
   @Input() helpText: string = ''; //TODO
   @Input() breakpoints!: ZapDatePickerBreakpoints; //TODO
+  @Input() zapClass: string = ''; //TODO
   @Input() monthsPerView!: number;
   @Input() maxPerRow!: number;
   @Input() range: boolean = false;
   @Input() dateFormat: string = 'MMM dd, yyyy';
   @Input() locale: string = 'en-US';
+
+  @ContentChild(ZapFormFieldIconDirective, { static: false })
+  iconDirective!: ZapFormFieldIconDirective;
+  @ContentChild(ZapFormFieldHelpTextDirective, { static: false })
+  helpTextDirective!: ZapFormFieldHelpTextDirective;
+  @ContentChild(ZapLabelDirective, { static: false })
+  labelDirective!: ZapLabelDirective;
+
   isCalendarOpen: boolean = false;
   weeks!: Date[][];
   currentDate!: Date;
   currentMonth!: string;
   currentYear!: number;
+  selected!: { startDate: Date | null; endDate: Date | null };
 
   @HostListener('document:click', ['$event'])
   onDocumentClick(event: MouseEvent): void {
@@ -85,9 +113,38 @@ export class ZapDatePicker<T>
 
   override ngOnInit(): void {
     super.ngOnInit();
+    this.setDefaultValue();
     this.setDefaultsCalendarView();
     this.setCurrentDate();
     this.updateCalendar();
+  }
+
+  private setDefaultValue(): void {
+    if (this.control.value && !this.range) {
+      this.selected = {
+        startDate: new Date(this.control.value),
+        endDate: new Date(this.control.value),
+      };
+      this.control.setValue(
+        formatDate(this.control.value, this.dateFormat, this.locale)
+      );
+    } else if (this.control.value && this.range) {
+      this.selected = {
+        startDate: new Date(this.control.value.startDate),
+        endDate: new Date(this.control.value.endDate),
+      };
+      this.control.setValue(
+        `${formatDate(
+          this.control.value.startDate,
+          this.dateFormat,
+          this.locale
+        )} - ${formatDate(
+          this.control.value.endDate,
+          this.dateFormat,
+          this.locale
+        )}`
+      );
+    }
   }
 
   private setCurrentDate(): void {
@@ -196,31 +253,6 @@ export class ZapDatePicker<T>
     }
   }
 
-  //TODO: move to utils
-private formatDate(date: Date): string {
-    const options: Intl.DateTimeFormatOptions = {};
-
-    if (this.dateFormat.includes('MMMM')) {
-      options.month = 'long';
-    } else if (this.dateFormat.includes('MMM')) {
-      options.month = 'short';
-    } else if (this.dateFormat.includes('MM')) {
-      options.month = '2-digit';
-    }
-
-    if (this.dateFormat.includes('dd')) {
-      options.day = '2-digit';
-    }
-
-    if (this.dateFormat.includes('yyyy')) {
-      options.year = 'numeric';
-    } else if (this.dateFormat.includes('yy')) {
-      options.year = '2-digit';
-    }
-
-    return new Intl.DateTimeFormat(this.locale, options).format(date);
-}
-
   onPreviousMonth(offset: number): void {
     this.currentDate = new Date(
       this.currentDate.getFullYear(),
@@ -239,15 +271,33 @@ private formatDate(date: Date): string {
     this.updateCalendar();
   }
 
-  selectDate(dateRange: {startDate: Date | null, endDate: Date | null}): void {
+  selectDate(dateRange: {
+    startDate: Date | null;
+    endDate: Date | null;
+  }): void {
     if (this.control.disabled) return;
     this.toggleCalendar();
-    if(!this.range) {
-      this.control.setValue(this.formatDate(dateRange.startDate!));
+    if (!this.range) {
+      this.selected = {
+        startDate: new Date(dateRange.startDate!),
+        endDate: new Date(dateRange.startDate!),
+      };
+      this.control.setValue(
+        formatDate(dateRange.startDate!, this.dateFormat, this.locale)
+      );
+    } else {
+      this.selected = {
+        startDate: new Date(dateRange.startDate!),
+        endDate: new Date(dateRange.endDate!),
+      };
+      this.control.setValue(
+        `${formatDate(
+          dateRange.startDate!,
+          this.dateFormat,
+          this.locale
+        )} - ${formatDate(dateRange.endDate!, this.dateFormat, this.locale)}`
+      );
     }
-    console.log(this.control.value);
-    
-    //TODO: if range then set value to  start - end and if not jsut selected date selected date should be display in a format and format should be accepted to be custom
   }
 
   isCurrentMonth(date: Date, month: number, year: number): boolean {
@@ -259,6 +309,10 @@ private formatDate(date: Date): string {
     this.cdr.detectChanges();
     if (this.isCalendarOpen) {
       this.handleCalendarPosition();
+    }
+
+    if (!this.isCalendarOpen) {
+      this.control.markAsTouched();
     }
   }
 

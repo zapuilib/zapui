@@ -4,7 +4,7 @@
   fieldset {
     @apply relative outline-none;
 
-    svg {
+    svg, i {
       @apply absolute;
       @apply top-1/2;
       @apply -translate-y-1/2;
@@ -41,7 +41,7 @@
   }
 
   .handler {
-    svg {
+    svg, i {
       @apply right-3 left-auto fill-[var(--zap-select-icon-color)];
     }
   }

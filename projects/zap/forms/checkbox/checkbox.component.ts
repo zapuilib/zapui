@@ -38,7 +38,7 @@ export class ZapCheckbox<T> extends ControlValueAccessorDirective<T> implements 
   @Input() shape: 'curve' | 'flat' = 'flat';
   @Input() size: 'compact' | 'base' = 'base';
   @Input() labelPosition: 'left' | 'right' = 'right';
-  @Input() checked: boolean = false;
+  @Input() checked: boolean = false; // Remov ethis because this should come from control and check other places
   @ContentChild(ZapLabelDirective, { static: false })
   labelDirective!: ZapLabelDirective;
 

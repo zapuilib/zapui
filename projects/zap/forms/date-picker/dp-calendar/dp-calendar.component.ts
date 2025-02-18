@@ -9,7 +9,7 @@ import { ZapDatePickerBreakpoints } from '../interface/date-picker.interface';
   templateUrl: './dp-calendar.component.html',
   styleUrl: './dp-calendar.component.scss',
 })
-export class DPCalendar {
+export class DPCalendar implements OnInit {
   @Output() previousMonth = new EventEmitter<number>();
   @Output() nextMonth = new EventEmitter<number>();
   @Output() selectDate = new EventEmitter<{
@@ -29,6 +29,17 @@ export class DPCalendar {
   startDate: Date | null = null;
   endDate: Date | null = null;
   daysOfWeek = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'];
+
+  ngOnInit(): void {
+    this.setDefaultValues();
+  }
+
+  private setDefaultValues(): void {
+    if(this.selected && this.selected.startDate ) {
+      this.startDate = this.selected.startDate;
+      this.endDate = this.selected.endDate;
+    }    
+  }
 
   getCalendarRows(): {
     month: string;
@@ -117,7 +128,7 @@ export class DPCalendar {
     return date.toDateString() === today.toDateString();
   }
 
-  isSelected(date: Date): boolean {
+  isSelected(date: Date): boolean {    
     if (!this.startDate && !this.endDate) return false;
     const dateString = date.toDateString();
     return (

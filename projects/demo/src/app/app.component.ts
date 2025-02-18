@@ -85,6 +85,10 @@ export class AppComponent implements OnInit {
     Validators.required,
   ]);
   toggleControl: FormControl = new FormControl({ value: false, disabled: false });
+  // datePickerControl = new FormControl({ value: new Date(), disabled: false }, []);
+  // datePickerControl2 = new FormControl({ value: { startDate: new Date(), endDate: new Date(new Date().setDate(new Date().getDate() + 3)) }, disabled: false }, []);
+  datePickerControl = new FormControl({ value: '', disabled: false }, [Validators.required]);
+  datePickerControl2 = new FormControl({ value: '', disabled: false }, []);
   private zapThemeService: ZapThemer = inject(ZapThemer);
   accordions = [
     {

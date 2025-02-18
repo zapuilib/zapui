@@ -1,6 +1,5 @@
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { ZapDatePickerBreakpoints } from '../interface/date-picker.interface';
 
 @Component({
   selector: 'dp-calendar',
@@ -26,6 +25,7 @@ export class DPCalendar implements OnInit {
   @Input() monthsPerView!: number;
   @Input() maxPerRow!: number;
   @Input() selected!: { startDate: Date | null; endDate: Date | null };
+  @Input() enableDropdown: boolean = false;
   startDate: Date | null = null;
   endDate: Date | null = null;
   daysOfWeek = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'];

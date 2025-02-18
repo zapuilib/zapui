@@ -71,6 +71,7 @@ export class ZapDatePicker<T>
   @Input() range: boolean = false;
   @Input() dateFormat: string = 'MMM dd, yyyy';
   @Input() locale: string = 'en-US';
+  @Input() enableDropdown: boolean = false;
 
   //TODO: Optimise for size
   //TODO: min date and maximum date

@@ -58,7 +58,7 @@ export class ZapDatePicker<T>
   @Input() id: string = '';
   @Input() placeholder: string = 'Select';
   @Input() shape: 'pill' | 'curve' | 'flat' = 'flat';
-  @Input() size: 'compact' | 'base' | 'wide' = 'wide';
+  @Input() size: 'compact' | 'base' | 'wide' = 'wide'; //TODO
   @Input() position: 'top' | 'bottom' | 'auto' = 'auto';
   @Input() customErrorMessages: Record<string, string> = {};
   @Input() icon!: string;

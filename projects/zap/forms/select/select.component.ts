@@ -83,6 +83,8 @@ export class ZapSelect<T> extends ControlValueAccessorDirective<T> {
   @ContentChild(ZapLabelDirective, { static: false })
   labelDirective!: ZapLabelDirective;
 
+  //FIXME: The selct was emitting value multiple times when the value was changed.
+
   @HostListener('window:resize')
   onWindowResize(): void {
     this.handleSelectOptionPosition();

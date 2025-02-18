@@ -25,6 +25,7 @@ export class DPCalendar {
   @Input() range!: boolean;
   @Input() monthsPerView!: number;
   @Input() maxPerRow!: number;
+  @Input() selected!: { startDate: Date | null; endDate: Date | null };
   startDate: Date | null = null;
   endDate: Date | null = null;
   daysOfWeek = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'];

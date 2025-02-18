@@ -44,11 +44,13 @@ export class ZapDatePicker<T>
   @Input() customErrorMessages: Record<string, string> = {}; //TODO
   @Input() icon!: string; //TODO
   @Input() iconPosition: 'left' | 'right' = 'left'; //TODO
-  @Input() helpText: string = '';  //TODO
+  @Input() helpText: string = ''; //TODO
   @Input() breakpoints!: ZapDatePickerBreakpoints; //TODO
   @Input() monthsPerView!: number;
   @Input() maxPerRow!: number;
   @Input() range: boolean = false;
+  @Input() dateFormat: string = 'MMM dd, yyyy';
+  @Input() locale: string = 'en-US';
   isCalendarOpen: boolean = false;
   weeks!: Date[][];
   currentDate!: Date;
@@ -125,11 +127,7 @@ export class ZapDatePicker<T>
           : this.range
           ? 2
           : 1,
-        maxPerRow: this.maxPerRow
-          ? this.maxPerRow
-          : this.range
-          ? 2
-          : 1,
+        maxPerRow: this.maxPerRow ? this.maxPerRow : this.range ? 2 : 1,
       },
       '1024': {
         monthsPerView: 1,
@@ -188,7 +186,7 @@ export class ZapDatePicker<T>
           }px`;
           calendarElement.style.bottom = 'auto';
         }
-      } else if (this.position === 'top') {                
+      } else if (this.position === 'top') {
         calendarElement.style.top = `${inputAbsoluteTop - dynamicHeight - 5}px`;
         calendarElement.style.bottom = 'auto';
       } else {
@@ -197,6 +195,31 @@ export class ZapDatePicker<T>
       }
     }
   }
+
+  //TODO: move to utils
+private formatDate(date: Date): string {
+    const options: Intl.DateTimeFormatOptions = {};
+
+    if (this.dateFormat.includes('MMMM')) {
+      options.month = 'long';
+    } else if (this.dateFormat.includes('MMM')) {
+      options.month = 'short';
+    } else if (this.dateFormat.includes('MM')) {
+      options.month = '2-digit';
+    }
+
+    if (this.dateFormat.includes('dd')) {
+      options.day = '2-digit';
+    }
+
+    if (this.dateFormat.includes('yyyy')) {
+      options.year = 'numeric';
+    } else if (this.dateFormat.includes('yy')) {
+      options.year = '2-digit';
+    }
+
+    return new Intl.DateTimeFormat(this.locale, options).format(date);
+}
 
   onPreviousMonth(offset: number): void {
     this.currentDate = new Date(
@@ -214,6 +237,17 @@ export class ZapDatePicker<T>
       1
     );
     this.updateCalendar();
+  }
+
+  selectDate(dateRange: {startDate: Date | null, endDate: Date | null}): void {
+    if (this.control.disabled) return;
+    this.toggleCalendar();
+    if(!this.range) {
+      this.control.setValue(this.formatDate(dateRange.startDate!));
+    }
+    console.log(this.control.value);
+    
+    //TODO: if range then set value to  start - end and if not jsut selected date selected date should be display in a format and format should be accepted to be custom
   }
 
   isCurrentMonth(date: Date, month: number, year: number): boolean {

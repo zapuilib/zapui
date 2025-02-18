@@ -10,12 +10,17 @@
       [id]="id"
       tabindex="0"
     >
-    @if(label) {
+      @if(label) {
       <legend class="sr-only">{{ label }}</legend>
-      }
+      } @if(control.value) {
+      <span class="__zap__form__control__value">
+        {{ control.value }}
+      </span>
+      } @else {
       <span class="__zap__form__control__placeholder">
         {{ placeholder }}
       </span>
+      }
       <div class="handler">
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -43,6 +48,7 @@
         [range]="range"
         [size]="size"
         [shape]="shape"
+        (selectDate)="selectDate($event)"
         (previousMonth)="onPreviousMonth($event)"
         (nextMonth)="onNextMonth($event)"
       ></dp-calendar>

@@ -71,7 +71,7 @@ export class ZapDatePicker<T>
   @Input() range: boolean = false;
   @Input() dateFormat: string = 'MMM dd, yyyy';
   @Input() locale: string = 'en-US';
-  @Input() enableDropdown: boolean = false;
+  @Input() enableDropdown: boolean = true;
 
   //TODO: Optimise for size
   //TODO: min date and maximum date
@@ -83,6 +83,9 @@ export class ZapDatePicker<T>
   //TODO: calendar month select dropdown
   //TODO: calendar year select dropdown
   //TODO: format for the calendar title
+  //TODO: on date select event emitter
+  //TODO: on date range start event emitter
+  //TODO: on date range end event emitter
 
   @ContentChild(ZapFormFieldIconDirective, { static: false })
   iconDirective!: ZapFormFieldIconDirective;

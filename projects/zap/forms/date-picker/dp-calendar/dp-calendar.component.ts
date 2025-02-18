@@ -1,10 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
+import { ZapSelect } from '../../public-api';
+
 @Component({
   selector: 'dp-calendar',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, ZapSelect],
   templateUrl: './dp-calendar.component.html',
   styleUrl: './dp-calendar.component.scss',
 })
@@ -35,10 +37,10 @@ export class DPCalendar implements OnInit {
   }
 
   private setDefaultValues(): void {
-    if(this.selected && this.selected.startDate ) {
+    if (this.selected && this.selected.startDate) {
       this.startDate = this.selected.startDate;
       this.endDate = this.selected.endDate;
-    }    
+    }
   }
 
   getCalendarRows(): {
@@ -128,7 +130,7 @@ export class DPCalendar implements OnInit {
     return date.toDateString() === today.toDateString();
   }
 
-  isSelected(date: Date): boolean {    
+  isSelected(date: Date): boolean {
     if (!this.startDate && !this.endDate) return false;
     const dateString = date.toDateString();
     return (
@@ -144,10 +146,13 @@ export class DPCalendar implements OnInit {
     return date >= this.startDate && date <= this.endDate;
   }
 
-  isOnlyRangeInThisWeek(day: Date,  week: Date[]): boolean {
+  isOnlyRangeInThisWeek(day: Date, week: Date[]): boolean {
     if (!this.startDate || !this.endDate) return false;
-    const weekStart = week[0];    
-    return day.toDateString() === weekStart.toDateString() && weekStart.toDateString() === this.endDate.toDateString();
+    const weekStart = week[0];
+    return (
+      day.toDateString() === weekStart.toDateString() &&
+      weekStart.toDateString() === this.endDate.toDateString()
+    );
   }
 
   select(date: Date): void {

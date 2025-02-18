@@ -23,11 +23,19 @@
             />
           </svg>
         </button>
-
+        @if(!enableDropdown) {
         <span class="title">{{ calendar.month }} {{ calendar.year }}</span>
+        } @else {
+          <zap-select></zap-select>
+        }
         <button
           (click)="nextMonth.emit(monthsPerView)"
-          [class.active]="(calendar.absoluteIndex === monthsPerView - 1 && monthsPerView <= maxPerRow ) || (calendar.absoluteIndex === maxPerRow - 1 && monthsPerView > maxPerRow)"
+          [class.active]="
+            (calendar.absoluteIndex === monthsPerView - 1 &&
+              monthsPerView <= maxPerRow) ||
+            (calendar.absoluteIndex === maxPerRow - 1 &&
+              monthsPerView > maxPerRow)
+          "
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"

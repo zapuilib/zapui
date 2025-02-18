@@ -181,6 +181,7 @@ export class ZapSelect<T> extends ControlValueAccessorDirective<T> {
   }
 
   handleSelectOptionPosition(): void {
+    //FIXME: if input element is insdie absolute element, it is not able to calculate the position of the input element properly such as inside modal, dialog, datepicker etc.
     if (this.optionList && typeof window !== 'undefined') {
       const optionListElement = this.optionList.nativeElement;
       const inputElement = this.inputSelectValueHolder.nativeElement;

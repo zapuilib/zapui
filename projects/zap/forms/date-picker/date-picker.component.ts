@@ -288,6 +288,8 @@ export class ZapDatePicker<T>
   private handleCalendarPosition(): void {
     this.handleBreakpoints();
     this.cdr.detectChanges();
+    //FIXME: if input element is insdie absolute element, it is not able to calculate the position of the input element properly such as inside modal, dialog, etc.
+
     if (this.calendar && typeof window !== 'undefined') {
       const calendarElement = this.calendar.nativeElement;
       const inputElement = this.inputDateSelectValueHolder.nativeElement;

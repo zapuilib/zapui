@@ -4,7 +4,13 @@
   .calendar-row {
     @apply flex justify-start gap-4;
   }
-  
+
+  &.pill {
+    .__zap__calendar {
+      @apply rounded-full;
+    }
+  }
+
   .__zap__calendar {
     @apply flex flex-col items-center border border-secondary/10 bg-primary px-1 py-2 w-max mt-2;
     @apply rounded-[var(--zap-dp-calendar-border-radius)];
@@ -121,6 +127,100 @@
 
     .__zap__calendar {
       @apply mt-0 px-0 py-0 border-0;
+    }
+
+    &.pill {
+      @apply rounded-2xl;
+
+      .__zap__calendar {
+        @apply py-2;
+
+        .header {
+          button {
+            @apply rounded-full;
+          }
+        }
+
+        .day {
+          @apply rounded-full;
+
+          &.in__range {
+            &:not(.selected) {
+              @apply rounded-none last-of-type:rounded-r-full first-of-type:rounded-l-full;
+            }
+
+            &.selected {
+              &::after {
+                @apply rounded-r-full;
+              }
+
+              &:first-child {
+                &::after {
+                  @apply rounded-l-full rounded-r-none;
+                }
+              }
+
+              &:last-child {
+                &::after {
+                  @apply rounded-r-full rounded-l-none;
+                }
+              }
+
+              &.only__range {
+                &::after {
+                  @apply rounded-full;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+    &.curve {
+      @apply rounded;
+
+      .__zap__calendar {
+        .header {
+          button {
+            @apply rounded;
+          }
+        }
+
+        .day {
+          @apply rounded;
+
+          &.in__range {
+            &:not(.selected) {
+              @apply rounded-none last-of-type:rounded-r first-of-type:rounded-l;
+            }
+
+            &.selected {
+              &::after {
+                @apply rounded-r;
+              }
+
+              &:first-child {
+                &::after {
+                  @apply rounded-l rounded-r-none;
+                }
+              }
+
+              &:last-child {
+                &::after {
+                  @apply rounded-r rounded-l-none;
+                }
+              }
+
+              &.only__range {
+                &::after {
+                  @apply rounded;
+                }
+              }
+            }
+          }
+        }
+      }
     }
   }
 }

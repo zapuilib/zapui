@@ -7,13 +7,17 @@ import { ZapDatePickerBreakpoints } from '../interface/date-picker.interface';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './dp-calendar.component.html',
-  styleUrl: './dp-calendar.component.scss'
+  styleUrl: './dp-calendar.component.scss',
 })
 export class DPCalendar {
   @Output() previousMonth = new EventEmitter<number>();
-  @Output() nextMonth = new EventEmitter<number>();  
-  @Output() selectDate = new EventEmitter<{ startDate: Date | null, endDate: Date | null }>();
+  @Output() nextMonth = new EventEmitter<number>();
+  @Output() selectDate = new EventEmitter<{
+    startDate: Date | null;
+    endDate: Date | null;
+  }>();
   @Input() size: 'compact' | 'base' | 'wide' = 'base';
+  @Input() shape: 'pill' | 'curve' | 'flat' = 'flat';
   @Input() weeks!: Date[][];
   @Input() currentMonth!: string;
   @Input() currentYear!: number;
@@ -25,38 +29,49 @@ export class DPCalendar {
   endDate: Date | null = null;
   daysOfWeek = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'];
 
-  getCalendarRows(): { month: string, year: number, monthIndex: number, weeks: Date[][], absoluteIndex: number }[][] {
+  getCalendarRows(): {
+    month: string;
+    year: number;
+    monthIndex: number;
+    weeks: Date[][];
+    absoluteIndex: number;
+  }[][] {
     const months = [];
     for (let i = 0; i < this.monthsPerView; i++) {
-      const date = new Date(this.currentYear, this.currentDate.getMonth() + i, 1);
+      const date = new Date(
+        this.currentYear,
+        this.currentDate.getMonth() + i,
+        1
+      );
       const month = date.toLocaleString('default', { month: 'long' });
       const year = date.getFullYear();
       const monthIndex = date.getMonth();
       const weeks = this.generateWeeksForMonth(date);
       months.push({ month, year, monthIndex, weeks, absoluteIndex: i });
     }
-  
+
     const rows = [];
     for (let i = 0; i < months.length; i += this.maxPerRow) {
       rows.push(months.slice(i, i + this.maxPerRow));
     }
-  
+
     return rows;
   }
-  
-  
+
   generateWeeksForMonth(date: Date): Date[][] {
     const weeks: Date[][] = [];
     const firstDayOfMonth = new Date(date.getFullYear(), date.getMonth(), 1);
     const lastDayOfMonth = new Date(date.getFullYear(), date.getMonth() + 1, 0);
     let currentWeek: Date[] = [];
-  
+
     for (let i = 0; i < firstDayOfMonth.getDay(); i++) {
       const prevMonthDay = new Date(firstDayOfMonth);
-      prevMonthDay.setDate(firstDayOfMonth.getDate() - (firstDayOfMonth.getDay() - i));
+      prevMonthDay.setDate(
+        firstDayOfMonth.getDate() - (firstDayOfMonth.getDay() - i)
+      );
       currentWeek.push(prevMonthDay);
     }
-  
+
     for (let i = 1; i <= lastDayOfMonth.getDate(); i++) {
       const currentDay = new Date(date.getFullYear(), date.getMonth(), i);
       currentWeek.push(currentDay);
@@ -65,16 +80,19 @@ export class DPCalendar {
         currentWeek = [];
       }
     }
-  
+
     if (currentWeek.length > 0) {
       while (currentWeek.length < 7) {
         const nextMonthDay = new Date(lastDayOfMonth);
-        nextMonthDay.setDate(lastDayOfMonth.getDate() + (currentWeek.length - lastDayOfMonth.getDay()));
+        nextMonthDay.setDate(
+          lastDayOfMonth.getDate() +
+            (currentWeek.length - lastDayOfMonth.getDay())
+        );
         currentWeek.push(nextMonthDay);
       }
       weeks.push(currentWeek);
     }
-    
+
     while (weeks.length < 6) {
       const lastDay = weeks[weeks.length - 1][6];
       const nextWeek: Date[] = [];
@@ -85,7 +103,7 @@ export class DPCalendar {
       }
       weeks.push(nextWeek);
     }
-  
+
     return weeks;
   }
 
@@ -101,19 +119,33 @@ export class DPCalendar {
   isSelected(date: Date): boolean {
     if (!this.startDate && !this.endDate) return false;
     const dateString = date.toDateString();
-    return dateString === this.startDate?.toDateString() || dateString === this.endDate?.toDateString();
+    return (
+      dateString === this.startDate?.toDateString() ||
+      dateString === this.endDate?.toDateString()
+    );
   }
 
   isInRange(date: Date): boolean {
     if (!this.startDate || !this.endDate) return false;
+    if (this.startDate.toDateString() === this.endDate.toDateString())
+      return false;
     return date >= this.startDate && date <= this.endDate;
+  }
+
+  isOnlyRangeInThisWeek(day: Date,  week: Date[]): boolean {
+    if (!this.startDate || !this.endDate) return false;
+    const weekStart = week[0];    
+    return day.toDateString() === weekStart.toDateString() && weekStart.toDateString() === this.endDate.toDateString();
   }
 
   select(date: Date): void {
     if (!this.rangeSelection) {
       this.startDate = date;
       this.endDate = date;
-      this.selectDate.emit({ startDate: this.startDate, endDate: this.endDate });
+      this.selectDate.emit({
+        startDate: this.startDate,
+        endDate: this.endDate,
+      });
       return;
     }
 
@@ -122,11 +154,21 @@ export class DPCalendar {
       this.endDate = null;
     } else if (date > this.startDate) {
       this.endDate = date;
-      this.selectDate.emit({ startDate: this.startDate, endDate: this.endDate });
+      this.selectDate.emit({
+        startDate: this.startDate,
+        endDate: this.endDate,
+      });
     } else {
       this.endDate = this.startDate;
       this.startDate = date;
-      this.selectDate.emit({ startDate: this.startDate, endDate: this.endDate });
+      this.selectDate.emit({
+        startDate: this.startDate,
+        endDate: this.endDate,
+      });
     }
+  }
+
+  get classes(): string[] {
+    return [this.shape, this.size];
   }
 }

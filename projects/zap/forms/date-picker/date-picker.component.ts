@@ -120,8 +120,16 @@ export class ZapDatePicker<T>
   private setDefaultsCalendarView(): void {
     this.breakpoints = {
       default: {
-        monthsPerView: this.monthsPerView ? this.monthsPerView : this.rangeSelection ? 2 : 1,
-        maxPerRow: this.maxPerRow ? this.maxPerRow : this.rangeSelection ? 2 : 1,
+        monthsPerView: this.monthsPerView
+          ? this.monthsPerView
+          : this.rangeSelection
+          ? 2
+          : 1,
+        maxPerRow: this.maxPerRow
+          ? this.maxPerRow
+          : this.rangeSelection
+          ? 2
+          : 1,
       },
       '1024': {
         monthsPerView: 1,
@@ -217,5 +225,14 @@ export class ZapDatePicker<T>
     if (this.isCalendarOpen) {
       this.handleCalendarPosition();
     }
+  }
+
+  get classes(): string[] {
+    return [
+      this.shape,
+      this.size,
+      this.zapClass,
+      this.control.disabled ? 'disabled' : '',
+    ].filter((cls) => cls && cls !== 'default');
   }
 }

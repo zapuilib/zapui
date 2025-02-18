@@ -1,6 +1,6 @@
 <div
   class="__zap__calendar__container"
-  [ngClass]="size"
+  [ngClass]="classes"
   [class.multi]="monthsPerView > 1"
 >
   @for(row of getCalendarRows(); track $index; let rowIndex = $index) {
@@ -61,6 +61,7 @@
             [class.today]="isToday(day)"
             [class.selected]="isSelected(day)"
             [class.in__range]="isInRange(day)"
+            [class.only__range]="isOnlyRangeInThisWeek(day, week)"
             (click)="select(day)"
           >
             {{ day.getDate() }}

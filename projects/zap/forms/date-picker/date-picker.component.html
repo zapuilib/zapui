@@ -1,11 +1,18 @@
-<div class="__zap__form__control">
-  <label for="">Date picker</label>
+<div class="__zap__form__control" [ngClass]="classes">
+  @if(label) {
+  <label [for]="id">{{ label }}</label>
+  }
   <div class="field__wrapper">
     <fieldset
       #inputDateSelectValueHolder
       class="__zap__form__control__date__picker"
       (click)="toggleCalendar()"
+      [id]="id"
+      tabindex="0"
     >
+    @if(label) {
+      <legend class="sr-only">{{ label }}</legend>
+      }
       <span class="__zap__form__control__placeholder">
         {{ placeholder }}
       </span>
@@ -35,6 +42,7 @@
         [maxPerRow]="maxPerRow"
         [rangeSelection]="rangeSelection"
         [size]="size"
+        [shape]="shape"
         (previousMonth)="onPreviousMonth($event)"
         (nextMonth)="onNextMonth($event)"
       ></dp-calendar>

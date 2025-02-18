@@ -17,6 +17,18 @@
     }
   }
 
+  &.curve {
+    .__zap__form__control__date__picker {
+      @apply rounded;
+    }
+  }
+
+  &.pill {
+    .__zap__form__control__date__picker {
+      @apply rounded-full;
+    }
+  }
+
   &__date__picker {
     @apply w-full border border-[var(--zap-select-border-color)] bg-[var(--zap-select-bg-color)] hover:bg-[var(--zap-select-bg-hover-color)] text-[var(--zap-select-text-color)] hover:border-[var(--zap-select-border-hover-color)] hover:text-[var(--zap-select-text-hover-color)];
     @apply focus-within:outline-0;
@@ -33,6 +45,7 @@
       @apply right-3 left-auto fill-[var(--zap-select-icon-color)];
     }
   }
+
 }
 
 .__zap__form__control__calendar {

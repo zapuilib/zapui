@@ -72,6 +72,17 @@ export class ZapDatePicker<T>
   @Input() dateFormat: string = 'MMM dd, yyyy';
   @Input() locale: string = 'en-US';
 
+  //TODO: Optimise for size
+  //TODO: min date and maximum date
+  //TODO: disabled colors
+  //TODO: disable weekends
+  //TODO: disable specific dates
+  //TODO: disable date ranges
+  //TODO: disable dates before and after
+  //TODO: calendar month select dropdown
+  //TODO: calendar year select dropdown
+  //TODO: format for the calendar title
+
   @ContentChild(ZapFormFieldIconDirective, { static: false })
   iconDirective!: ZapFormFieldIconDirective;
   @ContentChild(ZapFormFieldHelpTextDirective, { static: false })

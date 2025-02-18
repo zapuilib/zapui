@@ -14,6 +14,7 @@ import { getDefaultSelectSizeCssValues } from '../components/select-theme';
 import { getDefaultTooltipSizeCssValues } from '../components/tooltip-theme';
 import { ZapTheme } from '../../interfaces/config.interface';
 import { hexToRgba } from '../utils/base-theme-utils';
+import { getDefaultDatePickerSizeCssValues } from '../components/date-picker-theme';
 
 /**
  * This function generates the global styles for the all the components
@@ -672,6 +673,52 @@ export function generateGlobalStylesVariables(
         value: hexToRgba(theme.colors.secondary, 0.1),
       },
     ],
+    'date-picker': [
+      {
+        label: 'bg-color',
+        value: 'transparent',
+      },
+      {
+        label: 'label-color',
+        value: theme.colors.secondary,
+      },
+      {
+        label: 'text-color',
+        value: theme.colors.secondary,
+      },
+      {
+        label: 'text-hover-color',
+        value: theme.colors.secondary,
+      },
+      {
+        label: 'border-color',
+        value: hexToRgba(theme.colors.secondary, 0.1),
+      },
+      {
+        label: 'border-hover-color',
+        value: hexToRgba(theme.colors.secondary, 0.1),
+      },
+      {
+        label: 'placeholder-color',
+        value: theme.colors.secondary,
+      },
+      {
+        label: 'border-focus-color',
+        value: theme.colors.tertiary,
+      },
+      {
+        label: 'ring-focus-color',
+        value: theme.colors.tertiary,
+      },
+      {
+        label: 'icon-color',
+        value: hexToRgba(theme.colors.secondary, 1),
+      },
+      {
+        label: 'help-text-color',
+        value: hexToRgba(theme.colors.secondary, 0.5),
+      },
+    ],
   };
   for (const [component, stylesArray] of Object.entries(styles)) {
     for (const style of stylesArray) {
@@ -694,6 +741,7 @@ export function generateGlobalStylesVariables(
   cssVariables += getDefaultAccordionSizeCssValues();
   cssVariables += getDefaultSelectSizeCssValues();
   cssVariables += getDefaultTooltipSizeCssValues();
+  cssVariables += getDefaultDatePickerSizeCssValues();
 
   return cssVariables;
 }

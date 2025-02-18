@@ -175,3 +175,8 @@
     }
   }
 }
+
+
+.__zap__form__control__help__text {
+  @apply text-[var(--zap-select-help-text-color)] text-[length:var(--zap-select-help-text-font-size)] font-[var(--zap-select-help-text-font-weight)] leading-[var(--zap-select-help-text-line-height)] tracking-[var(--zap-select-help-text-letter-spacing)];
+}

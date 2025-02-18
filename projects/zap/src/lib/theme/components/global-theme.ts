@@ -19,6 +19,7 @@ export function generateComponentGlobalVariables(
     'tooltip-content',
     'tooltip-handler',
     'dp-calendar',
+    'date-picker',
   ];
   let cssVariables = '';
 

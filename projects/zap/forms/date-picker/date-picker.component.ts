@@ -1,4 +1,5 @@
 import {
+  AfterViewInit,
   Component,
   ContentChild,
   ElementRef,
@@ -48,7 +49,7 @@ import {
 })
 export class ZapDatePicker<T>
   extends ControlValueAccessorDirective<T>
-  implements OnInit
+  implements OnInit, AfterViewInit
 {
   @ViewChild('inputDateSelectValueHolder')
   inputDateSelectValueHolder!: ElementRef;
@@ -60,9 +61,9 @@ export class ZapDatePicker<T>
   @Input() size: 'compact' | 'base' | 'wide' = 'wide';
   @Input() position: 'top' | 'bottom' | 'auto' = 'auto';
   @Input() customErrorMessages: Record<string, string> = {};
-  @Input() icon!: string; //TODO
-  @Input() iconPosition: 'left' | 'right' = 'left'; //TODO
-  @Input() helpText: string = ''; //TODO
+  @Input() icon!: string;
+  @Input() iconPosition: 'left' | 'right' = 'right';
+  @Input() helpText: string = '';
   @Input() breakpoints!: ZapDatePickerBreakpoints; //TODO
   @Input() zapClass: string = ''; //TODO
   @Input() monthsPerView!: number;
@@ -117,6 +118,51 @@ export class ZapDatePicker<T>
     this.setDefaultsCalendarView();
     this.setCurrentDate();
     this.updateCalendar();
+  }
+
+  ngAfterViewInit() {
+    if (this.iconDirective) {
+      this.iconDirective.el.nativeElement.style.height =
+        this.size === 'compact' ? '14px' : 'var(--zap-date-picker-icon-font-size)';
+      this.iconDirective.el.nativeElement.style.fontSize =
+        this.size === 'compact' ? '14px' : 'var(--zap-date-picker-icon-font-size)';
+      this.iconDirective.el.nativeElement.style.color =
+        'var(--zap-date-picker-icon-color)';
+      this.iconDirective.el.nativeElement.style.marginRight =
+        this.iconPosition === 'left' ? '8px' : '0';
+      this.iconDirective.el.nativeElement.style.marginLeft =
+        this.iconPosition === 'right' ? '8px' : '0';
+      this.iconDirective.el.nativeElement.style.order =
+        this.iconPosition === 'right' ? '1' : '0';
+      this.iconDirective.el.nativeElement.style.position = 'absolute';
+      this.iconDirective.el.nativeElement.style.top = '50%';
+      this.iconDirective.el.nativeElement.style.transform = 'translateY(-50%)';
+      this.iconDirective.el.nativeElement.style.left =
+        this.iconPosition === 'left' ? '0.75rem' : 'auto';
+      this.iconDirective.el.nativeElement.style.right =
+        this.iconPosition === 'right' ? '0.75rem' : 'auto';
+    }
+
+    if (this.helpTextDirective) {
+      this.helpTextDirective.el.nativeElement.style.color =
+        'var(--zap-date-picker-help-text-color)';
+      this.helpTextDirective.el.nativeElement.style.fontSize =
+        'var(--zap-date-picker-help-text-font-size)';
+      this.helpTextDirective.el.nativeElement.style.fontWeight =
+        'var(--zap-date-picker-help-text-font-weight)';
+      this.helpTextDirective.el.nativeElement.style.lineHeight =
+        'var(--zap-date-picker-help-text-line-height)';
+      this.helpTextDirective.el.nativeElement.style.letterSpacing =
+        'var(--zap-date-picker-help-text-letter-spacing)';
+    }
+
+    if (this.labelDirective) {
+      this.labelDirective.el.nativeElement.style.color = 'var(--zap-date-picker-label-color)';
+      this.labelDirective.el.nativeElement.style.fontSize = 'var(--zap-date-picker-label-font-size)';
+      this.labelDirective.el.nativeElement.style.fontWeight = 'var(--zap-date-picker-label-font-weight)';
+      this.labelDirective.el.nativeElement.style.lineHeight = 'var(--zap-date-picker-label-line-height)';
+      this.labelDirective.el.nativeElement.style.letterSpacing = 'var(--zap-date-picker-label-letter-spacing)';
+    }
   }
 
   private setDefaultValue(): void {
@@ -321,6 +367,7 @@ export class ZapDatePicker<T>
       this.shape,
       this.size,
       this.zapClass,
+      this.iconPosition,
       this.control.disabled ? 'disabled' : '',
     ].filter((cls) => cls && cls !== 'default');
   }

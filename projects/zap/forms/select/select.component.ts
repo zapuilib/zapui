@@ -58,7 +58,7 @@ export class ZapSelect<T> extends ControlValueAccessorDirective<T> {
   @Input() placeholder: string = 'Select';
   @Input() customErrorMessages: Record<string, string> = {};
   @Input() zapClass: string = '';
-  @Input() shape: 'pill' | 'curve' | 'flat' = 'flat';
+  @Input() shape: 'pill' | 'curve' | 'flat' = 'curve';
   @Input() size: 'compact' | 'base' = 'base';
   @Input() icon!: string;
   @Input() iconPosition: 'left' | 'right' = 'left';
@@ -84,9 +84,13 @@ export class ZapSelect<T> extends ControlValueAccessorDirective<T> {
   labelDirective!: ZapLabelDirective;
 
   //FIXME: The selct was emitting value multiple times when the value was changed.
-
   @HostListener('window:resize')
   onWindowResize(): void {
+    this.handleSelectOptionPosition();
+  }
+
+  @HostListener('window:scroll', ['$event'])
+  onWindowScroll(): void {
     this.handleSelectOptionPosition();
   }
   ngAfterViewInit() {
@@ -126,11 +130,16 @@ export class ZapSelect<T> extends ControlValueAccessorDirective<T> {
     }
 
     if (this.labelDirective) {
-      this.labelDirective.el.nativeElement.style.color = 'var(--zap-select-label-color)';
-      this.labelDirective.el.nativeElement.style.fontSize = 'var(--zap-select-label-font-size)';
-      this.labelDirective.el.nativeElement.style.fontWeight = 'var(--zap-select-label-font-weight)';
-      this.labelDirective.el.nativeElement.style.lineHeight = 'var(--zap-select-label-line-height)';
-      this.labelDirective.el.nativeElement.style.letterSpacing = 'var(--zap-select-label-letter-spacing)';
+      this.labelDirective.el.nativeElement.style.color =
+        'var(--zap-select-label-color)';
+      this.labelDirective.el.nativeElement.style.fontSize =
+        'var(--zap-select-label-font-size)';
+      this.labelDirective.el.nativeElement.style.fontWeight =
+        'var(--zap-select-label-font-weight)';
+      this.labelDirective.el.nativeElement.style.lineHeight =
+        'var(--zap-select-label-line-height)';
+      this.labelDirective.el.nativeElement.style.letterSpacing =
+        'var(--zap-select-label-letter-spacing)';
     }
   }
 
@@ -181,7 +190,6 @@ export class ZapSelect<T> extends ControlValueAccessorDirective<T> {
   }
 
   handleSelectOptionPosition(): void {
-    //FIXME: if input element is insdie absolute element, it is not able to calculate the position of the input element properly such as inside modal, dialog, datepicker etc.
     if (this.optionList && typeof window !== 'undefined') {
       const optionListElement = this.optionList.nativeElement;
       const inputElement = this.inputSelectValueHolder.nativeElement;
@@ -190,20 +198,40 @@ export class ZapSelect<T> extends ControlValueAccessorDirective<T> {
       const viewportHeight = window.innerHeight;
       const spaceBelow = viewportHeight - inputRect.bottom;
       const spaceAbove = inputRect.top;
-  
-      optionListElement.style.position = 'absolute';
+
+      document.body.appendChild(optionListElement);
+
+      optionListElement.style.position = 'fixed';
+      optionListElement.style.zIndex = '999';
       optionListElement.style.left = `${inputRect.left + window.scrollX}px`;
-      optionListElement.style.width = `${inputRect.width}px`; 
+      optionListElement.style.width = `${inputRect.width}px`;
+
+      let parentElement = optionListElement.offsetParent as HTMLElement;
+      let parentRect = parentElement
+        ? parentElement.getBoundingClientRect()
+        : { top: 0, left: 0 };
+      const offsetLeft = inputRect.left - parentRect.left;
+      const offsetTop = inputRect.top - parentRect.top;
+      const offsetBottom = inputRect.bottom - parentRect.top;
+      optionListElement.style.left = `${offsetLeft}px`;
+
       if (this.position === 'auto') {
-        if (spaceBelow < optionListRect.height && spaceAbove > optionListRect.height) {
-          optionListElement.style.top = `${inputRect.top + window.scrollY - optionListRect.height - 5}px`;
+        if (
+          spaceBelow < optionListRect.height &&
+          spaceAbove > optionListRect.height
+        ) {
+          optionListElement.style.top = `${
+            offsetTop - optionListRect.height - 5
+          }px`;
         } else {
-          optionListElement.style.top = `${inputRect.bottom + window.scrollY}px`;
+          optionListElement.style.top = `${offsetBottom}px`;
         }
       } else if (this.position === 'top') {
-        optionListElement.style.top = `${inputRect.top + window.scrollY - optionListRect.height -5}px`;
+        optionListElement.style.top = `${
+          offsetTop - optionListRect.height - 5
+        }px`;
       } else {
-        optionListElement.style.top = `${inputRect.bottom + window.scrollY}px`;
+        optionListElement.style.top = `${offsetBottom}px`;
       }
     }
   }
@@ -303,12 +331,24 @@ export class ZapSelect<T> extends ControlValueAccessorDirective<T> {
   }
 
   get classes(): string[] {
+    return this.generateClasses();
+  }
+
+  get selectClasses(): string[] {
+    return this.generateClasses(['select:', 'select-placeholder:', 'select-dropdown:', 'select-icon:', 'select-selected:']);
+  }
+
+  get optionsClasses(): string[] {
+    return this.generateClasses(['options:', 'option:', 'search:', 'search-icon:', 'option-checkbox:', 'option-checked:', 'option-selected:', 'option-hovered:']);
+  }
+
+  private generateClasses(prefixes: string[] = ['']): string[] {
     return [
       this.shape,
-      this.zapClass,
+      ...this.zapClass.split(' ').filter(cls => prefixes.some(prefix => cls.startsWith(prefix))),
       this.size,
-      this.icon || this.iconDirective ? this.iconPosition : '',
+      (this.icon || this.iconDirective) ? this.iconPosition : '',
       this.control.disabled ? 'disabled' : '',
-    ].filter((cls) => cls && cls !== 'default');
+    ].filter(cls => cls && cls !== 'default');
   }
 }

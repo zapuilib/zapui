@@ -117,11 +117,37 @@
   </zap-input>
   <div class="relative w-full h-full col-span-2 px-10 dark:bg-[#09090B]/90">
     <zap-modal zapClass="absolute" size="tight">
-      <h2 class="font-semibold">Modal</h2>
+      <h2 class="font-semibold">
+        Modal
+
+        <zap-tooltip>
+          <zap-tooltip-handler>
+            <button class="text-sm">Hover me</button>
+          </zap-tooltip-handler>
+          <zap-tooltip-content>
+            <p>This is a tooltip!</p>
+          </zap-tooltip-content>
+        </zap-tooltip>
+      </h2>
+
       <p class="mt-2">
         Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod
         tempor incididunt ut labore et dolore magna aliqua
       </p>
+      <zap-select
+        id="country"
+        label="Single select"
+        [options]="[
+          { label: 'US', value: 'us' },
+          { label: 'Canada', value: 'ca' },
+          { label: 'Mexico', value: 'mx' },
+          { label: 'Other', value: 'other' }
+        ]"
+        shape="curve"
+        zapClass=""
+        [multiselect]="true"
+        >
+      </zap-select>
       <div class="flex justify-end mt-10">
         <zap-button text="Save changes"></zap-button>
       </div>

@@ -27,6 +27,7 @@ export class ZapTooltip {
     this.adjustPosition();
   }
 
+  //TODO: this need to work with fixed position not absolute and test on all modal dialog etc
   private adjustPosition() {
     const holderElement = this.tooltip.nativeElement;
     const contentElement = this.content.contentElement.nativeElement;

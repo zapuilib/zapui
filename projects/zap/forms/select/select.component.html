@@ -11,6 +11,7 @@
       (click)="toggleOptionsList()"
       [id]="id"
       tabindex="0"
+      [ngClass]="selectClasses"
     >
       @if(label) {
       <legend class="sr-only">{{ label }}</legend>
@@ -66,7 +67,11 @@
       </div>
     </fieldset>
     @if(isOptionListOpen) {
-    <div #optionList class="__zap__form__control__options__container" [ngClass]="position">
+    <div
+      #optionList
+      class="__zap__form__control__options__container"
+      [ngClass]="optionsClasses"
+    >
       <div class="__zap__form__control__options">
         @if(searchable) {
         <fieldset>

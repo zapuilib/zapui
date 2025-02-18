@@ -243,6 +243,7 @@ export class ZapSelect<T> extends ControlValueAccessorDirective<T> {
       );
     }
     this.cdr.detectChanges();
+    this.handleSelectOptionPosition();
   }
 
   selectOption(option: { label: string; value: any }): void {

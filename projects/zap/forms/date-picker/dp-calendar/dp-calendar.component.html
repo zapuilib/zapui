@@ -8,7 +8,6 @@
     @for(calendar of row; track $index;) {
     <div class="__zap__calendar">
       <div class="header">
-        <!-- Show Previous Button only on the first calendar -->
         <button
           (click)="previousMonth.emit(monthsPerView)"
           [class.active]="calendar.absoluteIndex === 0"

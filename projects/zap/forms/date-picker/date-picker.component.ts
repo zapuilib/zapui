@@ -37,18 +37,18 @@ export class ZapDatePicker<T>
   @Input() label: string = '';
   @Input() id: string = '';
   @Input() placeholder: string = 'Select';
-  @Input() customErrorMessages: Record<string, string> = {};
-  @Input() zapClass: string = '';
   @Input() shape: 'pill' | 'curve' | 'flat' = 'flat';
   @Input() size: 'compact' | 'base' | 'wide' = 'wide';
-  @Input() icon!: string;
-  @Input() iconPosition: 'left' | 'right' = 'left';
   @Input() position: 'top' | 'bottom' | 'auto' = 'auto';
-  @Input() helpText: string = '';
-  @Input() breakpoints!: ZapDatePickerBreakpoints;
+  @Input() zapClass: string = ''; //TODO
+  @Input() customErrorMessages: Record<string, string> = {}; //TODO
+  @Input() icon!: string; //TODO
+  @Input() iconPosition: 'left' | 'right' = 'left'; //TODO
+  @Input() helpText: string = '';  //TODO
+  @Input() breakpoints!: ZapDatePickerBreakpoints; //TODO
   @Input() monthsPerView!: number;
   @Input() maxPerRow!: number;
-  @Input() rangeSelection: boolean = true;
+  @Input() range: boolean = false;
   isCalendarOpen: boolean = false;
   weeks!: Date[][];
   currentDate!: Date;
@@ -122,12 +122,12 @@ export class ZapDatePicker<T>
       default: {
         monthsPerView: this.monthsPerView
           ? this.monthsPerView
-          : this.rangeSelection
+          : this.range
           ? 2
           : 1,
         maxPerRow: this.maxPerRow
           ? this.maxPerRow
-          : this.rangeSelection
+          : this.range
           ? 2
           : 1,
       },
@@ -156,6 +156,7 @@ export class ZapDatePicker<T>
   //TODO: manage size wide
   private handleCalendarPosition(): void {
     this.handleBreakpoints();
+    this.cdr.detectChanges();
     if (this.calendar && typeof window !== 'undefined') {
       const calendarElement = this.calendar.nativeElement;
       const inputElement = this.inputDateSelectValueHolder.nativeElement;
@@ -187,7 +188,7 @@ export class ZapDatePicker<T>
           }px`;
           calendarElement.style.bottom = 'auto';
         }
-      } else if (this.position === 'top') {
+      } else if (this.position === 'top') {                
         calendarElement.style.top = `${inputAbsoluteTop - dynamicHeight - 5}px`;
         calendarElement.style.bottom = 'auto';
       } else {

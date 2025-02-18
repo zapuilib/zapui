@@ -22,7 +22,7 @@ export class DPCalendar {
   @Input() currentMonth!: string;
   @Input() currentYear!: number;
   @Input() currentDate!: Date;
-  @Input() rangeSelection!: boolean;
+  @Input() range!: boolean;
   @Input() monthsPerView!: number;
   @Input() maxPerRow!: number;
   startDate: Date | null = null;
@@ -139,7 +139,7 @@ export class DPCalendar {
   }
 
   select(date: Date): void {
-    if (!this.rangeSelection) {
+    if (!this.range) {
       this.startDate = date;
       this.endDate = date;
       this.selectDate.emit({

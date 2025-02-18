@@ -110,7 +110,7 @@ export class AppComponent implements OnInit {
       maxPerRow: 2,
       monthsPerView: 2,
     },
-    '2xl': {
+    'lg': {
       maxPerRow: 1,
       monthsPerView: 1,
     }

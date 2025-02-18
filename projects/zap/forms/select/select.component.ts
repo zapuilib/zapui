@@ -186,12 +186,6 @@ export class ZapSelect<T>
     this.checkIfEmpty();
   }
 
-  removeOptionsFromDOM(): void {
-    if (this.optionList) {
-      this.optionList.nativeElement.remove();
-    }
-  }
-
   handleDefaultValue(): void {
     if (this.control.value) {
       this.selectedOptionValue = [
@@ -219,7 +213,7 @@ export class ZapSelect<T>
       optionListElement.style.position = 'fixed';
 
       let parent = inputElement.closest(
-        '.__zap__modal__wrapper, .__zap__dialog, .modal, .dialog'
+        '.__zap__modal__wrapper, .__zap__dialog, .modal, .dialog, .__zap__form__control__calendar'
       );
       if (parent) {
         optionListElement.style.zIndex = '999';
@@ -281,10 +275,6 @@ export class ZapSelect<T>
     this.hoveredOption = '';
     this.filteredOptions = this.options;
     this.handleSelectOptionPosition();
-
-    if (!this.isOptionListOpen) {
-      this.removeOptionsFromDOM();
-    }
   }
 
   handleSearch(event: Event): void {

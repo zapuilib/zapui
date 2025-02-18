@@ -6,6 +6,7 @@ import {
   forwardRef,
   HostListener,
   Input,
+  OnDestroy,
   OnInit,
   ViewChild,
 } from '@angular/core';
@@ -49,7 +50,7 @@ import {
 })
 export class ZapDatePicker<T>
   extends ControlValueAccessorDirective<T>
-  implements OnInit, AfterViewInit
+  implements OnInit, AfterViewInit, OnDestroy
 {
   @ViewChild('inputDateSelectValueHolder')
   inputDateSelectValueHolder!: ElementRef;
@@ -123,6 +124,12 @@ export class ZapDatePicker<T>
 
   @HostListener('window:resize')
   onWindowResize(): void {
+    this.handleBreakpoints();
+    this.handleCalendarPosition();
+  }
+
+  @HostListener('window:scroll', ['$event'])
+  onWindowScroll(): void {
     this.handleBreakpoints();
     this.handleCalendarPosition();
   }
@@ -284,12 +291,10 @@ export class ZapDatePicker<T>
     this.maxPerRow = matchedBreakpoint?.maxPerRow ?? 1;
   }
 
-  //TODO: manage size wide
   private handleCalendarPosition(): void {
     this.handleBreakpoints();
     this.cdr.detectChanges();
-    //FIXME: if input element is insdie absolute element, it is not able to calculate the position of the input element properly such as inside modal, dialog, etc.
-
+  
     if (this.calendar && typeof window !== 'undefined') {
       const calendarElement = this.calendar.nativeElement;
       const inputElement = this.inputDateSelectValueHolder.nativeElement;
@@ -298,39 +303,53 @@ export class ZapDatePicker<T>
       const viewportHeight = window.innerHeight;
       const spaceBelow = viewportHeight - inputRect.bottom;
       const spaceAbove = inputRect.top;
-
       const scrollY = window.scrollY;
-
-      const inputAbsoluteTop = inputRect.top + scrollY;
-      const inputAbsoluteLeft = inputRect.left;
-
-      calendarElement.style.position = 'absolute';
-      calendarElement.style.left = `${inputAbsoluteLeft}px`;
+      const scrollX = window.scrollX;
+  
+      if (!calendarElement.dataset.appendedToBody) {
+        document.body.appendChild(calendarElement);
+        calendarElement.dataset.appendedToBody = 'true';
+      }
+  
+      calendarElement.style.position = 'fixed';
+  
+      let parent = inputElement.closest(
+        '.__zap__modal__wrapper, .__zap__dialog, .modal, .dialog'
+      );
+      if (parent) {
+        calendarElement.style.zIndex = '999';
+      }
+  
+      calendarElement.style.left = `${inputRect.left + scrollX}px`;
       calendarElement.style.width = `${inputRect.width}px`;
-
+  
+      let parentElement = calendarElement.offsetParent as HTMLElement;
+      let parentRect = parentElement
+        ? parentElement.getBoundingClientRect()
+        : { top: 0, left: 0 };
+      const offsetLeft = inputRect.left - parentRect.left;
+      const offsetTop = inputRect.top - parentRect.top;
+      const offsetBottom = inputRect.bottom - parentRect.top;
+      calendarElement.style.left = `${offsetLeft}px`;
+  
       const dynamicHeight = calendarRect.height;
-
+  
       if (this.position === 'auto') {
         if (spaceBelow < dynamicHeight && spaceAbove > dynamicHeight) {
           calendarElement.style.top = `${
-            inputAbsoluteTop - dynamicHeight - 5
+            offsetTop - dynamicHeight - 5
           }px`;
-          calendarElement.style.bottom = 'auto';
         } else {
-          calendarElement.style.top = `${
-            inputAbsoluteTop + inputRect.height
-          }px`;
-          calendarElement.style.bottom = 'auto';
+          calendarElement.style.top = `${offsetBottom}px`;
         }
       } else if (this.position === 'top') {
-        calendarElement.style.top = `${inputAbsoluteTop - dynamicHeight - 5}px`;
-        calendarElement.style.bottom = 'auto';
+        calendarElement.style.top = `${offsetTop - dynamicHeight - 5}px`;
       } else {
-        calendarElement.style.top = `${inputAbsoluteTop + inputRect.height}px`;
-        calendarElement.style.bottom = 'auto';
+        calendarElement.style.top = `${offsetBottom}px`;
       }
     }
   }
+  
 
   onPreviousMonth(offset: number): void {
     this.currentDate = new Date(
@@ -403,5 +422,11 @@ export class ZapDatePicker<T>
       this.iconPosition,
       this.control.disabled ? 'disabled' : '',
     ].filter((cls) => cls && cls !== 'default');
+  }
+
+  ngOnDestroy(): void {
+    if (this.calendar) {
+      this.calendar.nativeElement.remove();
+    }
   }
 }

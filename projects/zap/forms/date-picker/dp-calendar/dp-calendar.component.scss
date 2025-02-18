@@ -5,12 +5,6 @@
     @apply flex justify-start gap-4;
   }
 
-  &.pill {
-    .__zap__calendar {
-      @apply rounded-full;
-    }
-  }
-
   .__zap__calendar {
     @apply flex flex-col items-center border border-secondary/10 bg-primary px-1 py-2 w-max mt-2;
     @apply rounded-[var(--zap-dp-calendar-border-radius)];
@@ -131,16 +125,24 @@
 
     &.pill {
       @apply rounded-2xl;
+    }
 
-      .__zap__calendar {
-        @apply py-2;
+    &.curve {
+      @apply rounded;
+    }
+  }
 
-        .header {
-          button {
-            @apply rounded-full;
-          }
+  &.pill {
+    .__zap__calendar {
+      @apply rounded-2xl py-2;
+
+      .header {
+        button {
+          @apply rounded-full;
         }
+      }
 
+      .weeks {
         .day {
           @apply rounded-full;
 
@@ -176,17 +178,19 @@
         }
       }
     }
+  }
 
-    &.curve {
+  &.curve {
+    .__zap__calendar {
       @apply rounded;
 
-      .__zap__calendar {
-        .header {
-          button {
-            @apply rounded;
-          }
+      .header {
+        button {
+          @apply rounded;
         }
+      }
 
+      .weeks {
         .day {
           @apply rounded;
 

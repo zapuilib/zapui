@@ -14,6 +14,8 @@ import { getDefaultSelectSizeCssValues } from '../components/select-theme';
 import { getDefaultTooltipSizeCssValues } from '../components/tooltip-theme';
 import { ZapTheme } from '../../interfaces/config.interface';
 import { hexToRgba } from '../utils/base-theme-utils';
+import { getDefaultDatePickerSizeCssValues } from '../components/date-picker-theme';
+import { getDefaultDPCalendarSelectSizeCssValues } from '../components/dp-calendar-select-theme';
 
 /**
  * This function generates the global styles for the all the components
@@ -672,6 +674,320 @@ export function generateGlobalStylesVariables(
         value: hexToRgba(theme.colors.secondary, 0.1),
       },
     ],
+    'date-picker': [
+      {
+        label: 'bg-color',
+        value: 'transparent',
+      },
+      {
+        label: 'label-color',
+        value: theme.colors.secondary,
+      },
+      {
+        label: 'text-color',
+        value: theme.colors.secondary,
+      },
+      {
+        label: 'text-hover-color',
+        value: theme.colors.secondary,
+      },
+      {
+        label: 'border-color',
+        value: hexToRgba(theme.colors.secondary, 0.1),
+      },
+      {
+        label: 'border-hover-color',
+        value: hexToRgba(theme.colors.secondary, 0.1),
+      },
+      {
+        label: 'placeholder-color',
+        value: theme.colors.secondary,
+      },
+      {
+        label: 'border-focus-color',
+        value: theme.colors.tertiary,
+      },
+      {
+        label: 'ring-focus-color',
+        value: theme.colors.tertiary,
+      },
+      {
+        label: 'icon-color',
+        value: hexToRgba(theme.colors.secondary, 1),
+      },
+      {
+        label: 'help-text-color',
+        value: hexToRgba(theme.colors.secondary, 0.5),
+      },
+    ],
+    'dp-calendar': [
+      {
+        label: 'bg-color',
+        value: theme.colors.primary,
+      },
+      {
+        label: 'border-color',
+        value: hexToRgba(theme.colors.secondary, 0.1),
+      },
+      {
+        label: 'title-text-color',
+        value: theme.colors.secondary,
+      },
+      {
+        label: 'handler-color',
+        value: hexToRgba(theme.colors.secondary, 0.5),
+      },
+      {
+        label: 'handler-bg-color',
+        value: theme.colors.primary,
+      },
+      {
+        label: 'handler-border-color',
+        value: hexToRgba(theme.colors.secondary, 0.1),
+      },
+      {
+        label: 'handler-bg-hover-color',
+        value: hexToRgba(theme.colors.secondary, 0.05),
+      },
+      {
+        label: 'handler-border-hover-color',
+        value: hexToRgba(theme.colors.secondary, 0.1),
+      },
+      {
+        label: 'day-text-color',
+        value: hexToRgba(theme.colors.secondary, 0.5),
+      },
+      {
+        label: 'day-of-week-text-color',
+        value: hexToRgba(theme.colors.secondary, 0.5),
+      },
+      {
+        label: 'day-of-week-text-hover-color',
+        value: hexToRgba(theme.colors.secondary, 0.5),
+      },
+      {
+        label: 'day-active-month-text-color',
+        value: theme.colors.secondary,
+      },
+      {
+        label: 'day-active-month-bg-color',
+        value: 'transparent',
+      },
+      {
+        label: 'day-active-month-border-color',
+        value: 'transparent',
+      },
+      {
+        label: 'day-bg-hover-color',
+        value: hexToRgba(theme.colors.secondary, 0.03),
+      },
+      {
+        label: 'day-active-month-bg-hover-color',
+        value: hexToRgba(theme.colors.secondary, 0.05),
+      },
+      {
+        label: 'day-border-color',
+        value: 'transparent',
+      },
+      {
+        label: 'day-border-hover-color',
+        value: 'transparent',
+      },
+      {
+        label: 'today-bg-color',
+        value: hexToRgba(theme.colors.secondary, 0.1),
+      },
+      {
+        label: 'today-border-color',
+        value: 'transparent',
+      },
+      {
+        label: 'today-bg-hover-color',
+        value: hexToRgba(theme.colors.secondary, 0.1),
+      },
+      {
+        label: 'today-border-hover-color',
+        value: 'transparent',
+      },
+      {
+        label: 'in-range-bg-color',
+        value: hexToRgba(theme.colors.secondary, 0.05),
+      },
+      {
+        label: 'in-range-active-month-bg-color',
+        value: hexToRgba(theme.colors.secondary, 0.1),
+      },
+      {
+        label: 'in-range-border-color',
+        value: 'transparent',
+      },
+      {
+        label: 'in-range-active-month-border-color',
+        value: 'transparent',
+      },
+      {
+        label: 'in-range-text-color',
+        value: hexToRgba(theme.colors.secondary, 0.5),
+      },
+      {
+        label: 'in-range-active-month-text-color',
+        value: theme.colors.secondary,
+      },
+      {
+        label: 'selected-active-month-bg-color',
+        value: theme.colors.tertiary,
+      },
+      {
+        label: 'selected-active-month-border-color',
+        value: 'transparent',
+      },
+      {
+        label: 'selected-active-month-text-color',
+        value: theme.colors.primary,
+      },
+      {
+        label: 'selected-active-month-bg-hover-color',
+        value: theme.colors.tertiary,
+      },
+      {
+        label: 'selected-active-month-border-hover-color',
+        value: 'transparent',
+      },
+      {
+        label: 'selected-active-month-text-hover-color',
+        value: theme.colors.primary,
+      },
+      {
+        label: 'selected-bg-color',
+        value: hexToRgba(theme.colors.secondary, 0.05),
+      },
+      {
+        label: 'selected-border-color',
+        value: 'transparent',
+      },
+      {
+        label: 'selected-text-color',
+        value: hexToRgba(theme.colors.secondary, 0.5),
+      },
+      {
+        label: 'selected-bg-hover-color',
+        value: hexToRgba(theme.colors.secondary, 0.05),
+      },
+      {
+        label: 'selected-border-hover-color',
+        value: 'transparent',
+      },
+      {
+        label: 'selected-text-hover-color',
+        value: hexToRgba(theme.colors.secondary, 0.5),
+      },
+    ],
+    'dp-calendar-select': [
+      {
+        label: 'bg-color',
+        value: 'transparent',
+      },
+      {
+        label: 'label-color',
+        value: theme.colors.secondary,
+      },
+      {
+        label: 'text-color',
+        value: theme.colors.secondary,
+      },
+      {
+        label: 'text-hover-color',
+        value: theme.colors.secondary,
+      },
+      {
+        label: 'border-color',
+        value: hexToRgba(theme.colors.secondary, 0.1),
+      },
+      {
+        label: 'border-hover-color',
+        value: hexToRgba(theme.colors.secondary, 0.1),
+      },
+      {
+        label: 'placeholder-color',
+        value: theme.colors.secondary,
+      },
+      {
+        label: 'border-focus-color',
+        value: theme.colors.tertiary,
+      },
+      {
+        label: 'ring-focus-color',
+        value: theme.colors.tertiary,
+      },
+      {
+        label: 'icon-color',
+        value: hexToRgba(theme.colors.secondary, 0.5),
+      },
+      {
+        label: 'options-bg-color',
+        value: theme.colors.primary,
+      },
+      {
+        label: 'options-border-color',
+        value: hexToRgba(theme.colors.secondary, 0.1),
+      },
+      {
+        label: 'option-bg-color',
+        value: 'transparent',
+      },
+      {
+        label: 'option-text-color',
+        value: theme.colors.secondary,
+      },
+      {
+        label: 'option-border-color',
+        value: 'transparent',
+      },
+      {
+        label: 'option-bg-hover-color',
+        value: hexToRgba(theme.colors.secondary, 0.03),
+      },
+      {
+        label: 'option-text-hover-color',
+        value: theme.colors.secondary,
+      },
+      {
+        label: 'option-border-hover-color',
+        value: 'transparent',
+      },
+      {
+        label: 'selected-bg-color',
+        value: hexToRgba(theme.colors.secondary, 0.05),
+      },
+      {
+        label: 'selected-border-color',
+        value: 'transparent',
+      },
+      {
+        label: 'selected-border-hover-color',
+        value: 'transparent',
+      },
+      {
+        label: 'selected-bg-hover-color',
+        value: hexToRgba(theme.colors.secondary, 0.05),
+      },
+      {
+        label: 'ring-focus-color',
+        value: theme.colors.tertiary,
+      },
+      {
+        label: 'selected-text-color',
+        value: theme.colors.secondary,
+      },
+      {
+        label: 'selected-text-hover-color',
+        value: theme.colors.secondary,
+      },
+      {
+        label: 'search-bg-color',
+        value: theme.colors.primary,
+      },
+    ],
   };
   for (const [component, stylesArray] of Object.entries(styles)) {
     for (const style of stylesArray) {
@@ -694,6 +1010,8 @@ export function generateGlobalStylesVariables(
   cssVariables += getDefaultAccordionSizeCssValues();
   cssVariables += getDefaultSelectSizeCssValues();
   cssVariables += getDefaultTooltipSizeCssValues();
+  cssVariables += getDefaultDatePickerSizeCssValues();
+  cssVariables += getDefaultDPCalendarSelectSizeCssValues();
 
   return cssVariables;
 }

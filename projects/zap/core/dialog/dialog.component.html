@@ -1,16 +1,16 @@
-<div class="__ngx__zap__dialog" [ngClass]="classes">
-  <h3 class="__ngx__zap__dialog__title">{{ title }}</h3>
+<div class="__zap__dialog" [ngClass]="classes">
+  <h3 class="__zap__dialog__title">{{ title }}</h3>
   <i class="handler fa-solid fa-xmark" (click)="cancel.emit()"></i>
 
   @if(text) {
-  <div class="__ngx__zap__dialog__content">
+  <div class="__zap__dialog__content">
     <p class="text">{{ text }}</p>
   </div>
   }
 
   <ng-content></ng-content>
 
-  <div class="__ngx__zap__dialog__footer">
+  <div class="__zap__dialog__footer">
     @if (btnDirective) {
     <ng-content select="[zapDialogButton]"></ng-content>
     } @else {

@@ -18,6 +18,11 @@ export function generateComponentGlobalVariables(
     'select',
     'tooltip-content',
     'tooltip-handler',
+    'dp-calendar',
+    'dp-calendar-day',
+    'dp-calendar-handler',
+    'date-picker',
+    'dp-calendar-select',
   ];
   let cssVariables = '';
 
@@ -44,6 +49,20 @@ export function generateComponentGlobalVariables(
           cssVariables += `--zap-select-checkbox-border-radius: ${shapeCssValue};\n`;
         }
         cssVariables += `--zap-select-chip-border-radius: ${shapeCssValue};\n`;
+      }
+      if(component === 'dp-calendar') {
+        if(shapeValue === 'pill') {
+          cssVariables += `--zap-dp-calendar-border-radius: 1.5rem;\n`;
+        } else {
+          cssVariables += `--zap-dp-calendar-border-radius: ${shapeCssValue};\n`;
+        }
+      }
+      if(component === 'dp-calendar-select') {
+        if (shapeValue === 'pill') {
+          cssVariables += `--zap-dp-calendar-select-options-border-radius: 1.5rem;\n`;
+        } else {
+          cssVariables += `--zap-dp-calendar-select-options-border-radius: ${shapeCssValue};\n`;
+        }
       }
     }
   }

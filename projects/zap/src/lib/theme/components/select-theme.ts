@@ -1,5 +1,5 @@
 import { SelectConfig } from '../../interfaces';
-import { getExistingShapeFor, getShapeCssValues } from '../utils/shape-utils';
+import { getShapeCssValues } from '../utils/shape-utils';
 
 export function generateComponentSelectVariables(
   value: SelectConfig,
@@ -45,7 +45,7 @@ export function getSelectSizeCssValues(
     cssVariables += `--zap-select-padding-right: 0.5rem;\n`;
     cssVariables += `--zap-select-padding-top: 0.375rem;\n`;
     cssVariables += `--zap-select-padding-bottom: 0.375rem;\n`;
-    cssVariables += `--zap-select-font-size: 0.375rem;\n`;
+    cssVariables += `--zap-select-font-size: 0.875rem;\n`;
     cssVariables + ' `--zap-select-icon-font-size: 0.875rem;\n';
   } else {
     cssVariables += getDefaultSelectSizeCssValues();
@@ -64,7 +64,7 @@ export function getDefaultSelectSizeCssValues(): string {
         --zap-select-search-padding-right: 0.5rem;
         --zap-select-search-padding-top: 0.5rem;
         --zap-select-search-padding-bottom: 0.5rem;
-        --zap-select-font-size: 0.5rem;
+        --zap-select-font-size: 1rem;
         --zap-select-option-padding-left: 0.75rem;
         --zap-select-option-padding-right: 0.75rem;
         --zap-select-option-padding-top: 0.5rem;

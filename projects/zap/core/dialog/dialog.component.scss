@@ -1,4 +1,4 @@
-.__ngx__zap__dialog {
+.__zap__dialog {
   @apply relative flex flex-col;
   @apply w-[30rem] min-h-[14rem] p-5 bg-[var(--zap-dialog-bg-color)] border border-[var(--zap-dialog-border-color)];
   @apply rounded-[var(--zap-dialog-border-radius)];
@@ -9,7 +9,7 @@
     @apply items-start pt-20;
   }
 
-  .__ngx__zap__dialog__title {
+  .__zap__dialog__title {
     @apply mb-2 text-[var(--zap-dialog-title-color)] text-[length:var(--zap-dialog-title-font-size)] font-[var(--zap-dialog-title-font-weight)] leading-[var(--zap-dialog-title-line-height)] tracking-[var(--zap-dialog-title-letter-spacing)];
   }
 
@@ -17,13 +17,13 @@
     @apply cursor-pointer p-1 text-[var(--zap-dialog-dismiss-color)] text-[length:var(--zap-dialog-dismiss-font-size)] font-[var(--zap-dialog-dismiss-font-weight)] leading-[var(--zap-dialog-dismiss-line-height)] tracking-[var(--zap-dialog-dismiss-letter-spacing)] transition-colors hover:text-[var(--zap-dialog-dismiss-hover-color)] absolute top-5 right-5;
   }
 
-  .__ngx__zap__dialog__content {
+  .__zap__dialog__content {
     p {
       @apply text-[var(--zap-dialog-text-color)] text-[length:var(--zap-dialog-font-size)] font-[var(--zap-dialog-font-weight)] leading-[var(--zap-dialog-line-height)] tracking-[var(--zap-dialog-letter-spacing)];
     }
   }
 
-  .__ngx__zap__dialog__footer {
+  .__zap__dialog__footer {
     @apply flex justify-end items-center gap-x-4 max-sm:flex-col max-sm:items-start max-sm:gap-y-4 mt-auto max-sm:mt-10;
 
     .btn {

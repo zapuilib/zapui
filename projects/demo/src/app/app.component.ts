@@ -28,6 +28,8 @@ import {
 } from 'zap/core';
 import {
   ZapCheckbox,
+  ZapDatePicker,
+  ZapDatePickerBreakpoints,
   ZapFormFieldHelpTextDirective,
   ZapFormFieldIconDirective,
   ZapInput,
@@ -69,7 +71,8 @@ import {
     ZapDialogButtonDirective,
     ZapFormFieldHelpTextDirective,
     ZapFormFieldIconDirective,
-    ZapLabelDirective
+    ZapLabelDirective,
+    ZapDatePicker
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
@@ -83,6 +86,10 @@ export class AppComponent implements OnInit {
     Validators.required,
   ]);
   toggleControl: FormControl = new FormControl({ value: false, disabled: false });
+  datePickerControl = new FormControl({ value: new Date(new Date().setMonth(new Date().getMonth() + 1)), disabled: false }, []);
+  // datePickerControl2 = new FormControl({ value: { startDate: new Date('2025-04-01'), endDate: new Date('2025-06-15') }, disabled: false }, []);
+  // datePickerControl = new FormControl({ value: '', disabled: false }, []);
+  datePickerControl2 = new FormControl({ value: '', disabled: false }, []);
   private zapThemeService: ZapThemer = inject(ZapThemer);
   accordions = [
     {
@@ -97,8 +104,32 @@ export class AppComponent implements OnInit {
       title: 'Accordion 3',
       content: 'Content for Accordion 3',
     },
-  ]
-
+  ];
+  breakpoints: ZapDatePickerBreakpoints = {
+    default: {
+      maxPerRow: 2,
+      monthsPerView: 2,
+    },
+    'lg': {
+      maxPerRow: 1,
+      monthsPerView: 1,
+    }
+  };
+  months: { label: string; value: string }[] = [
+    { label: 'January', value: '1' },
+    { label: 'February', value: '2' },
+    { label: 'March', value: '3' },
+    { label: 'April', value: '4' },
+    { label: 'May', value: '5' },
+    { label: 'June', value: '6' },
+    { label: 'July', value: '7' },
+    { label: 'August', value: '8' },
+    { label: 'September', value: '9' },
+    { label: 'October', value: '10' },
+    { label: 'November', value: '11' },
+    { label: 'December', value: '12' },
+  ];
+  
   ngOnInit(): void {
     if (localStorage.getItem('zapdemo-theme') === null) {
       localStorage.setItem('zapdemo-theme', 'dark');

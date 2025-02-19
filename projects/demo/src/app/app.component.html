@@ -1,5 +1,5 @@
 <div
-  class="wrapper mx-auto max-w-screen-2xl grid grid-cols-3 py-10 min-h-screen gap-5"
+  class="wrapper mx-auto max-w-screen-2xl grid grid-cols-3 py-10 min-h-screen gap-5 mb-40 overflow-hidden"
 >
   <div class="py-20">
     <div class="w-full max-w-sm mx-auto">
@@ -117,11 +117,44 @@
   </zap-input>
   <div class="relative w-full h-full col-span-2 px-10 dark:bg-[#09090B]/90">
     <zap-modal zapClass="absolute" size="tight">
-      <h2 class="font-semibold">Modal</h2>
+      <h2 class="font-semibold">
+        Modal
+
+        <zap-tooltip>
+          <zap-tooltip-handler>
+            <button class="text-sm">Hover me</button>
+          </zap-tooltip-handler>
+          <zap-tooltip-content>
+            <p>This is a tooltip!</p>
+          </zap-tooltip-content>
+        </zap-tooltip>
+
+        <zap-date-picker
+          id="some"
+          label="Date picker"
+          [formControl]="datePickerControl"
+          helpText="Select your date of birth"
+        ></zap-date-picker>
+      </h2>
+
       <p class="mt-2">
         Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod
         tempor incididunt ut labore et dolore magna aliqua
       </p>
+      <zap-select
+        id="country"
+        label="Single select"
+        [options]="[
+          { label: 'US', value: 'us' },
+          { label: 'Canada', value: 'ca' },
+          { label: 'Mexico', value: 'mx' },
+          { label: 'Other', value: 'other' }
+        ]"
+        shape="curve"
+        zapClass=""
+        [multiselect]="true"
+      >
+      </zap-select>
       <div class="flex justify-end mt-10">
         <zap-button text="Save changes"></zap-button>
       </div>
@@ -219,4 +252,40 @@
       </zap-tooltip-content>
     </zap-tooltip>
   </div>
+  <zap-date-picker
+    id="some"
+    label="Date picker"
+    [formControl]="datePickerControl"
+    helpText="Select your date of birth"
+    [dropdown]="false"
+  ></zap-date-picker>
+  <zap-date-picker
+    id="some"
+    label="Date picker"
+    helpText="Select your date of birth"
+  ></zap-date-picker>
+  <zap-date-picker
+    label="Range date picker"
+    [range]="true"
+    [breakpoints]="breakpoints"
+    [dropdown]="false"
+  >
+  </zap-date-picker>
+  <zap-date-picker
+    label="Range date picker"
+    [range]="true"
+    [formControl]="datePickerControl2"
+    [breakpoints]="breakpoints"
+  >
+    <!-- <svg
+      zapFormFieldIcon
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 512 512"
+    >
+      <path
+        fill="currentColor"
+        d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm0-384c13.3 0 24 10.7 24 24l0 112c0 13.3-10.7 24-24 24s-24-10.7-24-24l0-112c0-13.3 10.7-24 24-24zM224 352a32 32 0 1 1 64 0 32 32 0 1 1 -64 0z"
+      />
+    </svg> -->
+  </zap-date-picker>
 </div>

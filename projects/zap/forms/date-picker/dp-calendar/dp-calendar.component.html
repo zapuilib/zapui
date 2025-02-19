@@ -1,0 +1,108 @@
+<div
+  class="__zap__calendar__container"
+  [ngClass]="classes"
+  [class.multi]="monthsPerView > 1"
+>
+  @if(dropdown && range && monthsPerView > 1) {
+  <div
+    class="__zap__dp__calendar__month__year__select__wrapper __range__select"
+  >
+    <dp-calendar-select
+      [options]="monthsAndYearRange"
+      [selected]="selectedMonthAndYearRange"
+      [scrollToSelected]="true"
+      (selectOption)="handleMonthAndYearRangeSelect($event)"
+    ></dp-calendar-select>
+  </div>
+  } 
+  @for(row of getCalendarRows(); track $index; let rowIndex = $index) {
+  <div class="calendar-row">
+    @for(calendar of row; track $index; let calendarIndex = $index) {
+    <div class="__zap__calendar">
+      <div class="header">
+        <button
+          (click)="goToPreviousMonth()"
+          [class.active]="calendar.absoluteIndex === 0"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 320 512"
+            class="__zap__calendar__handler left"
+          >
+            <path
+              fill="currentColor"
+              d="M47 239c-9.4 9.4-9.4 24.6 0 33.9L207 433c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9L97.9 256 241 113c9.4-9.4 9.4-24.6 0-33.9s-24.6-9.4-33.9 0L47 239z"
+            />
+          </svg>
+        </button>
+        @if(!dropdown) {
+        <span class="title">{{ calendar.month }} {{ calendar.year }}</span>
+        } @else if (!range || (range && monthsPerView === 1)) {
+        <div class="__zap__dp__calendar__month__year__select__wrapper">
+          <dp-calendar-select
+            [options]="months"
+            [selected]="calendar.month"
+            (selectOption)="handleMonthSelect($event)"
+          ></dp-calendar-select>
+          <dp-calendar-select
+            [options]="years"
+            [selected]="calendar.year.toString()"
+            [scrollToSelected]="true"
+            (selectOption)="handleYearSelect($event)"
+          ></dp-calendar-select>
+        </div>
+        }
+        <button
+          (click)="goToNextMonth()"
+          [class.active]="
+            (calendar.absoluteIndex === monthsPerView - 1 &&
+              monthsPerView <= maxPerRow) ||
+            (calendar.absoluteIndex === maxPerRow - 1 &&
+              monthsPerView > maxPerRow)
+          "
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 320 512"
+            class="__zap__calendar__handler right"
+          >
+            <path
+              fill="currentColor"
+              d="M273 239c9.4 9.4 9.4 24.6 0 33.9L113 433c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l143-143L79 113c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0L273 239z"
+            />
+          </svg>
+        </button>
+      </div>
+
+      <div class="days__of__week">
+        @for(day of daysOfWeek; track $index;) {
+        <div class="day day__of__week">{{ day }}</div>
+        }
+      </div>
+
+      <div class="weeks">
+        @for(week of calendar.weeks; track $index;) {
+        <div class="week">
+          @for(day of week; track $index;) {
+          <div
+            class="day"
+            [class.this__month]="
+              isCurrentMonth(day, calendar.monthIndex, calendar.year)
+            "
+            [class.today]="isToday(day)"
+            [class.selected]="isSelected(day)"
+            [class.in__range]="isInRange(day)"
+            [class.only__range]="isOnlyRangeInThisWeek(day, week)"
+            (click)="select(day)"
+          >
+            {{ day.getDate() }}
+          </div>
+          }
+        </div>
+        }
+      </div>
+    </div>
+    }
+  </div>
+  }
+</div>

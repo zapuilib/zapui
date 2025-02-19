@@ -1,4 +1,4 @@
-.__ngx__modal__wrapper {
+.__zap__modal__wrapper {
   @apply w-full bg-[var(--zap-modal-bg-color)] border border-[var(--zap-modal-border-color)] text-[var(--zap-modal-text-color)] rounded-[var(--zap-modal-border-radius)] max-w-md fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-[99];
   @apply pl-[var(--zap-modal-padding-left)] pr-[var(--zap-modal-padding-right)] pt-[var(--zap-modal-padding-top)] pb-[var(--zap-modal-padding-bottom)];
   @apply w-[var(--zap-modal-max-width)] h-[var(--zap-modal-max-height)] overflow-auto;

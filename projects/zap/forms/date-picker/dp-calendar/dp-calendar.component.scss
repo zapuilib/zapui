@@ -1,5 +1,5 @@
 .__zap__calendar__container {
-  @apply animate-popup;
+  @apply animate-popup relative;
 
   .calendar-row {
     @apply flex justify-start gap-4;
@@ -11,7 +11,7 @@
     @apply pl-[var(--zap-dp-calendar-padding-left)] pr-[var(--zap-dp-calendar-padding-right)] pt-[var(--zap-dp-calendar-padding-top)] pb-[var(--zap-dp-calendar-padding-bottom)];
 
     .header {
-      @apply flex justify-between items-center w-full mb-2.5 px-2;
+      @apply flex justify-between items-center w-full mb-2.5 px-2 gap-x-3;
 
       .title {
         @apply text-[var(--zap-dp-calendar-title-text-color)] text-sm;
@@ -72,6 +72,7 @@
 
         &.this__month {
           @apply text-[var(--zap-dp-calendar-day-active-month-text-color)] ring-[var(--zap-dp-calendar-day-active-month-border-color)] bg-[var(--zap-dp-calendar-day-active-month-bg-color)];
+          @apply hover:text-[var(--zap-dp-calendar-day-active-month-text-hover-color)] hover:bg-[var(--zap-dp-calendar-day-active-month-bg-hover-color)] hover:ring-[var(--zap-dp-calendar-day-active-month-border-hover-color)];
 
           &.today {
             @apply text-[var(--zap-dp-calendar-today-text-color)] bg-[var(--zap-dp-calendar-today-bg-color)] ring-[var(--zap-dp-calendar-today-border-color)] hover:bg-[var(--zap-dp-calendar-today-bg-hover-color)] hover:text-[var(--zap-dp-calendar-today-text-hover-color)] hover:ring-[var(--zap-dp-calendar-today-border-hover-color)];
@@ -133,14 +134,14 @@
 
   &.compact {
     .__zap__calendar {
-      .header{
-        button{
+      .header {
+        button {
           svg {
             @apply h-3 w-3;
           }
         }
       }
-      
+
       .day {
         @apply h-8 w-8;
       }
@@ -258,6 +259,22 @@
           }
         }
       }
+    }
+  }
+}
+
+.__zap__dp__calendar__month__year__select__wrapper {
+  @apply flex gap-x-2;
+
+  dp-calendar-select {
+    @apply first-of-type:w-[118px] last-of-type:w-[78px];
+  }
+
+  &.__range__select {
+    @apply absolute top-2 left-1/2 -translate-x-1/2;
+
+    dp-calendar-select {
+      @apply first-of-type:last-of-type:w-[275px];
     }
   }
 }

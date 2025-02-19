@@ -5,8 +5,4 @@
   @apply pl-[var(--zap-tooltip-content-padding-left)] pr-[var(--zap-tooltip-content-padding-right)] py-[var(--zap-tooltip-content-padding-top)] pb-[var(--zap-tooltip-content-padding-bottom)];
   @apply transition-opacity duration-200 whitespace-nowrap;
   @apply text-[length:var(--zap-tooltip-content-font-size)] font-[var(--zap-tooltip-content-font-weight)] leading-[var(--zap-tooltip-content-line-height)] tracking-[var(--zap-tooltip-content-letter-spacing)];
-
-  &.animate{
-    @apply animate-popup;
-  }
 }

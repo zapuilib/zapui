@@ -25,7 +25,6 @@ export class ZapTooltipContent {
   show() {
     this.renderer.setStyle(this.contentElement.nativeElement, 'opacity', '1');
     this.renderer.setStyle(this.contentElement.nativeElement, 'visibility', 'visible');
-    this.renderer.addClass(this.contentElement.nativeElement, 'animate');
   }
 
   hide() {

@@ -130,11 +130,11 @@
         </zap-tooltip>
 
         <zap-date-picker
-        id="some"
-        label="Date picker"
-        [formControl]="datePickerControl"
-        helpText="Select your date of birth"
-      ></zap-date-picker>
+          id="some"
+          label="Date picker"
+          [formControl]="datePickerControl"
+          helpText="Select your date of birth"
+        ></zap-date-picker>
       </h2>
 
       <p class="mt-2">
@@ -153,7 +153,7 @@
         shape="curve"
         zapClass=""
         [multiselect]="true"
-        >
+      >
       </zap-select>
       <div class="flex justify-end mt-10">
         <zap-button text="Save changes"></zap-button>
@@ -257,7 +257,20 @@
     label="Date picker"
     [formControl]="datePickerControl"
     helpText="Select your date of birth"
+    [dropdown]="false"
   ></zap-date-picker>
+  <zap-date-picker
+    id="some"
+    label="Date picker"
+    helpText="Select your date of birth"
+  ></zap-date-picker>
+  <zap-date-picker
+    label="Range date picker"
+    [range]="true"
+    [breakpoints]="breakpoints"
+    [dropdown]="false"
+  >
+  </zap-date-picker>
   <zap-date-picker
     label="Range date picker"
     [range]="true"

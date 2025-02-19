@@ -3,13 +3,25 @@
   [ngClass]="classes"
   [class.multi]="monthsPerView > 1"
 >
+  @if(dropdown && range && monthsPerView > 1) {
+  <div
+    class="__zap__dp__calendar__month__year__select__wrapper __range__select"
+  >
+    <dp-calendar-select
+      [options]="monthsAndYearRange"
+      [selected]="selectedMonthAndYearRange"
+      [scrollToSelected]="true"
+      (selectOption)="handleMonthAndYearRangeSelect($event)"
+    ></dp-calendar-select>
+  </div>
+  } 
   @for(row of getCalendarRows(); track $index; let rowIndex = $index) {
   <div class="calendar-row">
-    @for(calendar of row; track $index;) {
+    @for(calendar of row; track $index; let calendarIndex = $index) {
     <div class="__zap__calendar">
       <div class="header">
         <button
-          (click)="previousMonth.emit(monthsPerView)"
+          (click)="goToPreviousMonth()"
           [class.active]="calendar.absoluteIndex === 0"
         >
           <svg
@@ -23,13 +35,25 @@
             />
           </svg>
         </button>
-        @if(!enableDropdown) {
+        @if(!dropdown) {
         <span class="title">{{ calendar.month }} {{ calendar.year }}</span>
-        } @else {
-          <zap-select [options]="months"></zap-select>
+        } @else if (!range || (range && monthsPerView === 1)) {
+        <div class="__zap__dp__calendar__month__year__select__wrapper">
+          <dp-calendar-select
+            [options]="months"
+            [selected]="calendar.month"
+            (selectOption)="handleMonthSelect($event)"
+          ></dp-calendar-select>
+          <dp-calendar-select
+            [options]="years"
+            [selected]="calendar.year.toString()"
+            [scrollToSelected]="true"
+            (selectOption)="handleYearSelect($event)"
+          ></dp-calendar-select>
+        </div>
         }
         <button
-          (click)="nextMonth.emit(monthsPerView)"
+          (click)="goToNextMonth()"
           [class.active]="
             (calendar.absoluteIndex === monthsPerView - 1 &&
               monthsPerView <= maxPerRow) ||

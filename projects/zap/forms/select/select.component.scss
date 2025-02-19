@@ -4,12 +4,26 @@
   .__zap__form__control__label {
     @apply text-[var(--zap-select-label-color)] text-[length:var(--zap-select-label-font-size)] font-[var(--zap-select-label-font-weight)] leading-[var(--zap-select-label-line-height)] tracking-[var(--zap-select-label-letter-spacing)];
   }
+
+  &.compact {
+    .__zap__form__control__select {
+      @apply text-sm py-1.5 px-2;
+    }
+  }
+
+  &.disabled {
+    @apply opacity-50;
+  
+    .__zap__form__control__select {
+      @apply cursor-not-allowed focus-within:ring-0;
+    }
+  }
 }
 
 fieldset {
   @apply relative outline-none;
 
-  svg {
+  svg,i {
     @apply absolute;
     @apply top-1/2;
     @apply -translate-y-1/2;
@@ -31,6 +45,7 @@ fieldset {
   @apply focus-within:outline-0;
   @apply cursor-pointer relative rounded-[var(--zap-select-border-radius)];
   @apply pl-[var(--zap-select-padding-left)] pr-[var(--zap-select-padding-right)] pt-[var(--zap-select-padding-top)] pb-[var(--zap-select-padding-bottom)];
+  @apply text-[length:var(--zap-select-font-size)] font-[var(--zap-select-font-weight)] leading-[var(--zap-select-line-height)] tracking-[var(--zap-select-letter-spacing)];
 }
 
 .__zap__form__control__search {
@@ -179,7 +194,7 @@ fieldset {
 
   &.compact {
     .checkbox {
-      @apply h-3 w-3;
+      @apply h-4 w-3;
     }
 
     .__zap__form__control__option {
@@ -189,19 +204,8 @@ fieldset {
     .__zap__form__control__search {
       @apply text-sm py-1.5;
     }
-
-    .__zap__form__control__select {
-      @apply text-sm py-1.5 px-2 pl-10;
-    }
   }
 
-  &.disabled {
-    @apply opacity-50;
-  
-    .__zap__form__control__select {
-      @apply cursor-not-allowed focus-within:ring-0;
-    }
-  }
 }
 
 

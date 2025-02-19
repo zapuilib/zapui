@@ -16,7 +16,7 @@
       <legend class="sr-only">{{ label }}</legend>
       } @if(control.value) {
       <span class="__zap__form__control__value">
-        {{ control.value }}
+        {{ selectedValue }}
       </span>
       } @else {
       <span class="__zap__form__control__placeholder">
@@ -53,13 +53,16 @@
         [selected]="selected"
         [monthsPerView]="monthsPerView"
         [maxPerRow]="maxPerRow"
+        [months]="months"
+        [years]="years"
         [range]="range"
         [size]="size"
         [shape]="shape"
-        [enableDropdown]="enableDropdown"
+        [dropdown]="dropdown"
         (selectDate)="selectDate($event)"
         (previousMonth)="onPreviousMonth($event)"
         (nextMonth)="onNextMonth($event)"
+        (changeMonthAndYear)="onChangeMonthAndYear($event)"
       ></dp-calendar>
     </div>
     }

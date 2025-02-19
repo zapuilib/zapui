@@ -66,14 +66,33 @@ export class ZapDatePicker<T>
   @Input() iconPosition: 'left' | 'right' = 'right';
   @Input() helpText: string = '';
   @Input() breakpoints!: ZapDatePickerBreakpoints;
-  @Input() zapClass: string = ''; //TODO
+  @Input() zapClass: string = '';
   @Input() monthsPerView!: number;
   @Input() maxPerRow!: number;
   @Input() range: boolean = false;
   @Input() dateFormat: string = 'MMM dd, yyyy';
   @Input() locale: string = 'en-US';
-  @Input() enableDropdown: boolean = true;
+  @Input() dropdown: boolean = true;
+  @Input() months: string[] = [
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December',
+  ];
+  @Input() years!: string[];
 
+  //TODO: If max is 1 month per view, then do not allow to select day that are not in the current month, and make this option configurable, i.e. allow user to change it
+  //TODO: Global interface
+  //TODO: Global styling for both calendar and date picker and dropdown
+  //TODO: Zap class for calendar, date picker and dropdown
   //TODO: Optimise for size
   //TODO: min date and maximum date
   //TODO: disabled colors
@@ -140,14 +159,19 @@ export class ZapDatePicker<T>
     this.setDefaultsCalendarView();
     this.setCurrentDate();
     this.updateCalendar();
+    this.updateCurrentMonthAndYear();
   }
 
   ngAfterViewInit() {
     if (this.iconDirective) {
       this.iconDirective.el.nativeElement.style.height =
-        this.size === 'compact' ? '14px' : 'var(--zap-date-picker-icon-font-size)';
+        this.size === 'compact'
+          ? '14px'
+          : 'var(--zap-date-picker-icon-font-size)';
       this.iconDirective.el.nativeElement.style.fontSize =
-        this.size === 'compact' ? '14px' : 'var(--zap-date-picker-icon-font-size)';
+        this.size === 'compact'
+          ? '14px'
+          : 'var(--zap-date-picker-icon-font-size)';
       this.iconDirective.el.nativeElement.style.color =
         'var(--zap-date-picker-icon-color)';
       this.iconDirective.el.nativeElement.style.marginRight =
@@ -179,11 +203,16 @@ export class ZapDatePicker<T>
     }
 
     if (this.labelDirective) {
-      this.labelDirective.el.nativeElement.style.color = 'var(--zap-date-picker-label-color)';
-      this.labelDirective.el.nativeElement.style.fontSize = 'var(--zap-date-picker-label-font-size)';
-      this.labelDirective.el.nativeElement.style.fontWeight = 'var(--zap-date-picker-label-font-weight)';
-      this.labelDirective.el.nativeElement.style.lineHeight = 'var(--zap-date-picker-label-line-height)';
-      this.labelDirective.el.nativeElement.style.letterSpacing = 'var(--zap-date-picker-label-letter-spacing)';
+      this.labelDirective.el.nativeElement.style.color =
+        'var(--zap-date-picker-label-color)';
+      this.labelDirective.el.nativeElement.style.fontSize =
+        'var(--zap-date-picker-label-font-size)';
+      this.labelDirective.el.nativeElement.style.fontWeight =
+        'var(--zap-date-picker-label-font-weight)';
+      this.labelDirective.el.nativeElement.style.lineHeight =
+        'var(--zap-date-picker-label-line-height)';
+      this.labelDirective.el.nativeElement.style.letterSpacing =
+        'var(--zap-date-picker-label-letter-spacing)';
     }
   }
 
@@ -193,26 +222,38 @@ export class ZapDatePicker<T>
         startDate: new Date(this.control.value),
         endDate: new Date(this.control.value),
       };
-      this.control.setValue(
-        formatDate(this.control.value, this.dateFormat, this.locale)
-      );
     } else if (this.control.value && this.range) {
       this.selected = {
         startDate: new Date(this.control.value.startDate),
         endDate: new Date(this.control.value.endDate),
       };
-      this.control.setValue(
-        `${formatDate(
-          this.control.value.startDate,
-          this.dateFormat,
-          this.locale
-        )} - ${formatDate(
-          this.control.value.endDate,
-          this.dateFormat,
-          this.locale
-        )}`
-      );
     }
+    this.setYears();
+  }
+
+  get selectedValue(): string {
+    if (!this.range) {
+      return formatDate(this.control.value, this.dateFormat, this.locale);
+    } else {
+      return `${formatDate(
+        this.control.value.startDate,
+        this.dateFormat,
+        this.locale
+      )} - ${formatDate(
+        this.control.value.endDate,
+        this.dateFormat,
+        this.locale
+      )}`;
+    }
+  }
+
+  private setYears(): void {
+    const currentYear = new Date().getFullYear();
+    const years = [];
+    for (let i = currentYear - 100; i <= currentYear + 100; i++) {
+      years.push(i.toString());
+    }
+    this.years = years;
   }
 
   private setCurrentDate(): void {
@@ -225,6 +266,17 @@ export class ZapDatePicker<T>
       month: 'long',
     });
     this.currentYear = this.currentDate.getFullYear();
+  }
+
+  private updateCurrentMonthAndYear(): void {
+    if (this.control.value) {
+      const date = this.range
+        ? new Date(this.control.value.startDate)
+        : new Date(this.control.value);
+      this.currentDate = new Date(date.getFullYear(), date.getMonth(), 1);
+      this.currentMonth = date.toLocaleString('default', { month: 'long' });
+      this.currentYear = date.getFullYear();
+    }
   }
 
   private generateCalendar(date: Date): Date[][] {
@@ -245,7 +297,7 @@ export class ZapDatePicker<T>
   }
 
   private setDefaultsCalendarView(): void {
-    if(this.breakpoints) return;
+    if (this.breakpoints) return;
     this.breakpoints = {
       default: {
         monthsPerView: this.monthsPerView
@@ -294,7 +346,7 @@ export class ZapDatePicker<T>
   private handleCalendarPosition(): void {
     this.handleBreakpoints();
     this.cdr.detectChanges();
-  
+
     if (this.calendar && typeof window !== 'undefined') {
       const calendarElement = this.calendar.nativeElement;
       const inputElement = this.inputDateSelectValueHolder.nativeElement;
@@ -305,24 +357,24 @@ export class ZapDatePicker<T>
       const spaceAbove = inputRect.top;
       const scrollY = window.scrollY;
       const scrollX = window.scrollX;
-  
+
       if (!calendarElement.dataset.appendedToBody) {
         document.body.appendChild(calendarElement);
         calendarElement.dataset.appendedToBody = 'true';
       }
-  
+
       calendarElement.style.position = 'fixed';
-  
+
       let parent = inputElement.closest(
         '.__zap__modal__wrapper, .__zap__dialog, .modal, .dialog'
       );
       if (parent) {
         calendarElement.style.zIndex = '999';
       }
-  
+
       calendarElement.style.left = `${inputRect.left + scrollX}px`;
       calendarElement.style.width = `${inputRect.width}px`;
-  
+
       let parentElement = calendarElement.offsetParent as HTMLElement;
       let parentRect = parentElement
         ? parentElement.getBoundingClientRect()
@@ -331,14 +383,12 @@ export class ZapDatePicker<T>
       const offsetTop = inputRect.top - parentRect.top;
       const offsetBottom = inputRect.bottom - parentRect.top;
       calendarElement.style.left = `${offsetLeft}px`;
-  
+
       const dynamicHeight = calendarRect.height;
-  
+
       if (this.position === 'auto') {
         if (spaceBelow < dynamicHeight && spaceAbove > dynamicHeight) {
-          calendarElement.style.top = `${
-            offsetTop - dynamicHeight - 5
-          }px`;
+          calendarElement.style.top = `${offsetTop - dynamicHeight - 5}px`;
         } else {
           calendarElement.style.top = `${offsetBottom}px`;
         }
@@ -349,7 +399,6 @@ export class ZapDatePicker<T>
       }
     }
   }
-  
 
   onPreviousMonth(offset: number): void {
     this.currentDate = new Date(
@@ -369,6 +418,11 @@ export class ZapDatePicker<T>
     this.updateCalendar();
   }
 
+  onChangeMonthAndYear({ month, year }: { month: string; year: number }): void {
+    this.currentDate = new Date(year, this.months.indexOf(month), 1);
+    this.updateCalendar();
+  }
+
   selectDate(dateRange: {
     startDate: Date | null;
     endDate: Date | null;
@@ -380,21 +434,16 @@ export class ZapDatePicker<T>
         startDate: new Date(dateRange.startDate!),
         endDate: new Date(dateRange.startDate!),
       };
-      this.control.setValue(
-        formatDate(dateRange.startDate!, this.dateFormat, this.locale)
-      );
+      this.control.setValue(dateRange.startDate);
     } else {
       this.selected = {
         startDate: new Date(dateRange.startDate!),
         endDate: new Date(dateRange.endDate!),
       };
-      this.control.setValue(
-        `${formatDate(
-          dateRange.startDate!,
-          this.dateFormat,
-          this.locale
-        )} - ${formatDate(dateRange.endDate!, this.dateFormat, this.locale)}`
-      );
+      this.control.setValue({
+        startDate: dateRange.startDate,
+        endDate: dateRange.endDate,
+      });
     }
   }
 

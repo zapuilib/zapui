@@ -7,6 +7,7 @@
 
   .handler {
     @apply text-[var(--zap-alert-dismiss-color)] hover:text-[var(--zap-alert-dismiss-hover-color)] absolute top-1/2 -translate-y-1/2 right-[22px] cursor-pointer;
+    transform: translateY(-50%);
   }
 
   .type__wrapper {
@@ -14,6 +15,10 @@
 
     svg {
       @apply w-[var(--zap-alert-icon-width)] h-[var(--zap-alert-icon-height)];
+    }
+
+    &.default {
+      @apply hidden;
     }
   }
 

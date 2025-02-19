@@ -107,6 +107,12 @@ export class AppComponent implements OnInit {
   ];
   breakpoints: ZapDatePickerBreakpoints = {
     default: {
+      maxPerRow: 1,
+      monthsPerView: 1,
+    },
+  };
+  breakpoints2: ZapDatePickerBreakpoints = {
+    default: {
       maxPerRow: 2,
       monthsPerView: 2,
     },

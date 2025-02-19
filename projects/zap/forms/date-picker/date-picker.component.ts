@@ -106,6 +106,9 @@ export class ZapDatePicker<T>
   //TODO: on date select event emitter
   //TODO: on date range start event emitter
   //TODO: on date range end event emitter
+  //TODO: Curretly years are hardcoded, make it dynamic and 100 is way too much
+  //TODO: ALlow user to reset, when reset clear all the values
+  //TODO: Change months and weeks based on locale
 
   @ContentChild(ZapFormFieldIconDirective, { static: false })
   iconDirective!: ZapFormFieldIconDirective;

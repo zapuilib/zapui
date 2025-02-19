@@ -9,22 +9,22 @@
   }
 
   &.outlined {
-    @apply bg-transparent text-primary border-tertiary;
+    @apply bg-transparent text-secondary border-tertiary;
   }
 
   &.info {
-    @apply bg-info text-infoText;
+    @apply bg-info text-infoText border-info;
   }
 
   &.success {
-    @apply bg-success text-successText;
+    @apply bg-success text-successText border-success;
   }
 
   &.warning {
-    @apply bg-warning text-warningText;
+    @apply bg-warning text-warningText border-warning;
   }
 
   &.error {
-    @apply bg-error text-errorText;
+    @apply bg-error text-errorText border-error;
   }
 }

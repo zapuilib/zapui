@@ -6,7 +6,7 @@
   text-transform: var(--zap-button-text-transform);
 
   .handler {
-    @apply text-[var(--zap-alert-dismiss-color)] hover:text-[var(--zap-alert-dismiss-hover-color)] absolute top-1/2 -translate-y-1/2 right-[22px] cursor-pointer;
+    @apply text-[var(--zap-alert-dismiss-color)] hover:text-[var(--zap-alert-dismiss-hover-color)] absolute top-1/2 -translate-y-1/2 right-[16px] cursor-pointer;
     transform: translateY(-50%);
   }
 

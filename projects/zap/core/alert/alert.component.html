@@ -1,6 +1,6 @@
 <div class="__zap__alert" [ngClass]="classes">
   <div class="content__wrapper">
-    <div class="type__wrapper" [class.default]="type === 'default'">
+    <div class="type__wrapper" [class.default]="type === 'default' && !icon && !iconDirective">
       @if(icon) {
       <i class="fa-solid" [ngClass]="icon"></i>
       } @else if (iconDirective) {

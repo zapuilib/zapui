@@ -7,7 +7,7 @@
   @apply rounded-[var(--zap-chip-border-radius)];
   @apply pl-[var(--zap-chip-padding-left)] pr-[var(--zap-chip-padding-right)] pt-[var(--zap-chip-padding-top)] pb-[var(--zap-chip-padding-bottom)] text-[length:var(--zap-chip-font-size)] font-[var(--zap-chip-font-weight)];
   @apply w-[var(--zap-chip-width)] h-[var(--zap-chip-height)];
-  @apply leading-[var(--zap-chip-line-height)] tracking-[var(--zap-chip-letter-spacing)]; //ring is adding weird effect on click
+  @apply leading-[var(--zap-chip-line-height)] tracking-[var(--zap-chip-letter-spacing)];
   text-transform: var(--zap-chip-text-transform);
 
   &.dismissible-right {
@@ -46,10 +46,6 @@
     @apply rounded-none;
   }
 
-  &.outlined {
-    @apply border-2 bg-transparent border-tertiary text-tertiary;
-  }
-
   &.disabled {
     @apply opacity-50 cursor-not-allowed;
   }
@@ -67,10 +63,6 @@
     }
   }
 
-  &.outlined {
-    @apply text-tertiary;
-  }
-
   i {
     &.right {
       @apply pl-2 order-last;
@@ -81,12 +73,20 @@
     }
   }
 
+  &.outlined {
+    @apply border-2 bg-transparent border-tertiary text-tertiary;
+  }
+
   &.info {
     @apply bg-info;
     @apply text-infoText;
 
     .handler {
       @apply text-infoText hover:text-infoText/60;
+    }
+
+    &.outlined {
+      @apply border-info text-info bg-transparent;
     }
   }
 
@@ -97,6 +97,10 @@
     .handler {
       @apply text-successText hover:text-successText/60;
     }
+
+    &.outlined {
+      @apply border-success text-success bg-transparent;
+    }
   }
 
   &.warning {
@@ -106,6 +110,10 @@
     .handler {
       @apply text-warningText hover:text-warningText/60;
     }
+
+    &.outlined {
+      @apply border-warning text-warning bg-transparent;
+    }
   }
 
   &.error {
@@ -114,6 +122,10 @@
 
     .handler {
       @apply text-errorText hover:text-errorText/60;
+    }
+
+    &.outlined {
+      @apply border-error text-error bg-transparent;
     }
   }
 }

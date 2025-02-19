@@ -17,7 +17,7 @@ export function generateComponentChipVariables(
 
   // this handles the shape, size of the chip component
   if (chipShapeValue) {
-    const { shapeCssValue } = getShapeCssValues(chipShapeValue, 'chip');
+    const { shapeCssValue } = getShapeCssValues(chipShapeValue, 'chip');    
     cssVariables += `--zap-chip-border-radius: ${shapeCssValue};\n`;
   }
 
@@ -41,7 +41,7 @@ export function getChipSizeCssValues(
     cssVariables += `--zap-chip-padding-right: 0.75rem;\n`;
     cssVariables += `--zap-chip-padding-top: 0.25rem;\n`;
     cssVariables += `--zap-chip-padding-bottom: 0.25rem;\n`;
-    cssVariables += `--zap-chip-font-size: 1rem;\n`;
+    cssVariables += `--zap-chip-font-size: 0.75rem;\n`;
     const existingFontSize = getExistingFontSize(root);
     const chipTextSizeValue = existingFontSize || '0.75rem';
     cssVariables += `--zap-chip-font-size: ${chipTextSizeValue};\n`;

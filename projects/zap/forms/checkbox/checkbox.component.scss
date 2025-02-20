@@ -1,4 +1,4 @@
-.__zap__checkbox__wrapper {
+.__zap__checkbox__control {
   @apply w-full flex flex-col gap-y-2;
   @apply items-start;
   @apply input:focus-within:outline-0;
@@ -13,18 +13,40 @@
     }
   }
 
-  input {
-    @apply appearance-none border border-[var(--zap-checkbox-border-color)] bg-[var(--zap-checkbox-bg-color)] rounded-[var(--zap-checkbox-border-radius)] hover:bg-[var(--zap-checkbox-bg-hover-color)] hover:border-[var(--zap-checkbox-border-hover-color)] text-[var(--zap-checkbox-text-color)] hover:text-[var(--zap-checkbox-hover-text-color)] cursor-pointer relative;
-    @apply pl-[var(--zap-checkbox-padding-left)] pr-[var(--zap-checkbox-padding-right)] pt-[var(--zap-checkbox-padding-top)] pb-[var(--zap-checkbox-padding-bottom)];
+  .__zap__checkbox__wrapper {
+    @apply relative max-h-max;
     @apply h-[var(--zap-checkbox-height)] w-[var(--zap-checkbox-width)];
 
-    &:checked {
-      @apply border-[var(--zap-checkbox-border-checked-color)] bg-[var(--zap-checkbox-bg-checked-color)];
+    input {
+      @apply appearance-none border border-[var(--zap-checkbox-border-color)] bg-[var(--zap-checkbox-bg-color)] rounded-[var(--zap-checkbox-border-radius)] hover:bg-[var(--zap-checkbox-bg-hover-color)] hover:border-[var(--zap-checkbox-border-hover-color)] text-[var(--zap-checkbox-text-color)] hover:text-[var(--zap-checkbox-hover-text-color)] cursor-pointer relative;
+      @apply pl-[var(--zap-checkbox-padding-left)] pr-[var(--zap-checkbox-padding-right)] pt-[var(--zap-checkbox-padding-top)] pb-[var(--zap-checkbox-padding-bottom)];
+      @apply h-[var(--zap-checkbox-height)] w-[var(--zap-checkbox-width)];
 
-      &::after {
-        //TODO: Change the font icon to svg based icon
-        @apply content-['\f00c'] font-icon absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2  text-[var(--zap-checkbox-text-checked-color)];
+      &:checked {
+        @apply border-[var(--zap-checkbox-border-checked-color)] bg-[var(--zap-checkbox-bg-checked-color)];
       }
+    }
+
+    svg {
+      @apply pointer-events-none hidden absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2  fill-[var(--zap-checkbox-text-checked-color)];
+      @apply h-[var(--zap-checkbox-height)] w-[var(--zap-checkbox-width)] p-[2px];
+      transform: translateY(-50%) translateX(-50%);
+    }
+
+    input:disabled {
+      @apply cursor-not-allowed;
+    }
+
+    input:focus {
+      @apply ring-1 ring-[var(--zap-checkbox-border-focus-color)] bg-[var(--zap-checkbox-bg-focus-color)];
+
+      &:not(:checked) {
+        @apply bg-[var(--zap-checkbox-bg-color)];
+      }
+    }
+
+    &.checked svg {
+      @apply block;
     }
   }
 
@@ -32,15 +54,9 @@
     @apply cursor-pointer text-[var(--zap-checkbox-label-color)] hover:text-[var(--zap-checkbox-hover-label-color)] text-[length:var(--zap-checkbox-font-size)] font-[var(--zap-checkbox-font-weight)] leading-[var(--zap-checkbox-line-height)] tracking-[var(--zap-checkbox-letter-spacing)];
   }
 
-  input:disabled {
-    @apply opacity-50 cursor-not-allowed;
-  }
-
-  input:focus {
-    @apply ring-1 ring-[var(--zap-checkbox-border-focus-color)] bg-[var(--zap-checkbox-bg-focus-color)];
-
-    &:not(:checked) {
-      @apply bg-[var(--zap-checkbox-bg-color)];
+  &.flat {
+    input {
+      @apply rounded-none;
     }
   }
 
@@ -53,6 +69,18 @@
   &.curve {
     input {
       @apply rounded;
+    }
+  }
+
+  &.disabled {
+   @apply opacity-50 cursor-not-allowed;
+
+    input {
+      @apply cursor-not-allowed;
+    }
+
+    label {
+      @apply cursor-not-allowed;
     }
   }
 }

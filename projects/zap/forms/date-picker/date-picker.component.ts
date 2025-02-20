@@ -476,7 +476,8 @@ export class ZapDatePicker<T>
     ].filter((cls) => cls && cls !== 'default');
   }
 
-  ngOnDestroy(): void {
+  override ngOnDestroy(): void {
+    super.ngOnDestroy();
     if (this.calendar) {
       this.calendar.nativeElement.remove();
     }

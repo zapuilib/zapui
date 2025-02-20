@@ -1,0 +1,83 @@
+<div class="__zap__form__control" [ngClass]="classes">
+  @if(label){
+  <label [for]="id" class="__zap__form__control__label">{{ label }}</label>
+  } @else if(labelDirective) {
+  <ng-content select="[zapLabel]"></ng-content>
+  }
+  <div class="field__wrapper">
+    <fieldset
+      #inputDateSelectValueHolder
+      class="__zap__form__control__date__picker"
+      (click)="toggleCalendar()"
+      [id]="id"
+      tabindex="0"
+    >
+      @if(label) {
+      <legend class="sr-only">{{ label }}</legend>
+      } @if(control.value) {
+      <span class="__zap__form__control__value">
+        {{ selectedValue }}
+      </span>
+      } @else {
+      <span class="__zap__form__control__placeholder">
+        {{ placeholder }}
+      </span>
+      }
+      <div class="handler">
+        @if(icon) {
+        <i [ngClass]="icon"></i>
+        } @else if (iconDirective) {
+        <ng-content select="[zapFormFieldIcon]"></ng-content>
+        } @else {
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 448 512"
+          width="14"
+          height="14"
+        >
+          <path
+            fill="currentColor"
+            d="M128 0c17.7 0 32 14.3 32 32l0 32 128 0 0-32c0-17.7 14.3-32 32-32s32 14.3 32 32l0 32 48 0c26.5 0 48 21.5 48 48l0 48L0 160l0-48C0 85.5 21.5 64 48 64l48 0 0-32c0-17.7 14.3-32 32-32zM0 192l448 0 0 272c0 26.5-21.5 48-48 48L48 512c-26.5 0-48-21.5-48-48L0 192zm64 80l0 32c0 8.8 7.2 16 16 16l32 0c8.8 0 16-7.2 16-16l0-32c0-8.8-7.2-16-16-16l-32 0c-8.8 0-16 7.2-16 16zm128 0l0 32c0 8.8 7.2 16 16 16l32 0c8.8 0 16-7.2 16-16l0-32c0-8.8-7.2-16-16-16l-32 0c-8.8 0-16 7.2-16 16zm144-16c-8.8 0-16 7.2-16 16l0 32c0 8.8 7.2 16 16 16l32 0c8.8 0 16-7.2 16-16l0-32c0-8.8-7.2-16-16-16l-32 0zM64 400l0 32c0 8.8 7.2 16 16 16l32 0c8.8 0 16-7.2 16-16l0-32c0-8.8-7.2-16-16-16l-32 0c-8.8 0-16 7.2-16 16zm144-16c-8.8 0-16 7.2-16 16l0 32c0 8.8 7.2 16 16 16l32 0c8.8 0 16-7.2 16-16l0-32c0-8.8-7.2-16-16-16l-32 0zm112 16l0 32c0 8.8 7.2 16 16 16l32 0c8.8 0 16-7.2 16-16l0-32c0-8.8-7.2-16-16-16l-32 0c-8.8 0-16 7.2-16 16z"
+          />
+        </svg>
+        }
+      </div>
+    </fieldset>
+    @if(isCalendarOpen) {
+    <div #calendar class="__zap__form__control__calendar">
+      <dp-calendar
+        [weeks]="weeks"
+        [currentMonth]="currentMonth"
+        [currentYear]="currentYear"
+        [currentDate]="currentDate"
+        [selected]="selected"
+        [monthsPerView]="monthsPerView"
+        [maxPerRow]="maxPerRow"
+        [months]="months"
+        [years]="years"
+        [range]="range"
+        [size]="size"
+        [shape]="shape"
+        [dropdown]="dropdown"
+        (selectDate)="selectDate($event)"
+        (previousMonth)="onPreviousMonth($event)"
+        (nextMonth)="onNextMonth($event)"
+        (changeMonthAndYear)="onChangeMonthAndYear($event)"
+      ></dp-calendar>
+    </div>
+    }
+  </div>
+  @if(helpText) {
+  <p class="__zap__form__control__help__text">{{ helpText }}</p>
+  } @else if (helpTextDirective) {
+  <ng-content select="[zapFormFieldHelpText]"></ng-content>
+  } @if(control.invalid && control.touched) {
+  <div class="mt-30">
+    <validation-error
+      [errors]="control.errors"
+      [zapClass]="zapClass"
+      [customErrorMessages]="customErrorMessages"
+    ></validation-error>
+  </div>
+  }
+</div>

@@ -1,0 +1,11 @@
+<button [ngClass]="classes" [disabled]="disabled">
+  @if(icon && iconPosition) {
+  <i class="fa-solid" [ngClass]="[icon, iconPosition]"></i>
+  } @else if(img && imgPosition) {
+  <img [src]="img" alt="Logo of {{ text }}" [ngClass]="[imgPosition]" />
+  } @else if(!icon && !img ) {
+  <ng-content select="[zapIcon]"></ng-content>
+  } @if(!icononly) {
+  {{ text }}
+  }
+</button>

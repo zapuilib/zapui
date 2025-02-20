@@ -1,0 +1,9 @@
+.zap__tooltip__content {
+  @apply absolute w-min left-1/2 -translate-x-1/2;
+  @apply invisible opacity-0 shadow-md border;
+  @apply bg-[var(--zap-tooltip-content-bg-color)] text-[var(--zap-tooltip-content-text-color)] border-[var(--zap-tooltip-content-border-color)] border rounded-[var(--zap-tooltip-content-border-radius)];
+  @apply pl-[var(--zap-tooltip-content-padding-left)] pr-[var(--zap-tooltip-content-padding-right)] py-[var(--zap-tooltip-content-padding-top)] pb-[var(--zap-tooltip-content-padding-bottom)];
+  @apply transition-opacity duration-200 whitespace-nowrap;
+  @apply text-[length:var(--zap-tooltip-content-font-size)] font-[var(--zap-tooltip-content-font-weight)] leading-[var(--zap-tooltip-content-line-height)] tracking-[var(--zap-tooltip-content-letter-spacing)];
+  transform: translateX(-50%);
+}

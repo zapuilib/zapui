@@ -1,0 +1,5 @@
+zap-tooltip-handler {
+  @apply cursor-pointer inline-block text-[var(--zap-tooltip-handler-text-color)] text-[length:var(--zap-tooltip-handler-font-size)] font-[var(--zap-tooltip-handler-font-weight)] leading-[var(--zap-tooltip-handler-line-height)] tracking-[var(--zap-tooltip-handler-letter-spacing)];
+  @apply bg-[var(--zap-tooltip-handler-bg-color)] border-[var(--zap-tooltip-handler-border-width)] rounded-[var(--zap-tooltip-handler-border-radius)];
+  @apply hover:bg-[var(--zap-tooltip-handler-bg-hover-color)] hover:border-[var(--zap-tooltip-handler-border-hover-color)] hover:text-[var(--zap-tooltip-handler-text-hover-color)];
+}

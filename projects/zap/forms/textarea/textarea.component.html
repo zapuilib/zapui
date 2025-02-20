@@ -1,0 +1,39 @@
+<div class="__zap__textarea__wrapper" [ngClass]="classes">
+  @if(label){
+  <label [for]="id" class="__zap__form__control__label">{{ label }}</label>
+  } @else if(labelDirective) {
+  <ng-content select="[zapLabel]"></ng-content>
+  }
+  <fieldset>
+    @if(label) {
+    <legend class="sr-only">{{ label }}</legend>
+    }
+    <textarea
+      [id]="id"
+      [formControl]="control"
+      [rows]="rows"
+      [placeholder]="placeholder"
+      class="__zap__form__control__textarea"
+      [ngClass]="
+        resize === 'vertical'
+          ? 'resizeyY'
+          : resize === 'horizontal'
+          ? 'resizeX'
+          : ''
+      "
+      (input)="adjustRows($event)"
+    ></textarea>
+    @if(helpText) {
+    <p class="__zap__form__control__help__text">{{ helpText }}</p>
+    } @else if (helpTextDirective) {
+      <ng-content select="[zapFormFieldHelpText]"></ng-content>
+    }
+  </fieldset>
+  @if(control.invalid && control.touched) {
+  <validation-error
+    [errors]="control.errors"
+    [zapClass]="zapClass"
+    [customErrorMessages]="customErrorMessages"
+  ></validation-error>
+  }
+</div>

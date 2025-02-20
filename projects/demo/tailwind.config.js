@@ -1,14 +1,14 @@
 /** @type {import('tailwindcss').Config} */
-const ZenPlugin = require('../../dist/ngx-zen/plugin/base.js');
-
 module.exports = {
+  important: true,
   content: ["./src/**/*.{html,ts}"],
+  darkMode: ['class', '[data-theme="dark"]'],
   theme: {
     extend: {
       fontFamily: {
-        sans: ["Plus Jakarta Sans", "sans-serif"],
+        sans: ["Geist", "serif"],
       },
     },
   },
-  plugins: [ZenPlugin],
+  plugins: [require('../../dist/zap/plugin')],
 };

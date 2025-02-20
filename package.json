@@ -1,10 +1,14 @@
 {
-  "name": "ngx-zen-workspace",
+  "name": "zap-workspace",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
+    "build:lib": "ng build zap",
+    "build:lib:watch": "ng build zap --watch && cd dist/zap && npm link",
+    "start:demo": "ng serve demo",
+    "publish": "ng build zap && cd dist/zap && npm publish --tag dev-alpha",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },

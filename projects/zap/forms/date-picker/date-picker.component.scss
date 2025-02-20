@@ -1,0 +1,80 @@
+.__zap__form__control {
+  @apply flex flex-col gap-y-2 w-full;
+
+  fieldset {
+    @apply relative outline-none;
+
+    .handler {
+      svg,
+      i {
+        @apply absolute;
+        @apply top-1/2;
+        @apply -translate-y-1/2;
+        @apply left-3 fill-[var(--zap-date-picker-icon-color)];
+        transform: translateY(-50%);
+
+        &.right {
+          @apply left-auto;
+          @apply right-8;
+        }
+      }
+    }
+  }
+
+  &.curve {
+    .__zap__form__control__date__picker {
+      @apply rounded;
+    }
+  }
+
+  &.pill {
+    .__zap__form__control__date__picker {
+      @apply rounded-full;
+    }
+  }
+
+  &__date__picker {
+    @apply w-full border border-[var(--zap-date-picker-border-color)] bg-[var(--zap-date-picker-bg-color)] hover:bg-[var(--zap-date-picker-bg-hover-color)] text-[var(--zap-date-picker-text-color)] hover:border-[var(--zap-date-picker-border-hover-color)] hover:text-[var(--zap-date-picker-text-hover-color)];
+    @apply focus-within:outline-0;
+    @apply cursor-pointer relative rounded-[var(--zap-date-picker-border-radius)];
+    @apply pl-[var(--zap-date-picker-padding-left)] pr-[var(--zap-date-picker-padding-right)] pt-[var(--zap-date-picker-padding-top)] pb-[var(--zap-date-picker-padding-bottom)];
+  }
+
+  &__date__picker:focus {
+    @apply ring-2 ring-[var(--zap-date-picker-ring-focus-color)];
+  }
+
+  &__placeholder {
+    @apply text-[var(--zap-date-picker-placeholder-color)] text-[length:var(--zap-date-picker-placeholder-font-size)] font-[var(--zap-date-picker-placeholder-font-weight)] leading-[var(--zap-date-picker-placeholder-line-height)] tracking-[var(--zap-date-picker-placeholder-letter-spacing)];
+  }
+
+  &.left {
+    .__zap__form__control__date__picker {
+      @apply pl-10;
+    }
+  }
+
+  &.right {
+    .__zap__form__control__date__picker {
+      .handler {
+        svg,
+        i {
+          @apply left-auto;
+          @apply right-3;
+        }
+      }
+    }
+  }
+
+  .__zap__form__control__label {
+    @apply text-[var(--zap-date-picker-label-color)] text-[length:var(--zap-date-picker-label-font-size)] font-[var(--zap-date-picker-label-font-weight)] leading-[var(--zap-date-picker-label-line-height)] tracking-[var(--zap-date-picker-label-letter-spacing)];
+  }
+
+  .__zap__form__control__help__text {
+    @apply text-[var(--zap-date-picker-help-text-color)] text-[length:var(--zap-date-picker-help-text-font-size)] font-[var(--zap-date-picker-help-text-font-weight)] leading-[var(--zap-date-picker-help-text-line-height)] tracking-[var(--zap-date-picker-help-text-letter-spacing)];
+  }
+}
+
+.__zap__form__control__calendar {
+  @apply absolute top-auto;
+}

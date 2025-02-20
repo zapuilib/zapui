@@ -1,0 +1,41 @@
+@if(control){
+<div class="__zap__form__control" [ngClass]="classes">
+  @if(label){
+  <label [for]="id" class="__zap__form__control__label">{{ label }}</label>
+  } @else if (labelDirective) {
+  <ng-content select="[zapLabel]"></ng-content>
+  }
+  <fieldset>
+    @if(label){
+    <legend class="sr-only">{{ label }}</legend>
+    } @if(icon && iconPosition) {
+    <i
+      class="fa-solid"
+      [ngClass]="[icon, iconPosition]"
+      (click)="handleIconClick($event)"
+    ></i>
+    } @else if (iconDirective) {
+    <ng-content select="[zapFormFieldIcon]"></ng-content>
+    }
+    <input
+      [type]="type"
+      [placeholder]="placeholder"
+      [id]="id"
+      class="__zap__form__control__input"
+      [autocomplete]="autoComplete"
+      [formControl]="control"
+    />
+  </fieldset>
+  @if(helpText) {
+  <p class="__zap__form__control__help__text">{{ helpText }}</p>
+  } @else if (helpTextDirective) {
+  <ng-content select="[zapFormFieldHelpText]"></ng-content>
+  } @if(control.invalid && control.touched) {
+  <validation-error
+    [errors]="control.errors"
+    [zapClass]="zapClass"
+    [customErrorMessages]="customErrorMessages"
+  ></validation-error>
+  }
+</div>
+}

@@ -1,0 +1,22 @@
+.__zap__accordion__header {
+  @apply flex justify-between items-center bg-[var(--zap-accordion-header-bg-color)] text-[var(--zap-accordion-header-text-color)] text-[length:var(--zap-accordion-header-font-size)] font-[var(--zap-accordion-header-font-weight)] leading-[var(--zap-accordion-header-line-height)] tracking-[var(--zap-accordion-header-letter-spacing)];
+  @apply cursor-pointer pl-[var(--zap-accordion-header-padding-left)] pr-[var(--zap-accordion-header-padding-right)] pt-[var(--zap-accordion-header-padding-top)] pb-[var(--zap-accordion-header-padding-bottom)];
+  @apply hover:bg-[var(--zap-accordion-header-bg-hover-color)] hover:text-[var(--zap-accordion-header-text-hover-color)] hover:underline;
+
+  &.nounderline {
+    @apply hover:no-underline;
+  }
+  
+  svg {
+    @apply transition-all duration-150 ease-linear;
+    
+    path {
+      @apply fill-current;
+    }
+    
+    &.open {
+      @apply transform;
+      transform: rotate(180deg);
+    }
+  }
+}

@@ -1,0 +1,155 @@
+button {
+  @apply transition-colors duration-150;
+  @apply flex items-center justify-center cursor-pointer;
+  @apply border;
+  @apply bg-[var(--zap-button-bg-color)];
+  @apply text-[var(--zap-button-text-color)];
+  @apply border-[var(--zap-button-border-color)];
+  @apply hover:bg-[var(--zap-button-bg-hover-color)] hover:border-[var(--zap-button-border-hover-color)] hover:text-[var(--zap-button-text-hover-color)];
+  @apply rounded-[var(--zap-button-border-radius)];
+  @apply pl-[var(--zap-button-padding-left)] pr-[var(--zap-button-padding-right)] pt-[var(--zap-button-padding-top)] pb-[var(--zap-button-padding-bottom)] text-[length:var(--zap-button-font-size)] font-[var(--zap-button-font-weight)];
+  @apply w-[var(--zap-button-width)] h-[var(--zap-button-height)];
+  @apply active:ring-1 active:ring-[var(--zap-button-border-active-color)] active:bg-[var(--zap-button-bg-active-color)] active:text-[var(--zap-button-text-active-color)] leading-[var(--zap-button-line-height)] tracking-[var(--zap-button-letter-spacing)]; //ring is adding weird effect on click
+  text-transform: var(--zap-button-text-transform);
+
+  &.link {
+    @apply text-tertiary;
+  }
+
+  &.tight {
+    @apply text-xs;
+  }
+
+  &.flat {
+    @apply rounded-none;
+  }
+
+  &.base {
+    @apply px-4 py-2;
+  }
+
+  &.pill {
+    @apply rounded-full;
+  }
+
+  &.compact {
+    @apply px-3 py-1;
+  }
+
+  &.wide {
+    @apply w-full;
+  }
+
+  &.tight {
+    @apply text-sm px-2 py-1;
+  }
+
+  &.curve {
+    @apply rounded-md;
+  }
+
+  &:disabled {
+    @apply bg-[var(--zap-button-disabled-bg-color)] text-[var(--zap-button-disabled-text-color)] border-[var(--zap-button-disabled-border-color)] cursor-not-allowed;
+  }
+
+  &.outlined {
+    @apply border text-secondary/80 border-tertiary/20;
+    @apply bg-transparent;
+    @apply hover:border-tertiary/30 hover:text-secondary;
+  }
+
+  i {
+    @apply mr-2 text-[var(--zap-button-icon-color)];
+
+    &.right {
+      @apply mr-0 ml-2 order-2;
+    }
+  }
+
+  &.icononly {
+    i {
+      @apply mx-0;
+    }
+
+    &.pill {
+      @apply px-3 py-3;
+    }
+
+    &.curve {
+      @apply py-3;
+    }
+  }
+
+  &.link {
+    @apply border-0 px-0 py-0;
+    @apply bg-transparent #{!important};
+  }
+
+  &.link {
+    @apply underline;
+  }
+
+  img {
+    @apply w-6 h-6 mr-2;
+
+    &.right {
+      @apply mr-0 ml-2 order-2;
+    }
+  }
+
+  &.info {
+    @apply bg-info text-infoText border-info;
+    @apply hover:bg-info/80 hover:border-info/80;
+
+    &.outlined {
+      @apply text-info/80 border-info/80 bg-transparent;
+      @apply hover:text-info hover:border-info;
+    }
+
+    &.link {
+      @apply text-info/80 hover:text-info;
+    }
+  }
+
+  &.success {
+    @apply bg-success text-successText border-success;
+    @apply hover:bg-success/80 hover:border-success/80;
+
+    &.outlined {
+      @apply text-success/80 border-success/80 bg-transparent;
+      @apply hover:text-success hover:border-success;
+    }
+
+    &.link {
+      @apply text-success/80 hover:text-success;
+    }
+  }
+
+  &.warning {
+    @apply bg-warning text-warningText border-warning;
+    @apply hover:bg-warning/80 hover:border-warning/80;
+
+    &.outlined {
+      @apply text-warning/80 border-warning/80 bg-transparent;
+      @apply hover:text-warning hover:border-warning;
+    }
+
+    &.link {
+      @apply text-warning/80 hover:text-warning;
+    }
+  }
+
+  &.error {
+    @apply bg-error text-errorText border-error;
+    @apply hover:bg-error/80 hover:border-error/80;
+
+    &.outlined {
+      @apply text-error/80 border-error/80 bg-transparent;
+      @apply hover:text-error hover:border-error;
+    }
+
+    &.link {
+      @apply text-error/80 hover:text-error;
+    }
+  }
+}

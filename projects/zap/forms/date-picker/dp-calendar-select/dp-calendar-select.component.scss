@@ -1,0 +1,41 @@
+.__zap__dp__calendar__select__wrapper {
+  @apply relative;
+
+  .__zap__form__control__select {
+    @apply relative;
+    @apply w-full border border-[var(--zap-dp-calendar-select-border-color)] bg-[var(--zap-dp-calendar-select-bg-color)] hover:bg-[var(--zap-dp-calendar-select-bg-hover-color)] text-[var(--zap-dp-calendar-select-text-color)] hover:border-[var(--zap-dp-calendar-select-border-hover-color)] hover:text-[var(--zap-dp-calendar-select-text-hover-color)];
+    @apply focus-within:outline-0;
+    @apply cursor-pointer relative rounded-[var(--zap-dp-calendar-select-border-radius)];
+    @apply pl-[var(--zap-dp-calendar-select-padding-left)] pr-[var(--zap-dp-calendar-select-padding-right)] pt-[var(--zap-dp-calendar-select-padding-top)] pb-[var(--zap-dp-calendar-select-padding-bottom)];
+    @apply text-[length:var(--zap-dp-calendar-select-font-size)] font-[var(--zap-dp-calendar-select-font-weight)] leading-[var(--zap-dp-calendar-select-line-height)] tracking-[var(--zap-dp-calendar-select-letter-spacing)];
+  }
+}
+
+.__zap__form__control__options {
+  @apply absolute w-full border block mt-1 z-20 max-h-[250px] overflow-y-auto rounded-[var(--zap-dp-calendar-select-options-border-radius)] border-[var(--zap-dp-calendar-select-options-border-color)] bg-[var(--zap-dp-calendar-select-options-bg-color)] text-[var(--zap-dp-calendar-select-options-text-color)];
+  @apply animate-popup;
+
+  .__zap__form__control__option {
+    @apply w-full border cursor-pointer flex gap-x-3 items-center;
+    @apply pl-[var(--zap-dp-calendar-select-option-padding-left)] pr-[var(--zap-dp-calendar-select-option-padding-right)] pt-[var(--zap-dp-calendar-select-option-padding-top)] pb-[var(--zap-dp-calendar-select-option-padding-bottom)];
+    @apply text-[var(--zap-dp-calendar-select-option-text-color)] bg-[var(--zap-dp-calendar-select-option-bg-color)] border-[var(--zap-dp-calendar-select-option-border-color)] hover:border-[var(--zap-dp-calendar-select-option-border-hover-color)] hover:bg-[var(--zap-dp-calendar-select-option-bg-hover-color)] hover:text-[var(--zap-dp-calendar-select-option-text-hover-color)];
+    @apply text-[length:var(--zap-dp-calendar-select-option-font-size)] font-[var(--zap-dp-calendar-select-option-font-weight)] leading-[var(--zap-dp-calendar-select-option-line-height)] tracking-[var(--zap-dp-calendar-select-option-letter-spacing)];
+  }
+
+  .__zap__form__control__selected {
+    @apply bg-[var(--zap-dp-calendar-select-selected-bg-color)] text-[var(--zap-dp-calendar-select-selected-text-color)] border-[var(--zap-dp-calendar-select-selected-border-color)] hover:bg-[var(--zap-dp-calendar-select-selected-bg-hover-color)] hover:text-[var(--zap-dp-calendar-select-selected-text-hover-color)] hover:border-[var(--zap-dp-calendar-select-selected-border-hover-color)];
+    @apply text-[length:var(--zap-dp-calendar-select-selected-font-size)] font-[var(--zap-dp-calendar-select-selected-font-weight)] leading-[var(--zap-dp-calendar-select-selected-line-height)] tracking-[var(--zap-dp-calendar-select-selected-letter-spacing)];
+  }
+}
+
+.handler {
+  @apply absolute;
+  @apply top-1/2;
+  @apply -translate-y-1/2;
+  @apply right-3;
+  transform: translateY(-50%);
+
+  svg {
+    @apply h-3.5 w-3.5;
+  }
+}

@@ -1,0 +1,10 @@
+.__zap__accordion__content {
+  @apply max-h-0 overflow-hidden transition-all duration-150 ease-linear;
+  @apply bg-[var(--zap-accordion-content-bg-color)];
+  @apply text-[var(--zap-accordion-content-text-color)] text-[length:var(--zap-accordion-content-font-size)] font-[var(--zap-accordion-content-font-weight)] leading-[var(--zap-accordion-content-line-height)] tracking-[var(--zap-accordion-content-letter-spacing)];
+
+  &.open {
+    @apply max-h-max;
+    @apply pl-[var(--zap-accordion-content-padding-left)] pr-[var(--zap-accordion-content-padding-right)] pt-[var(--zap-accordion-content-padding-top)] pb-[var(--zap-accordion-content-padding-bottom)];
+  }
+}

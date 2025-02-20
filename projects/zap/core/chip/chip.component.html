@@ -1,0 +1,14 @@
+<div class="__zap__chip__wrapper" [ngClass]="classes">
+  @if (icon) {
+  <i class="fa-solid chip__icon" [ngClass]="[icon, iconPosition]"></i>
+  } @else if(!icon) {
+  <ng-content select="[zapIcon]"></ng-content>
+  }
+  {{ text }}
+
+  @if (dismissible) {
+  <button class="handler" (click)="onRemove($event)" [disabled]="disabled">
+    <i class="fa-solid fa-times chip__icon"></i>
+  </button>
+  }
+</div>

@@ -1,0 +1,211 @@
+.__zap__form__control {
+  @apply flex flex-col gap-y-2 w-full;
+
+  .__zap__form__control__label {
+    @apply text-[var(--zap-select-label-color)] text-[length:var(--zap-select-label-font-size)] font-[var(--zap-select-label-font-weight)] leading-[var(--zap-select-label-line-height)] tracking-[var(--zap-select-label-letter-spacing)];
+  }
+
+  &.compact {
+    .__zap__form__control__select {
+      @apply text-sm py-1.5 px-2;
+    }
+  }
+
+  &.disabled {
+    @apply opacity-50;
+
+    .__zap__form__control__select {
+      @apply cursor-not-allowed focus-within:ring-0;
+    }
+  }
+}
+
+fieldset {
+  @apply relative outline-none;
+
+  svg,
+  i {
+    @apply absolute;
+    @apply top-1/2;
+    @apply -translate-y-1/2;
+    @apply left-3;
+
+    &.right {
+      @apply left-auto;
+      @apply right-8;
+    }
+  }
+}
+
+.field__wrapper {
+  @apply relative;
+}
+
+.__zap__form__control__select {
+  @apply w-full border border-[var(--zap-select-border-color)] bg-[var(--zap-select-bg-color)] hover:bg-[var(--zap-select-bg-hover-color)] text-[var(--zap-select-text-color)] hover:border-[var(--zap-select-border-hover-color)] hover:text-[var(--zap-select-text-hover-color)];
+  @apply focus-within:outline-0;
+  @apply cursor-pointer relative rounded-[var(--zap-select-border-radius)];
+  @apply pl-[var(--zap-select-padding-left)] pr-[var(--zap-select-padding-right)] pt-[var(--zap-select-padding-top)] pb-[var(--zap-select-padding-bottom)];
+  @apply text-[length:var(--zap-select-font-size)] font-[var(--zap-select-font-weight)] leading-[var(--zap-select-line-height)] tracking-[var(--zap-select-letter-spacing)];
+}
+
+.__zap__form__control__search {
+  @apply w-full pl-10 border-b bg-[var(--zap-select-search-bg-color)] hover:bg-[var(--zap-select-search-bg-hover-color)] text-[var(--zap-select-search-text-color)] hover:text-[var(--zap-select-search-text-hover-color)] border-[var(--zap-select-search-border-color)] hover:border-[var(--zap-select-search-border-hover-color)];
+  @apply focus-within:outline-0;
+  @apply pl-[var(--zap-select-search-padding-left)] pr-[var(--zap-select-search-padding-right)] pt-[var(--zap-select-search-padding-top)] pb-[var(--zap-select-search-padding-bottom)];
+
+  &::placeholder {
+    @apply text-[var(--zap-select-search-placeholder-color)] text-[length:var(--zap-select-search-placeholder-font-size)] font-[var(--zap-select-search-placeholder-font-weight)] leading-[var(--zap-select-search-placeholder-line-height)] tracking-[var(--zap-select-search-placeholder-letter-spacing)];
+  }
+}
+
+.__zap__form__control__placeholder {
+  @apply text-[var(--zap-select-placeholder-color)] text-[length:var(--zap-select-placeholder-font-size)] font-[var(--zap-select-placeholder-font-weight)] leading-[var(--zap-select-placeholder-line-height)] tracking-[var(--zap-select-placeholder-letter-spacing)];
+}
+
+.__zap__form__control__select:focus {
+  @apply ring-2 ring-[var(--zap-select-ring-focus-color)];
+}
+
+.__zap__form__control__search__icon {
+  @apply text-[var(--zap-select-search-icon-color)];
+}
+
+.handler {
+  svg {
+    @apply right-3 left-auto fill-[var(--zap-select-icon-color)];
+  }
+}
+
+.__zap__form__control__dropdown {
+  @apply transition-all duration-150 ease-linear;
+
+  &.open {
+    @apply rotate-180;
+  }
+}
+
+.__zap__form__control__options__container {
+  @apply max-h-max absolute w-full;
+}
+
+.__zap__form__control__options {
+  @apply w-full border block mt-1 z-10 max-h-[250px] overflow-y-auto rounded-[var(--zap-select-options-border-radius)] border-[var(--zap-select-options-border-color)] bg-[var(--zap-select-options-bg-color)] text-[var(--zap-select-options-text-color)];
+  @apply animate-popup;
+
+  & > fieldset {
+    @apply sticky top-0 z-30 bg-[var(--zap-select-search-bg-color)];
+  }
+
+  .__zap__form__control__option {
+    @apply w-full border cursor-pointer flex gap-x-3 items-center;
+    @apply pl-[var(--zap-select-option-padding-left)] pr-[var(--zap-select-option-padding-right)] pt-[var(--zap-select-option-padding-top)] pb-[var(--zap-select-option-padding-bottom)];
+    @apply text-[var(--zap-select-option-text-color)] bg-[var(--zap-select-option-bg-color)] border-[var(--zap-select-option-border-color)] hover:border-[var(--zap-select-option-border-hover-color)] hover:bg-[var(--zap-select-option-bg-hover-color)] hover:text-[var(--zap-select-option-text-hover-color)];
+    @apply text-[length:var(--zap-select-option-font-size)] font-[var(--zap-select-option-font-weight)] leading-[var(--zap-select-option-line-height)] tracking-[var(--zap-select-option-letter-spacing)];
+
+    &.__no__options {
+      @apply text-[var(--zap-select-no-options-text-color)] bg-[var(--zap-select-no-options-bg-color)] border-[var(--zap-select-no-options-border-color)] hover:bg-[var(--zap-select-no-options-bg-hover-color)] hover:text-[var(--zap-select-no-options-text-hover-color)] hover:border-[var(--zap-select-no-options-border-hover-color)];
+      @apply text-[length:var(--zap-select-no-options-font-size)] font-[var(--zap-select-no-options-font-weight)] leading-[var(--zap-select-no-options-line-height)] tracking-[var(--zap-select-no-options-letter-spacing)];
+    }
+  }
+
+  .__zap__form__control__selected {
+    @apply bg-[var(--zap-select-selected-bg-color)] text-[var(--zap-select-selected-text-color)] border-[var(--zap-select-selected-border-color)] hover:bg-[var(--zap-select-selected-bg-hover-color)] hover:text-[var(--zap-select-selected-text-hover-color)] hover:border-[var(--zap-select-selected-border-hover-color)];
+    @apply text-[length:var(--zap-select-selected-font-size)] font-[var(--zap-select-selected-font-weight)] leading-[var(--zap-select-selected-line-height)] tracking-[var(--zap-select-selected-letter-spacing)];
+  }
+}
+
+.checkbox {
+  @apply border relative cursor-pointer;
+  @apply border-[var(--zap-select-checkbox-border-color)] bg-[var(--zap-select-checkbox-bg-color)];
+  @apply pl-[var(--zap-select-checkbox-padding-left)] pr-[var(--zap-select-checkbox-padding-right)] pt-[var(--zap-select-checkbox-padding-top)] pb-[var(--zap-select-checkbox-padding-bottom)];
+  @apply h-[var(--zap-select-checkbox-height)] w-[var(--zap-select-checkbox-width)];
+  @apply rounded-[var(--zap-select-checkbox-border-radius)];
+
+  &.checked {
+    @apply border-[var(--zap-select-checkbox-checked-border-color)] bg-[var(--zap-select-checkbox-checked-bg-color)];
+
+    &::after {
+      @apply content-['\f00c'] font-icon absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2;
+      @apply text-[var(--zap-select-checkbox-checked-color)];
+      transform: translateX(-50%) translateY(-50%);
+    }
+  }
+}
+
+.chips {
+  @apply flex flex-wrap gap-2;
+}
+
+.chip {
+  @apply relative cursor-default;
+  @apply pl-[var(--zap-select-chip-padding-left)] pr-[var(--zap-select-chip-padding-right)] pt-[var(--zap-select-chip-padding-top)] pb-[var(--zap-select-chip-padding-bottom)];
+  @apply bg-[var(--zap-select-chip-bg-color)] text-[var(--zap-select-chip-text-color)] border-[var(--zap-select-chip-border-color)];
+  @apply text-[length:var(--zap-select-chip-font-size)] font-[var(--zap-select-chip-font-weight)] leading-[var(--zap-select-chip-line-height)] tracking-[var(--zap-select-chip-letter-spacing)];
+  @apply rounded-[var(--zap-select-chip-border-radius)];
+
+  &::after {
+    @apply content-['\f00d'] font-icon absolute left-auto top-1/2 right-2 -translate-y-1/2 cursor-pointer; //change this to svg and other icon on this component
+    @apply text-[var(--zap-select-chip-dismiss-color)] hover:text-[var(--zap-select-chip-dismiss-hover-color)];
+    @apply text-[length:var(--zap-select-chip-dismiss-font-size)] font-[var(--zap-select-chip-dismiss-font-weight)] leading-[var(--zap-select-chip-dismiss-line-height)] tracking-[var(--zap-select-chip-dismiss-letter-spacing)];
+    transform: translateY(-50%);
+  }
+}
+
+.__zap__form__control__help__text {
+  @apply text-[var(--zap-select-help-text-color)] text-[length:var(--zap-select-help-text-font-size)] font-[var(--zap-select-help-text-font-weight)] leading-[var(--zap-select-help-text-line-height)] tracking-[var(--zap-select-help-text-letter-spacing)];
+}
+
+.__zap__form__control__select {
+  &.pill {
+    @apply rounded-full;
+  }
+
+  &.left {
+    @apply pl-10;
+  }
+
+  &.curve {
+    @apply rounded;
+  }
+}
+
+.__zap__form__control__options__container {
+  &.pill {
+    .__zap__form__control__options {
+      @apply rounded-xl;
+    }
+
+    .__zap__form__control__option {
+      @apply last-of-type:rounded-b-xl;
+    }
+
+    .checkbox {
+      @apply rounded-full;
+    }
+  }
+
+  &.curve {
+    .__zap__form__control__options {
+      @apply rounded;
+    }
+
+    .checkbox {
+      @apply rounded;
+    }
+  }
+
+  &.compact {
+    .checkbox {
+      @apply h-4 w-3;
+    }
+
+    .__zap__form__control__option {
+      @apply text-sm px-2 py-1.5;
+    }
+
+    .__zap__form__control__search {
+      @apply text-sm py-1.5;
+    }
+  }
+}

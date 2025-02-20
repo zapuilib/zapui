@@ -12,11 +12,14 @@
     "noFallthroughCasesInSwitch": true,
     "sourceMap": true,
     "paths": {
-      "ngx-zen": [
-        "dist/ngx-zen"
+      "zap": [
+        "dist/zap"
+      ],
+      "zap/*": [
+        "dist/zap/*"
       ]
     },
-    "declaration": false,
+    "declaration": true,
     "downlevelIteration": true,
     "experimentalDecorators": true,
     "moduleResolution": "node",

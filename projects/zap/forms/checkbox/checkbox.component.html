@@ -1,0 +1,36 @@
+<div class="__zap__checkbox__control" [ngClass]="classes" [class.disabled]="control.disabled">
+  <fieldset>
+    @if(label){
+    <legend class="sr-only">{{ label }}</legend>
+    <label
+      [for]="id"
+      class="__zap__form__control__label"
+      (click)="checkbox.click()"
+      >{{ label }}</label
+    >
+    } @else if (labelDirective) {
+      <ng-content select="[zapLabel]"></ng-content>
+    }
+    <div class="__zap__checkbox__wrapper" [class.checked]="control.value">
+      <input
+        #checkbox
+        [id]="id"
+        type="checkbox"
+        class="__zap__form__control__input"
+        [formControl]="control"
+      />
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+        <path
+          d="M441 103c9.4 9.4 9.4 24.6 0 33.9L177 401c-9.4 9.4-24.6 9.4-33.9 0L7 265c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l119 119L407 103c9.4-9.4 24.6-9.4 33.9 0z"
+        />
+      </svg>
+    </div>
+  </fieldset>
+  @if(control.invalid && control.touched) {
+  <validation-error
+    [errors]="control.errors"
+    [zapClass]="zapClass"
+    [customErrorMessages]="customErrorMessages"
+  ></validation-error>
+  }
+</div>

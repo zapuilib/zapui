@@ -1,0 +1,46 @@
+.__zap__textarea__wrapper {
+  @apply w-full flex flex-col gap-y-2;
+}
+
+textarea {
+  @apply w-full bg-transparent border;
+  @apply focus-within:outline-0;
+  @apply px-3 py-2 resize-none;
+  @apply rounded-[var(--zap-textarea-border-radius)] border-[var(--zap-textarea-border-color)] bg-[var(--zap-textarea-bg-color)] text-[var(--zap-textarea-text-color)] hover:bg-[var(--zap-textarea-bg-hover-color)] hover:border-[var(--zap-textarea-border-hover-color)] hover:text-[var(--zap-textarea-text-hover-color)];
+  @apply pl-[var(--zap-textarea-padding-left)] pr-[var(--zap-textarea-padding-right)] pt-[var(--zap-textarea-padding-top)] pb-[var(--zap-textarea-padding-bottom)];
+  @apply w-[var(--zap-textarea-width)] h-[var(--zap-textarea-height)];
+
+  &.resizeyY {
+    @apply resize-y;
+  }
+
+  &.resizeX {
+    @apply resize-x;
+  }
+}
+
+label {
+  @apply text-[var(--zap-textarea-label-color)] text-[length:var(--zap-textarea-label-font-size)] font-[var(--zap-textarea-label-font-weight)] leading-[var(--zap-textarea-label-line-height)] tracking-[var(--zap-textarea-label-letter-spacing)];
+}
+
+.__zap__textarea__wrapper {
+  &.curve {
+    @apply textarea:rounded-lg;
+  }
+}
+
+textarea:disabled {
+  @apply opacity-50;
+}
+
+textarea::placeholder {
+  @apply text-[var(--zap-textarea-placeholder-color)] text-[length:var(--zap-textarea-placeholder-font-size)] font-[var(--zap-textarea-placeholder-font-weight)] leading-[var(--zap-textarea-placeholder-line-height)] tracking-[var(--zap-textarea-placeholder-letter-spacing)];
+}
+
+textarea:focus {
+  @apply ring-1 ring-[var(--zap-textarea-ring-focus-color)] border-[var(--zap-textarea-border-focus-color)] text-[var(--zap-textarea-text-focus-color)] bg-[var(--zap-textarea-bg-focus-color)];
+}
+
+.__zap__form__control__help__text {
+  @apply text-[var(--zap-textarea-help-text-color)] text-[length:var(--zap-textarea-help-text-font-size)] font-[var(--zap-textarea-help-text-font-weight)] leading-[var(--zap-textarea-help-text-line-height)] tracking-[var(--zap-textarea-help-text-letter-spacing)];
+}

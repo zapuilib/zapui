@@ -1,0 +1,131 @@
+.__zap__chip__wrapper {
+  @apply inline-flex relative items-center justify-center;
+  @apply bg-[var(--zap-chip-bg-color)];
+  @apply text-[var(--zap-chip-text-color)];
+  @apply border-[var(--zap-chip-border-color)];
+  @apply hover:bg-[var(--zap-chip-bg-hover-color)] hover:border-[var(--zap-chip-border-hover-color)] hover:text-[var(--zap-chip-text-hover-color)];
+  @apply rounded-[var(--zap-chip-border-radius)];
+  @apply pl-[var(--zap-chip-padding-left)] pr-[var(--zap-chip-padding-right)] pt-[var(--zap-chip-padding-top)] pb-[var(--zap-chip-padding-bottom)] text-[length:var(--zap-chip-font-size)] font-[var(--zap-chip-font-weight)];
+  @apply w-[var(--zap-chip-width)] h-[var(--zap-chip-height)];
+  @apply leading-[var(--zap-chip-line-height)] tracking-[var(--zap-chip-letter-spacing)];
+  text-transform: var(--zap-chip-text-transform);
+
+  &.dismissible-right {
+    .chip__icon {
+      &.right {
+        @apply pr-3;
+      }
+    }
+  }
+
+  &.dismissible-left {
+    @apply pr-6;
+  }
+
+  &.compact {
+    @apply text-xs;
+  }
+
+  &.wide {
+    @apply w-full;
+  }
+
+  &.flat {
+    @apply rounded-none;
+  }
+
+  &.pill {
+    @apply rounded-full;
+  }
+
+  &.curve {
+    @apply rounded-md;
+  }
+
+  &.flat {
+    @apply rounded-none;
+  }
+
+  &.disabled {
+    @apply opacity-50 cursor-not-allowed;
+  }
+
+  i {
+    @apply flex-shrink-0 flex items-center;
+  }
+
+  .handler {
+    @apply bg-none border-none text-inherit cursor-pointer ml-2 p-0 text-sm transition-all absolute right-2 top-1/2 -translate-y-1/2;
+    @apply text-[var(--zap-chip-dismiss-color)] hover:text-[var(--zap-chip-dismiss-hover-color)];
+
+    .chip__icon {
+      @apply pr-0 pl-0;
+    }
+  }
+
+  i {
+    &.right {
+      @apply pl-2 order-last;
+    }
+
+    &.left {
+      @apply pr-2;
+    }
+  }
+
+  &.outlined {
+    @apply border-2 bg-transparent border-tertiary text-tertiary;
+  }
+
+  &.info {
+    @apply bg-info;
+    @apply text-infoText;
+
+    .handler {
+      @apply text-infoText hover:text-infoText/60;
+    }
+
+    &.outlined {
+      @apply border-info text-info bg-transparent;
+    }
+  }
+
+  &.success {
+    @apply bg-success;
+    @apply text-successText;
+
+    .handler {
+      @apply text-successText hover:text-successText/60;
+    }
+
+    &.outlined {
+      @apply border-success text-success bg-transparent;
+    }
+  }
+
+  &.warning {
+    @apply bg-warning;
+    @apply text-warningText;
+
+    .handler {
+      @apply text-warningText hover:text-warningText/60;
+    }
+
+    &.outlined {
+      @apply border-warning text-warning bg-transparent;
+    }
+  }
+
+  &.error {
+    @apply bg-error;
+    @apply text-errorText;
+
+    .handler {
+      @apply text-errorText hover:text-errorText/60;
+    }
+
+    &.outlined {
+      @apply border-error text-error bg-transparent;
+    }
+  }
+}

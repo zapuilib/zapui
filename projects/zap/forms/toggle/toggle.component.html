@@ -1,0 +1,47 @@
+<div
+  class="__zap__toggle__wrapper"
+  [ngClass]="[zapClass, label || helpText ? 'between' : 'start']"
+>
+  <div class="wrapper">
+    @if(label || helpText) {
+    <div class="content-wrapper">
+      <div class="lable-wrapper">
+        @if(label) {
+        <label>
+          {{ label }}
+        </label>
+        } @else if (labelDirective) {
+        <ng-content select="[zapLabel]"></ng-content>
+        } @if(helpText) {
+        <p>{{ helpText }}</p>
+        } @else if (helpTextDirective) {
+        <ng-content select="[zapFormFieldHelpText]"></ng-content>
+        }
+      </div>
+    </div>
+    }
+
+    <button
+      tabindex="0"
+      (click)="handleToggle()"
+      (blur)="handleFocus()"
+      [attr.aria-disabled]="control.disabled"
+      [disabled]="control.disabled"
+      [class.on]="this.control.value"
+    >
+      <span class="sr-only">{{ label || helpText }}</span>
+      <span
+        class="roller"
+        [ngClass]="[this.control.value ? 'on' : 'off']"
+      ></span>
+    </button>
+  </div>
+
+  @if(control.invalid && control.touched) {
+  <validation-error
+    [errors]="control.errors"
+    [zapClass]="zapClass"
+    [customErrorMessages]="customErrorMessages"
+  ></validation-error>
+  }
+</div>

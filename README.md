@@ -22,3 +22,6 @@ Creating components flow
 1. Import the component in index.ts
 2. Add the component to routing
 3. Add component to sidemenu
+
+
+NOTE: this will no longer be maintained (check zapuilib/zapui)

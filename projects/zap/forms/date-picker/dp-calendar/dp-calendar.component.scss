@@ -272,6 +272,7 @@
 
   &.__range__select {
     @apply absolute top-2 left-1/2 -translate-x-1/2 z-20;
+    transform: translateX(-50%);
 
     dp-calendar-select {
       @apply first-of-type:last-of-type:w-[275px];

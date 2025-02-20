@@ -3,8 +3,8 @@
   @apply w-[30rem] min-h-[14rem] p-5 bg-[var(--zap-dialog-bg-color)] border border-[var(--zap-dialog-border-color)];
   @apply rounded-[var(--zap-dialog-border-radius)];
   @apply fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-[99];
-  transform: translateX(-50%) translateY(-50%);
   @apply pl-[var(--zap-dialog-padding-left)] pr-[var(--zap-dialog-padding-right)] pt-[var(--zap-dialog-padding-top)] pb-[var(--zap-dialog-padding-bottom)];
+  transform: translateX(-50%) translateY(-50%);
 
   &.top {
     @apply items-start mt-20 top-0;

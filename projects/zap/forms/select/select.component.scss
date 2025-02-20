@@ -13,7 +13,7 @@
 
   &.disabled {
     @apply opacity-50;
-  
+
     .__zap__form__control__select {
       @apply cursor-not-allowed focus-within:ring-0;
     }
@@ -23,7 +23,8 @@
 fieldset {
   @apply relative outline-none;
 
-  svg,i {
+  svg,
+  i {
     @apply absolute;
     @apply top-1/2;
     @apply -translate-y-1/2;
@@ -127,6 +128,7 @@ fieldset {
     &::after {
       @apply content-['\f00c'] font-icon absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2;
       @apply text-[var(--zap-select-checkbox-checked-color)];
+      transform: translateX(-50%) translateY(-50%);
     }
   }
 }
@@ -146,6 +148,7 @@ fieldset {
     @apply content-['\f00d'] font-icon absolute left-auto top-1/2 right-2 -translate-y-1/2 cursor-pointer; //change this to svg and other icon on this component
     @apply text-[var(--zap-select-chip-dismiss-color)] hover:text-[var(--zap-select-chip-dismiss-hover-color)];
     @apply text-[length:var(--zap-select-chip-dismiss-font-size)] font-[var(--zap-select-chip-dismiss-font-weight)] leading-[var(--zap-select-chip-dismiss-line-height)] tracking-[var(--zap-select-chip-dismiss-letter-spacing)];
+    transform: translateY(-50%);
   }
 }
 
@@ -205,7 +208,4 @@ fieldset {
       @apply text-sm py-1.5;
     }
   }
-
 }
-
-

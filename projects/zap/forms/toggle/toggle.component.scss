@@ -36,6 +36,7 @@
       @apply block rounded-full;
       @apply bg-[var(--zap-toggle-roller-color)];
       @apply w-[var(--zap-toggle-roller-width)] h-[var(--zap-toggle-roller-height)];
+      transform: translateY(-50%);
 
       &.off {
         @apply left-[var(--zap-toggle-roller-offset)];
@@ -43,6 +44,7 @@
 
       &.on {
         @apply translate-x-[calc(100%+0.5rem)];
+        transform: translateX(calc(100% + 0.5rem));
       }
     }
 

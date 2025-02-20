@@ -11,6 +11,7 @@
         @apply top-1/2;
         @apply -translate-y-1/2;
         @apply left-3 fill-[var(--zap-date-picker-icon-color)];
+        transform: translateY(-50%);
 
         &.right {
           @apply left-auto;

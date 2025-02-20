@@ -33,6 +33,7 @@
   @apply top-1/2;
   @apply -translate-y-1/2;
   @apply right-3;
+  transform: translateY(-50%);
 
   svg {
     @apply h-3.5 w-3.5;

@@ -26,6 +26,7 @@
           &::before {
             @apply content-[''] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-[var(--zap-radio-checked-color)];
             @apply w-2.5 h-2.5 rounded-full;
+            transform: translateX(-50%) translateY(-50%);
           }
         }
 

@@ -7,6 +7,7 @@ import {
   FormGroupDirective,
   NgControl,
   Validators,
+  NgModel,
 } from '@angular/forms';
 import { distinctUntilChanged, startWith, Subject, takeUntil, tap } from 'rxjs';
 
@@ -37,11 +38,23 @@ export class ControlValueAccessorDirective<T>
   setFormControl() {
     try {
       const formControl = this.injector.get(NgControl);
+
       switch (formControl.constructor) {
         case FormControlName:
           this.control = this.injector
             .get(FormGroupDirective)
             .getControl(formControl as FormControlName);
+          break;
+        case NgModel:
+          const ngModel = formControl as NgModel;
+          this.control = ngModel.control;
+          ngModel.valueChanges?.pipe(
+            takeUntil(this._destroy$),
+            distinctUntilChanged(),
+            tap((val) => {
+              this.writeValue(val);
+            })
+          ).subscribe();
           break;
         default:
           this.control = (formControl as FormControlDirective)
@@ -76,11 +89,16 @@ export class ControlValueAccessorDirective<T>
       .subscribe();
   }
 
+  setDisabledState?(isDisabled: boolean): void {
+    this._isDisabled = isDisabled;
+  }
+  
   registerOnTouched(fn: () => T): void {
     this._onTouched = fn;
   }
 
-  setDisabledState?(isDisabled: boolean): void {
-    this._isDisabled = isDisabled;
+  ngOnDestroy(): void {
+    this._destroy$.next();
+    this._destroy$.complete();
   }
 }

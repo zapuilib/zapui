@@ -85,6 +85,7 @@ export class AppComponent implements OnInit {
   countryControl = new FormControl({ value: '', disabled: false }, [
     Validators.required,
   ]);
+  checkboxControl = new FormControl({ value: true, disabled: true });
   toggleControl: FormControl = new FormControl({ value: false, disabled: false });
   datePickerControl = new FormControl({ value: new Date(new Date().setMonth(new Date().getMonth() + 1)), disabled: false }, []);
   // datePickerControl2 = new FormControl({ value: { startDate: new Date('2025-04-01'), endDate: new Date('2025-06-15') }, disabled: false }, []);

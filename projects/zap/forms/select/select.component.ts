@@ -385,7 +385,9 @@ export class ZapSelect<T>
     ].filter((cls) => cls && cls !== 'default');
   }
 
-  ngOnDestroy(): void {
+  override ngOnDestroy(): void {
+    super.ngOnDestroy();
+    
     if (this.optionList) {
       this.optionList.nativeElement.remove();
     }

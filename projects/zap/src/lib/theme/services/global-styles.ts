@@ -1,5 +1,5 @@
-import { ZapTheme } from '../../interfaces/config.interface'
-import { hexToRgba } from '../utils/base-theme-utils'
+import { ZapTheme } from '../../interfaces/config.interface';
+import { hexToRgba } from '../utils/base-theme-utils';
 
 /**
  * This function generates the global styles for the all the components
@@ -8,7 +8,7 @@ import { hexToRgba } from '../utils/base-theme-utils'
  * @returns
  */
 export function generateGlobalStylesVariables(theme: ZapTheme): string {
-  let cssVariables = ''
+  let cssVariables = '';
   const styles = {
     alert: [
       {
@@ -1758,13 +1758,13 @@ export function generateGlobalStylesVariables(theme: ZapTheme): string {
         value: '0.875rem',
       },
     ],
-  }
+  };
   for (const [component, stylesArray] of Object.entries(styles)) {
     for (const style of stylesArray) {
-      const styleExist = style['value']
-      cssVariables += `--zap-${component}-${style['label']}: ${styleExist};\n`
+      const styleExist = style['value'];
+      cssVariables += `--zap-${component}-${style['label']}: ${styleExist};\n`;
     }
   }
 
-  return cssVariables
+  return cssVariables;
 }

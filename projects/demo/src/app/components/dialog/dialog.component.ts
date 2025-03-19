@@ -1,5 +1,5 @@
-import { Component } from '@angular/core'
-import { ZapButton, ZapDialog, ZapDialogFooterDirective } from 'zap/core'
+import { Component } from '@angular/core';
+import { ZapButton, ZapDialog, ZapDialogFooterDirective } from 'zap/core';
 
 @Component({
   selector: 'app-dialog',
@@ -9,5 +9,5 @@ import { ZapButton, ZapDialog, ZapDialogFooterDirective } from 'zap/core'
   styleUrl: './dialog.component.scss',
 })
 export class DialogComponent {
-  dialogOpen = false
+  dialogOpen = false;
 }

@@ -1,10 +1,10 @@
-import { Component, ContentChild, Input, forwardRef, AfterViewInit } from '@angular/core'
-import { FormsModule, NG_VALUE_ACCESSOR, ReactiveFormsModule } from '@angular/forms'
-import { CommonModule } from '@angular/common'
+import { Component, ContentChild, Input, forwardRef, AfterViewInit } from '@angular/core';
+import { FormsModule, NG_VALUE_ACCESSOR, ReactiveFormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
-import { ControlValueAccessorDirective } from '../directives/control-value-accessor.directive'
-import { ValidationErrorComponent } from '../validation-error/validation-error.component'
-import { ZapFormFieldHelpTextDirective, ZapLabelDirective } from '../public-api'
+import { ControlValueAccessorDirective } from '../directives/control-value-accessor.directive';
+import { ValidationErrorComponent } from '../validation-error/validation-error.component';
+import { ZapFormFieldHelpTextDirective, ZapLabelDirective } from '../public-api';
 
 @Component({
   selector: 'zap-toggle',
@@ -21,44 +21,44 @@ import { ZapFormFieldHelpTextDirective, ZapLabelDirective } from '../public-api'
   ],
 })
 export class ZapToggle<T> extends ControlValueAccessorDirective<T> implements AfterViewInit {
-  @Input() id = ''
-  @Input() label = ''
-  @Input() helpText = ''
-  @Input() zapClass = ''
-  @Input() customErrorMessages: Record<string, string> = {}
+  @Input() id = '';
+  @Input() label = '';
+  @Input() helpText = '';
+  @Input() zapClass = '';
+  @Input() customErrorMessages: Record<string, string> = {};
   @ContentChild(ZapLabelDirective, { static: false })
-  labelDirective!: ZapLabelDirective
+  labelDirective!: ZapLabelDirective;
   @ContentChild(ZapFormFieldHelpTextDirective, { static: false })
-  helpTextDirective!: ZapFormFieldHelpTextDirective
+  helpTextDirective!: ZapFormFieldHelpTextDirective;
 
   handleToggle(): void {
-    this.control.setValue(!this.control.value)
+    this.control.setValue(!this.control.value);
   }
 
   handleFocus(): void {
-    this.control.markAsTouched()
+    this.control.markAsTouched();
   }
 
   ngAfterViewInit() {
     if (this.helpTextDirective) {
-      this.helpTextDirective.el.nativeElement.style.color = 'var(--zap-toggle-help-text-color)'
+      this.helpTextDirective.el.nativeElement.style.color = 'var(--zap-toggle-help-text-color)';
       this.helpTextDirective.el.nativeElement.style.fontSize =
-        'var(--zap-toggle-help-text-font-size)'
+        'var(--zap-toggle-help-text-font-size)';
       this.helpTextDirective.el.nativeElement.style.fontWeight =
-        'var(--zap-toggle-help-text-font-weight)'
+        'var(--zap-toggle-help-text-font-weight)';
       this.helpTextDirective.el.nativeElement.style.lineHeight =
-        'var(--zap-toggle-help-text-line-height)'
+        'var(--zap-toggle-help-text-line-height)';
       this.helpTextDirective.el.nativeElement.style.letterSpacing =
-        'var(--zap-toggle-help-text-letter-spacing)'
+        'var(--zap-toggle-help-text-letter-spacing)';
     }
 
     if (this.labelDirective) {
-      this.labelDirective.el.nativeElement.style.color = 'var(--zap-toggle-label-color)'
-      this.labelDirective.el.nativeElement.style.fontSize = 'var(--zap-toggle-label-font-size)'
-      this.labelDirective.el.nativeElement.style.fontWeight = 'var(--zap-toggle-label-font-weight)'
-      this.labelDirective.el.nativeElement.style.lineHeight = 'var(--zap-toggle-label-line-height)'
+      this.labelDirective.el.nativeElement.style.color = 'var(--zap-toggle-label-color)';
+      this.labelDirective.el.nativeElement.style.fontSize = 'var(--zap-toggle-label-font-size)';
+      this.labelDirective.el.nativeElement.style.fontWeight = 'var(--zap-toggle-label-font-weight)';
+      this.labelDirective.el.nativeElement.style.lineHeight = 'var(--zap-toggle-label-line-height)';
       this.labelDirective.el.nativeElement.style.letterSpacing =
-        'var(--zap-toggle-label-letter-spacing)'
+        'var(--zap-toggle-label-letter-spacing)';
     }
   }
 }

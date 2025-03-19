@@ -1,6 +1,6 @@
-import { Component } from '@angular/core'
-import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms'
-import { ZapToggle } from 'zap/forms'
+import { Component } from '@angular/core';
+import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ZapToggle } from 'zap/forms';
 
 @Component({
   selector: 'app-toggle',
@@ -13,5 +13,5 @@ export class ToggleComponent {
   toggleControl: FormControl = new FormControl({
     value: false,
     disabled: false,
-  })
+  });
 }

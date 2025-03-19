@@ -1,6 +1,6 @@
-import { Component } from '@angular/core'
-import { FormControl, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms'
-import { ZapFormFieldHelpTextDirective, ZapFormFieldIconDirective, ZapSelect } from 'zap/forms'
+import { Component } from '@angular/core';
+import { FormControl, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { ZapFormFieldHelpTextDirective, ZapFormFieldIconDirective, ZapSelect } from 'zap/forms';
 
 @Component({
   selector: 'app-select',
@@ -16,7 +16,7 @@ import { ZapFormFieldHelpTextDirective, ZapFormFieldIconDirective, ZapSelect } f
   styleUrl: './select.component.scss',
 })
 export class SelectComponent {
-  countryControl = new FormControl({ value: '', disabled: false }, [Validators.required])
+  countryControl = new FormControl({ value: '', disabled: false }, [Validators.required]);
   countries = [
     { label: 'US', value: 'us' },
     { label: 'Canada', value: 'ca' },
@@ -29,5 +29,5 @@ export class SelectComponent {
     { label: 'Venezuela', value: 've' },
     { label: 'Peru', value: 'pe' },
     { label: 'Other', value: 'other' },
-  ]
+  ];
 }

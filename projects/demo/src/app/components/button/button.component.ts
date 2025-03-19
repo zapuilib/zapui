@@ -1,5 +1,5 @@
-import { Component } from '@angular/core'
-import { ZapButton, ZapIconDirective } from 'zap/core'
+import { Component } from '@angular/core';
+import { ZapButton, ZapIconDirective } from 'zap/core';
 
 @Component({
   selector: 'app-button',

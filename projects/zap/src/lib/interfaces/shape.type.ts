@@ -1,1 +1,1 @@
-export type ShapeType = 'flat' | 'curve' | 'pill'
+export type ShapeType = 'flat' | 'curve' | 'pill';

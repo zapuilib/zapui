@@ -1,5 +1,5 @@
-import { Component, Input } from '@angular/core'
-import { ZapButton, ZapToast, ZapToastService } from 'zap/core'
+import { Component, Input } from '@angular/core';
+import { ZapButton, ZapToast, ZapToastService } from 'zap/core';
 
 @Component({
   selector: 'app-toast',
@@ -9,16 +9,16 @@ import { ZapButton, ZapToast, ZapToastService } from 'zap/core'
   styleUrl: './toast.component.scss',
 })
 export class ToastComponent {
-  @Input() service: boolean = false
-  title = 'Schedule a meeting'
-  text = 'Friday, February 10, 2023 at 5:57 PM'
-  action = 'Undo'
+  @Input() service: boolean = false;
+  title = 'Schedule a meeting';
+  text = 'Friday, February 10, 2023 at 5:57 PM';
+  action = 'Undo';
 
   constructor(private toastService: ZapToastService) {}
 
   handleDismiss() {
-    window.alert('Dismissed!')
-    this.toastService.dismiss()
+    window.alert('Dismissed!');
+    this.toastService.dismiss();
   }
 
   showToast() {
@@ -28,10 +28,10 @@ export class ToastComponent {
       text: 'This is a toast',
       shape: 'curve',
       type: 'default',
-    })
+    });
   }
 
   handleActionClick() {
-    window.alert('Action clicked!')
+    window.alert('Action clicked!');
   }
 }

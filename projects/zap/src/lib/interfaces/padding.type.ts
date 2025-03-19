@@ -2,7 +2,7 @@ export type Padding =
   | `${paddingString} ${paddingString} ${paddingString} ${paddingString}`
   | `${paddingString} ${paddingString} ${paddingString}`
   | `${paddingString} ${paddingString}`
-  | paddingString
+  | paddingString;
 
 export type paddingString =
   | `${string}px`
@@ -19,4 +19,4 @@ export type paddingString =
   | `${string}mm`
   | `${string}in`
   | `${string}pt`
-  | `${string}pc`
+  | `${string}pc`;

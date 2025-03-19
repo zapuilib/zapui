@@ -1,11 +1,11 @@
-import { Component } from '@angular/core'
-import { FormControl, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms'
+import { Component } from '@angular/core';
+import { FormControl, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import {
   ZapFormFieldHelpTextDirective,
   ZapFormFieldIconDirective,
   ZapInput,
   ZapLabelDirective,
-} from 'zap/forms'
+} from 'zap/forms';
 
 @Component({
   selector: 'app-input',
@@ -22,6 +22,6 @@ import {
   styleUrl: './input.component.scss',
 })
 export class InputComponent {
-  usernameControl = new FormControl({ value: '', disabled: false }, [Validators.required])
-  usernameControl2 = new FormControl({ value: '', disabled: true }, [Validators.required])
+  usernameControl = new FormControl({ value: '', disabled: false }, [Validators.required]);
+  usernameControl2 = new FormControl({ value: '', disabled: true }, [Validators.required]);
 }

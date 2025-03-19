@@ -1,6 +1,6 @@
-import { Component } from '@angular/core'
-import { FormsModule, ReactiveFormsModule } from '@angular/forms'
-import { ZapRadio } from 'zap/forms'
+import { Component } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ZapRadio } from 'zap/forms';
 
 @Component({
   selector: 'app-radio',

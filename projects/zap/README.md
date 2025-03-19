@@ -13,16 +13,16 @@ Zap/UI is a comprehensive library designed to streamline the development of Angu
 2. Now, provide root configuration to the core module inside `app.config.ts`.
 
    ```typescript
-   import { ApplicationConfig } from '@angular/core'
+   import { ApplicationConfig } from '@angular/core';
 
-   import { provideZapOptions } from '@zaplib/zapui'
+   import { provideZapOptions } from '@zaplib/zapui';
 
    export const appConfig: ApplicationConfig = {
      providers: [
        provideZapOptions(),
        // Others...
      ],
-   }
+   };
    ```
 
 3. Ready to use!

@@ -1,1 +1,1 @@
-export type HexCode = `#${string}`
+export type HexCode = `#${string}`;

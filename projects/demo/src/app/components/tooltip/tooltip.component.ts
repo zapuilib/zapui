@@ -1,5 +1,5 @@
-import { Component } from '@angular/core'
-import { ZapTooltip, ZapTooltipContent, ZapTooltipHandler } from 'zap/core'
+import { Component } from '@angular/core';
+import { ZapTooltip, ZapTooltipContent, ZapTooltipHandler } from 'zap/core';
 
 @Component({
   selector: 'app-tooltip',

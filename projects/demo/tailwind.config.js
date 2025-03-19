@@ -11,4 +11,4 @@ module.exports = {
     },
   },
   plugins: [require('../../dist/zap/tailwind/base')],
-}
+};

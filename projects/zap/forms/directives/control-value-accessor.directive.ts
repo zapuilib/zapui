@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Directive, Inject, Injector, OnInit, OnDestroy } from '@angular/core'
+import { ChangeDetectorRef, Directive, Inject, Injector, OnInit, OnDestroy } from '@angular/core';
 import {
   ControlValueAccessor,
   FormControl,
@@ -8,22 +8,22 @@ import {
   NgControl,
   Validators,
   NgModel,
-} from '@angular/forms'
-import { distinctUntilChanged, startWith, Subject, takeUntil, tap } from 'rxjs'
+} from '@angular/forms';
+import { distinctUntilChanged, startWith, Subject, takeUntil, tap } from 'rxjs';
 
 @Directive({
   selector: '[libControlValueAccessor]',
 })
 export class ControlValueAccessorDirective<T> implements OnInit, ControlValueAccessor, OnDestroy {
-  control!: FormControl
-  isRequired = false
+  control!: FormControl;
+  isRequired = false;
 
-  private _isDisabled = false
-  private _destroy$ = new Subject<void>()
-  private _onTouched!: () => T
+  private _isDisabled = false;
+  private _destroy$ = new Subject<void>();
+  private _onTouched!: () => T;
   protected globalConfig: { shape: string } = {
     shape: '',
-  }
+  };
 
   constructor(
     @Inject(Injector) private injector: Injector,
@@ -31,48 +31,48 @@ export class ControlValueAccessorDirective<T> implements OnInit, ControlValueAcc
   ) {}
 
   ngOnInit(): void {
-    this.setFormControl()
-    this.isRequired = this.control?.hasValidator(Validators.required) ?? false
+    this.setFormControl();
+    this.isRequired = this.control?.hasValidator(Validators.required) ?? false;
   }
 
   setFormControl() {
     try {
-      const formControl = this.injector.get(NgControl)
-      const ngModel = formControl as NgModel
+      const formControl = this.injector.get(NgControl);
+      const ngModel = formControl as NgModel;
       switch (formControl.constructor) {
         case FormControlName:
           this.control = this.injector
             .get(FormGroupDirective)
-            .getControl(formControl as FormControlName)
-          break
+            .getControl(formControl as FormControlName);
+          break;
         case NgModel:
-          this.control = ngModel.control
+          this.control = ngModel.control;
           ngModel.valueChanges
             ?.pipe(
               takeUntil(this._destroy$),
               distinctUntilChanged(),
               tap((val) => {
-                this.writeValue(val)
+                this.writeValue(val);
               }),
             )
-            .subscribe()
-          break
+            .subscribe();
+          break;
         default:
-          this.control = (formControl as FormControlDirective).form as FormControl
-          break
+          this.control = (formControl as FormControlDirective).form as FormControl;
+          break;
       }
     } catch {
-      this.control = new FormControl()
+      this.control = new FormControl();
     }
   }
 
   writeValue(value: T): void {
     if (this.control) {
       if (this.control.value !== value) {
-        this.control.setValue(value, { emitEvent: false })
+        this.control.setValue(value, { emitEvent: false });
       }
     } else {
-      this.control = new FormControl(value)
+      this.control = new FormControl(value);
     }
   }
 
@@ -83,34 +83,34 @@ export class ControlValueAccessorDirective<T> implements OnInit, ControlValueAcc
         startWith(this.control.value),
         distinctUntilChanged(),
         tap((val) => {
-          fn(val)
-          this.control?.updateValueAndValidity()
-          this.onValueChange(val)
+          fn(val);
+          this.control?.updateValueAndValidity();
+          this.onValueChange(val);
         }),
       )
-      .subscribe()
+      .subscribe();
   }
 
   onValueChange(value: T) {
     if (value === null || value === undefined || value === '') {
-      this.reset()
+      this.reset();
     }
   }
 
   reset(): void {
-    this.control.reset()
+    this.control.reset();
   }
 
   setDisabledState?(isDisabled: boolean): void {
-    this._isDisabled = isDisabled
+    this._isDisabled = isDisabled;
   }
 
   registerOnTouched(fn: () => T): void {
-    this._onTouched = fn
+    this._onTouched = fn;
   }
 
   ngOnDestroy(): void {
-    this._destroy$.next()
-    this._destroy$.complete()
+    this._destroy$.next();
+    this._destroy$.complete();
   }
 }

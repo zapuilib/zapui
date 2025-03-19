@@ -1,1 +1,1 @@
-export type Styles = Partial<CSSStyleDeclaration>
+export type Styles = Partial<CSSStyleDeclaration>;

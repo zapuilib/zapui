@@ -68,23 +68,23 @@ export function getSizeVariables(sizeValue: string, component: string): string {
         'day-border-radius': '0.375rem',
       },
     },
-  }
+  };
 
-  let cssVariables = ''
+  let cssVariables = '';
 
-  const config = configList[component as keyof typeof configList]
+  const config = configList[component as keyof typeof configList];
 
   if (!config) {
-    return ''
+    return '';
   }
 
   if (!config[sizeValue as keyof typeof config]) {
-    return ''
+    return '';
   }
 
   cssVariables += Object.entries(config[sizeValue as keyof typeof config])
     .map(([key, value]) => `--zap-${component}-${key}: ${value};`)
-    .join('\n')
+    .join('\n');
 
-  return cssVariables
+  return cssVariables;
 }

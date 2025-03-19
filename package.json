@@ -16,7 +16,8 @@
     "test": "ng test --no-watch --no-progress --browsers=ChromeHeadless",
     "test:watch": "ng test --watch",
     "prepare": "husky",
-    "prettier": "prettier --write ."
+    "prettier": "prettier --write .",
+    "prettier:check": "prettier --check ."
   },
   "private": true,
   "dependencies": {

@@ -1,5 +1,5 @@
-import { Component } from '@angular/core'
-import { ZapBadge } from 'zap/core'
+import { Component } from '@angular/core';
+import { ZapBadge } from 'zap/core';
 
 @Component({
   selector: 'app-badge',

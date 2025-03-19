@@ -1,6 +1,6 @@
-import { CommonModule } from '@angular/common'
-import { Component, Input, OnChanges, SimpleChanges } from '@angular/core'
-import { ValidationErrors } from '@angular/forms'
+import { CommonModule } from '@angular/common';
+import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { ValidationErrors } from '@angular/forms';
 
 @Component({
   selector: 'validation-error',
@@ -10,10 +10,10 @@ import { ValidationErrors } from '@angular/forms'
   styleUrls: ['./validation-error.component.scss'],
 })
 export class ValidationErrorComponent implements OnChanges {
-  @Input() errors: Record<string, ValidationErrors> | null = {}
-  @Input() customErrorMessages: Record<string, string> = {}
-  @Input() zapClass = ''
-  @Input() color = ''
+  @Input() errors: Record<string, ValidationErrors> | null = {};
+  @Input() customErrorMessages: Record<string, string> = {};
+  @Input() zapClass = '';
+  @Input() color = '';
   errorMessages: Record<string, string> = {
     required: 'This field is required.',
     minlength: 'Value is too short',
@@ -22,15 +22,15 @@ export class ValidationErrorComponent implements OnChanges {
     min: 'Value is too low',
     max: 'Value is too high',
     pattern: 'Invalid pattern',
-  }
+  };
 
   ngOnChanges(changes: SimpleChanges): void {
-    const { customErrorMessages } = changes
+    const { customErrorMessages } = changes;
     if (customErrorMessages) {
       this.errorMessages = {
         ...this.errorMessages,
         ...customErrorMessages.currentValue,
-      }
+      };
     }
   }
 }

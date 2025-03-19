@@ -18,8 +18,8 @@ export const TOAST_STYLES = {
       right: '20px',
     },
   },
-} as const
+} as const;
 
-export const TOAST_DURATION = 5000
+export const TOAST_DURATION = 5000;
 
-export const DISMISS_THRESHOLD = 300
+export const DISMISS_THRESHOLD = 300;

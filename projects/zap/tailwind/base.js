@@ -1,4 +1,4 @@
-const plugin = require('tailwindcss/plugin')
+const plugin = require('tailwindcss/plugin');
 
 function createZapVariant(name, targetElement, e) {
   return ({ modifySelectors, separator }) => {
@@ -6,11 +6,11 @@ function createZapVariant(name, targetElement, e) {
       if (name === 'dp-calendar-multi') {
         return `.${e(`${name}${separator}${className}`)}, .${e(
           `${name}${separator}${className}`,
-        )} ${targetElement}`
+        )} ${targetElement}`;
       }
-      return `.${e(`${name}${separator}${className}`)} ${targetElement}`
-    })
-  }
+      return `.${e(`${name}${separator}${className}`)} ${targetElement}`;
+    });
+  };
 }
 
 module.exports = plugin(function ({ addVariant, e }) {
@@ -137,9 +137,9 @@ module.exports = plugin(function ({ addVariant, e }) {
       name: 'toast-btn',
       targetElement: '.__zap__toast__actions .btn',
     },
-  ]
+  ];
 
   variants.forEach((variant) => {
-    addVariant(variant.name, createZapVariant(variant.name, variant.targetElement, e))
-  })
-})
+    addVariant(variant.name, createZapVariant(variant.name, variant.targetElement, e));
+  });
+});

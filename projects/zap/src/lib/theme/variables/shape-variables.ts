@@ -100,28 +100,28 @@ export function getShapeVariable(shapeValue: string, component: string): string 
         },
       },
     },
-  }
-  let cssVariables = ''
+  };
+  let cssVariables = '';
 
   const componentConfig: any =
-    configList[component as keyof typeof configList] || configList.default
+    configList[component as keyof typeof configList] || configList.default;
 
   if (componentConfig.elements) {
     Object.keys(componentConfig.elements).forEach((element: string) => {
-      const elementConfig = componentConfig.elements[element]
+      const elementConfig = componentConfig.elements[element];
       if (shapeValue === 'flat') {
-        cssVariables += `--zap-${component}-${element}-border-radius: 0;\n`
+        cssVariables += `--zap-${component}-${element}-border-radius: 0;\n`;
       } else if (elementConfig[shapeValue as keyof typeof elementConfig]) {
         cssVariables += `--zap-${component}-${element}-border-radius: ${
           elementConfig[shapeValue as keyof typeof elementConfig]
-        };\n`
+        };\n`;
       }
-    })
+    });
   }
 
   cssVariables += `--zap-${component}-border-radius: ${
     shapeValue === 'flat' ? '0' : componentConfig[shapeValue as keyof typeof componentConfig]
-  };\n`
+  };\n`;
 
-  return cssVariables
+  return cssVariables;
 }

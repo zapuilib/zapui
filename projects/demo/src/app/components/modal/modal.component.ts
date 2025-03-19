@@ -1,5 +1,5 @@
-import { Component } from '@angular/core'
-import { ZapButton, ZapModal } from 'zap/core'
+import { Component } from '@angular/core';
+import { ZapButton, ZapModal } from 'zap/core';
 
 @Component({
   selector: 'app-modal',
@@ -9,5 +9,5 @@ import { ZapButton, ZapModal } from 'zap/core'
   styleUrl: './modal.component.scss',
 })
 export class ModalComponent {
-  modalOpen = false
+  modalOpen = false;
 }

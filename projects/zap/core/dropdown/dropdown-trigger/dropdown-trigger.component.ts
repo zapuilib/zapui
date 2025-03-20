@@ -4,7 +4,7 @@ import { Component } from '@angular/core';
   selector: 'zap-dropdown-trigger',
   standalone: true,
   imports: [],
-  templateUrl: './dropdown-trigger.component.html',
+  template: `<ng-content></ng-content>`,
   styleUrl: './dropdown-trigger.component.scss',
 })
 export class ZapDropdownTrigger {}

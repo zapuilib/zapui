@@ -4,7 +4,7 @@ import { Component } from '@angular/core';
   selector: 'zap-dropdown-separator',
   standalone: true,
   imports: [],
-  templateUrl: './dropdown-separator.component.html',
+  template: ` <ng-content />`,
   styleUrl: './dropdown-separator.component.scss',
 })
 export class ZapDropdownSeparator {}

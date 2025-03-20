@@ -4,7 +4,7 @@ import { Component } from '@angular/core';
   selector: 'zap-dropdown-menu-sub',
   standalone: true,
   imports: [],
-  templateUrl: './dropdown-menu-sub.component.html',
+  template: ` <ng-content />`,
   styleUrl: './dropdown-menu-sub.component.scss',
 })
 export class ZapDropdownMenuSub {}

@@ -1,9 +1,11 @@
 import { Overlay, OverlayPositionBuilder, OverlayRef } from '@angular/cdk/overlay';
 import { TemplatePortal } from '@angular/cdk/portal';
 import {
+  AfterViewInit,
   Component,
   ElementRef,
   Input,
+  OnDestroy,
   TemplateRef,
   ViewChild,
   ViewContainerRef,
@@ -24,7 +26,7 @@ import {
   `,
   styleUrls: ['./tooltip.component.scss'],
 })
-export class ZapTooltip {
+export class ZapTooltip implements AfterViewInit, OnDestroy {
   @ViewChild('triggerRef', { read: ElementRef }) triggerRef!: ElementRef;
   @ViewChild('contentTemplate') contentTemplate!: TemplateRef<any>;
   @Input() shape: 'curve' | 'pill' | 'flat' = 'flat';

@@ -3,7 +3,7 @@ import { DOCUMENT, isPlatformBrowser } from '@angular/common';
 
 import { NGX_ZAP_CONFIG } from './tokens/zap.tokens';
 import { GlobalConfig, ZapConfig, ZapTheme } from './interfaces';
-import { lightTheme, defaultConfig, darkTheme } from './constants/default-config.constants';
+import { lightTheme, defaultConfig, darkTheme } from './constants/default-config.constant';
 import { deepEqual } from './theme/utils/base-theme-utils';
 import { generateColorVariables } from './theme/utils/color-utils';
 import { generateFontSizeVariables } from './theme/utils/font-utils';

@@ -1122,6 +1122,10 @@ export function generateGlobalStylesVariables(theme: ZapTheme): string {
         value: theme.colors.secondary,
       },
       {
+        label: 'text-hover-color',
+        value: theme.colors.secondary,
+      },
+      {
         label: 'content-border-color',
         value: hexToRgba(theme.colors.secondary, 0.1),
       },

@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, ElementRef, Input, Renderer2, ViewChild } from '@angular/core';
+import { Component, ElementRef, Input, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'zap-tooltip-content',
@@ -13,16 +13,4 @@ import { Component, ElementRef, Input, Renderer2, ViewChild } from '@angular/cor
 export class ZapTooltipContent {
   @ViewChild('content', { static: true }) contentElement!: ElementRef;
   @Input() zapClass = '';
-
-  constructor(private renderer: Renderer2) {}
-
-  show() {
-    this.renderer.setStyle(this.contentElement.nativeElement, 'opacity', '1');
-    this.renderer.setStyle(this.contentElement.nativeElement, 'visibility', 'visible');
-  }
-
-  hide() {
-    this.renderer.setStyle(this.contentElement.nativeElement, 'opacity', '0');
-    this.renderer.setStyle(this.contentElement.nativeElement, 'visibility', 'hidden');
-  }
 }

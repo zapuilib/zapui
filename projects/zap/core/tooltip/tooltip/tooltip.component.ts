@@ -31,7 +31,6 @@ import { positionConfigs } from './position.constant';
 export class ZapTooltip implements AfterViewInit, OnDestroy {
   @ViewChild('triggerRef', { read: ElementRef }) triggerRef!: ElementRef;
   @ViewChild('contentTemplate') contentTemplate!: TemplateRef<any>;
-  @Input() shape: 'curve' | 'pill' | 'flat' = 'flat';
   @Input() position: 'top' | 'bottom' | 'left' | 'right' | 'auto' = 'auto';
 
   overlayRef!: OverlayRef;
@@ -80,13 +79,11 @@ export class ZapTooltip implements AfterViewInit, OnDestroy {
 
       this.overlayRef.overlayElement.addEventListener('mouseleave', () => this.hideContent());
     }
-    this.overlayRef.overlayElement.classList.add('zap-tooltip-visible');
   }
 
   hideContent() {
     if (this.overlayRef.hasAttached()) {
       this.hideTimeout = setTimeout(() => {
-        this.overlayRef.overlayElement.classList.remove('zap-tooltip-visible');
         this.overlayRef.detach();
       }, 200);
     }

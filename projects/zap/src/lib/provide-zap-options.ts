@@ -2,7 +2,7 @@ import { APP_INITIALIZER, EnvironmentProviders, makeEnvironmentProviders } from 
 import { NGX_ZAP_CONFIG } from './tokens/zap.tokens';
 import { ZapConfig } from './interfaces/config.interface';
 import { ThemeService } from './theme.service';
-import { defaultConfig } from './constants/default-config.constants';
+import { defaultConfig } from './constants/default-config.constant';
 
 export function initializeTheme(themeService: ThemeService): () => void {
   return () => themeService.applyTheme();

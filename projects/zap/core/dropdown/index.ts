@@ -8,3 +8,4 @@ export * from './dropdown-menu-sub/dropdown-menu-sub.component';
 export * from './dropdown-menu-sub-trigger/dropdown-menu-sub-trigger.component';
 export * from './dropdown-separator/dropdown-separator.component';
 export * from './dropdown-trigger/dropdown-trigger.component';
+export * from './dropdown-menu-portal/dropdown-menu-portal.component';

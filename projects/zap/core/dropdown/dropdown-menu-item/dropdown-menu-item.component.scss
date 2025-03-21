@@ -1,0 +1,7 @@
+:host {
+  @apply flex items-center gap-x-10 w-full p-1.5 text-sm hover:bg-secondary/5 rounded-md select-none text-secondary/90 hover:text-secondary;
+
+  &.disabled {
+    @apply pointer-events-none text-secondary/40;
+  }
+}

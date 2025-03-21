@@ -1,44 +1,61 @@
 <zap-dropdown>
   <zap-dropdown-trigger>
-    <zap-button text="Open"> </zap-button>
+    <zap-button text="Menu"></zap-button>
   </zap-dropdown-trigger>
   <zap-dropdown-menu>
-    <zap-dropdown-menu-label>Random</zap-dropdown-menu-label>
+    <zap-dropdown-menu-label>Account</zap-dropdown-menu-label>
     <zap-dropdown-separator></zap-dropdown-separator>
     <zap-dropdown-menu-group>
-      <zap-dropdown-menu-item>Item1</zap-dropdown-menu-item>
-      <zap-dropdown-menu-item>Item2</zap-dropdown-menu-item>
-    </zap-dropdown-menu-group>
-    <zap-dropdown-separator></zap-dropdown-separator>
-    <zap-dropdown-menu-label>Random</zap-dropdown-menu-label>
-    <zap-dropdown-separator></zap-dropdown-separator>
-    <zap-dropdown-menu-group>
-      <zap-dropdown-menu-item>Item1</zap-dropdown-menu-item>
       <zap-dropdown-menu-item>
-        Item2
-        <zap-dropdown-menu-shortcut>Cmd + S</zap-dropdown-menu-shortcut>
+        My projects<zap-dropdown-menu-shortcut>⇧⌘P</zap-dropdown-menu-shortcut>
+      </zap-dropdown-menu-item>
+      <zap-dropdown-menu-item>
+        Profile<zap-dropdown-menu-shortcut>⌘P</zap-dropdown-menu-shortcut>
+      </zap-dropdown-menu-item>
+      <zap-dropdown-menu-item>
+        Billing<zap-dropdown-menu-shortcut>⌘K</zap-dropdown-menu-shortcut>
+      </zap-dropdown-menu-item>
+      <zap-dropdown-menu-portal>
+        <zap-dropdown-menu-sub-trigger>Preferences</zap-dropdown-menu-sub-trigger>
+        <zap-dropdown-menu-sub>
+          <zap-dropdown-menu-group>
+            <zap-dropdown-menu-item>Theme</zap-dropdown-menu-item>
+            <zap-dropdown-menu-item>Language</zap-dropdown-menu-item>
+            <zap-dropdown-menu-item>Notifications</zap-dropdown-menu-item>
+          </zap-dropdown-menu-group>
+        </zap-dropdown-menu-sub>
+      </zap-dropdown-menu-portal>
+      <zap-dropdown-menu-item>
+        Settings<zap-dropdown-menu-shortcut>⌘S</zap-dropdown-menu-shortcut>
       </zap-dropdown-menu-item>
     </zap-dropdown-menu-group>
     <zap-dropdown-separator></zap-dropdown-separator>
     <zap-dropdown-menu-group>
-      <zap-dropdown-menu-item>Item1</zap-dropdown-menu-item>
-      <zap-dropdown-menu-sub-trigger>Item2</zap-dropdown-menu-sub-trigger>
-      <zap-dropdown-menu-sub>
-        <zap-dropdown-menu-group>
-          <zap-dropdown-menu-item>Item1</zap-dropdown-menu-item>
-          <zap-dropdown-menu-item>Item2</zap-dropdown-menu-item>
-        </zap-dropdown-menu-group>
-        <zap-dropdown-separator></zap-dropdown-separator>
-        <zap-dropdown-menu-group>
-          <zap-dropdown-menu-sub-trigger>Item2</zap-dropdown-menu-sub-trigger>
-          <zap-dropdown-menu-sub>
-            <zap-dropdown-menu-group>
-              <zap-dropdown-menu-item>Item1</zap-dropdown-menu-item>
-              <zap-dropdown-menu-item>Item2</zap-dropdown-menu-item>
-            </zap-dropdown-menu-group>
-          </zap-dropdown-menu-sub>
-        </zap-dropdown-menu-group>
-      </zap-dropdown-menu-sub>
+      <zap-dropdown-menu-item>
+        Keyboard shortcuts<zap-dropdown-menu-shortcut>⌘+9</zap-dropdown-menu-shortcut>
+      </zap-dropdown-menu-item>
+      <zap-dropdown-menu-item>
+        Team<zap-dropdown-menu-shortcut>⌘+T</zap-dropdown-menu-shortcut>
+      </zap-dropdown-menu-item>
+      <zap-dropdown-menu-item>
+        Security<zap-dropdown-menu-shortcut>⌘+8</zap-dropdown-menu-shortcut>
+      </zap-dropdown-menu-item>
+    </zap-dropdown-menu-group>
+    <zap-dropdown-separator></zap-dropdown-separator>
+    <zap-dropdown-menu-group>
+      <zap-dropdown-menu-item>
+        Support<zap-dropdown-menu-shortcut>⌘+9</zap-dropdown-menu-shortcut>
+      </zap-dropdown-menu-item>
+      <zap-dropdown-menu-item>
+        Help<zap-dropdown-menu-shortcut>⌘+T</zap-dropdown-menu-shortcut>
+      </zap-dropdown-menu-item>
+      <zap-dropdown-menu-item [disabled]="true"> API </zap-dropdown-menu-item>
+    </zap-dropdown-menu-group>
+    <zap-dropdown-separator></zap-dropdown-separator>
+    <zap-dropdown-menu-group>
+      <zap-dropdown-menu-item>
+        Sign Out<zap-dropdown-menu-shortcut>⌘Q</zap-dropdown-menu-shortcut>
+      </zap-dropdown-menu-item>
     </zap-dropdown-menu-group>
   </zap-dropdown-menu>
 </zap-dropdown>

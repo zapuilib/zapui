@@ -13,11 +13,12 @@ import {
 import { CommonModule } from '@angular/common';
 import { Overlay, OverlayRef } from '@angular/cdk/overlay';
 import { CdkPortal, PortalModule } from '@angular/cdk/portal';
+import { A11yModule } from '@angular/cdk/a11y';
 
 @Component({
   selector: 'zap-modal',
   standalone: true,
-  imports: [CommonModule, PortalModule],
+  imports: [CommonModule, PortalModule, A11yModule],
   templateUrl: './modal.component.html',
   styleUrls: ['./modal.component.scss'],
 })

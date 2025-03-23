@@ -49,18 +49,11 @@ export class ZapModal implements OnInit, AfterViewInit, OnDestroy {
 
   private createOverlay(): void {
     this.overlayRef = this.overlay.create({
-      hasBackdrop: this.showOverlay,
-      backdropClass: this.getOverlayBackdropClass(),
+      hasBackdrop: false,
       positionStrategy: this.overlay.position().global().centerHorizontally().centerVertically(),
       scrollStrategy: this.overlay.scrollStrategies.block(),
       panelClass: 'zap-modal-panel',
     });
-
-    if (this.showOverlay) {
-      this.overlayRef.backdropClick().subscribe(() => {
-        this.handleClose();
-      });
-    }
   }
 
   private attachPortal(): void {

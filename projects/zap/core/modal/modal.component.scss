@@ -1,13 +1,12 @@
 .__zap__overlay {
-  @apply fixed inset-0 z-[198] bg-[var(--zap-modal-overlay-bg-color)];
+  @apply fixed inset-0 bg-[var(--zap-modal-overlay-bg-color)];
   @apply transition-opacity duration-300;
 }
 
 .__zap__modal__wrapper {
-  @apply w-[95%] bg-[var(--zap-modal-bg-color)] border border-[var(--zap-modal-border-color)] text-[var(--zap-modal-text-color)] rounded-[var(--zap-modal-border-radius)] max-w-md fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-[199];
+  @apply bg-[var(--zap-modal-bg-color)] border border-[var(--zap-modal-border-color)] text-[var(--zap-modal-text-color)];
   @apply pl-[var(--zap-modal-padding-left)] pr-[var(--zap-modal-padding-right)] pt-[var(--zap-modal-padding-top)] pb-[var(--zap-modal-padding-bottom)];
-  @apply sm:w-[var(--zap-modal-max-width)] h-[var(--zap-modal-max-height)] overflow-auto;
-  transform: translateX(-50%) translateY(-50%);
+  @apply overflow-auto relative;
 
   .handler {
     @apply absolute top-5 right-5 cursor-pointer fill-[var(--zap-modal-dismiss-color)] hover:fill-[var(--zap-modal-dismiss-hover-color)] transition-colors;

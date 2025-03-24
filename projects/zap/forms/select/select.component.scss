@@ -65,6 +65,14 @@ fieldset {
   @apply focus-within:outline-none focus-within:ring-0;
   @apply pl-[var(--zap-select-search-padding-left)] pr-[var(--zap-select-search-padding-right)] pt-[var(--zap-select-search-padding-top)] pb-[var(--zap-select-search-padding-bottom)];
 
+  &:-webkit-autofill,
+  &:-webkit-autofill:hover,
+  &:-webkit-autofill:focus {
+    -webkit-text-fill-color: var(--zap-select-search-text-color);
+    -webkit-box-shadow: 0 0 0px 1000px var(--zap-select-search-bg-color) inset;
+    @apply bg-[var(--zap-select-search-bg-color)] ease-in-out duration-[5000s] border-0 bg-transparent;
+  }
+
   &::placeholder {
     @apply text-[var(--zap-select-search-placeholder-color)] text-[length:var(--zap-select-search-placeholder-font-size)] font-[var(--zap-select-search-placeholder-font-weight)] leading-[var(--zap-select-search-placeholder-line-height)] tracking-[var(--zap-select-search-placeholder-letter-spacing)];
   }
@@ -97,7 +105,7 @@ fieldset {
 }
 
 .__zap__form__control__options__container {
-  @apply max-h-max absolute w-full;
+  @apply max-h-max w-full;
 }
 
 .__zap__form__control__options {

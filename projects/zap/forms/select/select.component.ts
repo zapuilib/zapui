@@ -234,7 +234,7 @@ export class ZapSelect<T>
       .flexibleConnectedTo(this.inputSelectValueHolder)
       .withPositions(positions)
       .withFlexibleDimensions(false)
-      .withPush(true);
+      .withPush(false);
 
     return strategy;
   }

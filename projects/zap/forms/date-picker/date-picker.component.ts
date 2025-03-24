@@ -66,7 +66,7 @@ export class ZapDatePicker<T>
   @Input() placeholder = 'Select';
   @Input() shape!: 'pill' | 'curve' | 'flat';
   @Input() size!: 'compact' | 'base' | 'wide';
-  @Input() position: 'top' | 'bottom' | 'auto' = 'bottom';
+  @Input() position: 'top' | 'bottom' | 'auto' = 'auto';
   @Input() customErrorMessages: Record<string, string> = {};
   @Input() icon!: string;
   @Input() iconPosition: 'left' | 'right' = 'right';
@@ -190,13 +190,6 @@ export class ZapDatePicker<T>
     }
   }
 
-  private updatePosition(): void {
-    if (this.overlayRef) {
-      const positionStrategy = this.buildPositionStrategy();
-      this.overlayRef.updatePositionStrategy(positionStrategy);
-    }
-  }
-
   private buildPositionStrategy(): FlexibleConnectedPositionStrategy {
     const positions: ConnectedPosition[] =
       this.position === 'top'
@@ -240,7 +233,7 @@ export class ZapDatePicker<T>
       .flexibleConnectedTo(this.inputDateSelectValueHolder)
       .withPositions(positions)
       .withFlexibleDimensions(false)
-      .withPush(true);
+      .withPush(false);
 
     return strategy;
   }
@@ -436,7 +429,7 @@ export class ZapDatePicker<T>
         scrollStrategy: this.overlay.scrollStrategies.reposition(),
         hasBackdrop: true,
         backdropClass: 'cdk-overlay-transparent-backdrop',
-        width: inputWidth,
+        width: this.size === 'wide' ? inputWidth : 'auto',
       });
 
       const portal = new TemplatePortal(this.calendarPanel, this.vcr);

@@ -54,6 +54,7 @@ export class ZapModal implements OnInit, AfterViewInit, OnDestroy {
       positionStrategy: this.overlay.position().global().centerHorizontally().centerVertically(),
       scrollStrategy: this.overlay.scrollStrategies.block(),
       panelClass: 'zap-modal-panel',
+      disposeOnNavigation: true,
     });
   }
 

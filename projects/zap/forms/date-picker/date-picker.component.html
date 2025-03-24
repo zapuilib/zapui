@@ -43,8 +43,8 @@
         }
       </div>
     </fieldset>
-    @if (isCalendarOpen) {
-      <div #calendar class="__zap__form__control__calendar">
+    <ng-template #calendarPanel>
+      <div class="__zap__form__control__calendar">
         <dp-calendar
           [weeks]="weeks"
           [currentMonth]="currentMonth"
@@ -72,7 +72,7 @@
           (nextMonth)="onNextMonth($event)"
           (changeMonthAndYear)="onChangeMonthAndYear($event)"></dp-calendar>
       </div>
-    }
+    </ng-template>
   </div>
   @if (helpText) {
     <p class="__zap__form__control__help__text">{{ helpText }}</p>

@@ -25,7 +25,7 @@ export class DPCalendarSelect {
   @Input() options!: string[];
   @Input() selected!: string;
   @Input() scrollToSelected = false;
-  @Input() shape: 'pill' | 'curve' | 'flat' = 'flat';
+  @Input() shape!: 'pill' | 'curve' | 'flat';
   isOptionListOpen = false;
 
   @HostListener('document:click', ['$event'])

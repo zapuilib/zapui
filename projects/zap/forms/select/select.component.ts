@@ -61,8 +61,8 @@ export class ZapSelect<T>
   extends ControlValueAccessorDirective<T>
   implements OnInit, OnDestroy, AfterViewInit
 {
+  @ViewChild('optionsPanel') optionsPanel!: TemplateRef<any>;
   @ViewChild('inputSelectValueHolder') inputSelectValueHolder!: ElementRef;
-  @ViewChild('optionList') optionList!: ElementRef;
   @ViewChild('search') search!: ElementRef;
   @Output() onChange: EventEmitter<string[] | string> = new EventEmitter<string[] | string>();
   @Output() onSearch: EventEmitter<string> = new EventEmitter<string>();
@@ -86,6 +86,7 @@ export class ZapSelect<T>
   @Input() position: 'top' | 'bottom' | 'auto' = 'auto';
   @Input() helpText = '';
   private _options: { label: string; value: any; [key: string]: any }[] = [];
+  private overlayRef!: OverlayRef;
   isOptionListOpen = false;
   hoveredOption = '';
   selectedOptionValue: string[] = [];
@@ -97,6 +98,32 @@ export class ZapSelect<T>
   @ContentChild(ZapLabelDirective, { static: false })
   labelDirective!: ZapLabelDirective;
 
+  @Input()
+  set options(newOptions: { label: string; value: any; [key: string]: any }[]) {
+    this._options = newOptions || [];
+    this.filteredOptions = [...this._options];
+  }
+
+  get options(): { label: string; value: any; [key: string]: any }[] {
+    return this._options;
+  }
+
+  @HostListener('document:keydown.escape', ['$event'])
+  onEscapePress(event: KeyboardEvent): void {
+    if (this.isOptionListOpen && event.key === 'Escape') {
+      this.toggleOptionsList();
+    }
+  }
+
+  @HostListener('window:resize')
+  onWindowResize(): void {
+    if (this.isOptionListOpen && this.overlayRef) {
+      const inputWidth = this.inputSelectValueHolder.nativeElement.offsetWidth;
+      this.overlayRef.updateSize({ width: inputWidth });
+      this.updatePosition();
+    }
+  }
+
   constructor(
     @Inject(Injector) injector: Injector,
     cdr: ChangeDetectorRef,
@@ -107,8 +134,12 @@ export class ZapSelect<T>
     super(injector, cdr);
   }
 
-  @ViewChild('optionsPanel') optionsPanel!: TemplateRef<any>;
-  private overlayRef!: OverlayRef;
+  override ngOnInit(): void {
+    super.ngOnInit();
+    this.filteredOptions = [...this._options];
+    this.handleDefaultValue();
+    this.checkIfEmpty();
+  }
 
   ngAfterViewInit() {
     if (this.iconDirective) {
@@ -151,39 +182,6 @@ export class ZapSelect<T>
       this.labelDirective.el.nativeElement.style.letterSpacing =
         'var(--zap-select-label-letter-spacing)';
     }
-  }
-
-  @Input()
-  set options(newOptions: { label: string; value: any; [key: string]: any }[]) {
-    this._options = newOptions || [];
-    this.filteredOptions = [...this._options];
-  }
-
-  get options(): { label: string; value: any; [key: string]: any }[] {
-    return this._options;
-  }
-
-  @HostListener('document:keydown.escape', ['$event'])
-  onEscapePress(event: KeyboardEvent): void {
-    if (this.isOptionListOpen && event.key === 'Escape') {
-      this.toggleOptionsList();
-    }
-  }
-
-  @HostListener('window:resize')
-  onWindowResize(): void {
-    if (this.isOptionListOpen && this.overlayRef) {
-      const inputWidth = this.inputSelectValueHolder.nativeElement.offsetWidth;
-      this.overlayRef.updateSize({ width: inputWidth });
-      this.updatePosition();
-    }
-  }
-
-  override ngOnInit(): void {
-    super.ngOnInit();
-    this.filteredOptions = [...this._options];
-    this.handleDefaultValue();
-    this.checkIfEmpty();
   }
 
   private updatePosition(): void {

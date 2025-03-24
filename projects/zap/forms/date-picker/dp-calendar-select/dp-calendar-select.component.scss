@@ -29,6 +29,16 @@
       @apply rounded-lg;
     }
   }
+
+  &.flat {
+    .__zap__form__control__select {
+      @apply rounded-none;
+    }
+
+    .__zap__form__control__options {
+      @apply rounded-none;
+    }
+  }
 }
 
 .__zap__form__control__options__container {

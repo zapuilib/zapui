@@ -21,8 +21,8 @@ export class DPCalendar implements OnInit {
     startDate: Date | null;
     endDate: Date | null;
   }>();
-  @Input() size: 'compact' | 'base' | 'wide' = 'base';
-  @Input() shape: 'pill' | 'curve' | 'flat' = 'flat';
+  @Input() size!: 'compact' | 'base' | 'wide';
+  @Input() shape!: 'pill' | 'curve' | 'flat';
   @Input() weeks!: Date[][];
   @Input() currentMonth!: string;
   @Input() currentYear!: number;
@@ -343,6 +343,6 @@ export class DPCalendar implements OnInit {
   }
 
   get classes(): string[] {
-    return [this.shape, this.size, this.zapClass];
+    return [this.shape, this.size, this.zapClass].filter((cls) => cls && cls !== 'default');
   }
 }

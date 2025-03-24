@@ -201,6 +201,58 @@
     &.curve {
       @apply rounded;
     }
+
+    &.flat {
+      @apply rounded-none;
+    }
+  }
+
+  &.flat {
+    .__zap__calendar {
+      @apply rounded-none;
+
+      .header {
+        button {
+          @apply rounded-none;
+        }
+      }
+
+      .weeks {
+        .day {
+          @apply rounded-none;
+
+          &.in__range {
+            &:not(.selected) {
+              @apply rounded-none;
+            }
+
+            &.selected {
+              &::after {
+                @apply rounded-none;
+              }
+
+              &.range__after {
+                &::after {
+                  @apply rounded-none;
+                }
+              }
+
+              &.range__before {
+                &::after {
+                  @apply rounded-none;
+                }
+              }
+
+              &.only__range {
+                &::after {
+                  @apply rounded-none;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
   }
 
   &.pill {

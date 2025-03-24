@@ -64,7 +64,7 @@
         </svg>
       </div>
     </fieldset>
-    @if (isOptionListOpen) {
+    <ng-template #optionsPanel>
       <div #optionList class="__zap__form__control__options__container" [ngClass]="optionsClasses">
         <div class="__zap__form__control__options" zapScrollArea>
           @if (searchable) {
@@ -133,7 +133,7 @@
           }
         </div>
       </div>
-    }
+    </ng-template>
   </div>
   @if (helpText) {
     <p class="__zap__form__control__help__text">{{ helpText }}</p>

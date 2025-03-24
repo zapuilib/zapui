@@ -1,11 +1,14 @@
 import {
   AfterViewInit,
+  ChangeDetectorRef,
   Component,
   ContentChild,
   ElementRef,
   EventEmitter,
   forwardRef,
   HostListener,
+  Inject,
+  Injector,
   Input,
   OnDestroy,
   OnInit,
@@ -15,6 +18,15 @@ import {
 } from '@angular/core';
 import { FormsModule, NG_VALUE_ACCESSOR, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import {
+  Overlay,
+  OverlayRef,
+  OverlayPositionBuilder,
+  ConnectedPosition,
+  FlexibleConnectedPositionStrategy,
+} from '@angular/cdk/overlay';
+import { TemplatePortal } from '@angular/cdk/portal';
+import { ViewContainerRef } from '@angular/core';
 
 import { ControlValueAccessorDirective } from '../directives/control-value-accessor.directive';
 import { ValidationErrorComponent } from '../validation-error/validation-error.component';
@@ -85,15 +97,19 @@ export class ZapSelect<T>
   @ContentChild(ZapLabelDirective, { static: false })
   labelDirective!: ZapLabelDirective;
 
-  @HostListener('window:resize')
-  onWindowResize(): void {
-    this.handleSelectOptionPosition();
+  constructor(
+    @Inject(Injector) injector: Injector,
+    cdr: ChangeDetectorRef,
+    private overlay: Overlay,
+    private positionBuilder: OverlayPositionBuilder,
+    private vcr: ViewContainerRef,
+  ) {
+    super(injector, cdr);
   }
 
-  @HostListener('window:scroll', ['$event'])
-  onWindowScroll(): void {
-    this.handleSelectOptionPosition();
-  }
+  @ViewChild('optionsPanel') optionsPanel!: TemplateRef<any>;
+  private overlayRef!: OverlayRef;
+
   ngAfterViewInit() {
     if (this.iconDirective) {
       this.iconDirective.el.nativeElement.style.height =
@@ -147,19 +163,6 @@ export class ZapSelect<T>
     return this._options;
   }
 
-  @HostListener('document:click', ['$event'])
-  onDocumentClick(event: MouseEvent): void {
-    const clickedElement = event.target as HTMLElement;
-    const inputElement = this.inputSelectValueHolder.nativeElement;
-    if (
-      this.optionList &&
-      !this.optionList.nativeElement.contains(clickedElement) &&
-      !inputElement.contains(clickedElement)
-    ) {
-      this.toggleOptionsList();
-    }
-  }
-
   @HostListener('document:keydown.escape', ['$event'])
   onEscapePress(event: KeyboardEvent): void {
     if (this.isOptionListOpen && event.key === 'Escape') {
@@ -180,45 +183,6 @@ export class ZapSelect<T>
     }
   }
 
-  handleSelectOptionPosition(): void {
-    if (this.optionList && typeof window !== 'undefined') {
-      const optionListElement = this.optionList.nativeElement;
-      const inputElement = this.inputSelectValueHolder.nativeElement;
-      const inputRect = inputElement.getBoundingClientRect();
-      const viewportHeight = window.innerHeight;
-      const spaceBelow = viewportHeight - inputRect.bottom;
-      const spaceAbove = inputRect.top;
-
-      if (!optionListElement.dataset.appendedToBody) {
-        document.body.appendChild(optionListElement);
-        optionListElement.dataset.appendedToBody = 'true';
-      }
-
-      optionListElement.style.position = 'fixed';
-      optionListElement.style.left = `${inputRect.left}px`;
-      optionListElement.style.width = `${inputRect.width}px`;
-
-      optionListElement.style.visibility = 'hidden';
-      optionListElement.style.display = 'block';
-      const optionListHeight = optionListElement.scrollHeight;
-      optionListElement.style.visibility = 'visible';
-
-      if (this.position === 'auto') {
-        if (spaceBelow < optionListHeight && spaceAbove > optionListHeight) {
-          optionListElement.style.top = `${inputRect.top - optionListHeight - 5}px`;
-        } else {
-          optionListElement.style.top = `${inputRect.bottom}px`;
-        }
-      } else if (this.position === 'top') {
-        optionListElement.style.top = `${inputRect.top - optionListHeight - 5}px`;
-      } else {
-        optionListElement.style.top = `${inputRect.bottom}px`;
-      }
-
-      optionListElement.style.zIndex = '999';
-    }
-  }
-
   checkIfEmpty(): void {
     this.control.valueChanges.subscribe((value) => {
       if (!value || (Array.isArray(value) && value.length === 0)) {
@@ -230,20 +194,94 @@ export class ZapSelect<T>
 
   toggleOptionsList(): void {
     if (this.control.disabled) return;
+
     this.isOptionListOpen = !this.isOptionListOpen;
-    this.cdr.detectChanges();
+
     if (this.isOptionListOpen) {
-      if (this.search) {
-        setTimeout(() => {
-          this.search.nativeElement.focus();
-        }, 0);
-      }
+      const inputWidth = this.inputSelectValueHolder.nativeElement.offsetWidth;
+      const positionStrategy = this.buildPositionStrategy();
+
+      this.overlayRef = this.overlay.create({
+        positionStrategy,
+        scrollStrategy: this.overlay.scrollStrategies.reposition(),
+        hasBackdrop: true,
+        backdropClass: 'cdk-overlay-transparent-backdrop',
+        width: inputWidth,
+      });
+
+      const portal = new TemplatePortal(this.optionsPanel, this.vcr);
+      this.overlayRef.attach(portal);
+
+      this.overlayRef.backdropClick().subscribe(() => this.toggleOptionsList());
+      this.overlayRef.detachments().subscribe(() => {
+        this.isOptionListOpen = false;
+      });
+
+      setTimeout(() => {
+        if (this.search) this.search.nativeElement.focus();
+      }, 0);
     } else {
+      if (this.overlayRef) {
+        this.overlayRef.detach();
+      }
       this.control.markAsTouched();
     }
+
     this.hoveredOption = '';
     this.filteredOptions = this.options;
-    this.handleSelectOptionPosition();
+  }
+
+  private updatePosition(): void {
+    if (this.overlayRef) {
+      const positionStrategy = this.buildPositionStrategy();
+      this.overlayRef.updatePositionStrategy(positionStrategy);
+    }
+  }
+
+  private buildPositionStrategy(): FlexibleConnectedPositionStrategy {
+    const positions: ConnectedPosition[] =
+      this.position === 'top'
+        ? [
+            {
+              originX: 'start',
+              originY: 'top',
+              overlayX: 'start',
+              overlayY: 'bottom',
+              offsetY: -8,
+            },
+          ]
+        : this.position === 'bottom'
+          ? [
+              {
+                originX: 'start',
+                originY: 'bottom',
+                overlayX: 'start',
+                overlayY: 'top',
+                offsetY: 8,
+              },
+            ]
+          : [
+              {
+                originX: 'start',
+                originY: 'bottom',
+                overlayX: 'start',
+                overlayY: 'top',
+                offsetY: 8,
+              },
+              {
+                originX: 'start',
+                originY: 'top',
+                overlayX: 'start',
+                overlayY: 'bottom',
+                offsetY: -8,
+              },
+            ];
+
+    return this.positionBuilder
+      .flexibleConnectedTo(this.inputSelectValueHolder)
+      .withPositions(positions)
+      .withFlexibleDimensions(false)
+      .withPush(true);
   }
 
   handleSearch(event: Event): void {
@@ -257,7 +295,7 @@ export class ZapSelect<T>
       );
     }
     this.cdr.detectChanges();
-    this.handleSelectOptionPosition();
+    this.updatePosition();
   }
 
   selectOption(option: { label: string; value: any }): void {
@@ -273,7 +311,7 @@ export class ZapSelect<T>
       this.control.setValue(this.selectedOptionValue);
       this.onChange.emit(this.selectedOptionValue);
       this.cdr.detectChanges();
-      this.handleSelectOptionPosition();
+      this.updatePosition();
     } else {
       this.control.setValue(option.value);
       this.onChange.emit(option.value);
@@ -290,7 +328,7 @@ export class ZapSelect<T>
       this.onChange.emit(this.selectedOptionValue);
     }
     this.cdr.detectChanges();
-    this.handleSelectOptionPosition();
+    this.updatePosition();
   }
 
   getSelected(value: string): string {
@@ -352,9 +390,8 @@ export class ZapSelect<T>
 
   override ngOnDestroy(): void {
     super.ngOnDestroy();
-
-    if (this.optionList) {
-      this.optionList.nativeElement.remove();
+    if (this.overlayRef) {
+      this.overlayRef.dispose();
     }
   }
 }

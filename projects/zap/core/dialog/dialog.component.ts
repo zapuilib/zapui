@@ -77,31 +77,28 @@ export class ZapDialog implements OnInit, AfterViewInit, OnDestroy {
     }
   }
 
-  private updatePosition(): void {
-    if (!this.overlayRef) return;
-
+  private getPosition(): any {
     const isMobile = typeof window !== 'undefined' && window.innerWidth <= 640;
     const positionStrategy = this.overlay.position().global();
 
-    if (isMobile && this.position !== 'top') {
+    if (this.position === 'top') {
+      positionStrategy.top('20px').centerHorizontally();
+    } else if (isMobile) {
       positionStrategy.bottom('16px').centerHorizontally();
     } else {
       positionStrategy.centerHorizontally().centerVertically();
     }
+    return positionStrategy;
+  }
 
+  private updatePosition(): void {
+    if (!this.overlayRef) return;
+    const positionStrategy = this.getPosition();
     this.overlayRef.updatePositionStrategy(positionStrategy);
   }
 
   private createOverlay(): void {
-    const isMobile = typeof window !== 'undefined' && window.innerWidth <= 640;
-    const positionStrategy = this.overlay.position().global();
-
-    if (isMobile && this.position !== 'top') {
-      positionStrategy.bottom('16px').centerHorizontally();
-    } else {
-      positionStrategy.centerHorizontally().centerVertically();
-    }
-
+    const positionStrategy = this.getPosition();
     this.overlayRef = this.overlay.create({
       hasBackdrop: false,
       positionStrategy,

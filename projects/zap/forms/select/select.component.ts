@@ -186,60 +186,6 @@ export class ZapSelect<T>
     this.checkIfEmpty();
   }
 
-  handleDefaultValue(): void {
-    if (this.control.value) {
-      this.selectedOptionValue = [...this.selectedOptionValue, this.control.value];
-    }
-  }
-
-  checkIfEmpty(): void {
-    this.control.valueChanges.subscribe((value) => {
-      if (!value || (Array.isArray(value) && value.length === 0)) {
-        this.selectedOptionValue = [];
-        this.onReset.emit();
-      }
-    });
-  }
-
-  toggleOptionsList(): void {
-    if (this.control.disabled) return;
-
-    this.isOptionListOpen = !this.isOptionListOpen;
-
-    if (this.isOptionListOpen) {
-      const inputWidth = this.inputSelectValueHolder.nativeElement.offsetWidth;
-      const positionStrategy = this.buildPositionStrategy();
-
-      this.overlayRef = this.overlay.create({
-        positionStrategy,
-        scrollStrategy: this.overlay.scrollStrategies.reposition(),
-        hasBackdrop: true,
-        backdropClass: 'cdk-overlay-transparent-backdrop',
-        width: inputWidth,
-      });
-
-      const portal = new TemplatePortal(this.optionsPanel, this.vcr);
-      this.overlayRef.attach(portal);
-
-      this.overlayRef.backdropClick().subscribe(() => this.toggleOptionsList());
-      this.overlayRef.detachments().subscribe(() => {
-        this.isOptionListOpen = false;
-      });
-
-      setTimeout(() => {
-        if (this.search) this.search.nativeElement.focus();
-      }, 0);
-    } else {
-      if (this.overlayRef) {
-        this.overlayRef.detach();
-      }
-      this.control.markAsTouched();
-    }
-
-    this.hoveredOption = '';
-    this.filteredOptions = this.options;
-  }
-
   private updatePosition(): void {
     if (this.overlayRef) {
       const positionStrategy = this.buildPositionStrategy();
@@ -293,6 +239,72 @@ export class ZapSelect<T>
       .withPush(true);
 
     return strategy;
+  }
+
+  private generateClasses(prefixes: string[] = ['']): string[] {
+    return [
+      this.shape,
+      ...this.zapClass
+        .split(' ')
+        .filter((cls) => prefixes.some((prefix) => cls.startsWith(prefix))),
+      this.size,
+      this.icon || this.iconDirective ? this.iconPosition : '',
+      this.control.disabled ? 'disabled' : '',
+    ].filter((cls) => cls && cls !== 'default');
+  }
+
+  handleDefaultValue(): void {
+    if (this.control.value) {
+      this.selectedOptionValue = [...this.selectedOptionValue, this.control.value];
+    }
+  }
+
+  checkIfEmpty(): void {
+    this.control.valueChanges.subscribe((value) => {
+      if (!value || (Array.isArray(value) && value.length === 0)) {
+        this.selectedOptionValue = [];
+        this.onReset.emit();
+      }
+    });
+  }
+
+  toggleOptionsList(): void {
+    if (this.control.disabled) return;
+
+    this.isOptionListOpen = !this.isOptionListOpen;
+
+    if (this.isOptionListOpen) {
+      const inputWidth = this.inputSelectValueHolder.nativeElement.offsetWidth;
+      const positionStrategy = this.buildPositionStrategy();
+
+      this.overlayRef = this.overlay.create({
+        positionStrategy,
+        scrollStrategy: this.overlay.scrollStrategies.reposition(),
+        hasBackdrop: true,
+        backdropClass: 'cdk-overlay-transparent-backdrop',
+        width: inputWidth,
+      });
+
+      const portal = new TemplatePortal(this.optionsPanel, this.vcr);
+      this.overlayRef.attach(portal);
+
+      this.overlayRef.backdropClick().subscribe(() => this.toggleOptionsList());
+      this.overlayRef.detachments().subscribe(() => {
+        this.isOptionListOpen = false;
+      });
+
+      setTimeout(() => {
+        if (this.search) this.search.nativeElement.focus();
+      }, 0);
+    } else {
+      if (this.overlayRef) {
+        this.overlayRef.detach();
+      }
+      this.control.markAsTouched();
+    }
+
+    this.hoveredOption = '';
+    this.filteredOptions = this.options;
   }
 
   handleSearch(event: Event): void {
@@ -385,18 +397,6 @@ export class ZapSelect<T>
       'option-selected:',
       'option-hovered:',
     ]);
-  }
-
-  private generateClasses(prefixes: string[] = ['']): string[] {
-    return [
-      this.shape,
-      ...this.zapClass
-        .split(' ')
-        .filter((cls) => prefixes.some((prefix) => cls.startsWith(prefix))),
-      this.size,
-      this.icon || this.iconDirective ? this.iconPosition : '',
-      this.control.disabled ? 'disabled' : '',
-    ].filter((cls) => cls && cls !== 'default');
   }
 
   override ngOnDestroy(): void {

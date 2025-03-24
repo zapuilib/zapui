@@ -34,7 +34,7 @@ export class ZapDialog implements OnInit, AfterViewInit, OnDestroy {
   @Input() confirmAction = 'Yes, confirm';
   @Input() zapClass = '';
   @Input() shape!: 'curve' | 'pill' | 'flat';
-  @Input() position: 'top' | 'default' = 'top';
+  @Input() position: 'top' | 'default' = 'default';
   @Input() showOverlay = false;
   @HostListener('document:keydown', ['$event'])
   handleEsc(event: KeyboardEvent): void {

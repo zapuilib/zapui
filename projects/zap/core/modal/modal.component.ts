@@ -78,11 +78,6 @@ export class ZapModal implements OnInit, AfterViewInit, OnDestroy {
     return [this.shape, this.size, this.zapClass].filter((cls) => cls && cls !== 'default');
   }
 
-  getOverlayBackdropClass(): string {
-    const overlayClasses = this.overlayClasses;
-    return overlayClasses.length > 0 ? overlayClasses.join(' ') : '__zap__overlay';
-  }
-
   get overlayClasses(): string[] {
     return this.zapClass.split(' ').filter((cls) => cls.startsWith('overlay:'));
   }

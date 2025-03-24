@@ -4,9 +4,9 @@
 }
 
 .__zap__modal__wrapper {
-  @apply bg-[var(--zap-modal-bg-color)] border border-[var(--zap-modal-border-color)] text-[var(--zap-modal-text-color)];
+  @apply bg-[var(--zap-modal-bg-color)] border border-[var(--zap-modal-border-color)] text-[var(--zap-modal-text-color)] rounded-[var(--zap-modal-border-radius)] max-w-md;
   @apply pl-[var(--zap-modal-padding-left)] pr-[var(--zap-modal-padding-right)] pt-[var(--zap-modal-padding-top)] pb-[var(--zap-modal-padding-bottom)];
-  @apply overflow-auto relative;
+  @apply overflow-auto relative max-sm:mx-6;
 
   .handler {
     @apply absolute top-5 right-5 cursor-pointer fill-[var(--zap-modal-dismiss-color)] hover:fill-[var(--zap-modal-dismiss-hover-color)] transition-colors;

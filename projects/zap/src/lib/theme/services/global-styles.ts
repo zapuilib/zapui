@@ -324,6 +324,10 @@ export function generateGlobalStylesVariables(theme: ZapTheme): string {
         value: hexToRgba(theme.colors.primary, 0.5),
       },
       {
+        label: 'dismiss-focus-color',
+        value: theme.colors.tertiary,
+      },
+      {
         label: 'padding-left',
         value: '1.25rem',
       },
@@ -396,6 +400,10 @@ export function generateGlobalStylesVariables(theme: ZapTheme): string {
       {
         label: 'overlay-bg-color',
         value: hexToRgba(theme.colors.primary, 0.5),
+      },
+      {
+        label: 'dismiss-focus-color',
+        value: theme.colors.tertiary,
       },
       {
         label: 'padding-left',

@@ -13,11 +13,13 @@
 
   .__zap__dialog__title {
     @apply mb-1 text-[var(--zap-dialog-title-color)] text-[length:var(--zap-dialog-title-font-size)] font-[var(--zap-dialog-title-font-weight)] leading-[var(--zap-dialog-title-line-height)] tracking-[var(--zap-dialog-title-letter-spacing)];
+    @apply focus:outline-none;
   }
 
   .handler {
     @apply cursor-pointer fill-[var(--zap-dialog-dismiss-color)] transition-colors hover:fill-[var(--zap-dialog-dismiss-hover-color)] absolute top-5 right-5;
     @apply h-[var(--zap-dialog-dismiss-height)] w-[var(--zap-dialog-dismiss-width)];
+    @apply outline-none focus:ring-2 focus:ring-[var(--zap-dialog-dismiss-focus-color)] focus:ring-offset-0 rounded-sm;
   }
 
   .__zap__dialog__content {

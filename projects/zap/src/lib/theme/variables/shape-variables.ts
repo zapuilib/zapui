@@ -20,7 +20,7 @@ export function getShapeVariable(shapeValue: string, component: string): string 
     },
     modal: {
       pill: '1rem',
-      curve: '0.5rem',
+      curve: '0.375rem',
     },
     checkbox: {
       pill: '0.25rem',
@@ -28,7 +28,7 @@ export function getShapeVariable(shapeValue: string, component: string): string 
     },
     dialog: {
       pill: '1rem',
-      curve: '0.5rem',
+      curve: '0.375rem',
       elements: {
         'primary-btn': {
           pill: 'calc(infinity * 1px)',

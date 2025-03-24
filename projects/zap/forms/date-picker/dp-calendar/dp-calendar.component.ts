@@ -328,8 +328,7 @@ export class DPCalendar implements OnInit {
     return (
       this.startDate !== null &&
       this.endDate !== null &&
-      date > this.startDate &&
-      date <= this.endDate
+      date.toDateString() === this.endDate.toDateString()
     );
   }
 
@@ -337,8 +336,7 @@ export class DPCalendar implements OnInit {
     return (
       this.startDate !== null &&
       this.endDate !== null &&
-      date >= this.startDate &&
-      date < this.endDate
+      date.toDateString() === this.startDate.toDateString()
     );
   }
 

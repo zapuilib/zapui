@@ -104,6 +104,14 @@
               &::after {
                 @apply rounded-l-[var(--zap-dp-calendar-day-border-radius)] rounded-r-none;
               }
+
+              &.selected + .selected.range__before {
+                @apply rounded-l-none;
+              }
+
+              &.selected:has(+ .selected.range__before) {
+                @apply rounded-r-none;
+              }
             }
 
             &.range__before {
@@ -136,6 +144,18 @@
               &.range__after {
                 &::after {
                   @apply rounded-l-[var(--zap-dp-calendar-day-border-radius)] rounded-r-none;
+                }
+
+                &.selected + .selected.range__before {
+                  @apply rounded-l-none;
+                }
+
+                &.selected:has(+ .selected.range__before) {
+                  @apply rounded-r-none;
+                }
+
+                &.selected:has(+ .day.in__range) {
+                  @apply rounded-r-none rounded-l-[var(--zap-dp-calendar-day-border-radius)];
                 }
               }
 

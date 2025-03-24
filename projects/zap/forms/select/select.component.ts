@@ -170,6 +170,15 @@ export class ZapSelect<T>
     }
   }
 
+  @HostListener('window:resize')
+  onWindowResize(): void {
+    if (this.isOptionListOpen && this.overlayRef) {
+      const inputWidth = this.inputSelectValueHolder.nativeElement.offsetWidth;
+      this.overlayRef.updateSize({ width: inputWidth });
+      this.updatePosition();
+    }
+  }
+
   override ngOnInit(): void {
     super.ngOnInit();
     this.filteredOptions = [...this._options];
@@ -257,7 +266,7 @@ export class ZapSelect<T>
                 originY: 'bottom',
                 overlayX: 'start',
                 overlayY: 'top',
-                offsetY: 8,
+                offsetY: 4,
               },
             ]
           : [
@@ -266,7 +275,7 @@ export class ZapSelect<T>
                 originY: 'bottom',
                 overlayX: 'start',
                 overlayY: 'top',
-                offsetY: 8,
+                offsetY: 4,
               },
               {
                 originX: 'start',
@@ -277,11 +286,13 @@ export class ZapSelect<T>
               },
             ];
 
-    return this.positionBuilder
+    const strategy = this.positionBuilder
       .flexibleConnectedTo(this.inputSelectValueHolder)
       .withPositions(positions)
       .withFlexibleDimensions(false)
       .withPush(true);
+
+    return strategy;
   }
 
   handleSearch(event: Event): void {

@@ -1,16 +1,23 @@
 <div class="__zap__form__control" [ngClass]="classes">
   @if (label) {
-    <label [for]="id" class="__zap__form__control__label">{{ label }}</label>
+    <label [for]="id" [attr.id]="id + '-label'" class="__zap__form__control__label">{{
+      label
+    }}</label>
   } @else if (labelDirective) {
     <ng-content select="[zapLabel]"></ng-content>
   }
   <div class="field__wrapper">
     <fieldset
       #inputSelectValueHolder
+      role="combobox"
+      [id]="id"
+      [attr.aria-expanded]="isOptionListOpen"
+      aria-haspopup="listbox"
+      [attr.aria-controls]="id + '-options'"
+      [attr.aria-labelledby]="id + '-label'"
       class="__zap__form__control__select"
       (click)="toggleOptionsList()"
       (keydown.enter)="toggleOptionsList()"
-      [id]="id"
       tabindex="0"
       [ngClass]="selectClasses">
       @if (label) {
@@ -66,9 +73,14 @@
     </fieldset>
     <ng-template #optionsPanel>
       <div #optionList class="__zap__form__control__options__container" [ngClass]="optionsClasses">
-        <div class="__zap__form__control__options" zapScrollArea>
+        <div
+          role="listbox"
+          [attr.aria-multiselectable]="multiselect ? 'true' : null"
+          class="__zap__form__control__options"
+          zapScrollArea>
           @if (searchable) {
             <fieldset>
+              <legend class="sr-only">{{ searchPlaceholder }}</legend>
               <svg
                 width="14"
                 height="14"
@@ -83,6 +95,7 @@
                 #search
                 type="text"
                 [id]="id"
+                [attr.aria-controls]="id + '-options'"
                 class="__zap__form__control__search"
                 [placeholder]="searchPlaceholder"
                 (input)="handleSearch($event)"
@@ -93,7 +106,8 @@
             @for (option of filteredOptions; track option; let i = $index) {
               <div
                 class="__zap__form__control__option"
-                role="listitem"
+                role="option"
+                [id]="id + '-option-' + option.value"
                 (mouseenter)="hoveredOption = option.value"
                 (mouseleave)="hoveredOption = ''"
                 (click)="selectOption(option)"
@@ -103,6 +117,7 @@
                   __zap__form__control__selected: selectedOptionValue.includes(option.value),
                   __zap__form__control__hovered: hoveredOption === option.value,
                 }"
+                [attr.aria-selected]="selectedOptionValue.includes(option.value)"
                 [class.multiselect]="multiselect">
                 @if (multiselect) {
                   <div

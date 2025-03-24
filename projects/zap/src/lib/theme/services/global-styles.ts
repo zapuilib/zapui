@@ -904,6 +904,10 @@ export function generateGlobalStylesVariables(theme: ZapTheme): string {
         value: hexToRgba(theme.colors.primary, 0.7),
       },
       {
+        label: 'selected-bg-color',
+        value: hexToRgba(theme.colors.tertiary, 0.03),
+      },
+      {
         label: 'checkbox-bg-color',
         value: 'transparent',
       },

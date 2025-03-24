@@ -1,5 +1,5 @@
 @if (dialogOpen) {
-  <zap-dialog shape="curve" (close)="dialogOpen = !dialogOpen" [showOverlay]="true">
+  <zap-dialog (close)="dialogOpen = !dialogOpen" [showOverlay]="true">
     <div zapDialogFooter>
       <zap-button text="No, cancel" size="wide" variant="outlined" shape="curve"></zap-button>
       <zap-button text="Yes, I'm sure" size="wide" type="default" shape="curve"></zap-button>

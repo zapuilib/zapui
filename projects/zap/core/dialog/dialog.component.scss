@@ -1,38 +1,25 @@
 .__zap__overlay {
-  @apply fixed inset-0 z-[298] bg-[var(--zap-dialog-overlay-bg-color)];
+  @apply fixed inset-0  bg-[var(--zap-dialog-overlay-bg-color)];
   @apply transition-opacity duration-300;
 }
 
 .__zap__dialog {
-  @apply relative flex flex-col;
-  @apply w-[95%] sm:w-[30rem] min-h-[14rem] p-5 bg-[var(--zap-dialog-bg-color)] border border-[var(--zap-dialog-border-color)];
+  @apply flex flex-col;
+  @apply w-[calc(100vw-32px)] sm:w-[30rem] min-h-[12rem] p-5 bg-[var(--zap-dialog-bg-color)] border border-[var(--zap-dialog-border-color)];
   @apply rounded-[var(--zap-dialog-border-radius)];
-  @apply fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-[299];
   @apply pl-[var(--zap-dialog-padding-left)] pr-[var(--zap-dialog-padding-right)] pt-[var(--zap-dialog-padding-top)] pb-[var(--zap-dialog-padding-bottom)];
-  @apply transition-transform duration-200;
-  transform: translateX(-50%) translateY(-50%);
-
-  @media (max-width: 640px) {
-    @apply top-full;
-    transform: translateX(-50%) translateY(calc(-105%));
-  }
-
-  &.top {
-    @apply mt-20 top-0;
-    transform: translateX(-50%) translateY(0);
-
-    @media (max-width: 640px) {
-      @apply mt-5;
-    }
-  }
+  @apply animate-popup;
+  @apply overflow-auto relative;
 
   .__zap__dialog__title {
-    @apply mb-2 text-[var(--zap-dialog-title-color)] text-[length:var(--zap-dialog-title-font-size)] font-[var(--zap-dialog-title-font-weight)] leading-[var(--zap-dialog-title-line-height)] tracking-[var(--zap-dialog-title-letter-spacing)];
+    @apply mb-1 text-[var(--zap-dialog-title-color)] text-[length:var(--zap-dialog-title-font-size)] font-[var(--zap-dialog-title-font-weight)] leading-[var(--zap-dialog-title-line-height)] tracking-[var(--zap-dialog-title-letter-spacing)];
+    @apply focus:outline-none;
   }
 
   .handler {
     @apply cursor-pointer fill-[var(--zap-dialog-dismiss-color)] transition-colors hover:fill-[var(--zap-dialog-dismiss-hover-color)] absolute top-5 right-5;
     @apply h-[var(--zap-dialog-dismiss-height)] w-[var(--zap-dialog-dismiss-width)];
+    @apply outline-none focus:ring-2 focus:ring-[var(--zap-dialog-dismiss-focus-color)] focus:ring-offset-0 rounded-sm;
   }
 
   .__zap__dialog__content {

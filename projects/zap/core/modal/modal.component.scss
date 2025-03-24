@@ -11,6 +11,7 @@
   .handler {
     @apply absolute top-5 right-5 cursor-pointer fill-[var(--zap-modal-dismiss-color)] hover:fill-[var(--zap-modal-dismiss-hover-color)] transition-colors;
     @apply h-[var(--zap-modal-dismiss-height)] w-[var(--zap-modal-dismiss-width)];
+    @apply outline-none focus:ring-2 focus:ring-[var(--zap-dialog-dismiss-focus-color)] focus:ring-offset-0 rounded-sm;
   }
 
   &.curve {

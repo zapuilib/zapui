@@ -13,7 +13,7 @@ import { Component, ElementRef, Input, ViewChild } from '@angular/core';
 export class ZapTooltipContent {
   @ViewChild('content', { static: true }) contentElement!: ElementRef;
   @Input() zapClass = '';
-  @Input() shape: 'curve' | 'pill' | 'flat' = 'flat';
+  @Input() shape!: 'curve' | 'pill' | 'flat';
 
   get classes(): string[] {
     return [this.shape, this.zapClass].filter((cls) => cls && cls !== 'default');

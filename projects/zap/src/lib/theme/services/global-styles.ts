@@ -321,7 +321,7 @@ export function generateGlobalStylesVariables(theme: ZapTheme): string {
       },
       {
         label: 'overlay-bg-color',
-        value: hexToRgba(theme.colors.secondary, 0.1),
+        value: hexToRgba(theme.colors.primary, 0.5),
       },
       {
         label: 'padding-left',

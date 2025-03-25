@@ -104,6 +104,14 @@
               &::after {
                 @apply rounded-l-[var(--zap-dp-calendar-day-border-radius)] rounded-r-none;
               }
+
+              &.selected + .selected.range__before {
+                @apply rounded-l-none;
+              }
+
+              &.selected:has(+ .selected.range__before) {
+                @apply rounded-r-none;
+              }
             }
 
             &.range__before {
@@ -136,6 +144,18 @@
               &.range__after {
                 &::after {
                   @apply rounded-l-[var(--zap-dp-calendar-day-border-radius)] rounded-r-none;
+                }
+
+                &.selected + .selected.range__before {
+                  @apply rounded-l-none;
+                }
+
+                &.selected:has(+ .selected.range__before) {
+                  @apply rounded-r-none;
+                }
+
+                &.selected:has(+ .day.in__range) {
+                  @apply rounded-r-none rounded-l-[var(--zap-dp-calendar-day-border-radius)];
                 }
               }
 
@@ -200,6 +220,58 @@
 
     &.curve {
       @apply rounded;
+    }
+
+    &.flat {
+      @apply rounded-none;
+    }
+  }
+
+  &.flat {
+    .__zap__calendar {
+      @apply rounded-none;
+
+      .header {
+        button {
+          @apply rounded-none;
+        }
+      }
+
+      .weeks {
+        .day {
+          @apply rounded-none;
+
+          &.in__range {
+            &:not(.selected) {
+              @apply rounded-none;
+            }
+
+            &.selected {
+              &::after {
+                @apply rounded-none;
+              }
+
+              &.range__after {
+                &::after {
+                  @apply rounded-none;
+                }
+              }
+
+              &.range__before {
+                &::after {
+                  @apply rounded-none;
+                }
+              }
+
+              &.only__range {
+                &::after {
+                  @apply rounded-none;
+                }
+              }
+            }
+          }
+        }
+      }
     }
   }
 
@@ -325,4 +397,9 @@
       @apply first-of-type:last-of-type:w-[275px];
     }
   }
+}
+
+.sr-only {
+  @apply absolute w-px h-px p-0 m-[-1px] overflow-hidden  whitespace-nowrap border-0;
+  clip: rect(0, 0, 0, 0);
 }

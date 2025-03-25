@@ -1,19 +1,33 @@
 import {
   AfterViewInit,
+  ChangeDetectorRef,
   Component,
   ContentChild,
   ElementRef,
   EventEmitter,
   forwardRef,
   HostListener,
+  Inject,
+  Injector,
   Input,
   OnDestroy,
   OnInit,
   Output,
+  TemplateRef,
   ViewChild,
 } from '@angular/core';
 import { FormsModule, NG_VALUE_ACCESSOR, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import {
+  Overlay,
+  OverlayRef,
+  OverlayPositionBuilder,
+  ConnectedPosition,
+  FlexibleConnectedPositionStrategy,
+} from '@angular/cdk/overlay';
+import { TemplatePortal } from '@angular/cdk/portal';
+import { ViewContainerRef } from '@angular/core';
+import { A11yModule } from '@angular/cdk/a11y';
 
 import { ControlValueAccessorDirective } from '../directives/control-value-accessor.directive';
 import { ValidationErrorComponent } from '../validation-error/validation-error.component';
@@ -29,7 +43,14 @@ import {
 @Component({
   selector: 'zap-date-picker',
   standalone: true,
-  imports: [CommonModule, FormsModule, ReactiveFormsModule, ValidationErrorComponent, DPCalendar],
+  imports: [
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    ValidationErrorComponent,
+    DPCalendar,
+    A11yModule,
+  ],
   templateUrl: './date-picker.component.html',
   styleUrl: './date-picker.component.scss',
   providers: [
@@ -44,15 +65,15 @@ export class ZapDatePicker<T>
   extends ControlValueAccessorDirective<T>
   implements OnInit, AfterViewInit, OnDestroy
 {
+  @ViewChild('calendarPanel') calendarPanel!: TemplateRef<any>;
   @ViewChild('inputDateSelectValueHolder')
   inputDateSelectValueHolder!: ElementRef;
-  @ViewChild('calendar') calendar!: ElementRef;
   @Output() onChange: EventEmitter<T> = new EventEmitter<T>();
   @Input() label = '';
   @Input() id = '';
   @Input() placeholder = 'Select';
-  @Input() shape: 'pill' | 'curve' | 'flat' = 'flat';
-  @Input() size: 'compact' | 'base' | 'wide' = 'base';
+  @Input() shape!: 'pill' | 'curve' | 'flat';
+  @Input() size!: 'compact' | 'base' | 'wide';
   @Input() position: 'top' | 'bottom' | 'auto' = 'auto';
   @Input() customErrorMessages: Record<string, string> = {};
   @Input() icon!: string;
@@ -90,33 +111,19 @@ export class ZapDatePicker<T>
   @Input() maxDate!: Date;
   @Input() minYear!: number;
   @Input() maxYear!: number;
-
   @ContentChild(ZapFormFieldIconDirective, { static: false })
   iconDirective!: ZapFormFieldIconDirective;
   @ContentChild(ZapFormFieldHelpTextDirective, { static: false })
   helpTextDirective!: ZapFormFieldHelpTextDirective;
   @ContentChild(ZapLabelDirective, { static: false })
+  private overlayRef!: OverlayRef;
   labelDirective!: ZapLabelDirective;
-
   isCalendarOpen = false;
   weeks!: Date[][];
   currentDate!: Date;
   currentMonth!: string;
   currentYear!: number;
   selected!: { startDate: Date | null; endDate: Date | null };
-
-  @HostListener('document:click', ['$event'])
-  onDocumentClick(event: MouseEvent): void {
-    const clickedElement = event.target as HTMLElement;
-    const inputElement = this.inputDateSelectValueHolder.nativeElement;
-    if (
-      this.calendar &&
-      !this.calendar.nativeElement?.contains(clickedElement) &&
-      !inputElement.contains(clickedElement)
-    ) {
-      this.toggleCalendar();
-    }
-  }
 
   @HostListener('document:keydown.escape', ['$event'])
   onEscapePress(event: KeyboardEvent): void {
@@ -125,16 +132,14 @@ export class ZapDatePicker<T>
     }
   }
 
-  @HostListener('window:resize')
-  onWindowResize(): void {
-    this.handleBreakpoints();
-    this.handleCalendarPosition();
-  }
-
-  @HostListener('window:scroll', ['$event'])
-  onWindowScroll(): void {
-    this.handleBreakpoints();
-    this.handleCalendarPosition();
+  constructor(
+    @Inject(Injector) injector: Injector,
+    cdr: ChangeDetectorRef,
+    private overlay: Overlay,
+    private positionBuilder: OverlayPositionBuilder,
+    private vcr: ViewContainerRef,
+  ) {
+    super(injector, cdr);
   }
 
   override ngOnInit(): void {
@@ -191,6 +196,54 @@ export class ZapDatePicker<T>
       this.labelDirective.el.nativeElement.style.letterSpacing =
         'var(--zap-date-picker-label-letter-spacing)';
     }
+  }
+
+  private buildPositionStrategy(): FlexibleConnectedPositionStrategy {
+    const positions: ConnectedPosition[] =
+      this.position === 'top'
+        ? [
+            {
+              originX: 'start',
+              originY: 'top',
+              overlayX: 'start',
+              overlayY: 'bottom',
+              offsetY: -8,
+            },
+          ]
+        : this.position === 'bottom'
+          ? [
+              {
+                originX: 'start',
+                originY: 'bottom',
+                overlayX: 'start',
+                overlayY: 'top',
+                offsetY: 4,
+              },
+            ]
+          : [
+              {
+                originX: 'start',
+                originY: 'bottom',
+                overlayX: 'start',
+                overlayY: 'top',
+                offsetY: 4,
+              },
+              {
+                originX: 'start',
+                originY: 'top',
+                overlayX: 'start',
+                overlayY: 'bottom',
+                offsetY: -8,
+              },
+            ];
+
+    const strategy = this.positionBuilder
+      .flexibleConnectedTo(this.inputDateSelectValueHolder)
+      .withPositions(positions)
+      .withFlexibleDimensions(false)
+      .withPush(false);
+
+    return strategy;
   }
 
   private setDefaultValue(): void {
@@ -315,48 +368,6 @@ export class ZapDatePicker<T>
     this.maxPerRow = matchedBreakpoint?.maxPerRow ?? 1;
   }
 
-  private handleCalendarPosition(): void {
-    this.handleBreakpoints();
-    this.cdr.detectChanges();
-
-    if (this.calendar && typeof window !== 'undefined') {
-      const calendarElement = this.calendar.nativeElement;
-      const inputElement = this.inputDateSelectValueHolder.nativeElement;
-      const inputRect = inputElement.getBoundingClientRect();
-      const viewportHeight = window.innerHeight;
-      const spaceBelow = viewportHeight - inputRect.bottom;
-      const spaceAbove = inputRect.top;
-
-      if (!calendarElement.dataset.appendedToBody) {
-        document.body.appendChild(calendarElement);
-        calendarElement.dataset.appendedToBody = 'true';
-      }
-
-      calendarElement.style.position = 'fixed';
-      calendarElement.style.left = `${inputRect.left}px`;
-      calendarElement.style.width = this.size === 'wide' ? `${inputRect.width}px` : 'auto';
-
-      calendarElement.style.visibility = 'hidden';
-      calendarElement.style.display = 'block';
-      const optionListHeight = calendarElement.scrollHeight;
-      calendarElement.style.visibility = 'visible';
-
-      if (this.position === 'auto') {
-        if (spaceBelow < optionListHeight && spaceAbove > optionListHeight) {
-          calendarElement.style.top = `${inputRect.top - optionListHeight - 5}px`;
-        } else {
-          calendarElement.style.top = `${inputRect.bottom}px`;
-        }
-      } else if (this.position === 'top') {
-        calendarElement.style.top = `${inputRect.top - optionListHeight - 5}px`;
-      } else {
-        calendarElement.style.top = `${inputRect.bottom}px`;
-      }
-
-      calendarElement.style.zIndex = '999';
-    }
-  }
-
   private resetCalendar(): void {
     this.currentDate = new Date();
     this.updateCalendar();
@@ -413,13 +424,33 @@ export class ZapDatePicker<T>
 
   toggleCalendar(): void {
     if (this.control.disabled) return;
+    this.handleBreakpoints();
+    this.cdr.detectChanges();
     this.isCalendarOpen = !this.isCalendarOpen;
     this.cdr.detectChanges();
     if (this.isCalendarOpen) {
-      this.handleCalendarPosition();
-    }
+      const inputWidth = this.inputDateSelectValueHolder.nativeElement.offsetWidth;
+      const positionStrategy = this.buildPositionStrategy();
 
-    if (!this.isCalendarOpen) {
+      this.overlayRef = this.overlay.create({
+        positionStrategy,
+        scrollStrategy: this.overlay.scrollStrategies.reposition(),
+        hasBackdrop: true,
+        backdropClass: 'cdk-overlay-transparent-backdrop',
+        width: this.size === 'wide' ? inputWidth : 'auto',
+      });
+
+      const portal = new TemplatePortal(this.calendarPanel, this.vcr);
+      this.overlayRef.attach(portal);
+
+      this.overlayRef.backdropClick().subscribe(() => this.toggleCalendar());
+      this.overlayRef.detachments().subscribe(() => {
+        this.isCalendarOpen = false;
+      });
+    } else {
+      if (this.overlayRef) {
+        this.overlayRef.detach();
+      }
       this.control.markAsTouched();
     }
   }
@@ -482,8 +513,8 @@ export class ZapDatePicker<T>
 
   override ngOnDestroy(): void {
     super.ngOnDestroy();
-    if (this.calendar) {
-      this.calendar.nativeElement.remove();
+    if (this.overlayRef) {
+      this.overlayRef.dispose();
     }
   }
 }

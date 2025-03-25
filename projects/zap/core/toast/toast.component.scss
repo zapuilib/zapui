@@ -24,6 +24,7 @@
       @apply bg-[var(--zap-toast-bg-color)] hover:bg-[var(--zap-toast-bg-hover-color)];
       @apply pl-[var(--zap-toast-btn-padding-left)] pr-[var(--zap-toast-btn-padding-right)] pt-[var(--zap-toast-btn-padding-top)] pb-[var(--zap-toast-btn-padding-bottom)];
       @apply text-[length:var(--zap-toast-btn-font-size)] font-[var(--zap-toast-btn-font-weight)] leading-[var(--zap-toast-btn-line-height)] tracking-[var(--zap-toast-btn-letter-spacing)];
+      @apply focus:outline-2 focus:outline-[var(--zap-toast-btn-focus-color)] focus:outline-offset-2 focus:outline;
     }
   }
 

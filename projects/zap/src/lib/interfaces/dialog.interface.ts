@@ -25,6 +25,7 @@ export interface DialogConfig {
         secondaryBtnTextHoverColor?: HexCode;
         secondaryBtnBorderHoverColor?: HexCode;
         overlayBgColor?: HexCode;
+        dismissFocusColor?: HexCode;
       }
     >;
     borderRadius?: string;

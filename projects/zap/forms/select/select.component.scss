@@ -121,6 +121,7 @@ fieldset {
     @apply pl-[var(--zap-select-option-padding-left)] pr-[var(--zap-select-option-padding-right)] pt-[var(--zap-select-option-padding-top)] pb-[var(--zap-select-option-padding-bottom)];
     @apply text-[var(--zap-select-option-text-color)] bg-[var(--zap-select-option-bg-color)] border-[var(--zap-select-option-border-color)] hover:border-[var(--zap-select-option-border-hover-color)] hover:bg-[var(--zap-select-option-bg-hover-color)] hover:text-[var(--zap-select-option-text-hover-color)];
     @apply text-[length:var(--zap-select-option-font-size)] font-[var(--zap-select-option-font-weight)] leading-[var(--zap-select-option-line-height)] tracking-[var(--zap-select-option-letter-spacing)];
+    @apply focus:outline-none focus:border-[var(--zap-select-option-focus-color)] focus:border-b focus:rounded-sm;
 
     &.__no__options {
       @apply text-[var(--zap-select-no-options-text-color)] bg-[var(--zap-select-no-options-bg-color)] border-[var(--zap-select-no-options-border-color)] hover:bg-[var(--zap-select-no-options-bg-hover-color)] hover:text-[var(--zap-select-no-options-text-hover-color)] hover:border-[var(--zap-select-no-options-border-hover-color)];

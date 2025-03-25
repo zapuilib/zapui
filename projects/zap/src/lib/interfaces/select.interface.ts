@@ -28,6 +28,7 @@ export interface SelectConfig {
         checkboxCheckedBgColor?: HexCode;
         checkboxCheckedBorderColor?: HexCode;
         checkboxCheckedColor?: HexCode;
+        optionFocusColor?: HexCode;
         chipBgColor?: HexCode;
         chipTextColor?: HexCode;
         chipBorderColor?: HexCode;

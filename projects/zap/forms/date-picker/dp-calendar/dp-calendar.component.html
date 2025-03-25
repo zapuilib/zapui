@@ -14,6 +14,9 @@
       @for (calendar of row; track $index; let calendarIndex = $index) {
         <div class="__zap__calendar">
           <div class="header">
+            <span class="sr-only" [id]="id" tabindex="0">
+              Calendar for {{ calendar.month }} {{ calendar.year }}
+            </span>
             <button
               tabindex="0"
               (click)="goToPreviousMonth()"
@@ -28,9 +31,6 @@
                   d="M47 239c-9.4 9.4-9.4 24.6 0 33.9L207 433c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9L97.9 256 241 113c9.4-9.4 9.4-24.6 0-33.9s-24.6-9.4-33.9 0L47 239z" />
               </svg>
             </button>
-            <span class="sr-only" [id]="id">
-              Calendar for {{ calendar.month }} {{ calendar.year }}
-            </span>
             @if (!dropdown) {
               <span class="title">{{ calendar.month }} {{ calendar.year }}</span>
             } @else if (!range || (range && monthsPerView === 1)) {

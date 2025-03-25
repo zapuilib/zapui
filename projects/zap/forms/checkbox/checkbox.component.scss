@@ -38,7 +38,7 @@
     }
 
     input:focus {
-      @apply ring-1 ring-[var(--zap-checkbox-border-focus-color)] bg-[var(--zap-checkbox-bg-focus-color)];
+      @apply focus:outline-2 focus:outline-[var(--zap-checkbox-focus-color)] focus:outline-offset-2 focus:outline;
 
       &:not(:checked) {
         @apply bg-[var(--zap-checkbox-bg-color)];
@@ -52,11 +52,16 @@
 
   label {
     @apply cursor-pointer text-[var(--zap-checkbox-label-color)] hover:text-[var(--zap-checkbox-hover-label-color)] text-[length:var(--zap-checkbox-font-size)] font-[var(--zap-checkbox-font-weight)] leading-[var(--zap-checkbox-line-height)] tracking-[var(--zap-checkbox-letter-spacing)];
+    @apply focus:outline-2 focus:outline-[var(--zap-checkbox-focus-color)] focus:outline-offset-2 focus:outline rounded-sm;
   }
 
   &.flat {
     .__zap__checkbox__wrapper {
       input {
+        @apply rounded-none;
+      }
+
+      label {
         @apply rounded-none;
       }
     }

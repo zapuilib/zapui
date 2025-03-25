@@ -28,6 +28,8 @@ export interface DPCalendarSelectConfig {
         selectedBgHoverColor?: HexCode;
         selectedTextHoverColor?: HexCode;
         selectedBorderHoverColor?: HexCode;
+        focusColor?: HexCode;
+        optionFocusColor?: HexCode;
       }
     >;
     borderRadius?: string;

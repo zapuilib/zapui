@@ -8,6 +8,7 @@
 
   .handler {
     @apply text-[var(--zap-alert-dismiss-color)] hover:text-[var(--zap-alert-dismiss-hover-color)] absolute top-1/2 -translate-y-1/2 right-[16px] cursor-pointer;
+    @apply focus:outline-2 focus:outline-[var(--zap-alert-dismiss-focus-color)] focus:outline-offset-2 focus:outline rounded-sm;
     transform: translateY(-50%);
 
     svg {
@@ -94,14 +95,26 @@
 
   &.curve {
     @apply rounded-lg;
+
+    .handler {
+      @apply rounded-sm;
+    }
   }
 
   &.pill {
     @apply rounded-full;
+
+    .handler {
+      @apply rounded-sm;
+    }
   }
 
   &.flat {
     @apply rounded-none;
+
+    .handler {
+      @apply rounded-none;
+    }
   }
 }
 

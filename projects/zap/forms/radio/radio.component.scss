@@ -34,8 +34,8 @@
           @apply opacity-50 cursor-not-allowed;
         }
 
-        &:focus {
-          @apply ring-1 ring-[var(--zap-radio-border-focus-color)] bg-[var(--zap-radio-bg-focus-color)];
+        &:focus-visible {
+          @apply focus:outline-2 focus:outline-[var(--zap-radio-focus-color)] focus:outline-offset-2 focus:outline;
 
           &:not(:checked) {
             @apply bg-[var(--zap-radio-bg-color)];
@@ -49,6 +49,7 @@
 
       label {
         @apply cursor-pointer text-[var(--zap-radio-text-color)] hover:text-[var(--zap-radio-text-hover-color)] text-[length:var(--zap-radio-font-size)] font-[var(--zap-radio-font-weight)] leading-[var(--zap-radio-line-height)] tracking-[var(--zap-radio-letter-spacing)];
+        @apply focus-visible:outline-2 focus-visible:outline-[var(--zap-radio-focus-color)] focus-visible:outline-offset-2 focus-visible:outline rounded-sm;
       }
     }
   }

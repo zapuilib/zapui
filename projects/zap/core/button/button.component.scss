@@ -11,6 +11,7 @@ button {
   @apply w-[var(--zap-button-width)] h-[var(--zap-button-height)];
   @apply active:ring-1 active:ring-[var(--zap-button-border-active-color)] active:bg-[var(--zap-button-bg-active-color)] active:text-[var(--zap-button-text-active-color)] leading-[var(--zap-button-line-height)] tracking-[var(--zap-button-letter-spacing)]; //ring is adding weird effect on click
   text-transform: var(--zap-button-text-transform);
+  @apply focus-visible:outline-2 focus-visible:outline-[var(--zap-button-focus-color)] focus-visible:outline-offset-2 focus-visible:outline;
 
   &.link {
     @apply text-tertiary;
@@ -56,6 +57,10 @@ button {
     @apply border text-secondary/80 border-tertiary/20;
     @apply bg-transparent;
     @apply hover:border-tertiary/30 hover:text-secondary;
+
+    &:disabled {
+      @apply bg-transparent text-tertiary/40 border-tertiary/20;
+    }
   }
 
   i {
@@ -98,59 +103,33 @@ button {
     }
   }
 
-  &.info {
-    @apply bg-info text-infoText border-info;
-    @apply hover:bg-info/80 hover:border-info/80;
+  @each $type in info, success, warning, error {
+    &.#{$type} {
+      @apply bg-#{$type} text-#{$type}Text border-#{$type};
+      @apply hover:bg-#{$type}/80 hover:border-#{$type}/80;
 
-    &.outlined {
-      @apply text-info/80 border-info/80 bg-transparent;
-      @apply hover:text-info hover:border-info;
-    }
+      &:disabled {
+        @apply bg-#{$type}/70 text-#{$type}Text/70 border-#{$type}/30;
+        @apply hover:bg-#{$type}/70 hover:border-#{$type}/30;
+      }
 
-    &.link {
-      @apply text-info/80 hover:text-info;
-    }
-  }
+      &.outlined {
+        @apply text-#{$type}/80 border-#{$type}/80 bg-transparent;
+        @apply hover:text-#{$type} hover:border-#{$type};
 
-  &.success {
-    @apply bg-success text-successText border-success;
-    @apply hover:bg-success/80 hover:border-success/80;
+        &:disabled {
+          @apply bg-transparent text-#{$type}/40 border-#{$type}/20;
+          @apply hover:bg-transparent hover:border-#{$type}/20;
+        }
+      }
 
-    &.outlined {
-      @apply text-success/80 border-success/80 bg-transparent;
-      @apply hover:text-success hover:border-success;
-    }
+      &.link {
+        @apply text-#{$type}/80 hover:text-#{$type};
 
-    &.link {
-      @apply text-success/80 hover:text-success;
-    }
-  }
-
-  &.warning {
-    @apply bg-warning text-warningText border-warning;
-    @apply hover:bg-warning/80 hover:border-warning/80;
-
-    &.outlined {
-      @apply text-warning/80 border-warning/80 bg-transparent;
-      @apply hover:text-warning hover:border-warning;
-    }
-
-    &.link {
-      @apply text-warning/80 hover:text-warning;
-    }
-  }
-
-  &.error {
-    @apply bg-error text-errorText border-error;
-    @apply hover:bg-error/80 hover:border-error/80;
-
-    &.outlined {
-      @apply text-error/80 border-error/80 bg-transparent;
-      @apply hover:text-error hover:border-error;
-    }
-
-    &.link {
-      @apply text-error/80 hover:text-error;
+        &:disabled {
+          @apply text-#{$type}/60 hover:text-#{$type}/60;
+        }
+      }
     }
   }
 }

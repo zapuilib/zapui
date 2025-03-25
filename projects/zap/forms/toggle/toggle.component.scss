@@ -30,6 +30,7 @@
     @apply focus-within:outline-none;
     @apply bg-[var(--zap-toggle-bg-color)];
     @apply w-[var(--zap-toggle-width)] h-[var(--zap-toggle-height)];
+    @apply focus-visible:outline-2 focus-visible:outline-[var(--zap-toggle-focus-color)] focus-visible:outline-offset-2 focus-visible:outline;
 
     .roller {
       @apply absolute top-1/2 transition-transform duration-300;

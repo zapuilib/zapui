@@ -16,6 +16,7 @@ export interface ToastConfig {
         btnBgHoverColor?: HexCode;
         btnTextHoverColor?: HexCode;
         btnBorderHoverColor?: HexCode;
+        btnFocusColor?: HexCode;
       }
     >;
     paddingLeft?: string;

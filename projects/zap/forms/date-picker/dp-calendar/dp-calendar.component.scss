@@ -23,6 +23,7 @@
         @apply rounded-[var(--zap-dp-calendar-handler-border-radius)] invisible;
         @apply text-[var(--zap-dp-calendar-handler-color)];
         @apply pl-[var(--zap-dp-calendar-handler-padding-left)] pr-[var(--zap-dp-calendar-handler-padding-right)] pt-[var(--zap-dp-calendar-handler-padding-top)] pb-[var(--zap-dp-calendar-handler-padding-bottom)];
+        @apply focus-visible:outline-2 focus-visible:outline-[var(--zap-dp-calendar-focus-color)] focus-visible:outline-offset-2 focus-visible:outline;
 
         &.active {
           @apply visible;
@@ -50,6 +51,7 @@
     .day {
       @apply flex-1 text-center w-[var(--zap-dp-calendar-day-width)] h-[var(--zap-dp-calendar-day-height)] whitespace-nowrap gap-x-2 inline-flex justify-center items-center text-[var(--zap-dp-calendar-day-text-color)] bg-[var(--zap-dp-calendar-day-bg-color)] ring ring-[var(--zap-dp-calendar-day-border-color)] text-sm;
       @apply rounded-[var(--zap-dp-calendar-day-border-radius)] transition-colors duration-150 ease-linear;
+      @apply focus-visible:outline-2 focus-visible:outline-[var(--zap-dp-calendar-focus-color)] focus-visible:outline-offset-2 focus-visible:outline;
     }
 
     .day__of__week {
@@ -104,6 +106,14 @@
               &::after {
                 @apply rounded-l-[var(--zap-dp-calendar-day-border-radius)] rounded-r-none;
               }
+
+              &.selected + .selected.range__before {
+                @apply rounded-l-none;
+              }
+
+              &.selected:has(+ .selected.range__before) {
+                @apply rounded-r-none;
+              }
             }
 
             &.range__before {
@@ -136,6 +146,18 @@
               &.range__after {
                 &::after {
                   @apply rounded-l-[var(--zap-dp-calendar-day-border-radius)] rounded-r-none;
+                }
+
+                &.selected + .selected.range__before {
+                  @apply rounded-l-none;
+                }
+
+                &.selected:has(+ .selected.range__before) {
+                  @apply rounded-r-none;
+                }
+
+                &.selected:has(+ .day.in__range) {
+                  @apply rounded-r-none rounded-l-[var(--zap-dp-calendar-day-border-radius)];
                 }
               }
 
@@ -200,6 +222,58 @@
 
     &.curve {
       @apply rounded;
+    }
+
+    &.flat {
+      @apply rounded-none;
+    }
+  }
+
+  &.flat {
+    .__zap__calendar {
+      @apply rounded-none;
+
+      .header {
+        button {
+          @apply rounded-none;
+        }
+      }
+
+      .weeks {
+        .day {
+          @apply rounded-none;
+
+          &.in__range {
+            &:not(.selected) {
+              @apply rounded-none;
+            }
+
+            &.selected {
+              &::after {
+                @apply rounded-none;
+              }
+
+              &.range__after {
+                &::after {
+                  @apply rounded-none;
+                }
+              }
+
+              &.range__before {
+                &::after {
+                  @apply rounded-none;
+                }
+              }
+
+              &.only__range {
+                &::after {
+                  @apply rounded-none;
+                }
+              }
+            }
+          }
+        }
+      }
     }
   }
 
@@ -325,4 +399,9 @@
       @apply first-of-type:last-of-type:w-[275px];
     }
   }
+}
+
+.sr-only {
+  @apply absolute w-px h-px p-0 m-[-1px] overflow-hidden  whitespace-nowrap border-0;
+  clip: rect(0, 0, 0, 0);
 }

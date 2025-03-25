@@ -36,20 +36,28 @@
     @apply w-full;
   }
 
-  &.flat {
-    @apply rounded-none;
-  }
-
   &.pill {
     @apply rounded-full;
+
+    .handler {
+      @apply rounded-sm;
+    }
   }
 
   &.curve {
     @apply rounded-md;
+
+    .handler {
+      @apply rounded-sm;
+    }
   }
 
   &.flat {
     @apply rounded-none;
+
+    .handler {
+      @apply rounded-none;
+    }
   }
 
   &.disabled {
@@ -67,6 +75,7 @@
   .handler {
     @apply bg-none border-none text-inherit cursor-pointer ml-2 p-0 text-sm transition-all absolute right-2 top-1/2 -translate-y-1/2;
     @apply fill-[var(--zap-chip-dismiss-color)] hover:fill-[var(--zap-chip-dismiss-hover-color)];
+    @apply focus-visible:outline-2 focus-visible:outline-[var(--zap-chip-dismiss-focus-color)] focus-visible:outline-offset-2 focus-visible:outline rounded-sm;
 
     svg {
       @apply pr-0 pl-0;
@@ -86,6 +95,10 @@
 
   &.outlined {
     @apply border-2 bg-transparent border-tertiary text-tertiary;
+
+    .handler {
+      @apply fill-secondary/80 hover:fill-secondary focus-visible:outline-tertiary;
+    }
   }
 
   &.info {

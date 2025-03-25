@@ -26,7 +26,7 @@ export class ControlValueAccessorDirective<T> implements OnInit, ControlValueAcc
   };
 
   constructor(
-    @Inject(Injector) private injector: Injector,
+    @Inject(Injector) protected injector: Injector,
     protected cdr: ChangeDetectorRef,
   ) {}
 

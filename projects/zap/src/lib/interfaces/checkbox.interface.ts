@@ -12,8 +12,7 @@ export interface CheckboxConfig {
         bgHoverColor?: HexCode;
         textHoverColor?: HexCode;
         borderHoverColor?: HexCode;
-        bgFocusColor?: HexCode;
-        borderFocusColor?: HexCode;
+        focusColor?: HexCode;
         textCheckedColor?: HexCode;
         bgCheckedColor?: HexCode;
         borderCheckedColor?: HexCode;

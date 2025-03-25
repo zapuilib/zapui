@@ -5,20 +5,27 @@ import {
   EventEmitter,
   HostListener,
   Input,
+  OnDestroy,
+  OnInit,
   Output,
+  ViewChild,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { ZapDialogFooterDirective } from './dialog-footer.directive';
+import { CdkPortal, PortalModule } from '@angular/cdk/portal';
+import { Overlay, OverlayRef } from '@angular/cdk/overlay';
+import { A11yModule } from '@angular/cdk/a11y';
 
 @Component({
   selector: 'zap-dialog',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, PortalModule, A11yModule],
   templateUrl: './dialog.component.html',
   styleUrls: ['./dialog.component.scss'],
 })
-export class ZapDialog implements AfterViewInit {
+export class ZapDialog implements OnInit, AfterViewInit, OnDestroy {
+  @ViewChild(CdkPortal) portalContent!: CdkPortal;
   @Output() confirm: EventEmitter<void> = new EventEmitter<void>();
   @Output() close: EventEmitter<void> = new EventEmitter<void>();
   @Input() title = 'Are you sure?';
@@ -33,15 +40,23 @@ export class ZapDialog implements AfterViewInit {
   handleEsc(event: KeyboardEvent): void {
     if (event.key === 'Escape' || event.code === 'Escape') this.close.emit();
   }
-  @ContentChild(ZapDialogFooterDirective, { static: false })
-  footerDirective!: ZapDialogFooterDirective;
-
   @HostListener('window:resize', ['$event'])
   onResize(): void {
     this.handleDirectiveStyle();
+    this.updatePosition();
+  }
+  @ContentChild(ZapDialogFooterDirective, { static: false })
+  footerDirective!: ZapDialogFooterDirective;
+  private overlayRef!: OverlayRef;
+
+  constructor(private overlay: Overlay) {}
+
+  ngOnInit(): void {
+    this.createOverlay();
   }
 
   ngAfterViewInit(): void {
+    this.attachPortal();
     this.handleDirectiveStyle();
   }
 
@@ -62,11 +77,63 @@ export class ZapDialog implements AfterViewInit {
     }
   }
 
+  private getPosition(): any {
+    const isMobile = typeof window !== 'undefined' && window.innerWidth <= 640;
+    const positionStrategy = this.overlay.position().global();
+
+    if (this.position === 'top') {
+      positionStrategy.top('20px').centerHorizontally();
+    } else if (isMobile) {
+      positionStrategy.bottom('16px').centerHorizontally();
+    } else {
+      positionStrategy.centerHorizontally().centerVertically();
+    }
+    return positionStrategy;
+  }
+
+  private updatePosition(): void {
+    if (!this.overlayRef) return;
+    const positionStrategy = this.getPosition();
+    this.overlayRef.updatePositionStrategy(positionStrategy);
+  }
+
+  private createOverlay(): void {
+    const positionStrategy = this.getPosition();
+    this.overlayRef = this.overlay.create({
+      hasBackdrop: false,
+      positionStrategy,
+      scrollStrategy: this.overlay.scrollStrategies.block(),
+      panelClass: 'zap-dialog-panel',
+      disposeOnNavigation: true,
+    });
+  }
+
+  private attachPortal(): void {
+    if (this.overlayRef && this.portalContent) {
+      this.overlayRef.attach(this.portalContent);
+    }
+  }
+
+  private destroyOverlay(): void {
+    if (this.overlayRef) {
+      this.overlayRef.dispose();
+    }
+  }
+
+  handleClose(): void {
+    this.close.emit();
+    this.destroyOverlay();
+  }
+
   get classes(): string[] {
     return [this.shape, this.position, this.zapClass].filter((cls) => cls && cls !== 'default');
   }
 
   get overlayClasses(): string[] {
     return this.zapClass.split(' ').filter((cls) => cls.startsWith('overlay:'));
+  }
+
+  ngOnDestroy(): void {
+    this.destroyOverlay();
   }
 }

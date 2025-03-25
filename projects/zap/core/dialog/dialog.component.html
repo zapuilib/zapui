@@ -1,42 +1,54 @@
-<div [ngClass]="overlayClasses">
-  @if (showOverlay) {
+<ng-template cdkPortal>
+  <div [ngClass]="overlayClasses">
+    @if (showOverlay) {
+      <div
+        class="__zap__overlay"
+        (click)="handleClose()"
+        (keydown.enter)="handleClose()"
+        tabindex="-1"
+        aria-hidden="true"></div>
+    }
     <div
-      class="__zap__overlay"
-      (click)="close.emit()"
-      (keydown.enter)="close.emit()"
-      tabindex="0"></div>
-  }
-  <div class="__zap__dialog" [ngClass]="classes">
-    <h3 class="__zap__dialog__title">{{ title }}</h3>
-    <svg
-      class="handler"
-      (click)="close.emit()"
-      (keydown)="close.emit()"
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 384 512"
-      tabindex="0">
-      <path
-        d="M345 137c9.4-9.4 9.4-24.6 0-33.9s-24.6-9.4-33.9 0l-119 119L73 103c-9.4-9.4-24.6-9.4-33.9 0s-9.4 24.6 0 33.9l119 119L39 375c-9.4 9.4-9.4 24.6 0 33.9s24.6 9.4 33.9 0l119-119L311 409c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-119-119L345 137z" />
-    </svg>
-    @if (text) {
+      class="__zap__dialog"
+      [ngClass]="classes"
+      aria-modal="true"
+      [attr.aria-labelledby]="title"
+      [attr.aria-describedby]="text ? text : 'zap-modal-description'"
+      cdkTrapFocus
+      [cdkTrapFocusAutoCapture]="true">
+      <h3 tabindex="-1" cdkFocusInitial class="__zap__dialog__title">{{ title }}</h3>
+      <svg
+        class="handler"
+        role="button"
+        aria-label="Close dialog"
+        tabindex="0"
+        (click)="handleClose()"
+        (keydown.enter)="handleClose()"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 384 512">
+        <path
+          d="M345 137c9.4-9.4 9.4-24.6 0-33.9s-24.6-9.4-33.9 0l-119 119L73 103c-9.4-9.4-24.6-9.4-33.9 0s-9.4 24.6 0 33.9l119 119L39 375c-9.4 9.4-9.4 24.6 0 33.9s24.6 9.4 33.9 0l119-119L311 409c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-119-119L345 137z" />
+      </svg>
       <div class="__zap__dialog__content">
-        <p class="text">{{ text }}</p>
+        @if (text) {
+          <p class="text">{{ text }}</p>
+        } @else {
+          <ng-content></ng-content>
+        }
       </div>
-    }
 
-    <ng-content></ng-content>
-
-    @if (footerDirective) {
-      <ng-content select="[zapDialogFooter]"></ng-content>
-    } @else {
-      <div class="__zap__dialog__footer">
-        <button class="btn secondary" (click)="close.emit()">
-          {{ closeAction }}
-        </button>
-        <button class="btn primary" (click)="confirm.emit()">
-          {{ confirmAction }}
-        </button>
-      </div>
-    }
+      @if (footerDirective) {
+        <ng-content select="[zapDialogFooter]"></ng-content>
+      } @else {
+        <div class="__zap__dialog__footer">
+          <button class="btn secondary" (click)="handleClose()">
+            {{ closeAction }}
+          </button>
+          <button class="btn primary" (click)="confirm.emit()">
+            {{ confirmAction }}
+          </button>
+        </div>
+      }
+    </div>
   </div>
-</div>
+</ng-template>

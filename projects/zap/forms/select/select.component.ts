@@ -1,11 +1,14 @@
 import {
   AfterViewInit,
+  ChangeDetectorRef,
   Component,
   ContentChild,
   ElementRef,
   EventEmitter,
   forwardRef,
   HostListener,
+  Inject,
+  Injector,
   Input,
   OnDestroy,
   OnInit,
@@ -15,6 +18,15 @@ import {
 } from '@angular/core';
 import { FormsModule, NG_VALUE_ACCESSOR, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import {
+  Overlay,
+  OverlayRef,
+  OverlayPositionBuilder,
+  ConnectedPosition,
+  FlexibleConnectedPositionStrategy,
+} from '@angular/cdk/overlay';
+import { TemplatePortal } from '@angular/cdk/portal';
+import { ViewContainerRef } from '@angular/core';
 
 import { ControlValueAccessorDirective } from '../directives/control-value-accessor.directive';
 import { ValidationErrorComponent } from '../validation-error/validation-error.component';
@@ -49,8 +61,8 @@ export class ZapSelect<T>
   extends ControlValueAccessorDirective<T>
   implements OnInit, OnDestroy, AfterViewInit
 {
+  @ViewChild('optionsPanel') optionsPanel!: TemplateRef<any>;
   @ViewChild('inputSelectValueHolder') inputSelectValueHolder!: ElementRef;
-  @ViewChild('optionList') optionList!: ElementRef;
   @ViewChild('search') search!: ElementRef;
   @Output() onChange: EventEmitter<string[] | string> = new EventEmitter<string[] | string>();
   @Output() onSearch: EventEmitter<string> = new EventEmitter<string>();
@@ -74,6 +86,7 @@ export class ZapSelect<T>
   @Input() position: 'top' | 'bottom' | 'auto' = 'auto';
   @Input() helpText = '';
   private _options: { label: string; value: any; [key: string]: any }[] = [];
+  private overlayRef!: OverlayRef;
   isOptionListOpen = false;
   hoveredOption = '';
   selectedOptionValue: string[] = [];
@@ -85,15 +98,49 @@ export class ZapSelect<T>
   @ContentChild(ZapLabelDirective, { static: false })
   labelDirective!: ZapLabelDirective;
 
-  @HostListener('window:resize')
-  onWindowResize(): void {
-    this.handleSelectOptionPosition();
+  @Input()
+  set options(newOptions: { label: string; value: any; [key: string]: any }[]) {
+    this._options = newOptions || [];
+    this.filteredOptions = [...this._options];
   }
 
-  @HostListener('window:scroll', ['$event'])
-  onWindowScroll(): void {
-    this.handleSelectOptionPosition();
+  get options(): { label: string; value: any; [key: string]: any }[] {
+    return this._options;
   }
+
+  @HostListener('document:keydown.escape', ['$event'])
+  onEscapePress(event: KeyboardEvent): void {
+    if (this.isOptionListOpen && event.key === 'Escape') {
+      this.toggleOptionsList();
+    }
+  }
+
+  @HostListener('window:resize')
+  onWindowResize(): void {
+    if (this.isOptionListOpen && this.overlayRef) {
+      const inputWidth = this.inputSelectValueHolder.nativeElement.offsetWidth;
+      this.overlayRef.updateSize({ width: inputWidth });
+      this.updatePosition();
+    }
+  }
+
+  constructor(
+    @Inject(Injector) injector: Injector,
+    cdr: ChangeDetectorRef,
+    private overlay: Overlay,
+    private positionBuilder: OverlayPositionBuilder,
+    private vcr: ViewContainerRef,
+  ) {
+    super(injector, cdr);
+  }
+
+  override ngOnInit(): void {
+    super.ngOnInit();
+    this.filteredOptions = [...this._options];
+    this.handleDefaultValue();
+    this.checkIfEmpty();
+  }
+
   ngAfterViewInit() {
     if (this.iconDirective) {
       this.iconDirective.el.nativeElement.style.height =
@@ -137,85 +184,76 @@ export class ZapSelect<T>
     }
   }
 
-  @Input()
-  set options(newOptions: { label: string; value: any; [key: string]: any }[]) {
-    this._options = newOptions || [];
-    this.filteredOptions = [...this._options];
-  }
-
-  get options(): { label: string; value: any; [key: string]: any }[] {
-    return this._options;
-  }
-
-  @HostListener('document:click', ['$event'])
-  onDocumentClick(event: MouseEvent): void {
-    const clickedElement = event.target as HTMLElement;
-    const inputElement = this.inputSelectValueHolder.nativeElement;
-    if (
-      this.optionList &&
-      !this.optionList.nativeElement.contains(clickedElement) &&
-      !inputElement.contains(clickedElement)
-    ) {
-      this.toggleOptionsList();
+  private updatePosition(): void {
+    if (this.overlayRef) {
+      const positionStrategy = this.buildPositionStrategy();
+      this.overlayRef.updatePositionStrategy(positionStrategy);
     }
   }
 
-  @HostListener('document:keydown.escape', ['$event'])
-  onEscapePress(event: KeyboardEvent): void {
-    if (this.isOptionListOpen && event.key === 'Escape') {
-      this.toggleOptionsList();
-    }
+  private buildPositionStrategy(): FlexibleConnectedPositionStrategy {
+    const positions: ConnectedPosition[] =
+      this.position === 'top'
+        ? [
+            {
+              originX: 'start',
+              originY: 'top',
+              overlayX: 'start',
+              overlayY: 'bottom',
+              offsetY: -8,
+            },
+          ]
+        : this.position === 'bottom'
+          ? [
+              {
+                originX: 'start',
+                originY: 'bottom',
+                overlayX: 'start',
+                overlayY: 'top',
+                offsetY: 4,
+              },
+            ]
+          : [
+              {
+                originX: 'start',
+                originY: 'bottom',
+                overlayX: 'start',
+                overlayY: 'top',
+                offsetY: 4,
+              },
+              {
+                originX: 'start',
+                originY: 'top',
+                overlayX: 'start',
+                overlayY: 'bottom',
+                offsetY: -8,
+              },
+            ];
+
+    const strategy = this.positionBuilder
+      .flexibleConnectedTo(this.inputSelectValueHolder)
+      .withPositions(positions)
+      .withFlexibleDimensions(false)
+      .withPush(false);
+
+    return strategy;
   }
 
-  override ngOnInit(): void {
-    super.ngOnInit();
-    this.filteredOptions = [...this._options];
-    this.handleDefaultValue();
-    this.checkIfEmpty();
+  private generateClasses(prefixes: string[] = ['']): string[] {
+    return [
+      this.shape,
+      ...this.zapClass
+        .split(' ')
+        .filter((cls) => prefixes.some((prefix) => cls.startsWith(prefix))),
+      this.size,
+      this.icon || this.iconDirective ? this.iconPosition : '',
+      this.control.disabled ? 'disabled' : '',
+    ].filter((cls) => cls && cls !== 'default');
   }
 
   handleDefaultValue(): void {
     if (this.control.value) {
       this.selectedOptionValue = [...this.selectedOptionValue, this.control.value];
-    }
-  }
-
-  handleSelectOptionPosition(): void {
-    if (this.optionList && typeof window !== 'undefined') {
-      const optionListElement = this.optionList.nativeElement;
-      const inputElement = this.inputSelectValueHolder.nativeElement;
-      const inputRect = inputElement.getBoundingClientRect();
-      const viewportHeight = window.innerHeight;
-      const spaceBelow = viewportHeight - inputRect.bottom;
-      const spaceAbove = inputRect.top;
-
-      if (!optionListElement.dataset.appendedToBody) {
-        document.body.appendChild(optionListElement);
-        optionListElement.dataset.appendedToBody = 'true';
-      }
-
-      optionListElement.style.position = 'fixed';
-      optionListElement.style.left = `${inputRect.left}px`;
-      optionListElement.style.width = `${inputRect.width}px`;
-
-      optionListElement.style.visibility = 'hidden';
-      optionListElement.style.display = 'block';
-      const optionListHeight = optionListElement.scrollHeight;
-      optionListElement.style.visibility = 'visible';
-
-      if (this.position === 'auto') {
-        if (spaceBelow < optionListHeight && spaceAbove > optionListHeight) {
-          optionListElement.style.top = `${inputRect.top - optionListHeight - 5}px`;
-        } else {
-          optionListElement.style.top = `${inputRect.bottom}px`;
-        }
-      } else if (this.position === 'top') {
-        optionListElement.style.top = `${inputRect.top - optionListHeight - 5}px`;
-      } else {
-        optionListElement.style.top = `${inputRect.bottom}px`;
-      }
-
-      optionListElement.style.zIndex = '999';
     }
   }
 
@@ -230,20 +268,41 @@ export class ZapSelect<T>
 
   toggleOptionsList(): void {
     if (this.control.disabled) return;
+
     this.isOptionListOpen = !this.isOptionListOpen;
-    this.cdr.detectChanges();
+
     if (this.isOptionListOpen) {
-      if (this.search) {
-        setTimeout(() => {
-          this.search.nativeElement.focus();
-        }, 0);
-      }
+      const inputWidth = this.inputSelectValueHolder.nativeElement.offsetWidth;
+      const positionStrategy = this.buildPositionStrategy();
+
+      this.overlayRef = this.overlay.create({
+        positionStrategy,
+        scrollStrategy: this.overlay.scrollStrategies.reposition(),
+        hasBackdrop: true,
+        backdropClass: 'cdk-overlay-transparent-backdrop',
+        width: inputWidth,
+      });
+
+      const portal = new TemplatePortal(this.optionsPanel, this.vcr);
+      this.overlayRef.attach(portal);
+
+      this.overlayRef.backdropClick().subscribe(() => this.toggleOptionsList());
+      this.overlayRef.detachments().subscribe(() => {
+        this.isOptionListOpen = false;
+      });
+
+      setTimeout(() => {
+        if (this.search) this.search.nativeElement.focus();
+      }, 0);
     } else {
+      if (this.overlayRef) {
+        this.overlayRef.detach();
+      }
       this.control.markAsTouched();
     }
+
     this.hoveredOption = '';
     this.filteredOptions = this.options;
-    this.handleSelectOptionPosition();
   }
 
   handleSearch(event: Event): void {
@@ -257,7 +316,7 @@ export class ZapSelect<T>
       );
     }
     this.cdr.detectChanges();
-    this.handleSelectOptionPosition();
+    this.updatePosition();
   }
 
   selectOption(option: { label: string; value: any }): void {
@@ -273,7 +332,7 @@ export class ZapSelect<T>
       this.control.setValue(this.selectedOptionValue);
       this.onChange.emit(this.selectedOptionValue);
       this.cdr.detectChanges();
-      this.handleSelectOptionPosition();
+      this.updatePosition();
     } else {
       this.control.setValue(option.value);
       this.onChange.emit(option.value);
@@ -290,7 +349,7 @@ export class ZapSelect<T>
       this.onChange.emit(this.selectedOptionValue);
     }
     this.cdr.detectChanges();
-    this.handleSelectOptionPosition();
+    this.updatePosition();
   }
 
   getSelected(value: string): string {
@@ -338,23 +397,10 @@ export class ZapSelect<T>
     ]);
   }
 
-  private generateClasses(prefixes: string[] = ['']): string[] {
-    return [
-      this.shape,
-      ...this.zapClass
-        .split(' ')
-        .filter((cls) => prefixes.some((prefix) => cls.startsWith(prefix))),
-      this.size,
-      this.icon || this.iconDirective ? this.iconPosition : '',
-      this.control.disabled ? 'disabled' : '',
-    ].filter((cls) => cls && cls !== 'default');
-  }
-
   override ngOnDestroy(): void {
     super.ngOnDestroy();
-
-    if (this.optionList) {
-      this.optionList.nativeElement.remove();
+    if (this.overlayRef) {
+      this.overlayRef.dispose();
     }
   }
 }

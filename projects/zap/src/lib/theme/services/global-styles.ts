@@ -32,6 +32,10 @@ export function generateGlobalStylesVariables(theme: ZapTheme): string {
         value: hexToRgba(theme.colors.primary, 0.7),
       },
       {
+        label: 'dismiss-focus-color',
+        value: theme.colors.tertiary,
+      },
+      {
         label: 'padding-left',
         value: '1rem',
       },
@@ -164,6 +168,10 @@ export function generateGlobalStylesVariables(theme: ZapTheme): string {
         value: hexToRgba(theme.colors.tertiary, 0),
       },
       {
+        label: 'focus-color',
+        value: theme.colors.tertiary,
+      },
+      {
         label: 'padding-left',
         value: '1rem',
       },
@@ -216,6 +224,10 @@ export function generateGlobalStylesVariables(theme: ZapTheme): string {
       {
         label: 'dismiss-hover-color',
         value: hexToRgba(theme.colors.primary, 0.7),
+      },
+      {
+        label: 'dismiss-focus-color',
+        value: theme.colors.primary,
       },
       {
         label: 'padding-left',
@@ -321,7 +333,11 @@ export function generateGlobalStylesVariables(theme: ZapTheme): string {
       },
       {
         label: 'overlay-bg-color',
-        value: hexToRgba(theme.colors.secondary, 0.1),
+        value: hexToRgba(theme.colors.primary, 0.5),
+      },
+      {
+        label: 'dismiss-focus-color',
+        value: theme.colors.tertiary,
       },
       {
         label: 'padding-left',
@@ -395,7 +411,11 @@ export function generateGlobalStylesVariables(theme: ZapTheme): string {
       },
       {
         label: 'overlay-bg-color',
-        value: hexToRgba(theme.colors.secondary, 0.1),
+        value: hexToRgba(theme.colors.primary, 0.5),
+      },
+      {
+        label: 'dismiss-focus-color',
+        value: theme.colors.tertiary,
       },
       {
         label: 'padding-left',
@@ -538,15 +558,7 @@ export function generateGlobalStylesVariables(theme: ZapTheme): string {
         value: theme.colors.tertiary,
       },
       {
-        label: 'bg-focus-color',
-        value: theme.colors.tertiary,
-      },
-      {
-        label: 'text-focus-color',
-        value: theme.colors.primary,
-      },
-      {
-        label: 'border-focus-color',
+        label: 'focus-color',
         value: theme.colors.tertiary,
       },
       {
@@ -608,7 +620,7 @@ export function generateGlobalStylesVariables(theme: ZapTheme): string {
         value: theme.colors.tertiary,
       },
       {
-        label: 'border-focus-color',
+        label: 'focus-color',
         value: theme.colors.tertiary,
       },
       {
@@ -724,6 +736,10 @@ export function generateGlobalStylesVariables(theme: ZapTheme): string {
         value: hexToRgba(theme.colors.secondary, 0.5),
       },
       {
+        label: 'focus-color',
+        value: theme.colors.tertiary,
+      },
+      {
         label: 'height',
         value: '1.5rem',
       },
@@ -768,6 +784,10 @@ export function generateGlobalStylesVariables(theme: ZapTheme): string {
       {
         label: 'content-text-color',
         value: theme.colors.secondary,
+      },
+      {
+        label: 'header-focus-color',
+        value: theme.colors.tertiary,
       },
       {
         label: 'header-padding-top',
@@ -832,6 +852,10 @@ export function generateGlobalStylesVariables(theme: ZapTheme): string {
         value: theme.colors.primary,
       },
       {
+        label: 'option-focus-color',
+        value: theme.colors.tertiary,
+      },
+      {
         label: 'options-border-color',
         value: hexToRgba(theme.colors.secondary, 0.1),
       },
@@ -894,6 +918,10 @@ export function generateGlobalStylesVariables(theme: ZapTheme): string {
       {
         label: 'chip-dismiss-hover-color',
         value: hexToRgba(theme.colors.primary, 0.7),
+      },
+      {
+        label: 'selected-bg-color',
+        value: hexToRgba(theme.colors.tertiary, 0.03),
       },
       {
         label: 'checkbox-bg-color',
@@ -1122,6 +1150,10 @@ export function generateGlobalStylesVariables(theme: ZapTheme): string {
         value: theme.colors.secondary,
       },
       {
+        label: 'text-hover-color',
+        value: theme.colors.secondary,
+      },
+      {
         label: 'content-border-color',
         value: hexToRgba(theme.colors.secondary, 0.1),
       },
@@ -1244,6 +1276,10 @@ export function generateGlobalStylesVariables(theme: ZapTheme): string {
       {
         label: 'title-text-color',
         value: theme.colors.secondary,
+      },
+      {
+        label: 'focus-color',
+        value: theme.colors.tertiary,
       },
       {
         label: 'handler-color',
@@ -1403,11 +1439,11 @@ export function generateGlobalStylesVariables(theme: ZapTheme): string {
       },
       {
         label: 'day-height',
-        value: '2.65rem',
+        value: '2.5rem',
       },
       {
         label: 'day-width',
-        value: '2.65rem',
+        value: '2.5rem',
       },
       {
         label: 'day-of-week-height',
@@ -1419,19 +1455,19 @@ export function generateGlobalStylesVariables(theme: ZapTheme): string {
       },
       {
         label: 'padding-top',
-        value: '0.5rem',
+        value: '0.75rem',
       },
       {
         label: 'padding-bottom',
-        value: '0.5rem',
+        value: '0.75rem',
       },
       {
         label: 'padding-left',
-        value: '0.25rem',
+        value: '0.5rem',
       },
       {
         label: 'padding-right',
-        value: '0.25rem',
+        value: '0.5rem',
       },
       {
         label: 'handler-padding-left',
@@ -1474,6 +1510,14 @@ export function generateGlobalStylesVariables(theme: ZapTheme): string {
       {
         label: 'border-hover-color',
         value: hexToRgba(theme.colors.secondary, 0.1),
+      },
+      {
+        label: 'focus-color',
+        value: theme.colors.tertiary,
+      },
+      {
+        label: 'option-focus-color',
+        value: theme.colors.tertiary,
       },
       {
         label: 'placeholder-color',
@@ -1708,6 +1752,10 @@ export function generateGlobalStylesVariables(theme: ZapTheme): string {
       {
         label: 'btn-text-hover-color',
         value: theme.colors.secondary,
+      },
+      {
+        label: 'btn-focus-color',
+        value: theme.colors.tertiary,
       },
       {
         label: 'dismiss-color',

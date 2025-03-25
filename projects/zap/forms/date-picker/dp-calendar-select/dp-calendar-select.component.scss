@@ -8,6 +8,7 @@
     @apply cursor-pointer relative rounded-[var(--zap-dp-calendar-select-border-radius)];
     @apply pl-[var(--zap-dp-calendar-select-padding-left)] pr-[var(--zap-dp-calendar-select-padding-right)] pt-[var(--zap-dp-calendar-select-padding-top)] pb-[var(--zap-dp-calendar-select-padding-bottom)];
     @apply text-[length:var(--zap-dp-calendar-select-font-size)] font-[var(--zap-dp-calendar-select-font-weight)] leading-[var(--zap-dp-calendar-select-line-height)] tracking-[var(--zap-dp-calendar-select-letter-spacing)];
+    @apply focus-visible:outline-2 focus-visible:outline-[var(--zap-dp-calendar-select-focus-color)] focus-visible:outline-offset-2 focus-visible:outline;
   }
 
   &.pill {
@@ -29,10 +30,20 @@
       @apply rounded-lg;
     }
   }
+
+  &.flat {
+    .__zap__form__control__select {
+      @apply rounded-none;
+    }
+
+    .__zap__form__control__options {
+      @apply rounded-none;
+    }
+  }
 }
 
 .__zap__form__control__options__container {
-  @apply max-h-max absolute w-full;
+  @apply max-h-max absolute w-full z-20;
 }
 
 .__zap__form__control__options {
@@ -44,6 +55,7 @@
     @apply pl-[var(--zap-dp-calendar-select-option-padding-left)] pr-[var(--zap-dp-calendar-select-option-padding-right)] pt-[var(--zap-dp-calendar-select-option-padding-top)] pb-[var(--zap-dp-calendar-select-option-padding-bottom)];
     @apply text-[var(--zap-dp-calendar-select-option-text-color)] bg-[var(--zap-dp-calendar-select-option-bg-color)] border-[var(--zap-dp-calendar-select-option-border-color)] hover:border-[var(--zap-dp-calendar-select-option-border-hover-color)] hover:bg-[var(--zap-dp-calendar-select-option-bg-hover-color)] hover:text-[var(--zap-dp-calendar-select-option-text-hover-color)];
     @apply text-[length:var(--zap-dp-calendar-select-option-font-size)] font-[var(--zap-dp-calendar-select-option-font-weight)] leading-[var(--zap-dp-calendar-select-option-line-height)] tracking-[var(--zap-dp-calendar-select-option-letter-spacing)];
+    @apply focus:outline-none focus:border-[var(--zap-dp-calendar-select-option-focus-color)] focus:border-b focus:rounded-sm;
   }
 
   .__zap__form__control__selected {

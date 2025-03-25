@@ -1,5 +1,5 @@
 :host {
-  @apply flex items-center justify-between gap-x-5 sm:gap-x-10 w-full p-1.5 text-sm hover:bg-secondary/5 select-none rounded-md  text-secondary/90 hover:text-secondary;
+  @apply flex items-center justify-between gap-x-5 sm:gap-x-10 w-full p-1.5 text-sm hover:bg-secondary/5 cursor-pointer select-none rounded-md  text-secondary/90 hover:text-secondary;
 }
 
 svg {

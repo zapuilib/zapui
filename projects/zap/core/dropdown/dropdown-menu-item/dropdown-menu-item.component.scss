@@ -1,5 +1,5 @@
 :host {
-  @apply flex items-center gap-x-5 sm:gap-x-10 w-full p-1.5 text-sm hover:bg-secondary/5 rounded-md select-none text-secondary/90 hover:text-secondary;
+  @apply flex items-center gap-x-5 sm:gap-x-10 w-full p-1.5 text-sm hover:bg-secondary/5 rounded-md select-none text-secondary/90 hover:text-secondary cursor-pointer;
 
   &.disabled {
     @apply pointer-events-none text-secondary/40;

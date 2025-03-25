@@ -27,6 +27,7 @@ import {
 } from '@angular/cdk/overlay';
 import { TemplatePortal } from '@angular/cdk/portal';
 import { ViewContainerRef } from '@angular/core';
+import { A11yModule } from '@angular/cdk/a11y';
 
 import { ControlValueAccessorDirective } from '../directives/control-value-accessor.directive';
 import { ValidationErrorComponent } from '../validation-error/validation-error.component';
@@ -42,7 +43,14 @@ import {
 @Component({
   selector: 'zap-date-picker',
   standalone: true,
-  imports: [CommonModule, FormsModule, ReactiveFormsModule, ValidationErrorComponent, DPCalendar],
+  imports: [
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    ValidationErrorComponent,
+    DPCalendar,
+    A11yModule,
+  ],
   templateUrl: './date-picker.component.html',
   styleUrl: './date-picker.component.scss',
   providers: [

@@ -1419,11 +1419,11 @@ export function generateGlobalStylesVariables(theme: ZapTheme): string {
       },
       {
         label: 'day-height',
-        value: '2.65rem',
+        value: '2.5rem',
       },
       {
         label: 'day-width',
-        value: '2.65rem',
+        value: '2.5rem',
       },
       {
         label: 'day-of-week-height',
@@ -1435,19 +1435,19 @@ export function generateGlobalStylesVariables(theme: ZapTheme): string {
       },
       {
         label: 'padding-top',
-        value: '0.5rem',
+        value: '0.75rem',
       },
       {
         label: 'padding-bottom',
-        value: '0.5rem',
+        value: '0.75rem',
       },
       {
         label: 'padding-left',
-        value: '0.25rem',
+        value: '0.5rem',
       },
       {
         label: 'padding-right',
-        value: '0.25rem',
+        value: '0.5rem',
       },
       {
         label: 'handler-padding-left',

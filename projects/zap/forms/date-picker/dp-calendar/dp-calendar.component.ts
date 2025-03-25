@@ -1,12 +1,13 @@
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { A11yModule } from '@angular/cdk/a11y';
 
 import { DPCalendarSelect } from '../dp-calendar-select/dp-calendar-select.component';
 
 @Component({
   selector: 'dp-calendar',
   standalone: true,
-  imports: [CommonModule, DPCalendarSelect],
+  imports: [CommonModule, DPCalendarSelect, A11yModule],
   templateUrl: './dp-calendar.component.html',
   styleUrl: './dp-calendar.component.scss',
 })
@@ -21,6 +22,7 @@ export class DPCalendar implements OnInit {
     startDate: Date | null;
     endDate: Date | null;
   }>();
+  @Input() id = '';
   @Input() size!: 'compact' | 'base' | 'wide';
   @Input() shape!: 'pill' | 'curve' | 'flat';
   @Input() weeks!: Date[][];

@@ -1,13 +1,13 @@
 import {
   Injectable,
   ComponentRef,
-  ApplicationRef,
-  createComponent,
   EnvironmentInjector,
   signal,
   DestroyRef,
   inject,
 } from '@angular/core';
+import { Overlay, OverlayRef, OverlayConfig } from '@angular/cdk/overlay';
+import { ComponentPortal } from '@angular/cdk/portal';
 
 import { ZapToast } from './toast.component';
 import { ZapToastInterface } from './toast.interface';
@@ -17,11 +17,14 @@ type ToastPosition = 'top' | 'bottom';
 
 @Injectable({ providedIn: 'root' })
 export class ZapToastService {
-  private activeToastRef = signal<ComponentRef<ZapToast> | null>(null);
+  private activeToastRef = signal<{
+    overlayRef: OverlayRef;
+    componentRef: ComponentRef<ZapToast>;
+  } | null>(null);
   private readonly destroyRef = inject(DestroyRef);
 
   constructor(
-    private appRef: ApplicationRef,
+    private overlay: Overlay,
     private injector: EnvironmentInjector,
   ) {}
 
@@ -30,38 +33,46 @@ export class ZapToastService {
       this.dismissImmediately(this.activeToastRef()!);
     }
 
-    const toastComponentRef = createComponent(ZapToast, {
-      environmentInjector: this.injector,
-    });
+    const overlayRef = this.createOverlay();
+    const toastPortal = new ComponentPortal(ZapToast, null, this.injector);
+    const componentRef = overlayRef.attach(toastPortal);
 
-    Object.assign(toastComponentRef.instance, config);
-    toastComponentRef.changeDetectorRef.detectChanges();
+    Object.assign(componentRef.instance, config);
+    componentRef.changeDetectorRef.detectChanges();
 
-    const element = toastComponentRef.location.nativeElement;
-    document.body.appendChild(element);
-    this.appRef.attachView(toastComponentRef.hostView);
-
+    const element = componentRef.location.nativeElement;
     this.applyStyles(element);
-    const cleanup = this.setupPositionHandling(element);
+    const cleanup = this.setupPositionHandling(element, overlayRef);
 
     this.destroyRef.onDestroy(() => {
       cleanup();
-      this.dismissImmediately(toastComponentRef);
+      this.dismissImmediately({ overlayRef, componentRef });
     });
 
-    toastComponentRef.instance.dismiss.subscribe(() => {
+    componentRef.instance.dismiss.subscribe(() => {
       cleanup();
-      this.hide(toastComponentRef);
+      this.hide({ overlayRef, componentRef });
     });
 
-    this.activeToastRef.set(toastComponentRef);
+    this.activeToastRef.set({ overlayRef, componentRef });
 
     setTimeout(() => {
-      if (this.activeToastRef() === toastComponentRef) {
+      if (this.activeToastRef()?.componentRef === componentRef) {
         cleanup();
-        this.hide(toastComponentRef);
+        this.hide({ overlayRef, componentRef });
       }
     }, config.duration || TOAST_DURATION);
+  }
+
+  private createOverlay(): OverlayRef {
+    const overlayConfig = new OverlayConfig({
+      width: '100%',
+      maxWidth: '600px',
+      hasBackdrop: false,
+      panelClass: 'zap-toast-overlay',
+    });
+
+    return this.overlay.create(overlayConfig);
   }
 
   private applyStyles(element: HTMLElement): void {
@@ -71,14 +82,22 @@ export class ZapToastService {
     });
   }
 
-  private setupPositionHandling(element: HTMLElement): () => void {
-    if (typeof window === 'undefined')
-      return () => {
-        return;
-      };
+  private setupPositionHandling(element: HTMLElement, overlayRef: OverlayRef): () => void {
+    if (typeof window === 'undefined') {
+      return () => void 0;
+    }
 
     const updatePosition = () => {
       const position: ToastPosition = window.innerWidth < 640 ? 'top' : 'bottom';
+
+      const positionStrategy = this.overlay
+        .position()
+        .global()
+        .top(position === 'top' ? '16px' : 'auto')
+        .bottom(position === 'bottom' ? '16px' : 'auto')
+        .centerHorizontally();
+
+      overlayRef.updatePositionStrategy(positionStrategy);
       Object.assign(element.style, TOAST_STYLES.positions[position]);
 
       element.style.transform =
@@ -98,26 +117,22 @@ export class ZapToastService {
     return () => window.removeEventListener('resize', updatePosition);
   }
 
-  private dismissImmediately(toastRef: ComponentRef<ZapToast>) {
-    if (!toastRef || !toastRef.location) return;
-    const element = toastRef.location.nativeElement;
-    element.parentNode?.removeChild(element);
-    toastRef.destroy();
+  private dismissImmediately(ref: {
+    overlayRef: OverlayRef;
+    componentRef: ComponentRef<ZapToast>;
+  }) {
+    ref.overlayRef.dispose();
     this.activeToastRef.set(null);
   }
 
-  private hide(toastRef: ComponentRef<ZapToast>) {
-    if (!toastRef || !toastRef.location) return;
-
-    const element = toastRef.location.nativeElement;
+  private hide(ref: { overlayRef: OverlayRef; componentRef: ComponentRef<ZapToast> }) {
+    const element = ref.componentRef.location.nativeElement;
     element.style.transform = 'translateX(100%)';
     element.style.opacity = '0';
 
     setTimeout(() => {
-      if (this.activeToastRef() === toastRef) {
-        element.parentNode?.removeChild(element);
-        toastRef.destroy();
-        this.activeToastRef.set(null);
+      if (this.activeToastRef()?.componentRef === ref.componentRef) {
+        this.dismissImmediately(ref);
       }
     }, 300);
   }

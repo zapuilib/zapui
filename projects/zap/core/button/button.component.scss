@@ -11,7 +11,7 @@ button {
   @apply w-[var(--zap-button-width)] h-[var(--zap-button-height)];
   @apply active:ring-1 active:ring-[var(--zap-button-border-active-color)] active:bg-[var(--zap-button-bg-active-color)] active:text-[var(--zap-button-text-active-color)] leading-[var(--zap-button-line-height)] tracking-[var(--zap-button-letter-spacing)]; //ring is adding weird effect on click
   text-transform: var(--zap-button-text-transform);
-  @apply focus:outline-2 focus:outline-[var(--zap-button-focus-color)] focus:outline-offset-2 focus:outline;
+  @apply focus-visible:outline-2 focus-visible:outline-[var(--zap-button-focus-color)] focus-visible:outline-offset-2 focus-visible:outline;
 
   &.link {
     @apply text-tertiary;

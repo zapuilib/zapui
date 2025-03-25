@@ -37,10 +37,10 @@
       @apply cursor-not-allowed;
     }
 
-    input:focus {
-      @apply focus:outline-2 focus:outline-[var(--zap-checkbox-focus-color)] focus:outline-offset-2 focus:outline;
+    input {
+      @apply focus-visible:outline-2 focus-visible:outline-[var(--zap-checkbox-focus-color)] focus-visible:outline-offset-2 focus-visible:outline;
 
-      &:not(:checked) {
+      &:focus-visible:not(:checked) {
         @apply bg-[var(--zap-checkbox-bg-color)];
       }
     }
@@ -52,7 +52,7 @@
 
   label {
     @apply cursor-pointer text-[var(--zap-checkbox-label-color)] hover:text-[var(--zap-checkbox-hover-label-color)] text-[length:var(--zap-checkbox-font-size)] font-[var(--zap-checkbox-font-weight)] leading-[var(--zap-checkbox-line-height)] tracking-[var(--zap-checkbox-letter-spacing)];
-    @apply focus:outline-2 focus:outline-[var(--zap-checkbox-focus-color)] focus:outline-offset-2 focus:outline rounded-sm;
+    @apply focus-visible:outline-2 focus-visible:outline-[var(--zap-checkbox-focus-color)] focus-visible:outline-offset-2 focus-visible:outline rounded-sm;
   }
 
   &.flat {

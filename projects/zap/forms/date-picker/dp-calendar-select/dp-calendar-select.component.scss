@@ -8,7 +8,7 @@
     @apply cursor-pointer relative rounded-[var(--zap-dp-calendar-select-border-radius)];
     @apply pl-[var(--zap-dp-calendar-select-padding-left)] pr-[var(--zap-dp-calendar-select-padding-right)] pt-[var(--zap-dp-calendar-select-padding-top)] pb-[var(--zap-dp-calendar-select-padding-bottom)];
     @apply text-[length:var(--zap-dp-calendar-select-font-size)] font-[var(--zap-dp-calendar-select-font-weight)] leading-[var(--zap-dp-calendar-select-line-height)] tracking-[var(--zap-dp-calendar-select-letter-spacing)];
-    @apply focus:outline-2 focus:outline-[var(--zap-dp-calendar-select-focus-color)] focus:outline-offset-2 focus:outline;
+    @apply focus-visible:outline-2 focus-visible:outline-[var(--zap-dp-calendar-select-focus-color)] focus-visible:outline-offset-2 focus-visible:outline;
   }
 
   &.pill {

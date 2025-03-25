@@ -2,7 +2,7 @@
   @apply flex justify-between items-center bg-[var(--zap-accordion-header-bg-color)] text-[var(--zap-accordion-header-text-color)] text-[length:var(--zap-accordion-header-font-size)] font-[var(--zap-accordion-header-font-weight)] leading-[var(--zap-accordion-header-line-height)] tracking-[var(--zap-accordion-header-letter-spacing)];
   @apply cursor-pointer pl-[var(--zap-accordion-header-padding-left)] pr-[var(--zap-accordion-header-padding-right)] pt-[var(--zap-accordion-header-padding-top)] pb-[var(--zap-accordion-header-padding-bottom)];
   @apply hover:bg-[var(--zap-accordion-header-bg-hover-color)] hover:text-[var(--zap-accordion-header-text-hover-color)] hover:underline;
-  @apply focus:outline-2 focus:outline-[var(--zap-accordion-header-focus-color)] focus:outline-offset-2 focus:outline rounded-sm;
+  @apply focus-visible:outline-2 focus-visible:outline-[var(--zap-accordion-header-focus-color)] focus-visible:outline-offset-2 focus-visible:outline rounded-sm;
 
   &.nounderline {
     @apply hover:no-underline;

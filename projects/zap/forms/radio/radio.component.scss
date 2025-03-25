@@ -34,7 +34,7 @@
           @apply opacity-50 cursor-not-allowed;
         }
 
-        &:focus {
+        &:focus-visible {
           @apply focus:outline-2 focus:outline-[var(--zap-radio-focus-color)] focus:outline-offset-2 focus:outline;
 
           &:not(:checked) {
@@ -49,7 +49,7 @@
 
       label {
         @apply cursor-pointer text-[var(--zap-radio-text-color)] hover:text-[var(--zap-radio-text-hover-color)] text-[length:var(--zap-radio-font-size)] font-[var(--zap-radio-font-weight)] leading-[var(--zap-radio-line-height)] tracking-[var(--zap-radio-letter-spacing)];
-        @apply focus:outline-2 focus:outline-[var(--zap-radio-focus-color)] focus:outline-offset-2 focus:outline rounded-sm;
+        @apply focus-visible:outline-2 focus-visible:outline-[var(--zap-radio-focus-color)] focus-visible:outline-offset-2 focus-visible:outline rounded-sm;
       }
     }
   }

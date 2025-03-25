@@ -10,6 +10,7 @@ export interface AccordionConfig {
         itemBorderColor?: HexCode;
         headerBgHoverColor?: HexCode;
         headerTextHoverColor?: HexCode;
+        headerFocusColor?: HexCode;
         contentTextColor?: HexCode;
         contentBgColor?: HexCode;
       }

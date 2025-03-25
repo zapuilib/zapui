@@ -11,6 +11,7 @@ export interface ModalConfig {
         dismissColor?: HexCode;
         dismissHoverColor?: HexCode;
         overlayBgColor?: HexCode;
+        dismissFocusColor?: HexCode;
       }
     >;
     borderRadius?: string;

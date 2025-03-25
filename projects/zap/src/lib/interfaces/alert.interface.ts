@@ -11,6 +11,7 @@ export interface AlertConfig {
         borderColor?: HexCode;
         dismissColor?: HexCode;
         dismissHoverColor?: HexCode;
+        dismissFocusColor?: HexCode;
       }
     >;
   } & CommonStyles;

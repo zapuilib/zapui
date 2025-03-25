@@ -11,8 +11,7 @@ export interface RadioConfig {
         bgHoverColor?: HexCode;
         textHoverColor?: HexCode;
         borderHoverColor?: HexCode;
-        bgFocusColor?: HexCode;
-        borderFocusColor?: HexCode;
+        focusColor?: HexCode;
         labelColor?: HexCode;
         labelHoverColor?: HexCode;
         bgCheckedColor?: HexCode;

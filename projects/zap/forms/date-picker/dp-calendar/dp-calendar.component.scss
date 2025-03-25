@@ -23,6 +23,7 @@
         @apply rounded-[var(--zap-dp-calendar-handler-border-radius)] invisible;
         @apply text-[var(--zap-dp-calendar-handler-color)];
         @apply pl-[var(--zap-dp-calendar-handler-padding-left)] pr-[var(--zap-dp-calendar-handler-padding-right)] pt-[var(--zap-dp-calendar-handler-padding-top)] pb-[var(--zap-dp-calendar-handler-padding-bottom)];
+        @apply focus:outline-2 focus:outline-[var(--zap-dp-calendar-focus-color)] focus:outline-offset-2 focus:outline;
 
         &.active {
           @apply visible;
@@ -50,6 +51,7 @@
     .day {
       @apply flex-1 text-center w-[var(--zap-dp-calendar-day-width)] h-[var(--zap-dp-calendar-day-height)] whitespace-nowrap gap-x-2 inline-flex justify-center items-center text-[var(--zap-dp-calendar-day-text-color)] bg-[var(--zap-dp-calendar-day-bg-color)] ring ring-[var(--zap-dp-calendar-day-border-color)] text-sm;
       @apply rounded-[var(--zap-dp-calendar-day-border-radius)] transition-colors duration-150 ease-linear;
+      @apply focus:outline-2 focus:outline-[var(--zap-dp-calendar-focus-color)] focus:outline-offset-2 focus:outline;
     }
 
     .day__of__week {

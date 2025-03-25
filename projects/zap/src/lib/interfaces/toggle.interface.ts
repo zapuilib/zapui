@@ -12,6 +12,7 @@ export interface ToggleConfig {
         rollerOnColor?: HexCode;
         labelColor?: HexCode;
         helpTextColor?: HexCode;
+        focusColor?: HexCode;
       }
     >;
     width?: string;

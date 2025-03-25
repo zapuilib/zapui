@@ -15,6 +15,7 @@ export interface ChipConfig {
         borderHoverColor?: HexCode;
         dismissColor?: HexCode;
         dismissHoverColor?: HexCode;
+        dismissFocusColor?: HexCode;
       }
     >;
   } & CommonStyles;

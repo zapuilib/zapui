@@ -8,27 +8,27 @@ import {
 } from '@angular/core';
 import { Overlay, OverlayRef, OverlayPositionBuilder } from '@angular/cdk/overlay';
 import { TemplatePortal } from '@angular/cdk/portal';
+import { A11yModule } from '@angular/cdk/a11y';
 
 @Component({
   selector: 'zap-dropdown',
   standalone: true,
-  imports: [],
+  imports: [A11yModule],
   template: `
-    <div class="relative">
-      <!-- Trigger -->
+    <div>
       <div
         #triggerRef
-        (click)="toggleMenu()"
-        (keydown.enter)="toggleMenu()"
-        (keydown.space)="toggleMenu()"
-        tabindex="0"
+        class="trigger"
         role="button"
+        tabindex="-1"
         aria-haspopup="true"
-        [attr.aria-expanded]="overlayRef?.hasAttached()">
+        [attr.aria-expanded]="overlayRef?.hasAttached()"
+        (keydown.arrowdown)="$event.preventDefault(); toggleMenu()"
+        (keydown.arrowup)="$event.preventDefault(); toggleMenu()"
+        (click)="$event.target !== $event.currentTarget && toggleMenu()">
         <ng-content select="zap-dropdown-trigger"></ng-content>
       </div>
 
-      <!-- Menu template -->
       <ng-template #menuTemplate>
         <ng-content select="zap-dropdown-menu"></ng-content>
       </ng-template>
@@ -53,16 +53,18 @@ export class ZapDropdown implements AfterViewInit {
       .flexibleConnectedTo(this.triggerRef)
       .withPositions([
         {
-          originX: 'center',
+          originX: 'end',
           originY: 'bottom',
-          overlayX: 'center',
+          overlayX: 'end',
           overlayY: 'top',
+          offsetY: 8,
         },
         {
-          originX: 'center',
+          originX: 'end',
           originY: 'top',
-          overlayX: 'center',
+          overlayX: 'end',
           overlayY: 'bottom',
+          offsetY: -8,
         },
       ])
       .withFlexibleDimensions(false)

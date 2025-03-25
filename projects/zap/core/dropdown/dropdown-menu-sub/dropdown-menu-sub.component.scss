@@ -1,3 +1,3 @@
 :host {
-  @apply absolute left-full top-0 block border border-secondary/10 rounded-lg bg-primary hidden;
+  @apply animate-popup block border border-secondary/10 px-1 rounded-lg bg-primary min-w-32;
 }

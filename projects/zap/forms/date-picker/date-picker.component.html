@@ -23,9 +23,7 @@
         (control.invalid && control.touched ? ' ' + id + '-error' : '')
       "
       tabindex="0">
-      @if (label) {
-        <legend class="sr-only" [id]="id + '-label'">{{ label }}</legend>
-      }
+      <legend class="sr-only">{{ label ? label : placeholder ? placeholder : 'Input' }}</legend>
       @if (control.value) {
         <div aria-live="polite" class="sr-only">
           {{ selectedValue }}

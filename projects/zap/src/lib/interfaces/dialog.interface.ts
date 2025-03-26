@@ -44,10 +44,8 @@ export interface DialogConfig {
     fontWeight?: string;
     lineHeight?: string;
     letterSpacing?: string;
-    dismissFontSize?: string;
-    dismissFontWeight?: string;
-    dismissLineHeight?: string;
-    dismissLetterSpacing?: string;
+    dismissHeight?: string;
+    dismissWidth?: string;
     primaryBtnFontSize?: string;
     primaryBtnFontWeight?: string;
     primaryBtnLineHeight?: string;
@@ -58,6 +56,5 @@ export interface DialogConfig {
     secondaryBtnLetterSpacing?: string;
     primaryBtnBorderRadius?: string;
     secondaryBtnBorderRadius?: string;
-    // in future we might support more features like padding, width, height, etc for both button
   };
 }

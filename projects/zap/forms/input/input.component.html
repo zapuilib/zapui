@@ -1,21 +1,21 @@
 @if (control) {
   <div class="__zap__form__control" [ngClass]="classes">
     @if (label) {
-      <label [for]="id" class="__zap__form__control__label">{{ label }}</label>
+      <label [for]="id" class="__zap__form__control__label" id="{{ id }}-label">{{ label }}</label>
     } @else if (labelDirective) {
       <ng-content select="[zapLabel]"></ng-content>
     }
     <fieldset>
-      @if (label) {
-        <legend class="sr-only">{{ label }}</legend>
-      }
+      <legend class="sr-only">{{ label ? label : placeholder ? placeholder : 'Input' }}</legend>
       @if (icon && iconPosition) {
         <i
           class="fa-solid"
           [ngClass]="[icon, iconPosition]"
           (click)="handleIconClick($event)"
           (keydown.enter)="handleIconClick($event)"
-          tabindex="0"></i>
+          tabindex="-1"
+          role="button"
+          aria-label="Icon action"></i>
       } @else if (iconDirective) {
         <ng-content select="[zapFormFieldIcon]"></ng-content>
       }
@@ -23,12 +23,16 @@
         [type]="type"
         [placeholder]="placeholder"
         [id]="id"
+        tabindex="0"
         class="__zap__form__control__input"
         [autocomplete]="autoComplete"
-        [formControl]="control" />
+        [formControl]="control"
+        [attr.aria-labelledby]="label ? id + '-label' : null"
+        [attr.aria-describedby]="helpText ? id + '-help' : null"
+        [attr.aria-invalid]="control.invalid ? 'true' : 'false'" />
     </fieldset>
     @if (helpText) {
-      <p class="__zap__form__control__help__text">{{ helpText }}</p>
+      <p class="__zap__form__control__help__text" id="{{ id }}-help">{{ helpText }}</p>
     } @else if (helpTextDirective) {
       <ng-content select="[zapFormFieldHelpText]"></ng-content>
     }

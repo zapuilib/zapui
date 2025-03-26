@@ -1,8 +1,8 @@
 <div class="__zap__form__control" [ngClass]="classes">
   @if (label) {
-    <label [for]="id" [attr.id]="id + '-label'" class="__zap__form__control__label">{{
-      label
-    }}</label>
+    <label [for]="id" [id]="id + '-label'" class="__zap__form__control__label">
+      {{ label }}
+    </label>
   } @else if (labelDirective) {
     <ng-content select="[zapLabel]"></ng-content>
   }
@@ -11,18 +11,19 @@
       #inputSelectValueHolder
       role="combobox"
       [id]="id"
+      [attr.aria-invalid]="control.invalid"
+      [attr.aria-disabled]="control.disabled"
       [attr.aria-expanded]="isOptionListOpen"
       aria-haspopup="listbox"
       [attr.aria-controls]="id + '-options'"
       [attr.aria-labelledby]="id + '-label'"
+      [attr.aria-activedescendant]="hoveredOption ? id + '-option-' + hoveredOption : null"
       class="__zap__form__control__select"
       (click)="toggleOptionsList()"
-      (keydown.enter)="toggleOptionsList()"
       tabindex="0"
+      (keydown.enter)="toggleOptionsList()"
       [ngClass]="selectClasses">
-      @if (label) {
-        <legend class="sr-only">{{ label }}</legend>
-      }
+      <legend class="sr-only">{{ label ? label : placeholder ? placeholder : 'Input' }}</legend>
       @if (icon && iconPosition) {
         <i class="fa-solid __zap__form__control__icon" [ngClass]="[icon, iconPosition]"></i>
       } @else if (iconDirective) {
@@ -91,15 +92,19 @@
                   fill="currentColor"
                   d="M368 208A160 160 0 1 0 48 208a160 160 0 1 0 320 0zM337.1 371.1C301.7 399.2 256.8 416 208 416C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208c0 48.8-16.8 93.7-44.9 129.1L505 471c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0L337.1 371.1z" />
               </svg>
+              <label class="sr-only" [for]="id + '-search'">{{
+                searchPlaceholder || 'Search'
+              }}</label>
               <input
                 #search
                 type="text"
-                [id]="id"
+                [id]="id + '-search'"
                 [attr.aria-controls]="id + '-options'"
                 class="__zap__form__control__search"
                 [placeholder]="searchPlaceholder"
                 (input)="handleSearch($event)"
-                tabindex="0" />
+                tabindex="0"
+                aria-live="polite" />
             </fieldset>
           }
           @if (filteredOptions.length) {

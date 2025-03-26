@@ -22,9 +22,7 @@ export interface ModalConfig {
     padding?: Padding;
     maxWidth?: string;
     maxHeight?: string;
-    dismissFontSize?: string;
-    dismissFontWeight?: string;
-    dismissLineHeight?: string;
-    dismissLetterSpacing?: string;
+    dismissHeight?: string;
+    dismissWidth?: string;
   };
 }

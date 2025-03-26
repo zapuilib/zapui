@@ -4,7 +4,7 @@ export const defaultConfig: ZapConfig = {
   theme: 'dark',
 };
 
-export const lightTheme: ZapTheme = {
+export const zapLight: ZapTheme = {
   colors: {
     primary: '#FFFFFF',
     secondary: '#09090B',
@@ -32,7 +32,7 @@ export const lightTheme: ZapTheme = {
   },
 };
 
-export const darkTheme: ZapTheme = {
+export const zapDark: ZapTheme = {
   colors: {
     primary: '#09090B',
     secondary: '#FFFFFF',

@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.0.0-alpha.9.1 `dev-alpha`
+
+- **Updated**: Default theme naming changeed for premium extensions
+
 ## 0.0.0-alpha.9 `dev-alpha`
 
 - **New**: Dropdown component added.

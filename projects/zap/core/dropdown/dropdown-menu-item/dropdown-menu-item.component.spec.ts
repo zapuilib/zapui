@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { ZapDropdownMenuItem } from './dropdown-menu-item.component';
+import { SHAPE_TOKEN } from '../shape.token';
 
 describe('ZapDropdownMenuItem', () => {
   let component: ZapDropdownMenuItem;
@@ -9,6 +9,12 @@ describe('ZapDropdownMenuItem', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [ZapDropdownMenuItem],
+      providers: [
+        {
+          provide: SHAPE_TOKEN,
+          useValue: 'flat',
+        },
+      ],
     }).compileComponents();
 
     fixture = TestBed.createComponent(ZapDropdownMenuItem);
@@ -18,5 +24,9 @@ describe('ZapDropdownMenuItem', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should receive the ShapeToken value from the parent', () => {
+    expect(component.shape).toBe('flat');
   });
 });

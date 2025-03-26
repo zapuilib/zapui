@@ -1806,6 +1806,52 @@ export function generateGlobalStylesVariables(theme: ZapTheme): string {
         value: '0.875rem',
       },
     ],
+    dropdown: [
+      {
+        label: 'menu-border-color',
+        value: hexToRgba(theme.colors.secondary, 0.1),
+      },
+      {
+        label: 'menu-bg-color',
+        value: theme.colors.primary,
+      },
+      {
+        label: 'menu-item-bg-color',
+        value: 'transparent',
+      },
+      {
+        label: 'menu-item-bg-hover-color',
+        value: hexToRgba(theme.colors.secondary, 0.05),
+      },
+      {
+        label: 'menu-item-text-color',
+        value: hexToRgba(theme.colors.secondary, 0.9),
+      },
+      {
+        label: 'menu-item-text-hover-color',
+        value: theme.colors.secondary,
+      },
+      {
+        label: 'menu-item-disabled-text-color',
+        value: hexToRgba(theme.colors.secondary, 0.4),
+      },
+      {
+        label: 'menu-item-icon-color',
+        value: hexToRgba(theme.colors.secondary, 0.5),
+      },
+      {
+        label: 'menu-shortcut-text-color',
+        value: hexToRgba(theme.colors.secondary, 0.5),
+      },
+      {
+        label: 'menu-label-text-color',
+        value: theme.colors.secondary,
+      },
+      {
+        label: 'menu-separator-color',
+        value: hexToRgba(theme.colors.secondary, 0.1),
+      },
+    ],
   };
   for (const [component, stylesArray] of Object.entries(styles)) {
     for (const style of stylesArray) {

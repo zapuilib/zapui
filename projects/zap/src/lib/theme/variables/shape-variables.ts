@@ -100,6 +100,18 @@ export function getShapeVariable(shapeValue: string, component: string): string 
         },
       },
     },
+    dropdown: {
+      elements: {
+        menu: {
+          pill: '1rem',
+          curve: '0.375rem',
+        },
+        'menu-item': {
+          pill: 'calc(infinity * 1px)',
+          curve: '0.375rem',
+        },
+      },
+    },
   };
   let cssVariables = '';
 

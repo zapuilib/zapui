@@ -19,6 +19,7 @@ import {
   HexCode,
   ShapeType,
   ToastConfig,
+  DropdownConfig,
 } from './index';
 
 export interface ZapConfig {
@@ -31,6 +32,7 @@ export interface ZapConfig {
     button?: ButtonConfig;
     chip?: ChipConfig;
     dialog?: DialogConfig;
+    dropdown?: DropdownConfig;
     modal?: ModalConfig;
     input?: InputConfig;
     checkbox?: CheckboxConfig;

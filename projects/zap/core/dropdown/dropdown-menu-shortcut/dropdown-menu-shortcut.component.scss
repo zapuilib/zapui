@@ -1,3 +1,3 @@
 :host {
-  @apply inline-flex ml-auto pl-4 text-secondary/40 select-none text-xs tracking-wider;
+  @apply inline-flex ml-auto pl-4 text-[var(--zap-dropdown-menu-shortcut-text-color)] select-none text-xs tracking-wider;
 }

@@ -13,6 +13,11 @@ const ngxConfig: ZapConfig = {
     toast: {
       // shape: 'curve',
     },
+    dropdown: {
+      styles: {
+        // menuBorderRadius: '1rem',
+      },
+    },
   },
 };
 

@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ZapDropdownMenuSub } from './dropdown-menu-sub.component';
+import { SHAPE_TOKEN } from '../shape.token';
 
 describe('ZapDropdownMenuSub', () => {
   let component: ZapDropdownMenuSub;
@@ -9,6 +10,12 @@ describe('ZapDropdownMenuSub', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [ZapDropdownMenuSub],
+      providers: [
+        {
+          provide: SHAPE_TOKEN,
+          useValue: 'flat',
+        },
+      ],
     }).compileComponents();
 
     fixture = TestBed.createComponent(ZapDropdownMenuSub);

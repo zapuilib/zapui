@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'zap-dropdown-separator',
@@ -6,5 +6,10 @@ import { Component } from '@angular/core';
   imports: [],
   template: ` <ng-content />`,
   styleUrl: './dropdown-separator.component.scss',
+  host: {
+    '[class]': 'zapClass',
+  },
 })
-export class ZapDropdownSeparator {}
+export class ZapDropdownSeparator {
+  @Input() zapClass = '';
+}

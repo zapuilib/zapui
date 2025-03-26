@@ -5,10 +5,13 @@ import {
   ViewContainerRef,
   ElementRef,
   AfterViewInit,
+  Input,
 } from '@angular/core';
 import { Overlay, OverlayRef, OverlayPositionBuilder } from '@angular/cdk/overlay';
 import { TemplatePortal } from '@angular/cdk/portal';
 import { A11yModule } from '@angular/cdk/a11y';
+
+import { SHAPE_TOKEN } from '../shape.token';
 
 @Component({
   selector: 'zap-dropdown',
@@ -35,11 +38,22 @@ import { A11yModule } from '@angular/cdk/a11y';
     </div>
   `,
   styleUrls: ['./dropdown.component.scss'],
+  host: {
+    '[class]': 'zapClass',
+  },
+  providers: [
+    {
+      provide: SHAPE_TOKEN,
+      useFactory: (component: ZapDropdown) => component.shape,
+      deps: [ZapDropdown],
+    },
+  ],
 })
 export class ZapDropdown implements AfterViewInit {
   @ViewChild('triggerRef', { read: ElementRef }) triggerRef!: ElementRef;
   @ViewChild('menuTemplate') menuTemplate!: TemplateRef<any>;
-
+  @Input() shape!: 'pill' | 'curve' | 'flat';
+  @Input() zapClass = '';
   overlayRef!: OverlayRef;
 
   constructor(

@@ -4,6 +4,7 @@ import {
   AfterViewInit,
   Component,
   ElementRef,
+  Input,
   TemplateRef,
   ViewChild,
   ViewContainerRef,
@@ -31,10 +32,14 @@ import {
     </ng-template>
   </div>`,
   styleUrl: './dropdown-menu-portal.component.scss',
+  host: {
+    '[class]': 'zapClass',
+  },
 })
 export class ZapDropdownMenuPortal implements AfterViewInit {
   @ViewChild('subTriggerRef', { read: ElementRef }) triggerRef!: ElementRef;
   @ViewChild('subMenuTemplate') menuTemplate!: TemplateRef<any>;
+  @Input() zapClass = '';
 
   overlayRef!: OverlayRef;
 

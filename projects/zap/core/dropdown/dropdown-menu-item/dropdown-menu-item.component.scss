@@ -1,7 +1,20 @@
 :host {
-  @apply flex items-center gap-x-5 sm:gap-x-10 w-full p-1.5 text-sm hover:bg-secondary/5 rounded-md select-none text-secondary/90 hover:text-secondary cursor-pointer;
+  @apply flex items-center gap-x-5 sm:gap-x-10 w-full p-1.5 text-sm bg-[var(--zap-dropdown-menu-item-bg-color)] hover:bg-[var(--zap-dropdown-menu-item-bg-hover-color)];
+  @apply rounded-[var(--zap-dropdown-menu-item-border-radius)] select-none text-[var(--zap-dropdown-menu-item-text-color)] hover:text-[var(--zap-dropdown-menu-item-text-hover-color)] cursor-pointer;
 
   &.disabled {
-    @apply pointer-events-none text-secondary/40;
+    @apply pointer-events-none text-[var(--zap-dropdown-menu-item-disabled-text-color)];
+  }
+
+  &.pill {
+    @apply rounded-2xl;
+  }
+
+  &.curve {
+    @apply rounded-lg;
+  }
+
+  &.flat {
+    @apply rounded-none;
   }
 }

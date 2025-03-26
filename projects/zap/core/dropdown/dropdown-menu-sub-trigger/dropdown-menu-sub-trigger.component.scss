@@ -1,11 +1,24 @@
 :host {
-  @apply flex items-center justify-between gap-x-5 sm:gap-x-10 w-full p-1.5 text-sm hover:bg-secondary/5 cursor-pointer select-none rounded-md  text-secondary/90 hover:text-secondary;
+  @apply flex items-center justify-between gap-x-5 sm:gap-x-10 w-full p-1.5 text-sm bg-[var(--zap-dropdown-menu-item-bg-color)] hover:bg-[var(--zap-dropdown-menu-item-bg-hover-color)];
+  @apply cursor-pointer select-none rounded-[var(--zap-dropdown-menu-item-border-radius)] text-[var(--zap-dropdown-menu-item-text-color)] hover:text-[var(--zap-dropdown-menu-item-text-hover-color)];
+
+  &.pill {
+    @apply rounded-2xl;
+  }
+
+  &.curve {
+    @apply rounded-lg;
+  }
+
+  &.flat {
+    @apply rounded-none;
+  }
 }
 
 svg {
   @apply h-3 w-3;
 
   path {
-    @apply fill-secondary/40;
+    @apply fill-[var(--zap-dropdown-menu-item-icon-color)];
   }
 }

@@ -21,5 +21,8 @@ export interface DropdownConfig {
       }
     >;
     menuBorderRadius?: string;
+    menuItemBorderRadius?: string;
+    menuMinWidth?: string;
+    menuSubMinWidth?: string;
   };
 }

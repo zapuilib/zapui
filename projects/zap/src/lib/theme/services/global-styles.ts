@@ -1851,6 +1851,14 @@ export function generateGlobalStylesVariables(theme: ZapTheme): string {
         label: 'menu-separator-color',
         value: hexToRgba(theme.colors.secondary, 0.1),
       },
+      {
+        label: 'menu-min-width',
+        value: '8rem',
+      },
+      {
+        label: 'menu-sub-min-width',
+        value: '8rem',
+      },
     ],
   };
   for (const [component, stylesArray] of Object.entries(styles)) {

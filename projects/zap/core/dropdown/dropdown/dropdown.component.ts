@@ -12,6 +12,7 @@ import { TemplatePortal } from '@angular/cdk/portal';
 import { A11yModule } from '@angular/cdk/a11y';
 
 import { SHAPE_TOKEN } from '../shape.token';
+import { positions } from '../position.constant';
 
 @Component({
   selector: 'zap-dropdown',
@@ -54,6 +55,8 @@ export class ZapDropdown implements AfterViewInit {
   @ViewChild('menuTemplate') menuTemplate!: TemplateRef<any>;
   @Input() shape!: 'pill' | 'curve' | 'flat';
   @Input() zapClass = '';
+  @Input() position: 'top-l' | 'top-r' | 'top' | 'bottom-l' | 'bottom-r' | 'bottom' | 'auto' =
+    'auto';
   overlayRef!: OverlayRef;
 
   constructor(
@@ -65,22 +68,7 @@ export class ZapDropdown implements AfterViewInit {
   ngAfterViewInit(): void {
     const positionStrategy = this.positionBuilder
       .flexibleConnectedTo(this.triggerRef)
-      .withPositions([
-        {
-          originX: 'end',
-          originY: 'bottom',
-          overlayX: 'end',
-          overlayY: 'top',
-          offsetY: 8,
-        },
-        {
-          originX: 'end',
-          originY: 'top',
-          overlayX: 'end',
-          overlayY: 'bottom',
-          offsetY: -8,
-        },
-      ])
+      .withPositions(positions[this.position])
       .withFlexibleDimensions(false)
       .withPush(false);
 

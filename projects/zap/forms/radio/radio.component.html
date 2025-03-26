@@ -1,7 +1,7 @@
 <div class="__zap__radio__wrapper" [ngClass]="classes">
   <div class="wrapper">
     @if (label) {
-      <p>{{ label }}</p>
+      <p [id]="id + '-label'">{{ label }}</p>
     } @else if (labelDirective) {
       <ng-content select="[zapLabel]"></ng-content>
     }

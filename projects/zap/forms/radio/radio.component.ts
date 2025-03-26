@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ContentChild, forwardRef, Input } from '@angular/core';
+import { AfterViewInit, Component, ContentChild, forwardRef, Input, OnInit } from '@angular/core';
 import { FormsModule, NG_VALUE_ACCESSOR, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
@@ -20,14 +20,24 @@ import { ZapLabelDirective } from '../public-api';
     },
   ],
 })
-export class ZapRadio<T> extends ControlValueAccessorDirective<T> implements AfterViewInit {
+export class ZapRadio<T> extends ControlValueAccessorDirective<T> implements OnInit, AfterViewInit {
   @Input() options: { name: string; value: string }[] = [];
+  @Input() id = '';
   @Input() label = '';
   @Input() customErrorMessages: Record<string, string> = {};
   @Input() zapClass = '';
   @Input() variant: 'vertical' | 'horizontal' = 'vertical';
   @ContentChild(ZapLabelDirective, { static: false })
   labelDirective!: ZapLabelDirective;
+
+  override ngOnInit(): void {
+    super.ngOnInit();
+    if (!this.id || this.id === '') {
+      console.warn(
+        '[ZapRadio] No id provided. This may cause accessibility issues. Please provide a unique id for the radio.',
+      );
+    }
+  }
 
   ngAfterViewInit() {
     if (this.labelDirective) {

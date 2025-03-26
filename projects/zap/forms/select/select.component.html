@@ -20,9 +20,7 @@
       (keydown.enter)="toggleOptionsList()"
       tabindex="0"
       [ngClass]="selectClasses">
-      @if (label) {
-        <legend class="sr-only">{{ label }}</legend>
-      }
+      <legend class="sr-only">{{ label ? label : placeholder ? placeholder : 'Input' }}</legend>
       @if (icon && iconPosition) {
         <i class="fa-solid __zap__form__control__icon" [ngClass]="[icon, iconPosition]"></i>
       } @else if (iconDirective) {

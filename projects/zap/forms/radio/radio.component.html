@@ -14,7 +14,10 @@
             [id]="radio.value"
             [formControl]="control"
             [value]="radio.value"
-            class="__zap__form__control__input" />
+            class="__zap__form__control__input"
+            (click)="control.setValue(radio.value)"
+            (keydown.enter)="control.setValue(radio.value)"
+            tabindex="0" />
 
           <label
             class="__zap__form__control__label"

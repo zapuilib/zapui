@@ -1,6 +1,6 @@
 # Changelog
 
-## 0.0.0-alpha.9
+## 0.0.0-alpha.9 `dev-alpha`
 
 - **New**: Dropdown component added.
 - **Feature**: Accessibility features added to components.
@@ -21,7 +21,7 @@
 - **Fixed**: Date picker select range styling issue resolved.
 - **Updated**: Date picker, Select, Dropdown, Dialog, Modal, and Tooltip now use Angular CDK for position handling. **Note**: Please download Angular CDK with `npm i @angular/cdk` to use the new version.
 
-## 0.0.0-alpha.8
+## 0.0.0-alpha.8 `latest`
 
 - **Fixed**: Checkbox shape and size are now working correctly.
 - **Fixed**: Input help text global styling is now working as expected.

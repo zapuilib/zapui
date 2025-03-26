@@ -139,6 +139,11 @@ export class ZapSelect<T>
     this.filteredOptions = [...this._options];
     this.handleDefaultValue();
     this.checkIfEmpty();
+    if (!this.id || this.id === '') {
+      console.warn(
+        '[ZapSelect] No id provided. This may cause accessibility issues. Please provide a unique id for the select.',
+      );
+    }
   }
 
   ngAfterViewInit() {

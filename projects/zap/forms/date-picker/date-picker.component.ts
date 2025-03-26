@@ -149,6 +149,11 @@ export class ZapDatePicker<T>
     this.setCurrentDate();
     this.updateCalendar();
     this.updateCurrentMonthAndYear();
+    if (!this.id || this.id === '') {
+      console.warn(
+        '[ZapDatePicker] No id provided. This may cause accessibility issues. Please provide a unique id for the date picker.',
+      );
+    }
   }
 
   ngAfterViewInit() {

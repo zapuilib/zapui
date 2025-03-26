@@ -5,6 +5,7 @@ import {
   EventEmitter,
   forwardRef,
   Input,
+  OnInit,
   Output,
 } from '@angular/core';
 import { FormsModule, NG_VALUE_ACCESSOR, ReactiveFormsModule } from '@angular/forms';
@@ -32,7 +33,7 @@ type InputType = 'password' | 'text' | 'number' | 'email' | 'tel';
     },
   ],
 })
-export class ZapInput<T> extends ControlValueAccessorDirective<T> implements AfterViewInit {
+export class ZapInput<T> extends ControlValueAccessorDirective<T> implements OnInit, AfterViewInit {
   @Output() iconClick: EventEmitter<void> = new EventEmitter<void>();
   @Input() type: InputType = 'text';
   @Input() label = '';
@@ -52,6 +53,15 @@ export class ZapInput<T> extends ControlValueAccessorDirective<T> implements Aft
   helpTextDirective!: ZapFormFieldHelpTextDirective;
   @ContentChild(ZapLabelDirective, { static: false })
   labelDirective!: ZapLabelDirective;
+
+  override ngOnInit(): void {
+    super.ngOnInit();
+    if (!this.id || this.id === '') {
+      console.warn(
+        '[ZapInput] No id provided. This may cause accessibility issues. Please provide a unique id for the input.',
+      );
+    }
+  }
 
   ngAfterViewInit() {
     if (this.iconDirective) {

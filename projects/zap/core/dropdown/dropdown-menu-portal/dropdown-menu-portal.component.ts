@@ -71,8 +71,9 @@ export class ZapDropdownMenuPortal implements AfterViewInit {
           offsetX: -8,
         },
       ])
-      .withFlexibleDimensions(false)
-      .withPush(false);
+      .withFlexibleDimensions(true)
+      .withViewportMargin(8)
+      .withPush(true);
 
     this.overlayRef = this.overlay.create({
       positionStrategy,

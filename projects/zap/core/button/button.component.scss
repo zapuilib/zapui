@@ -93,6 +93,11 @@ button {
 
   &.link {
     @apply underline;
+
+    i,
+    svg {
+      @apply no-underline;
+    }
   }
 
   img {

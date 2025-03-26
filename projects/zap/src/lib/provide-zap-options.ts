@@ -1,5 +1,5 @@
 import { APP_INITIALIZER, EnvironmentProviders, makeEnvironmentProviders } from '@angular/core';
-import { NGX_ZAP_CONFIG } from './tokens/zap.tokens';
+import { ZAP_CONFIG } from './tokens/zap.tokens';
 import { ZapConfig } from './interfaces/config.interface';
 import { ThemeService } from './theme.service';
 import { defaultConfig } from './constants/default-config.constant';
@@ -10,7 +10,7 @@ export function initializeTheme(themeService: ThemeService): () => void {
 
 export function provideZapOptions(config: ZapConfig = defaultConfig): EnvironmentProviders {
   return makeEnvironmentProviders([
-    { provide: NGX_ZAP_CONFIG, useValue: config },
+    { provide: ZAP_CONFIG, useValue: config },
     ThemeService,
     {
       provide: APP_INITIALIZER,

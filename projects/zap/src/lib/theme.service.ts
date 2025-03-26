@@ -1,9 +1,9 @@
 import { Inject, Injectable, Optional, PLATFORM_ID } from '@angular/core';
 import { DOCUMENT, isPlatformBrowser } from '@angular/common';
 
-import { NGX_ZAP_CONFIG } from './tokens/zap.tokens';
+import { ZAP_CONFIG } from './tokens/zap.tokens';
 import { GlobalConfig, ZapConfig, ZapTheme } from './interfaces';
-import { lightTheme, defaultConfig, darkTheme } from './constants/default-config.constant';
+import { zapLight, defaultConfig, zapDark } from './constants/default-config.constant';
 import { deepEqual } from './theme/utils/base-theme-utils';
 import { generateColorVariables } from './theme/utils/color-utils';
 import { generateFontSizeVariables } from './theme/utils/font-utils';
@@ -25,7 +25,7 @@ export class ThemeService {
   constructor(
     @Inject(DOCUMENT) private document: Document,
     @Inject(PLATFORM_ID) private platformId: object,
-    @Optional() @Inject(NGX_ZAP_CONFIG) private config: ZapConfig,
+    @Optional() @Inject(ZAP_CONFIG) private config: ZapConfig,
   ) {
     this.isBrowser = isPlatformBrowser(this.platformId);
 
@@ -71,13 +71,13 @@ export class ThemeService {
 
   private getTheme(theme: string): ZapTheme {
     if (theme === 'light') {
-      return lightTheme;
+      return zapLight;
     } else if (theme === 'dark') {
-      return darkTheme;
+      return zapDark;
     } else if (this.config.themeLibrary) {
       return this.config.themeLibrary[theme];
     } else {
-      return darkTheme;
+      return zapDark;
     }
   }
 

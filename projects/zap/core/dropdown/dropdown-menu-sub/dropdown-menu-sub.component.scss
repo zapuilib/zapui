@@ -1,0 +1,15 @@
+:host {
+  @apply animate-popup block border border-[var(--zap-dropdown-menu-border-color)] px-1 rounded-[var(--zap-dropdown-menu-border-radius)] bg-[var(--zap-dropdown-menu-bg-color)] min-w-[var(--zap-dropdown-menu-sub-min-width)];
+
+  &.flat {
+    @apply rounded-none;
+  }
+
+  &.pill {
+    @apply rounded-2xl;
+  }
+
+  &.curve {
+    @apply shadow-lg;
+  }
+}

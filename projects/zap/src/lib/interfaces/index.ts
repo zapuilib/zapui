@@ -7,6 +7,7 @@ export * from './chip.interface';
 export * from './common-styles.type';
 export * from './config.interface';
 export * from './dialog.interface';
+export * from './dropdown.interface';
 export * from './hexcode.type';
 export * from './input.interface';
 export * from './modal.interface';

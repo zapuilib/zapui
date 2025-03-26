@@ -15,4 +15,6 @@ export * from './toast/toast.interface';
 export * from './tooltip';
 export * from './accordion';
 
+export * from './dropdown';
+
 export * from './directives/icon.directive';

@@ -11,10 +11,8 @@
       #inputSelectValueHolder
       role="combobox"
       [id]="id"
-      [attr.aria-required]="required"
       [attr.aria-invalid]="control.invalid"
       [attr.aria-disabled]="control.disabled"
-      [attr.aria-readonly]="control.readonly"
       [attr.aria-expanded]="isOptionListOpen"
       aria-haspopup="listbox"
       [attr.aria-controls]="id + '-options'"
@@ -22,8 +20,8 @@
       [attr.aria-activedescendant]="hoveredOption ? id + '-option-' + hoveredOption : null"
       class="__zap__form__control__select"
       (click)="toggleOptionsList()"
-      (keydown)="handleKeydown($event)"
       tabindex="0"
+      (keydown.enter)="toggleOptionsList()"
       [ngClass]="selectClasses">
       <legend class="sr-only">{{ label ? label : placeholder ? placeholder : 'Input' }}</legend>
       @if (icon && iconPosition) {

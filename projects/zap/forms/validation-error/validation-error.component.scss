@@ -1,3 +1,3 @@
 .error {
-  @apply text-error;
+  @apply text-error text-[length:var(--zap-global-error-font-size)] font-[var(--zap-global-error-font-weight)] leading-[var(--zap-global-error-line-height)] tracking-[var(--zap-global-error-letter-spacing)];
 }

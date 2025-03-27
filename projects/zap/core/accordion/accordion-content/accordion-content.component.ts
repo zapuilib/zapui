@@ -1,6 +1,6 @@
-import { Component, Host, Optional } from '@angular/core';
+import { Component, Inject, Optional } from '@angular/core';
 
-import { ZapAccordionItem } from '../accordion-item/accordion-item.component';
+import { ACCORDION_ITEM_TOKEN, AccordionItemLike } from '../accordion.token';
 
 @Component({
   standalone: true,
@@ -17,8 +17,7 @@ import { ZapAccordionItem } from '../accordion-item/accordion-item.component';
   styleUrl: './accordion-content.component.scss',
 })
 export class ZapAccordionContent {
-  constructor(@Optional() @Host() public accordionItem: ZapAccordionItem) {}
-
+  constructor(@Optional() @Inject(ACCORDION_ITEM_TOKEN) public accordionItem: AccordionItemLike) {}
   get isOpen(): boolean {
     return this.accordionItem ? this.accordionItem.isOpen : false;
   }

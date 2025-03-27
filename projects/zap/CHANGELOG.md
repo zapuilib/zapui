@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.0.0-alpha.9.2 `dev-alpha`
+
+- **Enhanced**: Circular dependency fixed on accordion component
+- **Feature**: Global configuration added for `error` messages.
+
 ## 0.0.0-alpha.9.1 `dev-alpha`
 
 - **Updated**: Default theme naming changeed for premium extensions

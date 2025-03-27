@@ -3,15 +3,15 @@ import {
   Component,
   ContentChild,
   EventEmitter,
-  Host,
+  Inject,
   Input,
   Optional,
   Output,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { ZapAccordionItem } from '../accordion-item/accordion-item.component';
 import { ZapIconDirective } from '../../public-api';
+import { ACCORDION_ITEM_TOKEN, AccordionItemLike } from '../accordion.token';
 
 @Component({
   standalone: true,
@@ -73,8 +73,7 @@ export class ZapAccordionHeader implements AfterViewInit {
   @ContentChild(ZapIconDirective, { static: false })
   iconDirective!: ZapIconDirective;
 
-  constructor(@Optional() @Host() public accordionItem: ZapAccordionItem) {}
-
+  constructor(@Optional() @Inject(ACCORDION_ITEM_TOKEN) public accordionItem: AccordionItemLike) {}
   get isOpen(): boolean {
     return this.accordionItem ? this.accordionItem.isOpen : false;
   }

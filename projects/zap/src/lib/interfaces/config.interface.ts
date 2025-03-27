@@ -58,6 +58,10 @@ export interface GlobalConfig {
         scrollbarColor?: HexCode;
       }
     >;
+    errorFontSize?: string;
+    errorFontWeight?: string;
+    errorLineHeight?: string;
+    errorLetterSpacing?: string;
   };
 }
 

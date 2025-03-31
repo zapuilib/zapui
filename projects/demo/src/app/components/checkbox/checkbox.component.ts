@@ -11,4 +11,5 @@ import { ZapCheckbox } from 'zap/forms';
 })
 export class CheckboxComponent {
   checkboxControl = new FormControl({ value: false, disabled: false });
+  checked = false;
 }

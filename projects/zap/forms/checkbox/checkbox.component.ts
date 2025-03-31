@@ -42,7 +42,17 @@ export class ZapCheckbox<T>
   @Input() shape!: 'curve' | 'flat';
   @Input() size!: 'compact' | 'base';
   @Input() labelPosition: 'left' | 'right' = 'right';
-  @Input() checked = false;
+  @Input()
+  set checked(value: boolean) {
+    this._checked = value;
+    if (this.control && value !== this.control.value) {
+      this.control.setValue(value, { emitEvent: false }); // avoid loop
+    }
+  }
+  get checked(): boolean {
+    return this._checked;
+  }
+  private _checked = false;
   @ContentChild(ZapLabelDirective, { static: false })
   labelDirective!: ZapLabelDirective;
 
@@ -74,9 +84,7 @@ export class ZapCheckbox<T>
   }
 
   private setDefaultValue() {
-    if (this.checked) {
-      this.control.setValue(this.checked);
-    }
+    this.control.setValue(this.checked);
   }
 
   private handleLabelClick = () => {
@@ -93,7 +101,9 @@ export class ZapCheckbox<T>
   handleCheckboxChange(event: Event) {
     if (this.control.disabled) return;
     const checked = (event.target as HTMLInputElement).checked;
-    this.checked = checked;
+    this._checked = checked;
+
+    this.control.setValue(checked);
   }
 
   override ngOnDestroy() {

@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.0.0-alpha.9.3 `dev-alpha`
+
+- **Feature**: Checkbox now supports checked property
+
 ## 0.0.0-alpha.9.2 `dev-alpha`
 
 - **Enhanced**: Circular dependency fixed on accordion component

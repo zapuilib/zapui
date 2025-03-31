@@ -2,7 +2,7 @@
 
 ## 0.0.0-alpha.9.4 `dev-alpha`
 
-- **Feature**: Checkbox checked property bug fix
+- **Fix**: Checkbox checked property bug fix
 
 ## 0.0.0-alpha.9.3 `dev-alpha`
 

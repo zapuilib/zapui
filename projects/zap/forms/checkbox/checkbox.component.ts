@@ -42,11 +42,13 @@ export class ZapCheckbox<T>
   @Input() shape!: 'curve' | 'flat';
   @Input() size!: 'compact' | 'base';
   @Input() labelPosition: 'left' | 'right' = 'right';
+  @Input() checked = false;
   @ContentChild(ZapLabelDirective, { static: false })
   labelDirective!: ZapLabelDirective;
 
   override ngOnInit(): void {
     super.ngOnInit();
+    this.setDefaultValue();
     if (!this.id) {
       console.warn(
         '[ZapCheckbox] No id provided. This may cause accessibility issues. Please provide a unique id for the checkbox.',
@@ -71,6 +73,12 @@ export class ZapCheckbox<T>
     }
   }
 
+  private setDefaultValue() {
+    if (this.checked) {
+      this.control.setValue(this.checked);
+    }
+  }
+
   private handleLabelClick = () => {
     if (this.control.disabled) return;
     this.checkbox.nativeElement.click();
@@ -80,6 +88,12 @@ export class ZapCheckbox<T>
     return [this.shape, this.size, this.labelPosition, this.zapClass].filter(
       (cls) => cls && cls !== 'default',
     );
+  }
+
+  handleCheckboxChange(event: Event) {
+    if (this.control.disabled) return;
+    const checked = (event.target as HTMLInputElement).checked;
+    this.checked = checked;
   }
 
   override ngOnDestroy() {

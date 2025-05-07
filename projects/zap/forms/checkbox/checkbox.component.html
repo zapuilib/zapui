@@ -4,10 +4,10 @@
   [class.disabled]="control.disabled"
   role="group">
   <fieldset>
-    @if (label) {
-      <legend class="sr-only">{{ label }}</legend>
+    @if (label()) {
+      <legend class="sr-only">{{ label() }}</legend>
       <label
-        [for]="id"
+        [for]="id()"
         class="__zap__form__control__label"
         (click)="checkbox.click()"
         (keydown.enter)="checkbox.click()"
@@ -16,7 +16,7 @@
         role="checkbox"
         [attr.aria-checked]="control.value"
         [attr.aria-disabled]="control.disabled"
-        >{{ label }}</label
+        >{{ label() }}</label
       >
     } @else if (labelDirective) {
       <ng-content select="[zapLabel]"></ng-content>
@@ -24,13 +24,13 @@
     <div class="__zap__checkbox__wrapper" [class.checked]="control.value">
       <input
         #checkbox
-        [id]="id"
+        [id]="id()"
         type="checkbox"
         class="__zap__form__control__input"
         [formControl]="control"
-        [attr.aria-label]="label"
+        [attr.aria-label]="label()"
         [attr.aria-invalid]="control.invalid && control.touched"
-        [attr.aria-describedby]="control.invalid && control.touched ? id + '-error' : null"
+        [attr.aria-describedby]="control.invalid && control.touched ? id() + '-error' : null"
         (keydown.space)="$event.preventDefault(); checkbox.click()"
         (change)="handleCheckboxChange($event)" />
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
@@ -42,7 +42,7 @@
   @if (control.invalid && control.touched) {
     <validation-error
       [errors]="control.errors"
-      [zapClass]="zapClass"
-      [customErrorMessages]="customErrorMessages"></validation-error>
+      [zapClass]="zapClass()"
+      [customErrorMessages]="customErrorMessages()"></validation-error>
   }
 </div>

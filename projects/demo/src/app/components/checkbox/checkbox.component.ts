@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { ZapCheckbox } from 'zap/forms';
+import { ZapCheckbox, ZapLabelDirective } from 'zap/forms';
 
 @Component({
   selector: 'app-checkbox',
-  imports: [FormsModule, ReactiveFormsModule, ZapCheckbox],
+  imports: [FormsModule, ReactiveFormsModule, ZapCheckbox, ZapLabelDirective],
   templateUrl: './checkbox.component.html',
   styleUrl: './checkbox.component.scss',
 })

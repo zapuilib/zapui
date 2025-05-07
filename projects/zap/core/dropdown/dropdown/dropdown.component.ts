@@ -25,7 +25,7 @@ import { positions } from '../position.constant';
         role="button"
         tabindex="-1"
         aria-haspopup="true"
-        [attr.aria-expanded]="overlayRef?.hasAttached()"
+        [attr.aria-expanded]="overlayRef?.hasAttached() ? 'true' : 'false'"
         (keydown.arrowdown)="$event.preventDefault(); toggleMenu()"
         (keydown.arrowup)="$event.preventDefault(); toggleMenu()"
         (click)="$event.target !== $event.currentTarget && toggleMenu()">

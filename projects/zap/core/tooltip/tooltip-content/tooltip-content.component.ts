@@ -3,7 +3,6 @@ import { Component, ElementRef, Input, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'zap-tooltip-content',
-  standalone: true,
   imports: [CommonModule],
   template: `<div #content class="zap__tooltip__content" [ngClass]="classes">
     <ng-content></ng-content>

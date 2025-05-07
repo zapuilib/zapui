@@ -14,7 +14,6 @@ import { ZapScrollAreaDirective } from '../../directives/zap-scroll-area.directi
 
 @Component({
   selector: 'dp-calendar-select',
-  standalone: true,
   imports: [CommonModule, ZapScrollAreaDirective],
   templateUrl: './dp-calendar-select.component.html',
   styleUrl: './dp-calendar-select.component.scss',

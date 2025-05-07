@@ -17,7 +17,6 @@ import { A11yModule } from '@angular/cdk/a11y';
 
 @Component({
   selector: 'zap-modal',
-  standalone: true,
   imports: [CommonModule, PortalModule, A11yModule],
   templateUrl: './modal.component.html',
   styleUrls: ['./modal.component.scss'],

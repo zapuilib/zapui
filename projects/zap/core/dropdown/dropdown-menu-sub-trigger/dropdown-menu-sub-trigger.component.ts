@@ -4,7 +4,6 @@ import { SHAPE_TOKEN } from '../shape.token';
 
 @Component({
   selector: 'zap-dropdown-menu-sub-trigger',
-  standalone: true,
   imports: [],
   template: ` <ng-content />
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">

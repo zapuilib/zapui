@@ -5,7 +5,6 @@ import { ZapIconDirective } from '../directives/icon.directive';
 
 @Component({
   selector: 'zap-button',
-  standalone: true,
   imports: [CommonModule],
   templateUrl: './button.component.html',
   styleUrls: ['./button.component.scss'],

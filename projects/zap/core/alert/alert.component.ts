@@ -13,7 +13,6 @@ import { ZapIconDirective } from '../public-api';
 
 @Component({
   selector: 'zap-alert',
-  standalone: true,
   imports: [CommonModule],
   templateUrl: './alert.component.html',
   styleUrls: ['./alert.component.scss'],

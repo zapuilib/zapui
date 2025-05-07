@@ -4,7 +4,6 @@ import { ZapButton, ZapIconDirective } from 'zap/core';
 
 @Component({
   selector: 'app-theme-switcher',
-  standalone: true,
   imports: [ZapButton, ZapIconDirective],
   templateUrl: './theme-switcher.component.html',
   styleUrl: './theme-switcher.component.scss',

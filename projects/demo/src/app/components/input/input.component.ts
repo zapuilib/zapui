@@ -9,7 +9,6 @@ import {
 
 @Component({
   selector: 'app-input',
-  standalone: true,
   imports: [
     ZapInput,
     ZapLabelDirective,

@@ -4,7 +4,6 @@ import { ValidationErrors } from '@angular/forms';
 
 @Component({
   selector: 'validation-error',
-  standalone: true,
   imports: [CommonModule],
   templateUrl: './validation-error.component.html',
   styleUrls: ['./validation-error.component.scss'],

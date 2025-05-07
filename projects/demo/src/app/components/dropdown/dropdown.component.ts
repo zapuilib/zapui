@@ -16,7 +16,6 @@ import {
 
 @Component({
   selector: 'app-dropdown',
-  standalone: true,
   imports: [
     ZapButton,
     ZapDropdown,

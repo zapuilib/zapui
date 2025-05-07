@@ -19,7 +19,6 @@ import { A11yModule } from '@angular/cdk/a11y';
 
 @Component({
   selector: 'zap-dialog',
-  standalone: true,
   imports: [CommonModule, PortalModule, A11yModule],
   templateUrl: './dialog.component.html',
   styleUrls: ['./dialog.component.scss'],

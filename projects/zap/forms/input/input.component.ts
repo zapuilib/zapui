@@ -21,7 +21,6 @@ type InputType = 'password' | 'text' | 'number' | 'email' | 'tel';
 
 @Component({
   selector: 'zap-input',
-  standalone: true,
   imports: [CommonModule, FormsModule, ReactiveFormsModule, ValidationErrorComponent],
   templateUrl: 'input.component.html',
   styleUrls: ['input.component.scss'],

@@ -39,7 +39,6 @@ import { ZapScrollAreaDirective } from '../directives/zap-scroll-area.directive'
 
 @Component({
   selector: 'zap-select',
-  standalone: true,
   imports: [
     CommonModule,
     FormsModule,

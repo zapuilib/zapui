@@ -14,7 +14,6 @@ import { ZapIconDirective } from '../../public-api';
 import { ACCORDION_ITEM_TOKEN, AccordionItemLike } from '../accordion.token';
 
 @Component({
-  standalone: true,
   imports: [CommonModule],
   selector: 'zap-accordion-header',
   template: `<div

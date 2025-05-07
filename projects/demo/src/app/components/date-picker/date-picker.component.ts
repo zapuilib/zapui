@@ -4,7 +4,6 @@ import { ZapDatePicker, ZapDatePickerBreakpoints } from 'zap/forms';
 
 @Component({
   selector: 'app-date-picker',
-  standalone: true,
   imports: [FormsModule, ReactiveFormsModule, ZapDatePicker],
   templateUrl: './date-picker.component.html',
   styleUrl: './date-picker.component.scss',

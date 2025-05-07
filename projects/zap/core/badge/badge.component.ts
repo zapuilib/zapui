@@ -3,7 +3,6 @@ import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'zap-badge',
-  standalone: true,
   imports: [CommonModule],
   templateUrl: './badge.component.html',
   styleUrls: ['./badge.component.scss'],

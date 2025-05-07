@@ -16,7 +16,6 @@ import { positions } from '../position.constant';
 
 @Component({
   selector: 'zap-dropdown',
-  standalone: true,
   imports: [A11yModule],
   template: `
     <div>

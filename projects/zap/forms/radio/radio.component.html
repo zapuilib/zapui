@@ -1,12 +1,12 @@
 <div class="__zap__radio__wrapper" [ngClass]="classes">
   <div class="wrapper">
-    @if (label) {
-      <p [id]="id + '-label'">{{ label }}</p>
+    @if (label()) {
+      <p [id]="id() + '-label'">{{ label() }}</p>
     } @else if (labelDirective) {
       <ng-content select="[zapLabel]"></ng-content>
     }
     <div class="options__wrapper">
-      @for (radio of options; track radio) {
+      @for (radio of options(); track radio) {
         <fieldset>
           <legend class="sr-only">{{ radio.name }}</legend>
           <input
@@ -35,7 +35,7 @@
   @if (control.invalid && control.touched) {
     <validation-error
       [errors]="control.errors"
-      [zapClass]="zapClass"
-      [customErrorMessages]="customErrorMessages"></validation-error>
+      [zapClass]="zapClass()"
+      [customErrorMessages]="customErrorMessages()"></validation-error>
   }
 </div>

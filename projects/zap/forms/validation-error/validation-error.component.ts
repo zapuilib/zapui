@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, input, OnChanges, SimpleChanges } from '@angular/core';
 import { ValidationErrors } from '@angular/forms';
 
 @Component({
@@ -9,10 +9,10 @@ import { ValidationErrors } from '@angular/forms';
   styleUrls: ['./validation-error.component.scss'],
 })
 export class ValidationErrorComponent implements OnChanges {
-  @Input() errors: Record<string, ValidationErrors> | null = {};
-  @Input() customErrorMessages: Record<string, string> = {};
-  @Input() zapClass: any = ''; //change later
-  @Input() color = '';
+  errors = input<Record<string, ValidationErrors> | null>({});
+  customErrorMessages = input<Record<string, string> | null>({});
+  zapClass = input<string>();
+  color = input<string>();
   errorMessages: Record<string, string> = {
     required: 'This field is required.',
     minlength: 'Value is too short',

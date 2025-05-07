@@ -4,15 +4,15 @@ import {
   Component,
   ContentChild,
   ElementRef,
-  EventEmitter,
   forwardRef,
   HostListener,
   Inject,
   Injector,
-  Input,
+  input,
+  model,
   OnDestroy,
   OnInit,
-  Output,
+  output,
   TemplateRef,
   ViewChild,
 } from '@angular/core';
@@ -67,26 +67,31 @@ export class ZapDatePicker<T>
   @ViewChild('calendarPanel') calendarPanel!: TemplateRef<any>;
   @ViewChild('inputDateSelectValueHolder')
   inputDateSelectValueHolder!: ElementRef;
-  @Output() onChange: EventEmitter<T> = new EventEmitter<T>();
-  @Input() label = '';
-  @Input() id = '';
-  @Input() placeholder = 'Select';
-  @Input() shape!: 'pill' | 'curve' | 'flat';
-  @Input() size!: 'compact' | 'base' | 'wide';
-  @Input() position: 'top' | 'bottom' | 'auto' = 'auto';
-  @Input() customErrorMessages: Record<string, string> = {};
-  @Input() icon!: string;
-  @Input() iconPosition: 'left' | 'right' = 'right';
-  @Input() helpText = '';
-  @Input() breakpoints!: ZapDatePickerBreakpoints;
-  @Input() zapClass = '';
-  @Input() monthsPerView!: number;
-  @Input() maxPerRow!: number;
-  @Input() range = false;
-  @Input() dateFormat = 'MMM dd, yyyy';
-  @Input() locale = 'en-US';
-  @Input() dropdown = true;
-  @Input() months: string[] = [
+  @ContentChild(ZapFormFieldIconDirective, { static: false })
+  iconDirective!: ZapFormFieldIconDirective;
+  @ContentChild(ZapFormFieldHelpTextDirective, { static: false })
+  helpTextDirective!: ZapFormFieldHelpTextDirective;
+  @ContentChild(ZapLabelDirective, { static: false })
+  onChange = output<any>();
+  id = input.required<string>();
+  label = input<string>();
+  placeholder = input<string>('Select');
+  shape = input<'pill' | 'curve' | 'flat'>();
+  size = input<'compact' | 'base' | 'wide'>();
+  position = input<'top' | 'bottom' | 'auto'>('auto');
+  customErrorMessages = input<Record<string, string>>({});
+  icon = input<string>();
+  iconPosition = input<'left' | 'right'>('right');
+  helpText = input<string>('');
+  breakpoints = model<ZapDatePickerBreakpoints>();
+  zapClass = input<string>('');
+  monthsPerView = model<number>(1);
+  maxPerRow = model<number>(1);
+  range = input<boolean>(false);
+  dateFormat = input<string>('MMM dd, yyyy');
+  locale = input<string>('en-US');
+  dropdown = input<boolean>(true);
+  months = input<string[]>([
     'January',
     'February',
     'March',
@@ -99,22 +104,17 @@ export class ZapDatePicker<T>
     'October',
     'November',
     'December',
-  ];
-  @Input() daysOfWeek = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'];
-  @Input() years!: string[];
-  @Input() disableWeekends = false;
-  @Input() disableDates!: Date[];
-  @Input() disableRanges!: { startDate: Date; endDate: Date }[];
-  @Input() disableInactive = false;
-  @Input() minDate!: Date;
-  @Input() maxDate!: Date;
-  @Input() minYear!: number;
-  @Input() maxYear!: number;
-  @ContentChild(ZapFormFieldIconDirective, { static: false })
-  iconDirective!: ZapFormFieldIconDirective;
-  @ContentChild(ZapFormFieldHelpTextDirective, { static: false })
-  helpTextDirective!: ZapFormFieldHelpTextDirective;
-  @ContentChild(ZapLabelDirective, { static: false })
+  ]);
+  daysOfWeek = input<string[]>(['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa']);
+  years = model<string[]>([]);
+  disableWeekends = input<boolean>(false);
+  disableDates = input<Date[]>();
+  disableRanges = input<{ startDate: Date; endDate: Date }[]>([]);
+  disableInactive = input<boolean>(false);
+  minDate = input<Date>();
+  maxDate = input<Date>();
+  minYear = input<number>();
+  maxYear = input<number>();
   private overlayRef!: OverlayRef;
   labelDirective!: ZapLabelDirective;
   isCalendarOpen = false;
@@ -148,32 +148,27 @@ export class ZapDatePicker<T>
     this.setCurrentDate();
     this.updateCalendar();
     this.updateCurrentMonthAndYear();
-    if (!this.id || this.id === '') {
-      console.warn(
-        '[ZapDatePicker] No id provided. This may cause accessibility issues. Please provide a unique id for the date picker.',
-      );
-    }
   }
 
   ngAfterViewInit() {
     if (this.iconDirective) {
       this.iconDirective.el.nativeElement.style.height =
-        this.size === 'compact' ? '14px' : 'var(--zap-date-picker-icon-font-size)';
+        this.size() === 'compact' ? '14px' : 'var(--zap-date-picker-icon-font-size)';
       this.iconDirective.el.nativeElement.style.fontSize =
-        this.size === 'compact' ? '14px' : 'var(--zap-date-picker-icon-font-size)';
+        this.size() === 'compact' ? '14px' : 'var(--zap-date-picker-icon-font-size)';
       this.iconDirective.el.nativeElement.style.color = 'var(--zap-date-picker-icon-color)';
       this.iconDirective.el.nativeElement.style.marginRight =
-        this.iconPosition === 'left' ? '8px' : '0';
+        this.iconPosition() === 'left' ? '8px' : '0';
       this.iconDirective.el.nativeElement.style.marginLeft =
-        this.iconPosition === 'right' ? '8px' : '0';
-      this.iconDirective.el.nativeElement.style.order = this.iconPosition === 'right' ? '1' : '0';
+        this.iconPosition() === 'right' ? '8px' : '0';
+      this.iconDirective.el.nativeElement.style.order = this.iconPosition() === 'right' ? '1' : '0';
       this.iconDirective.el.nativeElement.style.position = 'absolute';
       this.iconDirective.el.nativeElement.style.top = '50%';
       this.iconDirective.el.nativeElement.style.transform = 'translateY(-50%)';
       this.iconDirective.el.nativeElement.style.left =
-        this.iconPosition === 'left' ? '0.75rem' : 'auto';
+        this.iconPosition() === 'left' ? '0.75rem' : 'auto';
       this.iconDirective.el.nativeElement.style.right =
-        this.iconPosition === 'right' ? '0.75rem' : 'auto';
+        this.iconPosition() === 'right' ? '0.75rem' : 'auto';
     }
 
     if (this.helpTextDirective) {
@@ -204,7 +199,7 @@ export class ZapDatePicker<T>
 
   private buildPositionStrategy(): FlexibleConnectedPositionStrategy {
     const positions: ConnectedPosition[] =
-      this.position === 'top'
+      this.position() === 'top'
         ? [
             {
               originX: 'start',
@@ -214,7 +209,7 @@ export class ZapDatePicker<T>
               offsetY: -8,
             },
           ]
-        : this.position === 'bottom'
+        : this.position() === 'bottom'
           ? [
               {
                 originX: 'start',
@@ -251,12 +246,12 @@ export class ZapDatePicker<T>
   }
 
   private setDefaultValue(): void {
-    if (this.control.value && !this.range) {
+    if (this.control.value && !this.range()) {
       this.selected = {
         startDate: new Date(this.control.value),
         endDate: new Date(this.control.value),
       };
-    } else if (this.control.value && this.range) {
+    } else if (this.control.value && this.range()) {
       this.selected = {
         startDate: new Date(this.control.value.startDate),
         endDate: new Date(this.control.value.endDate),
@@ -266,27 +261,27 @@ export class ZapDatePicker<T>
   }
 
   get selectedValue(): string {
-    if (!this.range) {
-      return formatDate(this.control.value, this.dateFormat, this.locale);
+    if (!this.range()) {
+      return formatDate(this.control.value, this.dateFormat(), this.locale());
     } else {
       return `${formatDate(
         this.control.value.startDate,
-        this.dateFormat,
-        this.locale,
-      )} - ${formatDate(this.control.value.endDate, this.dateFormat, this.locale)}`;
+        this.dateFormat(),
+        this.locale(),
+      )} - ${formatDate(this.control.value.endDate, this.dateFormat(), this.locale())}`;
     }
   }
 
   private setYears(): void {
     const currentYear = new Date().getFullYear();
-    const startYear = this.minYear ?? currentYear - 50;
-    const endYear = this.maxYear ?? currentYear + 50;
+    const startYear = this.minYear() ?? currentYear - 50;
+    const endYear = this.maxYear() ?? currentYear + 50;
 
     const years = Array.from({ length: endYear - startYear + 1 }, (_, index) =>
       (startYear + index).toString(),
     );
 
-    this.years = years;
+    this.years.set(years);
   }
 
   private setCurrentDate(): void {
@@ -303,7 +298,7 @@ export class ZapDatePicker<T>
 
   private updateCurrentMonthAndYear(): void {
     if (this.control.value) {
-      const date = this.range
+      const date = this.range()
         ? new Date(this.control.value.startDate)
         : new Date(this.control.value);
       this.currentDate = new Date(date.getFullYear(), date.getMonth(), 1);
@@ -330,25 +325,25 @@ export class ZapDatePicker<T>
   }
 
   private setDefaultsCalendarView(): void {
-    if (this.breakpoints) return;
-    this.breakpoints = {
+    if (this.breakpoints()) return;
+    this.breakpoints.set({
       default: {
-        monthsPerView: this.monthsPerView ? this.monthsPerView : this.range ? 2 : 1,
-        maxPerRow: this.maxPerRow ? this.maxPerRow : this.range ? 2 : 1,
+        monthsPerView: this.monthsPerView() ? this.monthsPerView() : this.range() ? 2 : 1,
+        maxPerRow: this.maxPerRow() ? this.maxPerRow() : this.range() ? 2 : 1,
       },
       '1024': {
         monthsPerView: 1,
         maxPerRow: 1,
       },
-    };
+    });
   }
 
   private handleBreakpoints(): void {
-    if (!this.breakpoints) return;
+    if (!this.breakpoints()) return;
     const width = window.innerWidth;
-    let matchedBreakpoint = this.breakpoints.default;
+    let matchedBreakpoint = this.breakpoints()?.default;
 
-    for (const breakpoint in this.breakpoints) {
+    for (const breakpoint in this.breakpoints()) {
       let breakPointWidth = breakpoint;
 
       const breakpointWidths: Record<string, number> = {
@@ -365,11 +360,11 @@ export class ZapDatePicker<T>
       }
 
       if (width <= parseInt(breakPointWidth)) {
-        matchedBreakpoint = this.breakpoints[breakpoint];
+        matchedBreakpoint = this.breakpoints()?.[breakpoint];
       }
     }
-    this.monthsPerView = matchedBreakpoint?.monthsPerView ?? 1;
-    this.maxPerRow = matchedBreakpoint?.maxPerRow ?? 1;
+    this.monthsPerView.set(matchedBreakpoint?.monthsPerView ?? 1);
+    this.maxPerRow.set(matchedBreakpoint?.maxPerRow ?? 1);
   }
 
   private resetCalendar(): void {
@@ -396,14 +391,14 @@ export class ZapDatePicker<T>
   }
 
   onChangeMonthAndYear({ month, year }: { month: string; year: number }): void {
-    this.currentDate = new Date(year, this.months.indexOf(month), 1);
+    this.currentDate = new Date(year, this.months().indexOf(month), 1);
     this.updateCalendar();
   }
 
   selectDate(dateRange: { startDate: Date | null; endDate: Date | null }): void {
     if (this.control.disabled) return;
     this.toggleCalendar();
-    if (!this.range) {
+    if (!this.range()) {
       this.selected = {
         startDate: new Date(dateRange.startDate!),
         endDate: new Date(dateRange.startDate!),
@@ -441,7 +436,7 @@ export class ZapDatePicker<T>
         scrollStrategy: this.overlay.scrollStrategies.reposition(),
         hasBackdrop: true,
         backdropClass: 'cdk-overlay-transparent-backdrop',
-        width: this.size === 'wide' ? inputWidth : 'auto',
+        width: this.size() === 'wide' ? inputWidth : 'auto',
       });
 
       const portal = new TemplatePortal(this.calendarPanel, this.vcr);
@@ -484,7 +479,7 @@ export class ZapDatePicker<T>
       'option-selected:',
       'option-hovered:',
     ];
-    return this.zapClass
+    return this.zapClass()
       .split(' ')
       .filter((cls) => prefixes.some((prefix) => cls.startsWith(prefix)))
       .join(' ');
@@ -492,16 +487,16 @@ export class ZapDatePicker<T>
 
   private generateClasses(prefixes: string[] = [''], exclude: string[] = ['']): string[] {
     return [
-      this.shape,
-      ...this.zapClass
+      this.shape() ?? '',
+      ...this.zapClass()
         .split(' ')
         .filter(
           (cls) =>
             prefixes.some((prefix) => cls.startsWith(prefix)) &&
             !exclude.some((ex) => cls.startsWith(ex)),
         ),
-      this.size,
-      this.iconPosition,
+      this.size() ?? '',
+      this.iconPosition(),
       this.control.disabled ? 'disabled' : '',
     ].filter((cls) => cls && cls !== 'default');
   }

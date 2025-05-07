@@ -1,6 +1,8 @@
 <div class="__zap__form__control" [ngClass]="classes">
-  @if (label) {
-    <label [for]="id" [id]="id + '-label'" class="__zap__form__control__label">{{ label }}</label>
+  @if (label()) {
+    <label [for]="id()" [id]="id() + '-label'" class="__zap__form__control__label">{{
+      label()
+    }}</label>
   } @else if (labelDirective) {
     <ng-content select="[zapLabel]"></ng-content>
   }
@@ -10,20 +12,22 @@
       class="__zap__form__control__date__picker"
       (click)="toggleCalendar()"
       (keydown.enter)="toggleCalendar()"
-      [id]="id"
+      [id]="id()"
       role="combobox"
       [attr.aria-expanded]="isCalendarOpen"
       aria-haspopup="dialog"
       aria-owns="calendar-popup"
       aria-controls="calendar-popup"
-      [attr.aria-labelledby]="label ? id + '-label' : null"
+      [attr.aria-labelledby]="label() ? id() + '-label' : null"
       [attr.aria-invalid]="control.invalid && control.touched"
       [attr.aria-describedby]="
-        (helpText ? id + '-helptext' : '') +
-        (control.invalid && control.touched ? ' ' + id + '-error' : '')
+        (helpText() ? id() + '-helptext' : '') +
+        (control.invalid && control.touched ? ' ' + id() + '-error' : '')
       "
       tabindex="0">
-      <legend class="sr-only">{{ label ? label : placeholder ? placeholder : 'Input' }}</legend>
+      <legend class="sr-only">
+        {{ label() ? label() : placeholder() ? placeholder() : 'Input' }}
+      </legend>
       @if (control.value) {
         <div aria-live="polite" class="sr-only">
           {{ selectedValue }}
@@ -33,12 +37,12 @@
         </span>
       } @else {
         <span class="__zap__form__control__placeholder">
-          {{ placeholder }}
+          {{ placeholder() }}
         </span>
       }
       <div class="handler">
-        @if (icon) {
-          <i [ngClass]="icon" class="__zap__form__control__icon"></i>
+        @if (icon()) {
+          <i [ngClass]="icon()" class="__zap__form__control__icon"></i>
         } @else if (iconDirective) {
           <ng-content select="[zapFormFieldIcon]"></ng-content>
         } @else {
@@ -58,28 +62,28 @@
     <ng-template #calendarPanel>
       <div class="__zap__form__control__calendar" cdkTrapFocus [cdkTrapFocusAutoCapture]="true">
         <dp-calendar
-          [id]="id + '-calendar'"
+          [id]="id() + '-calendar'"
           [weeks]="weeks"
           [currentMonth]="currentMonth"
           [currentYear]="currentYear"
           [currentDate]="currentDate"
           [selected]="selected"
-          [monthsPerView]="monthsPerView"
-          [maxPerRow]="maxPerRow"
-          [months]="months"
-          [daysOfWeek]="daysOfWeek"
-          [years]="years"
-          [range]="range"
-          [size]="size"
-          [shape]="shape"
-          [dropdown]="dropdown"
+          [monthsPerView]="monthsPerView()"
+          [maxPerRow]="maxPerRow()"
+          [months]="months()"
+          [daysOfWeek]="daysOfWeek()"
+          [years]="years()"
+          [range]="range()"
+          [size]="size()"
+          [shape]="shape()"
+          [dropdown]="dropdown()"
           [zapClass]="calendarClasses"
-          [disableWeekends]="disableWeekends"
-          [disableDates]="disableDates"
-          [disableRanges]="disableRanges"
-          [disableInactive]="disableInactive"
-          [minDate]="minDate"
-          [maxDate]="maxDate"
+          [disableWeekends]="disableWeekends()"
+          [disableDates]="disableDates()"
+          [disableRanges]="disableRanges()"
+          [disableInactive]="disableInactive()"
+          [minDate]="minDate()"
+          [maxDate]="maxDate()"
           (selectDate)="selectDate($event)"
           (previousMonth)="onPreviousMonth($event)"
           (nextMonth)="onNextMonth($event)"
@@ -87,17 +91,17 @@
       </div>
     </ng-template>
   </div>
-  @if (helpText) {
-    <p [id]="id + '-helptext'" class="__zap__form__control__help__text">{{ helpText }}</p>
+  @if (helpText()) {
+    <p [id]="id() + '-helptext'" class="__zap__form__control__help__text">{{ helpText() }}</p>
   } @else if (helpTextDirective) {
     <ng-content select="[zapFormFieldHelpText]"></ng-content>
   }
   @if (control.invalid && control.touched) {
-    <div class="mt-30" [id]="id + '-error'">
+    <div class="mt-30" [id]="id() + '-error'">
       <validation-error
         [errors]="control.errors"
-        [zapClass]="zapClass"
-        [customErrorMessages]="customErrorMessages"></validation-error>
+        [zapClass]="zapClass()"
+        [customErrorMessages]="customErrorMessages()"></validation-error>
     </div>
   }
 </div>

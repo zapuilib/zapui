@@ -3,10 +3,10 @@ import {
   ChangeDetectorRef,
   Component,
   ElementRef,
-  EventEmitter,
   HostListener,
-  Input,
-  Output,
+  input,
+  model,
+  output,
   ViewChild,
 } from '@angular/core';
 
@@ -20,11 +20,11 @@ import { ZapScrollAreaDirective } from '../../directives/zap-scroll-area.directi
 })
 export class DPCalendarSelect {
   @ViewChild('select') elementRef!: ElementRef;
-  @Output() selectOption: EventEmitter<string> = new EventEmitter<string>();
-  @Input() options!: string[];
-  @Input() selected!: string;
-  @Input() scrollToSelected = false;
-  @Input() shape!: 'pill' | 'curve' | 'flat';
+  selectOption = output<string>();
+  options = input<string[]>();
+  selected = model<string>();
+  scrollToSelected = input<boolean>(false);
+  shape = input<'pill' | 'curve' | 'flat' | undefined>();
   isOptionListOpen = false;
 
   @HostListener('document:click', ['$event'])
@@ -51,13 +51,13 @@ export class DPCalendarSelect {
     if (this.isOptionListOpen) {
       this.cdr.detectChanges();
     }
-    if (this.scrollToSelected && this.isOptionListOpen) {
+    if (this.scrollToSelected() && this.isOptionListOpen) {
       this.scrollToSelectedOption();
     }
   }
 
   handleSelectOption(option: string): void {
-    this.selected = option;
+    this.selected.set(option);
     this.selectOption.emit(option);
     this.toggleOptionList();
   }

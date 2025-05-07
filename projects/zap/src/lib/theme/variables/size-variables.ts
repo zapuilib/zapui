@@ -86,5 +86,13 @@ export function getSizeVariables(sizeValue: string, component: string): string {
     .map(([key, value]) => `--zap-${component}-${key}: ${value};`)
     .join('\n');
 
+  if (component === 'button') {
+    cssVariables +=
+      '\n' +
+      Object.entries(config[sizeValue as keyof typeof config])
+        .map(([key, value]) => `--zap-dialog-btn-${key}: ${value};`)
+        .join('\n');
+  }
+
   return cssVariables;
 }

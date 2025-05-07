@@ -131,6 +131,15 @@ export function getShapeVariable(shapeValue: string, component: string): string 
     });
   }
 
+  if (component === 'button') {
+    cssVariables += `--zap-dialog-primary-btn-border-radius: ${
+      shapeValue === 'flat' ? '0' : componentConfig[shapeValue as keyof typeof componentConfig]
+    };\n`;
+    cssVariables += `--zap-dialog-secondary-btn-border-radius: ${
+      shapeValue === 'flat' ? '0' : componentConfig[shapeValue as keyof typeof componentConfig]
+    };\n`;
+  }
+
   cssVariables += `--zap-${component}-border-radius: ${
     shapeValue === 'flat' ? '0' : componentConfig[shapeValue as keyof typeof componentConfig]
   };\n`;

@@ -72,7 +72,8 @@ export class ZapDatePicker<T>
   @ContentChild(ZapFormFieldHelpTextDirective, { static: false })
   helpTextDirective!: ZapFormFieldHelpTextDirective;
   @ContentChild(ZapLabelDirective, { static: false })
-  onChange = output<any>();
+  labelDirective!: ZapLabelDirective;
+  onChange = output<T>();
   id = input.required<string>();
   label = input<string>();
   placeholder = input<string>('Select');
@@ -116,7 +117,6 @@ export class ZapDatePicker<T>
   minYear = input<number>();
   maxYear = input<number>();
   private overlayRef!: OverlayRef;
-  labelDirective!: ZapLabelDirective;
   isCalendarOpen = false;
   weeks!: Date[][];
   currentDate!: Date;

@@ -8,7 +8,6 @@ import { ZapFormFieldHelpTextDirective, ZapLabelDirective } from '../public-api'
 
 @Component({
   selector: 'zap-toggle',
-  standalone: true,
   imports: [CommonModule, FormsModule, ReactiveFormsModule, ValidationErrorComponent],
   templateUrl: './toggle.component.html',
   styleUrls: ['./toggle.component.scss'],

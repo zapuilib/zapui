@@ -5,7 +5,6 @@ import { DISMISS_THRESHOLD } from './toast.constant';
 
 @Component({
   selector: 'zap-toast',
-  standalone: true,
   imports: [CommonModule],
   templateUrl: './toast.component.html',
   styleUrl: './toast.component.scss',

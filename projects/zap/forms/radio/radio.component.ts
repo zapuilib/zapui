@@ -8,7 +8,6 @@ import { ZapLabelDirective } from '../public-api';
 
 @Component({
   selector: 'zap-radio',
-  standalone: true,
   imports: [CommonModule, FormsModule, ReactiveFormsModule, ValidationErrorComponent],
   templateUrl: './radio.component.html',
   styleUrls: ['./radio.component.scss'],

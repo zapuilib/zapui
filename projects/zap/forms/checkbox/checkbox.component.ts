@@ -18,7 +18,6 @@ import { ZapLabelDirective } from '../public-api';
 
 @Component({
   selector: 'zap-checkbox',
-  standalone: true,
   imports: [CommonModule, FormsModule, ReactiveFormsModule, ValidationErrorComponent],
   templateUrl: './checkbox.component.html',
   styleUrls: ['./checkbox.component.scss'],

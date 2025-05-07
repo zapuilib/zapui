@@ -12,7 +12,6 @@ import {
 
 @Component({
   selector: 'zap-dropdown-menu-portal',
-  standalone: true,
   imports: [],
   template: ` <div>
     <div

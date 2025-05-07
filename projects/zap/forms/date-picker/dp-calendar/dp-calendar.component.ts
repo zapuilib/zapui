@@ -6,7 +6,6 @@ import { DPCalendarSelect } from '../dp-calendar-select/dp-calendar-select.compo
 
 @Component({
   selector: 'dp-calendar',
-  standalone: true,
   imports: [CommonModule, DPCalendarSelect, A11yModule],
   templateUrl: './dp-calendar.component.html',
   styleUrl: './dp-calendar.component.scss',

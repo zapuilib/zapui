@@ -5,7 +5,6 @@ import { ZapAccordionHeader } from '../accordion-header/accordion-header.compone
 import { ACCORDION_ITEM_TOKEN } from '../accordion.token';
 
 @Component({
-  standalone: true,
   imports: [CommonModule],
   selector: 'zap-accordion-item',
   template: `<div

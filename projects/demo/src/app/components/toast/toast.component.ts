@@ -3,7 +3,6 @@ import { ZapButton, ZapToast, ZapToastService } from 'zap/core';
 
 @Component({
   selector: 'app-toast',
-  standalone: true,
   imports: [ZapToast, ZapButton],
   templateUrl: './toast.component.html',
   styleUrl: './toast.component.scss',

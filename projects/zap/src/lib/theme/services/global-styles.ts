@@ -284,6 +284,22 @@ export function generateGlobalStylesVariables(theme: ZapTheme): string {
         value: hexToRgba(theme.colors.secondary, 0.7),
       },
       {
+        label: 'btn-padding-left',
+        value: '1rem',
+      },
+      {
+        label: 'btn-padding-right',
+        value: '1rem',
+      },
+      {
+        label: 'btn-padding-top',
+        value: '0.5rem',
+      },
+      {
+        label: 'btn-padding-bottom',
+        value: '0.5rem',
+      },
+      {
         label: 'primary-btn-bg-color',
         value: theme.colors.error,
       },

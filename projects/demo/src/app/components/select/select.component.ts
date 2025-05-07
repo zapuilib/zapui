@@ -4,7 +4,6 @@ import { ZapFormFieldHelpTextDirective, ZapFormFieldIconDirective, ZapSelect } f
 
 @Component({
   selector: 'app-select',
-  standalone: true,
   imports: [
     FormsModule,
     ReactiveFormsModule,

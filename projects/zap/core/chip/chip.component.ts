@@ -4,7 +4,6 @@ import { ZapIconDirective } from '../public-api';
 
 @Component({
   selector: 'zap-chip',
-  standalone: true,
   imports: [CommonModule],
   templateUrl: './chip.component.html',
   styleUrls: ['./chip.component.scss'],

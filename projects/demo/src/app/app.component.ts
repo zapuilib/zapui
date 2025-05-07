@@ -22,7 +22,6 @@ import { DropdownComponent } from './components/dropdown/dropdown.component';
 
 @Component({
   selector: 'app-root',
-  standalone: true,
   imports: [
     CommonModule,
     ButtonComponent,

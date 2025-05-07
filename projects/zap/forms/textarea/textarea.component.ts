@@ -8,7 +8,6 @@ import { ZapFormFieldHelpTextDirective, ZapLabelDirective } from '../public-api'
 
 @Component({
   selector: 'zap-textarea',
-  standalone: true,
   imports: [CommonModule, FormsModule, ReactiveFormsModule, ValidationErrorComponent],
   templateUrl: './textarea.component.html',
   styleUrls: ['./textarea.component.scss'],

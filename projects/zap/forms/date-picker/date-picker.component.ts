@@ -42,7 +42,6 @@ import {
 
 @Component({
   selector: 'zap-date-picker',
-  standalone: true,
   imports: [
     CommonModule,
     FormsModule,

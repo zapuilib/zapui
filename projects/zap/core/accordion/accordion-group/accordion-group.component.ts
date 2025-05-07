@@ -2,7 +2,6 @@ import { AfterViewInit, Component, ContentChildren, Input, QueryList } from '@an
 import { ZapAccordionItem } from '../accordion-item/accordion-item.component';
 
 @Component({
-  standalone: true,
   imports: [],
   selector: 'zap-accordion-group',
   template: `<div class="__zap__accordion__group">

@@ -4,7 +4,6 @@ import { ZapCheckbox } from 'zap/forms';
 
 @Component({
   selector: 'app-checkbox',
-  standalone: true,
   imports: [FormsModule, ReactiveFormsModule, ZapCheckbox],
   templateUrl: './checkbox.component.html',
   styleUrl: './checkbox.component.scss',

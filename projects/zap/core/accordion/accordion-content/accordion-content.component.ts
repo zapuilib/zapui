@@ -3,7 +3,6 @@ import { Component, Inject, Optional } from '@angular/core';
 import { ACCORDION_ITEM_TOKEN, AccordionItemLike } from '../accordion.token';
 
 @Component({
-  standalone: true,
   imports: [],
   selector: 'zap-accordion-content',
   template: `<div

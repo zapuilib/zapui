@@ -4,7 +4,6 @@ import { ZapToggle } from 'zap/forms';
 
 @Component({
   selector: 'app-toggle',
-  standalone: true,
   imports: [ZapToggle, ReactiveFormsModule, FormsModule],
   templateUrl: './toggle.component.html',
   styleUrl: './toggle.component.scss',

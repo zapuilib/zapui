@@ -1,4 +1,4 @@
-import { Component, ContentChild, Input, forwardRef, AfterViewInit, OnInit } from '@angular/core';
+import { Component, ContentChild, forwardRef, AfterViewInit, OnInit, input } from '@angular/core';
 import { FormsModule, NG_VALUE_ACCESSOR, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
@@ -23,23 +23,18 @@ export class ZapToggle<T>
   extends ControlValueAccessorDirective<T>
   implements OnInit, AfterViewInit
 {
-  @Input() id = '';
-  @Input() label = '';
-  @Input() helpText = '';
-  @Input() zapClass = '';
-  @Input() customErrorMessages: Record<string, string> = {};
   @ContentChild(ZapLabelDirective, { static: false })
   labelDirective!: ZapLabelDirective;
   @ContentChild(ZapFormFieldHelpTextDirective, { static: false })
   helpTextDirective!: ZapFormFieldHelpTextDirective;
+  id = input.required<string>();
+  label = input<string>();
+  helpText = input<string>();
+  zapClass = input<string>();
+  customErrorMessages = input<Record<string, string>>({});
 
   override ngOnInit(): void {
     super.ngOnInit();
-    if (!this.id || this.id === '') {
-      console.warn(
-        '[ZapToggle] No id provided. This may cause accessibility issues. Please provide a unique id for the toggle.',
-      );
-    }
   }
 
   handleToggle(): void {

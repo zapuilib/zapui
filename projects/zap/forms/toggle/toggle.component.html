@@ -1,17 +1,19 @@
-<div class="__zap__toggle__wrapper" [ngClass]="[zapClass, label || helpText ? 'between' : 'start']">
+<div
+  class="__zap__toggle__wrapper"
+  [ngClass]="[zapClass() || '', label() || helpText() ? 'between' : 'start']">
   <div class="wrapper">
-    @if (label || labelDirective || helpText || helpTextDirective) {
+    @if (label() || labelDirective || helpText() || helpTextDirective) {
       <div class="content-wrapper">
         <div class="lable-wrapper">
-          @if (label) {
-            <label [for]="id">
-              {{ label }}
+          @if (label()) {
+            <label [for]="id()">
+              {{ label() }}
             </label>
           } @else if (labelDirective) {
             <ng-content select="[zapLabel]"></ng-content>
           }
-          @if (helpText) {
-            <p class="__zap__form__control__help__text">{{ helpText }}</p>
+          @if (helpText()) {
+            <p class="__zap__form__control__help__text">{{ helpText() }}</p>
           } @else if (helpTextDirective) {
             <ng-content select="[zapFormFieldHelpText]"></ng-content>
           }
@@ -20,13 +22,15 @@
     }
 
     <button
+      type="button"
+      [id]="id()"
       tabindex="0"
       (click)="handleToggle()"
       (blur)="handleFocus()"
       [attr.aria-disabled]="control.disabled"
       [disabled]="control.disabled"
       [class.on]="this.control.value">
-      <span class="sr-only">{{ label || helpText }}</span>
+      <span class="sr-only">{{ label() || helpText() }}</span>
       <span class="roller" [ngClass]="[this.control.value ? 'on' : 'off']"></span>
     </button>
   </div>
@@ -34,7 +38,7 @@
   @if (control.invalid && control.touched) {
     <validation-error
       [errors]="control.errors"
-      [zapClass]="zapClass"
-      [customErrorMessages]="customErrorMessages"></validation-error>
+      [zapClass]="zapClass()"
+      [customErrorMessages]="customErrorMessages()"></validation-error>
   }
 </div>

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ZapToggle } from 'zap/forms';
 
 @Component({
@@ -9,8 +9,11 @@ import { ZapToggle } from 'zap/forms';
   styleUrl: './toggle.component.scss',
 })
 export class ToggleComponent {
-  toggleControl: FormControl = new FormControl({
-    value: false,
-    disabled: false,
-  });
+  toggleControl: FormControl = new FormControl(
+    {
+      value: false,
+      disabled: false,
+    },
+    Validators.required,
+  );
 }

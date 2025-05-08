@@ -39,6 +39,7 @@ import {
   ZapFormFieldIconDirective,
   ZapLabelDirective,
 } from '../public-api';
+import { RequiredIndicatorComponent } from '../required-indicator/required-indicator.component';
 
 @Component({
   selector: 'zap-date-picker',
@@ -49,6 +50,7 @@ import {
     ValidationErrorComponent,
     DPCalendar,
     A11yModule,
+    RequiredIndicatorComponent,
   ],
   templateUrl: './date-picker.component.html',
   styleUrl: './date-picker.component.scss',
@@ -116,6 +118,7 @@ export class ZapDatePicker<T>
   maxDate = input<Date>();
   minYear = input<number>();
   maxYear = input<number>();
+  indicator = input<boolean>(true);
   private overlayRef!: OverlayRef;
   isCalendarOpen = false;
   weeks!: Date[][];

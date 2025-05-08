@@ -5,10 +5,17 @@ import { CommonModule } from '@angular/common';
 import { ControlValueAccessorDirective } from '../directives/control-value-accessor.directive';
 import { ValidationErrorComponent } from '../validation-error/validation-error.component';
 import { ZapLabelDirective } from '../public-api';
+import { RequiredIndicatorComponent } from '../required-indicator/required-indicator.component';
 
 @Component({
   selector: 'zap-radio',
-  imports: [CommonModule, FormsModule, ReactiveFormsModule, ValidationErrorComponent],
+  imports: [
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    ValidationErrorComponent,
+    RequiredIndicatorComponent,
+  ],
   templateUrl: './radio.component.html',
   styleUrls: ['./radio.component.scss'],
   providers: [
@@ -28,6 +35,7 @@ export class ZapRadio<T> extends ControlValueAccessorDirective<T> implements OnI
   customErrorMessages = input<Record<string, string>>({});
   zapClass = input<string>('');
   variant = input<'vertical' | 'horizontal'>('vertical');
+  indicator = input<boolean>(true);
 
   override ngOnInit(): void {
     super.ngOnInit();

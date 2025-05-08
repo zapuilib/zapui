@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ZapTextarea, ZapFormFieldHelpTextDirective } from 'zap/forms';
 
 @Component({
@@ -8,4 +8,6 @@ import { ZapTextarea, ZapFormFieldHelpTextDirective } from 'zap/forms';
   templateUrl: './textarea.component.html',
   styleUrl: './textarea.component.scss',
 })
-export class TextareaComponent {}
+export class TextareaComponent {
+  control = new FormControl('', [Validators.required]);
+}

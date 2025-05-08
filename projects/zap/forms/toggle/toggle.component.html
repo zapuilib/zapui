@@ -8,6 +8,9 @@
           @if (label()) {
             <label [for]="id()">
               {{ label() }}
+              @if (isRequired && indicator()) {
+                <required-indicator />
+              }
             </label>
           } @else if (labelDirective) {
             <ng-content select="[zapLabel]"></ng-content>

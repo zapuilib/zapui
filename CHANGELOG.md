@@ -1,23 +1,55 @@
 # Changelog
 
-## 0.0.0-alpha.9.4 `dev-alpha`
+## 📦 0.0.0-alpha.9.5 — `dev-alpha`
+
+### ✨ Features
+
+- **Required Indicator for Form Fields**  
+  All form fields now display a required indicator if the field is marked as `required`.  
+  You can disable this by setting the `indicator` property to `false`.
+
+### 🛠 Fixes
+
+- **Global Dialog Button Configuration Fixed**  
+  Global configuration for dialog buttons now behaves as expected.
+- **Dropdown Expression Change Issue Resolved**  
+  Fixed an issue where dropdowns caused `ExpressionChangedAfterItHasBeenCheckedError`.
+
+- **Date Picker Sizing Works Properly**  
+  The `size` property is now respected for the date picker component.
+
+### 🚀 Enhancements
+
+- **Signals for Inputs and Outputs**  
+  All `@Input()` and `@Output()` decorators are now implemented using Angular **signals**.
+
+- **Required `id` Property on Form Fields**  
+  The `id` property is now mandatory on form field components — previously this triggered only a warning.
+
+### ⚠️ Breaking Changes
+
+- **Dropped Support for Angular 16 and 17**  
+  This version no longer supports Angular 16 or 17.  
+  Minimum supported version is now Angular 18.
+
+## 0.0.0-alpha.9.4
 
 - **Fix**: Checkbox checked property bug fix
 
-## 0.0.0-alpha.9.3 `dev-alpha`
+## 0.0.0-alpha.9.3
 
 - **Feature**: Checkbox now supports checked property
 
-## 0.0.0-alpha.9.2 `dev-alpha`
+## 0.0.0-alpha.9.2
 
 - **Enhanced**: Circular dependency fixed on accordion component
 - **Feature**: Global configuration added for `error` messages.
 
-## 0.0.0-alpha.9.1 `dev-alpha`
+## 0.0.0-alpha.9.1
 
 - **Updated**: Default theme naming changeed for premium extensions
 
-## 0.0.0-alpha.9 `dev-alpha`
+## 0.0.0-alpha.9
 
 - **New**: Dropdown component added.
 - **Feature**: Accessibility features added to components.

@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, input } from '@angular/core';
 
 @Component({
   selector: 'zap-badge',
@@ -8,17 +8,17 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./badge.component.scss'],
 })
 export class ZapBadge {
-  @Input() variant: 'empty' | 'default' | 'outlined' = 'default';
-  @Input() type: 'default' | 'info' | 'success' | 'warning' | 'error' = 'default';
-  @Input() count = 0;
-  @Input() zapClass = '';
+  variant = input<'empty' | 'default' | 'outlined'>('default');
+  type = input<'default' | 'info' | 'success' | 'warning' | 'error'>('default');
+  count = input<number>(0);
+  zapClass = input<string>('');
 
   getContent(): string | null {
-    if (this.variant === 'empty') return null;
-    return this.count > 99 ? '99+' : this.count.toString();
+    if (this.variant() === 'empty') return null;
+    return this.count() > 99 ? '99+' : this.count().toString();
   }
 
   get classes(): string[] {
-    return [this.type, this.variant, this.zapClass].filter((cls) => cls && cls !== 'default');
+    return [this.type(), this.variant(), this.zapClass()].filter((cls) => cls && cls !== 'default');
   }
 }

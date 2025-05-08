@@ -16,12 +16,19 @@ import { ValidationErrorComponent } from '../validation-error/validation-error.c
 import { ZapFormFieldIconDirective } from '../directives/icon.directive';
 import { ZapFormFieldHelpTextDirective } from '../directives/help-text.directive';
 import { ZapLabelDirective } from '../directives/label.directive';
+import { RequiredIndicatorComponent } from '../required-indicator/required-indicator.component';
 
 type InputType = 'password' | 'text' | 'number' | 'email' | 'tel';
 
 @Component({
   selector: 'zap-input',
-  imports: [CommonModule, FormsModule, ReactiveFormsModule, ValidationErrorComponent],
+  imports: [
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    ValidationErrorComponent,
+    RequiredIndicatorComponent,
+  ],
   templateUrl: 'input.component.html',
   styleUrls: ['input.component.scss'],
   providers: [
@@ -55,7 +62,7 @@ export class ZapInput<T>
   iconPosition = input<'left' | 'right'>('left');
   autoComplete = input<string>('off');
   helpText = input<string>('');
-
+  indicator = input<boolean>(true);
   override ngOnInit(): void {
     super.ngOnInit();
   }

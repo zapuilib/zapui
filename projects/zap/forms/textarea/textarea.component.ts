@@ -5,10 +5,17 @@ import { CommonModule } from '@angular/common';
 import { ControlValueAccessorDirective } from '../directives/control-value-accessor.directive';
 import { ValidationErrorComponent } from '../validation-error/validation-error.component';
 import { ZapFormFieldHelpTextDirective, ZapLabelDirective } from '../public-api';
+import { RequiredIndicatorComponent } from '../required-indicator/required-indicator.component';
 
 @Component({
   selector: 'zap-textarea',
-  imports: [CommonModule, FormsModule, ReactiveFormsModule, ValidationErrorComponent],
+  imports: [
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    ValidationErrorComponent,
+    RequiredIndicatorComponent,
+  ],
   templateUrl: './textarea.component.html',
   styleUrls: ['./textarea.component.scss'],
   providers: [
@@ -36,6 +43,7 @@ export class ZapTextarea<T>
   placeholder = input<string>('');
   resize = input<'none' | 'vertical' | 'horizontal' | 'auto'>('none');
   helpText = input<string>('');
+  indicator = input<boolean>(true);
 
   override ngOnInit(): void {
     super.ngOnInit();

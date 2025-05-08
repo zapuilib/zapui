@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ZapCheckbox, ZapLabelDirective } from 'zap/forms';
 
 @Component({
@@ -9,6 +9,6 @@ import { ZapCheckbox, ZapLabelDirective } from 'zap/forms';
   styleUrl: './checkbox.component.scss',
 })
 export class CheckboxComponent {
-  checkboxControl = new FormControl({ value: false, disabled: false });
+  checkboxControl = new FormControl({ value: false, disabled: false }, [Validators.required]);
   checked = false;
 }

@@ -16,10 +16,17 @@ import { CommonModule } from '@angular/common';
 import { ControlValueAccessorDirective } from '../directives/control-value-accessor.directive';
 import { ValidationErrorComponent } from '../validation-error/validation-error.component';
 import { ZapLabelDirective } from '../public-api';
+import { RequiredIndicatorComponent } from '../required-indicator/required-indicator.component';
 
 @Component({
   selector: 'zap-checkbox',
-  imports: [CommonModule, FormsModule, ReactiveFormsModule, ValidationErrorComponent],
+  imports: [
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    ValidationErrorComponent,
+    RequiredIndicatorComponent,
+  ],
   templateUrl: './checkbox.component.html',
   styleUrls: ['./checkbox.component.scss'],
   providers: [
@@ -45,6 +52,7 @@ export class ZapCheckbox<T>
   size = input<'compact' | 'base'>();
   labelPosition = input<'left' | 'right'>('right');
   checked = model<boolean>(false);
+  indicator = input<boolean>(true);
 
   override ngOnInit(): void {
     super.ngOnInit();

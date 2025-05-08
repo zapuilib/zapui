@@ -37,6 +37,7 @@ import {
   ZapLabelDirective,
 } from '../public-api';
 import { ZapScrollAreaDirective } from '../directives/zap-scroll-area.directive';
+import { RequiredIndicatorComponent } from '../required-indicator/required-indicator.component';
 
 @Component({
   selector: 'zap-select',
@@ -46,6 +47,7 @@ import { ZapScrollAreaDirective } from '../directives/zap-scroll-area.directive'
     ReactiveFormsModule,
     ValidationErrorComponent,
     ZapScrollAreaDirective,
+    RequiredIndicatorComponent,
   ],
   templateUrl: './select.component.html',
   styleUrls: ['./select.component.scss'],
@@ -92,6 +94,7 @@ export class ZapSelect<T>
   position = input<'top' | 'bottom' | 'auto'>('auto');
   helpText = input<string>('');
   options = model<{ label: string; value: any; [key: string]: any }[]>([]);
+  indicator = input<boolean>(true);
   private overlayRef!: OverlayRef;
   isOptionListOpen = false;
   hoveredOption = '';

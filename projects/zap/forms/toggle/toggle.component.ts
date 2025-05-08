@@ -5,10 +5,17 @@ import { CommonModule } from '@angular/common';
 import { ControlValueAccessorDirective } from '../directives/control-value-accessor.directive';
 import { ValidationErrorComponent } from '../validation-error/validation-error.component';
 import { ZapFormFieldHelpTextDirective, ZapLabelDirective } from '../public-api';
+import { RequiredIndicatorComponent } from '../required-indicator/required-indicator.component';
 
 @Component({
   selector: 'zap-toggle',
-  imports: [CommonModule, FormsModule, ReactiveFormsModule, ValidationErrorComponent],
+  imports: [
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    ValidationErrorComponent,
+    RequiredIndicatorComponent,
+  ],
   templateUrl: './toggle.component.html',
   styleUrls: ['./toggle.component.scss'],
   providers: [
@@ -32,6 +39,7 @@ export class ZapToggle<T>
   helpText = input<string>();
   zapClass = input<string>();
   customErrorMessages = input<Record<string, string>>({});
+  indicator = input<boolean>(true);
 
   override ngOnInit(): void {
     super.ngOnInit();

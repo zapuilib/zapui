@@ -1,6 +1,6 @@
 <ng-template cdkPortal>
   <div [ngClass]="overlayClasses">
-    @if (showOverlay) {
+    @if (showOverlay()) {
       <div
         class="__zap__overlay"
         (click)="handleClose()"

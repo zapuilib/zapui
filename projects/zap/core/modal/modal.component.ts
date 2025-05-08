@@ -5,10 +5,9 @@ import {
   AfterViewInit,
   ViewChild,
   ElementRef,
-  Input,
-  Output,
-  EventEmitter,
   HostListener,
+  output,
+  input,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Overlay, OverlayRef } from '@angular/cdk/overlay';
@@ -24,11 +23,11 @@ import { A11yModule } from '@angular/cdk/a11y';
 export class ZapModal implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild(CdkPortal) portalContent!: CdkPortal;
   @ViewChild('modalContent') modalContent!: ElementRef;
-  @Output() close: EventEmitter<void> = new EventEmitter<void>();
-  @Input() shape!: 'curve' | 'flat' | 'pill';
-  @Input() size: 'tight' | 'compact' | 'base' | 'wide' | 'full' = 'tight';
-  @Input() zapClass = '';
-  @Input() showOverlay = false;
+  close = output();
+  shape = input<'curve' | 'flat' | 'pill'>();
+  size = input<'tight' | 'compact' | 'base' | 'wide' | 'full'>('tight');
+  zapClass = input<string>('');
+  showOverlay = input<boolean>(false);
   @HostListener('document:keydown', ['$event'])
   handleEsc(event: KeyboardEvent): void {
     if (event.key === 'Escape' || event.code === 'Escape') {
@@ -75,11 +74,15 @@ export class ZapModal implements OnInit, AfterViewInit, OnDestroy {
   }
 
   get classes(): string[] {
-    return [this.shape, this.size, this.zapClass].filter((cls) => cls && cls !== 'default');
+    return [this.shape() ?? '', this.size(), this.zapClass()].filter(
+      (cls) => cls && cls !== 'default',
+    );
   }
 
   get overlayClasses(): string[] {
-    return this.zapClass.split(' ').filter((cls) => cls.startsWith('overlay:'));
+    return this.zapClass()
+      .split(' ')
+      .filter((cls) => cls.startsWith('overlay:'));
   }
 
   ngOnDestroy(): void {

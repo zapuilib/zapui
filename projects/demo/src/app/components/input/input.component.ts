@@ -23,4 +23,8 @@ import {
 export class InputComponent {
   usernameControl = new FormControl({ value: '', disabled: false }, [Validators.required]);
   usernameControl2 = new FormControl({ value: '', disabled: true }, [Validators.required]);
+
+  handleIconClick(e: any) {
+    console.log('Icon clicked', e);
+  }
 }

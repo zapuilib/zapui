@@ -1,11 +1,11 @@
-<div #select class="__zap__dp__calendar__select__wrapper" [ngClass]="shape && shape">
+<div #select class="__zap__dp__calendar__select__wrapper" [ngClass]="shape() && shape()">
   <div
     class="__zap__form__control__select"
     (click)="toggleOptionList()"
     tabindex="0"
     (keydown.enter)="toggleOptionList()">
-    @if (selected) {
-      <span> {{ selected }}</span>
+    @if (selected()) {
+      <span> {{ selected() }}</span>
     }
     <div class="handler">
       <svg
@@ -23,13 +23,13 @@
   @if (isOptionListOpen) {
     <div class="__zap__form__control__options__container">
       <div class="__zap__form__control__options" zapScrollArea>
-        @for (option of options; track option; let i = $index) {
+        @for (option of options(); track $index; let i = $index) {
           <div
             class="__zap__form__control__option"
             (click)="handleSelectOption(option)"
             tabindex="0"
             (keydown.enter)="handleSelectOption(option)"
-            [class.__zap__form__control__selected]="selected === option">
+            [class.__zap__form__control__selected]="selected() === option">
             <span>{{ option }}</span>
           </div>
         }

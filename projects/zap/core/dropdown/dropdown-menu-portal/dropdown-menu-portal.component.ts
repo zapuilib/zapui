@@ -4,7 +4,7 @@ import {
   AfterViewInit,
   Component,
   ElementRef,
-  Input,
+  input,
   TemplateRef,
   ViewChild,
   ViewContainerRef,
@@ -32,13 +32,13 @@ import {
   </div>`,
   styleUrl: './dropdown-menu-portal.component.scss',
   host: {
-    '[class]': 'zapClass',
+    '[class]': 'zapClass()',
   },
 })
 export class ZapDropdownMenuPortal implements AfterViewInit {
   @ViewChild('subTriggerRef', { read: ElementRef }) triggerRef!: ElementRef;
   @ViewChild('subMenuTemplate') menuTemplate!: TemplateRef<any>;
-  @Input() zapClass = '';
+  zapClass = input('');
 
   overlayRef!: OverlayRef;
 

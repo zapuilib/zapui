@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, input } from '@angular/core';
 
 @Component({
   selector: 'zap-dropdown-menu-label',
@@ -6,9 +6,9 @@ import { Component, Input } from '@angular/core';
   template: ` <ng-content />`,
   styleUrl: './dropdown-menu-label.component.scss',
   host: {
-    '[class]': 'zapClass',
+    '[class]': 'zapClass()',
   },
 })
 export class ZapDropdownMenuLabel {
-  @Input() zapClass = '';
+  zapClass = input('');
 }

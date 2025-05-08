@@ -37,7 +37,14 @@ export class ZapToastService {
     const toastPortal = new ComponentPortal(ZapToast, null, this.injector);
     const componentRef = overlayRef.attach(toastPortal);
 
-    Object.assign(componentRef.instance, config);
+    for (const [key, value] of Object.entries(config)) {
+      if (key === 'actioned') {
+        componentRef.setInput?.('actionedFn', config.actioned);
+      } else {
+        componentRef.setInput?.(key as any, value);
+      }
+    }
+
     componentRef.changeDetectorRef.detectChanges();
 
     const element = componentRef.location.nativeElement;

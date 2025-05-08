@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ContentChildren, Input, QueryList } from '@angular/core';
+import { AfterViewInit, Component, ContentChildren, input, QueryList } from '@angular/core';
 import { ZapAccordionItem } from '../accordion-item/accordion-item.component';
 
 @Component({
@@ -11,10 +11,10 @@ import { ZapAccordionItem } from '../accordion-item/accordion-item.component';
 })
 export class ZapAccordionGroup implements AfterViewInit {
   @ContentChildren(ZapAccordionItem) items!: QueryList<ZapAccordionItem>;
-  @Input() multiple = false;
+  multiple = input<boolean>(false);
 
   ngAfterViewInit() {
-    if (!this.multiple) {
+    if (!this.multiple()) {
       this.items.forEach((item) => {
         item.toggle = () => {
           item.isOpen = !item.isOpen;

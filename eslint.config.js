@@ -57,6 +57,7 @@ module.exports = tseslint.config(
           argsIgnorePattern: '^_',
         },
       ],
+      'arrow-body-style': ['warn', 'always'],
     },
   },
   {

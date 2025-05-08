@@ -1,4 +1,4 @@
-import { Component, Input, HostBinding, Inject } from '@angular/core';
+import { Component, input, HostBinding, Inject } from '@angular/core';
 
 import { SHAPE_TOKEN } from '../shape.token';
 
@@ -12,16 +12,16 @@ import { SHAPE_TOKEN } from '../shape.token';
   },
 })
 export class ZapDropdownMenuItem {
-  @Input() zapClass = '';
-  @Input() disabled = false;
+  zapClass = input('');
+  disabled = input<boolean>(false);
   @HostBinding('class.disabled')
   @HostBinding('attr.disabled')
   get isDisabled(): boolean {
-    return this.disabled;
+    return this.disabled();
   }
 
   get classes(): string {
-    return `${this.shape} ${this.zapClass}`;
+    return `${this.shape} ${this.zapClass()}`;
   }
 
   constructor(@Inject(SHAPE_TOKEN) public shape: 'pill' | 'curve' | 'flat') {}

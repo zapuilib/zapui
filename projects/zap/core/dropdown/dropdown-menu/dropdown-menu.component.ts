@@ -1,4 +1,4 @@
-import { Component, Inject, Input } from '@angular/core';
+import { Component, Inject, input } from '@angular/core';
 
 import { SHAPE_TOKEN } from '../shape.token';
 
@@ -12,10 +12,10 @@ import { SHAPE_TOKEN } from '../shape.token';
   },
 })
 export class ZapDropdownMenu {
-  @Input() zapClass = '';
+  zapClass = input('');
   constructor(@Inject(SHAPE_TOKEN) public shape: 'pill' | 'curve' | 'flat') {}
 
   get classes(): string {
-    return `${this.shape} ${this.zapClass}`;
+    return `${this.shape} ${this.zapClass()}`;
   }
 }

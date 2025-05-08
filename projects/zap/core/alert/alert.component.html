@@ -1,12 +1,12 @@
 <div class="__zap__alert" [ngClass]="classes">
-  <div class="type__wrapper" [class.default]="type === 'default' && !icon && !iconDirective">
-    @if (icon) {
-      <i class="fa-solid" [ngClass]="icon"></i>
+  <div class="type__wrapper" [class.default]="type() === 'default' && !icon() && !iconDirective">
+    @if (icon()) {
+      <i class="fa-solid" [ngClass]="icon()"></i>
     } @else if (iconDirective) {
       <ng-content select="[zapIcon]"></ng-content>
     } @else {
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-        @switch (type) {
+        @switch (type()) {
           @case ('info') {
             <path
               fill="currentColor"

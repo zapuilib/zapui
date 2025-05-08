@@ -2,20 +2,19 @@ import {
   AfterViewInit,
   Component,
   ContentChild,
-  EventEmitter,
   HostListener,
-  Input,
+  input,
   OnDestroy,
   OnInit,
-  Output,
+  output,
   ViewChild,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
-import { ZapDialogFooterDirective } from './dialog-footer.directive';
 import { CdkPortal, PortalModule } from '@angular/cdk/portal';
 import { Overlay, OverlayRef } from '@angular/cdk/overlay';
 import { A11yModule } from '@angular/cdk/a11y';
+
+import { ZapDialogFooterDirective } from './dialog-footer.directive';
 
 @Component({
   selector: 'zap-dialog',
@@ -25,16 +24,19 @@ import { A11yModule } from '@angular/cdk/a11y';
 })
 export class ZapDialog implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild(CdkPortal) portalContent!: CdkPortal;
-  @Output() confirm: EventEmitter<void> = new EventEmitter<void>();
-  @Output() close: EventEmitter<void> = new EventEmitter<void>();
-  @Input() title = 'Are you sure?';
-  @Input() text = '';
-  @Input() closeAction = 'No, cancel';
-  @Input() confirmAction = 'Yes, confirm';
-  @Input() zapClass = '';
-  @Input() shape!: 'curve' | 'pill' | 'flat';
-  @Input() position: 'top' | 'default' = 'default';
-  @Input() showOverlay = false;
+  @ContentChild(ZapDialogFooterDirective, { static: false })
+  footerDirective!: ZapDialogFooterDirective;
+  confirm = output();
+  close = output();
+  title = input('Are you sure?');
+  text = input('');
+  closeAction = input('No, cancel');
+  confirmAction = input('Yes, confirm');
+  zapClass = input('');
+  shape = input<'curve' | 'pill' | 'flat'>();
+  position = input<'top' | 'default'>('default');
+  showOverlay = input(false);
+  private overlayRef!: OverlayRef;
   @HostListener('document:keydown', ['$event'])
   handleEsc(event: KeyboardEvent): void {
     if (event.key === 'Escape' || event.code === 'Escape') this.close.emit();
@@ -44,9 +46,6 @@ export class ZapDialog implements OnInit, AfterViewInit, OnDestroy {
     this.handleDirectiveStyle();
     this.updatePosition();
   }
-  @ContentChild(ZapDialogFooterDirective, { static: false })
-  footerDirective!: ZapDialogFooterDirective;
-  private overlayRef!: OverlayRef;
 
   constructor(private overlay: Overlay) {}
 
@@ -80,7 +79,7 @@ export class ZapDialog implements OnInit, AfterViewInit, OnDestroy {
     const isMobile = typeof window !== 'undefined' && window.innerWidth <= 640;
     const positionStrategy = this.overlay.position().global();
 
-    if (this.position === 'top') {
+    if (this.position() === 'top') {
       positionStrategy.top('20px').centerHorizontally();
     } else if (isMobile) {
       positionStrategy.bottom('16px').centerHorizontally();
@@ -125,11 +124,15 @@ export class ZapDialog implements OnInit, AfterViewInit, OnDestroy {
   }
 
   get classes(): string[] {
-    return [this.shape, this.position, this.zapClass].filter((cls) => cls && cls !== 'default');
+    return [this.shape() ?? '', this.position(), this.zapClass()].filter(
+      (cls) => cls && cls !== 'default',
+    );
   }
 
   get overlayClasses(): string[] {
-    return this.zapClass.split(' ').filter((cls) => cls.startsWith('overlay:'));
+    return this.zapClass()
+      .split(' ')
+      .filter((cls) => cls.startsWith('overlay:'));
   }
 
   ngOnDestroy(): void {

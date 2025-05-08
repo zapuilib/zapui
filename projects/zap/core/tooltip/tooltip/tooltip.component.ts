@@ -4,7 +4,7 @@ import {
   AfterViewInit,
   Component,
   ElementRef,
-  Input,
+  input,
   OnDestroy,
   TemplateRef,
   ViewChild,
@@ -31,7 +31,7 @@ import { positionConfigs } from './position.constant';
 export class ZapTooltip implements AfterViewInit, OnDestroy {
   @ViewChild('triggerRef', { read: ElementRef }) triggerRef!: ElementRef;
   @ViewChild('contentTemplate') contentTemplate!: TemplateRef<any>;
-  @Input() position: 'top' | 'bottom' | 'left' | 'right' | 'auto' = 'auto';
+  position = input<'top' | 'bottom' | 'left' | 'right' | 'auto'>('auto');
 
   overlayRef!: OverlayRef;
 
@@ -42,7 +42,7 @@ export class ZapTooltip implements AfterViewInit, OnDestroy {
   ) {}
 
   ngAfterViewInit(): void {
-    const positions = positionConfigs[this.position];
+    const positions = positionConfigs[this.position()];
 
     const positionStrategy = this.positionBuilder
       .flexibleConnectedTo(this.triggerRef)

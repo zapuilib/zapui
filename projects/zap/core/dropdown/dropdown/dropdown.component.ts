@@ -5,7 +5,7 @@ import {
   ViewContainerRef,
   ElementRef,
   AfterViewInit,
-  Input,
+  input,
 } from '@angular/core';
 import { Overlay, OverlayRef, OverlayPositionBuilder } from '@angular/cdk/overlay';
 import { TemplatePortal } from '@angular/cdk/portal';
@@ -39,12 +39,12 @@ import { positions } from '../position.constant';
   `,
   styleUrls: ['./dropdown.component.scss'],
   host: {
-    '[class]': 'zapClass',
+    '[class]': 'zapClass()',
   },
   providers: [
     {
       provide: SHAPE_TOKEN,
-      useFactory: (component: ZapDropdown) => component.shape,
+      useFactory: (component: ZapDropdown) => component.shape(),
       deps: [ZapDropdown],
     },
   ],
@@ -52,10 +52,9 @@ import { positions } from '../position.constant';
 export class ZapDropdown implements AfterViewInit {
   @ViewChild('triggerRef', { read: ElementRef }) triggerRef!: ElementRef;
   @ViewChild('menuTemplate') menuTemplate!: TemplateRef<any>;
-  @Input() shape!: 'pill' | 'curve' | 'flat';
-  @Input() zapClass = '';
-  @Input() position: 'top-l' | 'top-r' | 'top' | 'bottom-l' | 'bottom-r' | 'bottom' | 'auto' =
-    'auto';
+  shape = input<'pill' | 'curve' | 'flat'>();
+  zapClass = input('');
+  position = input<'top-l' | 'top-r' | 'top' | 'bottom-l' | 'bottom-r' | 'bottom' | 'auto'>('auto');
   overlayRef!: OverlayRef;
 
   constructor(
@@ -67,7 +66,7 @@ export class ZapDropdown implements AfterViewInit {
   ngAfterViewInit(): void {
     const positionStrategy = this.positionBuilder
       .flexibleConnectedTo(this.triggerRef)
-      .withPositions(positions[this.position])
+      .withPositions(positions[this.position()])
       .withFlexibleDimensions(false)
       .withPush(false);
 

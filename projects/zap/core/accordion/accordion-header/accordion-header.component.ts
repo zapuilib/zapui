@@ -2,11 +2,10 @@ import {
   AfterViewInit,
   Component,
   ContentChild,
-  EventEmitter,
   Inject,
-  Input,
+  input,
   Optional,
-  Output,
+  output,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -26,12 +25,12 @@ import { ACCORDION_ITEM_TOKEN, AccordionItemLike } from '../accordion.token';
     (click)="onToggle()"
     (keydown.enter)="onToggle()"
     (keydown.space)="onToggle()"
-    [ngClass]="variant">
+    [ngClass]="variant()">
     <ng-content></ng-content>
     @if (iconDirective) {
       <ng-content select="[zapIcon]"></ng-content>
     } @else {
-      @switch (icon) {
+      @switch (icon()) {
         @case ('chevron') {
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -66,11 +65,11 @@ import { ACCORDION_ITEM_TOKEN, AccordionItemLike } from '../accordion.token';
   styleUrl: './accordion-header.component.scss',
 })
 export class ZapAccordionHeader implements AfterViewInit {
-  @Output() open: EventEmitter<void> = new EventEmitter<void>();
-  @Input() variant: 'default' | 'nounderline' = 'default';
-  @Input() icon: 'chevron' | 'plus' = 'chevron';
   @ContentChild(ZapIconDirective, { static: false })
   iconDirective!: ZapIconDirective;
+  open = output();
+  variant = input<'default' | 'nounderline'>('default');
+  icon = input<'chevron' | 'plus'>('chevron');
 
   constructor(@Optional() @Inject(ACCORDION_ITEM_TOKEN) public accordionItem: AccordionItemLike) {}
   get isOpen(): boolean {

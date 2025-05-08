@@ -1,21 +1,21 @@
 <div class="__zap__toast" [ngClass]="classes">
-  @if (title || text || action) {
+  @if (title() || text() || action()) {
     <div class="__zap__toast__content">
-      @if (title) {
-        <p class="__zap__toast__title">{{ title }}</p>
+      @if (title()) {
+        <p class="__zap__toast__title">{{ title() }}</p>
       }
-      @if (text) {
-        <p class="__zap__toast__text">{{ text }}</p>
+      @if (text()) {
+        <p class="__zap__toast__text">{{ text() }}</p>
       }
     </div>
-    @if (action) {
+    @if (action()) {
       <div class="__zap__toast__actions">
         <button
           class="btn"
           (click)="handleActionClick()"
           tabindex="0"
           (keydown)="handleActionClick()">
-          {{ action }}
+          {{ action() }}
         </button>
       </div>
     }

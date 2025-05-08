@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, input } from '@angular/core';
 
 @Component({
   selector: 'zap-dropdown-trigger',
@@ -6,9 +6,9 @@ import { Component, Input } from '@angular/core';
   template: ` <ng-content />`,
   styleUrl: './dropdown-trigger.component.scss',
   host: {
-    '[class]': 'zapClass',
+    '[class]': 'zapClass()',
   },
 })
 export class ZapDropdownTrigger {
-  @Input() zapClass = '';
+  zapClass = input('');
 }

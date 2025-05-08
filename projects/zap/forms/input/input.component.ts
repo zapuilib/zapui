@@ -2,11 +2,11 @@ import {
   AfterViewInit,
   Component,
   ContentChild,
-  EventEmitter,
   forwardRef,
-  Input,
+  input,
+  OnDestroy,
   OnInit,
-  Output,
+  output,
 } from '@angular/core';
 import { FormsModule, NG_VALUE_ACCESSOR, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
@@ -14,7 +14,7 @@ import { CommonModule } from '@angular/common';
 import { ControlValueAccessorDirective } from '../directives/control-value-accessor.directive';
 import { ValidationErrorComponent } from '../validation-error/validation-error.component';
 import { ZapFormFieldIconDirective } from '../directives/icon.directive';
-import { ZapFormFieldHelpTextDirective } from '../public-api';
+import { ZapFormFieldHelpTextDirective } from '../directives/help-text.directive';
 import { ZapLabelDirective } from '../directives/label.directive';
 
 type InputType = 'password' | 'text' | 'number' | 'email' | 'tel';
@@ -32,55 +32,56 @@ type InputType = 'password' | 'text' | 'number' | 'email' | 'tel';
     },
   ],
 })
-export class ZapInput<T> extends ControlValueAccessorDirective<T> implements OnInit, AfterViewInit {
-  @Output() iconClick: EventEmitter<void> = new EventEmitter<void>();
-  @Input() type: InputType = 'text';
-  @Input() label = '';
-  @Input() id = '';
-  @Input() placeholder = '';
-  @Input() customErrorMessages: Record<string, string> = {};
-  @Input() zapClass = '';
-  @Input() size: 'compact' | 'base' = 'base';
-  @Input() shape!: 'pill' | 'curve' | 'flat';
-  @Input() icon!: string;
-  @Input() iconPosition: 'left' | 'right' = 'left';
-  @Input() autoComplete = 'off';
-  @Input() helpText = '';
+export class ZapInput<T>
+  extends ControlValueAccessorDirective<T>
+  implements OnInit, OnDestroy, AfterViewInit
+{
   @ContentChild(ZapFormFieldIconDirective, { static: false })
   iconDirective!: ZapFormFieldIconDirective;
   @ContentChild(ZapFormFieldHelpTextDirective, { static: false })
   helpTextDirective!: ZapFormFieldHelpTextDirective;
   @ContentChild(ZapLabelDirective, { static: false })
   labelDirective!: ZapLabelDirective;
+  iconClick = output<void>();
+  id = input.required<string>();
+  type = input<InputType>('text');
+  label = input<string>('');
+  placeholder = input<string>('');
+  customErrorMessages = input<Record<string, string>>({});
+  zapClass = input<string>('');
+  size = input<'compact' | 'base'>();
+  shape = input<'pill' | 'curve' | 'flat'>();
+  icon = input<string>('');
+  iconPosition = input<'left' | 'right'>('left');
+  autoComplete = input<string>('off');
+  helpText = input<string>('');
 
   override ngOnInit(): void {
     super.ngOnInit();
-    if (!this.id || this.id === '') {
-      console.warn(
-        '[ZapInput] No id provided. This may cause accessibility issues. Please provide a unique id for the input.',
-      );
-    }
   }
 
   ngAfterViewInit() {
     if (this.iconDirective) {
       this.iconDirective.el.nativeElement.style.height =
-        this.size === 'compact' ? '14px' : 'var(--zap-input-icon-font-size)';
+        this.size() === 'compact' ? '14px' : 'var(--zap-input-icon-font-size)';
       this.iconDirective.el.nativeElement.style.fontSize =
-        this.size === 'compact' ? '14px' : 'var(--zap-input-icon-font-size)';
+        this.size() === 'compact' ? '14px' : 'var(--zap-input-icon-font-size)';
       this.iconDirective.el.nativeElement.style.color = 'var(--zap-input-icon-color)';
       this.iconDirective.el.nativeElement.style.marginRight =
-        this.iconPosition === 'left' ? '8px' : '0';
+        this.iconPosition() === 'left' ? '8px' : '0';
       this.iconDirective.el.nativeElement.style.marginLeft =
-        this.iconPosition === 'right' ? '8px' : '0';
-      this.iconDirective.el.nativeElement.style.order = this.iconPosition === 'right' ? '1' : '0';
+        this.iconPosition() === 'right' ? '8px' : '0';
+      this.iconDirective.el.nativeElement.style.order = this.iconPosition() === 'right' ? '1' : '0';
       this.iconDirective.el.nativeElement.style.position = 'absolute';
       this.iconDirective.el.nativeElement.style.top = '50%';
       this.iconDirective.el.nativeElement.style.transform = 'translateY(-50%)';
       this.iconDirective.el.nativeElement.style.left =
-        this.iconPosition === 'left' ? '0.75rem' : 'auto';
+        this.iconPosition() === 'left' ? '0.75rem' : 'auto';
       this.iconDirective.el.nativeElement.style.right =
-        this.iconPosition === 'right' ? '0.75rem' : 'auto';
+        this.iconPosition() === 'right' ? '0.75rem' : 'auto';
+      this.iconDirective.el.nativeElement.addEventListener('click', (event: Event) => {
+        this.handleIconClick(event);
+      });
     }
 
     if (this.helpTextDirective) {
@@ -112,10 +113,19 @@ export class ZapInput<T> extends ControlValueAccessorDirective<T> implements OnI
 
   get classes(): string[] {
     return [
-      this.shape,
-      this.zapClass,
-      this.size,
-      this.icon || this.iconDirective ? this.iconPosition : '',
+      this.shape() ?? '',
+      this.zapClass() ?? '',
+      this.size() ?? '',
+      this.icon() || this.iconDirective ? this.iconPosition() : '',
     ].filter((cls) => cls && cls !== 'default');
+  }
+
+  override ngOnDestroy(): void {
+    super.ngOnDestroy();
+    if (this.iconDirective) {
+      this.iconDirective.el.nativeElement.removeEventListener('click', (event: Event) => {
+        this.handleIconClick(event);
+      });
+    }
   }
 }

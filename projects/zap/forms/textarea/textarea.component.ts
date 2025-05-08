@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ContentChild, forwardRef, Input, OnInit } from '@angular/core';
+import { AfterViewInit, Component, ContentChild, forwardRef, input, OnInit } from '@angular/core';
 import { FormsModule, NG_VALUE_ACCESSOR, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
@@ -23,27 +23,22 @@ export class ZapTextarea<T>
   extends ControlValueAccessorDirective<T>
   implements OnInit, AfterViewInit
 {
-  @Input() label = '';
-  @Input() id = '';
-  @Input() rows = '10';
-  @Input() zapClass = '';
-  @Input() shape!: 'curve' | 'flat' | 'pill';
-  @Input() customErrorMessages: Record<string, string> = {};
-  @Input() placeholder = '';
-  @Input() resize: 'none' | 'vertical' | 'horizontal' | 'auto' = 'none';
-  @Input() helpText = '';
   @ContentChild(ZapFormFieldHelpTextDirective, { static: false })
   helpTextDirective!: ZapFormFieldHelpTextDirective;
   @ContentChild(ZapLabelDirective, { static: false })
   labelDirective!: ZapLabelDirective;
+  label = input<string>('');
+  id = input.required<string>();
+  rows = input<string>('');
+  zapClass = input<string>('');
+  shape = input<'curve' | 'flat' | 'pill'>();
+  customErrorMessages = input<Record<string, string>>({});
+  placeholder = input<string>('');
+  resize = input<'none' | 'vertical' | 'horizontal' | 'auto'>('none');
+  helpText = input<string>('');
 
   override ngOnInit(): void {
     super.ngOnInit();
-    if (!this.id || this.id === '') {
-      console.warn(
-        '[ZapTextarea] No id provided. This may cause accessibility issues. Please provide a unique id for the textarea.',
-      );
-    }
   }
 
   ngAfterViewInit() {
@@ -72,15 +67,15 @@ export class ZapTextarea<T>
   }
 
   adjustRows(event: Event) {
-    if (this.resize === 'auto') {
+    if (this.resize() === 'auto') {
       const textarea = event.target as HTMLTextAreaElement;
-      textarea.rows = parseInt(this.rows);
+      textarea.rows = parseInt(this.rows());
       const newRows = Math.ceil(textarea.scrollHeight / 24) - 1;
       textarea.rows = newRows > 10 ? 10 : newRows;
     }
   }
 
   get classes(): string[] {
-    return [this.shape, this.zapClass].filter((cls) => cls && cls !== 'default');
+    return [this.shape() ?? '', this.zapClass()].filter((cls) => cls && cls !== 'default');
   }
 }

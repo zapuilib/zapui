@@ -16,7 +16,11 @@
       [formControl]="usernameControl2"
       label="Username or email">
     </zap-input>
-    <zap-input id="username" placeholder="Enter your username" shape="curve">
+    <zap-input
+      id="username"
+      placeholder="Enter your username"
+      shape="curve"
+      (iconClick)="handleIconClick($event)">
       <svg zapFormFieldIcon xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
         <path
           fill="currentColor"

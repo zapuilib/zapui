@@ -4,10 +4,11 @@ import {
   ContentChild,
   ElementRef,
   forwardRef,
-  Input,
   OnDestroy,
   ViewChild,
   OnInit,
+  input,
+  model,
 } from '@angular/core';
 import { FormsModule, NG_VALUE_ACCESSOR, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
@@ -34,35 +35,20 @@ export class ZapCheckbox<T>
   implements AfterViewInit, OnDestroy, OnInit
 {
   @ViewChild('checkbox') checkbox!: ElementRef;
-  @Input() label = '';
-  @Input() customErrorMessages: Record<string, string> = {};
-  @Input() zapClass = '';
-  @Input() id!: string;
-  @Input() shape!: 'curve' | 'flat';
-  @Input() size!: 'compact' | 'base';
-  @Input() labelPosition: 'left' | 'right' = 'right';
-  @Input()
-  set checked(value: boolean) {
-    this._checked = value;
-    if (this.control && value !== this.control.value) {
-      this.control.setValue(value, { emitEvent: false }); // avoid loop
-    }
-  }
-  get checked(): boolean {
-    return this._checked;
-  }
-  private _checked = false;
   @ContentChild(ZapLabelDirective, { static: false })
   labelDirective!: ZapLabelDirective;
+  label = input<string>('');
+  id = input.required<string>();
+  customErrorMessages = input<Record<string, string>>({});
+  zapClass = input<string>('');
+  shape = input<'curve' | 'flat'>();
+  size = input<'compact' | 'base'>();
+  labelPosition = input<'left' | 'right'>('right');
+  checked = model<boolean>(false);
 
   override ngOnInit(): void {
     super.ngOnInit();
     this.setDefaultValue();
-    if (!this.id) {
-      console.warn(
-        '[ZapCheckbox] No id provided. This may cause accessibility issues. Please provide a unique id for the checkbox.',
-      );
-    }
   }
 
   ngAfterViewInit() {
@@ -83,7 +69,7 @@ export class ZapCheckbox<T>
   }
 
   private setDefaultValue() {
-    this.control.setValue(this.checked);
+    this.control.setValue(this.checked());
   }
 
   private handleLabelClick = () => {
@@ -92,17 +78,19 @@ export class ZapCheckbox<T>
   };
 
   get classes(): string[] {
-    return [this.shape, this.size, this.labelPosition, this.zapClass].filter(
-      (cls) => cls && cls !== 'default',
-    );
+    return [
+      this.shape() ?? '',
+      this.size() ?? '',
+      this.labelPosition() ?? '',
+      this.zapClass() ?? '',
+    ];
   }
 
   handleCheckboxChange(event: Event) {
     if (this.control.disabled) return;
     const checked = (event.target as HTMLInputElement).checked;
-    this._checked = checked;
-
     this.control.setValue(checked);
+    this.checked.set(checked);
   }
 
   override ngOnDestroy() {

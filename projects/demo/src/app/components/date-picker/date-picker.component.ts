@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ZapDatePicker, ZapDatePickerBreakpoints } from 'zap/forms';
 
 @Component({
@@ -21,7 +21,7 @@ export class DatePickerComponent {
       value: '',
       disabled: false,
     },
-    [],
+    [Validators.required],
   );
   datePickerControl3 = new FormControl(
     {

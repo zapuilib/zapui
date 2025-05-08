@@ -3,16 +3,17 @@ import {
   ChangeDetectorRef,
   Component,
   ContentChild,
+  effect,
   ElementRef,
-  EventEmitter,
   forwardRef,
   HostListener,
   Inject,
   Injector,
-  Input,
+  input,
+  model,
   OnDestroy,
   OnInit,
-  Output,
+  output,
   TemplateRef,
   ViewChild,
 } from '@angular/core';
@@ -63,49 +64,39 @@ export class ZapSelect<T>
   @ViewChild('optionsPanel') optionsPanel!: TemplateRef<any>;
   @ViewChild('inputSelectValueHolder') inputSelectValueHolder!: ElementRef;
   @ViewChild('search') search!: ElementRef;
-  @Output() onChange: EventEmitter<string[] | string> = new EventEmitter<string[] | string>();
-  @Output() onSearch: EventEmitter<string> = new EventEmitter<string>();
-  @Output() onReset: EventEmitter<void> = new EventEmitter<void>();
-  @Input() label = '';
-  @Input() id = '';
-  @Input() placeholder = 'Select';
-  @Input() customErrorMessages: Record<string, string> = {};
-  @Input() zapClass = '';
-  @Input() shape!: 'pill' | 'curve' | 'flat';
-  @Input() size!: 'compact' | 'base';
-  @Input() icon!: string;
-  @Input() iconPosition: 'left' | 'right' = 'left';
-  @Input() searchable = true;
-  @Input() searchPlaceholder = 'Search';
-  @Input() notFound = 'No options found';
-  @Input() multiselect = false;
-  @Input() async = false;
-  @Input() optionTemplate?: TemplateRef<any>;
-  @Input() selectedTemplate?: TemplateRef<any>;
-  @Input() position: 'top' | 'bottom' | 'auto' = 'auto';
-  @Input() helpText = '';
-  private _options: { label: string; value: any; [key: string]: any }[] = [];
-  private overlayRef!: OverlayRef;
-  isOptionListOpen = false;
-  hoveredOption = '';
-  selectedOptionValue: string[] = [];
-  filteredOptions: { label: string; value: any; [key: string]: any }[] = [];
   @ContentChild(ZapFormFieldIconDirective, { static: false })
   iconDirective!: ZapFormFieldIconDirective;
   @ContentChild(ZapFormFieldHelpTextDirective, { static: false })
   helpTextDirective!: ZapFormFieldHelpTextDirective;
   @ContentChild(ZapLabelDirective, { static: false })
   labelDirective!: ZapLabelDirective;
-
-  @Input()
-  set options(newOptions: { label: string; value: any; [key: string]: any }[]) {
-    this._options = newOptions || [];
-    this.filteredOptions = [...this._options];
-  }
-
-  get options(): { label: string; value: any; [key: string]: any }[] {
-    return this._options;
-  }
+  onChange = output<string[] | string>();
+  onSearch = output<string>();
+  onReset = output<void>();
+  id = input.required<string>();
+  label = input<string>('');
+  placeholder = input<string>('Select');
+  customErrorMessages = input<Record<string, string>>({});
+  zapClass = input<string>('');
+  shape = input<'pill' | 'curve' | 'flat'>();
+  size = input<'compact' | 'base'>();
+  icon = input<string | undefined>(undefined);
+  iconPosition = input<'left' | 'right'>('left');
+  searchable = input<boolean>(true);
+  searchPlaceholder = input<string>('Search');
+  notFound = input<string>('No options found');
+  multiselect = input<boolean>(false);
+  async = input<boolean>(false);
+  optionTemplate = input<TemplateRef<any> | null>(null);
+  selectedTemplate = input<TemplateRef<any> | null>(null);
+  position = input<'top' | 'bottom' | 'auto'>('auto');
+  helpText = input<string>('');
+  options = model<{ label: string; value: any; [key: string]: any }[]>([]);
+  private overlayRef!: OverlayRef;
+  isOptionListOpen = false;
+  hoveredOption = '';
+  selectedOptionValue: string[] = [];
+  filteredOptions: { label: string; value: any }[] = [];
 
   @HostListener('document:keydown.escape', ['$event'])
   onEscapePress(event: KeyboardEvent): void {
@@ -131,39 +122,43 @@ export class ZapSelect<T>
     private vcr: ViewContainerRef,
   ) {
     super(injector, cdr);
+    effect(() => {
+      this.filteredOptions = this.options();
+      if (this.control.value) {
+        this.selectedOptionValue = Array.isArray(this.control.value)
+          ? this.control.value
+          : [this.control.value];
+      } else {
+        this.selectedOptionValue = [];
+      }
+    });
   }
 
   override ngOnInit(): void {
     super.ngOnInit();
-    this.filteredOptions = [...this._options];
     this.handleDefaultValue();
     this.checkIfEmpty();
-    if (!this.id || this.id === '') {
-      console.warn(
-        '[ZapSelect] No id provided. This may cause accessibility issues. Please provide a unique id for the select.',
-      );
-    }
   }
 
   ngAfterViewInit() {
     if (this.iconDirective) {
       this.iconDirective.el.nativeElement.style.height =
-        this.size === 'compact' ? '14px' : 'var(--zap-select-icon-font-size)';
+        this.size() === 'compact' ? '14px' : 'var(--zap-select-icon-font-size)';
       this.iconDirective.el.nativeElement.style.fontSize =
-        this.size === 'compact' ? '14px' : 'var(--zap-select-icon-font-size)';
+        this.size() === 'compact' ? '14px' : 'var(--zap-select-icon-font-size)';
       this.iconDirective.el.nativeElement.style.color = 'var(--zap-select-icon-color)';
       this.iconDirective.el.nativeElement.style.marginRight =
-        this.iconPosition === 'left' ? '8px' : '0';
+        this.iconPosition() === 'left' ? '8px' : '0';
       this.iconDirective.el.nativeElement.style.marginLeft =
-        this.iconPosition === 'right' ? '8px' : '0';
-      this.iconDirective.el.nativeElement.style.order = this.iconPosition === 'right' ? '1' : '0';
+        this.iconPosition() === 'right' ? '8px' : '0';
+      this.iconDirective.el.nativeElement.style.order = this.iconPosition() === 'right' ? '1' : '0';
       this.iconDirective.el.nativeElement.style.position = 'absolute';
       this.iconDirective.el.nativeElement.style.top = '50%';
       this.iconDirective.el.nativeElement.style.transform = 'translateY(-50%)';
       this.iconDirective.el.nativeElement.style.left =
-        this.iconPosition === 'left' ? '0.75rem' : 'auto';
+        this.iconPosition() === 'left' ? '0.75rem' : 'auto';
       this.iconDirective.el.nativeElement.style.right =
-        this.iconPosition === 'right' ? '2rem' : 'auto';
+        this.iconPosition() === 'right' ? '2rem' : 'auto';
     }
 
     if (this.helpTextDirective) {
@@ -197,7 +192,7 @@ export class ZapSelect<T>
 
   private buildPositionStrategy(): FlexibleConnectedPositionStrategy {
     const positions: ConnectedPosition[] =
-      this.position === 'top'
+      this.position() === 'top'
         ? [
             {
               originX: 'start',
@@ -207,7 +202,7 @@ export class ZapSelect<T>
               offsetY: -8,
             },
           ]
-        : this.position === 'bottom'
+        : this.position() === 'bottom'
           ? [
               {
                 originX: 'start',
@@ -245,12 +240,12 @@ export class ZapSelect<T>
 
   private generateClasses(prefixes: string[] = ['']): string[] {
     return [
-      this.shape,
-      ...this.zapClass
+      this.shape() ?? '',
+      ...this.zapClass()
         .split(' ')
         .filter((cls) => prefixes.some((prefix) => cls.startsWith(prefix))),
-      this.size,
-      this.icon || this.iconDirective ? this.iconPosition : '',
+      this.size() ?? '',
+      this.icon() || this.iconDirective ? this.iconPosition() : '',
       this.control.disabled ? 'disabled' : '',
     ].filter((cls) => cls && cls !== 'default');
   }
@@ -306,16 +301,16 @@ export class ZapSelect<T>
     }
 
     this.hoveredOption = '';
-    this.filteredOptions = this.options;
+    this.filteredOptions = this.options();
   }
 
   handleSearch(event: Event): void {
     if (this.control.disabled) return;
     const searchTerm = (event.target as HTMLInputElement).value.trim().toLowerCase();
-    if (this.async) {
+    if (this.async()) {
       this.onSearch.emit(searchTerm);
     } else {
-      this.filteredOptions = this.options.filter((option) =>
+      this.filteredOptions = this.options().filter((option) =>
         option.label.toLowerCase().includes(searchTerm),
       );
     }
@@ -325,7 +320,7 @@ export class ZapSelect<T>
 
   selectOption(option: { label: string; value: any }): void {
     if (this.control.disabled) return;
-    if (this.multiselect) {
+    if (this.multiselect()) {
       if (this.selectedOptionValue.includes(option.value)) {
         this.selectedOptionValue = this.selectedOptionValue.filter(
           (value) => value !== option.value,
@@ -347,7 +342,7 @@ export class ZapSelect<T>
 
   cancelOption(event: any, value: any): void {
     event.stopPropagation();
-    if (this.multiselect) {
+    if (this.multiselect()) {
       this.selectedOptionValue = this.selectedOptionValue.filter((option) => option !== value);
       this.control.setValue(this.selectedOptionValue);
       this.onChange.emit(this.selectedOptionValue);
@@ -357,12 +352,12 @@ export class ZapSelect<T>
   }
 
   getSelected(value: string): string {
-    return this.options.find((option) => option.value === value)?.label || '';
+    return this.options().find((option) => option.value === value)?.label || '';
   }
 
   getSelectedOption(value: string): { label: string; value: any } {
     return (
-      this.options.find((option) => option.value === value) || {
+      this.options().find((option) => option.value === value) || {
         label: '',
         value: '',
       }

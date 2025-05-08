@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, ElementRef, Input, ViewChild } from '@angular/core';
+import { Component, ElementRef, input, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'zap-tooltip-content',
@@ -11,10 +11,10 @@ import { Component, ElementRef, Input, ViewChild } from '@angular/core';
 })
 export class ZapTooltipContent {
   @ViewChild('content', { static: true }) contentElement!: ElementRef;
-  @Input() zapClass = '';
-  @Input() shape!: 'curve' | 'pill' | 'flat';
+  zapClass = input('');
+  shape = input<'curve' | 'pill' | 'flat'>();
 
   get classes(): string[] {
-    return [this.shape, this.zapClass].filter((cls) => cls && cls !== 'default');
+    return [this.shape() ?? '', this.zapClass()].filter((cls) => cls && cls !== 'default');
   }
 }

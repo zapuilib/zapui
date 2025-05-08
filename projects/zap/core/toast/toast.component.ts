@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input, ElementRef, Output, EventEmitter, HostListener } from '@angular/core';
+import { Component, ElementRef, EventEmitter, HostListener, output, input } from '@angular/core';
 
 import { DISMISS_THRESHOLD } from './toast.constant';
 
@@ -10,14 +10,17 @@ import { DISMISS_THRESHOLD } from './toast.constant';
   styleUrl: './toast.component.scss',
 })
 export class ZapToast {
-  @Output() dismiss: EventEmitter<void> = new EventEmitter<void>();
-  @Output() actioned?: any = new EventEmitter<void>();
-  @Input() title!: string;
-  @Input() text!: string;
-  @Input() action!: string;
-  @Input() shape!: 'pill' | 'flat' | 'curve';
-  @Input() zapClass!: string;
-  @Input() type: 'error' | 'default' = 'default';
+  dismiss = output();
+  actioned = output();
+  actionedFn = input<() => void>(() => {
+    return;
+  });
+  title = input();
+  text = input();
+  action = input();
+  shape = input<'pill' | 'flat' | 'curve'>();
+  zapClass = input('');
+  type = input<'error' | 'default'>('default');
   private isDragging = false;
   private startX = 0;
   private currentX = 0;
@@ -64,7 +67,9 @@ export class ZapToast {
   }
 
   get classes(): string[] {
-    return [this.shape, this.type, this.zapClass].filter((cls) => cls && cls !== 'default');
+    return [this.shape() ?? '', this.type() ?? '', this.zapClass()].filter(
+      (cls) => cls && cls !== 'default',
+    );
   }
 
   handleDismiss() {
@@ -75,7 +80,7 @@ export class ZapToast {
     if (this.actioned instanceof EventEmitter) {
       this.actioned.emit();
     } else if (typeof this.actioned === 'function') {
-      this.actioned();
+      this.actionedFn()?.();
     }
   }
 }

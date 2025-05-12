@@ -9,6 +9,10 @@ import {
   OnInit,
   input,
   model,
+  effect,
+  ChangeDetectorRef,
+  Injector,
+  Inject,
 } from '@angular/core';
 import { FormsModule, NG_VALUE_ACCESSOR, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
@@ -53,6 +57,13 @@ export class ZapCheckbox<T>
   labelPosition = input<'left' | 'right'>('right');
   checked = model<boolean>(false);
   indicator = input<boolean>(true);
+
+  constructor(@Inject(Injector) injector: Injector, cdr: ChangeDetectorRef) {
+    super(injector, cdr);
+    effect(() => {
+      this.control.setValue(this.checked());
+    });
+  }
 
   override ngOnInit(): void {
     super.ngOnInit();

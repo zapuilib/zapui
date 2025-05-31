@@ -11,3 +11,5 @@ export * from './select/select.component';
 export * from './date-picker/date-picker.component';
 
 export * from './date-picker/interface/date-picker.interface';
+
+export { CustomErrorMessages } from './validation-error/validation-error.component';

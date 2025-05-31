@@ -12,7 +12,10 @@ import { FormsModule, NG_VALUE_ACCESSOR, ReactiveFormsModule } from '@angular/fo
 import { CommonModule } from '@angular/common';
 
 import { ControlValueAccessorDirective } from '../directives/control-value-accessor.directive';
-import { ValidationErrorComponent } from '../validation-error/validation-error.component';
+import {
+  CustomErrorMessages,
+  ValidationErrorComponent,
+} from '../validation-error/validation-error.component';
 import { ZapFormFieldIconDirective } from '../directives/icon.directive';
 import { ZapFormFieldHelpTextDirective } from '../directives/help-text.directive';
 import { ZapLabelDirective } from '../directives/label.directive';
@@ -54,7 +57,7 @@ export class ZapInput<T>
   type = input<InputType>('text');
   label = input<string>('');
   placeholder = input<string>('');
-  customErrorMessages = input<Record<string, string>>({});
+  customErrorMessages = input<CustomErrorMessages>({});
   zapClass = input<string>('');
   size = input<'compact' | 'base'>();
   shape = input<'pill' | 'curve' | 'flat'>();

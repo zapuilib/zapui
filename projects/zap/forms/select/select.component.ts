@@ -30,7 +30,10 @@ import { TemplatePortal } from '@angular/cdk/portal';
 import { ViewContainerRef } from '@angular/core';
 
 import { ControlValueAccessorDirective } from '../directives/control-value-accessor.directive';
-import { ValidationErrorComponent } from '../validation-error/validation-error.component';
+import {
+  CustomErrorMessages,
+  ValidationErrorComponent,
+} from '../validation-error/validation-error.component';
 import {
   ZapFormFieldHelpTextDirective,
   ZapFormFieldIconDirective,
@@ -78,7 +81,7 @@ export class ZapSelect<T>
   id = input.required<string>();
   label = input<string>('');
   placeholder = input<string>('Select');
-  customErrorMessages = input<Record<string, string>>({});
+  customErrorMessages = input<CustomErrorMessages>({});
   zapClass = input<string>('');
   shape = input<'pill' | 'curve' | 'flat'>();
   size = input<'compact' | 'base'>();

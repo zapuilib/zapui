@@ -3,7 +3,10 @@ import { FormsModule, NG_VALUE_ACCESSOR, ReactiveFormsModule } from '@angular/fo
 import { CommonModule } from '@angular/common';
 
 import { ControlValueAccessorDirective } from '../directives/control-value-accessor.directive';
-import { ValidationErrorComponent } from '../validation-error/validation-error.component';
+import {
+  CustomErrorMessages,
+  ValidationErrorComponent,
+} from '../validation-error/validation-error.component';
 import { ZapLabelDirective } from '../public-api';
 import { RequiredIndicatorComponent } from '../required-indicator/required-indicator.component';
 
@@ -32,7 +35,7 @@ export class ZapRadio<T> extends ControlValueAccessorDirective<T> implements OnI
   id = input.required<string>();
   options = input<{ name: string; value: string }[]>([]);
   label = input<string>();
-  customErrorMessages = input<Record<string, string>>({});
+  customErrorMessages = input<CustomErrorMessages>({});
   zapClass = input<string>('');
   variant = input<'vertical' | 'horizontal'>('vertical');
   indicator = input<boolean>(true);

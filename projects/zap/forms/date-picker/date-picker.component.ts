@@ -30,7 +30,10 @@ import { ViewContainerRef } from '@angular/core';
 import { A11yModule } from '@angular/cdk/a11y';
 
 import { ControlValueAccessorDirective } from '../directives/control-value-accessor.directive';
-import { ValidationErrorComponent } from '../validation-error/validation-error.component';
+import {
+  CustomErrorMessages,
+  ValidationErrorComponent,
+} from '../validation-error/validation-error.component';
 import { DPCalendar } from './dp-calendar/dp-calendar.component';
 import { ZapDatePickerBreakpoints } from './interface/date-picker.interface';
 import { formatDate } from './utils';
@@ -82,7 +85,7 @@ export class ZapDatePicker<T>
   shape = input<'pill' | 'curve' | 'flat'>();
   size = input<'compact' | 'base' | 'wide'>();
   position = input<'top' | 'bottom' | 'auto'>('auto');
-  customErrorMessages = input<Record<string, string>>({});
+  customErrorMessages = input<CustomErrorMessages>({});
   icon = input<string>();
   iconPosition = input<'left' | 'right'>('right');
   helpText = input<string>('');

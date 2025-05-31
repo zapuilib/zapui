@@ -21,8 +21,8 @@
   },
   "exports": {
     "./tailwind": {
-      "import": "./tailwind/index.js",
-      "require": "./tailwind/index.js"
+      "require": "./tailwind/index.js",
+      "import": "./tailwind/index.js"
     },
     "./tailwind/v4": {
       "import": "./tailwind/v4/index.css"

@@ -39,5 +39,16 @@
       placeholder="Enter your username"
       shape="curve"
       size="compact"></zap-input>
+    <div class="rtl">
+      <zap-input
+        id="username"
+        placeholder="הזן את שם המשתמש שלך"
+        shape="curve"
+        size="compact"
+        [formControl]="usernameControl3"
+        label="שם משתמש (RTL)"
+        [customErrorMessages]="hebrewErrorMessages">
+      </zap-input>
+    </div>
   </div>
 </div>

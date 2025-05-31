@@ -3,7 +3,10 @@ import { FormsModule, NG_VALUE_ACCESSOR, ReactiveFormsModule } from '@angular/fo
 import { CommonModule } from '@angular/common';
 
 import { ControlValueAccessorDirective } from '../directives/control-value-accessor.directive';
-import { ValidationErrorComponent } from '../validation-error/validation-error.component';
+import {
+  CustomErrorMessages,
+  ValidationErrorComponent,
+} from '../validation-error/validation-error.component';
 import { ZapFormFieldHelpTextDirective, ZapLabelDirective } from '../public-api';
 import { RequiredIndicatorComponent } from '../required-indicator/required-indicator.component';
 
@@ -39,7 +42,7 @@ export class ZapTextarea<T>
   rows = input<string>('');
   zapClass = input<string>('');
   shape = input<'curve' | 'flat' | 'pill'>();
-  customErrorMessages = input<Record<string, string>>({});
+  customErrorMessages = input<CustomErrorMessages>({});
   placeholder = input<string>('');
   resize = input<'none' | 'vertical' | 'horizontal' | 'auto'>('none');
   helpText = input<string>('');

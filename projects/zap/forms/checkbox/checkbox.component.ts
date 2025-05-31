@@ -18,7 +18,10 @@ import { FormsModule, NG_VALUE_ACCESSOR, ReactiveFormsModule } from '@angular/fo
 import { CommonModule } from '@angular/common';
 
 import { ControlValueAccessorDirective } from '../directives/control-value-accessor.directive';
-import { ValidationErrorComponent } from '../validation-error/validation-error.component';
+import {
+  CustomErrorMessages,
+  ValidationErrorComponent,
+} from '../validation-error/validation-error.component';
 import { ZapLabelDirective } from '../public-api';
 import { RequiredIndicatorComponent } from '../required-indicator/required-indicator.component';
 
@@ -50,7 +53,7 @@ export class ZapCheckbox<T>
   labelDirective!: ZapLabelDirective;
   label = input<string>('');
   id = input.required<string>();
-  customErrorMessages = input<Record<string, string>>({});
+  customErrorMessages = input<CustomErrorMessages>({});
   zapClass = input<string>('');
   shape = input<'curve' | 'flat'>();
   size = input<'compact' | 'base'>();

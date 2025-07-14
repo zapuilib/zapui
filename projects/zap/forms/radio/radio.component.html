@@ -16,7 +16,8 @@
           <legend class="sr-only">{{ radio.name }}</legend>
           <input
             type="radio"
-            [id]="radio.value"
+            [id]="id() + '-' + radio.value"
+            [name]="id()"
             [formControl]="control"
             [value]="radio.value"
             class="__zap__form__control__input"
@@ -26,7 +27,7 @@
 
           <label
             class="__zap__form__control__label"
-            [for]="radio.value"
+            [for]="id() + '-' + radio.value"
             (click)="control.setValue(radio.value)"
             (keydown.enter)="control.setValue(radio.value)"
             tabindex="0"

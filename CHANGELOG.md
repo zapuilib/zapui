@@ -1,5 +1,12 @@
 # Changelog
 
+## 📦 0.0.0-alpha.9.7 — `dev-alpha`
+
+### 🛠 Fixes
+
+- **Radio**
+  Radio button fixed to support name
+
 ## 📦 0.0.0-alpha.9.5 — `dev-alpha`
 
 ### ✨ Features

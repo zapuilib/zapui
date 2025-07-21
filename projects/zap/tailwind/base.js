@@ -23,6 +23,7 @@ module.exports = plugin(function ({ addVariant, e }) {
     },
     { name: 'error', targetElement: '.error' },
     { name: 'dismiss', targetElement: '.handler' },
+    { name: 'dismiss-icon', targetElement: '.handler svg' },
     { name: 'textarea', targetElement: 'textarea' },
     {
       name: 'textarea-placeholder',

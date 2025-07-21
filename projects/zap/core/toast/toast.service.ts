@@ -13,8 +13,6 @@ import { ZapToast } from './toast.component';
 import { ZapToastInterface } from './toast.interface';
 import { TOAST_STYLES, TOAST_DURATION } from './toast.constant';
 
-type ToastPosition = 'top' | 'bottom';
-
 @Injectable({ providedIn: 'root' })
 export class ZapToastService {
   private activeToastRef = signal<{
@@ -49,7 +47,8 @@ export class ZapToastService {
 
     const element = componentRef.location.nativeElement;
     this.applyStyles(element);
-    const cleanup = this.setupPositionHandling(element, overlayRef);
+
+    const cleanup = this.setupPositionHandling(element, overlayRef, config.position);
 
     this.destroyRef.onDestroy(() => {
       cleanup();
@@ -89,35 +88,77 @@ export class ZapToastService {
     });
   }
 
-  private setupPositionHandling(element: HTMLElement, overlayRef: OverlayRef): () => void {
+  private setupPositionHandling(
+    element: HTMLElement,
+    overlayRef: OverlayRef,
+    configPosition?: 'top' | 'top-l' | 'top-r' | 'bottom' | 'bottom-l' | 'bottom-r',
+  ): () => void {
     if (typeof window === 'undefined') {
       return () => void 0;
     }
 
+    const getPosition = () => {
+      if (window.innerWidth < 640) return 'top';
+      return configPosition || 'bottom';
+    };
+
     const updatePosition = () => {
-      const position: ToastPosition = window.innerWidth < 640 ? 'top' : 'bottom';
-
-      const positionStrategy = this.overlay
-        .position()
-        .global()
-        .top(position === 'top' ? '16px' : 'auto')
-        .bottom(position === 'bottom' ? '16px' : 'auto')
-        .centerHorizontally();
-
-      overlayRef.updatePositionStrategy(positionStrategy);
+      const position = getPosition();
+      let strategy = this.overlay.position().global();
+      switch (position) {
+        case 'top':
+          strategy = strategy.top('20px').centerHorizontally();
+          break;
+        case 'top-l':
+          strategy = strategy.top('20px').left('20px');
+          break;
+        case 'top-r':
+          strategy = strategy.top('20px').right('20px');
+          break;
+        case 'bottom':
+          strategy = strategy.bottom('20px').centerHorizontally();
+          break;
+        case 'bottom-l':
+          strategy = strategy.bottom('20px').left('20px');
+          break;
+        case 'bottom-r':
+          strategy = strategy.bottom('20px').right('20px');
+          break;
+        default:
+          strategy = strategy.bottom('20px').centerHorizontally();
+      }
+      overlayRef.updatePositionStrategy(strategy);
       Object.assign(element.style, TOAST_STYLES.positions[position]);
 
-      element.style.transform =
-        element.style.opacity === '0'
-          ? `translateY(${position === 'top' ? '-100%' : '100%'})`
-          : 'translateY(0)';
+      if (element.style.opacity === '0') {
+        if (position === 'top') {
+          element.style.transform = 'translate(-50%, -100%)';
+        } else if (position === 'bottom') {
+          element.style.transform = 'translate(-50%, 100%)';
+        } else if (position === 'top-l' || position === 'bottom-l') {
+          element.style.transform = 'translateX(-100%)';
+        } else if (position === 'top-r' || position === 'bottom-r') {
+          element.style.transform = 'translateX(100%)';
+        }
+      } else {
+        if (position === 'top' || position === 'bottom') {
+          element.style.transform = 'translate(-50%, 0)';
+        } else {
+          element.style.transform = 'translateX(0)';
+        }
+      }
     };
 
     updatePosition();
     window.addEventListener('resize', updatePosition, { passive: true });
 
     requestAnimationFrame(() => {
-      element.style.transform = 'translateY(0)';
+      const position = getPosition();
+      if (position === 'top' || position === 'bottom') {
+        element.style.transform = 'translate(-50%, 0)';
+      } else {
+        element.style.transform = 'translateX(0)';
+      }
       element.style.opacity = '1';
     });
 
@@ -134,7 +175,34 @@ export class ZapToastService {
 
   private hide(ref: { overlayRef: OverlayRef; componentRef: ComponentRef<ZapToast> }) {
     const element = ref.componentRef.location.nativeElement;
-    element.style.transform = 'translateX(100%)';
+    let position = 'bottom';
+    try {
+      if (
+        ref.componentRef.instance &&
+        typeof ref.componentRef.instance === 'object' &&
+        'position' in ref.componentRef.instance
+      ) {
+        const posInput = (ref.componentRef.instance as any).position;
+        if (typeof posInput === 'function') {
+          position = posInput();
+        } else if (typeof posInput === 'string') {
+          position = posInput;
+        }
+      }
+    } catch {
+      position = 'bottom';
+    }
+    if (position === 'top') {
+      element.style.transform = 'translate(-50%, -100%)';
+    } else if (position === 'bottom') {
+      element.style.transform = 'translate(-50%, 100%)';
+    } else if (position === 'top-l' || position === 'bottom-l') {
+      element.style.transform = 'translateX(-100%)';
+    } else if (position === 'top-r' || position === 'bottom-r') {
+      element.style.transform = 'translateX(100%)';
+    } else {
+      element.style.transform = 'translate(-50%, 100%)';
+    }
     element.style.opacity = '0';
 
     setTimeout(() => {

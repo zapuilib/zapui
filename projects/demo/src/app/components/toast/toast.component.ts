@@ -27,6 +27,7 @@ export class ToastComponent {
       text: 'This is a toast',
       shape: 'curve',
       type: 'default',
+      position: 'top',
     });
   }
 

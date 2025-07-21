@@ -1,5 +1,23 @@
 # Changelog
 
+## 📦 0.0.0-alpha.9.8 — `dev-alpha`
+
+### ✨ Features
+
+- **Toast**
+
+  - Custom position feature added for the toast component.
+
+- **Handler**
+  - `handler-icon` zapclass variant added to maximize flexibility.
+
+### 🛠 Fixes
+
+- **Button**
+  - Button transition removed to fix the flicker issue when navigating.
+
+##
+
 ## 📦 0.0.0-alpha.9.7 — `dev-alpha`
 
 ### 🛠 Fixes

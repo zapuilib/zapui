@@ -1,0 +1,109 @@
+[
+  {
+    "component": "Accordion",
+    "selectors": [
+      "zap-accordion-group",
+      "zap-accordion-item",
+      "zap-accordion-header",
+      "zap-accordion-content"
+    ],
+    "summary": "Collapsible content container with expandable sections organized in groups with headers and content areas"
+  },
+  {
+    "component": "Alert",
+    "selectors": ["zap-alert"],
+    "summary": "Notification message component for displaying success, warning, error, or info alerts with dismissible functionality"
+  },
+  {
+    "component": "Badge",
+    "selectors": ["zap-badge"],
+    "summary": "Small status indicator component for displaying notification counts or status labels with different variants and types"
+  },
+  {
+    "component": "Button",
+    "selectors": ["zap-button"],
+    "summary": "Interactive button component with multiple variants, types, shapes, sizes, and icon support for user actions"
+  },
+  {
+    "component": "Checkbox",
+    "selectors": ["zap-checkbox"],
+    "summary": "Form control for boolean selection with customizable shapes, sizes, label positioning, and validation support"
+  },
+  {
+    "component": "Chip",
+    "selectors": ["zap-chip"],
+    "summary": "Tag or label component with dismissible functionality and customizable variants, shapes, and sizes"
+  },
+  {
+    "component": "DatePicker",
+    "selectors": ["zap-date-picker", "dp-calendar", "dp-calendar-select"],
+    "summary": "Date selection form control with calendar dropdown, range selection, and month/year navigation components"
+  },
+  {
+    "component": "Dialog",
+    "selectors": ["zap-dialog"],
+    "summary": "Modal confirmation dialog with customizable title, text, action buttons, and positioning options"
+  },
+  {
+    "component": "Dropdown",
+    "selectors": [
+      "zap-dropdown",
+      "zap-dropdown-trigger",
+      "zap-dropdown-menu",
+      "zap-dropdown-menu-group",
+      "zap-dropdown-menu-item",
+      "zap-dropdown-menu-label",
+      "zap-dropdown-menu-shortcut",
+      "zap-dropdown-separator",
+      "zap-dropdown-menu-portal",
+      "zap-dropdown-menu-sub",
+      "zap-dropdown-menu-sub-trigger"
+    ],
+    "summary": "Comprehensive dropdown menu system with triggers, menus, items, groups, labels, shortcuts, separators, and nested submenus"
+  },
+  {
+    "component": "FormHelpers",
+    "selectors": ["required-indicator", "validation-error"],
+    "summary": "Form utility components for displaying required field indicators and validation error messages"
+  },
+  {
+    "component": "Input",
+    "selectors": ["zap-input"],
+    "summary": "Text input form control with support for various input types, icons, validation, and accessibility features"
+  },
+  {
+    "component": "Modal",
+    "selectors": ["zap-modal"],
+    "summary": "Overlay content container with different sizes and shapes for displaying focused content above the main interface"
+  },
+  {
+    "component": "Radio",
+    "selectors": ["zap-radio"],
+    "summary": "Radio button group form control for single selection from multiple options with layout and validation support"
+  },
+  {
+    "component": "Select",
+    "selectors": ["zap-select"],
+    "summary": "Dropdown selection form control with single/multi-select, search functionality, custom templates, and accessibility"
+  },
+  {
+    "component": "Textarea",
+    "selectors": ["zap-textarea"],
+    "summary": "Multi-line text input form control with auto-resize, validation support, and customizable shapes and help text"
+  },
+  {
+    "component": "Toast",
+    "selectors": ["zap-toast"],
+    "summary": "Temporary notification component with draggable dismiss, action buttons, and flexible positioning options"
+  },
+  {
+    "component": "Toggle",
+    "selectors": ["zap-toggle"],
+    "summary": "Switch form control for boolean values with label and help text support for on/off states"
+  },
+  {
+    "component": "Tooltip",
+    "selectors": ["zap-tooltip", "zap-tooltip-content", "zap-tooltip-handler"],
+    "summary": "Contextual information overlay system with content rendering, positioning logic, and hover/focus triggers"
+  }
+]

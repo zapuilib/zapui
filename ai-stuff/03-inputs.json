@@ -1,0 +1,838 @@
+[
+  {
+    "component": "Alert",
+    "selectors": {
+      "zap-alert": {
+        "type": {
+          "value": ["success", "warning", "error", "info", "default"],
+          "summary": "Sets the semantic color scheme of the alert (green for success, red for error, etc.)"
+        },
+        "shape": {
+          "value": ["curve", "pill", "flat"],
+          "summary": "Controls the border radius styling - curve for rounded corners, pill for fully rounded, flat for square corners"
+        },
+        "variant": {
+          "value": ["default", "outlined"],
+          "summary": "Changes between filled background (default) or outlined border-only styling"
+        },
+        "icon": {
+          "value": "string",
+          "summary": "Icon identifier to display within the alert alongside content"
+        },
+        "zapClass": {
+          "value": "string",
+          "summary": "Additional CSS classes for custom styling"
+        }
+      }
+    }
+  },
+  {
+    "component": "Badge",
+    "selectors": {
+      "zap-badge": {
+        "variant": {
+          "value": ["empty", "default", "outlined"],
+          "summary": "Controls display style - empty shows just a dot, default shows count with background, outlined shows count with border only"
+        },
+        "type": {
+          "value": ["default", "info", "success", "warning", "error"],
+          "summary": "Sets the semantic color scheme of the badge"
+        },
+        "count": {
+          "value": "number",
+          "summary": "Numeric value to display in the badge, automatically shows '99+' for values over 99"
+        },
+        "zapClass": {
+          "value": "string",
+          "summary": "Additional CSS classes for custom styling"
+        }
+      }
+    }
+  },
+  {
+    "component": "Button",
+    "selectors": {
+      "zap-button": {
+        "text": {
+          "value": "string",
+          "summary": "Button label text content"
+        },
+        "zapClass": {
+          "value": "string",
+          "summary": "Additional CSS classes for custom styling"
+        },
+        "shape": {
+          "value": ["pill", "curve", "flat"],
+          "summary": "Controls the border radius styling of the button"
+        },
+        "size": {
+          "value": ["compact", "wide", "tight", "base"],
+          "summary": "Controls the padding and dimensions of the button"
+        },
+        "type": {
+          "value": ["info", "success", "warning", "error", "default"],
+          "summary": "Sets the semantic color scheme of the button"
+        },
+        "icon": {
+          "value": "string",
+          "summary": "Icon identifier to display within the button"
+        },
+        "iconPosition": {
+          "value": ["left", "right"],
+          "summary": "Controls whether icon appears before or after the button text"
+        },
+        "img": {
+          "value": "string",
+          "summary": "Image URL to display in the button instead of an icon"
+        },
+        "imgPosition": {
+          "value": ["left", "right"],
+          "summary": "Controls whether image appears before or after the button text"
+        },
+        "variant": {
+          "value": ["outlined", "default", "link"],
+          "summary": "Changes button styling - default is filled, outlined is border-only, link removes background completely"
+        },
+        "disabled": {
+          "value": [true, false],
+          "summary": "Controls whether the button is interactive and changes visual state to appear non-clickable"
+        },
+        "icononly": {
+          "value": [true, false],
+          "summary": "When true, hides text and shows only the icon in a compact square format"
+        }
+      }
+    }
+  },
+  {
+    "component": "Chip",
+    "selectors": {
+      "zap-chip": {
+        "text": {
+          "value": "string",
+          "summary": "Text content displayed in the chip"
+        },
+        "zapClass": {
+          "value": "string",
+          "summary": "Additional CSS classes for custom styling"
+        },
+        "variant": {
+          "value": ["outlined", "default"],
+          "summary": "Controls whether chip has filled background (default) or outlined border styling"
+        },
+        "shape": {
+          "value": ["pill", "curve", "flat"],
+          "summary": "Controls the border radius styling of the chip"
+        },
+        "size": {
+          "value": ["base", "compact", "wide"],
+          "summary": "Controls the padding and dimensions of the chip"
+        },
+        "type": {
+          "value": ["default", "info", "success", "warning", "error"],
+          "summary": "Sets the semantic color scheme of the chip"
+        },
+        "icon": {
+          "value": "string",
+          "summary": "Icon identifier to display within the chip"
+        },
+        "iconPosition": {
+          "value": ["left", "right"],
+          "summary": "Controls whether icon appears before or after the chip text"
+        },
+        "disabled": {
+          "value": [true, false],
+          "summary": "Controls whether the chip is interactive and changes visual state"
+        },
+        "dismissible": {
+          "value": [true, false],
+          "summary": "When true, shows a close/remove button that allows dismissing the chip"
+        }
+      }
+    }
+  },
+  {
+    "component": "Dialog",
+    "selectors": {
+      "zap-dialog": {
+        "title": {
+          "value": "string",
+          "summary": "Main heading text displayed at the top of the dialog"
+        },
+        "text": {
+          "value": "string",
+          "summary": "Body text content explaining the dialog purpose or question"
+        },
+        "closeAction": {
+          "value": "string",
+          "summary": "Text for the cancel/close button"
+        },
+        "confirmAction": {
+          "value": "string",
+          "summary": "Text for the confirm/proceed button"
+        },
+        "zapClass": {
+          "value": "string",
+          "summary": "Additional CSS classes for custom styling"
+        },
+        "shape": {
+          "value": ["curve", "pill", "flat"],
+          "summary": "Controls the border radius styling of the dialog container"
+        },
+        "position": {
+          "value": ["top", "default"],
+          "summary": "Controls dialog placement - top positions near screen top, default centers on screen"
+        },
+        "showOverlay": {
+          "value": [true, false],
+          "summary": "Controls whether a backdrop overlay is displayed behind the dialog"
+        }
+      }
+    }
+  },
+  {
+    "component": "Modal",
+    "selectors": {
+      "zap-modal": {
+        "shape": {
+          "value": ["curve", "flat", "pill"],
+          "summary": "Controls the border radius styling of the modal container"
+        },
+        "size": {
+          "value": ["tight", "compact", "base", "wide", "full"],
+          "summary": "Controls the width and height dimensions of the modal"
+        },
+        "zapClass": {
+          "value": "string",
+          "summary": "Additional CSS classes for custom styling"
+        },
+        "showOverlay": {
+          "value": [true, false],
+          "summary": "Controls whether a backdrop overlay is displayed behind the modal"
+        }
+      }
+    }
+  },
+  {
+    "component": "Toast",
+    "selectors": {
+      "zap-toast": {
+        "title": {
+          "value": "string",
+          "summary": "Main heading text displayed at the top of the toast"
+        },
+        "text": {
+          "value": "string",
+          "summary": "Body text content of the toast notification"
+        },
+        "action": {
+          "value": "string",
+          "summary": "Text for the action button within the toast"
+        },
+        "shape": {
+          "value": ["pill", "flat", "curve"],
+          "summary": "Controls the border radius styling of the toast container"
+        },
+        "zapClass": {
+          "value": "string",
+          "summary": "Additional CSS classes for custom styling"
+        },
+        "type": {
+          "value": ["error", "default"],
+          "summary": "Sets the semantic color scheme of the toast"
+        },
+        "position": {
+          "value": ["top", "top-l", "top-r", "bottom", "bottom-l", "bottom-r"],
+          "summary": "Controls where the toast appears on screen and affects drag-to-dismiss direction"
+        },
+        "actionedFn": {
+          "value": "function",
+          "summary": "Function to execute when the action button is clicked"
+        }
+      }
+    }
+  },
+  {
+    "component": "Tooltip",
+    "selectors": {
+      "zap-tooltip": {
+        "position": {
+          "value": ["top", "bottom", "left", "right", "auto"],
+          "summary": "Controls where the tooltip appears relative to its trigger element"
+        }
+      },
+      "zap-tooltip-content": {
+        "zapClass": {
+          "value": "string",
+          "summary": "Additional CSS classes for custom styling of tooltip content"
+        },
+        "shape": {
+          "value": ["curve", "pill", "flat"],
+          "summary": "Controls the border radius styling of the tooltip content container"
+        }
+      },
+      "zap-tooltip-handler": {}
+    }
+  },
+  {
+    "component": "Accordion",
+    "selectors": {
+      "zap-accordion-group": {
+        "multiple": {
+          "value": [true, false],
+          "summary": "When true, allows multiple accordion items to be open simultaneously; when false, only one can be open at a time"
+        }
+      },
+      "zap-accordion-item": {},
+      "zap-accordion-header": {
+        "variant": {
+          "value": ["default", "nounderline"],
+          "summary": "Controls styling of the header - default includes underline styling, nounderline removes it"
+        },
+        "icon": {
+          "value": ["chevron", "plus"],
+          "summary": "Sets the expand/collapse icon type - chevron rotates down when open, plus changes to minus when open"
+        }
+      },
+      "zap-accordion-content": {}
+    }
+  },
+  {
+    "component": "Dropdown",
+    "selectors": {
+      "zap-dropdown": {
+        "shape": {
+          "value": ["pill", "curve", "flat"],
+          "summary": "Controls the border radius styling of the dropdown menu"
+        },
+        "zapClass": {
+          "value": "string",
+          "summary": "Additional CSS classes for custom styling"
+        },
+        "position": {
+          "value": ["top-l", "top-r", "top", "bottom-l", "bottom-r", "bottom", "auto"],
+          "summary": "Controls where the dropdown menu appears relative to the trigger"
+        }
+      },
+      "zap-dropdown-trigger": {
+        "zapClass": {
+          "value": "string",
+          "summary": "Additional CSS classes for custom styling of the trigger element"
+        }
+      },
+      "zap-dropdown-menu": {
+        "zapClass": {
+          "value": "string",
+          "summary": "Additional CSS classes for custom styling of the menu container"
+        }
+      },
+      "zap-dropdown-menu-group": {
+        "zapClass": {
+          "value": "string",
+          "summary": "Additional CSS classes for custom styling of menu item groups"
+        }
+      },
+      "zap-dropdown-menu-item": {
+        "zapClass": {
+          "value": "string",
+          "summary": "Additional CSS classes for custom styling of individual menu items"
+        },
+        "disabled": {
+          "value": [true, false],
+          "summary": "Controls whether the menu item is interactive and changes visual state to appear non-clickable"
+        }
+      },
+      "zap-dropdown-menu-label": {
+        "zapClass": {
+          "value": "string",
+          "summary": "Additional CSS classes for custom styling of menu labels"
+        }
+      },
+      "zap-dropdown-menu-shortcut": {
+        "zapClass": {
+          "value": "string",
+          "summary": "Additional CSS classes for custom styling of keyboard shortcuts"
+        }
+      },
+      "zap-dropdown-separator": {
+        "zapClass": {
+          "value": "string",
+          "summary": "Additional CSS classes for custom styling of menu separators"
+        }
+      },
+      "zap-dropdown-menu-portal": {
+        "zapClass": {
+          "value": "string",
+          "summary": "Additional CSS classes for custom styling of portal-rendered submenus"
+        }
+      },
+      "zap-dropdown-menu-sub": {
+        "zapClass": {
+          "value": "string",
+          "summary": "Additional CSS classes for custom styling of submenu containers"
+        }
+      },
+      "zap-dropdown-menu-sub-trigger": {
+        "zapClass": {
+          "value": "string",
+          "summary": "Additional CSS classes for custom styling of submenu triggers"
+        }
+      }
+    }
+  },
+  {
+    "component": "Input",
+    "selectors": {
+      "zap-input": {
+        "id": {
+          "value": "string",
+          "summary": "Required unique identifier for the input element and accessibility"
+        },
+        "type": {
+          "value": ["password", "text", "number", "email", "tel"],
+          "summary": "HTML input type that controls validation behavior and mobile keyboard"
+        },
+        "label": {
+          "value": "string",
+          "summary": "Label text displayed above the input field"
+        },
+        "placeholder": {
+          "value": "string",
+          "summary": "Placeholder text shown when input is empty"
+        },
+        "customErrorMessages": {
+          "value": "object",
+          "summary": "Object mapping validation error types to custom error messages"
+        },
+        "zapClass": {
+          "value": "string",
+          "summary": "Additional CSS classes for custom styling"
+        },
+        "size": {
+          "value": ["compact", "base"],
+          "summary": "Controls the padding and height dimensions of the input field"
+        },
+        "shape": {
+          "value": ["pill", "curve", "flat"],
+          "summary": "Controls the border radius styling of the input field"
+        },
+        "icon": {
+          "value": "string",
+          "summary": "Icon identifier to display within the input field"
+        },
+        "iconPosition": {
+          "value": ["left", "right"],
+          "summary": "Controls whether icon appears on the left or right side of the input"
+        },
+        "autoComplete": {
+          "value": "string",
+          "summary": "HTML autocomplete attribute value for browser autofill behavior"
+        },
+        "helpText": {
+          "value": "string",
+          "summary": "Help text displayed below the input to guide user input"
+        },
+        "indicator": {
+          "value": [true, false],
+          "summary": "Controls whether required field indicator (*) is shown"
+        }
+      }
+    }
+  },
+  {
+    "component": "Textarea",
+    "selectors": {
+      "zap-textarea": {
+        "label": {
+          "value": "string",
+          "summary": "Label text displayed above the textarea field"
+        },
+        "id": {
+          "value": "string",
+          "summary": "Required unique identifier for the textarea element and accessibility"
+        },
+        "rows": {
+          "value": "string",
+          "summary": "Number of visible text lines in the textarea"
+        },
+        "zapClass": {
+          "value": "string",
+          "summary": "Additional CSS classes for custom styling"
+        },
+        "shape": {
+          "value": ["curve", "flat", "pill"],
+          "summary": "Controls the border radius styling of the textarea field"
+        },
+        "customErrorMessages": {
+          "value": "object",
+          "summary": "Object mapping validation error types to custom error messages"
+        },
+        "placeholder": {
+          "value": "string",
+          "summary": "Placeholder text shown when textarea is empty"
+        },
+        "resize": {
+          "value": ["none", "vertical", "horizontal", "auto"],
+          "summary": "Controls resize behavior - auto enables automatic height adjustment based on content"
+        },
+        "helpText": {
+          "value": "string",
+          "summary": "Help text displayed below the textarea to guide user input"
+        },
+        "indicator": {
+          "value": [true, false],
+          "summary": "Controls whether required field indicator (*) is shown"
+        }
+      }
+    }
+  },
+  {
+    "component": "Select",
+    "selectors": {
+      "zap-select": {
+        "id": {
+          "value": "string",
+          "summary": "Required unique identifier for the select element and accessibility"
+        },
+        "label": {
+          "value": "string",
+          "summary": "Label text displayed above the select field"
+        },
+        "placeholder": {
+          "value": "string",
+          "summary": "Placeholder text shown when no option is selected"
+        },
+        "customErrorMessages": {
+          "value": "object",
+          "summary": "Object mapping validation error types to custom error messages"
+        },
+        "zapClass": {
+          "value": "string",
+          "summary": "Additional CSS classes for custom styling"
+        },
+        "shape": {
+          "value": ["pill", "curve", "flat"],
+          "summary": "Controls the border radius styling of the select field"
+        },
+        "size": {
+          "value": ["compact", "base"],
+          "summary": "Controls the padding and height dimensions of the select field"
+        },
+        "icon": {
+          "value": "string",
+          "summary": "Icon identifier to display within the select field"
+        },
+        "iconPosition": {
+          "value": ["left", "right"],
+          "summary": "Controls whether icon appears on the left or right side of the select"
+        },
+        "searchable": {
+          "value": [true, false],
+          "summary": "Enables search/filter functionality within the dropdown options"
+        },
+        "searchPlaceholder": {
+          "value": "string",
+          "summary": "Placeholder text for the search input when searchable is enabled"
+        },
+        "notFound": {
+          "value": "string",
+          "summary": "Message displayed when no options match the search criteria"
+        },
+        "multiselect": {
+          "value": [true, false],
+          "summary": "Allows selection of multiple options instead of just one"
+        },
+        "async": {
+          "value": [true, false],
+          "summary": "When true, search events are emitted for external handling instead of local filtering"
+        },
+        "optionTemplate": {
+          "value": "TemplateRef",
+          "summary": "Custom template for rendering individual options in the dropdown"
+        },
+        "selectedTemplate": {
+          "value": "TemplateRef",
+          "summary": "Custom template for rendering selected values in the select field"
+        },
+        "position": {
+          "value": ["top", "bottom", "auto"],
+          "summary": "Controls where the dropdown appears relative to the select field"
+        },
+        "helpText": {
+          "value": "string",
+          "summary": "Help text displayed below the select to guide user selection"
+        },
+        "options": {
+          "value": "array",
+          "summary": "Array of option objects with label and value properties for the dropdown choices"
+        },
+        "indicator": {
+          "value": [true, false],
+          "summary": "Controls whether required field indicator (*) is shown"
+        }
+      }
+    }
+  },
+  {
+    "component": "Checkbox",
+    "selectors": {
+      "zap-checkbox": {
+        "label": {
+          "value": "string",
+          "summary": "Label text displayed next to the checkbox"
+        },
+        "id": {
+          "value": "string",
+          "summary": "Required unique identifier for the checkbox element and accessibility"
+        },
+        "customErrorMessages": {
+          "value": "object",
+          "summary": "Object mapping validation error types to custom error messages"
+        },
+        "zapClass": {
+          "value": "string",
+          "summary": "Additional CSS classes for custom styling"
+        },
+        "shape": {
+          "value": ["curve", "flat"],
+          "summary": "Controls the border radius styling of the checkbox - curve for rounded, flat for square"
+        },
+        "size": {
+          "value": ["compact", "base"],
+          "summary": "Controls the dimensions of the checkbox element"
+        },
+        "labelPosition": {
+          "value": ["left", "right"],
+          "summary": "Controls whether label appears to the left or right of the checkbox"
+        },
+        "checked": {
+          "value": [true, false],
+          "summary": "Controls the checked state of the checkbox"
+        },
+        "indicator": {
+          "value": [true, false],
+          "summary": "Controls whether required field indicator (*) is shown"
+        }
+      }
+    }
+  },
+  {
+    "component": "Radio",
+    "selectors": {
+      "zap-radio": {
+        "id": {
+          "value": "string",
+          "summary": "Required unique identifier for the radio group and accessibility"
+        },
+        "options": {
+          "value": "array",
+          "summary": "Array of option objects with name and value properties for the radio choices"
+        },
+        "label": {
+          "value": "string",
+          "summary": "Label text displayed above the radio group"
+        },
+        "customErrorMessages": {
+          "value": "object",
+          "summary": "Object mapping validation error types to custom error messages"
+        },
+        "zapClass": {
+          "value": "string",
+          "summary": "Additional CSS classes for custom styling"
+        },
+        "variant": {
+          "value": ["vertical", "horizontal"],
+          "summary": "Controls layout direction of radio options - vertical stacks them, horizontal arranges them in a row"
+        },
+        "indicator": {
+          "value": [true, false],
+          "summary": "Controls whether required field indicator (*) is shown"
+        }
+      }
+    }
+  },
+  {
+    "component": "Toggle",
+    "selectors": {
+      "zap-toggle": {
+        "id": {
+          "value": "string",
+          "summary": "Required unique identifier for the toggle element and accessibility"
+        },
+        "label": {
+          "value": "string",
+          "summary": "Label text displayed next to the toggle switch"
+        },
+        "helpText": {
+          "value": "string",
+          "summary": "Help text displayed below the toggle to explain its purpose"
+        },
+        "zapClass": {
+          "value": "string",
+          "summary": "Additional CSS classes for custom styling"
+        },
+        "customErrorMessages": {
+          "value": "object",
+          "summary": "Object mapping validation error types to custom error messages"
+        },
+        "indicator": {
+          "value": [true, false],
+          "summary": "Controls whether required field indicator (*) is shown"
+        }
+      }
+    }
+  },
+  {
+    "component": "DatePicker",
+    "selectors": {
+      "zap-date-picker": {
+        "id": {
+          "value": "string",
+          "summary": "Required unique identifier for the date picker element and accessibility"
+        },
+        "label": {
+          "value": "string",
+          "summary": "Label text displayed above the date picker field"
+        },
+        "placeholder": {
+          "value": "string",
+          "summary": "Placeholder text shown when no date is selected"
+        },
+        "shape": {
+          "value": ["pill", "curve", "flat"],
+          "summary": "Controls the border radius styling of the date picker field"
+        },
+        "size": {
+          "value": ["compact", "base", "wide"],
+          "summary": "Controls the padding and dimensions of the date picker field"
+        },
+        "position": {
+          "value": ["top", "bottom", "auto"],
+          "summary": "Controls where the calendar dropdown appears relative to the field"
+        },
+        "customErrorMessages": {
+          "value": "object",
+          "summary": "Object mapping validation error types to custom error messages"
+        },
+        "icon": {
+          "value": "string",
+          "summary": "Icon identifier to display within the date picker field"
+        },
+        "iconPosition": {
+          "value": ["left", "right"],
+          "summary": "Controls whether icon appears on the left or right side of the field"
+        },
+        "helpText": {
+          "value": "string",
+          "summary": "Help text displayed below the date picker to guide user input"
+        },
+        "breakpoints": {
+          "value": "object",
+          "summary": "Object defining responsive calendar layout at different screen sizes"
+        },
+        "zapClass": {
+          "value": "string",
+          "summary": "Additional CSS classes for custom styling"
+        },
+        "monthsPerView": {
+          "value": "number",
+          "summary": "Number of calendar months to display simultaneously"
+        },
+        "maxPerRow": {
+          "value": "number",
+          "summary": "Maximum number of calendar months to show per row"
+        },
+        "range": {
+          "value": [true, false],
+          "summary": "Enables date range selection instead of single date selection"
+        },
+        "dateFormat": {
+          "value": "string",
+          "summary": "Format pattern for displaying selected dates (e.g., 'MMM dd, yyyy')"
+        },
+        "locale": {
+          "value": "string",
+          "summary": "Locale identifier for date formatting and localization"
+        },
+        "dropdown": {
+          "value": [true, false],
+          "summary": "Controls whether calendar appears in a dropdown overlay or inline"
+        },
+        "months": {
+          "value": "array",
+          "summary": "Array of month names for calendar display"
+        },
+        "daysOfWeek": {
+          "value": "array",
+          "summary": "Array of day abbreviations for calendar column headers"
+        },
+        "years": {
+          "value": "array",
+          "summary": "Array of available years for selection in year dropdown"
+        },
+        "disableWeekends": {
+          "value": [true, false],
+          "summary": "When true, prevents selection of Saturday and Sunday dates"
+        },
+        "disableDates": {
+          "value": "array",
+          "summary": "Array of specific dates to disable for selection"
+        },
+        "disableRanges": {
+          "value": "array",
+          "summary": "Array of date range objects to disable for selection"
+        },
+        "disableInactive": {
+          "value": [true, false],
+          "summary": "When true, prevents interaction with dates outside the current month"
+        },
+        "minDate": {
+          "value": "Date",
+          "summary": "Earliest selectable date in the calendar"
+        },
+        "maxDate": {
+          "value": "Date",
+          "summary": "Latest selectable date in the calendar"
+        },
+        "minYear": {
+          "value": "number",
+          "summary": "Earliest year available in the year selection dropdown"
+        },
+        "maxYear": {
+          "value": "number",
+          "summary": "Latest year available in the year selection dropdown"
+        },
+        "indicator": {
+          "value": [true, false],
+          "summary": "Controls whether required field indicator (*) is shown"
+        }
+      },
+      "dp-calendar": {},
+      "dp-calendar-select": {}
+    }
+  },
+  {
+    "component": "FormHelpers",
+    "selectors": {
+      "required-indicator": {},
+      "validation-error": {
+        "errors": {
+          "value": "object",
+          "summary": "Object containing validation errors from form controls"
+        },
+        "customErrorMessages": {
+          "value": "object",
+          "summary": "Object mapping validation error types to custom error messages"
+        },
+        "zapClass": {
+          "value": "string",
+          "summary": "Additional CSS classes for custom styling"
+        },
+        "color": {
+          "value": "string",
+          "summary": "Color value for the error message text"
+        }
+      }
+    }
+  }
+]

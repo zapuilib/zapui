@@ -1,0 +1,218 @@
+[
+  {
+    "selector": "zap-alert",
+    "path": "projects/zap/core/alert/alert.component.ts",
+    "demo": "projects/demo/src/app/components/alert/alert.component.ts",
+    "summary": "Alert component for displaying notification messages with different types (success, warning, error, info), variants (default, outlined), and dismissible functionality"
+  },
+  {
+    "selector": "zap-badge",
+    "path": "projects/zap/core/badge/badge.component.ts",
+    "demo": "projects/demo/src/app/components/badge/badge.component.ts",
+    "summary": "Badge component for displaying notification counts or status indicators with variants (empty, default, outlined) and different types (default, info, success, warning, error)"
+  },
+  {
+    "selector": "zap-button",
+    "path": "projects/zap/core/button/button.component.ts",
+    "demo": "projects/demo/src/app/components/button/button.component.ts",
+    "summary": "Button component with multiple variants (outlined, default, link), types (info, success, warning, error), shapes (pill, curve, flat), sizes, and icon support"
+  },
+  {
+    "selector": "zap-chip",
+    "path": "projects/zap/core/chip/chip.component.ts",
+    "demo": "projects/demo/src/app/components/chip/chip.component.ts",
+    "summary": "Chip component for displaying tags or labels with dismissible functionality, different variants (outlined, default), shapes, and sizes"
+  },
+  {
+    "selector": "zap-dialog",
+    "path": "projects/zap/core/dialog/dialog.component.ts",
+    "demo": "projects/demo/src/app/components/dialog/dialog.component.ts",
+    "summary": "Dialog component for displaying confirmation dialogs with customizable title, text, action buttons, and positioning options"
+  },
+  {
+    "selector": "zap-modal",
+    "path": "projects/zap/core/modal/modal.component.ts",
+    "demo": "projects/demo/src/app/components/modal/modal.component.ts",
+    "summary": "Modal component for displaying overlay content with different sizes (tight, compact, base, wide, full) and shapes (curve, flat, pill)"
+  },
+  {
+    "selector": "zap-toast",
+    "path": "projects/zap/core/toast/toast.component.ts",
+    "demo": "projects/demo/src/app/components/toast/toast.component.ts",
+    "summary": "Toast notification component with draggable dismiss functionality, action buttons, and positioning options (top, bottom variants)"
+  },
+  {
+    "selector": "zap-tooltip",
+    "path": "projects/zap/core/tooltip/tooltip/tooltip.component.ts",
+    "demo": "projects/demo/src/app/components/tooltip/tooltip.component.ts",
+    "summary": "Tooltip component for displaying contextual information on hover or focus"
+  },
+  {
+    "selector": "zap-tooltip-content",
+    "path": "projects/zap/core/tooltip/tooltip-content/tooltip-content.component.ts",
+    "demo": null,
+    "summary": "Tooltip content component that renders the actual tooltip content within the tooltip system"
+  },
+  {
+    "selector": "zap-tooltip-handler",
+    "path": "projects/zap/core/tooltip/tooltip-handler/tooltip-handler.component.ts",
+    "demo": null,
+    "summary": "Tooltip handler component that manages tooltip positioning and visibility logic"
+  },
+  {
+    "selector": "zap-accordion-group",
+    "path": "projects/zap/core/accordion/accordion-group/accordion-group.component.ts",
+    "demo": "projects/demo/src/app/components/accordion/accordion.component.ts",
+    "summary": "Accordion group component that serves as a container for multiple accordion items"
+  },
+  {
+    "selector": "zap-accordion-item",
+    "path": "projects/zap/core/accordion/accordion-item/accordion-item.component.ts",
+    "demo": "projects/demo/src/app/components/accordion/accordion.component.ts",
+    "summary": "Individual accordion item component that can be expanded or collapsed within an accordion group"
+  },
+  {
+    "selector": "zap-accordion-header",
+    "path": "projects/zap/core/accordion/accordion-header/accordion-header.component.ts",
+    "demo": "projects/demo/src/app/components/accordion/accordion.component.ts",
+    "summary": "Accordion header component that serves as the clickable trigger to expand/collapse accordion content with icon options (chevron, plus)"
+  },
+  {
+    "selector": "zap-accordion-content",
+    "path": "projects/zap/core/accordion/accordion-content/accordion-content.component.ts",
+    "demo": "projects/demo/src/app/components/accordion/accordion.component.ts",
+    "summary": "Accordion content component that contains the collapsible content within an accordion item"
+  },
+  {
+    "selector": "zap-dropdown",
+    "path": "projects/zap/core/dropdown/dropdown/dropdown.component.ts",
+    "demo": "projects/demo/src/app/components/dropdown/dropdown.component.ts",
+    "summary": "Dropdown container component that manages dropdown menu positioning and visibility with flexible positioning options"
+  },
+  {
+    "selector": "zap-dropdown-trigger",
+    "path": "projects/zap/core/dropdown/dropdown-trigger/dropdown-trigger.component.ts",
+    "demo": "projects/demo/src/app/components/dropdown/dropdown.component.ts",
+    "summary": "Dropdown trigger component that serves as the clickable element to open/close dropdown menus"
+  },
+  {
+    "selector": "zap-dropdown-menu",
+    "path": "projects/zap/core/dropdown/dropdown-menu/dropdown-menu.component.ts",
+    "demo": "projects/demo/src/app/components/dropdown/dropdown.component.ts",
+    "summary": "Dropdown menu container component that holds dropdown menu items and groups"
+  },
+  {
+    "selector": "zap-dropdown-menu-group",
+    "path": "projects/zap/core/dropdown/dropdown-menu-group/dropdown-menu-group.component.ts",
+    "demo": "projects/demo/src/app/components/dropdown/dropdown.component.ts",
+    "summary": "Dropdown menu group component for organizing related dropdown menu items together"
+  },
+  {
+    "selector": "zap-dropdown-menu-item",
+    "path": "projects/zap/core/dropdown/dropdown-menu-item/dropdown-menu-item.component.ts",
+    "demo": "projects/demo/src/app/components/dropdown/dropdown.component.ts",
+    "summary": "Individual dropdown menu item component that represents a clickable option in the dropdown menu"
+  },
+  {
+    "selector": "zap-dropdown-menu-label",
+    "path": "projects/zap/core/dropdown/dropdown-menu-label/dropdown-menu-label.component.ts",
+    "demo": "projects/demo/src/app/components/dropdown/dropdown.component.ts",
+    "summary": "Dropdown menu label component for displaying section headers within dropdown menus"
+  },
+  {
+    "selector": "zap-dropdown-menu-shortcut",
+    "path": "projects/zap/core/dropdown/dropdown-menu-shortcut/dropdown-menu-shortcut.component.ts",
+    "demo": "projects/demo/src/app/components/dropdown/dropdown.component.ts",
+    "summary": "Dropdown menu shortcut component for displaying keyboard shortcuts next to menu items"
+  },
+  {
+    "selector": "zap-dropdown-separator",
+    "path": "projects/zap/core/dropdown/dropdown-separator/dropdown-separator.component.ts",
+    "demo": "projects/demo/src/app/components/dropdown/dropdown.component.ts",
+    "summary": "Dropdown separator component for adding visual dividers between dropdown menu sections"
+  },
+  {
+    "selector": "zap-dropdown-menu-portal",
+    "path": "projects/zap/core/dropdown/dropdown-menu-portal/dropdown-menu-portal.component.ts",
+    "demo": "projects/demo/src/app/components/dropdown/dropdown.component.ts",
+    "summary": "Dropdown menu portal component for creating nested dropdown submenus with portal-based rendering"
+  },
+  {
+    "selector": "zap-dropdown-menu-sub",
+    "path": "projects/zap/core/dropdown/dropdown-menu-sub/dropdown-menu-sub.component.ts",
+    "demo": "projects/demo/src/app/components/dropdown/dropdown.component.ts",
+    "summary": "Dropdown submenu component that contains submenu items within a dropdown portal"
+  },
+  {
+    "selector": "zap-dropdown-menu-sub-trigger",
+    "path": "projects/zap/core/dropdown/dropdown-menu-sub-trigger/dropdown-menu-sub-trigger.component.ts",
+    "demo": "projects/demo/src/app/components/dropdown/dropdown.component.ts",
+    "summary": "Dropdown submenu trigger component that opens nested submenus within dropdown menus"
+  },
+  {
+    "selector": "zap-input",
+    "path": "projects/zap/forms/input/input.component.ts",
+    "demo": "projects/demo/src/app/components/input/input.component.ts",
+    "summary": "Input form control component with support for different input types (text, password, email, etc.), icons, validation, and accessibility features"
+  },
+  {
+    "selector": "zap-textarea",
+    "path": "projects/zap/forms/textarea/textarea.component.ts",
+    "demo": "projects/demo/src/app/components/textarea/textarea.component.ts",
+    "summary": "Textarea form control component with auto-resize functionality, validation support, and customizable shapes and help text"
+  },
+  {
+    "selector": "zap-select",
+    "path": "projects/zap/forms/select/select.component.ts",
+    "demo": "projects/demo/src/app/components/select/select.component.ts",
+    "summary": "Select dropdown form control component with single/multi-select support, search functionality, custom templates, and accessibility features"
+  },
+  {
+    "selector": "zap-checkbox",
+    "path": "projects/zap/forms/checkbox/checkbox.component.ts",
+    "demo": "projects/demo/src/app/components/checkbox/checkbox.component.ts",
+    "summary": "Checkbox form control component with different shapes (curve, flat), sizes, label positioning, and validation support"
+  },
+  {
+    "selector": "zap-radio",
+    "path": "projects/zap/forms/radio/radio.component.ts",
+    "demo": "projects/demo/src/app/components/radio/radio.component.ts",
+    "summary": "Radio button group form control component with horizontal/vertical layout options and validation support"
+  },
+  {
+    "selector": "zap-toggle",
+    "path": "projects/zap/forms/toggle/toggle.component.ts",
+    "demo": "projects/demo/src/app/components/toggle/toggle.component.ts",
+    "summary": "Toggle switch form control component for boolean values with label and help text support"
+  },
+  {
+    "selector": "zap-date-picker",
+    "path": "projects/zap/forms/date-picker/date-picker.component.ts",
+    "demo": "projects/demo/src/app/components/date-picker/date-picker.component.ts",
+    "summary": "Date picker form control component with single/range selection, calendar dropdown, date formatting, validation, and responsive breakpoints"
+  },
+  {
+    "selector": "dp-calendar",
+    "path": "projects/zap/forms/date-picker/dp-calendar/dp-calendar.component.ts",
+    "demo": null,
+    "summary": "Calendar component used within the date picker for rendering the calendar grid and date selection logic"
+  },
+  {
+    "selector": "dp-calendar-select",
+    "path": "projects/zap/forms/date-picker/dp-calendar-select/dp-calendar-select.component.ts",
+    "demo": null,
+    "summary": "Calendar select component for month/year selection within the date picker calendar"
+  },
+  {
+    "selector": "required-indicator",
+    "path": "projects/zap/forms/required-indicator/required-indicator.component.ts",
+    "demo": null,
+    "summary": "Required indicator component that displays a visual indicator (typically asterisk) for required form fields"
+  },
+  {
+    "selector": "validation-error",
+    "path": "projects/zap/forms/validation-error/validation-error.component.ts",
+    "demo": null,
+    "summary": "Validation error component for displaying form validation error messages below form controls"
+  }
+]

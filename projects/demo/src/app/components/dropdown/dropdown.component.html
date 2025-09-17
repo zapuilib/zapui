@@ -1,4 +1,4 @@
-<zap-dropdown>
+<zap-dropdown [open]="isOpen" (onChange)="isOpen = $event">
   <zap-dropdown-trigger>
     <zap-button text="Menu"></zap-button>
   </zap-dropdown-trigger>
@@ -28,7 +28,7 @@
           </zap-dropdown-menu-group>
         </zap-dropdown-menu-sub>
       </zap-dropdown-menu-portal>
-      <zap-dropdown-menu-item>
+      <zap-dropdown-menu-item (click)="onMenuItemClick()">
         Settings<zap-dropdown-menu-shortcut>⌘S</zap-dropdown-menu-shortcut>
       </zap-dropdown-menu-item>
     </zap-dropdown-menu-group>

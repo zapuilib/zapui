@@ -6,6 +6,8 @@ import {
   ElementRef,
   AfterViewInit,
   input,
+  output,
+  effect,
 } from '@angular/core';
 import { Overlay, OverlayRef, OverlayPositionBuilder } from '@angular/cdk/overlay';
 import { TemplatePortal } from '@angular/cdk/portal';
@@ -53,6 +55,8 @@ export class ZapDropdown implements AfterViewInit {
   @ViewChild('triggerRef', { read: ElementRef }) triggerRef!: ElementRef;
   @ViewChild('menuTemplate') menuTemplate!: TemplateRef<any>;
   shape = input<'pill' | 'curve' | 'flat'>();
+  open = input(false);
+  onChange = output<boolean>();
   zapClass = input('');
   position = input<'top-l' | 'top-r' | 'top' | 'bottom-l' | 'bottom-r' | 'bottom' | 'auto'>('auto');
   overlayRef!: OverlayRef;
@@ -61,7 +65,18 @@ export class ZapDropdown implements AfterViewInit {
     private overlay: Overlay,
     private vcr: ViewContainerRef,
     private positionBuilder: OverlayPositionBuilder,
-  ) {}
+  ) {
+    effect(() => {
+      const shouldBeOpen = this.open();
+      if (!this.overlayRef) return;
+      if (shouldBeOpen && !this.overlayRef.hasAttached()) {
+        const portal = new TemplatePortal(this.menuTemplate, this.vcr);
+        this.overlayRef.attach(portal);
+      } else if (!shouldBeOpen && this.overlayRef.hasAttached()) {
+        this.overlayRef.detach();
+      }
+    });
+  }
 
   ngAfterViewInit(): void {
     const positionStrategy = this.positionBuilder
@@ -79,15 +94,18 @@ export class ZapDropdown implements AfterViewInit {
 
     this.overlayRef.backdropClick().subscribe(() => {
       this.overlayRef.detach();
+      this.onChange.emit(false);
     });
   }
 
   toggleMenu() {
     if (this.overlayRef.hasAttached()) {
       this.overlayRef.detach();
+      this.onChange.emit(false);
     } else {
       const portal = new TemplatePortal(this.menuTemplate, this.vcr);
       this.overlayRef.attach(portal);
+      this.onChange.emit(true);
     }
   }
 }

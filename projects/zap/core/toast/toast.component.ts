@@ -1,5 +1,13 @@
 import { CommonModule } from '@angular/common';
-import { Component, ElementRef, EventEmitter, HostListener, input, output } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  EventEmitter,
+  HostListener,
+  TemplateRef,
+  input,
+  output,
+} from '@angular/core';
 
 import { DISMISS_THRESHOLD } from './toast.constant';
 
@@ -23,6 +31,8 @@ export class ZapToast {
   zapClass = input('');
   type = input<'error' | 'default'>('default');
   position = input<'top' | 'top-l' | 'top-r' | 'bottom' | 'bottom-l' | 'bottom-r'>('bottom');
+  template = input<TemplateRef<unknown> | null>(null);
+  templateContext = input<Record<string, unknown> | null>(null);
   private isDragging = false;
   private startX = 0;
   private startY = 0;
@@ -106,6 +116,7 @@ export class ZapToast {
   private getEventX(event: MouseEvent | TouchEvent): number {
     return event instanceof MouseEvent ? event.clientX : event.touches[0].clientX;
   }
+
   private getEventY(event: MouseEvent | TouchEvent): number {
     return event instanceof MouseEvent ? event.clientY : event.touches[0].clientY;
   }
@@ -114,6 +125,14 @@ export class ZapToast {
     return [this.shape() ?? '', this.type() ?? '', this.zapClass()].filter(
       (cls) => cls && cls !== 'default',
     );
+  }
+
+  get templateOutletContext(): Record<string, unknown> {
+    const ctx = this.templateContext() || {};
+    return {
+      ...ctx,
+      dismiss: () => this.handleDismiss(),
+    };
   }
 
   handleDismiss() {

@@ -1,26 +1,32 @@
 <div class="__zap__toast" [ngClass]="classes">
-  @if (title() || text() || action()) {
-    <div class="__zap__toast__content">
-      @if (title()) {
-        <p class="__zap__toast__title">{{ title() }}</p>
-      }
-      @if (text()) {
-        <p class="__zap__toast__text">{{ text() }}</p>
-      }
-    </div>
-    @if (action()) {
-      <div class="__zap__toast__actions">
-        <button
-          class="btn"
-          (click)="handleActionClick()"
-          tabindex="0"
-          (keydown)="handleActionClick()">
-          {{ action() }}
-        </button>
-      </div>
-    }
+  @if (template()) {
+    <ng-container
+      [ngTemplateOutlet]="template()"
+      [ngTemplateOutletContext]="templateOutletContext"></ng-container>
   } @else {
-    <ng-content></ng-content>
+    @if (title() || text() || action()) {
+      <div class="__zap__toast__content">
+        @if (title()) {
+          <p class="__zap__toast__title">{{ title() }}</p>
+        }
+        @if (text()) {
+          <p class="__zap__toast__text">{{ text() }}</p>
+        }
+      </div>
+      @if (action()) {
+        <div class="__zap__toast__actions">
+          <button
+            class="btn"
+            (click)="handleActionClick()"
+            tabindex="0"
+            (keydown)="handleActionClick()">
+            {{ action() }}
+          </button>
+        </div>
+      }
+    } @else {
+      <ng-content></ng-content>
+    }
   }
 
   <div

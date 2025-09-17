@@ -33,4 +33,11 @@ import {
   templateUrl: './dropdown.component.html',
   styleUrl: './dropdown.component.scss',
 })
-export class DropdownComponent {}
+export class DropdownComponent {
+  isOpen = false;
+
+  onMenuItemClick() {
+    window.alert('Action performed');
+    this.isOpen = false;
+  }
+}

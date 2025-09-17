@@ -345,6 +345,7 @@ export class ZapSelect<T>
 
   cancelOption(event: any, value: any): void {
     event.stopPropagation();
+    if (this.control.disabled) return;
     if (this.multiselect()) {
       this.selectedOptionValue = this.selectedOptionValue.filter((option) => option !== value);
       this.control.setValue(this.selectedOptionValue);

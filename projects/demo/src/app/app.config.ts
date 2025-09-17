@@ -18,6 +18,20 @@ const ngxConfig: ZapConfig = {
         // menuBorderRadius: '1rem',
       },
     },
+    select: {
+      styles: {
+        colors: {
+          dark: {
+            // optionsBgColor: '#1877F2',
+            // optionBgColor: '#1877F2',
+            // searchBgColor: '#1877F2',
+            // optionBgHoverColor: '#1877F2',
+            // optionTextHoverColor: '#1877F2',
+            // optionBorderHoverColor: '#FF0000',
+          },
+        },
+      },
+    },
   },
 };
 

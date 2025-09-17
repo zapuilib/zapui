@@ -1,5 +1,32 @@
 # Changelog
 
+## 📦 0.0.0-alpha.9.10 — `dev-alpha`
+
+### ✨ Features
+
+- **Toast**
+
+  - Support custom template via `template` and context via `templateContext` (context includes `dismiss()`).
+
+- **Checkbox**
+
+  - Support custom icon.
+
+- **Select**
+  - Added global styling options for options panel and items:
+    - `optionsBgColor`, `optionsBorderColor`
+    - `optionBgColor`, `optionTextColor`, `optionBorderColor`
+    - `optionBgHoverColor`, `optionTextHoverColor`, `optionBorderHoverColor`
+
+### 🚀 Enhancements
+
+- **Button**
+
+  - Host-level disabled guard blocks all click interactions when `disabled`.
+
+- **Multi-select**
+  - Chips ignore clicks when the field is `disabled`.
+
 ## 📦 0.0.0-alpha.9.9 — `dev-alpha`
 
 No changes

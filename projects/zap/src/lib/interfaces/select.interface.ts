@@ -35,6 +35,14 @@ export interface SelectConfig {
         dismissColor?: HexCode;
         dismissHoverColor?: HexCode;
         helpTextColor?: HexCode;
+        optionsBgColor?: HexCode;
+        optionsBorderColor?: HexCode;
+        optionBgColor?: HexCode;
+        optionTextColor?: HexCode;
+        optionBorderColor?: HexCode;
+        optionBgHoverColor?: HexCode;
+        optionTextHoverColor?: HexCode;
+        optionBorderHoverColor?: HexCode;
       }
     >;
     borderRadius?: string;

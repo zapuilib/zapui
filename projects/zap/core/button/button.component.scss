@@ -1,5 +1,5 @@
 button {
-  @apply flex items-center justify-center cursor-pointer;
+  @apply flex items-center justify-center gap-2 cursor-pointer;
   @apply border;
   @apply bg-[var(--zap-button-bg-color)];
   @apply text-[var(--zap-button-text-color)];
@@ -8,7 +8,7 @@ button {
   @apply rounded-[var(--zap-button-border-radius)];
   @apply pl-[var(--zap-button-padding-left)] pr-[var(--zap-button-padding-right)] pt-[var(--zap-button-padding-top)] pb-[var(--zap-button-padding-bottom)] text-[length:var(--zap-button-font-size)] font-[var(--zap-button-font-weight)];
   @apply w-[var(--zap-button-width)] h-[var(--zap-button-height)];
-  @apply active:ring-1 active:ring-[var(--zap-button-border-active-color)] active:bg-[var(--zap-button-bg-active-color)] active:text-[var(--zap-button-text-active-color)] leading-[var(--zap-button-line-height)] tracking-[var(--zap-button-letter-spacing)]; //ring is adding weird effect on click
+  @apply active:ring-1 active:ring-[var(--zap-button-border-active-color)] active:bg-[var(--zap-button-bg-active-color)] active:text-[var(--zap-button-text-active-color)] leading-[var(--zap-button-line-height)] tracking-[var(--zap-button-letter-spacing)];
   text-transform: var(--zap-button-text-transform);
   @apply focus-visible:outline-2 focus-visible:outline-[var(--zap-button-focus-color)] focus-visible:outline-offset-2 focus-visible:outline;
 

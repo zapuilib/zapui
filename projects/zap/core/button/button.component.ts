@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { AfterViewInit, Component, ContentChild, input } from '@angular/core';
+import { AfterViewInit, Component, ContentChild, HostListener, input } from '@angular/core';
 
 import { ZapIconDirective } from '../directives/icon.directive';
 
@@ -24,6 +24,15 @@ export class ZapButton implements AfterViewInit {
   variant = input<'outlined' | 'default' | 'link'>('default');
   disabled = input<boolean>(false);
   icononly = input<boolean>(false);
+
+  @HostListener('click', ['$event'])
+  onHostClick(event: Event): void {
+    if (this.disabled()) {
+      event.preventDefault();
+      event.stopPropagation();
+      event.stopImmediatePropagation();
+    }
+  }
 
   ngAfterViewInit() {
     if (this.iconDirective) {

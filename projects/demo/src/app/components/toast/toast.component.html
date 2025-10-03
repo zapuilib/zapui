@@ -5,6 +5,15 @@
       icon="fa-thin fa-arrow-trend-up"
       size="base"
       (click)="showToast()"></zap-button>
+    <ng-template #customToastTpl let-title="title" let-dismiss="dismiss">
+      <div class="__zap__toast__content">
+        <p class="__zap__toast__title">{{ title }}</p>
+        <p class="__zap__toast__text">Custom content from template</p>
+      </div>
+      <div class="__zap__toast__actions">
+        <button class="btn" (click)="dismiss()">Close</button>
+      </div>
+    </ng-template>
   </div>
 } @else {
   <zap-toast

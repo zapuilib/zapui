@@ -20,6 +20,7 @@ import { CommonModule } from '@angular/common';
 import { ControlValueAccessorDirective } from '../directives/control-value-accessor.directive';
 import { ValidationErrorComponent } from '../validation-error/validation-error.component';
 import { ZapLabelDirective } from '../public-api';
+import { ZapFormFieldIconDirective } from '../directives/icon.directive';
 import { RequiredIndicatorComponent } from '../required-indicator/required-indicator.component';
 
 @Component({
@@ -48,6 +49,8 @@ export class ZapCheckbox<T>
   @ViewChild('checkbox') checkbox!: ElementRef;
   @ContentChild(ZapLabelDirective, { static: false })
   labelDirective!: ZapLabelDirective;
+  @ContentChild(ZapFormFieldIconDirective, { static: false })
+  iconDirective!: ZapFormFieldIconDirective;
   label = input<string>('');
   id = input.required<string>();
   customErrorMessages = input<Record<string, string>>({});
@@ -57,6 +60,8 @@ export class ZapCheckbox<T>
   labelPosition = input<'left' | 'right'>('right');
   checked = model<boolean>(false);
   indicator = input<boolean>(true);
+  icon = input<string>('');
+  iconPosition = input<'left' | 'right'>('left');
 
   constructor(@Inject(Injector) injector: Injector, cdr: ChangeDetectorRef) {
     super(injector, cdr);
@@ -85,6 +90,20 @@ export class ZapCheckbox<T>
         : 'pointer';
       this.labelDirective.el.nativeElement.addEventListener('click', this.handleLabelClick);
     }
+
+    if (this.iconDirective) {
+      this.iconDirective.el.nativeElement.style.fontSize =
+        this.size() === 'compact' ? '14px' : 'var(--zap-checkbox-height)';
+      this.iconDirective.el.nativeElement.style.color = 'var(--zap-checkbox-text-checked-color)';
+      this.iconDirective.el.nativeElement.style.position = 'absolute';
+      this.iconDirective.el.nativeElement.style.top = '50%';
+      this.iconDirective.el.nativeElement.style.left = '50%';
+      this.iconDirective.el.nativeElement.style.transform = 'translate(-50%, -50%)';
+      this.iconDirective.el.nativeElement.style.pointerEvents = 'none';
+      this.iconDirective.el.nativeElement.style.display = this.control.value ? 'flex' : 'none';
+      this.iconDirective.el.nativeElement.style.justifyContent = 'center';
+      this.iconDirective.el.nativeElement.style.alignItems = 'center';
+    }
   }
 
   private setDefaultValue() {
@@ -102,7 +121,8 @@ export class ZapCheckbox<T>
       this.size() ?? '',
       this.labelPosition() ?? '',
       this.zapClass() ?? '',
-    ];
+      this.icon() || this.iconDirective ? 'has-icon' : '',
+    ].filter((cls) => cls && cls !== 'default');
   }
 
   handleCheckboxChange(event: Event) {
@@ -110,6 +130,10 @@ export class ZapCheckbox<T>
     const checked = (event.target as HTMLInputElement).checked;
     this.control.setValue(checked);
     this.checked.set(checked);
+
+    if (this.iconDirective) {
+      this.iconDirective.el.nativeElement.style.display = checked ? 'flex' : 'none';
+    }
   }
 
   override ngOnDestroy() {

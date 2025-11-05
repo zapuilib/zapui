@@ -1,10 +1,10 @@
 .__zap__overlay {
-  @apply fixed inset-0 bg-[var(--zap-modal-overlay-bg-color)];
+  @apply animate-fadeInScale fixed inset-0 bg-[var(--zap-modal-overlay-bg-color)];
   @apply transition-opacity duration-300;
 }
 
 .__zap__modal__wrapper {
-  @apply animate-popup bg-[var(--zap-modal-bg-color)] border border-[var(--zap-modal-border-color)] text-[var(--zap-modal-text-color)] rounded-[var(--zap-modal-border-radius)] max-w-md;
+  @apply animate-fadeInScale bg-[var(--zap-modal-bg-color)] border border-[var(--zap-modal-border-color)] text-[var(--zap-modal-text-color)] rounded-[var(--zap-modal-border-radius)] max-w-md;
   @apply pl-[var(--zap-modal-padding-left)] pr-[var(--zap-modal-padding-right)] pt-[var(--zap-modal-padding-top)] pb-[var(--zap-modal-padding-bottom)];
   @apply overflow-auto relative max-sm:mx-4;
 

@@ -1,5 +1,5 @@
 .__zap__overlay {
-  @apply fixed inset-0  bg-[var(--zap-dialog-overlay-bg-color)];
+  @apply animate-fadeInScale fixed inset-0  bg-[var(--zap-dialog-overlay-bg-color)];
   @apply transition-opacity duration-300;
 }
 
@@ -8,7 +8,7 @@
   @apply w-[calc(100vw-32px)] sm:w-[30rem] min-h-[12rem] p-5 bg-[var(--zap-dialog-bg-color)] border border-[var(--zap-dialog-border-color)];
   @apply rounded-[var(--zap-dialog-border-radius)];
   @apply pl-[var(--zap-dialog-padding-left)] pr-[var(--zap-dialog-padding-right)] pt-[var(--zap-dialog-padding-top)] pb-[var(--zap-dialog-padding-bottom)];
-  @apply animate-popup;
+  @apply animate-fadeInScale;
   @apply overflow-auto relative;
 
   .__zap__dialog__title {

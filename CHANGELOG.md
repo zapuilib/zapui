@@ -16,6 +16,11 @@
 - **Toggle**
   - Added `checked` input to allow setting default checked state. When form control value is null or undefined, the toggle will use the `checked` value as the default.
 
+### 🚀 Enhancements
+
+- **Dialog, Modal, Tooltip**
+  - Changed animation from `popup` to `fadeInScale` for a smoother fade and scale transition effect.
+
 ### 🛠 Fixes
 
 - **Select**

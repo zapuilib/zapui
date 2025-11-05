@@ -23,6 +23,10 @@
 
 ### 🛠 Fixes
 
+- **Dialog, Modal**
+
+  - Fixed issue where clicking outside to close did not work when `showOverlay` was set to `false`. The overlay is now always rendered for click handling, but only visually displayed when `showOverlay` is `true`. `showOverlay` now only controls the visual appearance of the overlay, not its functionality.
+
 - **Select**
   - Fixed issue where selected chips would disappear in multiselect mode when search filtering removed them from the options array. Selected option labels are now cached and persist regardless of current filter state.
   - Fixed issue where `zapClass` could not be used to style chip dismiss icons in multiselect mode. Dismiss icons can now be styled using `chip-dismiss:` prefix in zapClass.

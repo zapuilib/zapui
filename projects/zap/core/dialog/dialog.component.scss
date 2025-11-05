@@ -1,6 +1,10 @@
 .__zap__overlay {
   @apply animate-fadeInScale fixed inset-0  bg-[var(--zap-dialog-overlay-bg-color)];
   @apply transition-opacity duration-300;
+
+  &.invisible {
+    @apply bg-transparent;
+  }
 }
 
 .__zap__dialog {

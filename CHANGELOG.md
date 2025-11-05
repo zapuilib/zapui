@@ -1,5 +1,17 @@
 # Changelog
 
+## 📦 0.0.0-alpha.9.11 — `dev-alpha`
+
+### ✨ Features
+
+- **Accordion**
+  - Added `none` option to `icon` input to allow hiding the accordion icon completely.
+
+### 🛠 Fixes
+
+- **Select**
+  - Fixed issue where selected chips would disappear in multiselect mode when search filtering removed them from the options array. Selected option labels are now cached and persist regardless of current filter state.
+
 ## 📦 0.0.0-alpha.9.10 — `dev-alpha`
 
 ### ✨ Features

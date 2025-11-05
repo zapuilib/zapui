@@ -69,7 +69,7 @@ export class ZapAccordionHeader implements AfterViewInit {
   iconDirective!: ZapIconDirective;
   open = output();
   variant = input<'default' | 'nounderline'>('default');
-  icon = input<'chevron' | 'plus'>('chevron');
+  icon = input<'chevron' | 'plus' | 'none'>('chevron');
 
   constructor(@Optional() @Inject(ACCORDION_ITEM_TOKEN) public accordionItem: AccordionItemLike) {}
   get isOpen(): boolean {

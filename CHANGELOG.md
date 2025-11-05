@@ -10,7 +10,11 @@
   - Added `open` input to `zap-accordion-item` to allow items to be open by default. When `multiple` is false and multiple items are set to open, only the first one remains open.
 
 - **Select**
+
   - Added `chipDismissColor` to global configuration to support custom styling for chip dismiss icons in multiselect mode.
+
+- **Toggle**
+  - Added `checked` input to allow setting default checked state. When form control value is null or undefined, the toggle will use the `checked` value as the default.
 
 ### 🛠 Fixes
 

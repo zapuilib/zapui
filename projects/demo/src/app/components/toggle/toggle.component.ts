@@ -16,4 +16,20 @@ export class ToggleComponent {
     },
     Validators.required,
   );
+
+  toggleCheckedControl: FormControl = new FormControl(
+    {
+      value: null,
+      disabled: false,
+    },
+    Validators.required,
+  );
+
+  toggleUncheckedControl: FormControl = new FormControl(
+    {
+      value: null,
+      disabled: false,
+    },
+    Validators.required,
+  );
 }

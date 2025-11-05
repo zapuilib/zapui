@@ -16,6 +16,7 @@ import { ZapFormFieldHelpTextDirective, ZapFormFieldIconDirective, ZapSelect } f
 })
 export class SelectComponent {
   countryControl = new FormControl({ value: '', disabled: false }, [Validators.required]);
+  countryControl2 = new FormControl();
   countries = [
     { label: 'US', value: 'us' },
     { label: 'Canada', value: 'ca' },
@@ -29,7 +30,6 @@ export class SelectComponent {
     { label: 'Peru', value: 'pe' },
     { label: 'Other', value: 'other' },
   ];
-
   updateCountries(query: string) {
     const countries = [
       { label: 'Australia', value: 'au' },

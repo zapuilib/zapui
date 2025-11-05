@@ -100,6 +100,7 @@ export class ZapSelect<T>
   hoveredOption = '';
   selectedOptionValue: string[] = [];
   filteredOptions: { label: string; value: any }[] = [];
+  private selectedOptionsCache = new Map<string, { label: string; value: any }>();
 
   @HostListener('document:keydown.escape', ['$event'])
   onEscapePress(event: KeyboardEvent): void {
@@ -131,6 +132,12 @@ export class ZapSelect<T>
         this.selectedOptionValue = Array.isArray(this.control.value)
           ? this.control.value
           : [this.control.value];
+        this.selectedOptionValue.forEach((value) => {
+          const option = this.options().find((opt) => opt.value === value);
+          if (option) {
+            this.selectedOptionsCache.set(value, option);
+          }
+        });
       } else {
         this.selectedOptionValue = [];
       }
@@ -263,6 +270,7 @@ export class ZapSelect<T>
     this.control.valueChanges.subscribe((value) => {
       if (!value || (Array.isArray(value) && value.length === 0)) {
         this.selectedOptionValue = [];
+        this.selectedOptionsCache.clear();
         this.onReset.emit();
       }
     });
@@ -328,8 +336,10 @@ export class ZapSelect<T>
         this.selectedOptionValue = this.selectedOptionValue.filter(
           (value) => value !== option.value,
         );
+        this.selectedOptionsCache.delete(option.value);
       } else {
         this.selectedOptionValue = [...this.selectedOptionValue, option.value];
+        this.selectedOptionsCache.set(option.value, option);
       }
       this.control.setValue(this.selectedOptionValue);
       this.onChange.emit(this.selectedOptionValue);
@@ -339,6 +349,8 @@ export class ZapSelect<T>
       this.control.setValue(option.value);
       this.onChange.emit(option.value);
       this.selectedOptionValue = [option.value];
+      this.selectedOptionsCache.clear();
+      this.selectedOptionsCache.set(option.value, option);
       this.toggleOptionsList();
     }
   }
@@ -348,6 +360,7 @@ export class ZapSelect<T>
     if (this.control.disabled) return;
     if (this.multiselect()) {
       this.selectedOptionValue = this.selectedOptionValue.filter((option) => option !== value);
+      this.selectedOptionsCache.delete(value);
       this.control.setValue(this.selectedOptionValue);
       this.onChange.emit(this.selectedOptionValue);
     }
@@ -356,21 +369,27 @@ export class ZapSelect<T>
   }
 
   getSelected(value: string): string {
-    return this.options().find((option) => option.value === value)?.label || '';
+    const option = this.options().find((option) => option.value === value);
+    if (option) {
+      return option.label;
+    }
+    const cachedOption = this.selectedOptionsCache.get(value);
+    return cachedOption ? cachedOption.label : '';
   }
 
   getSelectedOption(value: string): { label: string; value: any } {
-    return (
-      this.options().find((option) => option.value === value) || {
-        label: '',
-        value: '',
-      }
-    );
+    const option = this.options().find((option) => option.value === value);
+    if (option) {
+      return option;
+    }
+    const cachedOption = this.selectedOptionsCache.get(value);
+    return cachedOption || { label: '', value: '' };
   }
 
   override reset(): void {
     super.reset();
     this.selectedOptionValue = [];
+    this.selectedOptionsCache.clear();
   }
 
   get classes(): string[] {

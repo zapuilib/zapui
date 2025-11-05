@@ -103,6 +103,7 @@ export class ZapCheckbox<T>
       this.iconDirective.el.nativeElement.style.display = this.control.value ? 'flex' : 'none';
       this.iconDirective.el.nativeElement.style.justifyContent = 'center';
       this.iconDirective.el.nativeElement.style.alignItems = 'center';
+      this.iconDirective.el.nativeElement.style.marginTop = this.size() === 'compact' ? '1px' : '0';
     }
   }
 

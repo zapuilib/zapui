@@ -19,7 +19,11 @@
 ### 🚀 Enhancements
 
 - **Dialog, Modal, Tooltip**
+
   - Changed animation from `popup` to `fadeInScale` for a smoother fade and scale transition effect.
+
+- **Checkbox**
+  - Improved styling for compact checkbox size variant for better visual appearance.
 
 ### 🛠 Fixes
 

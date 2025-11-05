@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ContentChild, forwardRef } from '@angular/core';
+import { AfterViewInit, Component, ContentChild, forwardRef, input, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { ZapAccordionHeader } from '../accordion-header/accordion-header.component';
@@ -22,10 +22,15 @@ import { ACCORDION_ITEM_TOKEN } from '../accordion.token';
     },
   ],
 })
-export class ZapAccordionItem implements AfterViewInit {
+export class ZapAccordionItem implements OnInit, AfterViewInit {
   @ContentChild(ZapAccordionHeader) header!: ZapAccordionHeader;
+  open = input<boolean>(false);
   isOpen = false;
   id = `accordion-${Math.random().toString(36).substr(2, 9)}`;
+
+  ngOnInit() {
+    this.isOpen = this.open();
+  }
 
   ngAfterViewInit() {
     if (this.header) {

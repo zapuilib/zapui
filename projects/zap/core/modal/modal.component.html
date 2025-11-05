@@ -1,13 +1,12 @@
 <ng-template cdkPortal>
   <div [ngClass]="overlayClasses">
-    @if (showOverlay()) {
-      <div
-        class="__zap__overlay"
-        (click)="handleClose()"
-        (keydown.enter)="handleClose()"
-        tabindex="-1"
-        aria-hidden="true"></div>
-    }
+    <div
+      class="__zap__overlay"
+      [class.invisible]="!showOverlay()"
+      (click)="handleClose()"
+      (keydown.enter)="handleClose()"
+      tabindex="-1"
+      aria-hidden="true"></div>
 
     <div
       class="__zap__modal__wrapper"

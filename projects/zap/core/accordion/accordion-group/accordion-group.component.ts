@@ -15,6 +15,13 @@ export class ZapAccordionGroup implements AfterViewInit {
 
   ngAfterViewInit() {
     if (!this.multiple()) {
+      const openItems = this.items.filter((item) => item.isOpen);
+      if (openItems.length > 1) {
+        openItems.slice(1).forEach((item) => {
+          item.isOpen = false;
+        });
+      }
+
       this.items.forEach((item) => {
         item.toggle = () => {
           item.isOpen = !item.isOpen;

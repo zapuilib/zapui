@@ -1,5 +1,40 @@
 # Changelog
 
+## 📦 0.0.0-alpha.9.11 — `dev-alpha`
+
+### ✨ Features
+
+- **Accordion**
+
+  - Added `none` option to `icon` input to allow hiding the accordion icon completely.
+  - Added `open` input to `zap-accordion-item` to allow items to be open by default. When `multiple` is false and multiple items are set to open, only the first one remains open.
+
+- **Select**
+
+  - Added `chipDismissColor` to global configuration to support custom styling for chip dismiss icons in multiselect mode.
+
+- **Toggle**
+  - Added `checked` input to allow setting default checked state. When form control value is null or undefined, the toggle will use the `checked` value as the default.
+
+### 🚀 Enhancements
+
+- **Dialog, Modal, Tooltip**
+
+  - Changed animation from `popup` to `fadeInScale` for a smoother fade and scale transition effect.
+
+- **Checkbox**
+  - Improved styling for compact checkbox size variant for better visual appearance.
+
+### 🛠 Fixes
+
+- **Dialog, Modal**
+
+  - Fixed issue where clicking outside to close did not work when `showOverlay` was set to `false`. The overlay is now always rendered for click handling, but only visually displayed when `showOverlay` is `true`. `showOverlay` now only controls the visual appearance of the overlay, not its functionality.
+
+- **Select**
+  - Fixed issue where selected chips would disappear in multiselect mode when search filtering removed them from the options array. Selected option labels are now cached and persist regardless of current filter state.
+  - Fixed issue where `zapClass` could not be used to style chip dismiss icons in multiselect mode. Dismiss icons can now be styled using `chip-dismiss:` prefix in zapClass.
+
 ## 📦 0.0.0-alpha.9.10 — `dev-alpha`
 
 ### ✨ Features

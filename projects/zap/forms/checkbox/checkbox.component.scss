@@ -80,12 +80,14 @@
 
   &.compact {
     .__zap__checkbox__wrapper {
+      @apply h-4 w-4 -mt-1;
+
       input {
-        @apply h-4 w-4;
+        @apply h-4 w-4 px-[7px] py-1.5;
       }
 
-      i {
-        font-size: 12px;
+      svg {
+        @apply h-4 w-4 mt-px;
       }
     }
   }

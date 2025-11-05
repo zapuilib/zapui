@@ -92,11 +92,21 @@ module.exports = {
           '0%': { transform: 'translateX(0)', opacity: '1' },
           '100%': { transform: 'translateX(100%)', opacity: '0' },
         },
+        fadeInScale: {
+          '0%': { transform: 'scale(0.98)', opacity: '0' },
+          '100%': { transform: 'scale(1)', opacity: '1' },
+        },
+        slideIn: {
+          '0%': { transform: 'translateY(-6px)', opacity: '0' },
+          '100%': { transform: 'translateY(0)', opacity: '1' },
+        },
       },
       animation: {
         popup: 'popup 0.1s ease-out',
         slideUp: 'slideUp 0.2s ease-out',
         slideRight: 'slideRight 0.2s ease-out',
+        fadeInScale: 'fadeInScale 0.3s ease-out',
+        slideIn: 'slideIn 0.2s ease-out',
       },
     },
   },

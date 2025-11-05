@@ -40,9 +40,13 @@ export class ZapToggle<T>
   zapClass = input<string>();
   customErrorMessages = input<Record<string, string>>({});
   indicator = input<boolean>(true);
+  checked = input<boolean>(false);
 
   override ngOnInit(): void {
     super.ngOnInit();
+    if (this.control.value === null || this.control.value === undefined) {
+      this.control.setValue(this.checked());
+    }
   }
 
   handleToggle(): void {

@@ -16,6 +16,7 @@
 
 - **Select**
   - Fixed issue where selected chips would disappear in multiselect mode when search filtering removed them from the options array. Selected option labels are now cached and persist regardless of current filter state.
+  - Fixed issue where `zapClass` could not be used to style chip dismiss icons in multiselect mode. Dismiss icons can now be styled using `chip-dismiss:` prefix in zapClass.
 
 ## 📦 0.0.0-alpha.9.10 — `dev-alpha`
 

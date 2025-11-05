@@ -7,4 +7,8 @@ import { ZapButton, ZapIconDirective } from 'zap/core';
   templateUrl: './button.component.html',
   styleUrl: './button.component.scss',
 })
-export class ButtonComponent {}
+export class ButtonComponent {
+  onClick(event: Event): void {
+    console.log('onClick', event);
+  }
+}

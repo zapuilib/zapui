@@ -46,7 +46,7 @@
         <div class="chips">
           @for (option of selectedOptionValue; track option) {
             <span
-              class="chip __zap__form__control__selected"
+              class="chip __zap__form__control__selected handler"
               (click)="cancelOption($event, option)"
               tabindex="0"
               (keydown.enter)="cancelOption($event, option)">

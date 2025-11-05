@@ -32,6 +32,7 @@ export interface SelectConfig {
         chipBgColor?: HexCode;
         chipTextColor?: HexCode;
         chipBorderColor?: HexCode;
+        chipDismissColor?: HexCode;
         dismissColor?: HexCode;
         dismissHoverColor?: HexCode;
         helpTextColor?: HexCode;

@@ -1,12 +1,29 @@
-<div class="w-full">
-  <zap-accordion-group>
-    @for (accordion of accordions; track $index) {
-      <zap-accordion-item>
-        <zap-accordion-header>{{ accordion.title }}</zap-accordion-header>
-        <zap-accordion-content>
-          <p>{{ accordion.content }}</p>
-        </zap-accordion-content>
-      </zap-accordion-item>
-    }
-  </zap-accordion-group>
+<div class="w-full space-y-8">
+  <div>
+    <h3 class="mb-4 text-lg font-semibold">Single Open (Default) - First Item Open</h3>
+    <zap-accordion-group>
+      @for (accordion of accordions; track $index) {
+        <zap-accordion-item [open]="accordion.open">
+          <zap-accordion-header>{{ accordion.title }}</zap-accordion-header>
+          <zap-accordion-content>
+            <p>{{ accordion.content }}</p>
+          </zap-accordion-content>
+        </zap-accordion-item>
+      }
+    </zap-accordion-group>
+  </div>
+
+  <div>
+    <h3 class="mb-4 text-lg font-semibold">Multiple Open - Multiple Items Open by Default</h3>
+    <zap-accordion-group [multiple]="true">
+      @for (accordion of multipleAccordions; track $index) {
+        <zap-accordion-item [open]="accordion.open">
+          <zap-accordion-header>{{ accordion.title }}</zap-accordion-header>
+          <zap-accordion-content>
+            <p>{{ accordion.content }}</p>
+          </zap-accordion-content>
+        </zap-accordion-item>
+      }
+    </zap-accordion-group>
+  </div>
 </div>

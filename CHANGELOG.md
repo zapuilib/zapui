@@ -6,6 +6,7 @@
 
 - **Accordion**
   - Added `none` option to `icon` input to allow hiding the accordion icon completely.
+  - Added `open` input to `zap-accordion-item` to allow items to be open by default. When `multiple` is false and multiple items are set to open, only the first one remains open.
 
 ### 🛠 Fixes
 

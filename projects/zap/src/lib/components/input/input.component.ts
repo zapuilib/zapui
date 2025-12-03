@@ -11,11 +11,11 @@ import {
 import { FormsModule, NG_VALUE_ACCESSOR, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
-import { ControlValueAccessorDirective } from '../directives/control-value-accessor.directive';
+import { ControlValueAccessorDirective } from '../../directives/control-value-accessor.directive';
 import { ValidationErrorComponent } from '../validation-error/validation-error.component';
-import { ZapFormFieldIconDirective } from '../directives/icon.directive';
-import { ZapFormFieldHelpTextDirective } from '../directives/help-text.directive';
-import { ZapLabelDirective } from '../directives/label.directive';
+import { ZapFormFieldIconDirective } from '../../directives/ficon.directive';
+import { ZapFormFieldHelpTextDirective } from '../../directives/help-text.directive';
+import { ZapLabelDirective } from '../../directives/label.directive';
 import { RequiredIndicatorComponent } from '../required-indicator/required-indicator.component';
 
 type InputType = 'password' | 'text' | 'number' | 'email' | 'tel';

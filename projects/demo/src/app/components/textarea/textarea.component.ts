@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { ZapTextarea, ZapFormFieldHelpTextDirective } from 'zap/forms';
+import { ZapTextarea, ZapFormFieldHelpTextDirective } from 'zap';
 
 @Component({
   selector: 'app-textarea',

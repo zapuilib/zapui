@@ -10,7 +10,7 @@ import {
   ViewChild,
 } from '@angular/core';
 
-import { ZapScrollAreaDirective } from '../../directives/zap-scroll-area.directive';
+import { ZapScrollAreaDirective } from '../../../directives/zap-scroll-area.directive';
 
 @Component({
   selector: 'dp-calendar-select',

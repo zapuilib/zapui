@@ -17,10 +17,10 @@ import {
 import { FormsModule, NG_VALUE_ACCESSOR, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
-import { ControlValueAccessorDirective } from '../directives/control-value-accessor.directive';
+import { ControlValueAccessorDirective } from '../../directives/control-value-accessor.directive';
 import { ValidationErrorComponent } from '../validation-error/validation-error.component';
-import { ZapLabelDirective } from '../public-api';
-import { ZapFormFieldIconDirective } from '../directives/icon.directive';
+import { ZapLabelDirective } from '../../directives';
+import { ZapFormFieldIconDirective } from '../../directives/ficon.directive';
 import { RequiredIndicatorComponent } from '../required-indicator/required-indicator.component';
 
 @Component({

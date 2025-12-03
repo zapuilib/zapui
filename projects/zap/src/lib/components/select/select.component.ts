@@ -29,14 +29,14 @@ import {
 import { TemplatePortal } from '@angular/cdk/portal';
 import { ViewContainerRef } from '@angular/core';
 
-import { ControlValueAccessorDirective } from '../directives/control-value-accessor.directive';
+import { ControlValueAccessorDirective } from '../../directives/control-value-accessor.directive';
 import { ValidationErrorComponent } from '../validation-error/validation-error.component';
 import {
   ZapFormFieldHelpTextDirective,
   ZapFormFieldIconDirective,
   ZapLabelDirective,
-} from '../public-api';
-import { ZapScrollAreaDirective } from '../directives/zap-scroll-area.directive';
+} from '../../directives';
+import { ZapScrollAreaDirective } from '../../directives/zap-scroll-area.directive';
 import { RequiredIndicatorComponent } from '../required-indicator/required-indicator.component';
 
 @Component({

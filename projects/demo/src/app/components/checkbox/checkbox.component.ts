@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { ZapCheckbox, ZapFormFieldIconDirective, ZapLabelDirective } from 'zap/forms';
+import { ZapCheckbox, ZapFormFieldIconDirective, ZapLabelDirective } from 'zap';
 
 @Component({
   selector: 'app-checkbox',

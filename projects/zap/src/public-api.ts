@@ -4,7 +4,7 @@
 
 export * from './lib/components';
 
-export * from './lib/directives/icon.directive';
+export * from './lib/directives';
 
 export * from './lib/provide-zap-options';
 

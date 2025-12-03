@@ -2,9 +2,9 @@ import { Component, ContentChild, forwardRef, AfterViewInit, OnInit, input } fro
 import { FormsModule, NG_VALUE_ACCESSOR, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
-import { ControlValueAccessorDirective } from '../directives/control-value-accessor.directive';
+import { ControlValueAccessorDirective } from '../../directives/control-value-accessor.directive';
 import { ValidationErrorComponent } from '../validation-error/validation-error.component';
-import { ZapFormFieldHelpTextDirective, ZapLabelDirective } from '../public-api';
+import { ZapFormFieldHelpTextDirective, ZapLabelDirective } from '../../directives';
 import { RequiredIndicatorComponent } from '../required-indicator/required-indicator.component';
 
 @Component({

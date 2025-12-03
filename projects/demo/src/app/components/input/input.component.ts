@@ -5,7 +5,7 @@ import {
   ZapFormFieldIconDirective,
   ZapInput,
   ZapLabelDirective,
-} from 'zap/forms';
+} from 'zap';
 
 @Component({
   selector: 'app-input',

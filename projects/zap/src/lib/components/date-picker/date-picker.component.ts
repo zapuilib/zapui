@@ -29,7 +29,7 @@ import { TemplatePortal } from '@angular/cdk/portal';
 import { ViewContainerRef } from '@angular/core';
 import { A11yModule } from '@angular/cdk/a11y';
 
-import { ControlValueAccessorDirective } from '../directives/control-value-accessor.directive';
+import { ControlValueAccessorDirective } from '../../directives/control-value-accessor.directive';
 import { ValidationErrorComponent } from '../validation-error/validation-error.component';
 import { DPCalendar } from './dp-calendar/dp-calendar.component';
 import { ZapDatePickerBreakpoints } from './interface/date-picker.interface';
@@ -38,7 +38,7 @@ import {
   ZapFormFieldHelpTextDirective,
   ZapFormFieldIconDirective,
   ZapLabelDirective,
-} from '../public-api';
+} from '../../directives';
 import { RequiredIndicatorComponent } from '../required-indicator/required-indicator.component';
 
 @Component({

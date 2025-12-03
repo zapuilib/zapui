@@ -18,6 +18,15 @@ const ngxConfig: ZapConfig = {
         // menuBorderRadius: '1rem',
       },
     },
+    textarea: {
+      styles: {
+        colors: {
+          dark: {
+            // textColor: '#1877F2',
+          },
+        },
+      },
+    },
     select: {
       styles: {
         colors: {

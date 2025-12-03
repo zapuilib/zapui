@@ -9,6 +9,7 @@ textarea {
   @apply rounded-[var(--zap-textarea-border-radius)] border-[var(--zap-textarea-border-color)] bg-[var(--zap-textarea-bg-color)] text-[var(--zap-textarea-text-color)] hover:bg-[var(--zap-textarea-bg-hover-color)] hover:border-[var(--zap-textarea-border-hover-color)] hover:text-[var(--zap-textarea-text-hover-color)];
   @apply pl-[var(--zap-textarea-padding-left)] pr-[var(--zap-textarea-padding-right)] pt-[var(--zap-textarea-padding-top)] pb-[var(--zap-textarea-padding-bottom)];
   @apply w-[var(--zap-textarea-width)] h-[var(--zap-textarea-height)];
+  @apply text-[length:var(--zap-textarea-font-size)] font-[var(--zap-textarea-font-weight)] leading-[var(--zap-textarea-line-height)] tracking-[var(--zap-textarea-letter-spacing)];
 
   &.resizeyY {
     @apply resize-y;

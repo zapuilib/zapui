@@ -24,7 +24,7 @@
     @if (helpText()) {
       <p class="__zap__form__control__help__text">{{ helpText() }}</p>
     } @else if (helpTextDirective) {
-      <ng-content select="[zapFormFieldHelpText]"></ng-content>
+      <ng-content select="[zapHelpText]"></ng-content>
     }
   </fieldset>
   @if (control.invalid && control.touched) {

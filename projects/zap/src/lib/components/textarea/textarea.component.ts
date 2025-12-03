@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 
 import { ControlValueAccessorDirective } from '../../directives/control-value-accessor.directive';
 import { ValidationErrorComponent } from '../validation-error/validation-error.component';
-import { ZapFormFieldHelpTextDirective, ZapLabelDirective } from '../../directives';
+import { ZapHelpTextDirective, ZapLabelDirective } from '../../directives';
 import { RequiredIndicatorComponent } from '../required-indicator/required-indicator.component';
 
 @Component({
@@ -30,8 +30,8 @@ export class ZapTextarea<T>
   extends ControlValueAccessorDirective<T>
   implements OnInit, AfterViewInit
 {
-  @ContentChild(ZapFormFieldHelpTextDirective, { static: false })
-  helpTextDirective!: ZapFormFieldHelpTextDirective;
+  @ContentChild(ZapHelpTextDirective, { static: false })
+  helpTextDirective!: ZapHelpTextDirective;
   @ContentChild(ZapLabelDirective, { static: false })
   labelDirective!: ZapLabelDirective;
   label = input<string>('');

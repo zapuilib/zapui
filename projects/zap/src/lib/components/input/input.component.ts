@@ -13,8 +13,8 @@ import { CommonModule } from '@angular/common';
 
 import { ControlValueAccessorDirective } from '../../directives/control-value-accessor.directive';
 import { ValidationErrorComponent } from '../validation-error/validation-error.component';
-import { ZapFormFieldIconDirective } from '../../directives/ficon.directive';
-import { ZapFormFieldHelpTextDirective } from '../../directives/help-text.directive';
+import { ZapIconDirective } from '../../directives/icon.directive';
+import { ZapHelpTextDirective } from '../../directives/help-text.directive';
 import { ZapLabelDirective } from '../../directives/label.directive';
 import { RequiredIndicatorComponent } from '../required-indicator/required-indicator.component';
 
@@ -43,10 +43,10 @@ export class ZapInput<T>
   extends ControlValueAccessorDirective<T>
   implements OnInit, OnDestroy, AfterViewInit
 {
-  @ContentChild(ZapFormFieldIconDirective, { static: false })
-  iconDirective!: ZapFormFieldIconDirective;
-  @ContentChild(ZapFormFieldHelpTextDirective, { static: false })
-  helpTextDirective!: ZapFormFieldHelpTextDirective;
+  @ContentChild(ZapIconDirective, { static: false })
+  iconDirective!: ZapIconDirective;
+  @ContentChild(ZapHelpTextDirective, { static: false })
+  helpTextDirective!: ZapHelpTextDirective;
   @ContentChild(ZapLabelDirective, { static: false })
   labelDirective!: ZapLabelDirective;
   iconClick = output<void>();

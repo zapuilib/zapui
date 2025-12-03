@@ -20,7 +20,7 @@ import { CommonModule } from '@angular/common';
 import { ControlValueAccessorDirective } from '../../directives/control-value-accessor.directive';
 import { ValidationErrorComponent } from '../validation-error/validation-error.component';
 import { ZapLabelDirective } from '../../directives';
-import { ZapFormFieldIconDirective } from '../../directives/ficon.directive';
+import { ZapIconDirective } from '../../directives/icon.directive';
 import { RequiredIndicatorComponent } from '../required-indicator/required-indicator.component';
 
 @Component({
@@ -49,8 +49,8 @@ export class ZapCheckbox<T>
   @ViewChild('checkbox') checkbox!: ElementRef;
   @ContentChild(ZapLabelDirective, { static: false })
   labelDirective!: ZapLabelDirective;
-  @ContentChild(ZapFormFieldIconDirective, { static: false })
-  iconDirective!: ZapFormFieldIconDirective;
+  @ContentChild(ZapIconDirective, { static: false })
+  iconDirective!: ZapIconDirective;
   label = input<string>('');
   id = input.required<string>();
   customErrorMessages = input<Record<string, string>>({});

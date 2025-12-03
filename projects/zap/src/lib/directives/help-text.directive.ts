@@ -1,6 +1,6 @@
 import { Directive, ElementRef } from '@angular/core';
 
-@Directive({ selector: '[zapFormFieldHelpText]', standalone: true })
-export class ZapFormFieldHelpTextDirective {
+@Directive({ selector: '[zapHelpText]', standalone: true })
+export class ZapHelpTextDirective {
   constructor(public el: ElementRef) {}
 }

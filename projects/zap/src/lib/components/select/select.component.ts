@@ -31,11 +31,7 @@ import { ViewContainerRef } from '@angular/core';
 
 import { ControlValueAccessorDirective } from '../../directives/control-value-accessor.directive';
 import { ValidationErrorComponent } from '../validation-error/validation-error.component';
-import {
-  ZapFormFieldHelpTextDirective,
-  ZapFormFieldIconDirective,
-  ZapLabelDirective,
-} from '../../directives';
+import { ZapHelpTextDirective, ZapIconDirective, ZapLabelDirective } from '../../directives';
 import { ZapScrollAreaDirective } from '../../directives/zap-scroll-area.directive';
 import { RequiredIndicatorComponent } from '../required-indicator/required-indicator.component';
 
@@ -66,10 +62,10 @@ export class ZapSelect<T>
   @ViewChild('optionsPanel') optionsPanel!: TemplateRef<any>;
   @ViewChild('inputSelectValueHolder') inputSelectValueHolder!: ElementRef;
   @ViewChild('search') search!: ElementRef;
-  @ContentChild(ZapFormFieldIconDirective, { static: false })
-  iconDirective!: ZapFormFieldIconDirective;
-  @ContentChild(ZapFormFieldHelpTextDirective, { static: false })
-  helpTextDirective!: ZapFormFieldHelpTextDirective;
+  @ContentChild(ZapIconDirective, { static: false })
+  iconDirective!: ZapIconDirective;
+  @ContentChild(ZapHelpTextDirective, { static: false })
+  helpTextDirective!: ZapHelpTextDirective;
   @ContentChild(ZapLabelDirective, { static: false })
   labelDirective!: ZapLabelDirective;
   onChange = output<string[] | string>();

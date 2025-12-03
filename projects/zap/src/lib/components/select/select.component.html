@@ -32,7 +32,7 @@
       @if (icon() && iconPosition()) {
         <i class="fa-solid __zap__form__control__icon" [ngClass]="[icon(), iconPosition()]"></i>
       } @else if (iconDirective) {
-        <ng-content select="[zapFormFieldIcon]"></ng-content>
+        <ng-content select="[zapIcon]"></ng-content>
       }
       @if (selectedTemplate() && selectedOptionValue.length > 0 && !multiselect()) {
         <ng-container
@@ -163,7 +163,7 @@
   @if (helpText()) {
     <p class="__zap__form__control__help__text">{{ helpText() }}</p>
   } @else if (helpTextDirective) {
-    <ng-content select="[zapFormFieldHelpText]"></ng-content>
+    <ng-content select="[zapHelpText]"></ng-content>
   }
   @if (control.invalid && control.touched) {
     <div class="mt-30">

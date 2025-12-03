@@ -47,7 +47,7 @@
         @if (icon()) {
           <i [ngClass]="icon()" class="__zap__form__control__icon"></i>
         } @else if (iconDirective) {
-          <ng-content select="[zapFormFieldIcon]"></ng-content>
+          <ng-content select="[zapIcon]"></ng-content>
         } @else {
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -97,7 +97,7 @@
   @if (helpText()) {
     <p [id]="id() + '-helptext'" class="__zap__form__control__help__text">{{ helpText() }}</p>
   } @else if (helpTextDirective) {
-    <ng-content select="[zapFormFieldHelpText]"></ng-content>
+    <ng-content select="[zapHelpText]"></ng-content>
   }
   @if (control.invalid && control.touched) {
     <div class="mt-30" [id]="id() + '-error'">

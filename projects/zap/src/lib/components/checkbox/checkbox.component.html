@@ -39,7 +39,7 @@
       @if (icon()) {
         <i class="fa-solid" [ngClass]="icon()" aria-hidden="true"></i>
       } @else if (iconDirective) {
-        <ng-content select="[zapFormFieldIcon]"></ng-content>
+        <ng-content select="[zapIcon]"></ng-content>
       } @else {
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
           <path

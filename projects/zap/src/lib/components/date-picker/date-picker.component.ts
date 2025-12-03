@@ -34,11 +34,7 @@ import { ValidationErrorComponent } from '../validation-error/validation-error.c
 import { DPCalendar } from './dp-calendar/dp-calendar.component';
 import { ZapDatePickerBreakpoints } from './interface/date-picker.interface';
 import { formatDate } from './utils';
-import {
-  ZapFormFieldHelpTextDirective,
-  ZapFormFieldIconDirective,
-  ZapLabelDirective,
-} from '../../directives';
+import { ZapHelpTextDirective, ZapIconDirective, ZapLabelDirective } from '../../directives';
 import { RequiredIndicatorComponent } from '../required-indicator/required-indicator.component';
 
 @Component({
@@ -69,10 +65,10 @@ export class ZapDatePicker<T>
   @ViewChild('calendarPanel') calendarPanel!: TemplateRef<any>;
   @ViewChild('inputDateSelectValueHolder')
   inputDateSelectValueHolder!: ElementRef;
-  @ContentChild(ZapFormFieldIconDirective, { static: false })
-  iconDirective!: ZapFormFieldIconDirective;
-  @ContentChild(ZapFormFieldHelpTextDirective, { static: false })
-  helpTextDirective!: ZapFormFieldHelpTextDirective;
+  @ContentChild(ZapIconDirective, { static: false })
+  iconDirective!: ZapIconDirective;
+  @ContentChild(ZapHelpTextDirective, { static: false })
+  helpTextDirective!: ZapHelpTextDirective;
   @ContentChild(ZapLabelDirective, { static: false })
   labelDirective!: ZapLabelDirective;
   onChange = output<T>();

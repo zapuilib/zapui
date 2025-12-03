@@ -24,7 +24,7 @@
           role="button"
           aria-label="Icon action"></i>
       } @else if (iconDirective) {
-        <ng-content select="[zapFormFieldIcon]"></ng-content>
+        <ng-content select="[zapIcon]"></ng-content>
       }
       <input
         [type]="type()"
@@ -41,7 +41,7 @@
     @if (helpText()) {
       <p class="__zap__form__control__help__text" id="{{ id() }}-help">{{ helpText() }}</p>
     } @else if (helpTextDirective) {
-      <ng-content select="[zapFormFieldHelpText]"></ng-content>
+      <ng-content select="[zapHelpText]"></ng-content>
     }
     @if (control.invalid && control.touched) {
       <validation-error

@@ -8,7 +8,7 @@ import {
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { ZapIconDirective } from '../public-api';
+import { ZapIconDirective } from '../../directives/icon.directive';
 
 @Component({
   selector: 'zap-alert',

@@ -1,5 +1,6 @@
 import { Component, Input, TemplateRef, ViewChild } from '@angular/core';
-import { ZapButton, ZapToast, ZapToastService } from 'zap/core';
+import { ZapButton } from 'zap';
+import { ZapToast, ZapToastService } from 'zap';
 
 @Component({
   selector: 'app-toast',

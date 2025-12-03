@@ -9,7 +9,7 @@ import {
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { ZapIconDirective } from '../../public-api';
+import { ZapIconDirective } from '../../../directives/icon.directive';
 import { ACCORDION_ITEM_TOKEN, AccordionItemLike } from '../accordion.token';
 
 @Component({

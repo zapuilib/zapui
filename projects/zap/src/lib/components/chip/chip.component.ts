@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, ContentChild, AfterViewInit, input, output } from '@angular/core';
-import { ZapIconDirective } from '../public-api';
+import { ZapIconDirective } from '../../directives/icon.directive';
 
 @Component({
   selector: 'zap-chip',

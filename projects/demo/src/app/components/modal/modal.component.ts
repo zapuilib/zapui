@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { ZapButton, ZapModal } from 'zap/core';
+import { ZapButton } from 'zap';
+import { ZapModal } from 'zap';
 
 @Component({
   selector: 'app-modal',

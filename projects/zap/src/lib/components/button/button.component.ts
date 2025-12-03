@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { AfterViewInit, Component, ContentChild, HostListener, input } from '@angular/core';
 
-import { ZapIconDirective } from '../directives/icon.directive';
+import { ZapIconDirective } from '../../directives/icon.directive';
 
 @Component({
   selector: 'zap-button',

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
+import { ZapButton } from 'zap';
 import {
-  ZapButton,
   ZapDropdown,
   ZapDropdownMenu,
   ZapDropdownMenuGroup,
@@ -12,7 +12,7 @@ import {
   ZapDropdownMenuSubTrigger,
   ZapDropdownSeparator,
   ZapDropdownTrigger,
-} from 'zap/core';
+} from 'zap';
 
 @Component({
   selector: 'app-dropdown',

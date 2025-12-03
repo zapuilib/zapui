@@ -1,6 +1,7 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { ZapThemer } from 'zap';
-import { ZapButton, ZapIconDirective } from 'zap/core';
+import { ZapButton } from 'zap';
+import { ZapIconDirective } from 'zap';
 
 @Component({
   selector: 'app-theme-switcher',

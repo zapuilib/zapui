@@ -17,4 +17,6 @@ export * from './accordion';
 
 export * from './dropdown';
 
+export * from './breadcrumb/breadcrumb.component';
+
 export * from './directives/icon.directive';

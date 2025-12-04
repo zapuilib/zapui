@@ -6,6 +6,7 @@ import { ControlValueAccessorDirective } from '../../directives/control-value-ac
 import { ValidationErrorComponent } from '../validation-error/validation-error.component';
 import { ZapHelpTextDirective, ZapLabelDirective } from '../../directives';
 import { RequiredIndicatorComponent } from '../required-indicator/required-indicator.component';
+import { ZapCustomErrorMessages } from '../validation-error/validation.interface';
 
 @Component({
   selector: 'zap-textarea',
@@ -39,7 +40,7 @@ export class ZapTextarea<T>
   rows = input<string>('');
   zapClass = input<string>('');
   shape = input<'curve' | 'flat' | 'pill'>();
-  customErrorMessages = input<Record<string, string>>({});
+  ZapCustomErrorMessages = input<ZapCustomErrorMessages>({});
   placeholder = input<string>('');
   resize = input<'none' | 'vertical' | 'horizontal' | 'auto'>('none');
   helpText = input<string>('');

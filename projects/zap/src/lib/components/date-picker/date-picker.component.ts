@@ -36,6 +36,7 @@ import { ZapDatePickerBreakpoints } from './interface/date-picker.interface';
 import { formatDate } from './utils';
 import { ZapHelpTextDirective, ZapIconDirective, ZapLabelDirective } from '../../directives';
 import { RequiredIndicatorComponent } from '../required-indicator/required-indicator.component';
+import { ZapCustomErrorMessages } from '../validation-error/validation.interface';
 
 @Component({
   selector: 'zap-date-picker',
@@ -78,7 +79,7 @@ export class ZapDatePicker<T>
   shape = input<'pill' | 'curve' | 'flat'>();
   size = input<'compact' | 'base' | 'wide'>();
   position = input<'top' | 'bottom' | 'auto'>('auto');
-  customErrorMessages = input<Record<string, string>>({});
+  ZapCustomErrorMessages = input<ZapCustomErrorMessages>({});
   icon = input<string>();
   iconPosition = input<'left' | 'right'>('right');
   helpText = input<string>('');

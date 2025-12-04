@@ -30,3 +30,5 @@ export * from './select/select.component';
 export * from './toggle/toggle.component';
 
 export * from './breadcrumb/breadcrumb.component';
+
+export * from './validation-error/validation.interface';

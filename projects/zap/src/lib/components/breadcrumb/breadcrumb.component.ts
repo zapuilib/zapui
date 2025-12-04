@@ -13,9 +13,9 @@ export class ZapBreadcrumb {
   separator = input<'arrow' | 'chevron' | 'slash'>('chevron');
   gap = input<number>(0.5);
   size = input<'base' | 'compact' | 'tight'>('base');
-  variant = input<'default' | 'muted'>('default');
+  underline = input<boolean>(false);
 
   get classes(): string[] {
-    return [this.size(), this.variant()];
+    return [this.size()];
   }
 }

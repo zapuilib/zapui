@@ -1,7 +1,10 @@
 <div [ngClass]="classes" [style.gap]="size() !== 'tight' ? gap() + 'rem' : '0.25rem'">
   @for (item of items(); track $index; let last = $last) {
     @if (item.url) {
-      <a [routerLink]="item.url" [routerLinkActive]="['active']">
+      <a
+        [routerLink]="item.url"
+        [routerLinkActive]="['active']"
+        [ngClass]="underline() ? 'has-underline' : ''">
         {{ item.label }}
       </a>
     } @else {

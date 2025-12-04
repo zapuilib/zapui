@@ -195,7 +195,7 @@ export function generateGlobalStylesVariables(theme: ZapTheme): string {
     breadcrumb: [
       {
         label: 'text-color',
-        value: theme.colors.secondary,
+        value: hexToRgba(theme.colors.secondary, 0.6),
       },
       {
         label: 'text-hover-color',
@@ -235,7 +235,7 @@ export function generateGlobalStylesVariables(theme: ZapTheme): string {
       },
       {
         label: 'font-active-weight',
-        value: '500',
+        value: '400',
       },
     ],
     chip: [

@@ -17,6 +17,7 @@ import { ZapIconDirective } from '../../directives/icon.directive';
 import { ZapHelpTextDirective } from '../../directives/help-text.directive';
 import { ZapLabelDirective } from '../../directives/label.directive';
 import { RequiredIndicatorComponent } from '../required-indicator/required-indicator.component';
+import { ZapCustomErrorMessages } from '../validation-error/validation.interface';
 
 type InputType = 'password' | 'text' | 'number' | 'email' | 'tel';
 
@@ -54,7 +55,7 @@ export class ZapInput<T>
   type = input<InputType>('text');
   label = input<string>('');
   placeholder = input<string>('');
-  customErrorMessages = input<Record<string, string>>({});
+  ZapCustomErrorMessages = input<ZapCustomErrorMessages>({});
   zapClass = input<string>('');
   size = input<'compact' | 'base'>();
   shape = input<'pill' | 'curve' | 'flat'>();

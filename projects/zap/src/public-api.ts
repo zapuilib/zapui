@@ -2,6 +2,10 @@
  * Public API Surface of zap
  */
 
+export * from './lib/components';
+
+export * from './lib/directives';
+
 export * from './lib/provide-zap-options';
 
 export * from './lib/interfaces/config.interface';

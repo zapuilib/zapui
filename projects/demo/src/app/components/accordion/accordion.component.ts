@@ -1,10 +1,5 @@
 import { Component } from '@angular/core';
-import {
-  ZapAccordionContent,
-  ZapAccordionGroup,
-  ZapAccordionHeader,
-  ZapAccordionItem,
-} from 'zap/core';
+import { ZapAccordionContent, ZapAccordionGroup, ZapAccordionHeader, ZapAccordionItem } from 'zap';
 
 @Component({
   selector: 'app-accordion',

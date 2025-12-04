@@ -1,0 +1,53 @@
+@if (control) {
+  <div class="__zap__form__control" [ngClass]="classes">
+    @if (label()) {
+      <label [for]="id()" class="__zap__form__control__label" id="{{ id() }}-label"
+        >{{ label() }}
+        @if (isRequired && indicator()) {
+          <required-indicator />
+        }
+      </label>
+    } @else if (labelDirective) {
+      <ng-content select="[zapLabel]"></ng-content>
+    }
+    <fieldset>
+      <legend class="sr-only">
+        {{ label() ? label() : placeholder() ? placeholder() : 'Input' }}
+      </legend>
+      @if (icon() && iconPosition()) {
+        <i
+          class="fa-solid"
+          [ngClass]="[icon(), iconPosition()]"
+          (click)="handleIconClick($event)"
+          (keydown.enter)="handleIconClick($event)"
+          tabindex="-1"
+          role="button"
+          aria-label="Icon action"></i>
+      } @else if (iconDirective) {
+        <ng-content select="[zapIcon]"></ng-content>
+      }
+      <input
+        [type]="type()"
+        [placeholder]="placeholder()"
+        [id]="id()"
+        tabindex="0"
+        class="__zap__form__control__input"
+        [autocomplete]="autoComplete()"
+        [formControl]="control"
+        [attr.aria-labelledby]="label() ? id() + '-label' : null"
+        [attr.aria-describedby]="helpText() ? id() + '-help' : null"
+        [attr.aria-invalid]="control.invalid ? 'true' : 'false'" />
+    </fieldset>
+    @if (helpText()) {
+      <p class="__zap__form__control__help__text" id="{{ id() }}-help">{{ helpText() }}</p>
+    } @else if (helpTextDirective) {
+      <ng-content select="[zapHelpText]"></ng-content>
+    }
+    @if (control.invalid && control.touched) {
+      <validation-error
+        [errors]="control.errors"
+        [zapClass]="zapClass()"
+        [customErrorMessages]="customErrorMessages()"></validation-error>
+    }
+  </div>
+}

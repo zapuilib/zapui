@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { ZapToggle } from 'zap/forms';
+import { ZapToggle } from 'zap';
 
 @Component({
   selector: 'app-toggle',

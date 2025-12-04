@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ZapChip, ZapIconDirective } from 'zap/core';
+import { ZapChip, ZapIconDirective } from 'zap';
 
 @Component({
   selector: 'app-chip',

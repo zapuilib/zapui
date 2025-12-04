@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ZapAlert, ZapIconDirective } from 'zap/core';
+import { ZapAlert, ZapIconDirective } from 'zap';
 
 @Component({
   selector: 'app-alert',

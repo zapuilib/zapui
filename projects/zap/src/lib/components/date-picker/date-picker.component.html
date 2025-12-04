@@ -1,0 +1,110 @@
+<div class="__zap__form__control" [ngClass]="classes">
+  @if (label()) {
+    <label [for]="id()" [id]="id() + '-label'" class="__zap__form__control__label"
+      >{{ label() }}
+      @if (isRequired && indicator()) {
+        <required-indicator />
+      }
+    </label>
+  } @else if (labelDirective) {
+    <ng-content select="[zapLabel]"></ng-content>
+  }
+  <div class="field__wrapper">
+    <fieldset
+      #inputDateSelectValueHolder
+      class="__zap__form__control__date__picker"
+      (click)="toggleCalendar()"
+      (keydown.enter)="toggleCalendar()"
+      [id]="id()"
+      role="combobox"
+      [attr.aria-expanded]="isCalendarOpen"
+      aria-haspopup="dialog"
+      aria-owns="calendar-popup"
+      aria-controls="calendar-popup"
+      [attr.aria-labelledby]="label() ? id() + '-label' : null"
+      [attr.aria-invalid]="control.invalid && control.touched"
+      [attr.aria-describedby]="
+        (helpText() ? id() + '-helptext' : '') +
+        (control.invalid && control.touched ? ' ' + id() + '-error' : '')
+      "
+      tabindex="0">
+      <legend class="sr-only">
+        {{ label() ? label() : placeholder() ? placeholder() : 'Input' }}
+      </legend>
+      @if (control.value) {
+        <div aria-live="polite" class="sr-only">
+          {{ selectedValue }}
+        </div>
+        <span>
+          {{ selectedValue }}
+        </span>
+      } @else {
+        <span class="__zap__form__control__placeholder">
+          {{ placeholder() }}
+        </span>
+      }
+      <div class="handler">
+        @if (icon()) {
+          <i [ngClass]="icon()" class="__zap__form__control__icon"></i>
+        } @else if (iconDirective) {
+          <ng-content select="[zapIcon]"></ng-content>
+        } @else {
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 448 512"
+            width="14"
+            height="14"
+            class="__zap__form__control__icon">
+            <path
+              fill="currentColor"
+              d="M128 0c17.7 0 32 14.3 32 32l0 32 128 0 0-32c0-17.7 14.3-32 32-32s32 14.3 32 32l0 32 48 0c26.5 0 48 21.5 48 48l0 48L0 160l0-48C0 85.5 21.5 64 48 64l48 0 0-32c0-17.7 14.3-32 32-32zM0 192l448 0 0 272c0 26.5-21.5 48-48 48L48 512c-26.5 0-48-21.5-48-48L0 192zm64 80l0 32c0 8.8 7.2 16 16 16l32 0c8.8 0 16-7.2 16-16l0-32c0-8.8-7.2-16-16-16l-32 0c-8.8 0-16 7.2-16 16zm128 0l0 32c0 8.8 7.2 16 16 16l32 0c8.8 0 16-7.2 16-16l0-32c0-8.8-7.2-16-16-16l-32 0c-8.8 0-16 7.2-16 16zm144-16c-8.8 0-16 7.2-16 16l0 32c0 8.8 7.2 16 16 16l32 0c8.8 0 16-7.2 16-16l0-32c0-8.8-7.2-16-16-16l-32 0zM64 400l0 32c0 8.8 7.2 16 16 16l32 0c8.8 0 16-7.2 16-16l0-32c0-8.8-7.2-16-16-16l-32 0c-8.8 0-16 7.2-16 16zm144-16c-8.8 0-16 7.2-16 16l0 32c0 8.8 7.2 16 16 16l32 0c8.8 0 16-7.2 16-16l0-32c0-8.8-7.2-16-16-16l-32 0zm112 16l0 32c0 8.8 7.2 16 16 16l32 0c8.8 0 16-7.2 16-16l0-32c0-8.8-7.2-16-16-16l-32 0c-8.8 0-16 7.2-16 16z" />
+          </svg>
+        }
+      </div>
+    </fieldset>
+    <ng-template #calendarPanel>
+      <div class="__zap__form__control__calendar" cdkTrapFocus [cdkTrapFocusAutoCapture]="true">
+        <dp-calendar
+          [id]="id() + '-calendar'"
+          [weeks]="weeks"
+          [currentMonth]="currentMonth"
+          [currentYear]="currentYear"
+          [currentDate]="currentDate"
+          [selected]="selected"
+          [monthsPerView]="monthsPerView()"
+          [maxPerRow]="maxPerRow()"
+          [months]="months()"
+          [daysOfWeek]="daysOfWeek()"
+          [years]="years()"
+          [range]="range()"
+          [size]="size()"
+          [shape]="shape()"
+          [dropdown]="dropdown()"
+          [zapClass]="calendarClasses"
+          [disableWeekends]="disableWeekends()"
+          [disableDates]="disableDates()"
+          [disableRanges]="disableRanges()"
+          [disableInactive]="disableInactive()"
+          [minDate]="minDate()"
+          [maxDate]="maxDate()"
+          (selectDate)="selectDate($event)"
+          (previousMonth)="onPreviousMonth($event)"
+          (nextMonth)="onNextMonth($event)"
+          (changeMonthAndYear)="onChangeMonthAndYear($event)"></dp-calendar>
+      </div>
+    </ng-template>
+  </div>
+  @if (helpText()) {
+    <p [id]="id() + '-helptext'" class="__zap__form__control__help__text">{{ helpText() }}</p>
+  } @else if (helpTextDirective) {
+    <ng-content select="[zapHelpText]"></ng-content>
+  }
+  @if (control.invalid && control.touched) {
+    <div class="mt-30" [id]="id() + '-error'">
+      <validation-error
+        [errors]="control.errors"
+        [zapClass]="zapClass()"
+        [customErrorMessages]="customErrorMessages()"></validation-error>
+    </div>
+  }
+</div>

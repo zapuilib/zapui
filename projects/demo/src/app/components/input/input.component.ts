@@ -1,21 +1,16 @@
 import { Component } from '@angular/core';
 import { FormControl, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import {
-  ZapFormFieldHelpTextDirective,
-  ZapFormFieldIconDirective,
-  ZapInput,
-  ZapLabelDirective,
-} from 'zap/forms';
+import { ZapHelpTextDirective, ZapIconDirective, ZapInput, ZapLabelDirective } from 'zap';
 
 @Component({
   selector: 'app-input',
   imports: [
     ZapInput,
     ZapLabelDirective,
-    ZapFormFieldHelpTextDirective,
+    ZapHelpTextDirective,
     FormsModule,
     ReactiveFormsModule,
-    ZapFormFieldIconDirective,
+    ZapIconDirective,
   ],
   templateUrl: './input.component.html',
   styleUrl: './input.component.scss',

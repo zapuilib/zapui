@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { ZapButton, ZapDialog, ZapDialogFooterDirective } from 'zap/core';
+import { ZapButton } from 'zap';
+import { ZapDialog, ZapDialogFooterDirective } from 'zap';
 
 @Component({
   selector: 'app-dialog',

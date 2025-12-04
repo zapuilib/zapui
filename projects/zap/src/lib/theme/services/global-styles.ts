@@ -516,6 +516,116 @@ export function generateGlobalStylesVariables(theme: ZapTheme): string {
         value: '1rem',
       },
     ],
+    pagination: [
+      {
+        label: 'link-bg-color',
+        value: 'transparent',
+      },
+      {
+        label: 'link-text-color',
+        value: hexToRgba(theme.colors.secondary, 1),
+      },
+      {
+        label: 'link-border-color',
+        value: 'transparent',
+      },
+      {
+        label: 'link-bg-hover-color',
+        value: hexToRgba(theme.colors.secondary, 0.05),
+      },
+      {
+        label: 'link-text-hover-color',
+        value: hexToRgba(theme.colors.secondary, 1),
+      },
+      {
+        label: 'link-border-hover-color',
+        value: 'transparent',
+      },
+      {
+        label: 'link-bg-active-color',
+        value: hexToRgba(theme.colors.secondary, 0.05),
+      },
+      {
+        label: 'link-text-active-color',
+        value: hexToRgba(theme.colors.secondary, 1),
+      },
+      {
+        label: 'link-border-active-color',
+        value: hexToRgba(theme.colors.secondary, 0.1),
+      },
+      {
+        label: 'prev-next-bg-color',
+        value: 'transparent',
+      },
+      {
+        label: 'prev-next-text-color',
+        value: hexToRgba(theme.colors.secondary, 1),
+      },
+      {
+        label: 'prev-next-border-color',
+        value: 'transparent',
+      },
+      {
+        label: 'prev-next-bg-hover-color',
+        value: hexToRgba(theme.colors.secondary, 0.05),
+      },
+      {
+        label: 'prev-next-text-hover-color',
+        value: hexToRgba(theme.colors.secondary, 1),
+      },
+      {
+        label: 'prev-next-border-hover-color',
+        value: 'transparent',
+      },
+      {
+        label: 'prev-next-bg-disabled-color',
+        value: 'transparent',
+      },
+      {
+        label: 'prev-next-text-disabled-color',
+        value: hexToRgba(theme.colors.secondary, 0.5),
+      },
+      {
+        label: 'prev-next-border-disabled-color',
+        value: 'transparent',
+      },
+      {
+        label: 'ellipsis-text-color',
+        value: hexToRgba(theme.colors.secondary, 1),
+      },
+      {
+        label: 'font-size',
+        value: '0.875rem',
+      },
+      {
+        label: 'font-weight',
+        value: '400',
+      },
+      {
+        label: 'line-height',
+        value: '1.5',
+      },
+      {
+        label: 'letter-spacing',
+        value: '0.01em',
+      },
+      {
+        label: 'link-border-radius',
+        value: '0.375rem',
+      },
+      {
+        label: 'prev-next-border-radius',
+        value: '0.375rem',
+      },
+      {
+        label: 'icon-width',
+        value: '1rem',
+      },
+      {
+        label: 'icon-height',
+        value: '1rem',
+      },
+    ],
     input: [
       {
         label: 'bg-color',

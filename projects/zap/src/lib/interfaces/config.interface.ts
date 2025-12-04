@@ -21,6 +21,7 @@ import {
   ToastConfig,
   DropdownConfig,
   BreadcrumbConfig,
+  PaginationConfig,
 } from './index';
 
 export interface ZapConfig {
@@ -48,6 +49,7 @@ export interface ZapConfig {
     'dp-calendar-select'?: DPCalendarSelectConfig;
     toast?: ToastConfig;
     breadcrumb?: BreadcrumbConfig;
+    pagination?: PaginationConfig;
   };
 }
 

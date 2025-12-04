@@ -1,0 +1,37 @@
+:host {
+  &.flat {
+    a {
+      @apply rounded-none;
+    }
+  }
+
+  &.pill {
+    a {
+      @apply rounded-full;
+    }
+  }
+
+  &.curve {
+    a {
+      @apply rounded-md;
+    }
+  }
+}
+
+a {
+  @apply inline-flex items-center justify-center min-w-[2rem] h-8 px-3 text-[length:var(--zap-pagination-font-size)] font-[var(--zap-pagination-font-weight)] leading-[var(--zap-pagination-line-height)] tracking-[var(--zap-pagination-letter-spacing)];
+  @apply text-[var(--zap-pagination-link-text-color)] bg-[var(--zap-pagination-link-bg-color)];
+  @apply rounded-[var(--zap-pagination-link-border-radius)];
+  @apply cursor-pointer;
+  @apply transition-colors;
+  @apply hover:bg-[var(--zap-pagination-link-bg-hover-color)] hover:text-[var(--zap-pagination-link-text-hover-color)];
+  @apply border border-[var(--zap-pagination-link-border-color)];
+
+  &[aria-current='page'] {
+    @apply bg-[var(--zap-pagination-link-bg-active-color)] border border-[var(--zap-pagination-link-border-active-color)] text-[var(--zap-pagination-link-text-active-color)];
+  }
+
+  &:disabled {
+    @apply opacity-50 cursor-not-allowed pointer-events-none;
+  }
+}

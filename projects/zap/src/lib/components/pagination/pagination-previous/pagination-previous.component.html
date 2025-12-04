@@ -1,0 +1,11 @@
+<a
+  tabindex="-1"
+  (keydown.enter)="onClick($event)"
+  (click)="onClick($event)"
+  [attr.aria-disabled]="disabled() ? 'true' : null">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" fill="currentColor">
+    <path
+      d="M167.5 303C158.1 312.4 158.1 327.6 167.5 336.9L367.5 536.9C376.9 546.3 392.1 546.3 401.4 536.9C410.7 527.5 410.8 512.3 401.4 503L218.4 320L401.4 137C410.8 127.6 410.8 112.4 401.4 103.1C392 93.8 376.8 93.7 367.5 103.1L167.5 303z" />
+  </svg>
+  <ng-content></ng-content>
+</a>

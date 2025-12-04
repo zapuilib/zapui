@@ -24,3 +24,4 @@ export * from './dp-calendar.interface';
 export * from './dp-calendar-select.interface';
 export * from './toast.interface';
 export * from './breadcrumb.interface';
+export * from './pagination.interface';

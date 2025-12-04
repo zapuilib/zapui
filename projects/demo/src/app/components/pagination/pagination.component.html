@@ -1,0 +1,70 @@
+<div class="flex flex-col space-y-8">
+  <div>
+    <zap-pagination>
+      <zap-pagination-item>
+        <zap-pagination-previous [disabled]="currentPage === 1" (itemClick)="onPreviousClick()">
+          Previous
+        </zap-pagination-previous>
+      </zap-pagination-item>
+
+      @for (page of getPages(); track $index) {
+        @if (page === 'ellipsis') {
+          <zap-pagination-item>
+            <zap-pagination-ellipsis>…</zap-pagination-ellipsis>
+          </zap-pagination-item>
+        } @else {
+          <zap-pagination-item>
+            <zap-pagination-link
+              [page]="page"
+              [active]="currentPage === page"
+              (itemClick)="onPageClick(page)">
+              {{ page }}
+            </zap-pagination-link>
+          </zap-pagination-item>
+        }
+      }
+
+      <zap-pagination-item>
+        <zap-pagination-next [disabled]="currentPage === totalPages" (itemClick)="onNextClick()">
+          Next
+        </zap-pagination-next>
+      </zap-pagination-item>
+    </zap-pagination>
+  </div>
+
+  <div>
+    <zap-pagination shape="flat">
+      <zap-pagination-item>
+        <zap-pagination-previous>Previous</zap-pagination-previous>
+      </zap-pagination-item>
+      @for (page of [1, 2, 3, 4, 5]; track page) {
+        <zap-pagination-item>
+          <zap-pagination-link [page]="page" [active]="page === 2">
+            {{ page }}
+          </zap-pagination-link>
+        </zap-pagination-item>
+      }
+      <zap-pagination-item>
+        <zap-pagination-next>Next</zap-pagination-next>
+      </zap-pagination-item>
+    </zap-pagination>
+  </div>
+
+  <div>
+    <zap-pagination shape="pill">
+      <zap-pagination-item>
+        <zap-pagination-previous>Previous</zap-pagination-previous>
+      </zap-pagination-item>
+      @for (page of [1, 2, 3, 4, 5]; track page) {
+        <zap-pagination-item>
+          <zap-pagination-link [page]="page" [active]="page === 2">
+            {{ page }}
+          </zap-pagination-link>
+        </zap-pagination-item>
+      }
+      <zap-pagination-item>
+        <zap-pagination-next>Next</zap-pagination-next>
+      </zap-pagination-item>
+    </zap-pagination>
+  </div>
+</div>

@@ -4,6 +4,7 @@
 @custom-variant error (.error);
 @custom-variant dismiss (.handler);
 @custom-variant dismiss-icon (.handler svg);
+@custom-variant icon (svg);
 @custom-variant textarea (textarea);
 @custom-variant textarea-placeholder (.__zap__form__control__textarea::placeholder);
 @custom-variant chip-text (.chip__text);

@@ -20,6 +20,7 @@ export function generateComponentGlobalVariables(config: GlobalConfig): string {
     'toast',
     'dropdown',
     'breadcrumb',
+    'pagination',
   ];
   let cssVariables = '';
 

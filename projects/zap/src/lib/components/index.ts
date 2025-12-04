@@ -31,4 +31,6 @@ export * from './toggle/toggle.component';
 
 export * from './breadcrumb/breadcrumb.component';
 
+export * from './pagination';
+
 export * from './validation-error/validation.interface';

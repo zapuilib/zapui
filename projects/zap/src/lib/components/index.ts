@@ -28,3 +28,5 @@ export * from './textarea/textarea.component';
 export * from './radio/radio.component';
 export * from './select/select.component';
 export * from './toggle/toggle.component';
+
+export * from './breadcrumb/breadcrumb.component';

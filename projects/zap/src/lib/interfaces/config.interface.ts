@@ -20,6 +20,7 @@ import {
   ShapeType,
   ToastConfig,
   DropdownConfig,
+  BreadcrumbConfig,
 } from './index';
 
 export interface ZapConfig {
@@ -46,6 +47,7 @@ export interface ZapConfig {
     'dp-calendar'?: DPCalendarConfig;
     'dp-calendar-select'?: DPCalendarSelectConfig;
     toast?: ToastConfig;
+    breadcrumb?: BreadcrumbConfig;
   };
 }
 

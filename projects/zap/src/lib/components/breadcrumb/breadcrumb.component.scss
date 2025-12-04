@@ -34,7 +34,8 @@ div {
   }
 
   &.muted {
-    a {
+    a,
+    span {
       @apply text-secondary/60 hover:text-secondary/80;
     }
 

@@ -15,6 +15,7 @@
   - Removed `ZapFormFieldIconDirective`. All components now use the unified `ZapIconDirective` for icon functionality. Update your imports and template selectors from `zapFormFieldIcon` to `zapIcon`.
 
 - **Import Paths**
+
   - Consolidated import entry points from `@zaplib/zapui/core` and `@zaplib/zapui/forms` to a single entry point `@zaplib/zapui`. All components, directives, and utilities can now be imported directly from `@zaplib/zapui`:
 
     ```typescript

@@ -1,5 +1,32 @@
 # Changelog
 
+## 📦 0.0.0-alpha.9.12 — `dev-alpha`
+
+### 🛠 Fixes
+
+- **Textarea**
+  - Fixed global styling for font styling to ensure consistent typography across all textarea instances.
+
+### ⚠️ Breaking Changes
+
+- **Directives**
+
+  - Renamed `ZapFormFieldHelpTextDirective` to `ZapHelpTextDirective`. Update your imports and template selectors from `zapFormFieldHelpText` to `zapHelpText`.
+  - Removed `ZapFormFieldIconDirective`. All components now use the unified `ZapIconDirective` for icon functionality. Update your imports and template selectors from `zapFormFieldIcon` to `zapIcon`.
+
+- **Import Paths**
+
+  - Consolidated import entry points from `@zaplib/zapui/core` and `@zaplib/zapui/forms` to a single entry point `@zaplib/zapui`. All components, directives, and utilities can now be imported directly from `@zaplib/zapui`:
+
+    ```typescript
+    // Before
+    import { ZapButton } from '@zaplib/zapui/core';
+    import { ZapInput } from '@zaplib/zapui/forms';
+
+    // After
+    import { ZapButton, ZapInput } from '@zaplib/zapui';
+    ```
+
 ## 📦 0.0.0-alpha.9.11 — `dev-alpha`
 
 ### ✨ Features

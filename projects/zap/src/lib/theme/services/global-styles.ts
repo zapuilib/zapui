@@ -618,11 +618,11 @@ export function generateGlobalStylesVariables(theme: ZapTheme): string {
         value: '0.375rem',
       },
       {
-        label: 'prev-next-icon-width',
+        label: 'icon-width',
         value: '1rem',
       },
       {
-        label: 'prev-next-icon-height',
+        label: 'icon-height',
         value: '1rem',
       },
     ],

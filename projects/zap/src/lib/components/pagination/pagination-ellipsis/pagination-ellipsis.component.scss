@@ -3,6 +3,6 @@ span {
   @apply text-[var(--zap-pagination-ellipsis-text-color)];
 
   svg {
-    @apply w-3 h-3;
+    @apply w-[var(--zap-pagination-icon-width)] h-[var(--zap-pagination-icon-height)];
   }
 }

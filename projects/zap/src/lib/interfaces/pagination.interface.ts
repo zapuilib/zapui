@@ -33,7 +33,7 @@ export interface PaginationConfig {
     letterSpacing?: string;
     linkBorderRadius?: string;
     prevNextBorderRadius?: string;
-    prevNextIconWidth?: string;
-    prevNextIconHeight?: string;
+    iconWidth?: string;
+    iconHeight?: string;
   } & CommonStyles;
 }

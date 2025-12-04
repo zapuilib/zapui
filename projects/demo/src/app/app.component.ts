@@ -20,6 +20,7 @@ import { ToggleComponent } from './components/toggle/toggle.component';
 import { ToastComponent } from './components/toast/toast.component';
 import { DropdownComponent } from './components/dropdown/dropdown.component';
 import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.component';
+import { PaginationComponent } from './components/pagination/pagination.component';
 
 @Component({
   selector: 'app-root',
@@ -44,6 +45,7 @@ import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.componen
     ToastComponent,
     DropdownComponent,
     BreadcrumbComponent,
+    PaginationComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',

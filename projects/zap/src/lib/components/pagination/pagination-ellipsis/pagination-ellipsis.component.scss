@@ -1,0 +1,8 @@
+span {
+  @apply inline-flex items-center justify-center min-w-[2rem] h-8 px-3 text-[length:var(--zap-pagination-font-size)] font-[var(--zap-pagination-font-weight)] leading-[var(--zap-pagination-line-height)] tracking-[var(--zap-pagination-letter-spacing)];
+  @apply text-[var(--zap-pagination-ellipsis-text-color)];
+
+  svg {
+    @apply w-3 h-3;
+  }
+}

@@ -112,6 +112,20 @@ export function getShapeVariable(shapeValue: string, component: string): string 
         },
       },
     },
+    pagination: {
+      pill: 'calc(infinity * 1px)',
+      curve: '0.375rem',
+      elements: {
+        link: {
+          pill: 'calc(infinity * 1px)',
+          curve: '0.375rem',
+        },
+        'prev-next': {
+          pill: 'calc(infinity * 1px)',
+          curve: '0.375rem',
+        },
+      },
+    },
   };
   let cssVariables = '';
 

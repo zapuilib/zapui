@@ -1,0 +1,8 @@
+<a
+  tabindex="-1"
+  (keydown.enter)="onClick($event)"
+  (click)="onClick($event)"
+  [attr.aria-current]="active() ? 'page' : null"
+  [attr.aria-disabled]="disabled() ? 'true' : null">
+  <ng-content></ng-content>
+</a>

@@ -27,7 +27,7 @@ a {
   @apply rounded-[var(--zap-pagination-prev-next-border-radius)] px-2 py-1;
 
   svg {
-    @apply w-4 h-4;
+    @apply w-[var(--zap-pagination-prev-next-icon-width)] h-[var(--zap-pagination-prev-next-icon-height)];
   }
 
   &[aria-disabled='true'] {

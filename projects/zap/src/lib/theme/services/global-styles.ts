@@ -617,6 +617,14 @@ export function generateGlobalStylesVariables(theme: ZapTheme): string {
         label: 'prev-next-border-radius',
         value: '0.375rem',
       },
+      {
+        label: 'prev-next-icon-width',
+        value: '1rem',
+      },
+      {
+        label: 'prev-next-icon-height',
+        value: '1rem',
+      },
     ],
     input: [
       {

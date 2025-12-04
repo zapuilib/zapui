@@ -68,6 +68,14 @@ export function getSizeVariables(sizeValue: string, component: string): string {
         'day-border-radius': '0.375rem',
       },
     },
+    breadcrumb: {
+      compact: {
+        gap: '0.5rem',
+      },
+      tight: {
+        gap: '0.25rem',
+      },
+    },
   };
 
   let cssVariables = '';

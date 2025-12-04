@@ -1,0 +1,46 @@
+div {
+  @apply flex items-center gap-8 text-[length:var(--zap-breadcrumb-font-size)] font-[var(--zap-breadcrumb-font-weight)] leading-[var(--zap-breadcrumb-line-height)] tracking-[var(--zap-breadcrumb-letter-spacing)];
+
+  a {
+    @apply text-[var(--zap-breadcrumb-text-color)] hover:text-[var(--zap-breadcrumb-text-hover-color)] underline;
+
+    &.active {
+      @apply underline font-[var(--zap-breadcrumb-font-active-weight)] text-[var(--zap-breadcrumb-text-active-color)];
+    }
+  }
+
+  span {
+    @apply text-[var(--zap-breadcrumb-text-color)];
+  }
+
+  svg {
+    @apply h-[var(--zap-breadcrumb-separator-height)] w-[var(--zap-breadcrumb-separator-width)] fill-[var(--zap-breadcrumb-separator-color)];
+  }
+
+  &.compact {
+    @apply text-sm;
+
+    svg {
+      @apply h-3 w-3;
+    }
+  }
+
+  &.tight {
+    @apply text-sm;
+
+    svg {
+      @apply h-3 w-3;
+    }
+  }
+
+  &.muted {
+    a,
+    span {
+      @apply text-secondary/60 hover:text-secondary/80;
+    }
+
+    svg {
+      @apply fill-secondary/60;
+    }
+  }
+}

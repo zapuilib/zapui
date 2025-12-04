@@ -19,6 +19,7 @@ export function generateComponentGlobalVariables(config: GlobalConfig): string {
     'dp-calendar-select',
     'toast',
     'dropdown',
+    'breadcrumb',
   ];
   let cssVariables = '';
 

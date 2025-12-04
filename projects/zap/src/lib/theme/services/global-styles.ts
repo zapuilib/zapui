@@ -192,6 +192,52 @@ export function generateGlobalStylesVariables(theme: ZapTheme): string {
         value: '1rem',
       },
     ],
+    breadcrumb: [
+      {
+        label: 'text-color',
+        value: theme.colors.secondary,
+      },
+      {
+        label: 'text-hover-color',
+        value: hexToRgba(theme.colors.secondary, 0.8),
+      },
+      {
+        label: 'text-active-color',
+        value: theme.colors.secondary,
+      },
+      {
+        label: 'separator-color',
+        value: hexToRgba(theme.colors.secondary, 0.8),
+      },
+      {
+        label: 'font-size',
+        value: '1rem',
+      },
+      {
+        label: 'font-weight',
+        value: '400',
+      },
+      {
+        label: 'line-height',
+        value: '1.5',
+      },
+      {
+        label: 'letter-spacing',
+        value: '0.01em',
+      },
+      {
+        label: 'separator-height',
+        value: '1rem',
+      },
+      {
+        label: 'separator-width',
+        value: '1rem',
+      },
+      {
+        label: 'font-active-weight',
+        value: '500',
+      },
+    ],
     chip: [
       {
         label: 'bg-color',

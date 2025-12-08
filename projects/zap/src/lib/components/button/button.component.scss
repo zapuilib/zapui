@@ -7,7 +7,7 @@ button {
   @apply hover:bg-[var(--zap-button-bg-hover-color)] hover:border-[var(--zap-button-border-hover-color)] hover:text-[var(--zap-button-text-hover-color)];
   @apply rounded-[var(--zap-button-border-radius)];
   @apply pl-[var(--zap-button-padding-left)] pr-[var(--zap-button-padding-right)] pt-[var(--zap-button-padding-top)] pb-[var(--zap-button-padding-bottom)] text-[length:var(--zap-button-font-size)] font-[var(--zap-button-font-weight)];
-  @apply w-[var(--zap-button-width)] h-[var(--zap-button-height)];
+  @apply w-[var(--zap-button-width)] h-[var(--zap-button-height)] min-h-full;
   @apply active:ring-1 active:ring-[var(--zap-button-border-active-color)] active:bg-[var(--zap-button-bg-active-color)] active:text-[var(--zap-button-text-active-color)] leading-[var(--zap-button-line-height)] tracking-[var(--zap-button-letter-spacing)];
   text-transform: var(--zap-button-text-transform);
   @apply focus-visible:outline-2 focus-visible:outline-[var(--zap-button-focus-color)] focus-visible:outline-offset-2 focus-visible:outline;

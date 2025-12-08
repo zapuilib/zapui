@@ -21,6 +21,7 @@ import { ToastComponent } from './components/toast/toast.component';
 import { DropdownComponent } from './components/dropdown/dropdown.component';
 import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.component';
 import { PaginationComponent } from './components/pagination/pagination.component';
+import { ButtonGroupComponent } from './components/button-group/button-group.component';
 
 @Component({
   selector: 'app-root',
@@ -46,6 +47,7 @@ import { PaginationComponent } from './components/pagination/pagination.componen
     DropdownComponent,
     BreadcrumbComponent,
     PaginationComponent,
+    ButtonGroupComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',

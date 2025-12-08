@@ -34,3 +34,5 @@ export * from './breadcrumb/breadcrumb.component';
 export * from './pagination';
 
 export * from './validation-error/validation.interface';
+
+export * from './button-group/button-group.component';

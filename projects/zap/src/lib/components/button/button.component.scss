@@ -137,4 +137,55 @@ button {
       }
     }
   }
+
+  &.group__item {
+    @apply rounded-none;
+
+    &.flat {
+      &.group__item__first,
+      &.group__item__last {
+        @apply rounded-none;
+      }
+    }
+
+    &.curve {
+      &.icononly {
+        @apply py-2;
+      }
+
+      &.group__item__first {
+        @apply rounded-l-md;
+      }
+
+      &.group__item__last {
+        @apply rounded-r-md;
+      }
+    }
+
+    &.pill {
+      &.icononly {
+        @apply py-2;
+      }
+
+      &.group__item__first {
+        @apply rounded-l-full;
+
+        &.icononly {
+          @apply pl-4;
+        }
+      }
+
+      &.group__item__last {
+        @apply rounded-r-full;
+
+        &.icononly {
+          @apply pr-4;
+        }
+      }
+    }
+
+    &:not(.group__item__last) {
+      @apply border-r-0;
+    }
+  }
 }

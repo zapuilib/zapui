@@ -1,1 +1,39 @@
-<p>button-group works!</p>
+<div class="flex flex-col space-y-4">
+  <zap-button-group class="mr-2">
+    <zap-button text="Get started" variant="outlined" shape="curve"></zap-button>
+    <zap-dropdown [open]="isOpen" (onChange)="isOpen = $event">
+      <zap-dropdown-trigger>
+        <zap-button
+          icon="fa-ellipsis-v"
+          [icononly]="true"
+          variant="outlined"
+          shape="curve"></zap-button>
+      </zap-dropdown-trigger>
+      <zap-dropdown-menu>
+        <zap-dropdown-menu-label>Account</zap-dropdown-menu-label>
+        <zap-dropdown-separator></zap-dropdown-separator>
+        <zap-dropdown-menu-group>
+          <zap-dropdown-menu-item>
+            My projects<zap-dropdown-menu-shortcut>⇧⌘P</zap-dropdown-menu-shortcut>
+          </zap-dropdown-menu-item>
+          <zap-dropdown-menu-item>
+            Profile<zap-dropdown-menu-shortcut>⌘P</zap-dropdown-menu-shortcut>
+          </zap-dropdown-menu-item>
+          <zap-dropdown-menu-item>
+            Billing<zap-dropdown-menu-shortcut>⌘K</zap-dropdown-menu-shortcut>
+          </zap-dropdown-menu-item>
+        </zap-dropdown-menu-group>
+        <zap-dropdown-separator></zap-dropdown-separator>
+        <zap-dropdown-menu-group>
+          <zap-dropdown-menu-item>
+            Settings<zap-dropdown-menu-shortcut>⌘S</zap-dropdown-menu-shortcut>
+          </zap-dropdown-menu-item>
+        </zap-dropdown-menu-group>
+      </zap-dropdown-menu>
+    </zap-dropdown>
+  </zap-button-group>
+  <zap-button-group>
+    <zap-button text="Get started" variant="outlined"></zap-button>
+    <zap-button text="Get started" variant="outlined"></zap-button>
+  </zap-button-group>
+</div>

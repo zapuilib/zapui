@@ -1,7 +1,18 @@
 import { CommonModule } from '@angular/common';
-import { AfterViewInit, Component, ContentChild, HostListener, input } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ContentChild,
+  HostListener,
+  inject,
+  input,
+  OnInit,
+  signal,
+} from '@angular/core';
 
 import { ZapIconDirective } from '../../directives/icon.directive';
+import { ButtonGroupConfig } from '../button-group/button-group.token';
+import { ButtonGroupService } from '../button-group/button-group.service';
 
 @Component({
   selector: 'zap-button',
@@ -9,9 +20,11 @@ import { ZapIconDirective } from '../../directives/icon.directive';
   templateUrl: './button.component.html',
   styleUrls: ['./button.component.scss'],
 })
-export class ZapButton implements AfterViewInit {
+export class ZapButton implements OnInit, AfterViewInit {
   @ContentChild(ZapIconDirective, { static: false })
   iconDirective!: ZapIconDirective;
+  private readonly buttonGroupService = inject(ButtonGroupService, { optional: true });
+  groupConfig = signal<ButtonGroupConfig | null>(null);
   text = input<string>('Submit');
   zapClass = input<string>('');
   shape = input<'pill' | 'curve' | 'flat'>();
@@ -34,6 +47,13 @@ export class ZapButton implements AfterViewInit {
     }
   }
 
+  ngOnInit(): void {
+    if (this.buttonGroupService) {
+      const config = this.buttonGroupService.registerButton(this);
+      this.groupConfig.set(config);
+    }
+  }
+
   ngAfterViewInit() {
     if (this.iconDirective) {
       this.iconDirective.el.nativeElement.style.height = 'var(--zap-button-font-size)';
@@ -47,7 +67,17 @@ export class ZapButton implements AfterViewInit {
     }
   }
 
+  updateGroupConfig(): void {
+    if (this.buttonGroupService) {
+      const config = this.buttonGroupService.getConfigForButton(this);
+      if (config) {
+        this.groupConfig.set(config);
+      }
+    }
+  }
+
   get classes(): string[] {
+    const config = this.groupConfig();
     return [
       this.icononly() ? 'icononly' : '',
       this.type(),
@@ -55,6 +85,10 @@ export class ZapButton implements AfterViewInit {
       this.size() ?? '',
       this.variant(),
       this.zapClass(),
+      config ? 'group__item' : '',
+      config?.isFirst ? 'group__item__first' : '',
+      config?.isLast ? 'group__item__last' : '',
+      config ? `group__item__index-${config.index}` : '',
     ].filter((cls) => cls && cls !== 'default');
   }
 }

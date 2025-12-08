@@ -1,5 +1,20 @@
 # Changelog
 
+## 📦 0.0.0-alpha.9.13 — `dev-alpha`
+
+### ✨ Features
+
+- **Breadcrumb**
+
+  - Added new breadcrumb component for navigation.
+
+- **Pagination**
+
+  - Added new pagination component.
+
+- **Chip**
+  - Compact chip size is now smaller by default for improved visual appearance.
+
 ## 📦 0.0.0-alpha.9.12 — `dev-alpha`
 
 ### 🛠 Fixes

@@ -15,6 +15,11 @@
 - **Chip**
   - Compact chip size is now smaller by default for improved visual appearance.
 
+### 🛠 Fixes
+
+- **Button**
+  - Fixed icon-only buttons to have consistent line height. SVG heights are now adjusted to match the button's minimum height for better visual alignment.
+
 ## 📦 0.0.0-alpha.9.12 — `dev-alpha`
 
 ### 🛠 Fixes

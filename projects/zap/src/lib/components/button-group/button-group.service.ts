@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { ButtonGroupConfig } from './button-group.token';
+import { ButtonGroupConfig } from './button-group.interface';
 
 @Injectable()
 export class ButtonGroupService {

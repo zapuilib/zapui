@@ -11,7 +11,7 @@ import {
 } from '@angular/core';
 
 import { ZapIconDirective } from '../../directives/icon.directive';
-import { ButtonGroupConfig } from '../button-group/button-group.token';
+import { ButtonGroupConfig } from '../button-group/button-group.interface';
 import { ButtonGroupService } from '../button-group/button-group.service';
 
 @Component({

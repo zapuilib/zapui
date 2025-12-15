@@ -3,11 +3,12 @@
     <zap-button text="Get started" variant="outlined" shape="curve"></zap-button>
     <zap-dropdown [open]="isOpen" (onChange)="isOpen = $event">
       <zap-dropdown-trigger>
-        <zap-button
-          icon="fa-ellipsis-v"
-          [icononly]="true"
-          variant="outlined"
-          shape="curve"></zap-button>
+        <zap-button [icononly]="true" variant="outlined" shape="curve">
+          <svg zapIcon xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" class="h-6">
+            <path
+              fill="currentColor"
+              d="M544 320C544 346.5 522.5 368 496 368C469.5 368 448 346.5 448 320C448 293.5 469.5 272 496 272C522.5 272 544 293.5 544 320zM368 320C368 346.5 346.5 368 320 368C293.5 368 272 346.5 272 320C272 293.5 293.5 272 320 272C346.5 272 368 293.5 368 320zM144 368C117.5 368 96 346.5 96 320C96 293.5 117.5 272 144 272C170.5 272 192 293.5 192 320C192 346.5 170.5 368 144 368z" /></svg
+        ></zap-button>
       </zap-dropdown-trigger>
       <zap-dropdown-menu>
         <zap-dropdown-menu-label>Account</zap-dropdown-menu-label>

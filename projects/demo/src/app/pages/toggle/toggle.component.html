@@ -1,0 +1,354 @@
+<h1>Toggle</h1>
+
+<p class="lead">
+  Toggles are intuitive UI elements that allow users to switch between two states, such as on/off or
+  enabled/disabled. They provide a clear, interactive way to control settings or preferences,
+  enhancing user experience with immediate feedback and streamlined navigation.
+</p>
+
+<spacer height="40px"></spacer>
+
+<ttl text="Basic toggle"></ttl>
+
+<row [markdowns]="markdown" [isReverse]="true">
+  <div class="component-instance !w-full !mt-0">
+    <zap-toggle
+      id="toggle"
+      [label]="label"
+      [helpText]="helpText"
+      formCOntrol="formControl"></zap-toggle>
+  </div>
+</row>
+
+<spacer height="40px"></spacer>
+
+<ttl text="Optional properties"></ttl>
+
+<div class="info-card">
+  <i class="fa-solid fa-circle-info mr-2"></i>
+  Use the properties below to style the toggle and copy the code to your project. Try clicking on
+  them.
+</div>
+
+<div class="max-w-full overflow-x-auto">
+  <table class="w-full border-collapse">
+    <thead>
+      <tr>
+        <th style="width: 200px">Property</th>
+        <th style="width: 400px">Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <p><code>id</code></p>
+        </td>
+        <td>
+          <p class="font-mono">string</p>
+        </td>
+        <td>
+          <p>Defines the id of the toggle.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>label</code></p>
+        </td>
+        <td>
+          <p class="font-mono">string</p>
+        </td>
+        <td>
+          <p>Defines the label attached to the toggle.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>helpText</code></p>
+        </td>
+        <td>
+          <p class="font-mono">string</p>
+        </td>
+        <td>
+          <p>Defines the help text attached to the toggle.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>customErrorMessages</code></p>
+        </td>
+        <td>
+          <p class="font-mono">string</p>
+        </td>
+        <td>
+          <p>Provides the ability to set custom error messages.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>zapClass</code></p>
+        </td>
+        <td>
+          <p class="font-mono">string</p>
+        </td>
+        <td>
+          <p>
+            Allows overriding default styles by passing Tailwind CSS classes. Utilize the
+            <code class="!cursor-auto">&#64;zaplib/zapui/tailwind</code> plugin to target specific
+            elements within the toggle component.
+          </p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<spacer height="40px"></spacer>
+
+<ttl text="Supported directives"></ttl>
+
+<div class="max-w-full overflow-x-auto">
+  <table class="w-full border-collapse">
+    <thead>
+      <tr>
+        <th style="width: 20%">Selector</th>
+        <th style="width: 20%">Directive name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <p><code>zapLabel</code></p>
+        </td>
+        <td>
+          <p class="font-mono">ZapLabelDirective</p>
+        </td>
+        <td>
+          <p>
+            Import a directive <code>ZapLabelDirective</code> into your component to enable adding
+            any label to a toggle.
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>zapFormFieldHelpText</code></p>
+        </td>
+        <td>
+          <p class="font-mono">ZapFormFieldHelpTextDirective</p>
+        </td>
+        <td>
+          <p>
+            Import a directive <code>ZapFormFieldHelpTextDirective</code> into your component to
+            enable adding any help text to a toggle.
+          </p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<spacer height="40px"></spacer>
+
+<ttl text="Example" type="h4"></ttl>
+
+<app-preview-code [markdown]="markdownDirective">
+  <zap-toggle id="toggle" [formControl]="formControl2" class="px-10 w-full md:w-[40%]">
+    <div zapLabel class="flex items-center gap-2">
+      <i class="fa-solid fa-sun-bright"></i>
+      <label>Select theme</label>
+    </div>
+    <p zapHelpText>Switch between light and dark</p>
+  </zap-toggle>
+</app-preview-code>
+
+<spacer height="40px"></spacer>
+
+<ttl text="Global configurations"></ttl>
+
+<p>
+  A list of global styles, including shape, size, color, font sizes, font weights, and letter
+  spacing can be provided via <code>themeLibrary</code> in the
+  <code>provideZapOption</code> provider.. If you have multi theme setup, you can also provide theme
+  specific colors. These apply to all default variants through out the app unless component level
+  styles are provided.
+</p>
+<spacer height="40px"></spacer>
+
+<ttl text="Example" type="h5"></ttl>
+<spacer></spacer>
+
+<app-code
+  [markdown]="markdownGlobal.markdown"
+  [language]="markdownGlobal.language"
+  [title]="markdownGlobal.title">
+</app-code>
+
+<spacer height="40px"></spacer>
+<ttl text="Colors" type="h5"></ttl>
+<p>You can provide each of these colors for different themes that you use</p>
+
+<div class="max-w-full overflow-x-auto">
+  <table class="w-full border-collapse">
+    <thead>
+      <tr>
+        <th style="width: 20%"><p>Property</p></th>
+        <th><p>Description</p></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <p><code>bgColor</code></p>
+        </td>
+        <td><p>Background color of the toggle.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>rollerColor</code></p>
+        </td>
+        <td><p>Background color of the roller of the toggle.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>bgOnColor</code></p>
+        </td>
+        <td><p>Backgorund color of the toggle when on.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>rollerOnColor</code></p>
+        </td>
+        <td><p>Backgorund color of the roller of the toggle when on.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>labelColor</code></p>
+        </td>
+        <td><p>Text color of the label.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>helpTextColor</code></p>
+        </td>
+        <td><p>Text color of the help text</p></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<spacer height="40px"></spacer>
+<ttl text="Other styles" type="h5"></ttl>
+<p>You can provide a bunch of other styles, that are not theme based but rather generic</p>
+
+<div class="max-w-full overflow-x-auto">
+  <table class="w-full border-collapse">
+    <thead>
+      <tr>
+        <th style="width: 20%"><p>Property</p></th>
+        <th><p>Description</p></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <p><code>width</code></p>
+        </td>
+        <td><p>Width of the toggle.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>height</code></p>
+        </td>
+        <td><p>Height of the toggle.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>rollerWidth</code></p>
+        </td>
+        <td><p>Width of the roller of the toggle.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>rollerHeight</code></p>
+        </td>
+        <td><p>Height of the roller of the toggle.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>labelFontSize</code></p>
+        </td>
+        <td><p>Font size of the toggle's label.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>labelFontWeight</code></p>
+        </td>
+        <td><p>Font weight of the toggle's label.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>labelLineHeight</code></p>
+        </td>
+        <td><p>Line height of the toggle's label.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>labelLetterSpacing</code></p>
+        </td>
+        <td><p>Letter spacing of the toggle's label.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>fontSize</code></p>
+        </td>
+        <td><p>Font size of the toggle's text.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>fontWeight</code></p>
+        </td>
+        <td><p>Font weight of the toggle's text.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>lineHeight</code></p>
+        </td>
+        <td><p>Line height of the toggle's text.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>letterSpacing</code></p>
+        </td>
+        <td><p>Letter spacing of the toggle's text.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>helpTextFontSize</code></p>
+        </td>
+        <td><p>Font size of the toggle's help text.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>helpTextFontWeight</code></p>
+        </td>
+        <td><p>Font weight of the toggle's help text.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>helpTextLineHeight</code></p>
+        </td>
+        <td><p>Line height of the toggle's help text.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>helpTextLetterSpacing</code></p>
+        </td>
+        <td><p>Letter spacing of the toggle's help text.</p></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<spacer height="40px"></spacer>

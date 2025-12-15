@@ -1,0 +1,236 @@
+.border__left__short {
+  @apply relative;
+
+  &::before {
+    @apply absolute w-0.5 h-6 -left-0.5 top-[15%] -translate-y-1/2 bg-[#f637e3] -z-[2];
+    content: '';
+  }
+}
+
+.timeline__container {
+  @apply relative;
+
+  &::before {
+    @apply absolute top-0 left-0 h-1;
+    content: '';
+    width: calc(100% * 5 / 7);
+    background: linear-gradient(90deg, #f637e3 0%, #f11653 100%);
+  }
+
+  &::after {
+    @apply absolute top-0 h-1 bg-gray-500;
+    content: '';
+    left: calc(100% * 5 / 7);
+    width: calc(100% * 2 / 7);
+  }
+}
+
+.border__top__short {
+  @apply relative;
+
+  &::before {
+    @apply absolute h-0.5 w-5 -top-0.5 left-0 bg-[#f637e3] -z-[2];
+    content: '';
+  }
+}
+
+.border__top__short__right {
+  @apply relative;
+
+  &::before {
+    @apply absolute h-0.5 w-5 -top-0.5 right-0 bg-[#f637e3] -z-[2];
+    content: '';
+  }
+}
+
+.timeline__container__mobile {
+  @apply relative;
+
+  &::before {
+    @apply absolute left-1/2 top-0 w-1 -translate-x-1/2 rounded-t-md;
+    content: '';
+    height: calc(100% * 5 / 7);
+    background: linear-gradient(180deg, #f637e3 0%, #f11653 100%);
+  }
+
+  &::after {
+    @apply absolute left-1/2 w-1 -translate-x-1/2 bg-gray-500 rounded-b-md;
+    content: '';
+    top: calc(100% * 5 / 7);
+    height: calc(100% * 2 / 7);
+  }
+}
+
+.border__left__short__tablet {
+  @apply relative;
+
+  &::before {
+    @apply absolute w-0.5 h-6 -left-0.5 top-[10%] -translate-y-1/2 bg-[#f637e3] -z-[2];
+    content: '';
+  }
+}
+
+.timeline__container__tablet {
+  @apply relative;
+
+  &::before {
+    @apply absolute top-0 left-0 h-1;
+    content: '';
+    width: calc(210px * 5);
+    background: linear-gradient(90deg, #f637e3 0%, #f11653 100%);
+  }
+
+  &::after {
+    @apply absolute top-0 h-1 bg-gray-500;
+    content: '';
+    left: calc(64px + 192px * 5);
+    width: calc(192px * 1);
+  }
+
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+}
+
+.status__chip {
+  @apply w-fit rounded-md border px-[10px] py-[5px] text-sm font-light leading-tight;
+
+  &.designer {
+    @apply border-fuchsia-500 bg-fuchsia-500/10;
+  }
+}
+
+.timeline__wrapper {
+  @apply relative mt-16 px-0;
+
+  @screen md {
+    @apply px-0;
+  }
+
+  .mobile__wrapper {
+    @apply grid grid-cols-2;
+    grid-template-rows: repeat(7, minmax(0, 1fr));
+
+    @screen md {
+      @apply hidden;
+    }
+
+    .mobile__item__first {
+      @apply row-span-1 col-span-2 w-full h-[92px];
+    }
+
+    .mobile__item__even__first {
+      @apply row-span-1 w-full h-[92px];
+    }
+
+    .mobile__item__even {
+      @apply row-span-1 relative w-full h-[92px];
+
+      .mobile__item__even__content {
+        @apply ml-8 flex flex-col gap-y-1 -mt-3;
+      }
+    }
+
+    .mobile__item__odd {
+      @apply row-span-1 relative w-full h-[92px];
+
+      .mobile__item__odd__content {
+        @apply mr-8 flex flex-col gap-y-1 -mt-3 text-right;
+      }
+    }
+
+    .mobile__item__odd__last {
+      @apply row-span-1 w-full h-[92px];
+    }
+  }
+
+  .tablet__wrapper {
+    @apply hidden;
+
+    @screen md {
+      @apply block;
+    }
+
+    @screen lg {
+      @apply hidden;
+    }
+
+    .tablet__container {
+      @apply overflow-x-auto pb-2;
+
+      .tablet__flex__container {
+        @apply flex gap-0 min-w-max;
+
+        .tablet__spacer {
+          @apply w-16 flex-shrink-0;
+        }
+
+        .timeline__item__tablet {
+          @apply min-h-[120px] flex-shrink-0 w-48 relative h-full pl-1;
+
+          .tablet__item__content {
+            @apply mt-9 flex flex-col gap-y-2;
+          }
+        }
+      }
+    }
+  }
+
+  .desktop__wrapper {
+    @apply hidden;
+
+    @screen lg {
+      @apply grid grid-cols-7;
+    }
+
+    .desktop__spacer {
+      @apply col-span-1 h-full;
+    }
+
+    .desktop__item {
+      @apply col-span-1 relative h-full pl-1;
+
+      .desktop__item__content {
+        @apply mt-9 flex flex-col gap-y-2;
+      }
+    }
+  }
+}
+
+.base__wrapper {
+  @apply max-w-screen-xl mx-auto mt-24 flex flex-col gap-x-10 px-0;
+
+  @screen lg {
+    @apply flex-row px-6;
+  }
+
+  .base__content {
+    @apply p-4 flex flex-col gap-y-4 justify-center items-center px-6;
+
+    @screen lg {
+      @apply items-start px-0;
+    }
+  }
+
+  .base__image {
+    @apply p-0 mt-4;
+
+    @screen lg {
+      @apply p-4 mt-0;
+    }
+
+    img {
+      @apply rounded-lg border-t border-b border-zinc-800;
+
+      @screen lg {
+        @apply border border-zinc-800;
+      }
+    }
+  }
+}

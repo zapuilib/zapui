@@ -1,0 +1,1867 @@
+<h1>Date picker</h1>
+
+<p class="lead">
+  Date pickers are intuitive UI elements that allow users to date picker dates with ease. They
+  provide a clear, interactive way to choose single or multiple dates, improving form usability and
+  scheduling interactions.
+</p>
+
+<spacer height="40px"></spacer>
+
+<ttl text="Basic date picker"></ttl>
+
+<app-preview-code [markdown]="markdown1">
+  <zap-date-picker
+    id="date-picker"
+    label="Date picker"
+    [shape]="shape"
+    [size]="size"
+    [position]="position"
+    [icon]="icon"
+    [iconPosition]="iconPosition"
+    [range]="range"
+    [dropdown]="dropdown"
+    [disableWeekends]="disableWeekends"
+    [disableInactive]="disableInactive"
+    class="px-10 w-full md:w-[40%]"></zap-date-picker>
+</app-preview-code>
+
+<spacer height="40px"></spacer>
+
+<ttl text="Date range picker"></ttl>
+
+<app-preview-code [markdown]="markdown2">
+  <zap-date-picker
+    id="date-range-picker"
+    label="Date range picker"
+    [shape]="shape"
+    [size]="size"
+    [position]="position"
+    [icon]="icon"
+    [iconPosition]="iconPosition"
+    [range]="true"
+    [dropdown]="dropdown"
+    [disableWeekends]="disableWeekends"
+    [disableInactive]="disableInactive"
+    class="px-10 w-full md:w-[40%]"></zap-date-picker>
+</app-preview-code>
+
+<ttl text="Date range without dropdown and weekends"></ttl>
+
+<app-preview-code [markdown]="markdown3">
+  <zap-date-picker
+    id="date-picker-without-dropdown-and-weekends"
+    label="Date picker"
+    [shape]="shape"
+    [size]="size"
+    [position]="position"
+    [icon]="icon"
+    [iconPosition]="iconPosition"
+    [range]="true"
+    [dropdown]="false"
+    [disableWeekends]="true"
+    [disableInactive]="disableInactive"
+    class="px-10 w-full md:w-[40%]"></zap-date-picker>
+</app-preview-code>
+
+<spacer height="40px"></spacer>
+
+<ttl text="Optional properties"></ttl>
+
+<!-- <div class="info-card">
+  <i class="fa-solid fa-circle-info mr-2"></i>Use the properties below to style
+  the date picker and copy the code to your project. Try clicking on them.
+</div> -->
+
+<div class="max-w-full overflow-x-auto">
+  <table class="w-full border-collapse">
+    <thead>
+      <tr>
+        <th style="width: 200px">Property</th>
+        <th style="width: 400px">Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <p><code>size</code></p>
+        </td>
+        <td>
+          <p>
+            <code (click)="updateSize('compact')">compact</code> |
+            <code (click)="updateSize('base')">base</code>
+          </p>
+        </td>
+        <td>
+          <p>
+            Controls date picker sizing.
+            <code (click)="updateSize('compact')">compact</code> has less padding,
+            <code (click)="updateSize('base')">base</code> follows the standard theme.
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>shape</code></p>
+        </td>
+        <td>
+          <p>
+            <code (click)="updateShape('flat')">flat</code> |
+            <code (click)="updateShape('pill')">pill</code> |
+            <code (click)="updateShape('curve')">curve</code>
+          </p>
+        </td>
+        <td>
+          <p>
+            Defines the date picker shape.
+            <code (click)="updateShape('pill')">pill</code> is a fully rounded date picker,
+            <code (click)="updateShape('curve')">curve</code> has rounded corners, and
+            <code (click)="updateShape('flat')">flat</code> is a classic square-cornered date
+            picker. Default is <code (click)="updateShape('flat')">flat</code>.
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>icon</code></p>
+        </td>
+        <td>
+          <p class="font-mono">string</p>
+        </td>
+        <td>
+          <p>
+            Specifies a Font Awesome class for the date picker's icon (e.g.,
+            <code (click)="updateIcon('fa-globe')">fa-globe</code>).
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>iconPosition</code></p>
+        </td>
+        <td>
+          <p>
+            <code (click)="updateIconPosition('left')">left</code> |
+            <code (click)="updateIconPosition('right')">right</code>
+          </p>
+        </td>
+        <td>
+          <p>
+            Sets the icon's position relative to the date picker text. Defaults to
+            <code (click)="updateIconPosition('left')">left</code>.
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>position</code></p>
+        </td>
+        <td>
+          <p>
+            <code (click)="updatePosition('top')">top</code> |
+            <code (click)="updatePosition('bottom')">bottom</code> |
+            <code (click)="updatePosition('auto')">auto</code>
+          </p>
+        </td>
+        <td>
+          <p>
+            Sets the position of the date picker options.
+            <code (click)="updatePosition('top')">top</code> and
+            <code (click)="updatePosition('bottom')">bottom</code> are self-explanatory, while
+            <code (click)="updatePosition('auto')">auto</code> intelligently positions the options
+            to fit within the viewport. Defaults to
+            <code (click)="updatePosition('auto')">auto</code>.
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>range</code></p>
+        </td>
+        <td>
+          <p class="font-mono">boolean</p>
+        </td>
+        <td>
+          <p>
+            <code (click)="updateRange(true)">true</code> enables range date pickerion on date
+            picker. Defaults to <code (click)="updateRange(false)">false</code>.
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>dropdown</code></p>
+        </td>
+        <td>
+          <p class="font-mono">boolean</p>
+        </td>
+        <td>
+          <p>
+            Setting this to
+            <code (click)="updateDropdown(true)">true</code> allows users to date picker a month and
+            year directly from the dropdown in the date picker. Setting it to
+            <code (click)="updateDropdown(false)">false</code> disables this feature. By default, it
+            is <code (click)="updateDropdown(true)">true</code>.
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>disableWeekends</code></p>
+        </td>
+        <td>
+          <p class="font-mono">boolean</p>
+        </td>
+        <td>
+          <p>
+            <code (click)="updateDisableWeekends(true)">true</code> disables date pickerion of
+            weekends. Defaults to <code (click)="updateDisableWeekends(false)">false</code>.
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>disableInactive</code></p>
+        </td>
+        <td>
+          <p class="font-mono">boolean</p>
+        </td>
+        <td>
+          <p>
+            <code (click)="updateDisableInactive(true)">true</code> disables date pickerion of
+            inactive dates (e.g., previous/next month). Defaults to
+            <code (click)="updateDisableInactive(false)">false</code>.
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>id</code></p>
+        </td>
+        <td>
+          <p class="font-mono">string</p>
+        </td>
+        <td>
+          <p>Defines the id of the date picker.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>label</code></p>
+        </td>
+        <td>
+          <p class="font-mono">string</p>
+        </td>
+        <td>
+          <p>Defines the label attached to the date picker.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>placeholder</code></p>
+        </td>
+        <td>
+          <p class="font-mono">string</p>
+        </td>
+        <td>
+          <p>Defines the placeholder of the date picker.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>helpText</code></p>
+        </td>
+        <td>
+          <p class="font-mono">string</p>
+        </td>
+        <td>
+          <p>Defines the help text of the date picker.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>breakpoints</code></p>
+        </td>
+        <td>
+          <p class="font-mono">ZapDatePickerBreakpoints</p>
+        </td>
+        <td>
+          <p>
+            Sets the breakpoints for the date picker. Accepts an object with properties for
+            different screen sizes.
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>monthsPerView</code></p>
+        </td>
+        <td>
+          <p class="font-mono">number</p>
+        </td>
+        <td>
+          <p>Specifies how many months are displayed at a time in the view.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>maxPerRow</code></p>
+        </td>
+        <td>
+          <p class="font-mono">number</p>
+        </td>
+        <td>
+          <p>
+            Sets the maximum number of months displayed per row. Works only when
+            <code>monthsPerView</code> is specified.
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>dateFormat</code></p>
+        </td>
+        <td>
+          <p class="font-mono">string</p>
+        </td>
+        <td>
+          <p>
+            Sets the date format of the date picker. Defaults to
+            <code>MMM dd, yyyy</code>.
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>locale</code></p>
+        </td>
+        <td>
+          <p class="font-mono">string</p>
+        </td>
+        <td>
+          <p>
+            Sets the locale of the date picker. Defaults to
+            <code>en-US</code>.
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>months</code></p>
+        </td>
+        <td>
+          <p class="font-mono">string[]</p>
+        </td>
+        <td>
+          <p>
+            Sets the months of the date picker. Order is important and reflected in the view.
+            Defaults to
+            <code
+              >['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August',
+              'September', 'October', 'November', 'December']</code
+            >.
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>daysOfWeek</code></p>
+        </td>
+        <td>
+          <p class="font-mono">string[]</p>
+        </td>
+        <td>
+          <p>
+            Defines the labels for the days of the week in the date picker. The order of the array
+            determines how they appear in the view. By default, it follows the standard format:
+            <code>['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa']</code>.
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>disableDates</code></p>
+        </td>
+        <td>
+          <p class="font-mono">Date[]</p>
+        </td>
+        <td>
+          <p>
+            Disables specific dates in the date picker. Accepts an array of
+            <code>Date</code> objects.
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>disableRanges</code></p>
+        </td>
+        <td>
+          <p class="font-mono">&lbrace; startDate: Date; endDate: Date &rbrace;[]</p>
+        </td>
+        <td>
+          <p>
+            Disables specific date ranges in the date picker. Accepts an array of objects with
+            startDate and endDate properties.
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>minDate</code></p>
+        </td>
+        <td>
+          <p class="font-mono">Date</p>
+        </td>
+        <td>
+          <p>Sets the minimum date pickerable date in the date picker.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>maxDate</code></p>
+        </td>
+        <td>
+          <p class="font-mono">Date</p>
+        </td>
+        <td>
+          <p>Sets the maximum date pickerable date in the date picker.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>minYear</code></p>
+        </td>
+        <td>
+          <p class="font-mono">number</p>
+        </td>
+        <td>
+          <p>Sets the minimum date pickerable year in the date picker.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>maxYear</code></p>
+        </td>
+        <td>
+          <p class="font-mono">number</p>
+        </td>
+        <td>
+          <p>Sets the maximum date pickerable year in the date picker.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>years</code></p>
+        </td>
+        <td>
+          <p class="font-mono">string[]</p>
+        </td>
+        <td>
+          <p>
+            Defines the range of years available for date pickerion in the date picker. The order of
+            the years in the array determines how they appear in the dropdown. By default, it
+            includes the current year, along with the previous and next 50 years.
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>customErrorMessages</code></p>
+        </td>
+        <td>
+          <p class="font-mono">string</p>
+        </td>
+        <td>
+          <p>Provides the ability to set custom error messages.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>zapClass</code></p>
+        </td>
+        <td>
+          <p class="font-mono">string</p>
+        </td>
+        <td>
+          <p>
+            Allows overriding default styles by passing Tailwind CSS classes. Utilize the
+            <code class="!cursor-auto">&#64;zaplib/zapui/tailwind</code> plugin to target specific
+            elements within the date picker component.
+          </p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<spacer height="40px"></spacer>
+
+<ttl text="Supported directives"></ttl>
+
+<div class="max-w-full overflow-x-auto">
+  <table class="w-full border-collapse">
+    <thead>
+      <tr>
+        <th style="width: 20%">Selector</th>
+        <th style="width: 20%">Directive name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <p><code>zapFormFieldIcon</code></p>
+        </td>
+        <td>
+          <p class="font-mono">ZapFormFieldIconDirective</p>
+        </td>
+        <td>
+          <p>
+            Import a directive <code>ZapFormFieldIconDirective</code> into your component to enables
+            adding any type of icon to a date picker, including SVGs, font-based icons, and more.
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>zapFormFieldHelpText</code></p>
+        </td>
+        <td>
+          <p class="font-mono">ZapFormFieldHelpTextDirective</p>
+        </td>
+        <td>
+          <p>
+            Import a directive <code>ZapFormFieldHelpTextDirective</code> into your component to
+            enable adding any help text to an date picker.
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>zapLabel</code></p>
+        </td>
+        <td>
+          <p class="font-mono">ZapLabelDirective</p>
+        </td>
+        <td>
+          <p>
+            Import a directive <code>ZapLabelDirective</code> into your component to enable adding
+            any label to an inout.
+          </p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<spacer height="40px"></spacer>
+
+<ttl text="Example" type="h4"></ttl>
+
+<app-preview-code [markdown]="markdownDirective">
+  <zap-date-picker
+    id="date-picker-directive"
+    [shape]="shape"
+    [size]="size"
+    [position]="position"
+    [icon]="icon"
+    [iconPosition]="iconPosition"
+    [range]="true"
+    [dropdown]="dropdown"
+    [disableWeekends]="disableWeekends"
+    [disableInactive]="disableInactive"
+    class="min-w-60">
+    <div zapLabel class="flex items-center gap-2">
+      <i class="fa-solid fa-circle-info"></i>
+      <p>date picker data range</p>
+    </div>
+
+    <svg zapIcon xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+      <path
+        fill="currentColor"
+        d="M133.9 232L65.8 95.9 383.4 232l-249.5 0zm0 48l249.5 0L65.8 416.1l68-136.1zM44.6 34.6C32.3 29.3 17.9 32.3 8.7 42S-2.6 66.3 3.4 78.3L92.2 256 3.4 433.7c-6 12-3.9 26.5 5.3 36.3s23.5 12.7 35.9 7.5l448-192c11.8-5 19.4-16.6 19.4-29.4s-7.6-24.4-19.4-29.4l-448-192z" />
+    </svg>
+
+    <div zapHelpText>
+      <p>For accurate results:</p>
+      <ul>
+        <li class="ml-5 list-disc">
+          <p>date picker data not earlier than 2000</p>
+        </li>
+        <li class="ml-5 list-disc">
+          <p>date picker data not later than 2024</p>
+        </li>
+      </ul>
+    </div>
+  </zap-date-picker>
+</app-preview-code>
+
+<spacer height="40px"></spacer>
+
+<ttl text="Global configurations"></ttl>
+
+<p>
+  A list of global styles, including shape, size, color, font sizes, font weights, and letter
+  spacing can be provided via <code>themeLibrary</code> in the
+  <code>provideZapOption</code> provider.. If you have multi theme setup, you can also provide theme
+  specific colors. These apply to all default variants through out the app unless component level
+  styles are provided.
+</p>
+<spacer height="40px"></spacer>
+
+<ttl text="Example" type="h5"></ttl>
+<spacer></spacer>
+
+<app-code
+  [markdown]="markdownGlobal1.markdown"
+  [language]="markdownGlobal1.language"
+  [title]="markdownGlobal1.title">
+</app-code>
+
+<spacer height="40px"></spacer>
+
+<ttl text="Shape - date-picker" type="h5"></ttl>
+
+<div class="max-w-full overflow-x-auto">
+  <table class="w-full border-collapse">
+    <thead>
+      <tr>
+        <th style="width: 20%"><p>Property</p></th>
+        <th><p>Description</p></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <p><code>shape</code></p>
+        </td>
+        <td>
+          <p>
+            Defines the shape of the date picker. Can be <code>flat</code>, <code>curve</code>, or
+            <code>pill</code>.
+          </p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<ttl text="Shape - dp-calendar" type="h5"></ttl>
+
+<div class="max-w-full overflow-x-auto">
+  <table class="w-full border-collapse">
+    <thead>
+      <tr>
+        <th style="width: 20%"><p>Property</p></th>
+        <th><p>Description</p></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <p><code>shape</code></p>
+        </td>
+        <td>
+          <p>
+            Defines the shape of the date picker. Can be <code>flat</code>, <code>curve</code>, or
+            <code>pill</code>.
+          </p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<ttl text="Shape - dp-calendar-date picker" type="h5"></ttl>
+
+<div class="max-w-full overflow-x-auto">
+  <table class="w-full border-collapse">
+    <thead>
+      <tr>
+        <th style="width: 20%"><p>Property</p></th>
+        <th><p>Description</p></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <p><code>shape</code></p>
+        </td>
+        <td>
+          <p>
+            Defines the shape of the date picker. Can be <code>flat</code>, <code>curve</code>, or
+            <code>pill</code>.
+          </p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<spacer height="40px"></spacer>
+<ttl text="Colors - date-picker" type="h5"></ttl>
+<p>You can provide each of these colors for different themes that you use</p>
+
+<div class="max-w-full overflow-x-auto">
+  <table class="w-full border-collapse">
+    <thead>
+      <tr>
+        <th style="width: 20%"><p>Property</p></th>
+        <th><p>Description</p></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <p><code>iconColor</code></p>
+        </td>
+        <td><p>Icon color of the date picker.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>bgColor</code></p>
+        </td>
+        <td><p>Background color of the date picker.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>textColor</code></p>
+        </td>
+        <td><p>Text color of the date picker.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>borderColor</code></p>
+        </td>
+        <td><p>Border color of the date picker.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>textHoverColor</code></p>
+        </td>
+        <td><p>Color of the text on hover</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>bgHoverColor</code></p>
+        </td>
+        <td><p>Background color of the date picker when hovered.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>ringFocusColor</code></p>
+        </td>
+        <td><p>Ring color of the date picker when focused.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>placeholderColor</code></p>
+        </td>
+        <td><p>Text color of the placeholder</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>labelColor</code></p>
+        </td>
+        <td><p>Text color of the label</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>helpTextColor</code></p>
+        </td>
+        <td><p>Text color of the help text</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>disabledBgColor</code></p>
+        </td>
+        <td><p>Background color of the date picker when disabled.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>disabledBorderColor</code></p>
+        </td>
+        <td><p>Border color of the date picker when disabled.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>disabledTextColor</code></p>
+        </td>
+        <td><p>Text color of the date picker when disabled.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>disabledLabelColor</code></p>
+        </td>
+        <td><p>Color of the label when disabled.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>disabledHelpTextColor</code></p>
+        </td>
+        <td><p>Color of the help text when disabled.</p></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<spacer height="40px"></spacer>
+<ttl text="Colors - dp-calendar" type="h5"></ttl>
+<p>You can provide each of these colors for different themes that you use</p>
+
+<div class="max-w-full overflow-x-auto">
+  <table class="w-full border-collapse">
+    <thead>
+      <tr>
+        <th style="width: 20%"><p>Property</p></th>
+        <th><p>Description</p></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <p><code>borderColor</code></p>
+        </td>
+        <td><p>Border color of the date picker.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>handlerBorderColor</code></p>
+        </td>
+        <td><p>Border color of the handler of the date picker.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>handlerBgColor</code></p>
+        </td>
+        <td><p>Background color of the handler of the date picker.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>handlerColor</code></p>
+        </td>
+        <td>
+          <p>Color of the handler in the date picker.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>handlerBgHoverColor</code></p>
+        </td>
+        <td>
+          <p>Background color of the handler when hovered in the date picker.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>handlerBorderHoverColor</code></p>
+        </td>
+        <td>
+          <p>Border color of the handler when hovered in the date picker.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>dayTextColor</code></p>
+        </td>
+        <td>
+          <p>Text color of the day element in the date picker.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>dayBgColor</code></p>
+        </td>
+        <td>
+          <p>Background color of the day element in the date picker.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>dayBorderColor</code></p>
+        </td>
+        <td>
+          <p>Border color of the day element in the date picker.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>dayTextHoverColor</code></p>
+        </td>
+        <td>
+          <p>Text color of the day element when hovered.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>dayBgHoverColor</code></p>
+        </td>
+        <td>
+          <p>Background color of the day element when hovered.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>dayBorderHoverColor</code></p>
+        </td>
+        <td>
+          <p>Border color of the day element when hovered.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>dayOfWeekTextColor</code></p>
+        </td>
+        <td>
+          <p>Text color of the day-of-week elements in the date picker.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>dayOfWeekBgColor</code></p>
+        </td>
+        <td>
+          <p>Background color of the day-of-week elements in the date picker.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>dayOfWeekBorderColor</code></p>
+        </td>
+        <td>
+          <p>Border color of the day-of-week elements in the date picker.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>dayOfWeekTextHoverColor</code></p>
+        </td>
+        <td>
+          <p>Text color of the day-of-week elements when hovered.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>dayOfWeekBgHoverColor</code></p>
+        </td>
+        <td>
+          <p>Background color of the day-of-week elements when hovered.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>dayOfWeekBorderHoverColor</code></p>
+        </td>
+        <td>
+          <p>Border color of the day-of-week elements when hovered.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>inRangeBgColor</code></p>
+        </td>
+        <td>
+          <p>Background color of the day elements that fall within the selected range.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>inRangeBorderColor</code></p>
+        </td>
+        <td>
+          <p>Border color of the day elements that fall within the selected range.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>inRangeTextColor</code></p>
+        </td>
+        <td>
+          <p>Text color of the day elements that fall within the selected range.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>dayActiveMonthBgColor</code></p>
+        </td>
+        <td>
+          <p>Background color of day elements that belong to the active month.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>dayActiveMonthBorderColor</code></p>
+        </td>
+        <td>
+          <p>Border color of day elements that belong to the active month.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>dayActiveMonthTextColor</code></p>
+        </td>
+        <td>
+          <p>Text color of day elements that belong to the active month.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>dayActiveMonthTextHoverColor</code></p>
+        </td>
+        <td>
+          <p>Text color of day elements that belong to the active month when hovered.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>dayActiveMonthBgHoverColor</code></p>
+        </td>
+        <td>
+          <p>Background color of day elements that belong to the active month when hovered.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>dayActiveMonthBorderHoverColor</code></p>
+        </td>
+        <td>
+          <p>Border color of day elements that belong to the active month when hovered.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>todayTextColor</code></p>
+        </td>
+        <td>
+          <p>Text color of the day element representing today.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>todayBgColor</code></p>
+        </td>
+        <td>
+          <p>Background color of the day element representing today.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>todayBorderColor</code></p>
+        </td>
+        <td>
+          <p>Border color of the day element representing today.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>todayTextHoverColor</code></p>
+        </td>
+        <td>
+          <p>Text color of the day element representing today when hovered.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>todayBgHoverColor</code></p>
+        </td>
+        <td>
+          <p>Background color of the day element representing today when hovered.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>todayBorderHoverColor</code></p>
+        </td>
+        <td>
+          <p>Border color of the day element representing today when hovered.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>inRangeActiveMonthBgColor</code></p>
+        </td>
+        <td>
+          <p>
+            Background color of day elements in the active month when they fall within the selected
+            range.
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>inRangeActiveMonthBorderColor</code></p>
+        </td>
+        <td>
+          <p>
+            Border color of day elements in the active month when they fall within the selected
+            range.
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>inRangeActiveMonthTextColor</code></p>
+        </td>
+        <td>
+          <p>
+            Text color of day elements in the active month when they fall within the selected range.
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>selectedActiveMonthBgColor</code></p>
+        </td>
+        <td>
+          <p>Background color of the selected day elements in the active month.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>selectedActiveMonthBorderColor</code></p>
+        </td>
+        <td>
+          <p>Border color of the selected day elements in the active month.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>selectedActiveMonthTextColor</code></p>
+        </td>
+        <td>
+          <p>Text color of the selected day elements in the active month.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>selectedActiveMonthTextHoverColor</code></p>
+        </td>
+        <td>
+          <p>Text color of the selected day elements in the active month when hovered.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>selectedActiveMonthBgHoverColor</code></p>
+        </td>
+        <td>
+          <p>Background color of the selected day elements in the active month when hovered.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>selectedActiveMonthBorderHoverColor</code></p>
+        </td>
+        <td>
+          <p>Border color of the selected day elements in the active month when hovered.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>selectedBgColor</code></p>
+        </td>
+        <td>
+          <p>Background color of the selected day elements.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>selectedBorderColor</code></p>
+        </td>
+        <td>
+          <p>Border color of the selected day elements.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>selectedTextColor</code></p>
+        </td>
+        <td>
+          <p>Text color of the selected day elements.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>selectedTextHoverColor</code></p>
+        </td>
+        <td>
+          <p>Text color of the selected day elements when hovered.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>selectedBgHoverColor</code></p>
+        </td>
+        <td>
+          <p>Background color of the selected day elements when hovered.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>selectedBorderHoverColor</code></p>
+        </td>
+        <td>
+          <p>Border color of the selected day elements when hovered.</p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<spacer height="40px"></spacer>
+<ttl text="Colors - dp-calendar-select" type="h5"></ttl>
+<p>You can provide each of these colors for different themes that you use</p>
+
+<div class="max-w-full overflow-x-auto">
+  <table class="w-full border-collapse">
+    <thead>
+      <tr>
+        <th style="width: 20%"><p>Property</p></th>
+        <th><p>Description</p></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <p><code>bgColor</code></p>
+        </td>
+        <td><p>Background color of the date picker.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>textColor</code></p>
+        </td>
+        <td><p>Text color of the date picker.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>borderColor</code></p>
+        </td>
+        <td><p>Border color of the date picker.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>bgHoverColor</code></p>
+        </td>
+        <td><p>Background color of the date picker when hovered.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>textHoverColor</code></p>
+        </td>
+        <td><p>Color of the text on hover</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>borderHoverColor</code></p>
+        </td>
+        <td><p>Border color of the date picker when hovered.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>optionsBgColor</code></p>
+        </td>
+        <td>
+          <p>Background color of the options dropdown in the date picker.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>optionsTextColor</code></p>
+        </td>
+        <td>
+          <p>Text color of the options dropdown in the date picker.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>optionsBorderColor</code></p>
+        </td>
+        <td>
+          <p>Border color of the options dropdown in the date picker.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>optionTextColor</code></p>
+        </td>
+        <td>
+          <p>Text color of an individual option in the date picker dropdown.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>optionBgColor</code></p>
+        </td>
+        <td>
+          <p>Background color of an individual option in the date picker dropdown.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>optionBorderColor</code></p>
+        </td>
+        <td>
+          <p>Border color of an individual option in the date picker dropdown.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>optionBgHoverColor</code></p>
+        </td>
+        <td>
+          <p>Background color of an individual option in the date picker dropdown when hovered.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>optionTextHoverColor</code></p>
+        </td>
+        <td>
+          <p>Text color of an individual option in the date picker dropdown when hovered.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>optionBorderHoverColor</code></p>
+        </td>
+        <td>
+          <p>Border color of an individual option in the date picker dropdown when hovered.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>selectedTextColor</code></p>
+        </td>
+        <td>
+          <p>Text color of the selected option in the date picker dropdown.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>selectedBgColor</code></p>
+        </td>
+        <td>
+          <p>Background color of the selected option in the date picker dropdown.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>selectedBorderColor</code></p>
+        </td>
+        <td>
+          <p>Border color of the selected option in the date picker dropdown.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>selectedBgHoverColor</code></p>
+        </td>
+        <td>
+          <p>Background color of the selected option in the date picker dropdown when hovered.</p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<spacer height="40px"></spacer>
+<ttl text="Other styles - date-picker" type="h5"></ttl>
+<p>You can provide a bunch of other styles, that are not theme based but rather generic</p>
+
+<div class="max-w-full overflow-x-auto">
+  <table class="w-full border-collapse">
+    <thead>
+      <tr>
+        <th style="width: 20%"><p>Property</p></th>
+        <th><p>Description</p></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <p><code>borderRadius</code></p>
+        </td>
+        <td><p>Defines the radius of the date picker's corners.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>paddingLeft</code></p>
+        </td>
+        <td><p>Left padding of the date picker.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>paddingRight</code></p>
+        </td>
+        <td><p>Right padding of the date picker.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>paddingTop</code></p>
+        </td>
+        <td><p>Top padding of the date picker.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>paddingBottom</code></p>
+        </td>
+        <td><p>Bottom padding of the date picker.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>padding</code></p>
+        </td>
+        <td><p>Padding around the date picker's content.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>placeholderFontSize</code></p>
+        </td>
+        <td><p>Font size of the date picker's placeholder.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>placeholderFontWeight</code></p>
+        </td>
+        <td><p>Font weight of the date picker's placeholder.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>placeholderLineHeight</code></p>
+        </td>
+        <td><p>Line height of the date picker's placeholder.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>placeholderLetterSpacing</code></p>
+        </td>
+        <td><p>Letter spacing of the date picker's placeholder.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>labelFontSize</code></p>
+        </td>
+        <td><p>Font size of the date picker's label.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>labelFontWeight</code></p>
+        </td>
+        <td><p>Font weight of the date picker's label.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>labelLineHeight</code></p>
+        </td>
+        <td><p>Line height of the date picker's label.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>labelLetterSpacing</code></p>
+        </td>
+        <td><p>Letter spacing of the date picker's label.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>helpTextFontSize</code></p>
+        </td>
+        <td><p>Font size of the date picker's help text.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>helpTextFontWeight</code></p>
+        </td>
+        <td><p>Font weight of the date picker's help text.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>helpTextLineHeight</code></p>
+        </td>
+        <td><p>Line height of the date picker's help text.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>helpTextLetterSpacing</code></p>
+        </td>
+        <td><p>Letter spacing of the date picker's help text.</p></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<spacer height="40px"></spacer>
+<ttl text="Other styles - dp-calendar" type="h5"></ttl>
+<p>You can provide a bunch of other styles, that are not theme based but rather generic</p>
+
+<div class="max-w-full overflow-x-auto">
+  <table class="w-full border-collapse">
+    <thead>
+      <tr>
+        <th style="width: 20%"><p>Property</p></th>
+        <th><p>Description</p></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <p><code>borderRadius</code></p>
+        </td>
+        <td><p>Defines the radius of the calendar's corners.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>paddingLeft</code></p>
+        </td>
+        <td><p>Left padding of the calendar.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>paddingRight</code></p>
+        </td>
+        <td><p>Right padding of the calendar.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>paddingTop</code></p>
+        </td>
+        <td><p>Top padding of the calendar.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>paddingBottom</code></p>
+        </td>
+        <td><p>Bottom padding of the calendar.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>padding</code></p>
+        </td>
+        <td><p>Padding around the calendar's content.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>handlerBorderRadius</code></p>
+        </td>
+        <td>
+          <p>Defines the border radius of the calendar handler.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>handlerHeight</code></p>
+        </td>
+        <td>
+          <p>Specifies the height of the calendar handler.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>handlerWidth</code></p>
+        </td>
+        <td>
+          <p>Specifies the width of the calendar handler.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>handlerPaddingLeft</code></p>
+        </td>
+        <td>
+          <p>Defines the left padding of the calendar handler.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>handlerPaddingRight</code></p>
+        </td>
+        <td>
+          <p>Defines the right padding of the calendar handler.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>handlerPaddingTop</code></p>
+        </td>
+        <td>
+          <p>Defines the top padding of the calendar handler.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>handlerPaddingBottom</code></p>
+        </td>
+        <td>
+          <p>Defines the bottom padding of the calendar handler.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>handlerPadding</code></p>
+        </td>
+        <td>
+          <p>Specifies the overall padding applied to the calendar handler.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>dayHeight</code></p>
+        </td>
+        <td>
+          <p>Defines the height of individual day elements in the calendar.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>dayWidth</code></p>
+        </td>
+        <td>
+          <p>Defines the width of individual day elements in the calendar.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>dayBorderRadius</code></p>
+        </td>
+        <td>
+          <p>Defines the border radius of individual day elements in the calendar.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>dayOfWeekHeight</code></p>
+        </td>
+        <td>
+          <p>Specifies the height of day-of-week elements in the calendar.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>dayOfWeekWidth</code></p>
+        </td>
+        <td>
+          <p>Specifies the width of day-of-week elements in the calendar.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>dayOfWeekBorderRadius</code></p>
+        </td>
+        <td>
+          <p>Defines the border radius of day-of-week elements in the calendar.</p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<spacer height="40px"></spacer>
+<ttl text="Other styles - dp-calendar-select" type="h5"></ttl>
+<p>You can provide a bunch of other styles, that are not theme based but rather generic</p>
+
+<div class="max-w-full overflow-x-auto">
+  <table class="w-full border-collapse">
+    <thead>
+      <tr>
+        <th style="width: 20%"><p>Property</p></th>
+        <th><p>Description</p></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <p><code>borderRadius</code></p>
+        </td>
+        <td>
+          <p>Defines the border radius of the select dropdown in the calendar.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>paddingLeft</code></p>
+        </td>
+        <td>
+          <p>Specifies the left padding inside the select dropdown.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>paddingRight</code></p>
+        </td>
+        <td>
+          <p>Specifies the right padding inside the select dropdown.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>paddingTop</code></p>
+        </td>
+        <td>
+          <p>Defines the top padding inside the select dropdown.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>paddingBottom</code></p>
+        </td>
+        <td>
+          <p>Defines the bottom padding inside the select dropdown.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>padding</code></p>
+        </td>
+        <td>
+          <p>Specifies the overall padding applied to the select dropdown.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>fontSize</code></p>
+        </td>
+        <td>
+          <p>Defines the font size of the text inside the select dropdown.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>fontWeight</code></p>
+        </td>
+        <td>
+          <p>Sets the font weight of the text inside the select dropdown.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>lineHeight</code></p>
+        </td>
+        <td>
+          <p>Defines the line height of text inside the select dropdown.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>letterSpacing</code></p>
+        </td>
+        <td>
+          <p>Specifies the letter spacing of text inside the select dropdown.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>optionsBorderRadius</code></p>
+        </td>
+        <td>
+          <p>Defines the border radius of the options within the select dropdown.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>optionPaddingLeft</code></p>
+        </td>
+        <td>
+          <p>Specifies the left padding inside each option in the select dropdown.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>optionPaddingRight</code></p>
+        </td>
+        <td>
+          <p>Specifies the right padding inside each option in the select dropdown.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>optionPaddingTop</code></p>
+        </td>
+        <td>
+          <p>Defines the top padding inside each option in the select dropdown.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>optionPaddingBottom</code></p>
+        </td>
+        <td>
+          <p>Defines the bottom padding inside each option in the select dropdown.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>optionPadding</code></p>
+        </td>
+        <td>
+          <p>Specifies the overall padding applied to each option in the select dropdown.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>optionFontSize</code></p>
+        </td>
+        <td>
+          <p>Defines the font size of the options in the select dropdown.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>optionFontWeight</code></p>
+        </td>
+        <td>
+          <p>Sets the font weight of the options in the select dropdown.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>optionLineHeight</code></p>
+        </td>
+        <td>
+          <p>Defines the line height of the options in the select dropdown.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>optionLetterSpacing</code></p>
+        </td>
+        <td>
+          <p>Specifies the letter spacing of the options in the select dropdown.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>selectedFontSize</code></p>
+        </td>
+        <td>
+          <p>Defines the font size of the selected option in the select dropdown.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>selectedFontWeight</code></p>
+        </td>
+        <td>
+          <p>Sets the font weight of the selected option in the select dropdown.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>selectedLineHeight</code></p>
+        </td>
+        <td>
+          <p>Defines the line height of the selected option in the select dropdown.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>selectedLetterSpacing</code></p>
+        </td>
+        <td>
+          <p>Specifies the letter spacing of the selected option in the select dropdown.</p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

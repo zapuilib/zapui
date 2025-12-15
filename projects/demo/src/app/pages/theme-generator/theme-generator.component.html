@@ -1,0 +1,98 @@
+<h1>Theme generator</h1>
+
+<p class="lead">Generate a theme for your project</p>
+
+<app-preview-code [markdown]="markdown" [disableMinHeight]="true">
+  <div class="grid grid-cols-1 lg:grid-cols-4 gap-10">
+    <form
+      action=""
+      [formGroup]="form"
+      class="bg-zinc-900/50 light:bg-zinc-200/50 p-5 rounded-lg h-max col-span-1 lg:col-span-2">
+      <p>Click on the color to change it!</p>
+      <ul class="">
+        <li>
+          <p>
+            primary:
+            <input type="color" id="primary" formControlName="primary" />
+            {{ form.get('primary')?.value }}
+          </p>
+        </li>
+        <li>
+          <p>
+            secondary:
+            <input type="color" id="secondary" formControlName="secondary" />
+            {{ form.get('secondary')?.value }}
+          </p>
+        </li>
+        <li>
+          <p>
+            tertiary:
+            <input type="color" id="tertiary" formControlName="tertiary" />
+            {{ form.get('tertiary')?.value }}
+          </p>
+        </li>
+        <li>
+          <p>
+            success:
+            <input type="color" id="success" formControlName="success" />
+            {{ form.get('success')?.value }}
+          </p>
+        </li>
+        <li>
+          <p>
+            successText:
+            <input type="color" id="successText" formControlName="successText" />
+            {{ form.get('successText')?.value }}
+          </p>
+        </li>
+        <li>
+          <p>
+            warning:
+            <input type="color" id="warning" formControlName="warning" />
+            {{ form.get('warning')?.value }}
+          </p>
+        </li>
+        <li>
+          <p>
+            warningText:
+            <input type="color" id="warningText" formControlName="warningText" />
+            {{ form.get('warningText')?.value }}
+          </p>
+        </li>
+        <li>
+          <p>
+            error:
+            <input type="color" id="error" formControlName="error" />
+            {{ form.get('error')?.value }}
+          </p>
+        </li>
+        <li>
+          <p>
+            errorText:
+            <input type="color" id="errorText" formControlName="errorText" />
+            {{ form.get('errorText')?.value }}
+          </p>
+        </li>
+        <li>
+          <p>
+            info:
+            <input type="color" id="info" formControlName="info" />
+            {{ form.get('info')?.value }}
+          </p>
+        </li>
+        <li>
+          <p>
+            infoText:
+            <input type="color" id="infoText" formControlName="infoText" />
+            {{ form.get('infoText')?.value }}
+          </p>
+        </li>
+      </ul>
+    </form>
+    <demo-alert class="lg:col-span-2 hidden md:block"></demo-alert>
+    <demo-badge></demo-badge>
+    <demo-button class="lg:col-span-3"></demo-button>
+    <demo-input class="lg:col-span-2"></demo-input>
+    <demo-select class="lg:col-span-2"></demo-select>
+  </div>
+</app-preview-code>

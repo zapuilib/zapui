@@ -1,0 +1,466 @@
+<h1>Checkbox</h1>
+
+<p class="lead">
+  Checkboxes are interactive UI elements that allow users to select one or multiple options. They
+  provide a clear, accessible way to toggle settings, make selections, or confirm choices.
+</p>
+
+<spacer height="40px"></spacer>
+
+<ttl text="Basic checkbox"></ttl>
+
+<row [markdowns]="markdown" [isReverse]="true">
+  <div class="component-instance !w-full !mt-0">
+    <zap-checkbox
+      id="checkbox"
+      [label]="label"
+      [shape]="shape"
+      [size]="size"
+      [labelPosition]="labelPosition"></zap-checkbox>
+  </div>
+</row>
+
+<spacer height="40px"></spacer>
+
+<ttl text="Optional properties"></ttl>
+
+<div class="info-card">
+  <i class="fa-solid fa-circle-info mr-2"></i>Use the properties below to style the checkbox and
+  copy the code to your project. Try clicking on them.
+</div>
+
+<div class="max-w-full overflow-x-auto">
+  <table class="w-full border-collapse">
+    <thead>
+      <tr>
+        <th style="width: 200px">Property</th>
+        <th style="width: 400px">Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <p><code>id</code></p>
+        </td>
+        <td>
+          <p class="font-mono">string</p>
+        </td>
+        <td>
+          <p>Defines the id of the checkbox.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>label</code></p>
+        </td>
+        <td>
+          <p class="font-mono">string</p>
+        </td>
+        <td>
+          <p>Defines the label attached to the checkbox.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>labelPosition</code></p>
+        </td>
+        <td>
+          <p>
+            <code (click)="updateLabelPosition('right')">right</code> |
+            <code (click)="updateLabelPosition('left')">left</code>
+          </p>
+        </td>
+        <td>
+          <p>
+            Defines the position of the label against the checkbox. By default it's
+            <code (click)="updateLabelPosition('right')">right</code>.
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>checked</code></p>
+        </td>
+        <td>
+          <p class="font-mono">boolean</p>
+        </td>
+        <td>
+          <p>
+            Provides the ability to check/uncheck the checkbox. Default is
+            <code>false</code>.
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>shape</code></p>
+        </td>
+        <td>
+          <p>
+            <code (click)="updateShape('curve')">curve</code> |
+            <code (click)="updateShape('flat')">flat</code>
+          </p>
+        </td>
+        <td>
+          <p>
+            Defines the checkbox shape.
+            <code (click)="updateShape('curve')">curve</code> has rounded corners, while
+            <code (click)="updateShape('flat')">flat</code> is a classic square-cornered checkbox.
+            Default is <code (click)="updateShape('flat')">flat</code>.
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>size</code></p>
+        </td>
+        <td>
+          <p>
+            <code (click)="updateSize('base')">base</code> |
+            <code (click)="updateSize('compact')">compact</code>
+          </p>
+        </td>
+        <td>
+          <p>
+            Controls checkbox sizing.
+            <code (click)="updateSize('compact')">compact</code> has less padding,
+            <code (click)="updateSize('base')">base</code> follows the standard theme. Default is
+            <code (click)="updateSize('base')">base</code>.
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>customErrorMessages</code></p>
+        </td>
+        <td>
+          <p class="font-mono">string</p>
+        </td>
+        <td>
+          <p>Provides the ability to set custom error messages.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>zapClass</code></p>
+        </td>
+        <td>
+          <p class="font-mono">string</p>
+        </td>
+        <td>
+          <p>
+            Allows overriding default styles by passing Tailwind CSS classes. Utilize the
+            <code class="!cursor-auto">&#64;zaplib/zapui/tailwind</code> plugin to target specific
+            elements within the checkbox component.
+          </p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<spacer height="40px"></spacer>
+
+<ttl text="Supported directives"></ttl>
+
+<div class="max-w-full overflow-x-auto">
+  <table class="w-full border-collapse">
+    <thead>
+      <tr>
+        <th style="width: 20%">Selector</th>
+        <th style="width: 20%">Directive name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <p><code>zapLabel</code></p>
+        </td>
+        <td>
+          <p class="font-mono">ZapLabelDirective</p>
+        </td>
+        <td>
+          <p>
+            Import a directive <code>ZapLabelDirective</code> into your component to enable adding
+            any label to a checkbox.
+          </p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<spacer height="40px"></spacer>
+
+<ttl text="Example" type="h4"></ttl>
+
+<app-preview-code [markdown]="markdownDirective">
+  <zap-checkbox id="checkbox">
+    <label for="checkbox" zapLabel
+      >By clicking this checkbox you accept the terms and conditions</label
+    >
+  </zap-checkbox>
+</app-preview-code>
+
+<ttl text="Global configurations"></ttl>
+
+<p>
+  A list of global styles, including shape, size, color, font sizes, font weights, and letter
+  spacing can be provided via <code>themeLibrary</code> in the
+  <code>provideZapOption</code> provider.. If you have multi theme setup, you can also provide theme
+  specific colors. These apply to all default variants through out the app unless component level
+  styles are provided.
+</p>
+<spacer height="40px"></spacer>
+
+<ttl text="Example" type="h5"></ttl>
+<spacer></spacer>
+
+<app-code
+  [markdown]="markdownGlobal.markdown"
+  [language]="markdownGlobal.language"
+  [title]="markdownGlobal.title">
+</app-code>
+
+<spacer height="40px"></spacer>
+
+<ttl text="Colors" type="h5"></ttl>
+<p>You can provide each of these colors for different themes that you use</p>
+
+<div class="max-w-full overflow-x-auto">
+  <table class="w-full border-collapse">
+    <thead>
+      <tr>
+        <th style="width: 20%"><p>Property</p></th>
+        <th><p>Description</p></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <p><code>bgColor</code></p>
+        </td>
+        <td><p>Background color of the checkbox.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>textColor</code></p>
+        </td>
+        <td><p>Text color of the checkbox.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>borderColor</code></p>
+        </td>
+        <td><p>Border color of the checkbox.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>bgHoverColor</code></p>
+        </td>
+        <td><p>Background color of the checkbox when hovered.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>textHoverColor</code></p>
+        </td>
+        <td><p>Text color of the checkbox when hovered.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>borderHoverColor</code></p>
+        </td>
+        <td><p>Border color of the checkbox when hovered.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>bgFocusColor</code></p>
+        </td>
+        <td><p>Background color of the checkbox when focused.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>borderFocusColor</code></p>
+        </td>
+        <td><p>Border color of the checkbox when focused.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>textCheckedColor</code></p>
+        </td>
+        <td><p>Text color of the checkbox when checked.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>bgCheckedColor</code></p>
+        </td>
+        <td><p>Background color of the checkbox when checked.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>borderCheckedColor</code></p>
+        </td>
+        <td><p>Border color of the checkbox when checked.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>labelColor</code></p>
+        </td>
+        <td><p>Text color of the label</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>labelHoverColor</code></p>
+        </td>
+        <td><p>Text color of the label when hovered</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>helpTextColor</code></p>
+        </td>
+        <td><p>Text color of the help text</p></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<spacer height="40px"></spacer>
+<ttl text="Other styles" type="h5"></ttl>
+<p>You can provide a bunch of other styles, that are not theme based but rather generic</p>
+
+<div class="max-w-full overflow-x-auto">
+  <table class="w-full border-collapse">
+    <thead>
+      <tr>
+        <th style="width: 20%"><p>Property</p></th>
+        <th><p>Description</p></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <p><code>borderRadius</code></p>
+        </td>
+        <td><p>Defines the radius of the checkbox's corners.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>paddingLeft</code></p>
+        </td>
+        <td><p>Left padding of the checkbox.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>paddingRight</code></p>
+        </td>
+        <td><p>Right padding of the checkbox.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>paddingTop</code></p>
+        </td>
+        <td><p>Top padding of the checkbox.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>paddingBottom</code></p>
+        </td>
+        <td><p>Bottom padding of the checkbox.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>padding</code></p>
+        </td>
+        <td><p>Padding around the checkbox's content.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>width</code></p>
+        </td>
+        <td><p>Width of the checkbox.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>height</code></p>
+        </td>
+        <td><p>Height of the checkbox.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>fontSize</code></p>
+        </td>
+        <td><p>Font size of the checkbox's text.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>fontWeight</code></p>
+        </td>
+        <td><p>Font weight of the checkbox's text.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>lineHeight</code></p>
+        </td>
+        <td><p>Line height of the checkbox's text.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>letterSpacing</code></p>
+        </td>
+        <td><p>Letter spacing of the checkbox's text.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>labelFontSize</code></p>
+        </td>
+        <td><p>Font size of the label</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>labelFontWeight</code></p>
+        </td>
+        <td><p>Font weight of the label</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>labelLineHeight</code></p>
+        </td>
+        <td><p>Line height of the label</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>labelLetterSpacing</code></p>
+        </td>
+        <td><p>Letter spacing of the label</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>helpTextFontSize</code></p>
+        </td>
+        <td><p>Font size of the help text</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>helpTextFontWeight</code></p>
+        </td>
+        <td><p>Font weight of the help text</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>helpTextLineHeight</code></p>
+        </td>
+        <td><p>Line height of the help text</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>helpTextLetterSpacing</code></p>
+        </td>
+        <td><p>Letter spacing of the help text</p></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<spacer height="40px"></spacer>

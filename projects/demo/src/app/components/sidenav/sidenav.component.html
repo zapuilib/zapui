@@ -1,0 +1,32 @@
+<div class="h-full w-full">
+  <nav>
+    <ul>
+      @for (nav of navigations; track $index) {
+        <li>
+          <a [routerLink]="['/', nav.path]" routerLinkActive="current">
+            {{ nav.name }}
+          </a>
+          @if (nav.children) {
+            <ul class="sub">
+              @for (child of nav.children; track $index) {
+                <li [class.soon]="child.type === 'Roadmap'" (click)="close.emit()">
+                  <a
+                    [routerLink]="['/', child.path.split('/')[0], child.path.split('/')[1]]"
+                    routerLinkActive="current">
+                    {{ child.name }}
+                    @if (child.type) {
+                      <zap-chip
+                        [text]="child.type"
+                        class="pl-2 absolute"
+                        [zapClass]="getChipClass(child.type)"></zap-chip>
+                    }
+                  </a>
+                </li>
+              }
+            </ul>
+          }
+        </li>
+      }
+    </ul>
+  </nav>
+</div>

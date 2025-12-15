@@ -1,0 +1,582 @@
+<h1>Textarea</h1>
+
+<p class="lead">
+  Textareas are versatile UI elements that allow users to enter multi-line text. They provide a
+  flexible, intuitive way to capture detailed input, enhancing form usability and user expression.
+</p>
+
+<spacer height="40px"></spacer>
+
+<ttl text="Basic textarea"></ttl>
+
+<row [markdowns]="markdown" [isReverse]="true">
+  <div class="component-instance !w-full !mt-0">
+    <zap-textarea
+      id="textarea"
+      [shape]="shape"
+      [resize]="resize"
+      label="Message"
+      placeholder="Describe your situation"></zap-textarea>
+  </div>
+</row>
+
+<spacer height="40px"></spacer>
+
+<ttl text="Optional properties"></ttl>
+
+<div class="info-card">
+  <i class="fa-solid fa-circle-info mr-2"></i>
+  Use the properties below to style the textarea and copy the code to your project. Try clicking on
+  them.
+</div>
+
+<div class="max-w-full overflow-x-auto">
+  <table class="w-full border-collapse">
+    <thead>
+      <tr>
+        <th style="width: 200px">Property</th>
+        <th style="width: 400px">Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <p><code>shape</code></p>
+        </td>
+        <td>
+          <p>
+            <code (click)="updateShape('flat')">flat</code> |
+            <code (click)="updateShape('curve')">curve</code>
+          </p>
+        </td>
+        <td>
+          <p>
+            Defines the textarea's shape.
+            <code (click)="updateShape('curve')">curve</code> has rounded corners, and
+            <code (click)="updateShape('flat')">flat</code> is a classic square-cornered textarea.
+            Default is <code (click)="updateShape('flat')">flat</code>.
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>resize</code></p>
+        </td>
+        <td>
+          <p>
+            <code (click)="updateResize('none')">none</code> |
+            <code (click)="updateResize('vertical')">vertical</code> |
+            <code (click)="updateResize('horizontal')">horizontal</code> |
+            <code (click)="updateResize('auto')">auto</code>
+          </p>
+        </td>
+        <td>
+          <p>
+            Defines the textarea's resizing.
+            <code (click)="updateResize('none')">none</code> prevents resizing,
+            <code (click)="updateResize('vertical')">vertical</code> allows vertical resizing,
+            <code (click)="updateResize('horizontal')">horizontal</code> allows horizontal resizing,
+            and <code (click)="updateResize('auto')">auto</code> allows resizing in both directions
+            . Default is <code (click)="updateResize('none')">none</code>.
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>id</code></p>
+        </td>
+        <td>
+          <p class="font-mono">string</p>
+        </td>
+        <td>
+          <p>Defines the id of the textarea.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>label</code></p>
+        </td>
+        <td>
+          <p class="font-mono">string</p>
+        </td>
+        <td>
+          <p>Defines the label attached to the textarea.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>helpText</code></p>
+        </td>
+        <td>
+          <p class="font-mono">string</p>
+        </td>
+        <td>
+          <p>Defines the help text attached to the textarea.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>placeholder</code></p>
+        </td>
+        <td>
+          <p class="font-mono">string</p>
+        </td>
+        <td>
+          <p>Defines the placeholder of the textarea.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>placeholder</code></p>
+        </td>
+        <td>
+          <p class="font-mono">string</p>
+        </td>
+        <td>
+          <p>Defines the placeholder of the textarea.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>rows</code></p>
+        </td>
+        <td>
+          <p class="font-mono">string</p>
+        </td>
+        <td>
+          <p>Defines the default number of rows in the textarea.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>customErrorMessages</code></p>
+        </td>
+        <td>
+          <p class="font-mono">string</p>
+        </td>
+        <td>
+          <p>Provides the ability to set custom error messages.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>zapClass</code></p>
+        </td>
+        <td>
+          <p class="font-mono">string</p>
+        </td>
+        <td>
+          <p>
+            Allows overriding default styles by passing Tailwind CSS classes. Utilize the
+            <code class="!cursor-auto">&#64;zaplib/zapui/tailwind</code> plugin to target specific
+            elements within the textarea component.
+          </p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<spacer height="40px"></spacer>
+
+<ttl text="Supported directives"></ttl>
+<p>These are optional directives for radio content header only</p>
+
+<div class="max-w-full overflow-x-auto">
+  <table class="w-full border-collapse">
+    <thead>
+      <tr>
+        <th style="width: 20%">Selector</th>
+        <th style="width: 20%">Directive name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <p><code>zapLabel</code></p>
+        </td>
+        <td>
+          <p class="font-mono">ZapLabelDirective</p>
+        </td>
+        <td>
+          <p>
+            Import a directive <code>ZapLabelDirective</code> into your component to enable adding
+            any label to a textarea.
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>zapFormFieldHelpText</code></p>
+        </td>
+        <td>
+          <p class="font-mono">ZapFormFieldHelpTextDirective</p>
+        </td>
+        <td>
+          <p>
+            Import a directive <code>ZapFormFieldHelpTextDirective</code> into your component to
+            enable adding any help text to a textarea.
+          </p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<spacer height="40px"></spacer>
+
+<ttl text="Example" type="h4"></ttl>
+
+<app-preview-code [markdown]="markdownDirective">
+  <div class="w-full max-w-md mx-auto">
+    <zap-textarea id="textarea2" placeholder="Enter your message">
+      <div zapLabel class="flex items-center gap-2">
+        <i class="fa-regular fa-pen-to-square"></i>
+        <p>Provide a description</p>
+      </div>
+      <div zapHelpText class="flex items-center gap-2">
+        <i class="fa-regular fa-send"></i>
+        <p class="text-sinc-300">Press enter to send</p>
+      </div>
+    </zap-textarea>
+  </div>
+</app-preview-code>
+
+<ttl text="Global configurations"></ttl>
+
+<p>
+  A list of global styles, including shape, size, color, font sizes, font weights, and letter
+  spacing can be provided via <code>themeLibrary</code> in the
+  <code>provideZapOption</code> provider.. If you have multi theme setup, you can also provide theme
+  specific colors. These apply to all default variants through out the app unless component level
+  styles are provided.
+</p>
+<spacer height="40px"></spacer>
+
+<ttl text="Example" type="h5"></ttl>
+<spacer></spacer>
+
+<app-code
+  [markdown]="markdownGlobal.markdown"
+  [language]="markdownGlobal.language"
+  [title]="markdownGlobal.title">
+</app-code>
+
+<spacer height="40px"></spacer>
+
+<ttl text="Shape and Size" type="h5"></ttl>
+
+<div class="max-w-full overflow-x-auto">
+  <table class="w-full border-collapse">
+    <thead>
+      <tr>
+        <th style="width: 20%"><p>Property</p></th>
+        <th><p>Description</p></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <p><code>shape</code></p>
+        </td>
+        <td>
+          <p>
+            Defines the shape of the textarea. Can be <code>flat</code>, <code>curve</code> or
+            <code>pill</code>.
+          </p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<spacer height="40px"></spacer>
+
+<ttl text="Colors" type="h5"></ttl>
+<p>You can provide each of these colors for different themes that you use</p>
+
+<div class="max-w-full overflow-x-auto">
+  <table class="w-full border-collapse">
+    <thead>
+      <tr>
+        <th style="width: 20%"><p>Property</p></th>
+        <th><p>Description</p></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <p><code>bgColor</code></p>
+        </td>
+        <td><p>Background color of the textarea.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>textColor</code></p>
+        </td>
+        <td><p>Text color of the textarea.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>borderColor</code></p>
+        </td>
+        <td><p>Border color of the textarea.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>labelColor</code></p>
+        </td>
+        <td><p>Text color of the label</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>placeholderColor</code></p>
+        </td>
+        <td><p>Text color of the placeholder</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>bgHoverColor</code></p>
+        </td>
+        <td><p>Background color of the textarea when hovered.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>borderHoverColor</code></p>
+        </td>
+        <td><p>Border color of the textarea when hovered.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>textHoverColor</code></p>
+        </td>
+        <td><p>Text color of the textarea when hovered.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>bgFocusColor</code></p>
+        </td>
+        <td><p>Background color of the textarea when focused.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>borderFocusColor</code></p>
+        </td>
+        <td><p>Border color of the textarea when focused.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>ringFocusColor</code></p>
+        </td>
+        <td><p>Ring color of the textarea when focused.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>textFocusColor</code></p>
+        </td>
+        <td><p>Text color of the textarea when focused.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>iconColor</code></p>
+        </td>
+        <td><p>Color for the icon</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>helpTextColor</code></p>
+        </td>
+        <td><p>Text color of the help text</p></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<spacer height="40px"></spacer>
+<ttl text="Other styles" type="h5"></ttl>
+<p>You can provide a bunch of other styles, that are not theme based but rather generic</p>
+
+<div class="max-w-full overflow-x-auto">
+  <table class="w-full border-collapse">
+    <thead>
+      <tr>
+        <th style="width: 20%"><p>Property</p></th>
+        <th><p>Description</p></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <p><code>borderRadius</code></p>
+        </td>
+        <td><p>Defines the radius of the checkbox's corners.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>paddingLeft</code></p>
+        </td>
+        <td><p>Left padding of the checkbox.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>paddingRight</code></p>
+        </td>
+        <td><p>Right padding of the checkbox.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>paddingTop</code></p>
+        </td>
+        <td><p>Top padding of the checkbox.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>paddingBottom</code></p>
+        </td>
+        <td><p>Bottom padding of the checkbox.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>padding</code></p>
+        </td>
+        <td><p>Padding around the checkbox's content.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>width</code></p>
+        </td>
+        <td><p>Width of the checkbox.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>height</code></p>
+        </td>
+        <td><p>Height of the checkbox.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>fontSize</code></p>
+        </td>
+        <td><p>Font size of the checkbox's text.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>fontWeight</code></p>
+        </td>
+        <td><p>Font weight of the checkbox's text.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>lineHeight</code></p>
+        </td>
+        <td><p>Line height of the checkbox's text.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>letterSpacing</code></p>
+        </td>
+        <td><p>Letter spacing of the checkbox's text.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>labelFontSize</code></p>
+        </td>
+        <td><p>Font size of the label</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>labelFontWeight</code></p>
+        </td>
+        <td><p>Font weight of the label</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>labelLineHeight</code></p>
+        </td>
+        <td><p>Line height of the label</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>labelLetterSpacing</code></p>
+        </td>
+        <td><p>Letter spacing of the label</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>placeholderFontSize</code></p>
+        </td>
+        <td><p>Font size of the placeholder</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>placeholderFontWeight</code></p>
+        </td>
+        <td><p>Font weight of the placeholder</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>placeholderLineHeight</code></p>
+        </td>
+        <td><p>Line height of the placeholder</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>placeholderLetterSpacing</code></p>
+        </td>
+        <td><p>Letter spacing of the placeholder</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>helpTextFontSize</code></p>
+        </td>
+        <td><p>Font size of the help text</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>helpTextFontWeight</code></p>
+        </td>
+        <td><p>Font weight of the help text</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>helpTextLineHeight</code></p>
+        </td>
+        <td><p>Line height of the help text</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>helpTextLetterSpacing</code></p>
+        </td>
+        <td><p>Letter spacing of the help text</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>iconFontSize</code></p>
+        </td>
+        <td><p>Font size of the icon</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>iconFontWeight</code></p>
+        </td>
+        <td><p>Font weight of the icon</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>iconLineHeight</code></p>
+        </td>
+        <td><p>Line height of the icon</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>iconLetterSpacing</code></p>
+        </td>
+        <td><p>Letter spacing of the icon</p></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<spacer height="40px"></spacer>

@@ -1,0 +1,37 @@
+<footer class="md:py-10">
+  <div class="flex md justify-between" [class.!justify-end]="!previous">
+    @if (previous) {
+      <div class="flex flex-col items-start gap-y-2 mb-10">
+        <zap-button
+          variant="outlined"
+          text="Previous"
+          icon="fa-arrow-left"
+          iconPosition="left"
+          zapClass="!btn-tertiary"
+          (click)="navigateTo(previous)"></zap-button>
+        <h3>{{ previous }}</h3>
+      </div>
+    }
+    @if (next) {
+      <div class="flex flex-col items-end gap-y-2 mb-10">
+        <zap-button
+          variant="outlined"
+          text="Next"
+          icon="fa-arrow-right"
+          iconPosition="right"
+          zapClass="!btn-tertiary"
+          (click)="navigateTo(next)"></zap-button>
+        <h3>{{ next }}</h3>
+      </div>
+    }
+  </div>
+  <div
+    class="flex max-md:flex-col items-center justify-between pt-5 border-t border-zinc-900 light:border-zinc-100">
+    <p class="max-md:!text-xs">&copy; Copyright {{ year }}. All rights reserved.</p>
+    <p>
+      <a href="https://togethercreative.co.uk" target="_blank" class="max-md:!text-xs"
+        >Together creative</a
+      >
+    </p>
+  </div>
+</footer>

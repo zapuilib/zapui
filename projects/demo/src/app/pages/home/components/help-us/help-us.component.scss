@@ -1,0 +1,122 @@
+.help__us__wrapper {
+  @apply mx-auto max-w-screen-2xl py-28 px-6;
+
+  .help__us__container {
+    @apply border border-zinc-800 rounded-3xl;
+    background: radial-gradient(ellipse 70% 50% at 50% 15%, #f1165340, #131317);
+  }
+
+  .help__us__header {
+    @apply text-center pt-18;
+  }
+
+  .help__us__content {
+    @apply p-10 flex justify-between flex-col;
+
+    @screen lg {
+      @apply flex-row;
+    }
+  }
+
+  .help__us__card {
+    @apply w-full h-110 text-center bg-no-repeat flex flex-col justify-between;
+    background-position: center top 25%;
+
+    @screen lg {
+      @apply w-1/3;
+    }
+
+    @media (min-width: 1024px) and (max-width: 1279px) {
+      background-size: 90% auto;
+    }
+
+    @media (max-width: 440px) {
+      background-size: 90% 90%;
+    }
+
+    &.network {
+      background-image: url('/assets/home/network.svg');
+    }
+
+    &.contribute {
+      background-image: url('/assets/home/contribute.svg');
+    }
+
+    &.donate {
+      background-image: url('/assets/home/donate.svg');
+    }
+
+    .help__us__card__content {
+      @apply flex flex-col justify-center items-center h-auto mt-45;
+    }
+
+    .help__us__card__title {
+      @apply text-4xl font-normal;
+
+      &.network {
+        @apply text-[#B519FF];
+      }
+
+      &.contribute {
+        @apply text-[#F637E3];
+      }
+
+      &.donate {
+        @apply text-[#F11653];
+      }
+    }
+
+    .help__us__card__text {
+      @apply text-sm text-zinc-400 leading-[1.5] mt-4 font-light;
+    }
+  }
+
+  .help__us__separator {
+    @apply w-full h-20;
+
+    @screen lg {
+      @apply w-16 h-110;
+    }
+
+    .help__us__separator__content {
+      @apply flex justify-center items-center h-full;
+    }
+  }
+
+  .help__us__arrow {
+    @apply text-xl rotate-90 mt-14;
+
+    @screen lg {
+      @apply mb-10 rotate-0 mt-0;
+    }
+
+    &.network {
+      @apply text-[#B519FF];
+    }
+
+    &.contribute {
+      @apply text-[#F637E3];
+    }
+  }
+}
+
+.status__chip {
+  @apply w-fit rounded-md border px-[16px] py-[10px] text-sm font-light leading-tight;
+
+  &.network {
+    @apply border-[#B519FFAA] bg-[#B519FF1A];
+
+    @media (max-width: 335px) {
+      @apply text-xs;
+    }
+  }
+
+  &.contribute {
+    @apply border-[#F637E3] bg-[#F637E310];
+  }
+
+  &.donate {
+    @apply border-[#F11653AA];
+    background: linear-gradient(90deg, #f637e3 0%, #f11653 100%);
+  }
+}

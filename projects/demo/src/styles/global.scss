@@ -1,0 +1,169 @@
+body {
+  @apply bg-zinc-950 text-white font-sans;
+}
+
+.light body,
+body.light {
+  @apply bg-white text-zinc-800;
+}
+
+header > nav,
+main {
+  @apply zap-container;
+}
+
+main {
+  article {
+    @apply mt-10;
+
+    p {
+      @apply py-1;
+    }
+
+    a {
+      @apply underline text-zinc-400 hover:text-zinc-200 transition-all duration-200 ease-in-out;
+    }
+  }
+}
+
+.light main article a {
+  @apply text-zinc-600 hover:text-zinc-950;
+}
+
+p {
+  code {
+    @apply rounded-lg py-1 px-1.5 text-[12px] shadow text-white border border-zinc-800 bg-zinc-950;
+  }
+}
+
+.light p code {
+  @apply text-zinc-950 bg-zinc-500/10 border-zinc-200 shadow-none;
+}
+
+.code-block {
+  @apply overflow-x-auto overflow-y-hidden;
+
+  &::-webkit-scrollbar {
+    @apply h-2;
+  }
+
+  &::-webkit-scrollbar-track {
+    @apply bg-zinc-800;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    @apply bg-zinc-500 h-1 rounded-lg;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    @apply bg-zinc-600;
+  }
+}
+
+table {
+  @apply w-full my-4;
+
+  thead {
+    @apply m-0 p-0;
+
+    tr {
+      @apply m-0  p-0;
+
+      th {
+        @apply m-0 p-0 font-bold text-left [&>:first-child]:mt-0 [&>:last-child]:mb-0 px-2 py-2;
+      }
+    }
+  }
+
+  tbody {
+    @apply m-0 p-0;
+
+    tr {
+      @apply m-0  p-0;
+
+      td {
+        @apply m-0 p-0 [&>:first-child]:mt-0 [&>:last-child]:mb-0 px-2 py-2;
+
+        &:nth-child(2),
+        &:nth-child(3) {
+          p {
+            code {
+              @apply cursor-cell;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+main {
+  banner {
+    h3 {
+      @apply text-primary;
+    }
+
+    p {
+      @apply text-primary py-0;
+
+      a {
+        @apply text-zinc-800 hover:text-zinc-900;
+      }
+    }
+  }
+}
+
+.scrollable {
+  @apply overflow-y-scroll pr-12;
+
+  &::-webkit-scrollbar {
+    @apply w-2 hidden;
+
+    &-thumb {
+      @apply bg-zinc-800/50 rounded;
+    }
+  }
+
+  &:hover {
+    &::-webkit-scrollbar {
+      @apply block;
+    }
+  }
+}
+
+.typewriter {
+  @apply overflow-hidden m-0;
+
+  @media (min-width: 1560px) {
+    @apply whitespace-nowrap border-r border-zinc-800;
+    animation:
+      typing 3.5s steps(40, end),
+      blink-caret 0.75s step-end 8,
+      remove-border 0s 6s forwards;
+  }
+}
+
+@keyframes remove-border {
+  to {
+    border-right: none;
+  }
+}
+
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes blink-caret {
+  from,
+  to {
+    border-color: transparent;
+  }
+  50% {
+    border-color: #e4e4e7;
+  }
+}

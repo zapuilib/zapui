@@ -1,0 +1,38 @@
+<section class="flex flex-col items-center justify-center py-44 max-md:px-3">
+  <h1 class="alt mx-auto text-center !leading-[1.1]">
+    <span class="block">Streamlined. </span><span>Customizable. </span>
+    <span
+      class="text-clip bg-[linear-gradient(89deg,#FA2C04_15.51%,#F637E3_76.32%)] text-transparent bg-clip-text">
+      Angular.
+    </span>
+  </h1>
+  <p class="md:!text-lg !text-zinc-500 max-w-lg text-center !leading-[1.5] mt-3">
+    Build sleek, scalable, and cohesive Angular applications effortlessly with a Tailwind-powered
+    design system.
+  </p>
+  <div class="flex gap-x-5 items-center mt-5">
+    <zap-button
+      text="Quickstart"
+      icon="fa-thin fa-arrow-trend-up"
+      size="base"
+      shape="pill"
+      zapClass="!btn-tertiary"
+      iconPosition="right"
+      (click)="openQuickstart()"></zap-button>
+    <!-- <zap-button
+      text="Donate"
+      size="base"
+      shape="pill"
+      class="mr-2 block md:hidden"
+      zapClass="!btn-dontate"
+      (click)="openDonate()"
+    ></zap-button> -->
+  </div>
+</section>
+
+<home-why-zap></home-why-zap>
+<app-features></app-features>
+<app-roadmap></app-roadmap>
+<app-help-us></app-help-us>
+<app-origin-story></app-origin-story>
+<app-footer-home></app-footer-home>

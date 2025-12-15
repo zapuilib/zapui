@@ -1,0 +1,401 @@
+<h1>Radio</h1>
+
+<p class="lead">
+  Radio buttons are interactive UI elements that allow users to select one option from a predefined
+  set. They provide a clear, intuitive way to make mutually exclusive choices, enhancing
+  decision-making and form interactions.
+</p>
+
+<spacer height="40px"></spacer>
+
+<ttl text="Basic radio"></ttl>
+
+<row [markdowns]="markdown" [isReverse]="true">
+  <div class="component-instance !w-full !mt-0">
+    <zap-radio id="radio" [variant]="variant" [options]="options" [(ngModel)]="formControl1">
+    </zap-radio>
+  </div>
+</row>
+
+<spacer height="40px"></spacer>
+
+<ttl text="Optional properties"></ttl>
+
+<div class="info-card">
+  <i class="fa-solid fa-circle-info mr-2"></i>
+  Use the properties below to style the radio and copy the code to your project. Try clicking on
+  them.
+</div>
+
+<div class="max-w-full overflow-x-auto">
+  <table class="w-full border-collapse">
+    <thead>
+      <tr>
+        <th style="width: 200px">Property</th>
+        <th style="width: 400px">Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <p><code>options</code></p>
+        </td>
+        <td>
+          <p>
+            <code class="font-mono">&#123; name: string; value: string; &#125;[]</code>
+          </p>
+        </td>
+        <td>
+          <p>An array of options for the radio. Each option should have a name and value.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>variant</code></p>
+        </td>
+        <td>
+          <p>
+            <code (click)="updateVariant('vertical')">vertical</code> |
+            <code (click)="updateVariant('horizontal')">horizontal</code>
+          </p>
+        </td>
+        <td>
+          <p>
+            Controls radio's variant.
+            <code (click)="updateVariant('vertical')">vertical</code> has vertical orientation,
+            <code (click)="updateVariant('horizontal')">horizontal</code> has horizontal
+            orientation. The default variant is
+            <code (click)="updateVariant('vertical')">vertical</code>
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>label</code></p>
+        </td>
+        <td>
+          <p class="font-mono">string</p>
+        </td>
+        <td>
+          <p>Defines the label attached to the radio.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>customErrorMessages</code></p>
+        </td>
+        <td>
+          <p class="font-mono">string</p>
+        </td>
+        <td>
+          <p>Provides the ability to set custom error messages.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>zapClass</code></p>
+        </td>
+        <td>
+          <p class="font-mono">string</p>
+        </td>
+        <td>
+          <p>
+            Allows overriding default styles by passing Tailwind CSS classes. Utilize the
+            <code class="!cursor-auto">&#64;zaplib/zapui/tailwind</code> plugin to target specific
+            elements within the radio component.
+          </p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<spacer height="40px"></spacer>
+
+<ttl text="Supported directives"></ttl>
+<p>These are optional directives for radio content header only</p>
+
+<div class="max-w-full overflow-x-auto">
+  <table class="w-full border-collapse">
+    <thead>
+      <tr>
+        <th style="width: 20%">Selector</th>
+        <th style="width: 20%">Directive name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <p><code>zapLabel</code></p>
+        </td>
+        <td>
+          <p class="font-mono">ZapLabelDirective</p>
+        </td>
+        <td>
+          <p>
+            Import a directive <code>ZapLabelDirective</code> into your component to enable adding
+            any label to a radio.
+          </p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<spacer height="40px"></spacer>
+
+<ttl text="Example" type="h4"></ttl>
+
+<app-preview-code [markdown]="markdownDirective">
+  <div class="w-full max-w-md mx-auto">
+    <zap-radio id="radio" [options]="options2" [(ngModel)]="formControl2">
+      <div zapLabel class="flex items-center gap-3">
+        <i class="fa-solid fa-location-dot"></i>
+        <label>Select a country</label>
+      </div>
+    </zap-radio>
+  </div>
+</app-preview-code>
+
+<spacer height="40px"></spacer>
+
+<ttl text="Global configurations"></ttl>
+
+<p>
+  A list of global styles, including shape, size, color, font sizes, font weights, and letter
+  spacing can be provided via <code>themeLibrary</code> in the
+  <code>provideZapOption</code> provider.. If you have multi theme setup, you can also provide theme
+  specific colors. These apply to all default variants through out the app unless component level
+  styles are provided.
+</p>
+<spacer height="40px"></spacer>
+
+<ttl text="Example" type="h5"></ttl>
+<spacer></spacer>
+
+<app-code
+  [markdown]="markdownGlobal.markdown"
+  [language]="markdownGlobal.language"
+  [title]="markdownGlobal.title">
+</app-code>
+
+<spacer height="40px"></spacer>
+
+<spacer height="40px"></spacer>
+
+<ttl text="Colors" type="h5"></ttl>
+<p>You can provide each of these colors for different themes that you use</p>
+
+<div class="max-w-full overflow-x-auto">
+  <table class="w-full border-collapse">
+    <thead>
+      <tr>
+        <th style="width: 20%"><p>Property</p></th>
+        <th><p>Description</p></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <p><code>bgColor</code></p>
+        </td>
+        <td><p>Background color of the radio.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>textColor</code></p>
+        </td>
+        <td><p>Text color of the radio.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>borderColor</code></p>
+        </td>
+        <td><p>Border color of the radio.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>bgHoverColor</code></p>
+        </td>
+        <td><p>Background color of the radio when hovered.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>textHoverColor</code></p>
+        </td>
+        <td><p>Text color of the radio when hovered.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>borderHoverColor</code></p>
+        </td>
+        <td><p>Border color of the radio when hovered.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>bgFocusColor</code></p>
+        </td>
+        <td><p>Background color of the radio when focused.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>borderFocusColor</code></p>
+        </td>
+        <td><p>Border color of the radio when focused.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>labelColor</code></p>
+        </td>
+        <td><p>Text color of the label</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>labelHoverColor</code></p>
+        </td>
+        <td><p>Text color of the label when hovered</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>bgCheckedColor</code></p>
+        </td>
+        <td><p>Background color of the radio when checked.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>bgCheckedColor</code></p>
+        </td>
+        <td><p>Background color when checked/p></p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>borderCheckedColor</code></p>
+        </td>
+        <td><p>Border color of the radio when checked.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>checkedColor</code></p>
+        </td>
+        <td><p>The color of the radio when checked.</p></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<spacer height="40px"></spacer>
+<ttl text="Other styles" type="h5"></ttl>
+<p>You can provide a bunch of other styles, that are not theme based but rather generic</p>
+
+<div class="max-w-full overflow-x-auto">
+  <table class="w-full border-collapse">
+    <thead>
+      <tr>
+        <th style="width: 20%"><p>Property</p></th>
+        <th><p>Description</p></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <p><code>borderRadius</code></p>
+        </td>
+        <td><p>Defines the radius of the radio's corners.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>paddingLeft</code></p>
+        </td>
+        <td><p>Left padding of the radio.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>paddingRight</code></p>
+        </td>
+        <td><p>Right padding of the radio.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>paddingTop</code></p>
+        </td>
+        <td><p>Top padding of the radio.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>paddingBottom</code></p>
+        </td>
+        <td><p>Bottom padding of the radio.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>padding</code></p>
+        </td>
+        <td><p>Padding around the radio's content.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>width</code></p>
+        </td>
+        <td><p>Width of the radio.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>height</code></p>
+        </td>
+        <td><p>Height of the radio.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>fontSize</code></p>
+        </td>
+        <td><p>Font size of the radio's text.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>fontWeight</code></p>
+        </td>
+        <td><p>Font weight of the radio's text.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>lineHeight</code></p>
+        </td>
+        <td><p>Line height of the radio's text.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>letterSpacing</code></p>
+        </td>
+        <td><p>Letter spacing of the radio's text.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>labelFontSize</code></p>
+        </td>
+        <td><p>Font size of the label</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>labelFontWeight</code></p>
+        </td>
+        <td><p>Font weight of the label</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>labelLineHeight</code></p>
+        </td>
+        <td><p>Line height of the label</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>labelLetterSpacing</code></p>
+        </td>
+        <td><p>Letter spacing of the label</p></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<spacer height="40px"></spacer>

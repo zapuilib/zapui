@@ -1,0 +1,21 @@
+.title {
+  @apply relative cursor-pointer w-max;
+
+  i {
+    @apply invisible transition-all duration-300 ease-linear absolute top-0 -right-8 xl:-left-10 xl:right-auto text-xs rounded-md border border-zinc-800 text-zinc-600 py-px px-[2px];
+    @apply hover:bg-zinc-800 hover:text-zinc-400;
+  }
+
+  &:hover {
+    i {
+      @apply visible;
+    }
+  }
+}
+
+h2,
+h3 {
+  i {
+    @apply mt-1;
+  }
+}

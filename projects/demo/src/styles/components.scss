@@ -1,0 +1,73 @@
+@layer components {
+  .zap-container {
+    @apply mx-auto max-w-screen-xl px-6;
+
+    @media (min-width: 2000px) {
+      @apply max-w-screen-2xl;
+    }
+  }
+
+  .btn-dontate {
+    @apply bg-gradient-to-br from-[#F637E3] via-[#F32081] to-[#F11653] border-transparent;
+  }
+
+  .btn-primary {
+    @apply bg-green-600/20 text-green-400 border-green-700 hover:border-green-600 text-sm;
+  }
+
+  .light .btn-primary {
+    @apply bg-zinc-950 border-zinc-950 text-white hover:border-zinc-950 hover:opacity-80;
+  }
+
+  .btn-secondary {
+    @apply bg-transparent text-zinc-400 border-zinc-800 hover:border-zinc-700;
+  }
+
+  .light .btn-secondary {
+    @apply border-zinc-200 text-zinc-800 hover:text-zinc-950 hover:border-zinc-300;
+  }
+
+  .btn-tertiary {
+    @apply transition-all bg-zinc-900 border-zinc-900 text-zinc-400 hover:bg-zinc-800 hover:border-zinc-800 hover:text-zinc-300;
+  }
+
+  .light .btn-tertiary {
+    @apply bg-zinc-100 border-zinc-100 text-zinc-700 hover:bg-zinc-200 hover:border-zinc-200 hover:text-zinc-950;
+  }
+
+  .btn-link {
+    @apply text-zinc-400 no-underline hover:text-zinc-500 text-sm;
+  }
+
+  .color-block {
+    @apply col-span-6 lg:col-span-3 xl:col-span-2 overflow-hidden rounded-lg border border-zinc-800;
+
+    span {
+      @apply py-6 md:pt-2 md:pb-0 block text-center text-[2rem] md:text-[2rem];
+    }
+
+    p {
+      @apply text-center hidden md:block !text-xs;
+    }
+  }
+
+  .light .color-block {
+    @apply border-zinc-100;
+  }
+
+  .component-instance {
+    @apply p-5 bg-transparent rounded-lg border border-zinc-800 min-h-[250px] flex justify-center items-center my-5 w-[60%];
+  }
+
+  .light .component-instance {
+    @apply border-zinc-100;
+  }
+
+  .info-card {
+    @apply bg-zinc-500/20 border border-zinc-800 p-5 rounded-md mt-4 mb-10 text-white;
+  }
+
+  .light .info-card {
+    @apply text-black bg-zinc-100/10 border-zinc-100;
+  }
+}

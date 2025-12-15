@@ -1,0 +1,30 @@
+nav {
+  ul {
+    li {
+      a {
+        @apply text-zinc-400 hover:text-zinc-100 cursor-pointer text-base md:text-xs transition-all duration-200 ease-in-out;
+      }
+    }
+  }
+}
+
+.light nav ul li a {
+  @apply text-zinc-800 hover:text-zinc-950;
+}
+
+.cls-1 {
+  @apply fill-white;
+}
+
+.light .cls-1 {
+  @apply fill-zinc-950;
+}
+
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}

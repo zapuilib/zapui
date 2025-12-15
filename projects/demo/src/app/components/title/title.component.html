@@ -1,0 +1,33 @@
+@switch (type) {
+  @case ('h2') {
+    <h2 [id]="id" class="title" (click)="navigateTo(id)">
+      <i class="fa-solid fa-link" (click)="copyLink(id)"></i>
+      <span>{{ text }}</span>
+    </h2>
+  }
+  @case ('h3') {
+    <h3 [id]="id" class="title" (click)="navigateTo(id)">
+      <i class="fa-solid fa-link" (click)="copyLink(id)"></i>
+      <span>{{ text }}</span>
+    </h3>
+  }
+  @case ('h4') {
+    <h4 [id]="id" class="title" (click)="navigateTo(id)">
+      <i class="fa-solid fa-link" (click)="copyLink(id)"></i>
+      <span>{{ text }}</span>
+    </h4>
+  }
+  @case ('h5') {
+    <h5 [id]="id" class="title" (click)="navigateTo(id)">
+      <i class="fa-solid fa-link" (click)="copyLink(id)"></i>
+      <span>{{ text }}</span>
+    </h5>
+  }
+  @case ('h6') {
+    <h6 [id]="id" class="title" (click)="navigateTo(id)">
+      >
+      <i class="fa-solid fa-link" (click)="copyLink(id)"></i>
+      <span>{{ text }}</span>
+    </h6>
+  }
+}

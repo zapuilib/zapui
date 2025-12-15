@@ -1,0 +1,321 @@
+<h1>Accordion</h1>
+
+<p class="lead">
+  Accordions allow users to expand and collapse sections of content. They provide a way to display
+  and manage information in a compact and visually appealing way.
+</p>
+
+<spacer height="40px"></spacer>
+
+<ttl text="Basic accordion"></ttl>
+
+<app-preview-code [markdown]="markdown[0]">
+  <div class="w-full max-w-md mx-auto max-md:px-6">
+    <zap-accordion-group [multiple]="multiple" class="w-full px-5 py-12 overflow-y-auto">
+      @for (accordion of accordions; track $index) {
+        <zap-accordion-item>
+          <zap-accordion-header [variant]="variant" [icon]="icon">
+            {{ accordion.title }}
+          </zap-accordion-header>
+          <zap-accordion-content>
+            <p>{{ accordion.content }}</p>
+          </zap-accordion-content>
+        </zap-accordion-item>
+      }
+    </zap-accordion-group>
+  </div>
+</app-preview-code>
+
+<spacer height="40px"></spacer>
+
+<ttl text="Optional properties"></ttl>
+<div class="info-card">
+  <i class="fa-solid fa-circle-info mr-2"></i>Use the properties below to style the accordion and
+  copy the code to your project. Try clicking on them.
+</div>
+
+<div class="border border-zinc-800 rounded-lg">
+  <div class="overflow-x-auto custom-scrollbar">
+    <table class="w-full !my-0">
+      <thead>
+        <tr class="!border-b !border-zinc-800">
+          <th style="width: 20%" class="!p-3">Property</th>
+          <th style="width: 20%" class="!p-3">Type</th>
+          <th class="!p-3">Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="!border-b !border-zinc-800 !px-1">
+          <td>
+            <p><code>variant</code></p>
+          </td>
+          <td>
+            <p>
+              <code (click)="updateVariant('default')">default</code> |
+              <code (click)="updateVariant('nounderline')">nounderline</code>
+            </p>
+          </td>
+          <td>
+            <p><code>nounderline</code> removes the underline from the header on hover.</p>
+          </td>
+        </tr>
+        <tr class="!border-b !border-zinc-800 !px-1">
+          <td>
+            <p><code>icon</code></p>
+          </td>
+          <td>
+            <p>
+              <code (click)="updateIcon('chevron')">chevron</code> |
+              <code (click)="updateIcon('plus')">plus</code>
+            </p>
+          </td>
+          <td>
+            <p>
+              Sets the icon for the accordion header. Default is
+              <code>chevron</code>.
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <p><code>multiple</code></p>
+          </td>
+          <td>
+            <p>
+              <code (click)="updateMultiple(true)">true</code> |
+              <code (click)="updateMultiple(false)">false</code>
+            </p>
+          </td>
+          <td>
+            <p>
+              Defines whether multiple accordions can be open at the same time.
+              <code (click)="updateMultiple(true)">true</code> allows multiple accordions to be open
+              at the same time, while <code (click)="updateMultiple(false)">false</code> restricts
+              it to one open accordion at a time.
+            </p>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<spacer height="40px"></spacer>
+
+<ttl text="Usages"></ttl>
+
+<spacer></spacer>
+
+<app-code
+  [markdown]="usageMarkdown.markdown"
+  [language]="usageMarkdown.language"
+  [title]="usageMarkdown.title"></app-code>
+
+<spacer height="40px"></spacer>
+
+<ttl text="Supported directives"></ttl>
+<p>These are optional directives for accordion content header only</p>
+
+<div class="max-w-full overflow-x-auto">
+  <table class="w-full border-collapse">
+    <thead>
+      <tr>
+        <th style="width: 20%">Selector</th>
+        <th style="width: 20%">Directive name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <p><code>icon</code></p>
+        </td>
+        <td>
+          <p class="font-mono">ZapIconDirective</p>
+        </td>
+        <td>
+          <p>
+            A directive that enables adding any type of icon to a button, including SVGs, font-based
+            icons, and more.
+          </p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<spacer height="40px"></spacer>
+
+<ttl text="Example" type="h4"></ttl>
+
+<app-preview-code [markdown]="markdownDirective">
+  <div class="w-full max-w-md mx-auto">
+    <zap-accordion-group class="w-full px-5 py-12 overflow-y-auto">
+      @for (accordion of accordions; track $index) {
+        <zap-accordion-item>
+          <zap-accordion-header>
+            {{ accordion.title }}
+            <svg zapIcon xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+              <path
+                fill="#606060"
+                d="M234 19.5c-5.8-4.7-14.1-4.7-20 0L54 147.5c-6.9 5.5-8 15.6-2.5 22.5s15.6 8 22.5 2.5l150-120 150 120c6.9 5.5 17 4.4 22.5-2.5s4.4-17-2.5-22.5L234 19.5zm160 345c6.9-5.5 8-15.6 2.5-22.5s-15.6-8-22.5-2.5l-150 120L74 339.5c-6.9-5.5-17-4.4-22.5 2.5s-4.4 17 2.5 22.5l160 128c5.8 4.7 14.1 4.7 20 0l160-128z" />
+            </svg>
+          </zap-accordion-header>
+          <zap-accordion-content>
+            <p>{{ accordion.content }}</p>
+          </zap-accordion-content>
+        </zap-accordion-item>
+      }
+    </zap-accordion-group>
+  </div>
+</app-preview-code>
+
+<spacer height="40px"></spacer>
+
+<ttl text="Global configurations"></ttl>
+
+<p>
+  A list of global styles, including shape, size, color, font sizes, font weights, and letter
+  spacing can be provided via <code>themeLibrary</code> in the
+  <code>provideZapOption</code> provider.. If you have multi theme setup, you can also provide theme
+  specific colors. These apply to all default variants through out the app unless component level
+  styles are provided.
+</p>
+<spacer height="40px"></spacer>
+
+<ttl text="Example" type="h5"></ttl>
+<spacer></spacer>
+
+<app-code
+  [markdown]="markdownGlobal.markdown"
+  [language]="markdownGlobal.language"
+  [title]="markdownGlobal.title">
+</app-code>
+
+<spacer height="40px"></spacer>
+
+<spacer height="40px"></spacer>
+<ttl text="Colors" type="h5"></ttl>
+<p>You can provide each of these colors for different themes that you use</p>
+
+<div class="max-w-full overflow-x-auto">
+  <table class="w-full border-collapse">
+    <thead>
+      <tr>
+        <th style="width: 20%"><p>Property</p></th>
+        <th><p>Description</p></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <p><code>headerTextColor</code></p>
+        </td>
+        <td><p>Text color of the header.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>itemBorderColor</code></p>
+        </td>
+        <td><p>Border color of the item (divider)</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>headerBgHoverColor</code></p>
+        </td>
+        <td><p>Background color of the header</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>headerTextHoverColor</code></p>
+        </td>
+        <td><p>Text color of the header on hover</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>contentTextColor</code></p>
+        </td>
+        <td><p>Text color of the content</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>contentBgColor</code></p>
+        </td>
+        <td><p>Background color of the content</p></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<spacer height="40px"></spacer>
+<ttl text="Other styles" type="h5"></ttl>
+<p>You can provide a bunch of other styles, that are not theme based but rather generic</p>
+
+<div class="max-w-full overflow-x-auto">
+  <table class="w-full border-collapse">
+    <thead>
+      <tr>
+        <th style="width: 20%"><p>Property</p></th>
+        <th><p>Description</p></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <p><code>headerPaddingLeft</code></p>
+        </td>
+        <td><p>Left padding of the header</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>headerPaddingTop</code></p>
+        </td>
+        <td><p>Top padding of the header</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>headerPaddingBottom</code></p>
+        </td>
+        <td><p>Bottom padding of the header</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>contentPaddingLeft</code></p>
+        </td>
+        <td><p>Left padding of the button.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>contentPaddingRight</code></p>
+        </td>
+        <td><p>Right padding of the content</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>contentPaddingTop</code></p>
+        </td>
+        <td><p>Top padding of the content</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>contentPaddingBottom</code></p>
+        </td>
+        <td><p>Bottom padding of the content</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>headerPadding</code></p>
+        </td>
+        <td><p>Padding of the header</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>contentPadding</code></p>
+        </td>
+        <td><p>Padding of the content</p></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<spacer height="40px"></spacer>

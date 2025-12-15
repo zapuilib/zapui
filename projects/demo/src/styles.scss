@@ -2,13 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
-// @import '../../../dist/zap/plugin/v4';
 @import '@angular/cdk/overlay-prebuilt.css';
-@import url('https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Geist:wght@100..900&family=Geist+Mono:wght@100..900&display=swap');
 
-body {
-  @apply bg-white dark:bg-[#09090B] text-[#09090B] dark:text-white;
+html {
+  @apply scroll-smooth;
 }
 
-:root {
-}
+@import './styles/global';
+@import './styles/components';
+@import './styles/typography';

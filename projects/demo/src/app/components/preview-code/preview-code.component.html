@@ -1,0 +1,35 @@
+<div class="py-5 !z-0 overflow-hidden">
+  <div class="flex w-full border-b border-zinc-900 light:border-zinc-200 mb-5">
+    <p
+      class="border-b border-transparent px-2 cursor-pointer"
+      (click)="activeTab = 'preview'"
+      [ngClass]="{
+        'border-zinc-200 light:border-zinc-800': activeTab === 'preview',
+      }">
+      Preview
+    </p>
+    <p
+      class="border-b border-transparent px-2 cursor-pointer"
+      (click)="activeTab = 'code'"
+      [ngClass]="{
+        'border-zinc-200 light:border-zinc-800': activeTab === 'code',
+      }">
+      Code
+    </p>
+  </div>
+  @if (activeTab === 'preview') {
+    <div
+      class="relative border border-zinc-900 light:border-zinc-100 rounded-lg"
+      [ngClass]="{
+        'min-h-[24rem] flex flex-col justify-center items-center': !disableMinHeight,
+        'p-2 lg:p-10': disableMinHeight,
+      }">
+      <ng-content></ng-content>
+    </div>
+  } @else {
+    <app-code
+      [title]="markdown.title"
+      [markdown]="markdown.markdown"
+      [language]="markdown.language"></app-code>
+  }
+</div>

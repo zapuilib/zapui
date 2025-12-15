@@ -1,0 +1,329 @@
+<h1>Tooltip</h1>
+
+<p class="lead">
+  Tooltips are subtle UI elements that provide contextual information when users hover over, focus
+  on, or tap an element. They offer quick, informative guidance or explanations without cluttering
+  the interface, enhancing user understanding and interaction.
+</p>
+
+<spacer height="40px"></spacer>
+
+<ttl text="Basic toggle"></ttl>
+
+<row [markdowns]="markdown" [isReverse]="true">
+  <div class="component-instance !w-full !mt-0">
+    <zap-tooltip [position]="position">
+      <zap-tooltip-handler>
+        <button class="text-sm">Hover me</button>
+      </zap-tooltip-handler>
+      <zap-tooltip-content [shape]="shape">
+        <p>This is a tooltip!</p>
+      </zap-tooltip-content>
+    </zap-tooltip>
+  </div>
+</row>
+
+<spacer height="40px"></spacer>
+
+<ttl text="Optional properties"></ttl>
+
+<div class="info-card">
+  <i class="fa-solid fa-circle-info mr-2"></i>
+  Use the properties below to style the tooltip and copy the code to your project. Try clicking on
+  them.
+</div>
+
+<div class="max-w-full overflow-x-auto">
+  <table class="w-full border-collapse">
+    <thead>
+      <tr>
+        <th style="width: 200px">Property</th>
+        <th style="width: 400px">Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <p><code>shape</code></p>
+        </td>
+        <td>
+          <p>
+            <code (click)="updateShape('flat')">flat</code> |
+            <code (click)="updateShape('pill')">pill</code> |
+            <code (click)="updateShape('curve')">curve</code>
+          </p>
+        </td>
+        <td>
+          <p>
+            Defines the tooltip's shape.
+            <code (click)="updateShape('pill')">pill</code> is a fully rounded tooltip,
+            <code (click)="updateShape('curve')">curve</code> has rounded corners, and
+            <code (click)="updateShape('flat')">flat</code> is a classic square-cornered tooltip.
+            Default is <code (click)="updateShape('flat')">flat</code>.
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>position</code></p>
+        </td>
+        <td>
+          <p>
+            <code (click)="updatePosition('top')">top</code> |
+            <code (click)="updatePosition('bottom')">bottom</code> |
+            <code (click)="updatePosition('left')">left</code> |
+            <code (click)="updatePosition('right')">right</code> |
+            <code (click)="updatePosition('auto')">auto</code>
+          </p>
+        </td>
+        <td>
+          <p>
+            Specifies the position of the tooltip relative to its trigger element. By default, the
+            position is set to
+            <code (click)="updatePosition('auto')">auto</code>, which intelligently adjusts the
+            tooltip's placement to ensure it fits within the viewport. In auto mode, the tooltip
+            typically appears above the trigger element, centered horizontally. You can override
+            this behavior by setting a specific position. Available options include
+            <code (click)="updatePosition('top')">top</code>,
+            <code (click)="updatePosition('bottom')">bottom</code>,
+            <code (click)="updatePosition('left')">left</code>, and
+            <code (click)="updatePosition('right')">right</code>.
+          </p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<spacer height="40px"></spacer>
+
+<ttl text="Global configurations"></ttl>
+
+<p>
+  A list of global styles, including shape, size, color, font sizes, font weights, and letter
+  spacing can be provided via <code>themeLibrary</code> in the
+  <code>provideZapOption</code> provider.. If you have multi theme setup, you can also provide theme
+  specific colors. These apply to all default variants through out the app unless component level
+  styles are provided.
+</p>
+<spacer height="40px"></spacer>
+
+<ttl text="Example" type="h5"></ttl>
+<spacer></spacer>
+
+<app-code
+  [markdown]="markdownGlobal.markdown"
+  [language]="markdownGlobal.language"
+  [title]="markdownGlobal.title">
+</app-code>
+
+<spacer height="40px"></spacer>
+
+<ttl text="Shape" type="h5"></ttl>
+
+<div class="max-w-full overflow-x-auto">
+  <table class="w-full border-collapse">
+    <thead>
+      <tr>
+        <th style="width: 20%"><p>Property</p></th>
+        <th><p>Description</p></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <p><code>shape</code></p>
+        </td>
+        <td>
+          <p>
+            Defines the shape of the tooltip. Can be <code>flat</code>, <code>curve</code>, or
+            <code>pill</code>.
+          </p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<spacer height="40px"></spacer>
+<ttl text="Colors" type="h5"></ttl>
+<p>You can provide each of these colors for different themes that you use</p>
+
+<div class="max-w-full overflow-x-auto">
+  <table class="w-full border-collapse">
+    <thead>
+      <tr>
+        <th style="width: 20%"><p>Property</p></th>
+        <th><p>Description</p></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <p><code>handlerBgColor</code></p>
+        </td>
+        <td><p>Background color of the handler of the tooltip.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>handlerTextColor</code></p>
+        </td>
+        <td><p>Text color of the handler of the tooltip.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>handlerBorderColor</code></p>
+        </td>
+        <td><p>Border color of the handler of the tooltip.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>handlerBgHoverColor</code></p>
+        </td>
+        <td>
+          <p>Background color of the handler of the tooltip when hovered.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>handlerTextHoverColor</code></p>
+        </td>
+        <td><p>Text color of the handler of the tooltip when hovered.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>handlerBorderHoverColor</code></p>
+        </td>
+        <td><p>Border color of the handler of the tooltip when hovered.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>contentBgColor</code></p>
+        </td>
+        <td><p>Background color of the content of the tooltip.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>contentTextColor</code></p>
+        </td>
+        <td><p>Text color of the content of the tooltip.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>contentBorderColor</code></p>
+        </td>
+        <td><p>Border color of the content of the tooltip.</p></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<spacer height="40px"></spacer>
+<ttl text="Other styles" type="h5"></ttl>
+<p>You can provide a bunch of other styles, that are not theme based but rather generic</p>
+
+<div class="max-w-full overflow-x-auto">
+  <table class="w-full border-collapse">
+    <thead>
+      <tr>
+        <th style="width: 20%"><p>Property</p></th>
+        <th><p>Description</p></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <p><code>contentBorderRadius</code></p>
+        </td>
+        <td><p>Defines the radius of the content's corners.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>contentPaddingLeft</code></p>
+        </td>
+        <td><p>Left padding of the content element.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>contentPaddingRight</code></p>
+        </td>
+        <td><p>Right padding of the content element.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>contentPaddingTop</code></p>
+        </td>
+        <td><p>Top padding of the content element.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>contentPaddingBottom</code></p>
+        </td>
+        <td><p>Bottom padding of the content element.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>contentPadding</code></p>
+        </td>
+        <td><p>Padding around the tooltip's content element.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>contentFontSize</code></p>
+        </td>
+        <td><p>Font size of the tooltip's content element.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>contentFontWeight</code></p>
+        </td>
+        <td><p>Font weight of the tooltip's content element.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>contentLineHeight</code></p>
+        </td>
+        <td><p>Line height of the tooltip's content element.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>contentLetterSpacing</code></p>
+        </td>
+        <td><p>Letter spacing of the tooltip's content element.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>handlerBorderRadius</code></p>
+        </td>
+        <td><p>Defines the radius of the handler's corners.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>handlerFontSize</code></p>
+        </td>
+        <td><p>Font size of the tooltip's handler element.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>handlerFontWeight</code></p>
+        </td>
+        <td><p>Font weight of the tooltip's handler element.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>handlerLineHeight</code></p>
+        </td>
+        <td><p>Line height of the tooltip's handler element.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>handlerLetterSpacing</code></p>
+        </td>
+        <td><p>Letter spacing of the tooltip's handler element.</p></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<spacer height="40px"></spacer>

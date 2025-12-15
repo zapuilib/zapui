@@ -1,0 +1,29 @@
+.gradient {
+  background: radial-gradient(
+    600px circle at var(--mouse-x) var(--mouse-y),
+    rgba(246, 55, 227, 0.4),
+    transparent 40%
+  );
+}
+
+.card {
+  &:last-of-type {
+    p {
+      @media (max-width: 639px) {
+        @apply w-full;
+      }
+
+      @media (max-width: 767px) {
+        @apply w-[70%];
+      }
+
+      @media (max-width: 1023px) {
+        @apply w-[40%];
+      }
+
+      @media (max-width: 1279px) {
+        @apply w-[30%];
+      }
+    }
+  }
+}

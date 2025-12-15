@@ -1,0 +1,26 @@
+<section class="py-5">
+  <div class="grid grid-cols-1 gap-10 items-start">
+    <div class="h-max top-[85px]">
+      <div class="!py-0">
+        <ng-content></ng-content>
+      </div>
+    </div>
+    <div [class.order-first]="isReverse" [class.order-last]="!isReverse">
+      @if (markdowns.length > 1) {
+        <app-code-group>
+          @for (markdown of markdowns; track $index) {
+            <app-code
+              [title]="markdown.title"
+              [markdown]="markdown.markdown"
+              [language]="markdown.language"></app-code>
+          }
+        </app-code-group>
+      } @else if (markdowns.length === 1) {
+        <app-code
+          [title]="markdowns[0].title"
+          [markdown]="markdowns[0].markdown"
+          [language]="markdowns[0].language"></app-code>
+      }
+    </div>
+  </div>
+</section>

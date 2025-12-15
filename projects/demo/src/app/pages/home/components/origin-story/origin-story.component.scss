@@ -1,0 +1,72 @@
+.origin__story__wrapper {
+  @apply mx-auto max-w-screen-xl py-28 px-6;
+
+  .origin__story__container {
+    @apply border border-zinc-800 rounded-3xl py-16 px-6;
+    background: radial-gradient(ellipse 107.82% 180.75% at 21% 133.35%, #b519ff 0%, #131317 61%);
+
+    @screen lg {
+      @apply px-14;
+    }
+  }
+
+  .origin__story__header {
+    @apply text-center;
+
+    @screen lg {
+      @apply text-left;
+    }
+  }
+
+  .origin__story__content {
+    @apply grid grid-cols-1 mt-10 gap-x-10 gap-y-10;
+
+    @screen lg {
+      @apply grid-cols-12 gap-y-0;
+    }
+
+    .origin__story__content__left {
+      @apply col-span-1 text-center;
+
+      @screen lg {
+        @apply col-span-4 text-left;
+      }
+    }
+
+    .origin__story__content__center {
+      @apply col-span-1 text-center;
+
+      @screen lg {
+        @apply col-span-4 text-left;
+      }
+
+      .origin__story__text__container {
+        @apply flex flex-col gap-y-6;
+      }
+    }
+
+    .origin__story__content__right {
+      @apply col-span-1 text-center;
+
+      @screen lg {
+        @apply col-span-4 text-left;
+      }
+
+      .origin__story__right__container {
+        @apply flex flex-col justify-between h-full gap-y-6;
+
+        @screen lg {
+          @apply gap-y-0;
+        }
+      }
+    }
+  }
+}
+
+.status__chip {
+  @apply w-fit rounded-md border px-[12px] py-[4px] text-sm font-light leading-tight;
+
+  &.origin__story {
+    @apply border-[#B519FFAA] bg-[#B519FF1A];
+  }
+}

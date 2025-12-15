@@ -1,0 +1,1070 @@
+<h1>Select</h1>
+
+<p class="lead">
+  Select components are interactive UI elements that allow users to choose one or more options from
+  a list. They provide a clear, intuitive way to make selections, enhancing form usability and
+  decision-making.
+</p>
+
+<spacer height="40px"></spacer>
+
+<ttl text="Basic select"></ttl>
+
+<app-preview-code [markdown]="markdown[0]">
+  <zap-select
+    id="select"
+    label="Select a country"
+    placeholder="Country"
+    [options]="options"
+    [shape]="shape"
+    [size]="size"
+    [icon]="icon"
+    [iconPosition]="iconPosition"
+    [position]="position"
+    [multiselect]="multiselect"
+    [searchable]="searchable"
+    class="px-10 w-full md:w-[40%]">
+    ></zap-select
+  >
+</app-preview-code>
+
+<spacer height="40px"></spacer>
+
+<ttl text="Optional properties"></ttl>
+
+<div class="info-card">
+  <i class="fa-solid fa-circle-info mr-2"></i>Use the properties below to style the select and copy
+  the code to your project. Try clicking on them.
+</div>
+
+<div class="max-w-full overflow-x-auto">
+  <table class="w-full border-collapse">
+    <thead>
+      <tr>
+        <th style="width: 200px">Property</th>
+        <th style="width: 400px">Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <p><code>size</code></p>
+        </td>
+        <td>
+          <p>
+            <code (click)="updateSize('compact')">compact</code> |
+            <code (click)="updateSize('base')">base</code>
+          </p>
+        </td>
+        <td>
+          <p>
+            Controls select sizing.
+            <code (click)="updateSize('compact')">compact</code> has less padding,
+            <code (click)="updateSize('base')">base</code> follows the standard theme.
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>shape</code></p>
+        </td>
+        <td>
+          <p>
+            <code (click)="updateShape('flat')">flat</code> |
+            <code (click)="updateShape('pill')">pill</code> |
+            <code (click)="updateShape('curve')">curve</code>
+          </p>
+        </td>
+        <td>
+          <p>
+            Defines the select shape.
+            <code (click)="updateShape('pill')">pill</code> is a fully rounded select,
+            <code (click)="updateShape('curve')">curve</code> has rounded corners, and
+            <code (click)="updateShape('flat')">flat</code> is a classic square-cornered select.
+            Default is <code (click)="updateShape('flat')">flat</code>.
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>icon</code></p>
+        </td>
+        <td>
+          <p class="font-mono">string</p>
+        </td>
+        <td>
+          <p>
+            Specifies a Font Awesome class for the select's icon (e.g.,
+            <code (click)="updateIcon('fa-globe')">fa-globe</code>).
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>iconPosition</code></p>
+        </td>
+        <td>
+          <p>
+            <code (click)="updateIconPosition('left')">left</code> |
+            <code (click)="updateIconPosition('right')">right</code>
+          </p>
+        </td>
+        <td>
+          <p>
+            Sets the icon's position relative to the select text. Defaults to
+            <code (click)="updateIconPosition('left')">left</code>.
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>position</code></p>
+        </td>
+        <td>
+          <p>
+            <code (click)="updatePosition('top')">top</code> |
+            <code (click)="updatePosition('bottom')">bottom</code> |
+            <code (click)="updatePosition('auto')">auto</code>
+          </p>
+        </td>
+        <td>
+          <p>
+            Sets the position of the select options.
+            <code (click)="updatePosition('top')">top</code> and
+            <code (click)="updatePosition('bottom')">bottom</code> are self-explanatory, while
+            <code (click)="updatePosition('auto')">auto</code> intelligently positions the options
+            to fit within the viewport. Defaults to
+            <code (click)="updatePosition('auto')">auto</code>.
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>multiselect</code></p>
+        </td>
+        <td>
+          <p class="font-mono">boolean</p>
+        </td>
+        <td>
+          <p>
+            <code (click)="updateMultiselect(true)">true</code> enables multiple selection. Defaults
+            to <code (click)="updateMultiselect(false)">false</code>.
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>searchable</code></p>
+        </td>
+        <td>
+          <p class="font-mono">boolean</p>
+        </td>
+        <td>
+          <p>
+            <code (click)="updateSearchable(false)">false</code> removes the search bar from the
+            select. Defaults to <code (click)="updateSearchable(true)">true</code>.
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>async</code></p>
+        </td>
+        <td>
+          <p class="font-mono">boolean</p>
+        </td>
+        <td>
+          <p>
+            Set this to <code (click)="updateAsync(true)">true</code> if you want to load options
+            dynamically from an API call during the search. By default, it is set to
+            <code (click)="updateAsync(false)">false</code>, which disables async loading.
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>id</code></p>
+        </td>
+        <td>
+          <p class="font-mono">string</p>
+        </td>
+        <td>
+          <p>Defines the id of the select.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>label</code></p>
+        </td>
+        <td>
+          <p class="font-mono">string</p>
+        </td>
+        <td>
+          <p>Defines the label attached to the select.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>placeholder</code></p>
+        </td>
+        <td>
+          <p class="font-mono">string</p>
+        </td>
+        <td>
+          <p>Defines the placeholder of the select.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>helpText</code></p>
+        </td>
+        <td>
+          <p class="font-mono">string</p>
+        </td>
+        <td>
+          <p>Defines the help text of the select.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>searchPlaceholder</code></p>
+        </td>
+        <td>
+          <p class="font-mono">string</p>
+        </td>
+        <td>
+          <p>Defines the placeholder of the search bar.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>notFound</code></p>
+        </td>
+        <td>
+          <p class="font-mono">string</p>
+        </td>
+        <td>
+          <p>Defines the message to display when no options are found.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>customErrorMessages</code></p>
+        </td>
+        <td>
+          <p class="font-mono">string</p>
+        </td>
+        <td>
+          <p>Provides the ability to set custom error messages.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>zapClass</code></p>
+        </td>
+        <td>
+          <p class="font-mono">string</p>
+        </td>
+        <td>
+          <p>
+            Allows overriding default styles by passing Tailwind CSS classes. Utilize the
+            <code class="!cursor-auto">&#64;zaplib/zapui/tailwind</code> plugin to target specific
+            elements within the select component.
+          </p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<ttl text="Optional templates"></ttl>
+
+<div class="info-card">
+  <i class="fa-solid fa-circle-info mr-2"></i>Use the properties below to provide a custom template
+  for the single select field in the menu
+</div>
+
+<div class="max-w-full overflow-x-auto">
+  <table class="w-full border-collapse">
+    <thead>
+      <tr>
+        <th style="width: 200px">Property</th>
+        <th style="width: 400px">Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <p><code>optionTemplate</code></p>
+        </td>
+        <td>
+          <p>
+            <code>TemplateRef&lt;any&gt;</code>
+          </p>
+        </td>
+        <td>
+          <p>Use this to provide a custom template for the options in the select menu.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>selectedTemplate</code></p>
+        </td>
+        <td>
+          <p>
+            <code>TemplateRef&lt;any&gt;</code>
+          </p>
+        </td>
+        <td>
+          <p>Use this to provide a custom template for the selected option.</p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<row [markdowns]="markdownTemplate" [isReverse]="true">
+  <div class="component-instance !w-full !mt-0">
+    <zap-select
+      id="select2"
+      label="Select a country"
+      placeholder="Country"
+      [options]="options"
+      [shape]="shape"
+      [size]="size"
+      [icon]="icon"
+      [iconPosition]="iconPosition"
+      [position]="position"
+      [multiselect]="multiselect"
+      [searchable]="searchable"
+      [optionTemplate]="customOptionTmp"
+      [selectedTemplate]="customSelectedTmp"
+      class="min-w-52">
+    </zap-select>
+  </div>
+</row>
+
+<ng-template #customOptionTmp let-option>
+  <div class="custom-option">
+    <span class="block">{{ option.label }}</span>
+    <span class="block text-zinc-500">Country code: {{ option.value }}</span>
+  </div>
+</ng-template>
+
+<ng-template #customSelectedTmp let-option>
+  <div class="custom-option">
+    <span class="text-purple-500">Selected: {{ option.label }}</span>
+  </div>
+</ng-template>
+
+<spacer height="40px"></spacer>
+
+<ttl text="Supported directives"></ttl>
+
+<div class="max-w-full overflow-x-auto">
+  <table class="w-full border-collapse">
+    <thead>
+      <tr>
+        <th style="width: 20%">Selector</th>
+        <th style="width: 20%">Directive name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <p><code>zapFormFieldIcon</code></p>
+        </td>
+        <td>
+          <p class="font-mono">ZapFormFieldIconDirective</p>
+        </td>
+        <td>
+          <p>
+            Import a directive <code>ZapFormFieldIconDirective</code> into your component to enables
+            adding any type of icon to a select, including SVGs, font-based icons, and more.
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>zapFormFieldHelpText</code></p>
+        </td>
+        <td>
+          <p class="font-mono">ZapFormFieldHelpTextDirective</p>
+        </td>
+        <td>
+          <p>
+            Import a directive <code>ZapFormFieldHelpTextDirective</code> into your component to
+            enable adding any help text to an select.
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>zapLabel</code></p>
+        </td>
+        <td>
+          <p class="font-mono">ZapLabelDirective</p>
+        </td>
+        <td>
+          <p>
+            Import a directive <code>ZapLabelDirective</code> into your component to enable adding
+            any label to an inout.
+          </p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<spacer height="40px"></spacer>
+
+<ttl text="Example" type="h4"></ttl>
+
+<app-preview-code [markdown]="markdownDirective">
+  <zap-select
+    id="select3"
+    label="Select a country"
+    placeholder="Country"
+    [options]="options"
+    [shape]="shape"
+    [size]="size"
+    [icon]="icon"
+    [iconPosition]="iconPosition"
+    [position]="position"
+    [multiselect]="multiselect"
+    [searchable]="searchable"
+    class="px-10 w-full md:w-[40%]">
+    <div zapLabel class="flex items-center gap-2">
+      <i class="fa-solid fa-user"></i>
+      <p>Username</p>
+    </div>
+
+    <svg zapIcon xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+      <path
+        fill="currentColor"
+        d="M133.9 232L65.8 95.9 383.4 232l-249.5 0zm0 48l249.5 0L65.8 416.1l68-136.1zM44.6 34.6C32.3 29.3 17.9 32.3 8.7 42S-2.6 66.3 3.4 78.3L92.2 256 3.4 433.7c-6 12-3.9 26.5 5.3 36.3s23.5 12.7 35.9 7.5l448-192c11.8-5 19.4-16.6 19.4-29.4s-7.6-24.4-19.4-29.4l-448-192z" />
+    </svg>
+
+    <div zapHelpText>
+      <p>How to correctly choose a country?</p>
+      <ul>
+        <li class="ml-1 flex items-center gap-2">
+          <i class="fa-solid fa-xmark-large text-error"></i>
+          <p>Close your eyes and smash the keyboard with your face</p>
+        </li>
+        <li class="ml-1 flex items-center gap-2">
+          <i class="fa-solid fa-xmark-large text-error"></i>
+          <p>Use a fake ID</p>
+        </li>
+        <li class="ml-1 flex items-center gap-2">
+          <i class="fa-solid fa-check text-success"></i>
+          <p>Select the country you actually live in</p>
+        </li>
+      </ul>
+    </div>
+  </zap-select>
+</app-preview-code>
+
+<spacer height="40px"></spacer>
+
+<ttl text="Global configurations"></ttl>
+
+<p>
+  A list of global styles, including shape, size, color, font sizes, font weights, and letter
+  spacing can be provided via <code>themeLibrary</code> in the
+  <code>provideZapOption</code> provider.. If you have multi theme setup, you can also provide theme
+  specific colors. These apply to all default variants through out the app unless component level
+  styles are provided.
+</p>
+<spacer height="40px"></spacer>
+
+<ttl text="Example" type="h5"></ttl>
+<spacer></spacer>
+
+<app-code
+  [markdown]="markdownGlobal.markdown"
+  [language]="markdownGlobal.language"
+  [title]="markdownGlobal.title">
+</app-code>
+
+<spacer height="40px"></spacer>
+
+<ttl text="Shape and Size" type="h5"></ttl>
+
+<div class="max-w-full overflow-x-auto">
+  <table class="w-full border-collapse">
+    <thead>
+      <tr>
+        <th style="width: 20%"><p>Property</p></th>
+        <th><p>Description</p></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <p><code>shape</code></p>
+        </td>
+        <td>
+          <p>
+            Defines the shape of the select. Can be <code>flat</code>, <code>curve</code>, or
+            <code>pill</code>.
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>size</code></p>
+        </td>
+        <td>
+          <p>
+            Defined the size of the select. Can be <code>compact</code> |
+            <code>base</code>
+          </p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<spacer height="40px"></spacer>
+<ttl text="Colors" type="h5"></ttl>
+<p>You can provide each of these colors for different themes that you use</p>
+
+<div class="max-w-full overflow-x-auto">
+  <table class="w-full border-collapse">
+    <thead>
+      <tr>
+        <th style="width: 20%"><p>Property</p></th>
+        <th><p>Description</p></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <p><code>bgColor</code></p>
+        </td>
+        <td><p>Background color of the select.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>textColor</code></p>
+        </td>
+        <td><p>Text color of the select.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>borderColor</code></p>
+        </td>
+        <td><p>Border color of the select.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>bgHoverColor</code></p>
+        </td>
+        <td><p>Background color of the select when hovered.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>ringFocusColor</code></p>
+        </td>
+        <td><p>Ring color of the select when focused.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>headerTextHoverColor</code></p>
+        </td>
+        <td><p>Text color of the header on hover</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>borderHoverColor</code></p>
+        </td>
+        <td><p>Border color of the select when hovered.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>searchBgColor</code></p>
+        </td>
+        <td><p>Search background color when hovered.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>searchTextColor</code></p>
+        </td>
+        <td><p>Text color of the search input</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>searchBorderColor</code></p>
+        </td>
+        <td><p>Border color of the search input</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>searchBgHoverColor</code></p>
+        </td>
+        <td><p>Background color of the search input when hovered</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>searchTextHoverColor</code></p>
+        </td>
+        <td><p>Text color of the search input when hovered</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>labelColor</code></p>
+        </td>
+        <td><p>Text color of the label</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>searchPlaceholderColor</code></p>
+        </td>
+        <td><p>Text color of the placeholder of the search input</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>placeholderColor</code></p>
+        </td>
+        <td><p>Text color of the placeholder</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>checkboxBgColor</code></p>
+        </td>
+        <td><p>Background color of the checkbox</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>checkboxBorderColor</code></p>
+        </td>
+        <td><p>Border color of the checkbox</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>checkboxCheckedBgColor</code></p>
+        </td>
+        <td><p>Background color of the checkbox when checked</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>checkboxCheckedBorderColor</code></p>
+        </td>
+        <td><p>Border color of the checkbox when checked</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>checkboxCheckedTextColor</code></p>
+        </td>
+        <td><p>Text color of the checkbox when checked</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>chipBgColor</code></p>
+        </td>
+        <td><p>Background color of the chip</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>chipTextColor</code></p>
+        </td>
+        <td><p>Text color of the chip</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>chipBorderColor</code></p>
+        </td>
+        <td><p>Border color of the chip</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>dismissColor</code></p>
+        </td>
+        <td><p>Color of the dismiss icon</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>dismissHoverColor</code></p>
+        </td>
+        <td><p>Color of the dismiss icon when hovered</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>helpTextColor</code></p>
+        </td>
+        <td><p>Text color of the help text</p></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<spacer height="40px"></spacer>
+<ttl text="Other styles" type="h5"></ttl>
+<p>You can provide a bunch of other styles, that are not theme based but rather generic</p>
+
+<div class="max-w-full overflow-x-auto">
+  <table class="w-full border-collapse">
+    <thead>
+      <tr>
+        <th style="width: 20%"><p>Property</p></th>
+        <th><p>Description</p></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <p><code>borderRadius</code></p>
+        </td>
+        <td><p>Defines the radius of the select's corners.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>paddingLeft</code></p>
+        </td>
+        <td><p>Left padding of the select.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>paddingRight</code></p>
+        </td>
+        <td><p>Right padding of the select.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>paddingTop</code></p>
+        </td>
+        <td><p>Top padding of the select.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>paddingBottom</code></p>
+        </td>
+        <td><p>Bottom padding of the select.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>padding</code></p>
+        </td>
+        <td><p>Padding around the select's content.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>checkboxBorderRadius</code></p>
+        </td>
+        <td><p>Defines the radius of the checkbox's corners.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>checkboxPaddingLeft</code></p>
+        </td>
+        <td><p>Left padding of the checkbox in the select.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>checkboxPaddingRight</code></p>
+        </td>
+        <td><p>Right padding of the checkbox in the select.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>checkboxPaddingTop</code></p>
+        </td>
+        <td><p>Top padding of the checkbox in the select.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>checkboxPaddingBottom</code></p>
+        </td>
+        <td><p>Bottom padding of the checkbox.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>checkboxPadding</code></p>
+        </td>
+        <td><p>Padding around the checkbox in the select.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>checkboxWidth</code></p>
+        </td>
+        <td><p>Width of the checkbox.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>checkboxHeight</code></p>
+        </td>
+        <td><p>Height of the checkbox.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>searchBorderRadius</code></p>
+        </td>
+        <td><p>Defines the radius of the search's corners.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>searchPaddingLeft</code></p>
+        </td>
+        <td><p>Left padding of the search in the select.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>searchPaddingRight</code></p>
+        </td>
+        <td><p>Right padding of the search in the select.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>searchPaddingTop</code></p>
+        </td>
+        <td><p>Top padding of the search in the select.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>searchPaddingBottom</code></p>
+        </td>
+        <td><p>Bottom padding of the search.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>searchPadding</code></p>
+        </td>
+        <td><p>Padding around the search in the select.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>chipBorderRadius</code></p>
+        </td>
+        <td><p>Defines the radius of the chip's corners.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>chipPaddingLeft</code></p>
+        </td>
+        <td><p>Left padding of the chip in the select.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>chipPaddingRight</code></p>
+        </td>
+        <td><p>Right padding of the chip in the select.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>chipPaddingTop</code></p>
+        </td>
+        <td><p>Top padding of the chip in the select.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>chipPaddingBottom</code></p>
+        </td>
+        <td><p>Bottom padding of the chip.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>chipPadding</code></p>
+        </td>
+        <td><p>Padding around the chip in the select.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>fontSize</code></p>
+        </td>
+        <td><p>Font size of the select's text.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>fontWeight</code></p>
+        </td>
+        <td><p>Font weight of the select's text.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>lineHeight</code></p>
+        </td>
+        <td><p>Line height of the select's text.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>letterSpacing</code></p>
+        </td>
+        <td><p>Letter spacing of the select's text.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>labelFontSize</code></p>
+        </td>
+        <td><p>Font size of the select's label.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>labelFontWeight</code></p>
+        </td>
+        <td><p>Font weight of the select's label.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>labelLineHeight</code></p>
+        </td>
+        <td><p>Line height of the select's label.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>labelLetterSpacing</code></p>
+        </td>
+        <td><p>Letter spacing of the select's label.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>searchFontSize</code></p>
+        </td>
+        <td><p>Font size of the select's search.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>searchFontWeight</code></p>
+        </td>
+        <td><p>Font weight of the select's search.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>searchLineHeight</code></p>
+        </td>
+        <td><p>Line height of the select's search.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>searchLetterSpacing</code></p>
+        </td>
+        <td><p>Letter spacing of the select's search.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>placeholderFontSize</code></p>
+        </td>
+        <td><p>Font size of the select's placeholder.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>placeholderFontWeight</code></p>
+        </td>
+        <td><p>Font weight of the select's placeholder.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>placeholderLineHeight</code></p>
+        </td>
+        <td><p>Line height of the select's placeholder.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>placeholderLetterSpacing</code></p>
+        </td>
+        <td><p>Letter spacing of the select's placeholder.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>optionFontSize</code></p>
+        </td>
+        <td><p>Font size of the select's option.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>optionFontWeight</code></p>
+        </td>
+        <td><p>Font weight of the select's option.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>optionLineHeight</code></p>
+        </td>
+        <td><p>Line height of the select's option.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>optionLetterSpacing</code></p>
+        </td>
+        <td><p>Letter spacing of the select's option.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>chipFontSize</code></p>
+        </td>
+        <td><p>Font size of the select's chip.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>chipFontWeight</code></p>
+        </td>
+        <td><p>Font weight of the select's chip.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>chipLineHeight</code></p>
+        </td>
+        <td><p>Line height of the select's chip.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>chipLetterSpacing</code></p>
+        </td>
+        <td><p>Letter spacing of the select's chip.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>dismissFontSize</code></p>
+        </td>
+        <td><p>Font size of the select's dismiss icon.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>dismissFontWeight</code></p>
+        </td>
+        <td><p>Font weight of the select's dismiss icon.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>dismissLineHeight</code></p>
+        </td>
+        <td><p>Line height of the select's dismiss icon.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>dismissLetterSpacing</code></p>
+        </td>
+        <td><p>Letter spacing of the select's dismiss icon.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>helpTextFontSize</code></p>
+        </td>
+        <td><p>Font size of the select's help text.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>helpTextFontWeight</code></p>
+        </td>
+        <td><p>Font weight of the select's help text.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>helpTextLineHeight</code></p>
+        </td>
+        <td><p>Line height of the select's help text.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>helpTextLetterSpacing</code></p>
+        </td>
+        <td><p>Letter spacing of the select's help text.</p></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<spacer height="40px"></spacer>

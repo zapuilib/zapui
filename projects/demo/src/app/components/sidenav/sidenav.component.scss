@@ -1,0 +1,72 @@
+nav {
+  @apply px-3 pb-6;
+
+  @media (max-width: 1024px) {
+    @apply pb-24;
+  }
+
+  ul {
+    li {
+      @apply mt-10;
+
+      &:first-of-type {
+        @apply mt-0;
+      }
+
+      a {
+        @apply border-l-0 px-0 text-xs text-zinc-600;
+      }
+    }
+
+    &.sub {
+      @apply mt-2 px-1;
+
+      li {
+        @apply mt-0 py-0;
+
+        &.soon {
+          a {
+            @apply text-zinc-700 pointer-events-none;
+          }
+        }
+
+        a {
+          @apply w-full px-0 py-1.5 block relative;
+          @apply text-sm transition-all duration-200 ease-in-out text-zinc-400 hover:text-zinc-100;
+
+          &.current {
+            @apply text-zinc-100;
+          }
+        }
+      }
+    }
+  }
+}
+
+.light nav {
+  ul {
+    li {
+      a {
+        @apply text-zinc-500;
+      }
+    }
+
+    &.sub {
+      li {
+        &.soon {
+          a {
+            @apply text-zinc-300;
+          }
+        }
+
+        a {
+          @apply text-zinc-800 hover:text-zinc-950;
+
+          &.current {
+            @apply text-zinc-800;
+          }
+        }
+      }
+    }
+  }
+}

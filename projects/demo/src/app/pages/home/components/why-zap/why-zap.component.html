@@ -1,0 +1,21 @@
+<section class="mx-auto max-w-screen-xl px-6">
+  <div class="text-center">
+    <h2 class="alt">Why zapui?</h2>
+  </div>
+  <div class="grid grid-cols-4 xl:grid-cols-3 gap-5 py-20">
+    @for (card of cards; track $index) {
+      <div
+        class="card bg-zinc-950 light:bg-zinc-100 p-8 xl:p-5 col-span-4 md:col-span-2 last-of-type:col-span-4 xl:last-of-type:col-span-1 xl:col-span-1 flex flex-col gap-y-9 border border-zinc-800 light:border-zinc-200 rounded-3xl relative overflow-hidden group"
+        (mousemove)="onMouseMove($event, $any($event.target))"
+        (mouseleave)="onMouseLeave($event, $any($event.target))">
+        <div
+          class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none gradient"></div>
+        <img [src]="card.svg" alt="Diamond shape" class="h-[4rem] w-[4rem] relative" />
+        <h3 class="alt relative">{{ card.title }}</h3>
+        <p class="!py-1 !leading-[1.25] relative !text-sm !text-zinc-500">
+          {{ card.description }}
+        </p>
+      </div>
+    }
+  </div>
+</section>

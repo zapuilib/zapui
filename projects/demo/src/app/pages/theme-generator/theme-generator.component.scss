@@ -1,0 +1,25 @@
+ul {
+  li {
+    @apply py-0;
+
+    p {
+      @apply flex items-center font-mono gap-x-2 text-zinc-500 py-0 leading-[1.75];
+
+      input {
+        @apply appearance-none border-none shadow-none outline-none w-4 h-4 cursor-pointer;
+
+        &::-webkit-color-swatch {
+          @apply border border-dashed rounded;
+        }
+
+        &::-webkit-color-swatch-wrapper {
+          @apply p-0;
+        }
+      }
+    }
+  }
+}
+
+.light ul li p {
+  @apply text-zinc-400;
+}

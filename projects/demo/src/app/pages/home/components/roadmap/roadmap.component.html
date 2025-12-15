@@ -1,0 +1,117 @@
+<section class="mx-auto max-w-screen py-28">
+  <div class="text-center">
+    <h2 class="alt">Roadmap</h2>
+  </div>
+
+  <div class="timeline__wrapper">
+    <div class="mobile__wrapper timeline__container__mobile">
+      <div class="mobile__item__first"></div>
+      @for (milestone of milestones; track milestone.title; let i = $index) {
+        @if (i % 2 === 0) {
+          <div class="mobile__item__even__first"></div>
+          <div class="mobile__item__even border__top__short">
+            <div class="mobile__item__even__content">
+              <span
+                class="text-base font-normal"
+                [class.text-[#F637E3]]="milestone.isActive"
+                [class.font-medium]="milestone.isActive">
+                {{ milestone.title }}
+              </span>
+              <span
+                class="text-sm font-extralight leading-none"
+                [class.text-[#F637E3]]="milestone.isActive"
+                [class.font-light]="milestone.isActive">
+                {{ milestone.description }}
+              </span>
+            </div>
+          </div>
+        } @else {
+          <div class="mobile__item__odd border__top__short__right">
+            <div class="mobile__item__odd__content">
+              <span
+                class="text-base font-normal"
+                [class.text-[#F637E3]]="milestone.isActive"
+                [class.font-medium]="milestone.isActive">
+                {{ milestone.title }}
+              </span>
+              <span
+                class="text-sm font-extralight leading-none"
+                [class.text-[#F637E3]]="milestone.isActive"
+                [class.font-light]="milestone.isActive">
+                {{ milestone.description }}
+              </span>
+            </div>
+          </div>
+          <div class="mobile__item__odd__last"></div>
+        }
+      }
+    </div>
+
+    <div class="tablet__wrapper">
+      <div class="tablet__container timeline__container__tablet">
+        <div class="tablet__flex__container">
+          <div class="tablet__spacer"></div>
+
+          @for (milestone of milestones; track milestone.title) {
+            <div class="timeline__item__tablet border__left__short__tablet">
+              <div class="tablet__item__content">
+                <span
+                  class="text-base font-normal"
+                  [class.text-[#F637E3]]="milestone.isActive"
+                  [class.font-medium]="milestone.isActive">
+                  {{ milestone.title }}
+                </span>
+                <span
+                  class="text-sm font-extralight leading-none"
+                  [class.text-[#F637E3]]="milestone.isActive"
+                  [class.font-light]="milestone.isActive">
+                  {{ milestone.description }}
+                </span>
+              </div>
+            </div>
+          }
+        </div>
+      </div>
+    </div>
+
+    <div class="desktop__wrapper timeline__container">
+      <div class="desktop__spacer"></div>
+      @for (milestone of milestones; track milestone.title) {
+        <div class="desktop__item border__left__short">
+          <div class="desktop__item__content">
+            <span
+              class="text-base font-normal"
+              [class.text-[#F637E3]]="milestone.isActive"
+              [class.font-medium]="milestone.isActive">
+              {{ milestone.title }}
+            </span>
+            <span
+              class="text-sm font-extralight leading-none"
+              [class.text-[#F637E3]]="milestone.isActive"
+              [class.font-light]="milestone.isActive">
+              {{ milestone.description }}
+            </span>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+
+  <div class="base__wrapper">
+    <div class="base__content">
+      <span class="status__chip designer mb-8">Base components</span>
+      <span class="text-zinc-300 text-base font-extralight text-center lg:text-left"
+        >We offer a wide range of free-to-use components that feature modern designs and are always
+        up-to-date with the latest trends.</span
+      >
+      <span class="text-zinc-300 text-base font-extralight text-center lg:text-left"
+        >Form fields are ready to use with just a single line of code, whether you’re working with
+        reactive forms or template-driven forms.</span
+      >
+    </div>
+
+    <div class="base__image">
+      <img src="/assets/home/base-components.png" alt="Base components" />
+    </div>
+  </div>
+</section>

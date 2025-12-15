@@ -1,0 +1,97 @@
+/*
+  IR_Black style (c) Vasily Mikhailitchenko <vaskas@programica.ru>
+*/
+
+.hljs {
+  background: transparent;
+  color: rgb(161 161 170);
+  font-family: 'Geist Mono', monospace;
+  letter-spacing: 0.03px;
+  font-size: 14px;
+}
+
+.hljs[ng-reflect-language='bash'] {
+}
+
+.hljs-comment,
+.hljs-quote,
+.hljs-meta {
+  color: #7c7c7c;
+}
+
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-tag,
+.hljs-name {
+  color: #e0e0e0;
+}
+
+.hljs-attribute,
+.hljs-selector-id {
+  color: #ffffb6;
+}
+
+.hljs-string,
+.hljs-selector-attr,
+.hljs-selector-pseudo,
+.hljs-addition {
+  color: rgb(3, 182, 150);
+}
+
+.hljs-subst {
+  color: #daefa3;
+}
+
+.hljs-regexp,
+.hljs-link {
+  color: #e9c062;
+}
+
+.hljs-title,
+.hljs-section,
+.hljs-type,
+.hljs-doctag {
+  color: #dd004d;
+}
+
+.hljs-symbol,
+.hljs-bullet,
+.hljs-variable,
+.hljs-template-variable,
+.hljs-literal {
+  color: #c6c5fe;
+}
+
+.hljs-number,
+.hljs-deletion {
+  color: #ff73fd;
+}
+
+.hljs-emphasis {
+  font-style: italic;
+}
+
+.hljs-strong {
+  font-weight: bold;
+}
+
+.hljs-ln {
+  margin: 0px;
+}
+
+.hljs-ln tbody tr {
+  border: 0px;
+}
+
+.hljs-ln tbody tr td {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+.hljs-ln tbody tr td:first-child {
+  padding-right: 25px;
+}
+
+td.hljs-ln-line.hljs-ln-numbers {
+  width: 5px;
+}

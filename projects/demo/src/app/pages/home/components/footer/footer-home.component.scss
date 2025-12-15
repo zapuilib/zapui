@@ -1,0 +1,44 @@
+.footer__home__wrapper {
+  @apply mx-auto max-w-screen pt-10;
+
+  @screen sm {
+    @apply pt-20;
+  }
+
+  .footer__home__container {
+    @apply flex flex-col gap-y-12;
+    background: radial-gradient(
+      ellipse 71.86% 96.67% at 73.27% 95.22%,
+      rgba(241, 22, 83, 0.25) 0%,
+      #09090b 100%
+    );
+  }
+
+  .footer__home__top {
+    @apply flex justify-center py-10 text-center;
+  }
+
+  .footer__home__bottom {
+    @apply max-w-screen-xl px-6 py-4 mx-auto flex w-full flex-col gap-y-8 justify-center items-center;
+
+    @screen sm {
+      @apply flex-row gap-y-0 justify-between;
+    }
+
+    .footer__home__links {
+      @apply flex gap-x-6 items-center flex-col gap-y-4;
+
+      @screen sm {
+        @apply flex-row gap-y-0;
+      }
+    }
+
+    .footer__home__copyright {
+      @apply flex items-center;
+    }
+  }
+}
+
+.donate__link {
+  @apply w-fit rounded-md border text-black border-[#F11653AA] px-[10px] py-[5px] text-sm font-normal leading-tight bg-gradient-to-br from-[#F637E3] via-[#F32081] to-[#F11653];
+}

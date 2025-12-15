@@ -1,0 +1,68 @@
+<h1>Getting started</h1>
+
+<p class="lead">
+  Zap/UI is a comprehensive library designed to streamline the development of Angular applications
+  with a consistent and customizable design system. It leverages the power of Tailwind CSS to
+  provide a set of pre-designed components and utilities that can be easily integrated into your
+  projects. Whether you're building a small project or a large-scale application, Zap UI helps you
+  maintain a cohesive look and feel throughout your application.
+</p>
+
+<div class="mt-4 flex gap-4">
+  <zap-button text="Access library" (click)="accessLibrary()"></zap-button>
+  <zap-button
+    text="Give a star"
+    icon="fa-thin fa-star"
+    iconPosition="right"
+    zapClass="!btn-secondary"
+    (click)="giveStar()"></zap-button>
+</div>
+
+<spacer height="40px"></spacer>
+
+<ttl text="Use it in your application"></ttl>
+
+<row [markdowns]="tailwindSetupMarkdown">
+  <p class="!py-0">Before you start, setup tailwindcss in your project first.</p>
+</row>
+
+<row [markdowns]="markdowns1">
+  <p class="!py-0">
+    Now, install the library by using
+    <code>{{ 'npm i zap' }}</code
+    >. Please make sure the your application is running angular <code>16.0.1</code> or higher.
+  </p>
+</row>
+
+<spacer height="40px"></spacer>
+
+<ttl text="Standalone" type="h4"></ttl>
+
+<row [markdowns]="markdowns2">
+  <p class="!py-0">
+    Now, provide root configuration to the core module inside
+    <code>app.config.ts</code>
+  </p>
+</row>
+
+<spacer></spacer>
+
+<ttl text="Modules" type="h4"></ttl>
+
+<row [markdowns]="markdowns5">
+  <p class="!py-0">
+    If you are using shared modules configurations, import the core module in
+    <code>app.module.ts</code> and provide the root config
+  </p>
+</row>
+
+<spacer></spacer>
+
+<zap-button
+  shape="pill"
+  variant="link"
+  text="See components"
+  icon="fa-arrow-right"
+  iconPosition="right"
+  zapClass="!btn-link"
+  (click)="openComponents()"></zap-button>

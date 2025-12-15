@@ -1,0 +1,83 @@
+<h1>Themes</h1>
+
+<p class="lead">
+  By default, Zap supports two themes: dark and light. You can also create your own theme. When you
+  do, make sure the name is unique, ensuring it differs from both 'dark' and 'light'. You can also
+  apply global styles for each type of component by passing a Zap configuration to the
+  <code>provideZapOption</code> provider. Here's how you can do it.
+</p>
+
+<spacer height="40px"></spacer>
+
+<ttl text="Default theme" type="h3"></ttl>
+
+<row [markdowns]="markdowns1">
+  <p class="!py-0">
+    Import <code>ZapConfig</code> and pass the theme you want to use. By default it's set to
+    <code>dark</code>
+  </p>
+</row>
+
+<spacer></spacer>
+
+<ttl text="Custom theme" type="h3"></ttl>
+
+<row [markdowns]="markdowns2">
+  <p class="!py-0">
+    Create your own theme using the <code>ZapTheme</code> interface. Once created, add the theme to
+    the <code>themeLibrary</code>. To use this theme, pass its key from the
+    <code>themeLibrary</code> to the <code>theme</code> property, as shown on the right.
+  </p>
+</row>
+
+<spacer></spacer>
+
+<ttl text="Multi theme setup" type="h3"></ttl>
+
+<row [markdowns]="markdowns3">
+  <p class="!py-0">
+    You can manage dynamic themes using the <code>ZapThemer</code> service. Simply inject the
+    service and call the <code>setTheme</code> method. If your theme is dynamic, ensure that the
+    theme provided in <code>ZapConfig</code> via <code>provideZapOption</code> is always up to date.
+    For example, if you're storing the theme in local storage, you can pass it like this:
+    <code>theme: localStorage.getItem('project-theme'); </code>
+  </p>
+</row>
+
+<spacer></spacer>
+
+<ttl text="Multi theme setup with custom themes" type="h3"></ttl>
+
+<row [markdowns]="markdowns4">
+  <p class="!py-0">
+    If you want to switch between two or more custom themes or one custom theme with one library
+    theme, make sure you pass all the custom themes you want to use via <code>themeLibrary</code> in
+    the <code>provideZapOption</code> provider.
+  </p>
+</row>
+
+<spacer></spacer>
+
+<ttl text="Global styles" type="h3"></ttl>
+
+<row [markdowns]="markdowns5">
+  <p class="!py-0">
+    You can provide global styles for each type of component. Additionally, you can pass a global
+    configuration, such as shape, which will be applied to all components. This global configuration
+    can be overridden by individual component configurations. You can also provide global styles
+    such as
+    <code>scrollbarColor</code>. You can pass different color for different theme.
+  </p>
+</row>
+
+<spacer></spacer>
+
+<ttl text="Component styles" type="h3"></ttl>
+
+<row [markdowns]="markdowns6">
+  <p class="!py-0">
+    You can provide various component-level styles, including shape, size, color, font sizes, font
+    weights, and letter spacing. If you have multi theme setup, you can also provide theme specific
+    colors. Check component documentations for more details on each component.
+  </p>
+</row>

@@ -1,0 +1,27 @@
+<h1>Changelog</h1>
+
+<spacer height="40px"></spacer>
+
+<div class="flex flex-col space-y-10 max-w-xl">
+  @for (entry of changelog; track $index) {
+    <div>
+      <span class="mb-1 block text-zinc-600 light:text-zinc-400">{{ entry.date }}</span>
+
+      <h2 class="flex items-center gap-x-5">
+        <span>{{ entry.version }}</span>
+        @if (entry.mode) {
+          <zap-chip
+            [text]="entry.mode"
+            [type]="entry.mode === 'Latest' ? 'success' : 'warning'"
+            zapClass="!px-2 !text-xs"></zap-chip>
+        }
+      </h2>
+
+      <ul class="text-zinc-400 light:text-zinc-600 flex flex-col gap-y-2 list-disc pl-4 mt-4">
+        @for (change of entry.changes; track $index) {
+          <li>{{ change }}</li>
+        }
+      </ul>
+    </div>
+  }
+</div>

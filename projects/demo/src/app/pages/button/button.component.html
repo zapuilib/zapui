@@ -1,0 +1,564 @@
+<h1>Button</h1>
+
+<p class="lead">
+  Buttons are essential elements in user interfaces, serving as interactive components that trigger
+  actions or events. They provide users with a visual cue for interaction and play a vital role in
+  guiding navigation and facilitating user engagement.
+</p>
+
+<spacer height="40px"></spacer>
+
+<ttl text="Basic button"></ttl>
+
+<row [markdowns]="markdown" [isReverse]="true">
+  <div class="component-instance !w-full !mt-0">
+    <zap-button
+      text="Continue"
+      [size]="size"
+      [shape]="shape"
+      [icon]="icon"
+      [variant]="variant"
+      [iconPosition]="iconPosition"
+      [type]="type"
+      [img]="img"
+      [imgPosition]="imagePosition"
+      zapClass="!transition-all !duration-300 !ease-in-linear"></zap-button>
+  </div>
+</row>
+
+<spacer height="40px"></spacer>
+
+<ttl text="Optional properties"></ttl>
+
+<div class="info-card">
+  <i class="fa-solid fa-circle-info mr-2"></i>Use the properties below to style the button and copy
+  the code to your project. Try clicking on them.
+</div>
+
+<div class="max-w-full overflow-x-auto">
+  <table class="w-full border-collapse">
+    <thead>
+      <tr>
+        <th style="width: 200px">Property</th>
+        <th style="width: 400px">Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <p><code>size</code></p>
+        </td>
+        <td>
+          <p>
+            <code (click)="updateSize('base')">base</code> |
+            <code (click)="updateSize('compact')">compact</code> |
+            <code (click)="updateSize('tight')">tight</code> |
+            <code (click)="updateSize('wide')">wide</code>
+          </p>
+        </td>
+        <td>
+          <p>
+            Controls button sizing.
+            <code (click)="updateSize('compact')">compact</code> has less padding,
+            <code (click)="updateSize('tight')">tight</code> has even smaller padding and fonts
+            (ideal for tab buttons), <code (click)="updateSize('wide')">wide</code> spans the full
+            width of the parent container, and
+            <code (click)="updateSize('base')">base</code> follows the standard theme. Default is
+            <code (click)="updateSize('base')">base</code>.
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>shape</code></p>
+        </td>
+        <td>
+          <p>
+            <code (click)="updateShape('flat')">flat</code> |
+            <code (click)="updateShape('pill')">pill</code> |
+            <code (click)="updateShape('curve')">curve</code>
+          </p>
+        </td>
+        <td>
+          <p>
+            Defines the button shape.
+            <code (click)="updateShape('pill')">pill</code> is a fully rounded button,
+            <code (click)="updateShape('curve')">curve</code> has rounded corners, and
+            <code (click)="updateShape('flat')">flat</code> is a classic square-cornered button.
+            Default is <code (click)="updateShape('flat')">flat</code>.
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>variant</code></p>
+        </td>
+        <td>
+          <p>
+            <code (click)="updateVariant('outlined')">outlined</code> |
+            <code (click)="updateVariant('default')">default</code> |
+            <code (click)="updateVariant('link')">link</code>
+          </p>
+        </td>
+        <td>
+          <p>
+            Defines the button style.
+            <code (click)="updateVariant('outlined')">outlined</code> is a bordered button,
+            <code (click)="updateVariant('link')">link</code> creates an underlined link-style
+            button, and <code (click)="updateVariant('default')">default</code> is the standard
+            button.
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>text</code></p>
+        </td>
+        <td>
+          <p class="font-mono">string</p>
+        </td>
+        <td>
+          <p>Sets the button's text.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>icon</code></p>
+        </td>
+        <td>
+          <p class="font-mono">string</p>
+        </td>
+        <td>
+          <p>
+            Specifies a Font Awesome class for the button's icon (e.g.,
+            <code (click)="updateIcon('fa-send')">fa-send</code>).
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>iconPosition</code></p>
+        </td>
+        <td>
+          <p>
+            <code (click)="updateIconPosition('left')">left</code> |
+            <code (click)="updateIconPosition('right')">right</code>
+          </p>
+        </td>
+        <td>
+          <p>
+            Sets the icon's position relative to the button text. Defaults to
+            <code (click)="updateIconPosition('left')">left</code>. Not required for
+            <code>icononly</code> buttons.
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>icononly</code></p>
+        </td>
+        <td>
+          <p class="font-mono">boolean</p>
+        </td>
+        <td>
+          <p>
+            Creates a button with only an icon (no text). Default is
+            <code>false</code>.
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>disabled</code></p>
+        </td>
+        <td>
+          <p class="font-mono">boolean</p>
+        </td>
+        <td>
+          <p>Disables the button. Default is <code>false</code>.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>type</code></p>
+        </td>
+        <td>
+          <p>
+            <code (click)="updateType('success')">success</code> |
+            <code (click)="updateType('warning')">warning</code> |
+            <code (click)="updateType('error')">error</code> |
+            <code (click)="updateType('info')">info</code> |
+            <code (click)="updateType('default')">default</code>
+          </p>
+        </td>
+        <td>
+          <p>
+            Defines the button type.
+            <code (click)="updateType('success')">success</code> is a green button,
+            <code (click)="updateType('warning')">warning</code> is a yellow button,
+            <code (click)="updateType('error')">error</code> is a red button,
+            <code (click)="updateType('info')">info</code> is a blue button, and
+            <code (click)="updateType('default')">default</code> is the standard button.
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>img</code></p>
+        </td>
+        <td>
+          <p class="font-mono">string</p>
+        </td>
+        <td>
+          <p>
+            Specifies an image URL for the button's icon (e.g.,
+            <code
+              (click)="
+                updateImage(
+                  'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Google_%22G%22_logo.svg/1200px-Google_%22G%22_logo.svg.png'
+                )
+              "
+              >https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Google_%22G%22_logo.svg/1200px-Google_%22G%22_logo.svg.png</code
+            >). Only works if <code (click)="updateIcon('fa-send')">icon</code> is not specified.
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>imgPosition</code></p>
+        </td>
+        <td>
+          <p>
+            <code (click)="updateImagePosition('left')">left</code> |
+            <code (click)="updateImagePosition('right')">right</code>
+          </p>
+        </td>
+        <td>
+          <p>
+            Sets the image's position relative to the button text. Defaults to
+            <code (click)="updateImagePosition('left')">left</code>.
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>zapClass</code></p>
+        </td>
+        <td>
+          <p class="font-mono">string</p>
+        </td>
+        <td>
+          <p>
+            Allows overriding default styles by passing Tailwind CSS classes. Utilize the
+            <code class="!cursor-auto">&#64;zaplib/zapui/tailwind</code> plugin to target specific
+            elements within the button component.
+          </p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<spacer height="40px"></spacer>
+
+<ttl text="Supported directives"></ttl>
+
+<div class="max-w-full overflow-x-auto">
+  <table class="w-full border-collapse">
+    <thead>
+      <tr>
+        <th style="width: 20%">Selector</th>
+        <th style="width: 20%">Directive name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <p><code>zapIcon</code></p>
+        </td>
+        <td>
+          <p class="font-mono">ZapIconDirective</p>
+        </td>
+        <td>
+          <p>
+            A directive that enables adding any type of icon to a button, including SVGs, font-based
+            icons, and more.
+          </p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<spacer height="40px"></spacer>
+
+<ttl text="Example" type="h4"></ttl>
+
+<app-preview-code [markdown]="markdownDirective">
+  <zap-button text="Check information" size="base" iconPosition="left">
+    <svg zapIcon xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+      <path
+        fill="currentColor"
+        d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm0-384c13.3 0 24 10.7 24 24l0 112c0 13.3-10.7 24-24 24s-24-10.7-24-24l0-112c0-13.3 10.7-24 24-24zM224 352a32 32 0 1 1 64 0 32 32 0 1 1 -64 0z" />
+    </svg>
+  </zap-button>
+</app-preview-code>
+
+<spacer height="40px"></spacer>
+
+<ttl text="Global configurations"></ttl>
+
+<p>
+  A list of global styles, including shape, size, color, font sizes, font weights, and letter
+  spacing can be provided via <code>themeLibrary</code> in the
+  <code>provideZapOption</code> provider.. If you have multi theme setup, you can also provide theme
+  specific colors. These apply to all default variants through out the app unless component level
+  styles are provided.
+</p>
+<spacer height="40px"></spacer>
+
+<ttl text="Example" type="h5"></ttl>
+<spacer></spacer>
+
+<app-code
+  [markdown]="markdownGlobal.markdown"
+  [language]="markdownGlobal.language"
+  [title]="markdownGlobal.title">
+</app-code>
+
+<spacer height="40px"></spacer>
+
+<ttl text="Shape and Size" type="h5"></ttl>
+
+<div class="max-w-full overflow-x-auto">
+  <table class="w-full border-collapse">
+    <thead>
+      <tr>
+        <th style="width: 20%"><p>Property</p></th>
+        <th><p>Description</p></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <p><code>shape</code></p>
+        </td>
+        <td>
+          <p>
+            Defines the shape of the button. Can be <code>flat</code>, <code>curve</code>, or
+            <code>pill</code>.
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>size</code></p>
+        </td>
+        <td>
+          <p>
+            Defined the size of the button. Can be <code>compact</code> | <code>wide</code> |
+            <code>tight</code> | <code>base</code>
+          </p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<spacer height="40px"></spacer>
+<ttl text="Colors" type="h5"></ttl>
+<p>You can provide each of these colors for different themes that you use</p>
+
+<div class="max-w-full overflow-x-auto">
+  <table class="w-full border-collapse">
+    <thead>
+      <tr>
+        <th style="width: 20%"><p>Property</p></th>
+        <th><p>Description</p></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <p><code>bgColor</code></p>
+        </td>
+        <td><p>Background color of the button.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>textColor</code></p>
+        </td>
+        <td><p>Text color of the button.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>borderColor</code></p>
+        </td>
+        <td><p>Border color of the button.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>bgHoverColor</code></p>
+        </td>
+        <td><p>Background color of the button when hovered.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>textHoverColor</code></p>
+        </td>
+        <td><p>Text color of the button when hovered.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>borderHoverColor</code></p>
+        </td>
+        <td><p>Border color of the button when hovered.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>bgActiveColor</code></p>
+        </td>
+        <td>
+          <p>Background color of the button when active (e.g., clicked).</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>textActiveColor</code></p>
+        </td>
+        <td><p>Text color of the button when active (e.g., clicked).</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>borderActiveColor</code></p>
+        </td>
+        <td><p>Border color of the button when active (e.g., clicked).</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>disabledBgColor</code></p>
+        </td>
+        <td><p>Background color of the button when disabled.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>disabledTextColor</code></p>
+        </td>
+        <td><p>Text color of the button when disabled.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>disabledBorderColor</code></p>
+        </td>
+        <td><p>Border color of the button when disabled.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>iconColor</code></p>
+        </td>
+        <td><p>Color for the icon</p></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<spacer height="40px"></spacer>
+<ttl text="Other styles" type="h5"></ttl>
+<p>You can provide a bunch of other styles, that are not theme based but rather generic</p>
+
+<div class="max-w-full overflow-x-auto">
+  <table class="w-full border-collapse">
+    <thead>
+      <tr>
+        <th style="width: 20%"><p>Property</p></th>
+        <th><p>Description</p></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <p><code>borderRadius</code></p>
+        </td>
+        <td><p>Defines the radius of the button's corners.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>paddingLeft</code></p>
+        </td>
+        <td><p>Left padding of the button.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>paddingRight</code></p>
+        </td>
+        <td><p>Right padding of the button.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>paddingTop</code></p>
+        </td>
+        <td><p>Top padding of the button.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>paddingBottom</code></p>
+        </td>
+        <td><p>Bottom padding of the button.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>padding</code></p>
+        </td>
+        <td><p>Padding around the button's content.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>width</code></p>
+        </td>
+        <td><p>Width of the button.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>height</code></p>
+        </td>
+        <td><p>Height of the button.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>fontSize</code></p>
+        </td>
+        <td><p>Font size of the button's text.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>fontWeight</code></p>
+        </td>
+        <td><p>Font weight of the button's text.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>lineHeight</code></p>
+        </td>
+        <td><p>Line height of the button's text.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>letterSpacing</code></p>
+        </td>
+        <td><p>Letter spacing of the button's text.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>textTransform</code></p>
+        </td>
+        <td>
+          <p>Transforms the button's text (e.g., uppercase, lowercase).</p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<spacer height="40px"></spacer>

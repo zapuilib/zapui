@@ -1,0 +1,257 @@
+<h1>Badge</h1>
+
+<p class="lead">
+  Badges are compact UI elements that highlight key information, statuses, or counts. They provide
+  visual cues for notifications, categorization, or emphasis, ensuring important details stand out
+  at a glance.
+</p>
+
+<spacer height="40px"></spacer>
+
+<ttl text="Basic badge"></ttl>
+
+<row [markdowns]="markdown" [isReverse]="true">
+  <div class="component-instance !w-full !mt-0">
+    <zap-badge [variant]="variant" [type]="type" [count]="count"></zap-badge>
+  </div>
+</row>
+
+<spacer height="40px"></spacer>
+
+<ttl text="Optional properties"></ttl>
+
+<div class="info-card">
+  <i class="fa-solid fa-circle-info mr-2"></i>Use the properties below to style the badge and copy
+  the code to your project. Try clicking on them.
+</div>
+
+<div class="max-w-full overflow-x-auto">
+  <table class="w-full border-collapse">
+    <thead>
+      <tr>
+        <th style="width: 20%">Property</th>
+        <th style="width: 20%">Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <p><code>variant</code></p>
+        </td>
+        <td>
+          <p>
+            <code (click)="updateVariant('empty')">empty</code> |
+            <code (click)="updateVariant('outlined')">outlined</code> |
+            <code (click)="updateVariant('default')">default</code> |
+          </p>
+        </td>
+        <td>
+          <p>
+            Controls badge's variant.
+            <code (click)="updateVariant('empty')">empty</code> has no content inside,
+            <code (click)="updateVariant('outlined')">outlined</code> has transparent background
+            color, <code (click)="updateVariant('default')">default</code> has default background
+            color.
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>type</code></p>
+        </td>
+        <td>
+          <p>
+            <code (click)="updateType('success')">success</code> |
+            <code (click)="updateType('warning')">warning</code> |
+            <code (click)="updateType('error')">error</code> |
+            <code (click)="updateType('info')">info</code> |
+            <code (click)="updateType('default')">default</code>
+          </p>
+        </td>
+        <td>
+          <p>
+            Defines the badge's type.
+            <code (click)="updateType('success')">success</code> is a green badge,
+            <code (click)="updateType('warning')">warning</code> is a yellow badge,
+            <code (click)="updateType('error')">error</code> is a red badge,
+            <code (click)="updateType('info')">info</code> is a blue badge, and
+            <code (click)="updateType('default')">default</code> is the standard badge.
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>zapClass</code></p>
+        </td>
+        <td>
+          <p class="font-mono">string</p>
+        </td>
+        <td>
+          <p>
+            Allows overriding default styles by passing Tailwind CSS classes. Utilize the
+            <code class="!cursor-auto">&#64;zaplib/zapui/tailwind</code> plugin to target specific
+            elements within the badge component.
+          </p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<spacer height="40px"></spacer>
+
+<ttl text="Global configurations"></ttl>
+
+<p>
+  A list of global styles, including shape, size, color, font sizes, font weights, and letter
+  spacing can be provided via <code>themeLibrary</code> in the
+  <code>provideZapOption</code> provider. If you have multi theme setup, you can also provide theme
+  specific colors. These apply to all default variants through out the app unless component level
+  styles are provided.
+</p>
+<spacer height="40px"></spacer>
+
+<ttl text="Example" type="h5"></ttl>
+<spacer></spacer>
+
+<app-code
+  [markdown]="markdownGlobal.markdown"
+  [language]="markdownGlobal.language"
+  [title]="markdownGlobal.title">
+</app-code>
+
+<spacer height="40px"></spacer>
+
+<ttl text="Colors" type="h5"></ttl>
+<p>You can provide each of these colors for different themes that you use</p>
+
+<div class="max-w-full overflow-x-auto">
+  <table class="w-full border-collapse">
+    <thead>
+      <tr>
+        <th style="width: 20%"><p>Property</p></th>
+        <th><p>Description</p></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <p><code>bgColor</code></p>
+        </td>
+        <td><p>Background color of the badge.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>textColor</code></p>
+        </td>
+        <td><p>Text color of the badge.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>borderColor</code></p>
+        </td>
+        <td><p>Border color of the badge.</p></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<spacer height="40px"></spacer>
+<ttl text="Other styles" type="h5"></ttl>
+<p>You can provide a bunch of other styles, that are not theme based but rather generic</p>
+
+<div class="max-w-full overflow-x-auto">
+  <table class="w-full border-collapse">
+    <thead>
+      <tr>
+        <th style="width: 20%"><p>Property</p></th>
+        <th><p>Description</p></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <p><code>borderRadius</code></p>
+        </td>
+        <td><p>Defines the radius of the badge's corners.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>paddingLeft</code></p>
+        </td>
+        <td><p>Left padding of the badge.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>paddingRight</code></p>
+        </td>
+        <td><p>Right padding of the badge.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>paddingTop</code></p>
+        </td>
+        <td><p>Top padding of the badge.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>paddingBottom</code></p>
+        </td>
+        <td><p>Bottom padding of the badge.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>padding</code></p>
+        </td>
+        <td><p>Padding around the badge's content.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>width</code></p>
+        </td>
+        <td><p>Width of the badge.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>height</code></p>
+        </td>
+        <td><p>Height of the badge.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>fontSize</code></p>
+        </td>
+        <td><p>Font size of the badge's text.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>fontWeight</code></p>
+        </td>
+        <td><p>Font weight of the badge's text.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>lineHeight</code></p>
+        </td>
+        <td><p>Line height of the badge's text.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>letterSpacing</code></p>
+        </td>
+        <td><p>Letter spacing of the badge's text.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>textTransform</code></p>
+        </td>
+        <td>
+          <p>Transforms the badge's text (e.g., uppercase, lowercase).</p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<spacer height="40px"></spacer>

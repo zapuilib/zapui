@@ -1,0 +1,52 @@
+<h1>Colors</h1>
+
+<p class="lead">
+  ZapUi is highly customizable. You can pass the root configuration from the layout or override it
+  using zapClass. Below is the list of default configurations available for out-of-the-box options.
+</p>
+
+<spacer height="40px"></spacer>
+
+<ttl text="Dark theme (default)"></ttl>
+
+<div class="mt-5 grid max-w-full grid-cols-12 gap-5">
+  @for (color of darkThemeColors; track $index) {
+    <zap-tooltip class="color-block color__container" [style.background-color]="color.bgColor">
+      <zap-tooltip-handler>
+        <div>
+          <span [style.color]="color.textColor" class="font-medium">Aa</span>
+          <p [style.color]="color.textColor" class="opacity-80 font-mono tracking-tighter mb-2">
+            {{ color.label }}
+          </p>
+        </div>
+      </zap-tooltip-handler>
+      <zap-tooltip-content>
+        <p class="!text-xs !font-mono">{{ color.bgColor }}</p>
+      </zap-tooltip-content>
+    </zap-tooltip>
+  }
+</div>
+
+<spacer height="40px"></spacer>
+
+<ttl text="Light theme"></ttl>
+
+<div class="mt-5 grid max-w-full grid-cols-12 gap-5">
+  @for (color of lightThemeColors; track $index) {
+    <zap-tooltip class="color-block color__container" [style.background-color]="color.bgColor">
+      <zap-tooltip-handler>
+        <div>
+          <span [style.color]="color.textColor" class="font-medium">Aa</span>
+          <p [style.color]="color.textColor" class="opacity-80 font-mono tracking-tighter mb-2">
+            {{ color.label }}
+          </p>
+        </div>
+      </zap-tooltip-handler>
+      <zap-tooltip-content>
+        <p class="!text-xs !font-mono">{{ color.bgColor }}</p>
+      </zap-tooltip-content>
+    </zap-tooltip>
+  }
+</div>
+
+<spacer height="100px"></spacer>

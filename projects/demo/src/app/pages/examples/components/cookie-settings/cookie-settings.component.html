@@ -1,0 +1,30 @@
+<div>
+  <div>
+    <h2>Cookie settings</h2>
+    <p class="!py-0">Manage cookie settings here</p>
+  </div>
+  <div class="mt-5 mb-10 flex flex-col gap-y-5">
+    <zap-toggle
+      id="toggle"
+      label="Necessary cookies"
+      helpText="This setting is required for the website to function properly"
+      [formControl]="necessary"
+      class="w-full"
+      zapClass="help-text:!text-xs"></zap-toggle>
+    <zap-toggle
+      id="toggle"
+      label="Marketing cookies"
+      helpText="Enable this setting to allow us to show you personalized ads"
+      [formControl]="marketing"
+      class="w-full"
+      zapClass="help-text:!text-xs"></zap-toggle>
+    <zap-toggle
+      id="toggle"
+      label="Analytics cookies"
+      helpText="Enable this setting to allow us to analyze how you interact with our website"
+      [formControl]="analytics"
+      class="w-full"
+      zapClass="help-text:!text-xs"></zap-toggle>
+  </div>
+  <zap-button text="Save preferences" size="wide"></zap-button>
+</div>

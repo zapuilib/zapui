@@ -1,0 +1,322 @@
+<h1>Modal</h1>
+
+<p class="lead">
+  Modals are overlay UI elements that focus user attention on critical information or actions. They
+  provide a controlled interaction point, ensuring users engage with important content before
+  returning to the main interface.
+</p>
+
+<spacer height="40px"></spacer>
+
+<ttl text="Basic modal"></ttl>
+
+<app-preview-code [markdown]="markdown[0]">
+  <div class="modal__button">
+    <zap-button text="Open Modal" variant="outlined" (click)="modalOpen = true"> </zap-button>
+  </div>
+
+  @if (modalOpen) {
+    <zap-modal
+      zapClass="!z-10 sm:!min-w-[440px]"
+      [shape]="shape"
+      [size]="size"
+      [showOverlay]="true"
+      (close)="onClose()">
+      <p class="!text-xl font-semibold">Enter your details</p>
+      <zap-input
+        id="email"
+        label="Email"
+        placeholder="Enter your email"
+        type="email"
+        zapClass="!mt-4"></zap-input>
+      <zap-input
+        id="password"
+        class="!mt-10"
+        label="Password"
+        placeholder="Enter your password"
+        type="password"
+        zapClass="!mt-4"></zap-input>
+
+      <zap-button zapClass="!mt-6" color="primary" text="Login" (click)="onClose()"></zap-button>
+    </zap-modal>
+  }
+</app-preview-code>
+
+<spacer height="40px"></spacer>
+
+<ttl text="Optional properties"></ttl>
+
+<div class="info-card">
+  <i class="fa-solid fa-circle-info mr-2"></i>
+  Use the properties below to style the modal and copy the code to your project. Try clicking on
+  them.
+</div>
+
+<div class="max-w-full overflow-x-auto">
+  <table class="w-full border-collapse">
+    <thead>
+      <tr>
+        <th style="width: 200px">Property</th>
+        <th style="width: 400px">Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <p><code>shape</code></p>
+        </td>
+        <td>
+          <p>
+            <code (click)="updateShape('flat')">flat</code> |
+            <code (click)="updateShape('pill')">pill</code> |
+            <code (click)="updateShape('curve')">curve</code>
+          </p>
+        </td>
+        <td>
+          <p>
+            Defines the modal's shape.
+            <code (click)="updateShape('pill')">pill</code> is a fully rounded modal,
+            <code (click)="updateShape('curve')">curve</code> has rounded corners, and
+            <code (click)="updateShape('flat')">flat</code> is a classic square-cornered modal.
+            Default is <code (click)="updateShape('flat')">flat</code>.
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>size</code></p>
+        </td>
+        <td>
+          <p>
+            <code (click)="updateSize('compact')">compact</code> |
+            <code (click)="updateSize('tight')">tight</code> |
+            <code (click)="updateSize('wide')">wide</code> |
+            <code (click)="updateSize('base')">base</code> |
+            <code (click)="updateSize('full')">full</code>
+          </p>
+        </td>
+        <td>
+          <p>
+            Controls button sizing.
+            <code (click)="updateSize('compact')">compact</code> has less padding,
+            <code (click)="updateSize('tight')">tight</code> has even smaller padding and fonts
+            (ideal for tab buttons), <code (click)="updateSize('wide')">wide</code> spans the full
+            width of the parent container, and
+            <code (click)="updateSize('base')">base</code> follows the standard theme.
+            <code (click)="updateSize('full')">full</code> is the maximum size. Default is
+            <code (click)="updateSize('tight')">base</code>.
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>zapClass</code></p>
+        </td>
+        <td>
+          <p class="font-mono">string</p>
+        </td>
+        <td>
+          <p>
+            Allows overriding default styles by passing Tailwind CSS classes. Utilize the
+            <code class="!cursor-auto">&#64;zaplib/zapui/tailwind</code> plugin to target specific
+            elements within the modal component.
+          </p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<spacer height="40px"></spacer>
+
+<ttl text="Global configurations"></ttl>
+
+<p>
+  A list of global styles, including shape, size, color, font sizes, font weights, and letter
+  spacing can be provided via <code>themeLibrary</code> in the
+  <code>provideZapOption</code> provider.. If you have multi theme setup, you can also provide theme
+  specific colors. These apply to all default variants through out the app unless component level
+  styles are provided.
+</p>
+<spacer height="40px"></spacer>
+
+<ttl text="Example" type="h5"></ttl>
+<spacer></spacer>
+
+<app-code
+  [markdown]="markdownGlobal.markdown"
+  [language]="markdownGlobal.language"
+  [title]="markdownGlobal.title">
+</app-code>
+
+<spacer height="40px"></spacer>
+
+<ttl text="Shape and Size" type="h5"></ttl>
+
+<div class="max-w-full overflow-x-auto">
+  <table class="w-full border-collapse">
+    <thead>
+      <tr>
+        <th style="width: 20%"><p>Property</p></th>
+        <th><p>Description</p></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <p><code>shape</code></p>
+        </td>
+        <td>
+          <p>
+            Defines the shape of the modal. Can be <code>flat</code>, <code>curve</code>, or
+            <code>pill</code>.
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>size</code></p>
+        </td>
+        <td>
+          <p>
+            Defined the size of the button. Can be <code>compact</code> | <code>wide</code> |
+            <code>tight</code> | <code>base</code> | <code>full</code>.
+          </p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<spacer height="40px"></spacer>
+<ttl text="Colors" type="h5"></ttl>
+<p>You can provide each of these colors for different themes that you use</p>
+
+<div class="max-w-full overflow-x-auto">
+  <table class="w-full border-collapse">
+    <thead>
+      <tr>
+        <th style="width: 20%"><p>Property</p></th>
+        <th><p>Description</p></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <p><code>bgColor</code></p>
+        </td>
+        <td><p>Background color of the modal.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>borderColor</code></p>
+        </td>
+        <td><p>Border color of the modal.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>dismissColor</code></p>
+        </td>
+        <td><p>Color of the dismiss icon</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>dismissHoverColor</code></p>
+        </td>
+        <td><p>Color of the dismiss icon when hovered</p></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<spacer height="40px"></spacer>
+<ttl text="Other styles" type="h5"></ttl>
+<p>You can provide a bunch of other styles, that are not theme based but rather generic</p>
+
+<div class="max-w-full overflow-x-auto">
+  <table class="w-full border-collapse">
+    <thead>
+      <tr>
+        <th style="width: 20%"><p>Property</p></th>
+        <th><p>Description</p></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <p><code>borderRadius</code></p>
+        </td>
+        <td><p>Defines the radius of the modal's corners.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>paddingLeft</code></p>
+        </td>
+        <td><p>Left padding of the modal.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>paddingRight</code></p>
+        </td>
+        <td><p>Right padding of the modal.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>paddingTop</code></p>
+        </td>
+        <td><p>Top padding of the modal.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>paddingBottom</code></p>
+        </td>
+        <td><p>Bottom padding of the modal.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>padding</code></p>
+        </td>
+        <td><p>Padding around the modal's content.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>maxWidth</code></p>
+        </td>
+        <td><p>Max width of the modal.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>maxHeight</code></p>
+        </td>
+        <td><p>Max height of the modal.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>dismissFontSize</code></p>
+        </td>
+        <td><p>Font size of the modal's dismiss icon.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>dismissFontWeight</code></p>
+        </td>
+        <td><p>Font weight of the modal's dismiss icon.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>dismissLineHeight</code></p>
+        </td>
+        <td><p>Line height of the modal's dismiss icon.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>dismissLetterSpacing</code></p>
+        </td>
+        <td><p>Letter spacing of the modal's dismiss icon.</p></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<spacer height="40px"></spacer>

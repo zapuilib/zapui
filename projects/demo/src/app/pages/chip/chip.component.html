@@ -1,0 +1,480 @@
+<h1>Chip</h1>
+
+<p class="lead">
+  Chips are compact UI elements that display information, categorize content, or trigger actions.
+  They provide a quick, interactive way to represent choices, tags, or statuses, enhancing user
+  engagement and navigation.
+</p>
+
+<spacer height="40px"></spacer>
+
+<ttl text="Basic chip"></ttl>
+
+<row [markdowns]="markdown" [isReverse]="true">
+  <div class="component-instance !w-full !mt-0">
+    <zap-chip
+      [text]="text"
+      [variant]="variant"
+      [shape]="shape"
+      [size]="size"
+      [type]="type"
+      [icon]="icon"
+      [iconPosition]="iconPosition"></zap-chip>
+  </div>
+</row>
+
+<spacer height="40px"></spacer>
+
+<ttl text="Optional properties"></ttl>
+
+<div class="info-card">
+  <i class="fa-solid fa-circle-info mr-2"></i>Use the properties below to style the chip and copy
+  the code to your project. Try clicking on them.
+</div>
+
+<div class="max-w-full overflow-x-auto">
+  <table class="w-full border-collapse">
+    <thead>
+      <tr>
+        <th style="width: 200px">Property</th>
+        <th style="width: 400px">Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <p><code>variant</code></p>
+        </td>
+        <td>
+          <p>
+            <code (click)="updateVariant('outlined')">outlined</code> |
+            <code (click)="updateVariant('default')">default</code>
+          </p>
+        </td>
+        <td>
+          <p>
+            Defines the chip style.
+            <code (click)="updateVariant('outlined')">outlined</code> is a bordered chip and
+            <code (click)="updateVariant('default')">default</code> is the standard chip.
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>size</code></p>
+        </td>
+        <td>
+          <p>
+            <code (click)="updateSize('base')">base</code> |
+            <code (click)="updateSize('compact')">compact</code> |
+            <code (click)="updateSize('wide')">wide</code>
+          </p>
+        </td>
+        <td>
+          <p>
+            Controls chip sizing.
+            <code (click)="updateSize('compact')">compact</code> has less padding,
+            <code (click)="updateSize('wide')">wide</code> spans the full width of the parent
+            container, and <code (click)="updateSize('base')">base</code> follows the standard
+            theme. Default is <code (click)="updateSize('base')">base</code>.
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>shape</code></p>
+        </td>
+        <td>
+          <p>
+            <code (click)="updateShape('flat')">flat</code> |
+            <code (click)="updateShape('pill')">pill</code> |
+            <code (click)="updateShape('curve')">curve</code>
+          </p>
+        </td>
+        <td>
+          <p>
+            Defines the chip shape.
+            <code (click)="updateShape('pill')">pill</code> is a fully rounded chip,
+            <code (click)="updateShape('curve')">curve</code> has rounded corners, and
+            <code (click)="updateShape('flat')">flat</code> is a classic square-cornered chip.
+            Default is <code (click)="updateShape('flat')">flat</code>.
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>type</code></p>
+        </td>
+        <td>
+          <p>
+            <code (click)="updateType('success')">success</code> |
+            <code (click)="updateType('warning')">warning</code> |
+            <code (click)="updateType('error')">error</code> |
+            <code (click)="updateType('info')">info</code> |
+            <code (click)="updateType('default')">default</code>
+          </p>
+        </td>
+        <td>
+          <p>
+            Defines the chip type.
+            <code (click)="updateType('success')">success</code> is a green chip,
+            <code (click)="updateType('warning')">warning</code> is a yellow chip,
+            <code (click)="updateType('error')">error</code> is a red chip,
+            <code (click)="updateType('info')">info</code> is a blue chip, and
+            <code (click)="updateType('default')">default</code> is the standard chip.
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>text</code></p>
+        </td>
+        <td>
+          <p class="font-mono">string</p>
+        </td>
+        <td>
+          <p>Specifies the chip's text.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>icon</code></p>
+        </td>
+        <td>
+          <p class="font-mono">string</p>
+        </td>
+        <td>
+          <p>
+            Specifies a Font Awesome class for the chip's icon (e.g.,
+            <code (click)="updateIcon('fa-send')">fa-send</code>).
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>iconPosition</code></p>
+        </td>
+        <td>
+          <p>
+            <code (click)="updateIconPosition('left')">left</code> |
+            <code (click)="updateIconPosition('right')">right</code>
+          </p>
+        </td>
+        <td>
+          <p>
+            Sets the icon's position relative to the chip text. Defaults to
+            <code (click)="updateIconPosition('left')">left</code>.
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>disabled</code></p>
+        </td>
+        <td>
+          <p class="font-mono">boolean</p>
+        </td>
+        <td>
+          <p>Disables the chip. Default is <code>false</code>.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>dismissible</code></p>
+        </td>
+        <td>
+          <p class="font-mono">boolean</p>
+        </td>
+        <td>
+          <p>
+            Provides the ability to dismiss the chip. Default is
+            <code>false</code>.
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>zapClass</code></p>
+        </td>
+        <td>
+          <p class="font-mono">string</p>
+        </td>
+        <td>
+          <p>
+            Allows overriding default styles by passing Tailwind CSS classes. Utilize the
+            <code class="!cursor-auto">&#64;zaplib/zapui/tailwind</code> plugin to target specific
+            elements within the chip component.
+          </p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<spacer height="40px"></spacer>
+
+<ttl text="Supported directives"></ttl>
+
+<div class="max-w-full overflow-x-auto">
+  <table class="w-full border-collapse">
+    <thead>
+      <tr>
+        <th style="width: 20%">Selector</th>
+        <th style="width: 20%">Directive name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <p><code>zapIcon</code></p>
+        </td>
+        <td>
+          <p class="font-mono">ZapIconDirective</p>
+        </td>
+        <td>
+          <p>
+            A directive that enables adding any type of icon to a chip, including SVGs, font-based
+            icons, and more.
+          </p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<spacer height="40px"></spacer>
+
+<ttl text="Example" type="h4"></ttl>
+
+<app-preview-code [markdown]="markdownDirective">
+  <zap-chip>
+    <svg zapIcon xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+      <path
+        fill="currentColor"
+        d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm0-384c13.3 0 24 10.7 24 24l0 112c0 13.3-10.7 24-24 24s-24-10.7-24-24l0-112c0-13.3 10.7-24 24-24zM224 352a32 32 0 1 1 64 0 32 32 0 1 1 -64 0z" />
+    </svg>
+  </zap-chip>
+</app-preview-code>
+
+<ttl text="Global configurations"></ttl>
+
+<p>
+  A list of global styles, including shape, size, color, font sizes, font weights, and letter
+  spacing can be provided via <code>themeLibrary</code> in the
+  <code>provideZapOption</code> provider.. If you have multi theme setup, you can also provide theme
+  specific colors. These apply to all default variants through out the app unless component level
+  styles are provided.
+</p>
+<spacer height="40px"></spacer>
+
+<ttl text="Example" type="h5"></ttl>
+<spacer></spacer>
+
+<app-code
+  [markdown]="markdownGlobal.markdown"
+  [language]="markdownGlobal.language"
+  [title]="markdownGlobal.title">
+</app-code>
+
+<spacer height="40px"></spacer>
+
+<ttl text="Shape and Size" type="h5"></ttl>
+
+<div class="max-w-full overflow-x-auto">
+  <table class="w-full border-collapse">
+    <thead>
+      <tr>
+        <th style="width: 20%"><p>Property</p></th>
+        <th><p>Description</p></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <p><code>shape</code></p>
+        </td>
+        <td>
+          <p>
+            Defines the shape of the chip. Can be <code>flat</code>, <code>curve</code>, or
+            <code>pill</code>.
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>size</code></p>
+        </td>
+        <td>
+          <p>
+            Defined the size of the chip. Can be <code>compact</code> | <code>wide</code> |
+            <code>tight</code> | <code>base</code>
+          </p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<spacer height="40px"></spacer>
+<ttl text="Colors" type="h5"></ttl>
+<p>You can provide each of these colors for different themes that you use</p>
+
+<div class="max-w-full overflow-x-auto">
+  <table class="w-full border-collapse">
+    <thead>
+      <tr>
+        <th style="width: 20%"><p>Property</p></th>
+        <th><p>Description</p></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <p><code>bgColor</code></p>
+        </td>
+        <td><p>Background color of the chip.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>textColor</code></p>
+        </td>
+        <td><p>Text color of the chip.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>borderColor</code></p>
+        </td>
+        <td><p>Border color of the chip.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>bgHoverColor</code></p>
+        </td>
+        <td><p>Background color of the chip when hovered.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>textHoverColor</code></p>
+        </td>
+        <td><p>Text color of the chip when hovered.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>borderHoverColor</code></p>
+        </td>
+        <td><p>Border color of the chip when hovered.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>dismissColor</code></p>
+        </td>
+        <td><p>Color of the dismiss element of the chip.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>dismissHoverColor</code></p>
+        </td>
+        <td><p>Color of the dismiss element of the chip when hovered.</p></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<spacer height="40px"></spacer>
+<ttl text="Other styles" type="h5"></ttl>
+<p>You can provide a bunch of other styles, that are not theme based but rather generic</p>
+
+<div class="max-w-full overflow-x-auto">
+  <table class="w-full border-collapse">
+    <thead>
+      <tr>
+        <th style="width: 20%"><p>Property</p></th>
+        <th><p>Description</p></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <p><code>borderRadius</code></p>
+        </td>
+        <td><p>Defines the radius of the chip's corners.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>paddingLeft</code></p>
+        </td>
+        <td><p>Left padding of the chip.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>paddingRight</code></p>
+        </td>
+        <td><p>Right padding of the chip.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>paddingTop</code></p>
+        </td>
+        <td><p>Top padding of the chip.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>paddingBottom</code></p>
+        </td>
+        <td><p>Bottom padding of the chip.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>padding</code></p>
+        </td>
+        <td><p>Padding around the chip's content.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>width</code></p>
+        </td>
+        <td><p>Width of the chip.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>height</code></p>
+        </td>
+        <td><p>Height of the chip.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>fontSize</code></p>
+        </td>
+        <td><p>Font size of the chip's text.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>fontWeight</code></p>
+        </td>
+        <td><p>Font weight of the chip's text.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>lineHeight</code></p>
+        </td>
+        <td><p>Line height of the chip's text.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>letterSpacing</code></p>
+        </td>
+        <td><p>Letter spacing of the chip's text.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>textTransform</code></p>
+        </td>
+        <td><p>Transforms the chip's text (e.g., uppercase, lowercase).</p></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<spacer height="40px"></spacer>

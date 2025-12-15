@@ -1,0 +1,483 @@
+<h1>Toast Notifications</h1>
+<p class="lead">
+  Toasts are non-intrusive message notifications that temporarily appear on the screen to provide
+  quick feedback to users. They are commonly used to:
+</p>
+
+<spacer></spacer>
+
+<ttl text="Toast"></ttl>
+
+<app-preview-code [markdown]="basicToastMarkdown">
+  <zap-button text="Show toast" variant="outlined" (click)="showToast('default')"></zap-button>
+</app-preview-code>
+
+<spacer height="40px"></spacer>
+
+<ttl text="Optional properties"></ttl>
+
+<div class="info-card">
+  <i class="fa-solid fa-circle-info mr-2"></i>Use the properties below to style the input and copy
+  the code to your project. Try clicking on them.
+</div>
+<div class="max-w-full overflow-x-auto">
+  <table class="w-full border-collapse">
+    <thead>
+      <tr>
+        <th style="width: 200px">Property</th>
+        <th style="width: 300px">Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <p><code>title</code></p>
+        </td>
+        <td>
+          <p class="font-mono">string</p>
+        </td>
+        <td>
+          <p>The title of the toast.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>text</code></p>
+        </td>
+        <td>
+          <p class="font-mono">string</p>
+        </td>
+        <td>
+          <p>The text of the toast.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>action</code></p>
+        </td>
+        <td>
+          <p class="font-mono">string</p>
+        </td>
+        <td>
+          <p>The text of the action button.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>shape</code></p>
+        </td>
+        <td>
+          <p>
+            <code (click)="updateShape('flat')">flat</code> |
+            <code (click)="updateShape('curve')">curve</code> |
+            <code (click)="updateShape('pill')">pill</code>
+          </p>
+        </td>
+        <td>
+          <p>
+            The shape of the toast.
+            <code (click)="updateShape('flat')">flat</code> is a rectangle,
+            <code (click)="updateShape('curve')">curve</code> is a rectangle with rounded corners,
+            and <code (click)="updateShape('pill')">pill</code> is a pill shape.
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>type</code></p>
+        </td>
+        <td>
+          <p>
+            <code (click)="updateType('default')">default</code> |
+            <code (click)="updateType('error')">error</code>
+          </p>
+        </td>
+        <td>
+          <p>
+            The type of the toast.
+            <code (click)="updateType('default')">default</code> is a regular toast and
+            <code (click)="updateType('error')">error</code> is a destructive toast.
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>zapClass</code></p>
+        </td>
+        <td>
+          <p class="font-mono">string</p>
+        </td>
+        <td>
+          <p>
+            Allows overriding default styles by passing Tailwind CSS classes. Utilize the
+            <code class="!cursor-auto">&#64;zaplib/zapui/tailwind</code> plugin to target specific
+            elements within the input component.
+          </p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<spacer></spacer>
+
+<ttl text="Output events"></ttl>
+
+<div class="max-w-full overflow-x-auto">
+  <table class="w-full border-collapse">
+    <thead>
+      <tr>
+        <th style="width: 200px">Events</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <p><code>dismiss</code></p>
+        </td>
+        <td>
+          <p>
+            Emitted when the toast is dismissed. I.e. when the user clicks on the dismiss icon or
+            swipes right on the toast.
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>actioned</code></p>
+        </td>
+        <td>
+          <p>Emitted when the user clicks on the action button.</p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<spacer></spacer>
+
+<ttl text="Text only toast"></ttl>
+
+<app-preview-code [markdown]="textOnlyToastMarkdown">
+  <zap-button text="Show toast" variant="outlined" (click)="showToast('text')"></zap-button>
+</app-preview-code>
+
+<spacer></spacer>
+
+<ttl text="With title"></ttl>
+
+<app-preview-code [markdown]="withTitleToastMarkdown">
+  <zap-button text="Show toast" variant="outlined" (click)="showToast('title')"></zap-button>
+</app-preview-code>
+
+<spacer></spacer>
+
+<ttl text="With action button"></ttl>
+
+<app-preview-code [markdown]="withActionToastMarkdown">
+  <zap-button text="Show toast" variant="outlined" (click)="showToast('action')"></zap-button>
+</app-preview-code>
+
+<spacer></spacer>
+
+<ttl text="Error toast"></ttl>
+
+<app-preview-code [markdown]="errorToastMarkdown">
+  <zap-button text="Show toast" variant="outlined" (click)="showToast('error')"></zap-button>
+</app-preview-code>
+
+<spacer></spacer>
+
+<ttl text="Toast componnet only"></ttl>
+
+<app-preview-code [markdown]="toastMarkdown">
+  <zap-toast
+    title="Toast title here"
+    text="Toast sub title here"
+    action="Action"
+    zapClass="toast-title:!p-0 toast-text:!p-0"></zap-toast>
+</app-preview-code>
+
+<spacer></spacer>
+
+<ttl text="Toast component only custom content"></ttl>
+
+<app-preview-code [markdown]="customToastMarkdown">
+  <zap-toast>
+    <div class="max-w-[25rem]">
+      <p class="!py-0 !leading-[1.5]">Custom content</p>
+      <p class="!py-0 !leading-[1.5] !text-zinc-400 !text-xs">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+        <a href="" class="!text-xs">View details</a>
+      </p>
+    </div>
+  </zap-toast>
+</app-preview-code>
+
+<spacer height="40px"></spacer>
+
+<ttl text="Global configurations"></ttl>
+
+<spacer height="40px"></spacer>
+
+<ttl text="Shape and Size" type="h5"></ttl>
+
+<div class="max-w-full overflow-x-auto">
+  <table class="w-full border-collapse">
+    <thead>
+      <tr>
+        <th style="width: 20%"><p>Property</p></th>
+        <th><p>Description</p></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <p><code>shape</code></p>
+        </td>
+        <td>
+          <p>
+            Defines the shape of the toast. Can be <code>flat</code>, <code>curve</code> or
+            <code>pill</code>.
+          </p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<spacer height="40px"></spacer>
+
+<ttl text="Colors" type="h5"></ttl>
+
+<p>You can provide each of these colors for different themes that you use</p>
+
+<div class="max-w-full overflow-x-auto">
+  <table class="w-full border-collapse">
+    <thead>
+      <tr>
+        <th style="width: 20%"><p>Property</p></th>
+        <th><p>Description</p></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <p><code>bgColor</code></p>
+        </td>
+        <td><p>Background color of the toast.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>textColor</code></p>
+        </td>
+        <td><p>Text color of the toast content.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>borderColor</code></p>
+        </td>
+        <td><p>Border color of the toast.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>titleColor</code></p>
+        </td>
+        <td><p>Color of the toast title text.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>btnBgColor</code></p>
+        </td>
+        <td><p>Background color of the action button.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>btnTextColor</code></p>
+        </td>
+        <td><p>Text color of the action button.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>btnBorderColor</code></p>
+        </td>
+        <td><p>Border color of the action button.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>btnBgHoverColor</code></p>
+        </td>
+        <td><p>Background color of the action button on hover.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>btnTextHoverColor</code></p>
+        </td>
+        <td><p>Text color of the action button on hover.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>btnBorderHoverColor</code></p>
+        </td>
+        <td><p>Border color of the action button on hover.</p></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<spacer height="40px"></spacer>
+<ttl text="Other styles" type="h5"></ttl>
+<p>You can provide a bunch of other styles, that are not theme based but rather generic</p>
+
+<div class="max-w-full overflow-x-auto">
+  <table class="w-full border-collapse">
+    <thead>
+      <tr>
+        <th style="width: 20%"><p>Property</p></th>
+        <th><p>Description</p></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <p><code>borderRadius</code></p>
+        </td>
+        <td><p>Defines the radius of the toast's corners.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>padding</code></p>
+        </td>
+        <td><p>Sets the padding for all sides of the toast content.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>paddingLeft</code></p>
+        </td>
+        <td><p>Sets the left padding of the toast content.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>paddingRight</code></p>
+        </td>
+        <td><p>Sets the right padding of the toast content.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>paddingTop</code></p>
+        </td>
+        <td><p>Sets the top padding of the toast content.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>paddingBottom</code></p>
+        </td>
+        <td><p>Sets the bottom padding of the toast content.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>btnPadding</code></p>
+        </td>
+        <td><p>Sets the padding for all sides of the action button.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>btnPaddingLeft</code></p>
+        </td>
+        <td><p>Sets the left padding of the action button.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>btnPaddingRight</code></p>
+        </td>
+        <td><p>Sets the right padding of the action button.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>btnPaddingTop</code></p>
+        </td>
+        <td><p>Sets the top padding of the action button.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>btnPaddingBottom</code></p>
+        </td>
+        <td><p>Sets the bottom padding of the action button.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>fontSize</code></p>
+        </td>
+        <td><p>Sets the font size of the toast text content.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>titleFontSize</code></p>
+        </td>
+        <td><p>Sets the font size of the toast title.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>fontWeight</code></p>
+        </td>
+        <td><p>Sets the font weight of the toast text content.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>titleFontWeight</code></p>
+        </td>
+        <td><p>Sets the font weight of the toast title.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>lineHeight</code></p>
+        </td>
+        <td><p>Sets the line height of the toast text content.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>titleLineHeight</code></p>
+        </td>
+        <td><p>Sets the line height of the toast title.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>letterSpacing</code></p>
+        </td>
+        <td><p>Sets the letter spacing of the toast text content.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>titleLetterSpacing</code></p>
+        </td>
+        <td><p>Sets the letter spacing of the toast title.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>btnFontSize</code></p>
+        </td>
+        <td><p>Sets the font size of the action button.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>btnFontWeight</code></p>
+        </td>
+        <td><p>Sets the font weight of the action button.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>btnLineHeight</code></p>
+        </td>
+        <td><p>Sets the line height of the action button.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>btnLetterSpacing</code></p>
+        </td>
+        <td><p>Sets the letter spacing of the action button.</p></td>
+      </tr>
+    </tbody>
+  </table>
+</div>

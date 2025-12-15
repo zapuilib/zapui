@@ -1,0 +1,531 @@
+<h1>Dialog</h1>
+
+<p class="lead">
+  Dialogs are overlay UI elements that capture user attention for confirmations, dialogs, or inputs.
+  They provide a focused interaction point, ensuring key actions or messages are acknowledged before
+  proceeding.
+</p>
+
+<spacer height="40px"></spacer>
+
+<ttl text="Basic dialog"></ttl>
+
+<app-preview-code [markdown]="markdown[0]">
+  <div class="flex justify-center items-center min-h-[200px]">
+    <zap-button text="Open Dialog" variant="outlined" (click)="basicDialogOpen = true">
+    </zap-button>
+  </div>
+
+  @if (basicDialogOpen) {
+    <zap-dialog
+      title="Are you sure?"
+      text="This action cannot be undone"
+      [showOverlay]="true"
+      [shape]="shape"
+      [position]="position"
+      (close)="onClose()"
+      (confirm)="onConfirm()">
+    </zap-dialog>
+  }
+</app-preview-code>
+
+<spacer height="40px"></spacer>
+
+<ttl text="Optional properties"></ttl>
+
+<div class="info-card">
+  <i class="fa-solid fa-circle-info mr-2"></i>
+  Use the properties below to style the dialog and copy the code to your project. Try clicking on
+  them.
+</div>
+
+<table>
+  <thead>
+    <tr>
+      <th style="width: 200px">Property</th>
+      <th style="width: 400px">Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <p><code>shape</code></p>
+      </td>
+      <td>
+        <p>
+          <code (click)="updateShape('flat')">flat</code> |
+          <code (click)="updateShape('pill')">pill</code> |
+          <code (click)="updateShape('curve')">curve</code>
+        </p>
+      </td>
+      <td>
+        <p>
+          Defines the dialog's shape.
+          <code (click)="updateShape('pill')">pill</code> is a fully rounded dialog,
+          <code (click)="updateShape('curve')">curve</code> has rounded corners, and
+          <code (click)="updateShape('flat')">flat</code> is a classic square-cornered dialog.
+          Default is <code (click)="updateShape('flat')">flat</code>.
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <p><code>position</code></p>
+      </td>
+      <td>
+        <p>
+          <code (click)="updatePosition('top')">top</code> |
+          <code (click)="updatePosition('default')">default</code>
+        </p>
+      </td>
+      <td>
+        <p>
+          Defines the dialog's position. <code>top</code> positions the dialog at the top of the
+          screen, and <code>default</code> positions the dialog in the center of the screen.
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <p><code>title</code></p>
+      </td>
+      <td>
+        <p class="font-mono">string</p>
+      </td>
+      <td>
+        <p>Sets the title of the dialog. Default is <code>Are you sure?</code>.</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <p><code>text</code></p>
+      </td>
+      <td>
+        <p class="font-mono">string</p>
+      </td>
+      <td>
+        <p>Sets the text of the dialog.</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <p><code>zapClass</code></p>
+      </td>
+      <td>
+        <p class="font-mono">string</p>
+      </td>
+      <td>
+        <p>
+          Allows overriding default styles by passing Tailwind CSS classes. Utilize the
+          <code class="!cursor-auto">&#64;zaplib/zapui/tailwind</code> plugin to target specific
+          elements within the dialog component.
+        </p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<spacer height="40px"></spacer>
+
+<ttl text="Supported directives"></ttl>
+
+<div class="max-w-full overflow-x-auto">
+  <table class="w-full border-collapse">
+    <thead>
+      <tr>
+        <th style="width: 20%">Selector</th>
+        <th style="width: 20%">Directive name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <p><code>zapDialogFooter</code></p>
+        </td>
+        <td>
+          <p class="font-mono">ZapDialogFooterDirective</p>
+        </td>
+        <td>
+          <p>A directive that enables customizing footer in the dialog.</p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<spacer height="40px"></spacer>
+
+<ttl text="Example" type="h4"></ttl>
+
+<app-preview-code [markdown]="markdownDirective" class="!z-40">
+  <div class="dialog__button">
+    <zap-button text="Open Custom Dialog" variant="outlined" (click)="customDialogOpen = true">
+    </zap-button>
+  </div>
+
+  @if (customDialogOpen) {
+    <zap-dialog [showOverlay]="true" (close)="customDialogOpen = false">
+      <div zapDialogFooter>
+        <zap-button
+          text="No"
+          size="wide"
+          variant="outlined"
+          (click)="customDialogOpen = false"></zap-button>
+        <zap-button text="Yes" size="wide" type="default" (click)="customDialogOpen = false">
+        </zap-button>
+      </div>
+      <p class="text-zinc-500">
+        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Odit laudantium dolores ut
+        voluptates quaerat consequuntur.
+      </p>
+    </zap-dialog>
+  }
+</app-preview-code>
+
+<spacer height="40px"></spacer>
+
+<ttl text="Global configurations"></ttl>
+
+<p>
+  A list of global styles, including shape, size, color, font sizes, font weights, and letter
+  spacing can be provided via <code>themeLibrary</code> in the
+  <code>provideZapOption</code> provider.. If you have multi theme setup, you can also provide theme
+  specific colors. These apply to all default variants through out the app unless component level
+  styles are provided.
+</p>
+<spacer height="40px"></spacer>
+
+<ttl text="Example" type="h5"></ttl>
+<spacer></spacer>
+
+<app-code
+  [markdown]="markdownGlobal.markdown"
+  [language]="markdownGlobal.language"
+  [title]="markdownGlobal.title">
+</app-code>
+
+<spacer height="40px"></spacer>
+<ttl text="Colors" type="h5"></ttl>
+<p>You can provide each of these colors for different themes that you use</p>
+
+<div class="max-w-full overflow-x-auto">
+  <table class="w-full border-collapse">
+    <thead>
+      <tr>
+        <th style="width: 20%"><p>Property</p></th>
+        <th><p>Description</p></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <p><code>bgColor</code></p>
+        </td>
+        <td><p>Background color of the dialog.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>textColor</code></p>
+        </td>
+        <td><p>Text color of the dialog.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>titleColor</code></p>
+        </td>
+        <td><p>Text color of the title.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>borderColor</code></p>
+        </td>
+        <td><p>Border color of the dialog.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>dismissColor</code></p>
+        </td>
+        <td><p>Color of the dismiss icon</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>dismissHoverColor</code></p>
+        </td>
+        <td><p>Color of the dismiss icon when hovered</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>primaryBtnBgColor</code></p>
+        </td>
+        <td><p>Background color of the primary button</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>primaryBtnTextColor</code></p>
+        </td>
+        <td><p>Text color of the primary button</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>primaryBtnBorderColor</code></p>
+        </td>
+        <td><p>Border color of the primary button</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>primaryBtnBgHoverColor</code></p>
+        </td>
+        <td><p>Background color of the primary button when hovered</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>primaryBtnTextHoverColor</code></p>
+        </td>
+        <td><p>Text color of the primary button when hovered</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>primaryBtnBorderHoverColor</code></p>
+        </td>
+        <td><p>Border color of the primary button when hovered</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>secondaryBtnBgColor</code></p>
+        </td>
+        <td><p>Background color of the secondary button</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>secondaryBtnTextColor</code></p>
+        </td>
+        <td><p>Text color of the secondary button</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>secondaryBtnBorderColor</code></p>
+        </td>
+        <td><p>Border color of the secondary button</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>secondaryBtnBgHoverColor</code></p>
+        </td>
+        <td><p>Background color of the secondary button when hovered</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>secondaryBtnTextHoverColor</code></p>
+        </td>
+        <td><p>Text color of the secondary button when hovered</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>secondaryBtnBorderHoverColor</code></p>
+        </td>
+        <td><p>Border color of the secondary button when hovered</p></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<spacer height="40px"></spacer>
+<ttl text="Other styles" type="h5"></ttl>
+<p>You can provide a bunch of other styles, that are not theme based but rather generic</p>
+
+<div class="max-w-full overflow-x-auto">
+  <table class="w-full border-collapse">
+    <thead>
+      <tr>
+        <th style="width: 20%"><p>Property</p></th>
+        <th><p>Description</p></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <p><code>borderRadius</code></p>
+        </td>
+        <td><p>Defines the radius of the dialog's corners.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>paddingLeft</code></p>
+        </td>
+        <td><p>Left padding of the dialog.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>paddingRight</code></p>
+        </td>
+        <td><p>Right padding of the dialog.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>paddingTop</code></p>
+        </td>
+        <td><p>Top padding of the dialog.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>paddingBottom</code></p>
+        </td>
+        <td><p>Bottom padding of the dialog.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>padding</code></p>
+        </td>
+        <td><p>Padding around the dialog's content.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>width</code></p>
+        </td>
+        <td><p>Width of the dialog.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>height</code></p>
+        </td>
+        <td><p>Height of the dialog.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>titleFontSize</code></p>
+        </td>
+        <td><p>Font size of the title.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>titleFontWeight</code></p>
+        </td>
+        <td><p>Font weight of the title.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>titleLineHeight</code></p>
+        </td>
+        <td><p>Line height of the title.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>titleLetterSpacing</code></p>
+        </td>
+        <td><p>Letter spacing of the title.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>fontSize</code></p>
+        </td>
+        <td><p>Font size of the dialog's text.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>fontWeight</code></p>
+        </td>
+        <td><p>Font weight of the dialog's text.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>lineHeight</code></p>
+        </td>
+        <td><p>Line height of the dialog's text.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>letterSpacing</code></p>
+        </td>
+        <td><p>Letter spacing of the dialog's text.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>dismissFontSize</code></p>
+        </td>
+        <td><p>Font size of the dismiss element.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>dismissFontWeight</code></p>
+        </td>
+        <td><p>Font weight of the dismiss element.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>dismissLineHeight</code></p>
+        </td>
+        <td><p>Line height of the dismiss element.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>dismissLetterSpacing</code></p>
+        </td>
+        <td><p>Letter spacing of the dismiss element.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>primaryBtnFontSize</code></p>
+        </td>
+        <td><p>Font size of the primary button element.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>primaryBtnFontWeight</code></p>
+        </td>
+        <td><p>Font weight of the primary button element.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>primaryBtnLineHeight</code></p>
+        </td>
+        <td><p>Line height of the primary button element.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>primaryBtnLetterSpacing</code></p>
+        </td>
+        <td><p>Letter spacing of the primary button element.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>secondaryBtnFontSize</code></p>
+        </td>
+        <td><p>Font size of the secondary button element.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>secondaryBtnFontWeight</code></p>
+        </td>
+        <td><p>Font weight of the secondary button element.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>secondaryBtnLineHeight</code></p>
+        </td>
+        <td><p>Line height of the secondary button element.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>secondaryBtnLetterSpacing</code></p>
+        </td>
+        <td><p>Letter spacing of the secondary button element.</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>primaryBtnBorderRadius</code></p>
+        </td>
+        <td><p>Border radius of the primary button</p></td>
+      </tr>
+      <tr>
+        <td>
+          <p><code>secondaryBtnBorderRadius</code></p>
+        </td>
+        <td><p>Border radius of the secondary button</p></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<spacer height="40px"></spacer>

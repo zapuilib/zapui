@@ -1,0 +1,29 @@
+<form
+  [formGroup]="form"
+  class="col-span-5 md:col-span-4 lg:col-span-3 xl:col-span-2 flex flex-col justify-center gap-y-6">
+  <div>
+    <p class="!text-lg font-normal !leading-[1]">Sign in to your account</p>
+    <p class="!text-lg mb-2 font-semibold text-base-200 !leading-[1]">
+      Home for all your projects and teams
+    </p>
+  </div>
+  <zap-button
+    text="Sign in with google"
+    size="wide"
+    img="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Google_%22G%22_logo.svg/1200px-Google_%22G%22_logo.svg.png"
+    variant="outlined"
+    (click)="submit()"></zap-button>
+  <zap-input
+    id="email"
+    type="text"
+    label="Email"
+    placeholder="Enter your email address"
+    formControlName="email"></zap-input>
+  <zap-input
+    id="password"
+    type="password"
+    label="Password"
+    placeholder="Enter your password"
+    formControlName="password"></zap-input>
+  <zap-button text="Sign in to continue" size="wide"></zap-button>
+</form>

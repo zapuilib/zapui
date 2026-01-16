@@ -5,7 +5,7 @@
 ### 🛠 Fixes
 
 - **Textarea**
-  - ZapCustomErrorMessages renamed to customErrorMessages
+  - customErrorMessages renamed to customErrorMessages
 
 ## 📦 0.0.0-alpha.9.13 — `dev-alpha`
 

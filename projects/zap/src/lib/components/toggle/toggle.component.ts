@@ -6,7 +6,7 @@ import { ControlValueAccessorDirective } from '../../directives/control-value-ac
 import { ValidationErrorComponent } from '../validation-error/validation-error.component';
 import { ZapHelpTextDirective, ZapLabelDirective } from '../../directives';
 import { RequiredIndicatorComponent } from '../required-indicator/required-indicator.component';
-import { ZapCustomErrorMessages } from '../validation-error/validation.interface';
+import { customErrorMessages } from '../validation-error/validation.interface';
 
 @Component({
   selector: 'zap-toggle',
@@ -39,7 +39,7 @@ export class ZapToggle<T>
   label = input<string>();
   helpText = input<string>();
   zapClass = input<string>();
-  ZapCustomErrorMessages = input<ZapCustomErrorMessages>({});
+  customErrorMessages = input<customErrorMessages>({});
   indicator = input<boolean>(true);
   checked = input<boolean>(false);
 

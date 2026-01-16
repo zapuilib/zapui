@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, input, OnChanges, SimpleChanges } from '@angular/core';
 import { ValidationErrors } from '@angular/forms';
 
-import { ZapCustomErrorMessages } from './validation.interface';
+import { customErrorMessages } from './validation.interface';
 
 @Component({
   selector: 'validation-error',
@@ -12,7 +12,7 @@ import { ZapCustomErrorMessages } from './validation.interface';
 })
 export class ValidationErrorComponent implements OnChanges {
   errors = input<Record<string, ValidationErrors> | null>({});
-  ZapCustomErrorMessages = input<ZapCustomErrorMessages>({});
+  customErrorMessages = input<customErrorMessages>({});
   zapClass = input<string>();
   color = input<string>();
   errorMessages: Record<string, string> = {
@@ -26,11 +26,11 @@ export class ValidationErrorComponent implements OnChanges {
   };
 
   ngOnChanges(changes: SimpleChanges): void {
-    const { ZapCustomErrorMessages } = changes;
-    if (ZapCustomErrorMessages) {
+    const { customErrorMessages } = changes;
+    if (customErrorMessages) {
       this.errorMessages = {
         ...this.errorMessages,
-        ...ZapCustomErrorMessages.currentValue,
+        ...customErrorMessages.currentValue,
       };
     }
   }

@@ -40,7 +40,7 @@ export class ZapTextarea<T>
   rows = input<string>('');
   zapClass = input<string>('');
   shape = input<'curve' | 'flat' | 'pill'>();
-  ZapCustomErrorMessages = input<ZapCustomErrorMessages>({});
+  customErrorMessages = input<ZapCustomErrorMessages>({});
   placeholder = input<string>('');
   resize = input<'none' | 'vertical' | 'horizontal' | 'auto'>('none');
   helpText = input<string>('');

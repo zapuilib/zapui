@@ -54,7 +54,7 @@ export class ZapCheckbox<T>
   iconDirective!: ZapIconDirective;
   label = input<string>('');
   id = input.required<string>();
-  ZapCustomErrorMessages = input<ZapCustomErrorMessages>({});
+  customErrorMessages = input<ZapCustomErrorMessages>({});
   zapClass = input<string>('');
   shape = input<'curve' | 'flat'>();
   size = input<'compact' | 'base'>();

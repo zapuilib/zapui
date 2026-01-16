@@ -75,7 +75,7 @@ export class ZapSelect<T>
   id = input.required<string>();
   label = input<string>('');
   placeholder = input<string>('Select');
-  ZapCustomErrorMessages = input<ZapCustomErrorMessages>({});
+  customErrorMessages = input<ZapCustomErrorMessages>({});
   zapClass = input<string>('');
   shape = input<'pill' | 'curve' | 'flat'>();
   size = input<'compact' | 'base'>();

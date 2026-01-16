@@ -39,7 +39,7 @@ export class ZapToggle<T>
   label = input<string>();
   helpText = input<string>();
   zapClass = input<string>();
-  ZapCustomErrorMessages = input<ZapCustomErrorMessages>({});
+  customErrorMessages = input<ZapCustomErrorMessages>({});
   indicator = input<boolean>(true);
   checked = input<boolean>(false);
 

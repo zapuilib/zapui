@@ -33,7 +33,7 @@ export class ZapRadio<T> extends ControlValueAccessorDirective<T> implements OnI
   id = input.required<string>();
   options = input<{ name: string; value: string }[]>([]);
   label = input<string>();
-  ZapCustomErrorMessages = input<ZapCustomErrorMessages>({});
+  customErrorMessages = input<ZapCustomErrorMessages>({});
   zapClass = input<string>('');
   variant = input<'vertical' | 'horizontal'>('vertical');
   indicator = input<boolean>(true);

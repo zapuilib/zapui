@@ -12,7 +12,7 @@ import { ZapCustomErrorMessages } from './validation.interface';
 })
 export class ValidationErrorComponent implements OnChanges {
   errors = input<Record<string, ValidationErrors> | null>({});
-  ZapCustomErrorMessages = input<ZapCustomErrorMessages>({});
+  customErrorMessages = input<ZapCustomErrorMessages>({});
   zapClass = input<string>();
   color = input<string>();
   errorMessages: Record<string, string> = {

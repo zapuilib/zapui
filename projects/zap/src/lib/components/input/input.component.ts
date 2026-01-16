@@ -55,7 +55,7 @@ export class ZapInput<T>
   type = input<InputType>('text');
   label = input<string>('');
   placeholder = input<string>('');
-  ZapCustomErrorMessages = input<ZapCustomErrorMessages>({});
+  customErrorMessages = input<ZapCustomErrorMessages>({});
   zapClass = input<string>('');
   size = input<'compact' | 'base'>();
   shape = input<'pill' | 'curve' | 'flat'>();

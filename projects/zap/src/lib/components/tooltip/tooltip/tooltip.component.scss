@@ -1,5 +1,9 @@
 .zap__tooltip {
-  @apply relative inline-block text-[var(--zap-tooltip-text-color)];
+  @apply relative flex text-[var(--zap-tooltip-text-color)];
   @apply bg-[var(--zap-tooltip-bg-color)] border-[var(--zap-tooltip-border-width)] rounded-[var(--zap-tooltip-border-radius)];
   @apply hover:bg-[var(--zap-tooltip-bg-hover-color)] hover:border-[var(--zap-tooltip-border-hover-color)] hover:text-[var(--zap-tooltip-text-hover-color)];
+}
+
+.zap__tooltip__trigger {
+  @apply flex h-max;
 }

@@ -18,7 +18,11 @@ import { positionConfigs } from './position.constant';
   standalone: true,
   template: `
     <div class="zap__tooltip">
-      <div #triggerRef (mouseenter)="showContent()" (mouseleave)="hideContent()">
+      <div
+        #triggerRef
+        (mouseenter)="showContent()"
+        (mouseleave)="hideContent()"
+        class="zap__tooltip__trigger">
         <ng-content select="zap-tooltip-handler"></ng-content>
       </div>
       <ng-template #contentTemplate>

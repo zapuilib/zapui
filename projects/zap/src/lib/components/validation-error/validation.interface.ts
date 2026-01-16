@@ -6,4 +6,5 @@ export interface ZapCustomErrorMessages {
   min?: string;
   max?: string;
   pattern?: string;
+  invalid?: string;
 }

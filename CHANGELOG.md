@@ -1,12 +1,5 @@
 # Changelog
 
-## 📦 0.0.0-alpha.9.14 — `dev-alpha`
-
-### 🛠 Fixes
-
-- **Tooltip**
-  - Zap tooltip class now has flex class instead of inline-block, and the div wrapping the handler also have flex class
-
 ## 📦 0.0.0-alpha.9.13 — `dev-alpha`
 
 ### ✨ Features
@@ -25,7 +18,11 @@
 ### 🛠 Fixes
 
 - **Button**
+
   - Fixed icon-only buttons to have consistent line height. SVG heights are now adjusted to match the button's minimum height for better visual alignment.
+
+- **Tooltip**
+  - Zap tooltip class now has flex class instead of inline-block, and the div wrapping the handler also have flex class
 
 ## 📦 0.0.0-alpha.9.12 — `dev-alpha`
 

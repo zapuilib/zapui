@@ -22,7 +22,7 @@ import { ValidationErrorComponent } from '../validation-error/validation-error.c
 import { ZapLabelDirective } from '../../directives';
 import { ZapIconDirective } from '../../directives/icon.directive';
 import { RequiredIndicatorComponent } from '../required-indicator/required-indicator.component';
-import { customErrorMessages } from '../validation-error/validation.interface';
+import { ZapCustomErrorMessages } from '../validation-error/validation.interface';
 
 @Component({
   selector: 'zap-checkbox',
@@ -54,7 +54,7 @@ export class ZapCheckbox<T>
   iconDirective!: ZapIconDirective;
   label = input<string>('');
   id = input.required<string>();
-  customErrorMessages = input<customErrorMessages>({});
+  customErrorMessages = input<ZapCustomErrorMessages>({});
   zapClass = input<string>('');
   shape = input<'curve' | 'flat'>();
   size = input<'compact' | 'base'>();

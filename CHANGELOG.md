@@ -1,11 +1,18 @@
 # Changelog
 
+## 📦 0.0.0-alpha.9.15 — `dev-alpha`
+
+### 🛠 Fixes
+
+- **Textarea**
+  - customErrorMessages renamed to ZapCustomErrorMessages for the type
+
 ## 📦 0.0.0-alpha.9.14 — `dev-alpha`
 
 ### 🛠 Fixes
 
 - **Textarea**
-  - customErrorMessages renamed to customErrorMessages
+  - ZapCustomErrorMessages renamed to customErrorMessages
 
 ## 📦 0.0.0-alpha.9.13 — `dev-alpha`
 

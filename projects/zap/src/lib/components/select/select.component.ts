@@ -34,7 +34,7 @@ import { ValidationErrorComponent } from '../validation-error/validation-error.c
 import { ZapHelpTextDirective, ZapIconDirective, ZapLabelDirective } from '../../directives';
 import { ZapScrollAreaDirective } from '../../directives/zap-scroll-area.directive';
 import { RequiredIndicatorComponent } from '../required-indicator/required-indicator.component';
-import { customErrorMessages } from '../validation-error/validation.interface';
+import { ZapCustomErrorMessages } from '../validation-error/validation.interface';
 
 @Component({
   selector: 'zap-select',
@@ -75,7 +75,7 @@ export class ZapSelect<T>
   id = input.required<string>();
   label = input<string>('');
   placeholder = input<string>('Select');
-  customErrorMessages = input<customErrorMessages>({});
+  customErrorMessages = input<ZapCustomErrorMessages>({});
   zapClass = input<string>('');
   shape = input<'pill' | 'curve' | 'flat'>();
   size = input<'compact' | 'base'>();

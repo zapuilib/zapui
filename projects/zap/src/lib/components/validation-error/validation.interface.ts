@@ -1,4 +1,4 @@
-export interface customErrorMessages {
+export interface ZapCustomErrorMessages {
   required?: string;
   minlength?: string;
   maxlength?: string;

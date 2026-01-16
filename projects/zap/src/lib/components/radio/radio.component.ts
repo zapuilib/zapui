@@ -6,7 +6,7 @@ import { ControlValueAccessorDirective } from '../../directives/control-value-ac
 import { ValidationErrorComponent } from '../validation-error/validation-error.component';
 import { ZapLabelDirective } from '../../directives';
 import { RequiredIndicatorComponent } from '../required-indicator/required-indicator.component';
-import { customErrorMessages } from '../validation-error/validation.interface';
+import { ZapCustomErrorMessages } from '../validation-error/validation.interface';
 
 @Component({
   selector: 'zap-radio',
@@ -33,7 +33,7 @@ export class ZapRadio<T> extends ControlValueAccessorDirective<T> implements OnI
   id = input.required<string>();
   options = input<{ name: string; value: string }[]>([]);
   label = input<string>();
-  customErrorMessages = input<customErrorMessages>({});
+  customErrorMessages = input<ZapCustomErrorMessages>({});
   zapClass = input<string>('');
   variant = input<'vertical' | 'horizontal'>('vertical');
   indicator = input<boolean>(true);

@@ -2,6 +2,13 @@
 
 ## 📦 0.0.0-alpha.9.13 — `dev-alpha`
 
+### 🛠 Fixes
+
+- **Tooltip**
+  - Zap tooltip class now has flex class instead of inline-block, and the div wrapping the handler also have flex class
+
+## 📦 0.0.0-alpha.9.13 — `dev-alpha`
+
 ### ✨ Features
 
 - **Breadcrumb**

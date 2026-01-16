@@ -1,5 +1,12 @@
 # Changelog
 
+## 📦 0.0.0-alpha.9.16 — `dev-alpha`
+
+### 🛠 Fixes
+
+- **Textarea**
+  - valid with type string added to ZapCustomErrorMessages
+
 ## 📦 0.0.0-alpha.9.15 — `dev-alpha`
 
 ### 🛠 Fixes

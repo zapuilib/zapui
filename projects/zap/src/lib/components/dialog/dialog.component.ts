@@ -27,6 +27,7 @@ export class ZapDialog implements OnInit, AfterViewInit, OnDestroy {
   @ContentChild(ZapDialogFooterDirective, { static: false })
   footerDirective!: ZapDialogFooterDirective;
   confirm = output();
+  // eslint-disable-next-line @angular-eslint/no-output-native
   close = output();
   title = input('Are you sure?');
   text = input('');

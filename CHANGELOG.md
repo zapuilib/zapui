@@ -26,11 +26,9 @@
 ### ✨ Features
 
 - **Breadcrumb**
-
   - Added new breadcrumb component for navigation.
 
 - **Pagination**
-
   - Added new pagination component.
 
 - **Chip**
@@ -39,7 +37,6 @@
 ### 🛠 Fixes
 
 - **Button**
-
   - Fixed icon-only buttons to have consistent line height. SVG heights are now adjusted to match the button's minimum height for better visual alignment.
 
 - **Tooltip**
@@ -55,12 +52,10 @@
 ### ⚠️ Breaking Changes
 
 - **Directives**
-
   - Renamed `ZapFormFieldHelpTextDirective` to `ZapHelpTextDirective`. Update your imports and template selectors from `zapFormFieldHelpText` to `zapHelpText`.
   - Removed `ZapFormFieldIconDirective`. All components now use the unified `ZapIconDirective` for icon functionality. Update your imports and template selectors from `zapFormFieldIcon` to `zapIcon`.
 
 - **Import Paths**
-
   - Consolidated import entry points from `@zaplib/zapui/core` and `@zaplib/zapui/forms` to a single entry point `@zaplib/zapui`. All components, directives, and utilities can now be imported directly from `@zaplib/zapui`:
 
     ```typescript
@@ -77,12 +72,10 @@
 ### ✨ Features
 
 - **Accordion**
-
   - Added `none` option to `icon` input to allow hiding the accordion icon completely.
   - Added `open` input to `zap-accordion-item` to allow items to be open by default. When `multiple` is false and multiple items are set to open, only the first one remains open.
 
 - **Select**
-
   - Added `chipDismissColor` to global configuration to support custom styling for chip dismiss icons in multiselect mode.
 
 - **Toggle**
@@ -91,7 +84,6 @@
 ### 🚀 Enhancements
 
 - **Dialog, Modal, Tooltip**
-
   - Changed animation from `popup` to `fadeInScale` for a smoother fade and scale transition effect.
 
 - **Checkbox**
@@ -100,7 +92,6 @@
 ### 🛠 Fixes
 
 - **Dialog, Modal**
-
   - Fixed issue where clicking outside to close did not work when `showOverlay` was set to `false`. The overlay is now always rendered for click handling, but only visually displayed when `showOverlay` is `true`. `showOverlay` now only controls the visual appearance of the overlay, not its functionality.
 
 - **Select**
@@ -112,11 +103,9 @@
 ### ✨ Features
 
 - **Toast**
-
   - Support custom template via `template` and context via `templateContext` (context includes `dismiss()`).
 
 - **Checkbox**
-
   - Support custom icon.
 
 - **Select**
@@ -128,7 +117,6 @@
 ### 🚀 Enhancements
 
 - **Button**
-
   - Host-level disabled guard blocks all click interactions when `disabled`.
 
 - **Multi-select**
@@ -143,7 +131,6 @@ No changes
 ### ✨ Features
 
 - **Toast**
-
   - Custom position feature added for the toast component.
 
 - **Handler**

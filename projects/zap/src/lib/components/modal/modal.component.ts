@@ -23,6 +23,7 @@ import { A11yModule } from '@angular/cdk/a11y';
 export class ZapModal implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild(CdkPortal) portalContent!: CdkPortal;
   @ViewChild('modalContent') modalContent!: ElementRef;
+  // eslint-disable-next-line @angular-eslint/no-output-native
   close = output();
   shape = input<'curve' | 'flat' | 'pill'>();
   size = input<'tight' | 'compact' | 'base' | 'wide' | 'full'>('tight');
